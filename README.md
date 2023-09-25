@@ -1,4 +1,4 @@
-# DollMakerProject `#0969DA`
+# DollMakerProject
 
 
 Canvas link [Present Slide](https://www.canva.com/design/DAFtArTWi1c/c9ytBSd-RjjXn-7kVb6Drg/edit).
