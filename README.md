@@ -1,5 +1,7 @@
 # DollMakerProject
 
+Canvas link [Present Slide](https://www.canva.com/design/DAFtArTWi1c/c9ytBSd-RjjXn-7kVb6Drg/edit).
+ตารางงาน [Plan Work](https://docs.google.com/spreadsheets/d/1hgN81cO__76_1bTk-sFhRkZlBrURaWD6x2bH2btdZRY/edit#gid=0).
 # Game Design Doc 
 ## Introduction 
 
