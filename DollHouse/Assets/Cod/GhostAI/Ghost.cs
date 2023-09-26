@@ -10,7 +10,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public NavMeshAgent enemyGhost;
     public List<Transform> destination;
     public Animator GhostAni;
-    public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime;
+    public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, DistanceAmount;
     public bool walking, chasing, searching;
     public Transform player;
     public GameObject DeadCanva;
@@ -19,7 +19,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     int randNum;
     public int destinationAmount;
     public Vector3 rayCastOffset;
-    Sound Lastpos;
 
 
 
@@ -34,6 +33,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     // Update is called once per frame
     void Update()
     {
+        DistanceAmount = enemyGhost.remainingDistance;
+
         Vector3 direction = (player.position - transform.position).normalized;
         RaycastHit hit;
         if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, sightDistance))
@@ -68,24 +69,6 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
         }
 
-        if(searching == true)
-        {
-            StopCoroutine("StartSearch");
-            StartCoroutine("StartSearch");
-            dest = Lastpos.pos;
-            enemyGhost.destination = dest;
-            enemyGhost.speed = walkSpeed;
-            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
-            {
-                enemyGhost.speed = 0;
-                StopCoroutine("stayIdle");
-                StartCoroutine("stayIdle");
-                walking = false;
-            }
-
-        }
-
-
         if(walking == true )
         {
             searching = false;
@@ -102,12 +85,29 @@ public class Ghost : MonoBehaviour, HearPlayer
                 walking = false;
             }
         }
+
     }
 
     public void RespondToSound(Sound sound)
     {
-        print(name + "read sound" +  sound.pos);
+        print(name + " read sound" +  sound.pos);
         searching = true;
+        if (searching == true)
+        {
+            StopCoroutine("StartSearch");
+            StartCoroutine("StartSearch");
+            dest = sound.pos;
+            enemyGhost.destination = dest;
+            enemyGhost.speed = walkSpeed;
+            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
+            {
+                enemyGhost.speed = 0;
+                StopCoroutine("stayIdle");
+                StartCoroutine("stayIdle");
+                walking = false;
+            }
+
+        }
     }
 
 
@@ -135,8 +135,8 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     IEnumerator StartSearch()
     {
+        print("StartSearch");
         yield return new WaitForSeconds(IdleTime);
-
     }
 
 
