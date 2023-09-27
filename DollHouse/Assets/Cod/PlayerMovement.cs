@@ -18,15 +18,13 @@ namespace player
 
         public Transform orientation;
 
-        Ghost ghost;
-
         float horizontalInput;
         float vericalInput;
 
         Vector3 moveDirection;
 
         Rigidbody rb;
-
+        [Header ("Audio")]
         public AudioSource FootStep = null;
         public float AudioRange;
 

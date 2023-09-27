@@ -7,6 +7,7 @@ namespace player
 {
     public class Player : MonoBehaviour
     {
+        [Header ("CameraThing")]
         [SerializeField] CinemachineVirtualCamera WorkshopView;
         [SerializeField] CinemachineVirtualCamera FirstPerson;
 
@@ -14,26 +15,33 @@ namespace player
         public Transform Interact;
         public float InterectRange;
 
-        private void Start()
+        [Header("Audio")]
+        public AudioSource StartWork = null;
+        public float AudioRange;
+
+
+        public void Start()
         {
             pMove = GetComponent<PlayerMovement>();
         }
 
-        private void OnEnable()
+        public void OnEnable()
         {
             ChangePOV.Register(WorkshopView);
             ChangePOV.Register(FirstPerson);
             ChangePOV.SwitchCamera(WorkshopView);
         }
-        private void OnDisable()
+        public void OnDisable()
         {
             ChangePOV.UnRegister(WorkshopView);
-            ChangePOV.UnRegister(FirstPerson);
+            ChangePOV.UnRegister(FirstPerson);  
         }
 
 
-        private void Update()
+        public void Update()
         {
+            #region CameraChange
+
             Ray r = new Ray(Interact.position, Interact.forward);
             Debug.DrawRay(r.origin, r.direction * InterectRange);
             if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
@@ -42,6 +50,10 @@ namespace player
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        StartWork.enabled = true;
+
+                        var sound = new Sound(transform.position, AudioRange);
+                        Sounds.MakeSound(sound);
                         //print("Camera switch requested");
                         if (ChangePOV.IsActiveCamera(WorkshopView))
                         {
@@ -60,6 +72,7 @@ namespace player
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                StartWork.enabled = false;
                 if (ChangePOV.IsActiveCamera(FirstPerson))
                 {
                     ChangePOV.SwitchCamera(WorkshopView);
@@ -68,6 +81,7 @@ namespace player
                     pMove.walkAble();
                 }
             }
+            #endregion
 
         }
 

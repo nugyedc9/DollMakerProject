@@ -11,14 +11,18 @@ public class Ghost : MonoBehaviour, HearPlayer
     public List<Transform> destination;
     public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, DistanceAmount;
-    public bool walking, chasing, searching;
+    public bool walking, chasing, searching, Attacked;
     public Transform player;
+    public Vector3 LastSound;
     public GameObject DeadCanva;
     Transform currentDest;
     Vector3 dest;
     int randNum;
     public int destinationAmount;
     public Vector3 rayCastOffset;
+    [Header("Player")]
+    [SerializeField] PlayerHp P;
+    public float DamageGhost;
 
 
 
@@ -39,17 +43,21 @@ public class Ghost : MonoBehaviour, HearPlayer
         RaycastHit hit;
         if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, sightDistance))
         {
-            if (hit.collider.gameObject.tag == "Player")
+            if (!Attacked)
             {
-                walking = false;
-                StopCoroutine("stayIdle");
-                StopCoroutine("chaseRoutine");
-                StartCoroutine("chaseRoutine");
-                /*GhostAni.ResetTrigger("Walk");
-                GhostAni.ResetTrigger("Idle");
-                GhostAni.SetTrigger("Sprint");*/
-                chasing = true;
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    walking = false;
+                    StopCoroutine("stayIdle");
+                    StopCoroutine("chaseRoutine");
+                    StartCoroutine("chaseRoutine");
+                    /*GhostAni.ResetTrigger("Walk");
+                    GhostAni.ResetTrigger("Idle");
+                    GhostAni.SetTrigger("Sprint");*/
+                    chasing = true;
+                }
             }
+
         }
 
         if (chasing == true)
@@ -60,8 +68,10 @@ public class Ghost : MonoBehaviour, HearPlayer
             enemyGhost.speed = chaseSpeed;
             if(enemyGhost.remainingDistance <= catchDistance)
             {
-                player.gameObject.SetActive(false); ;
-                DeadCanva.SetActive(true);
+                P.Takedamage(DamageGhost);
+                StopCoroutine("chaseRoutine");
+                StopCoroutine("Attack");
+                StartCoroutine("Attack");
                 /*GhostAni.ResetTrigger("Sprint");
                 GhostAni.SetTrigger("Jumpscare");
                 StartCoroutine(deathRoutine());*/
@@ -72,6 +82,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         if(walking == true )
         {
             searching = false;
+            chasing = false;
             dest = currentDest.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
@@ -85,29 +96,28 @@ public class Ghost : MonoBehaviour, HearPlayer
                 walking = false;
             }
         }
+        if (searching == true)
+        {
+            walking = false;
+            dest = LastSound;
+            enemyGhost.destination = dest;
+            enemyGhost.speed = walkSpeed;
+            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance - 1 )
+            { 
+                enemyGhost.speed = 0;
+                StopCoroutine("stayIdle");
+                StopCoroutine("StartSearch");
+                StartCoroutine("StartSearch");
+            }
 
+        }
     }
 
     public void RespondToSound(Sound sound)
     {
         print(name + " read sound" +  sound.pos);
+        LastSound = sound.pos;
         searching = true;
-        if (searching == true)
-        {
-            StopCoroutine("StartSearch");
-            StartCoroutine("StartSearch");
-            dest = sound.pos;
-            enemyGhost.destination = dest;
-            enemyGhost.speed = walkSpeed;
-            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
-            {
-                enemyGhost.speed = 0;
-                StopCoroutine("stayIdle");
-                StartCoroutine("stayIdle");
-                walking = false;
-            }
-
-        }
     }
 
 
@@ -135,8 +145,24 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     IEnumerator StartSearch()
     {
-        print("StartSearch");
-        yield return new WaitForSeconds(IdleTime);
+       // print("StartSearch");
+        walking = false;
+        yield return new WaitForSeconds(2);
+        walking = true;
+        searching = false;
+    }
+
+    IEnumerator Attack()
+    {
+        Attacked = true;
+        walking = false;
+        chasing = false;
+        searching = false;
+        /*GhostAni.ResetTrigger("Sprint");
+        GhostAni.SetTrigger("Rawr");*/
+        yield return new WaitForSeconds(2);
+        walking = true;
+        Attacked = false;
     }
 
 
