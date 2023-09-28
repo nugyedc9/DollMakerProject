@@ -116,8 +116,11 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void RespondToSound(Sound sound)
     {
         print(name + " read sound" +  sound.pos);
-        LastSound = sound.pos;
-        searching = true;
+        if (chasing == false)
+        {
+            LastSound = sound.pos;
+            searching = true;
+        }
     }
 
 
