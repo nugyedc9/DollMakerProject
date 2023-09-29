@@ -11,9 +11,11 @@ namespace player
         [SerializeField] CinemachineVirtualCamera WorkshopView;
         [SerializeField] CinemachineVirtualCamera FirstPerson;
 
+        [Header ("PlayerThing")]
         PlayerMovement pMove;
         public Transform Interact;
         public float InterectRange;
+        PlayerAttack pAttack;
 
         [Header("Audio")]
         public AudioSource StartWork = null;
@@ -61,6 +63,7 @@ namespace player
                             Cursor.visible = true;
                             Cursor.lockState = CursorLockMode.None;
                             pMove.Stopwalk();
+                            pAttack.StopAttack();
                         }
                     }
                 }
@@ -76,6 +79,7 @@ namespace player
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                     pMove.walkAble();
+                    pAttack.CanAttack();
                 }
             }
             #endregion

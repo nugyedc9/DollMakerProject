@@ -11,8 +11,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     public List<Transform> destination;
     public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, 
-        catchDistance, chaseTime, minChaseTime, maxChaseTime, DistanceAmount, HpGhost;
-    public bool walking, chasing, searching, Attacked, getHit;
+        catchDistance, chaseTime, DistanceAmount, HpGhost;
+    public bool walking, chasing, searching,stopSearch , Attacked, getHit;
     public Transform player;
     public LayerMask layerPLayer;
     public Vector3 LastSound;
@@ -53,8 +53,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 if (hit.collider.gameObject.tag == "Player")
                 {
                     walking = false;
-                    StopCoroutine("stayIdle");
-                    StopCoroutine("chaseRoutine");
+                    StopAllCoroutines();
                     StartCoroutine("chaseRoutine");
                     /*GhostAni.ResetTrigger("Walk");
                     GhostAni.ResetTrigger("Idle");
@@ -76,8 +75,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             if(enemyGhost.remainingDistance <= catchDistance)
             {
                 P.Takedamage(DamageGhost);
-                StopCoroutine("chaseRoutine");
-                StopCoroutine("Attack");
+                StopAllCoroutines();
                 StartCoroutine("Attack");
                 /*GhostAni.ResetTrigger("Sprint");
                 GhostAni.SetTrigger("Jumpscare");
@@ -102,7 +100,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 /* GhostAni.ResetTrigger("Walk");
                     GhostAni.SetTrigger("Idle");*/
                 enemyGhost.speed = 0;
-                StopCoroutine("stayIdle");
+                StopAllCoroutines();
                 StartCoroutine("stayIdle");
                 walking = false;
             }
@@ -121,8 +119,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance - 1 )
             { 
                 enemyGhost.speed = 0;
-                StopCoroutine("stayIdle");
-                StopCoroutine("StartSearch");
+                StopAllCoroutines();
                 StartCoroutine("StartSearch");
             }
 
@@ -140,7 +137,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void RespondToSound(Sound sound)
     {
         print(name + " read sound" +  sound.pos);
-        if (chasing == false)
+        if (stopSearch == false)
         {
             LastSound = sound.pos;
             searching = true;
@@ -151,6 +148,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region Idle
     IEnumerator stayIdle()
     {
+        print("IdleGhost");
         IdleTime = Random.Range(minIdleTime, maxIdleTime);
         yield return new WaitForSeconds(IdleTime);
         walking = true;
@@ -164,7 +162,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region CheaseRoutine
     IEnumerator chaseRoutine()
     {
-        chaseTime = Random.Range(minChaseTime, maxChaseTime);
+        print("ChaseGhost");
         yield return new WaitForSeconds(chaseTime);
         walking = true;
         chasing = false;
@@ -178,7 +176,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region StartSearch
     IEnumerator StartSearch()
     {
-       // print("StartSearch");
+        print("StartSearch");
         walking = false;
         yield return new WaitForSeconds(2);
         walking = true;
@@ -189,6 +187,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region Attack
     IEnumerator Attack()
     {
+        print("AttackGhost");
         Attacked = true;
         walking = false;
         chasing = false;
@@ -204,14 +203,16 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region Hit
     IEnumerator Hit()
     {
+        print("HitGhost");
         Attacked = false;
         walking = false;
         chasing = false;
         searching = false;
-        BlackSphere.SetActive(false);
+        stopSearch = true;
+        BlackSphere.SetActive(true);
         GhostFrom.SetActive(false);
         yield return new WaitForSeconds(5);
-        BlackSphere.SetActive(true);
+        stopSearch = false;
         walking = true;
         getHit = false;
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2157.7434, g: 2262.674, b: 3287.2231, a: 1}
+  m_IndirectSpecularColor: {r: 2160.5227, g: 2264.5588, b: 3287.6372, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2251,13 +2251,12 @@ MonoBehaviour:
   sightDistance: 10
   catchDistance: 1
   chaseTime: 3
-  minChaseTime: 1
-  maxChaseTime: 3
   DistanceAmount: 0
   HpGhost: 0
   walking: 0
   chasing: 0
   searching: 0
+  stopSearch: 0
   Attacked: 0
   getHit: 0
   player: {fileID: 1388500678}
@@ -4729,6 +4728,7 @@ GameObject:
   - component: {fileID: 826680745}
   - component: {fileID: 826680744}
   - component: {fileID: 826680743}
+  - component: {fileID: 826680748}
   m_Layer: 7
   m_Name: Ghost (1)
   m_TagString: Ghost
@@ -4802,13 +4802,12 @@ MonoBehaviour:
   sightDistance: 10
   catchDistance: 1
   chaseTime: 3
-  minChaseTime: 1
-  maxChaseTime: 3
   DistanceAmount: 0
   HpGhost: 3
   walking: 0
   chasing: 0
   searching: 0
+  stopSearch: 0
   Attacked: 0
   getHit: 0
   player: {fileID: 1388500678}
@@ -4838,7 +4837,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4894,6 +4893,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826680741}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &826680748
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826680741}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.488974, z: 0.12489128}
+  m_Center: {x: 0, y: 0.7444872, z: -0.0042696}
 --- !u!1 &829880749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5831,11 +5851,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21073273d37dfd4ba1efd6516d1957b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interact: {fileID: 1823688467}
-  InterectRange: 2
+  projectilespeed: 30
+  FpsCam: {fileID: 1823688466}
+  projectile: {fileID: 3031530151224011874, guid: 7ee34e733fb3b11458dc7245cacd461c,
+    type: 3}
+  RH: {fileID: 1467831075}
+  Attack: 0
+  ShootSound: {fileID: 0}
   IdleP: {fileID: 1676321804}
   AttackP: {fileID: 746974829}
-  ghostObj: {fileID: 826680744}
 --- !u!1 &1448423019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5915,7 +5939,6 @@ GameObject:
   - component: {fileID: 1458706772}
   - component: {fileID: 1458706774}
   - component: {fileID: 1458706773}
-  - component: {fileID: 1458706775}
   m_Layer: 7
   m_Name: GhostSprite
   m_TagString: Ghost
@@ -6002,27 +6025,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1458706775
-BoxCollider:
+--- !u!1 &1467831074
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458706771}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10.8, y: 35.079998, z: 0.2}
-  m_Center: {x: 0, y: -0.000020980835, z: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467831075}
+  m_Layer: 8
+  m_Name: RH
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1467831075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467831074}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7649873, y: -0.01999998, z: 0.3839997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1823688467}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526206183
 GameObject:
   m_ObjectHideFlags: 3
@@ -6543,7 +6576,8 @@ Transform:
   m_LocalPosition: {x: -0.0000036126003, y: 0.66999984, z: 0.1309994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1467831075}
   m_Father: {fileID: 1884484793}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
