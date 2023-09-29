@@ -23,6 +23,9 @@ public class Ghost : MonoBehaviour, HearPlayer
     [Header("Player")]
     [SerializeField] PlayerHp P;
     public float DamageGhost;
+    [Header("Ghost")]
+    public GameObject BlackSphere;
+    public GameObject GhostFrom;
 
 
 
@@ -62,6 +65,8 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (chasing == true)
         {
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(true);
             searching = false;
             dest = player.position; 
             enemyGhost.destination = dest;
@@ -81,6 +86,8 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if(walking == true )
         {
+            BlackSphere.SetActive(true );
+            GhostFrom.SetActive(false );
             searching = false;
             chasing = false;
             dest = currentDest.position;
@@ -96,8 +103,10 @@ public class Ghost : MonoBehaviour, HearPlayer
                 walking = false;
             }
         }
-        if (searching == true)
+        if (searching == true)  
         {
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             walking = false;
             dest = LastSound;
             enemyGhost.destination = dest;
