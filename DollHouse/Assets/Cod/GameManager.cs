@@ -5,15 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public SpawnBeat spawnBeat;
+    public List<GameObject> GhostInScene;
 
-    public int Score;
-    public int MaxScore;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnBeat = GetComponent<SpawnBeat>();
         Instance = this;
     }
 
@@ -25,6 +22,6 @@ public class GameManager : MonoBehaviour
 
     public void MakeScore()
     {
-        Score++;
+
     }
 }

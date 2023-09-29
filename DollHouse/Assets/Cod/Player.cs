@@ -19,11 +19,6 @@ namespace player
         public AudioSource StartWork = null;
         public float AudioRange;
 
-        [Header("PlayerHit")]
-        public GameObject IdleP;
-        public GameObject AttackP;
-
-
         public void Start()
         {
             pMove = GetComponent<PlayerMovement>();
@@ -69,14 +64,7 @@ namespace player
                         }
                     }
                 }
-                #region Attack
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    StartCoroutine("AttackReset");
-                }
-                #endregion
             }
-
 
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -92,15 +80,6 @@ namespace player
             }
             #endregion
 
-        }
-
-        IEnumerator AttackReset()
-        {
-            AttackP.SetActive(true);
-            IdleP.SetActive(false);
-            yield return new WaitForSeconds(1);
-            AttackP.SetActive(false);
-            IdleP.SetActive(true);
         }
 
 

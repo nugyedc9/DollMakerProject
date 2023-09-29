@@ -10,9 +10,11 @@ public class Ghost : MonoBehaviour, HearPlayer
     public NavMeshAgent enemyGhost;
     public List<Transform> destination;
     public Animator GhostAni;
-    public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, DistanceAmount;
-    public bool walking, chasing, searching, Attacked;
+    public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, 
+        catchDistance, chaseTime, minChaseTime, maxChaseTime, DistanceAmount, HpGhost;
+    public bool walking, chasing, searching, Attacked, getHit;
     public Transform player;
+    public LayerMask layerPLayer;
     public Vector3 LastSound;
     public GameObject DeadCanva;
     Transform currentDest;
@@ -62,7 +64,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
 
         }
-
+        #region Chase
         if (chasing == true)
         {
             BlackSphere.SetActive(false);
@@ -83,8 +85,10 @@ public class Ghost : MonoBehaviour, HearPlayer
                 chasing = false;
             }
         }
+        #endregion
 
-        if(walking == true )
+        #region Walk
+        if (walking == true )
         {
             BlackSphere.SetActive(true );
             GhostFrom.SetActive(false );
@@ -103,6 +107,9 @@ public class Ghost : MonoBehaviour, HearPlayer
                 walking = false;
             }
         }
+        #endregion
+
+        #region Search
         if (searching == true)  
         {
             BlackSphere.SetActive(true);
@@ -120,6 +127,14 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
 
         }
+        #endregion
+
+
+        if (getHit == true)
+        {
+            StopAllCoroutines();
+            StartCoroutine("Hit");
+        }
     }
 
     public void RespondToSound(Sound sound)
@@ -132,7 +147,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
     }
 
-
+    #region Ienummerator
+    #region Idle
     IEnumerator stayIdle()
     {
         IdleTime = Random.Range(minIdleTime, maxIdleTime);
@@ -143,6 +159,9 @@ public class Ghost : MonoBehaviour, HearPlayer
        /* GhostAni.ResetTrigger("Idle");
         GhostAni.SetTrigger("Walk");*/
     }
+    #endregion
+
+    #region CheaseRoutine
     IEnumerator chaseRoutine()
     {
         chaseTime = Random.Range(minChaseTime, maxChaseTime);
@@ -154,7 +173,9 @@ public class Ghost : MonoBehaviour, HearPlayer
         /*GhostAni.ResetTrigger("Sprint");
         GhostAni.SetTrigger("Walk");*/
     }
+    #endregion
 
+    #region StartSearch
     IEnumerator StartSearch()
     {
        // print("StartSearch");
@@ -163,7 +184,9 @@ public class Ghost : MonoBehaviour, HearPlayer
         walking = true;
         searching = false;
     }
+    #endregion
 
+    #region Attack
     IEnumerator Attack()
     {
         Attacked = true;
@@ -175,6 +198,29 @@ public class Ghost : MonoBehaviour, HearPlayer
         yield return new WaitForSeconds(2);
         walking = true;
         Attacked = false;
+    }
+    #endregion
+
+    #region Hit
+    IEnumerator Hit()
+    {
+        Attacked = false;
+        walking = false;
+        chasing = false;
+        searching = false;
+        BlackSphere.SetActive(false);
+        GhostFrom.SetActive(false);
+        yield return new WaitForSeconds(5);
+        BlackSphere.SetActive(true);
+        walking = true;
+        getHit = false;
+    }
+    #endregion
+    #endregion
+
+    public void GetHit()
+    {
+        getHit = true;
     }
 
 

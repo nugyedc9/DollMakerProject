@@ -8,6 +8,7 @@ namespace player
     public class PlayerMovement : MonoBehaviour
     {
         public float moveSpeed;
+        public float crouchSpeed;
         float stopMove = 0;
 
         public float groundDrag;
@@ -15,6 +16,7 @@ namespace player
         public LayerMask Ground;
         bool Grounded;
         bool canWalk = true;
+        public bool Crouch;
 
         public Transform orientation;
 
@@ -42,29 +44,44 @@ namespace player
 
                 MyInput();
                 SpeedControl();
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                if (!Crouch)
                 {
+                    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                    {
 
-                    FootStep.enabled = true;
+                        FootStep.enabled = true;
 
-                    var sound = new Sound(transform.position, AudioRange);  
-                    Sounds.MakeSound(sound);
+                        var sound = new Sound(transform.position, AudioRange);
+                        Sounds.MakeSound(sound);
+                    }
+                    else
+                        FootStep.enabled = false;
                 }
-                else
-                    FootStep.enabled = false;
 
                 if (Grounded)
                     rb.drag = groundDrag;
                 else
                     rb.drag = 0;
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    Crouch = true;
+                    FootStep.enabled = false;
+                }
+                else if (Input.GetKeyUp(KeyCode.LeftControl))
+                    Crouch = false;
             }
+           
 
 
         }
 
         private void FixedUpdate()
         {
+            if(!Crouch)
             MovePlayer();
+            if(Crouch)
+                CrouchPlayer();
+            
         }
 
         private void MyInput()
@@ -78,6 +95,13 @@ namespace player
             moveDirection = orientation.forward * vericalInput + orientation.right * horizontalInput;
 
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+
+        public void CrouchPlayer()
+        {
+            moveDirection = orientation.forward * vericalInput + orientation.right * horizontalInput;
+
+            rb.AddForce(moveDirection.normalized * crouchSpeed * 10f, ForceMode.Force);
         }
 
         private void SpeedControl()
