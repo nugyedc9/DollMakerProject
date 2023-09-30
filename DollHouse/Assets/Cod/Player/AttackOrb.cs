@@ -21,18 +21,21 @@ public class AttackOrb : MonoBehaviour
             colleded = true;
             target = co.gameObject.GetComponent<Ghost>();
             Debug.Log("hitGhost");
-            if (target != null) { }
-            target.GetHit();
-
+            if (target != null)
+            {
+                print("HitGhost");
+               // target.GetHit();
+            }
+            Destroy(gameObject);
         }
         else if (co.gameObject.tag != "Orb")
         {
             colleded = true;
-            Debug.Log("Hitobj");
+            // Debug.Log("Hitobj");
+            Destroy(gameObject);
 
         }
 
-        Destroy(gameObject);
 
     }
 }

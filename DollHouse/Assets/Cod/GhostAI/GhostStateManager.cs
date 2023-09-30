@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GhostStateManager : MonoBehaviour
 {
-    StateGhost currentState;
-    // Update is called once per frame
+    public StateGhost currentState;
+
+
     void Update()
     {
         RunStateMachine();

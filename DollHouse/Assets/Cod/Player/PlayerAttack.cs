@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public Camera FpsCam;
     public GameObject projectile;
     public Transform RH;
+    public float InterectRange;
     public bool Attack;
 
     private Vector3 destination;
@@ -30,14 +31,20 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Attack)
+        Ray r = new Ray(RH.position, RH.forward);
+            if (Attack)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 StartCoroutine("AttackReset");
                 /*ShootAudio.clip = ShootSound;
                 ShootAudio.Play();*/
-                Shoot();
+                if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
+                {
+                    if (hitinfo.collider.gameObject.tag == "Ghost") 
+                        Shoot();
+                }
+                   
             }
         }
     }
