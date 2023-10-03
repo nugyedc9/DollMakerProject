@@ -137,7 +137,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
-            walking = false;
             dest = LastSound;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
@@ -184,6 +183,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             LastSound = sound.pos;
             searching = true;
+            walking = false;
         }
     }
 
@@ -220,7 +220,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     IEnumerator StartSearch()
     {
         print("StartSearch");
-        walking = false;
         yield return new WaitForSeconds(2);
         walking = true;
         searching = false;
