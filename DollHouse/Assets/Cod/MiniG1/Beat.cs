@@ -55,7 +55,7 @@ public class Beat : MonoBehaviour
         while(true)
         {
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
             SpawnBeat.Instance.missTake();
             Destroy(gameObject);
         }

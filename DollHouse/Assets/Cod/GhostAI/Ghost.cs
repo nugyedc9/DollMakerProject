@@ -14,7 +14,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun;
     public bool walking, chasing, searching,stopSearch , Attacked, getHit;
     public Transform player;
-    public LayerMask layerPLayer;
     public Vector3 LastSound;
     public GameObject DeadCanva;
     Transform currentDest;
@@ -28,6 +27,16 @@ public class Ghost : MonoBehaviour, HearPlayer
     [Header("Ghost")]
     public GameObject BlackSphere;
     public GameObject GhostFrom;
+    [Header("GhostView")]
+    public float radius;
+    [Range(0, 360)]
+    public float angle;
+    public GameObject PlayerPos;
+    public LayerMask layerPLayer;
+    public LayerMask obstructionMask;
+    public bool canSeePlayer;
+
+
 
 
 
@@ -38,16 +47,19 @@ public class Ghost : MonoBehaviour, HearPlayer
         randNum = Random.Range(0, destinationAmount);
         currentDest = destination[randNum];
         curStun = Stun;
+        PlayerPos = GameObject.FindGameObjectWithTag("Player");
+       // StartCoroutine(FovRountine());
     }
 
     // Update is called once per frame
     void Update()
     {
+        StartCoroutine(FovRountine());
         DistanceAmount = enemyGhost.remainingDistance;
 
-        Vector3 direction = (player.position - transform.position).normalized;
+       /* Vector3 direction = (player.position - transform.position).normalized;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, sightDistance))
+        if (Physics.Raycast(transform.forward , direction, out hit, sightDistance))
         {
             if (!Attacked)
             {
@@ -58,13 +70,25 @@ public class Ghost : MonoBehaviour, HearPlayer
                     StartCoroutine("chaseRoutine");
                     /*GhostAni.ResetTrigger("Walk");
                     GhostAni.ResetTrigger("Idle");
-                    GhostAni.SetTrigger("Sprint");*/
+                    GhostAni.SetTrigger("Sprint");
                     chasing = true;
                 }
 
             }
 
+        }*/
+
+        if (!Attacked)
+        {
+            if(canSeePlayer)
+            {
+                walking = false;
+                StopAllCoroutines();
+                StartCoroutine("chaseRoutine");
+                chasing = true;
+            }
         }
+
         #region Chase
         if (chasing == true)
         {
@@ -92,7 +116,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
-            searching = false;
             chasing = false;
             dest = currentDest.position;
             enemyGhost.destination = dest;
@@ -118,7 +141,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             dest = LastSound;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
-            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance - 1 )
+            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance )
             { 
                 enemyGhost.speed = 0;
                 StopAllCoroutines();
@@ -129,7 +152,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
         #endregion
 
-
+        #region GetHit
         if (getHit == true)
         {
             enemyGhost.speed=0;
@@ -151,12 +174,12 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (curStun == 0)
             curStun = Stun;
-
+        #endregion
     }
 
     public void RespondToSound(Sound sound)
     {
-       // print(name + " read sound" +  sound.pos);
+        print(name + " read sound" +  sound.pos);
         if (stopSearch == false)
         {
             LastSound = sound.pos;
@@ -236,9 +259,21 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
+    IEnumerator FovRountine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+
     #endregion
 
-   private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Orb")
         {
@@ -252,6 +287,32 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void StunTime(float St)
     {
         curStun -= St * Time.deltaTime;
+    }
+
+    public void FieldOfViewCheck()
+    {
+
+        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, radius, layerPLayer);
+
+        if (rangeCheck.Length != 0)
+        {
+            Transform target = rangeCheck[0].transform;
+            Vector3 directionToTarget = (transform.forward - target.position).normalized;
+
+            if (Vector3.Angle(directionToTarget, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;
+            }
+            else
+                canSeePlayer = false;
+        }
+        else if (canSeePlayer)
+            canSeePlayer = false;
     }
 
 

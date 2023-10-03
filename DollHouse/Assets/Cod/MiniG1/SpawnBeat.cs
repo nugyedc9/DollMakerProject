@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class SpawnBeat : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class SpawnBeat : MonoBehaviour
     public float Score;
     public float MaxScore;
     public float Miss;
+    public float TotelDoll = 0;
+    public TextMeshProUGUI TotelD;
     [Header ("GameObj")]
     public GameObject miniG1Canva;
     public GameObject Head;
@@ -41,18 +45,13 @@ public class SpawnBeat : MonoBehaviour
             SpawnIt = true;
             BeatSpawnCoroutine = StartCoroutine(BeatSpawn());
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            miniG1Canva.SetActive(false);
-            Head.SetActive(false);
-            PressButtom.SetActive(true);
-        }
         if(Score == MaxScore)
         {
             miniG1Canva.SetActive(false);
             Head.SetActive(false);
             PressButtom.SetActive(true) ;
             Score = 0;
+            TotelDoll++;
         }
         if(Miss >= 1 && SpawnIt)
         {
@@ -62,6 +61,8 @@ public class SpawnBeat : MonoBehaviour
             Miss = 0;
             Score = 0;
         }
+
+        TotelD.text = "Total Doll : " + TotelDoll;
 
     }
 
@@ -88,10 +89,11 @@ public class SpawnBeat : MonoBehaviour
         Miss++;
     }
 
-    IEnumerable WaitMiss()
+    public void closeGame()
     {
-        yield return new WaitForSeconds(3);
-        Miss = 0;
+        miniG1Canva.SetActive(false);
+        Head.SetActive(false);
+        PressButtom.SetActive(true);
     }
 
 

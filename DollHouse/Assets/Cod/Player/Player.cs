@@ -15,7 +15,11 @@ namespace player
         PlayerMovement pMove;
         public Transform Interact;
         public float InterectRange;
-        PlayerAttack pAttack;
+        public PlayerAttack pAttack;
+        public GameObject pHand;
+
+        [Header("CanavThing")]
+        public GameObject canvaTotelDoll;
 
         [Header("Audio")]
         public AudioSource StartWork = null;
@@ -64,6 +68,7 @@ namespace player
                             Cursor.lockState = CursorLockMode.None;
                             pMove.Stopwalk();
                             pAttack.StopAttack();
+                            pHand.SetActive(false);
                         }
                     }
                 }
@@ -80,6 +85,7 @@ namespace player
                     Cursor.lockState = CursorLockMode.Locked;
                     pMove.walkAble();
                     pAttack.CanAttack();
+                    pHand.SetActive(true);
                 }
             }
             #endregion

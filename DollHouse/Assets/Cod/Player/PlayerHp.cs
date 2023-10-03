@@ -10,7 +10,7 @@ public class PlayerHp : MonoBehaviour
     public float MaxHp;
     public float curHp;
     public float ReHp;
-    public GameObject Hp1, Hp2, Hp3;
+    public GameObject Hp1, Hp2, Hp3, DeadCanva;
 
 
     public void Start()
@@ -22,6 +22,11 @@ public class PlayerHp : MonoBehaviour
     {
         if (curHp < 0)
             curHp = 0;
+        if(curHp < 1)
+        {
+            DeadCanva.SetActive(true);
+            Time.timeScale = 0f;
+        }
         if (curHp < MaxHp)
             AutoReHp(ReHp);
         #region HpCanva
