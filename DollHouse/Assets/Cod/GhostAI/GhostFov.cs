@@ -18,6 +18,11 @@ public class GhostFov : MonoBehaviour
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update()
+    {
+        StartCoroutine(FovRountine());
+    }
+
     IEnumerator FovRountine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
@@ -25,7 +30,7 @@ public class GhostFov : MonoBehaviour
         while (true)
         {
             yield return wait;
-
+            FieldOfViewCheck();
         }
     }
 
@@ -37,16 +42,18 @@ public class GhostFov : MonoBehaviour
         if (rangeCheck.Length != 0)
         {
             Transform target = rangeCheck[0].transform;
-            Vector3 directionToTarget = (transform.forward - target.position).normalized;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(directionToTarget, directionToTarget) < angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                     canSeePlayer = true;
                 else
+                {
                     canSeePlayer = false;
+                }
             }
             else
                 canSeePlayer = false;

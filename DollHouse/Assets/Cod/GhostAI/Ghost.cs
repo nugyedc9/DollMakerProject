@@ -21,12 +21,15 @@ public class Ghost : MonoBehaviour, HearPlayer
     int randNum;
     public int destinationAmount;
     public Vector3 rayCastOffset;
+
     [Header("Player")]
     [SerializeField] PlayerHp P;
     public float DamageGhost;
+
     [Header("Ghost")]
     public GameObject BlackSphere;
     public GameObject GhostFrom;
+
     [Header("GhostView")]
     public float radius;
     [Range(0, 360)]
@@ -48,7 +51,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         currentDest = destination[randNum];
         curStun = Stun;
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
-       // StartCoroutine(FovRountine());
     }
 
     // Update is called once per frame
@@ -78,16 +80,6 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         }*/
 
-        if (!Attacked)
-        {
-            if(canSeePlayer)
-            {
-                walking = false;
-                StopAllCoroutines();
-                StartCoroutine("chaseRoutine");
-                chasing = true;
-            }
-        }
 
         #region Chase
         if (chasing == true)
@@ -172,13 +164,16 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
 
         if (curStun == 0)
+        {
             curStun = Stun;
+            getHit = false;
+        }
         #endregion
     }
 
     public void RespondToSound(Sound sound)
     {
-        print(name + " read sound" +  sound.pos);
+        //print(name + " read sound" +  sound.pos);
         if (stopSearch == false)
         {
             LastSound = sound.pos;
@@ -195,6 +190,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         IdleTime = Random.Range(minIdleTime, maxIdleTime);
         yield return new WaitForSeconds(IdleTime);
         walking = true;
+        stopSearch=false;
+        Attacked=false;
         randNum = Random.Range(0, destinationAmount);
         currentDest= destination[randNum];
        /* GhostAni.ResetTrigger("Idle");
@@ -242,7 +239,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         GhostAni.SetTrigger("Rawr");*/
         yield return new WaitForSeconds(2);
         walking = true;
-        stopSearch= true;
+        stopSearch= false;
         Attacked = false;
     }
     #endregion
@@ -296,22 +293,44 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (rangeCheck.Length != 0)
         {
             Transform target = rangeCheck[0].transform;
-            Vector3 directionToTarget = (transform.forward - target.position).normalized;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(directionToTarget, directionToTarget) < angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
                     canSeePlayer = true;
+                    if (!Attacked)
+                    {
+                        walking = false;
+                        StopAllCoroutines();
+                        StartCoroutine(chaseRoutine());
+                        chasing = true;
+                    }
+                }
                 else
+                {
+                    StopAllCoroutines();
+                    StartCoroutine("stayIdle");
                     canSeePlayer = false;
+
+                }
             }
             else
+            {
+                StopAllCoroutines();
+                StartCoroutine("stayIdle");
                 canSeePlayer = false;
+            }
         }
         else if (canSeePlayer)
+        {
+            StopAllCoroutines();
+            StartCoroutine("stayIdle");
             canSeePlayer = false;
+        }
     }
 
 
