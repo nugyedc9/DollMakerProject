@@ -7,7 +7,6 @@ public class AttackOrb : MonoBehaviour
 {
     public bool colleded;
     public float OebDamage;
-    Ghost target;
 
     void Update()
     {
@@ -19,13 +18,6 @@ public class AttackOrb : MonoBehaviour
         if (co.gameObject.tag == "Ghost" && !colleded)
         {
             colleded = true;
-            target = co.gameObject.GetComponent<Ghost>();
-            Debug.Log("hitGhost");
-            if (target != null)
-            {
-                print("HitGhost");
-               // target.GetHit();
-            }
             Destroy(gameObject);
         }
         else if (co.gameObject.tag != "Orb")

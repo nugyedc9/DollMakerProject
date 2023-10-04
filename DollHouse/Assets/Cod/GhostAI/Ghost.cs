@@ -29,6 +29,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     [Header("Ghost")]
     public GameObject BlackSphere;
     public GameObject GhostFrom;
+    public BoxCollider GhostCloseDistance;
 
     [Header("GhostView")]
     public float radius;
@@ -59,27 +60,32 @@ public class Ghost : MonoBehaviour, HearPlayer
         StartCoroutine(FovRountine());
         DistanceAmount = enemyGhost.remainingDistance;
 
-       /* Vector3 direction = (player.position - transform.position).normalized;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.forward , direction, out hit, sightDistance))
-        {
-            if (!Attacked)
-            {
-                if (hit.collider.gameObject.tag == "Player")
-                {
-                    walking = false;
-                    StopAllCoroutines();
-                    StartCoroutine("chaseRoutine");
-                    /*GhostAni.ResetTrigger("Walk");
-                    GhostAni.ResetTrigger("Idle");
-                    GhostAni.SetTrigger("Sprint");
-                    chasing = true;
-                }
+        /* Vector3 direction = (player.position - transform.position).normalized;
+         RaycastHit hit;
+         if (Physics.Raycast(transform.forward , direction, out hit, sightDistance))
+         {
+             if (!Attacked)
+             {
+                 if (hit.collider.gameObject.tag == "Player")
+                 {
+                     walking = false;
+                     StopAllCoroutines();
+                     StartCoroutine("chaseRoutine");
+                     /*GhostAni.ResetTrigger("Walk");
+                     GhostAni.ResetTrigger("Idle");
+                     GhostAni.SetTrigger("Sprint");
+                     chasing = true;
+                 }
 
-            }
+             }
 
-        }*/
-
+         }*/
+        #region BoxcolliderActive
+        if (enemyGhost.remainingDistance <= 1)
+            GhostCloseDistance.enabled = false;
+        else
+        GhostCloseDistance.enabled=true;
+        #endregion
 
         #region Chase
         if (chasing == true)
@@ -193,7 +199,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         stopSearch=false;
         Attacked=false;
         randNum = Random.Range(0, destinationAmount);
-        currentDest= destination[randNum];
+        currentDest= destination[randNum];  
        /* GhostAni.ResetTrigger("Idle");
         GhostAni.SetTrigger("Walk");*/
     }

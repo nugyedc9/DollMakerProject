@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1165568628900829692}
   - component: {fileID: 3863931424154461557}
   - component: {fileID: 6664782708722589321}
+  - component: {fileID: -5607915280587251849}
   m_Layer: 0
   m_Name: orb
   m_TagString: Orb
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083978850426202078}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -155,3 +156,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5607915280587251849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083978850426202078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7604045492bc74643b14ae26dde6d189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colleded: 0
+  OebDamage: 0
