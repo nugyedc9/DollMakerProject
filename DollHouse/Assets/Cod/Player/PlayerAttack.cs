@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public float InterectRange;
     public bool Attack;
+    public bool LightOn;
 
     private Vector3 destination;
 
@@ -22,6 +23,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("PlayerHit")]
     public GameObject IdleP;
     public GameObject AttackP;
+
+    [Header("PLayerLight")]
+    public GameObject Light;
 
     private void Start()
     {
@@ -46,6 +50,20 @@ public class PlayerAttack : MonoBehaviour
                 }
                    
             }
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!LightOn)
+            {
+                Light.gameObject.SetActive(true);
+                LightOn = true;
+            }
+            else
+            {
+                Light.gameObject.SetActive(false);
+                LightOn = false;
+            }
+
         }
     }
 

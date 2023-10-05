@@ -10,7 +10,7 @@ public class PlayerHp : MonoBehaviour
     public float MaxHp;
     public float curHp;
     public float ReHp;
-    public GameObject Hp1, Hp2, Hp3, DeadCanva;
+    public GameObject Hp1, Hp2, DeadCanva;
 
 
     public void Start()
@@ -30,15 +30,12 @@ public class PlayerHp : MonoBehaviour
         if (curHp < MaxHp)
             AutoReHp(ReHp);
         #region HpCanva
-        if (curHp <= 1)
-            Hp1.SetActive(false);
-        if(curHp <= 2)
-            Hp2.SetActive(false);
-        if(curHp <= 3)
-            Hp3.SetActive(false);
-        if(curHp == 1) Hp1.SetActive(true);
-        if(curHp ==2) Hp2.SetActive(true);
-        if(curHp ==3) Hp3.SetActive(true);
+        if (curHp < 2)
+            Hp1.SetActive(true);
+        if(curHp < 3)
+            Hp2.SetActive(true);
+        if(curHp >= 2) Hp1.SetActive(false);
+        if(curHp >=3) Hp2.SetActive(false);
         #endregion
     }
     public void Takedamage(float damage)
