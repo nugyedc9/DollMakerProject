@@ -27,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("PLayerLight")]
     public GameObject Light;
+    public GameObject pointLight;
 
     [Header("Item On Hand")]
     public GameObject CorssR;
@@ -134,11 +135,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 Light.gameObject.SetActive(true);
                 LightOn = true;
+                pointLight.SetActive(true);
             }
             else
             {
                 Light.gameObject.SetActive(false);
                 LightOn = false;
+                pointLight.SetActive(false);
             }
 
         }
