@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class SpawnBeat : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SpawnBeat : MonoBehaviour
     [SerializeField] float Posx;
     [SerializeField] float Posy;
     public bool SpawnIt = false;
+    bool delete;
     Coroutine BeatSpawnCoroutine;
     [Header ("Score Thing")]
     public float Score;
@@ -95,6 +97,7 @@ public class SpawnBeat : MonoBehaviour
         Head.SetActive(false);
         PressButtom.SetActive(true);
     }
+
 
 
 }

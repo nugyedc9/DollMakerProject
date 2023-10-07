@@ -61,4 +61,9 @@ public class Beat : MonoBehaviour
         }
     }
 
+    public void ExitMini1()
+    {
+        Destroy(gameObject);
+    }
+
 }

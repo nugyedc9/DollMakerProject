@@ -27,7 +27,8 @@ namespace player
 
         Rigidbody rb;
         [Header ("Audio")]
-        public AudioSource FootStep = null;
+        public AudioSource FootStep;
+        public AudioClip Footsaound;
         public float AudioRange;
 
         private void Start()
@@ -49,13 +50,14 @@ namespace player
                     if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
                     {
 
-                        FootStep.enabled = true;
+                       FootStep.enabled = true;
+                        FootStep.clip = Footsaound;
 
                         var sound = new Sound(transform.position, AudioRange);
                         Sounds.MakeSound(sound);
                     }
                     else
-                        FootStep.enabled = false;
+                       FootStep.enabled = false;
                 }
 
                 if (Grounded)

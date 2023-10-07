@@ -15,7 +15,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     public bool walking, chasing, searching,stopSearch , Attacked, getHit;
     public Transform player;
     public Vector3 LastSound;
-    public GameObject DeadCanva;
     Transform currentDest;
     Vector3 dest;
     int randNum;
@@ -40,6 +39,9 @@ public class Ghost : MonoBehaviour, HearPlayer
     public LayerMask obstructionMask;
     public bool canSeePlayer;
 
+    [Header("audio")]
+    public AudioSource dead;
+    public AudioSource AudioGhost;
 
 
 
@@ -52,6 +54,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         currentDest = destination[randNum];
         curStun = Stun;
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
+        dead.enabled = false;
+        AudioGhost.enabled = true;
     }
 
     // Update is called once per frame
@@ -60,28 +64,29 @@ public class Ghost : MonoBehaviour, HearPlayer
         StartCoroutine(FovRountine());
         DistanceAmount = enemyGhost.remainingDistance;
 
-        /* Vector3 direction = (player.position - transform.position).normalized;
-         RaycastHit hit;
-         if (Physics.Raycast(transform.forward , direction, out hit, sightDistance))
-         {
-             if (!Attacked)
-             {
-                 if (hit.collider.gameObject.tag == "Player")
-                 {
-                     walking = false;
-                     StopAllCoroutines();
-                     StartCoroutine("chaseRoutine");
-                     /*GhostAni.ResetTrigger("Walk");
-                     GhostAni.ResetTrigger("Idle");
-                     GhostAni.SetTrigger("Sprint");
-                     chasing = true;
-                 }
+        if(HpGhost < 0)
+            HpGhost = 0;
+        if(HpGhost == 0)
+        {
+            getHit = false;
+            stopSearch = true;
+            chasing = false;
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(true);
+            StopAllCoroutines();
+            GhostAni.SetTrigger("Dead");
+            StunTime(1);
+            AudioGhost.enabled = false;
+            dead.enabled = true;
+            if (curStun <= 0)
+            {
+                Destroy(gameObject);
+            }
 
-             }
+        }
 
-         }*/
         #region BoxcolliderActive
-        if (enemyGhost.remainingDistance <= 1)
+        if (enemyGhost.remainingDistance <= 0.5)
             GhostCloseDistance.enabled = false;
         else
         GhostCloseDistance.enabled=true;
@@ -282,6 +287,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             getHit = true;
             if(getHit) 
             print("GetHit");
+            HpGhost -= 1;
             Destroy(collision.gameObject);
         }
     }

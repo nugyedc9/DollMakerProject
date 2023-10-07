@@ -18,8 +18,8 @@ public class PlayerAttack : MonoBehaviour
     public float Pickrange;
     private Vector3 destination;
 
-    public AudioClip ShootSound;
-    AudioSource ShootAudio;
+   //public AudioClip ShootSound;    
+    public AudioSource ShootAudio;
 
     [Header("PlayerHit")]
     public GameObject IdleP;
@@ -40,28 +40,33 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        ShootAudio = GetComponent<AudioSource>();
+        //ShootAudio = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         Ray r = new Ray(RH.position, RH.forward);
-
         #region Attack
         if (Attack)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 StartCoroutine("AttackReset");
-                /*ShootAudio.clip = ShootSound;
-                ShootAudio.Play();*/
+               //ShootAudio.clip = ShootSound;
+                
+                //ShootAudio.Play();
                 if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
                 {
-                    if (hitinfo.collider.gameObject.tag == "Ghost") 
+                    if (hitinfo.collider.gameObject.tag == "Ghost")
+                    {   
+                        ShootAudio.enabled = true;
                         Shoot();
+                        StartCoroutine("DelaySound");
+                    }
                 }
-                   
+
             }
+
         }
         #endregion
 
@@ -239,6 +244,13 @@ public class PlayerAttack : MonoBehaviour
         AttackP.SetActive(false);
         IdleP.SetActive(true);
     }
+
+    IEnumerator DelaySound()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ShootAudio.enabled = false;
+    }
+
     public void StopAttack()
     {
         Attack = false;
