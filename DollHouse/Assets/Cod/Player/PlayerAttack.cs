@@ -260,10 +260,11 @@ public class PlayerAttack : MonoBehaviour
         Attack = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ghost")
         {
+            print("GhostHit");
             if (CrossOnHand)
             {
                 CorssR.SetActive(false);
@@ -288,6 +289,5 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
 }
 

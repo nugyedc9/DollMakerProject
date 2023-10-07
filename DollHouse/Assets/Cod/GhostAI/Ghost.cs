@@ -86,7 +86,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
 
         #region BoxcolliderActive
-        if (enemyGhost.remainingDistance <= 0.5)
+        if (enemyGhost.remainingDistance <= 0.3f)
             GhostCloseDistance.enabled = false;
         else
         GhostCloseDistance.enabled=true;
