@@ -259,5 +259,35 @@ public class PlayerAttack : MonoBehaviour
     {
         Attack = true;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ghost")
+        {
+            if (CrossOnHand)
+            {
+                CorssR.SetActive(false);
+                Attack = false;
+                CanDropItem = false;
+                CrossOnHand = false;
+                DropCross();
+            }
+            if (DollOnHand)
+            {
+                DollR.SetActive(false);
+                CanDropItem = false;
+                DollOnHand = false;
+                DropDoll();
+            }
+            if (ClothOnHand)
+            {
+                ClothR.SetActive(false);
+                CanDropItem = false;
+                ClothOnHand = false;
+                DropCloth();
+            }
+        }
+    }
+
 }
 
