@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.032711968, g: 0.044092756, b: 0.069765426, a: 1}
+  m_IndirectSpecularColor: {r: 0.034289923, g: 0.048622288, b: 0.0881824, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e8dc6b7a81fa7984aa1ba1b1756c0f4e,
+  m_LightingDataAsset: {fileID: 112000000, guid: 1561ea4d778e9fe4ea026d4148f237ae,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d9fe0a679b55d324b8819ceed8dea489,
     type: 2}
@@ -8205,7 +8205,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 558a030192801384da35b1c2f6180443, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fa108e7c326b2ea4bb82c438b042d3de, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.555
   m_Pitch: 1
@@ -9179,7 +9179,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917340379}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9337,7 +9337,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c85ae9923157eeb4dbcf711d28da560c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 10f22cc1de47a6d4a94779a9c489f15a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -10049,7 +10049,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ea1f395f640c9742a0d77431b6b8eca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1a11ab528f2cac043b64dc20f7f87fcc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -12613,7 +12613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   crouchSpeed: 3
-  groundDrag: 15
+  groundDrag: 12
   playerHeight: 3
   Ground:
     serializedVersion: 2
@@ -13424,7 +13424,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f876758b9a2111a4387240e736945b22, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9a745700e33e0fc408fc3918363adb5d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -14435,7 +14435,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: 04d9b4b5c88698a44b846f3a9a596111, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: e2c3c9bd4c7c82645877e6e9b951f4bc, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -16890,7 +16890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Profile: {fileID: 0}
+  m_Profile: {fileID: 11400000, guid: bc7117261864aed4daebe9537fa0e2e2, type: 2}
   m_StaticLightingSkyUniqueID: 0
   m_StaticLightingCloudsUniqueID: 0
   m_StaticLightingVolumetricClouds: 0
@@ -17293,6 +17293,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1848249056}
     m_Modifications:
+    - target: {fileID: 3517634664312077701, guid: 5642f325aa64d404e835740e76f75047,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517634664312077701, guid: 5642f325aa64d404e835740e76f75047,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6342573999038961938, guid: 5642f325aa64d404e835740e76f75047,
         type: 3}
       propertyPath: m_RootOrder
@@ -17389,7 +17399,7 @@ PrefabInstance:
     - target: {fileID: 4566917960371740618, guid: 6a060e6407d2b2946900cccb54d77c92,
         type: 3}
       propertyPath: m_Name
-      value: Corss
+      value: Cross
       objectReference: {fileID: 0}
     - target: {fileID: 5235477002858223900, guid: 6a060e6407d2b2946900cccb54d77c92,
         type: 3}
@@ -17404,9 +17414,19 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5235477002858223900, guid: 6a060e6407d2b2946900cccb54d77c92,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235477002858223900, guid: 6a060e6407d2b2946900cccb54d77c92,
+        type: 3}
       propertyPath: m_SpriteSortPoint
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5235477002858223900, guid: 6a060e6407d2b2946900cccb54d77c92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5278301085518984146, guid: 6a060e6407d2b2946900cccb54d77c92,
         type: 3}
       propertyPath: m_RootOrder
