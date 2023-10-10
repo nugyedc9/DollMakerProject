@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject CorssR;
     public GameObject DollR;
     public GameObject ClothR;
+
     [Header("Item Drop")]
     public GameObject CrossD;
     public GameObject DollD;

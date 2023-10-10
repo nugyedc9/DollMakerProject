@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using player;
 
 public class SpawnBeat : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class SpawnBeat : MonoBehaviour
     public GameObject miniG1Canva;
     public GameObject Head;
     public GameObject PressButtom;
+    [Header("Audio")]
+    public AudioSource EngineSound;
+    public float AudioRange;
 
     public static SpawnBeat Instance;
 
@@ -97,7 +101,18 @@ public class SpawnBeat : MonoBehaviour
         Head.SetActive(false);
         PressButtom.SetActive(true);
     }
+    public void StartEngine()
+    {
+        EngineSound.Play();
 
+        var sound = new Sound(transform.position, AudioRange);
+        Sounds.MakeSound(sound);
+    }
+
+    public void StopEngine()
+    {
+        EngineSound.Stop();
+    }
 
 
 }

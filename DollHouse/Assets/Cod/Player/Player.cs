@@ -55,10 +55,7 @@ namespace player
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        StartWork.enabled = true;
 
-                        var sound = new Sound(transform.position, AudioRange);
-                        Sounds.MakeSound(sound);
                         //print("Camera switch requested");
                         if (ChangePOV.IsActiveCamera(WorkshopView))
                         {
@@ -77,7 +74,6 @@ namespace player
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                StartWork.enabled = false;
                 if (ChangePOV.IsActiveCamera(FirstPerson))
                 {
                     ChangePOV.SwitchCamera(WorkshopView);
