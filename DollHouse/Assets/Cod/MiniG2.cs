@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum DollCreatingState { Start, TrySkillCheckButton, FinishMiniG2 }; 
+public enum DollCreatingState { Start, TrySkillCheckButton, ClearSkillCheck, FinishMiniG2 }; 
 
 public class MiniG2 : MonoBehaviour
 {
@@ -17,20 +17,38 @@ public class MiniG2 : MonoBehaviour
     public float MaxScore;
     public float Miss;
     public float TotelDoll = 0;
+    public float DollHave;
     public TextMeshProUGUI TotelD;
 
     [Header("GameObj")]
-    public bool StartMiniG2, StopMiniG2, working;
+    public bool StartMiniG2;
+    public bool StopMiniG2;
+    public bool working;
     public GameObject barSlider, Stick, canvaMiniG2;
     public MiniG2Bar G2bar;
 
-    private DollCreatingState CurrentDollCreatingState;
+    [Header("SpawnAction")]
+    public float minTranX;
+    public float minTranY;
+    public float maxTranX;
+    public float maxTranY;
+    public float Spawnsecond;
+    public float CountAction;
+    public float ActionInGame;
+    public float Point;
+    public float MaxPoint;
 
+    [SerializeField] GameObject[] Action;
+    [SerializeField] GameObject SpawnAction;
+
+    private DollCreatingState CurrentDollCreatingState;
+    public static MiniG2 Instance;
 
     // Start is called before the first frame update
     void Start()
     {
         CurrentDollCreatingState = DollCreatingState.Start;
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -43,6 +61,7 @@ public class MiniG2 : MonoBehaviour
             print("StartState");
             curBar += 1 * Time.deltaTime;
             G2bar.SetMinBar(curBar);
+            DollHave += 0.01f * Time.deltaTime;
             working = true;
             if (curBar >= minBar && curBar < maxBar && working)
             {            
@@ -53,7 +72,7 @@ public class MiniG2 : MonoBehaviour
         {
             print("SkillState");
             working = false;
-            if (Input.GetKeyUp(KeyCode.Space))
+            /*if (Input.GetKeyUp(KeyCode.Space))
             {
                 StopAllCoroutines();
                 print("GeykeySpace");
@@ -62,6 +81,24 @@ public class MiniG2 : MonoBehaviour
                 curBar += 10;
                 G2bar.SetMinBar(curBar);
                 curRan = Random.Range(minRan, maxRan);
+            }*/
+            if(CountAction == 0)
+            {
+                StartCoroutine(spawnRan());
+            }
+            if(CountAction == ActionInGame)
+            {
+                StopAllCoroutines();
+                CurrentDollCreatingState = DollCreatingState.ClearSkillCheck;
+            }
+        }
+        else if(CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
+        {
+            if(Point == MaxPoint)
+            {
+                CurrentDollCreatingState = DollCreatingState.Start;
+                Point = 0;
+                CountAction = 0;
             }
         }
         else if (CurrentDollCreatingState == DollCreatingState.FinishMiniG2)
@@ -69,10 +106,13 @@ public class MiniG2 : MonoBehaviour
             print("finsh");
             StartMiniG2 = false;
             StopMiniG2 = true;
-            barSlider.SetActive(false);
+            canvaMiniG2.SetActive(false);
             StopAllCoroutines();
             TotelDoll++;
             curBar = 0;
+            G2bar.SetMinBar(curBar);
+            if(TotelDoll != DollHave)
+                DollHave = TotelDoll;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -126,16 +166,43 @@ public class MiniG2 : MonoBehaviour
         WaitForSeconds wait = new WaitForSeconds(curRan);
 
         yield return wait;
-            barSlider.SetActive(true); 
+           // barSlider.SetActive(true); 
         CurrentDollCreatingState = DollCreatingState.TrySkillCheckButton;
         yield break;
     }
 
     public void Workingnow()
     {
-        curBar += 10;
+        curBar += 2.5f;
+        G2bar.SetMinBar(curBar);
+        Point++;
         curRan = Random.Range(minRan, maxRan);
-        working = true;
+    }
+
+    IEnumerator spawnRan()
+    {
+        while (true)
+        {
+            var wantedX = Random.Range(minTranX, maxTranX);
+            var wantedY = Random.Range(minTranY, maxTranY);
+            var position = new Vector3(wantedX, wantedY);
+            GameObject ActionObj = Instantiate(Action[Random.Range(0, Action.Length)], position, Quaternion.identity);
+            ActionObj.transform.parent = transform;
+            CountAction++;
+            yield return new WaitForSeconds(Spawnsecond);
+        }
+    }
+
+    public void CheckStart()
+    {
+        if(TotelDoll != DollHave)
+        {
+
+        }
+        else
+        {
+            CurrentDollCreatingState = DollCreatingState.Start;
+        }
     }
 
 }

@@ -20,17 +20,13 @@ public class Beat : MonoBehaviour
     {
         if(Input.GetKeyDown(keyToPress))
         {
-            if(canBePressed)
-            {
-                SpawnBeat.Instance.MakeScore();
+                //SpawnBeat.Instance.MakeScore();
+                MiniG2.Instance.Workingnow();
                 Destroy(gameObject);
                                
-            }
+            
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -32,8 +32,8 @@ public class PlayerHp : MonoBehaviour
         #region HpCanva
         if (curHp < 2)
             Hp1.SetActive(true);
-        if(curHp < 3)
-            Hp2.SetActive(true);
+       /* if(curHp < 3)
+            Hp2.SetActive(true);*/
         if(curHp >= 2) Hp1.SetActive(false);
         if(curHp >=3) Hp2.SetActive(false);
         #endregion
