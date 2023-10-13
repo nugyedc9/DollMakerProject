@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.032712184, g: 0.044093948, b: 0.069765724, a: 1}
+  m_IndirectSpecularColor: {r: 0.03271161, g: 0.044092666, b: 0.06976531, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,8 +200,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33869807}
-  m_LocalRotation: {x: -0, y: 0.8811252, z: -0, w: 0.4728831}
-  m_LocalPosition: {x: 0, y: 0, z: 0.20340161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -211,7 +211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 123.557, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.10922303, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &33869809
@@ -8022,6 +8022,12 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &808081683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1460113053511152, guid: b9f4a9682ca0a4441a5cd19f4f2fa1bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 817133604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &811117259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8262,7 +8268,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1460113053511152, guid: b9f4a9682ca0a4441a5cd19f4f2fa1bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 955673973}
   m_SourcePrefab: {fileID: 100100000, guid: b9f4a9682ca0a4441a5cd19f4f2fa1bc, type: 3}
 --- !u!1 &819352277
 GameObject:
@@ -10153,6 +10163,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 817133604}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &955673973
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808081683}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3709606, y: 0.8265724, z: 0.85136676}
+  m_Center: {x: -0.0091151, y: 0.40988234, z: 0.059577763}
 --- !u!1001 &963875260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11091,6 +11122,7 @@ MonoBehaviour:
   Miss: 0
   TotelDoll: 0
   DollHave: 0
+  TotelDollCanva: {fileID: 33869807}
   TotelD: {fileID: 1094833417}
   StartMiniG2: 0
   StopMiniG2: 1
@@ -13532,7 +13564,9 @@ MonoBehaviour:
   InterectRange: 1
   pAttack: {fileID: 1388500684}
   pHand: {fileID: 2095013831}
+  FootStep: {fileID: 1388500682}
   canvaTotelDoll: {fileID: 0}
+  MiniG2Off: {fileID: 819739471}
   StartWork: {fileID: 1689166793}
   AudioRange: 30
 --- !u!82 &1388500682

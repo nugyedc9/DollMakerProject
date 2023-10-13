@@ -17,9 +17,11 @@ namespace player
         public float InterectRange;
         public PlayerAttack pAttack;
         public GameObject pHand;
+        public AudioSource FootStep;
 
         [Header("CanavThing")]
         public GameObject canvaTotelDoll;
+        public GameObject MiniG2Off;
 
         [Header("Audio")]
         public AudioSource StartWork = null;
@@ -55,24 +57,28 @@ namespace player
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-
                         //print("Camera switch requested");
-                        if (ChangePOV.IsActiveCamera(WorkshopView))
                         {
-                            //print("Switching to FirstPerson");
-                            ChangePOV.SwitchCamera(FirstPerson);
-                            Cursor.visible = true;
-                            Cursor.lockState = CursorLockMode.None;
-                            pMove.Stopwalk();
-                            pAttack.StopAttack();
-                            pHand.SetActive(false);
+                            if (ChangePOV.IsActiveCamera(WorkshopView))
+                            {
+                                //print("Switching to FirstPerson");
+                                ChangePOV.SwitchCamera(FirstPerson);
+                                Cursor.visible = true;
+                                Cursor.lockState = CursorLockMode.None;
+                                FootStep.enabled = false;
+                                pMove.Stopwalk();
+                                pAttack.StopAttack();
+                                pHand.SetActive(false);
+                            }
                         }
                     }
-                }
+                  
+
+                }  
+                
+               
             }
-
-
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (ChangePOV.IsActiveCamera(FirstPerson))
                 {
@@ -82,8 +88,11 @@ namespace player
                     pMove.walkAble();
                     pAttack.CanAttack();
                     pHand.SetActive(true);
+                    MiniG2Off.SetActive(false);
                 }
             }
+
+
             #endregion
 
         }

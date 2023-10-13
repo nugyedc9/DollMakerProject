@@ -18,6 +18,7 @@ public class MiniG2 : MonoBehaviour
     public float Miss;
     public float TotelDoll = 0;
     public float DollHave;
+    public GameObject TotelDollCanva;
     public TextMeshProUGUI TotelD;
 
     [Header("GameObj")]
@@ -108,6 +109,7 @@ public class MiniG2 : MonoBehaviour
             StopMiniG2 = true;
             canvaMiniG2.SetActive(false);
             StopAllCoroutines();
+            TotelDollCanva.SetActive(true);
             TotelDoll++;
             curBar = 0;
             G2bar.SetMinBar(curBar);
@@ -124,6 +126,8 @@ public class MiniG2 : MonoBehaviour
         {
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
+
+        TotelD.text = "Totel Doll :  " + TotelDoll;
 
       /*  if (!StopMiniG2)
         {
