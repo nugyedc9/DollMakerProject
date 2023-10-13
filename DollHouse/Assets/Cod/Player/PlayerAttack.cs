@@ -1,6 +1,7 @@
 using player;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -98,6 +99,23 @@ public class PlayerAttack : MonoBehaviour
                     DropCloth();
                 }
             }
+            Ray LanternPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
+            if (Input.GetKeyDown(KeyCode.E)) 
+                {
+                    if (Physics.Raycast(LanternPick, out RaycastHit hitLantern, Pickrange))
+                    {
+                        if (hitLantern.collider.gameObject.tag == "Lantern")
+                        {
+                            Light.SetActive(true);
+                            LanternAni.SetTrigger("LightUp");
+                            LightOn = true;
+                            LightOnHand = true;
+                            pointLight.SetActive(true);
+                            Destroy(hitLantern.collider.gameObject);
+                        }
+                    }
+                }
+
         }
         else
         {
@@ -118,12 +136,12 @@ public class PlayerAttack : MonoBehaviour
                     }
                     if (hitInfo.collider.gameObject.tag == "Doll")
                     {
-                       // DollAni.SetTrigger("OnHand");
-                    DollOnHand = true;
-                    DollR.SetActive(true);
-                    CanDropItem = true;
-                    Destroy(hitInfo.collider.gameObject);
-                    //print("doll");
+                        // DollAni.SetTrigger("OnHand");
+                        DollOnHand = true;
+                        DollR.SetActive(true);
+                        CanDropItem = true;
+                        Destroy(hitInfo.collider.gameObject);
+                        //print("doll");
                     }
                     if (hitInfo.collider.gameObject.tag == "Cloth")
                     {
