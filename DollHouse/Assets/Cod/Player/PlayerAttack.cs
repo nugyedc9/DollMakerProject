@@ -14,25 +14,26 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand;
+    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
     public float Pickrange;
     private Vector3 destination;
 
    //public AudioClip ShootSound;    
     public AudioSource ShootAudio;
 
-    [Header("PlayerHit")]
-    public GameObject IdleP;
-    public GameObject AttackP;
 
     [Header("PLayerLight")]
     public GameObject Light;
-    public GameObject pointLight;
+    public GameObject pointLight; 
+    public Animator LanternAni;
 
     [Header("Item On Hand")]
     public GameObject CorssR;
+    public Animator CorssAni;
     public GameObject DollR;
+    public Animator DollAni;
     public GameObject ClothR;
+    public Animator ClothAni;
 
     [Header("Item Drop")]
     public GameObject CrossD;
@@ -52,16 +53,15 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                StartCoroutine("AttackReset");
+                CorssAni.SetTrigger("AttackCorss");
                //ShootAudio.clip = ShootSound;
                 
                 //ShootAudio.Play();
                 if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
-                    {   
-                        ShootAudio.enabled = true;
-                        Shoot();
+                    {
+                        StartCoroutine(AttackReset());
                         StartCoroutine("DelaySound");
                     }
                 }
@@ -107,15 +107,18 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
                     {
-                     CrossOnHand = true;
-                     Attack = true;
-                     CorssR.SetActive(true);
-                     CanDropItem = true;
-                     Destroy(hitInfo.collider.gameObject);
-                   // print("Cross");
+
+                        CrossOnHand = true;
+                        Attack = true;
+                        CorssR.SetActive(true);
+                        CanDropItem = true;
+                        CorssAni.SetTrigger("OnHand");
+                        Destroy(hitInfo.collider.gameObject);
+                        // print("Cross");
                     }
                     if (hitInfo.collider.gameObject.tag == "Doll")
                     {
+                       // DollAni.SetTrigger("OnHand");
                     DollOnHand = true;
                     DollR.SetActive(true);
                     CanDropItem = true;
@@ -130,6 +133,15 @@ public class PlayerAttack : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
 
                     }
+                    if(hitInfo.collider.gameObject.tag == "Lantern")
+                    {
+                        Light.SetActive(true);
+                        LanternAni.SetTrigger("LightUp");
+                        LightOn = true;
+                        LightOnHand = true;
+                        pointLight.SetActive(true);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
                }
             }
         }
@@ -137,19 +149,22 @@ public class PlayerAttack : MonoBehaviour
         #region LightUP
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (!LightOn)
+            if (LightOnHand)
             {
-                Light.gameObject.SetActive(true);
-                LightOn = true;
-                pointLight.SetActive(true);
+                if (!LightOn)
+                {
+                    Light.gameObject.SetActive(true);
+                    LanternAni.SetTrigger("LightUp");
+                    LightOn = true;
+                    pointLight.SetActive(true);
+                }
+                else
+                {
+                    Light.gameObject.SetActive(false);
+                    LightOn = false;
+                    pointLight.SetActive(false);
+                }
             }
-            else
-            {
-                Light.gameObject.SetActive(false);
-                LightOn = false;
-                pointLight.SetActive(false);
-            }
-
         }
         #endregion
     }
@@ -239,16 +254,14 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator AttackReset()
     {
-        AttackP.SetActive(true);
-        IdleP.SetActive(false);
-        yield return new WaitForSeconds(0.2f);
-        AttackP.SetActive(false);
-        IdleP.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Shoot();
+        ShootAudio.enabled = true;
     }
 
     IEnumerator DelaySound()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         ShootAudio.enabled = false;
     }
 
@@ -265,7 +278,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ghost")
         {
-            print("GhostHit");
+            //print("GhostHit");
             if (CrossOnHand)
             {
                 CorssR.SetActive(false);
