@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+public enum StateGhost { Mist, Search, Hunt, Dead};
 public class Ghost : MonoBehaviour, HearPlayer
 {
 
@@ -40,10 +42,13 @@ public class Ghost : MonoBehaviour, HearPlayer
     public bool canSeePlayer;
 
     [Header("audio")]
-    public AudioSource dead;
     public AudioSource AudioGhost;
+    public AudioSource FoundPlayer;
+    public AudioClip MistGhost;
+    public AudioSource ChaseGhost;
+    public AudioSource DiedGhost;
 
-
+    private StateGhost _stateGhost;
 
 
     // Start is called before the first frame update
@@ -54,8 +59,10 @@ public class Ghost : MonoBehaviour, HearPlayer
         currentDest = destination[randNum];
         curStun = Stun;
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
-        dead.enabled = false;
         AudioGhost.enabled = true;
+        FoundPlayer.enabled = false;
+        DiedGhost.enabled = false;
+       // _stateGhost = StateGhost.Mist;
     }
 
     // Update is called once per frame
@@ -76,8 +83,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             StopAllCoroutines();
             GhostAni.SetTrigger("Dead");
             StunTime(1);
-            AudioGhost.enabled = false;
-            dead.enabled = true;
+            DiedGhost.enabled = true;
             if (curStun <= 0)
             {
                 Destroy(gameObject);
@@ -101,6 +107,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             dest = player.position; 
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
+            ChaseGhost.enabled = true;
             if(enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0)
             {
                 P.Takedamage(DamageGhost);
@@ -111,7 +118,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 StartCoroutine(deathRoutine());*/
                 chasing = false;
             }
-        }
+        }else ChaseGhost.enabled = false;
         #endregion
 
         #region Walk
@@ -123,16 +130,25 @@ public class Ghost : MonoBehaviour, HearPlayer
             dest = currentDest.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
+            AudioGhost.enabled = true;
+            
             if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
             {
                 /* GhostAni.ResetTrigger("Walk");
                     GhostAni.SetTrigger("Idle");*/
                 enemyGhost.speed = 0;
                 StopAllCoroutines();
-                StartCoroutine("stayIdle");
+                StartCoroutine(stayIdle());
                 walking = false;
             }
         }
+        else AudioGhost.enabled = false;
+       
+
+        /*if(_stateGhost == StateGhost.Mist)
+        {
+
+        }*/
         #endregion
 
         #region Search
@@ -143,6 +159,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             dest = LastSound;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
+            FoundPlayer.enabled = true;
             if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance )
             { 
                 enemyGhost.speed = 0;
@@ -152,6 +169,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
 
         }
+        else StartCoroutine(WaitFoundSound());
         #endregion
 
         #region GetHit
@@ -277,7 +295,11 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
     }
 
-
+    IEnumerator WaitFoundSound()
+    {
+        yield return new WaitForSeconds(1);
+        FoundPlayer.enabled = false;
+    }
     #endregion
 
     private void OnCollisionEnter(Collision collision)
@@ -330,19 +352,19 @@ public class Ghost : MonoBehaviour, HearPlayer
 
                 }
             }
-            else
+           /* else
             {
                 StopAllCoroutines();
                 StartCoroutine("stayIdle");
                 canSeePlayer = false;
-            }
+            }*/
         }
-        else if (canSeePlayer)
+        /*else if (canSeePlayer)
         {
             StopAllCoroutines();
             StartCoroutine("stayIdle");
             canSeePlayer = false;
-        }
+        }*/
     }
 
 

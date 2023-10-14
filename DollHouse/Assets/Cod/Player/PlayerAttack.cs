@@ -19,8 +19,9 @@ public class PlayerAttack : MonoBehaviour
     public float Pickrange;
     private Vector3 destination;
 
-   //public AudioClip ShootSound;    
-    public AudioSource ShootAudio;
+    public AudioClip HitGhostSound;   
+    public AudioClip HitWindSound;
+    public AudioSource HitAudio;
 
 
     [Header("PLayerLight")]
@@ -55,15 +56,15 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 CorssAni.SetTrigger("AttackCorss");
-               //ShootAudio.clip = ShootSound;
+               HitAudio.clip = HitWindSound;
                 
-                //ShootAudio.Play();
+                HitAudio.Play();
                 if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
+                        HitAudio.clip = HitGhostSound;
                         StartCoroutine(AttackReset());
-                        StartCoroutine("DelaySound");
                     }
                 }
 
@@ -274,14 +275,9 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Shoot();
-        ShootAudio.enabled = true;
     }
 
-    IEnumerator DelaySound()
-    {
-        yield return new WaitForSeconds(1);
-        ShootAudio.enabled = false;
-    }
+
 
     public void StopAttack()
     {
