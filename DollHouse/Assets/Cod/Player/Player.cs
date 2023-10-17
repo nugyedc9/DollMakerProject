@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 namespace player
 {
@@ -18,6 +19,7 @@ namespace player
         public PlayerAttack pAttack;
         public GameObject pHand;
         public AudioSource FootStep;
+        public bool ItemHave;
 
         [Header("CanavThing")]
         public GameObject canvaTotelDoll;
@@ -55,6 +57,7 @@ namespace player
             {
                 if (hitinfo.collider.gameObject.tag == "DeskWorkShop")
                 {
+                    print(hitinfo.collider.gameObject.tag);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         //print("Camera switch requested");
@@ -91,12 +94,36 @@ namespace player
                     MiniG2Off.SetActive(false);
                 }
             }
+            if (ItemHave)
+            {
+                if (!ItemHave)
+                {
+                    if (ChangePOV.IsActiveCamera(FirstPerson))
+                    {
+                        ChangePOV.SwitchCamera(WorkshopView);
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        pMove.walkAble();
+                        pAttack.CanAttack();
+                        pHand.SetActive(true);
+                        MiniG2Off.SetActive(false);
+                    }
+                }
+            }
 
 
             #endregion
 
         }
 
-
+        public void HaveItem()
+        {
+            ItemHave = true;
+        }
+        public void NoItem()
+        {
+            ItemHave = false;
+        }
     }
+
 }

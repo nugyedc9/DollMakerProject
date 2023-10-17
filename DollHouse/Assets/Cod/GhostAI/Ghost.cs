@@ -308,7 +308,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             getHit = true;
             if(getHit) 
-            print("GetHit");
+            //print("GetHit");
             HpGhost -= 1;
             Destroy(collision.gameObject);
         }

@@ -41,6 +41,7 @@ public class MiniG2 : MonoBehaviour
 
     [SerializeField] GameObject[] Action;
     [SerializeField] GameObject SpawnAction;
+    [SerializeField] CanPlayMini1 Canplay;
 
     private DollCreatingState CurrentDollCreatingState;
     public static MiniG2 Instance;
@@ -50,6 +51,7 @@ public class MiniG2 : MonoBehaviour
     {
         CurrentDollCreatingState = DollCreatingState.Start;
         Instance = this;
+        Canplay = GetComponent<CanPlayMini1>();
     }
 
     // Update is called once per frame
@@ -59,7 +61,7 @@ public class MiniG2 : MonoBehaviour
 
         if (CurrentDollCreatingState == DollCreatingState.Start)
         {
-            print("StartState");
+            //print("StartState");
             curBar += 1 * Time.deltaTime;
             G2bar.SetMinBar(curBar);
             DollHave += 0.01f * Time.deltaTime;
@@ -71,7 +73,7 @@ public class MiniG2 : MonoBehaviour
         }
         else if (CurrentDollCreatingState == DollCreatingState.TrySkillCheckButton)
         {
-            print("SkillState");
+           // print("SkillState");
             working = false;
             /*if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -104,13 +106,14 @@ public class MiniG2 : MonoBehaviour
         }
         else if (CurrentDollCreatingState == DollCreatingState.FinishMiniG2)
         {
-            print("finsh");
+           // print("finsh");
             StartMiniG2 = false;
             StopMiniG2 = true;
             canvaMiniG2.SetActive(false);
             StopAllCoroutines();
             TotelDollCanva.SetActive(true);
             TotelDoll++;
+            Canplay.DollFnish();
             curBar = 0;
             G2bar.SetMinBar(curBar);
             if(TotelDoll != DollHave)
