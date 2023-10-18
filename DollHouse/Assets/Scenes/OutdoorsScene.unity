@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.034314584, g: 0.048655875, b: 0.08828283, a: 1}
+  m_IndirectSpecularColor: {r: 0.014362437, g: 0.052481882, b: 0.068111666, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -41226,14 +41226,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b279e58191371499b7bbabb082707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestinationItemSpawn: []
-  DestinationSpawnAmount: 0
   canClick: {fileID: 1560630407}
   MiniG: {fileID: 0}
   Cloth: 0
   Doll: 0
-  Dollobj: {fileID: 1192788759}
-  Clothobj: {fileID: 1966122196}
+  Dollobj1: {fileID: 0}
+  Dollobj2: {fileID: 0}
+  Dollobj3: {fileID: 0}
+  Clothobj1: {fileID: 0}
+  Clothobj2: {fileID: 0}
+  Clothobj3: {fileID: 0}
+  ClothHave: 0
+  DollHave: 0
 --- !u!65 &1368415841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41456,8 +41460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d4072c7c63f37479150a25e2c17da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorkshopView: {fileID: 2024467916}
   FirstPerson: {fileID: 1183379931}
+  WorkshopView: {fileID: 2024467916}
+  BedView: {fileID: 0}
   Interact: {fileID: 1823688467}
   InterectRange: 1
   pAttack: {fileID: 1388500684}
@@ -42772,14 +42777,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b279e58191371499b7bbabb082707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestinationItemSpawn: []
-  DestinationSpawnAmount: 0
   canClick: {fileID: 1519997125}
   MiniG: {fileID: 819739471}
   Cloth: 0
   Doll: 0
-  Dollobj: {fileID: 829537078}
-  Clothobj: {fileID: 1874882406}
+  Dollobj1: {fileID: 0}
+  Dollobj2: {fileID: 0}
+  Dollobj3: {fileID: 0}
+  Clothobj1: {fileID: 0}
+  Clothobj2: {fileID: 0}
+  Clothobj3: {fileID: 0}
+  ClothHave: 0
+  DollHave: 0
 --- !u!65 &1467647528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49707,12 +49716,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.006471977, y: 0.0064719496, z: 0.039299995}
   m_Center: {x: 0.0077640153, y: 0.0077639935, z: 0.009649997}
---- !u!1 &1874882406 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6668781995242878639, guid: 69bf79dacb44bfe4d992e75bece33878,
-    type: 3}
-  m_PrefabInstance: {fileID: 207726103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1874882407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6325188341562649621, guid: 69bf79dacb44bfe4d992e75bece33878,
@@ -51359,12 +51362,6 @@ PrefabInstance:
 --- !u!4 &1966122195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6325188341562649621, guid: 69bf79dacb44bfe4d992e75bece33878,
-    type: 3}
-  m_PrefabInstance: {fileID: 1966122194}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1966122196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6668781995242878639, guid: 69bf79dacb44bfe4d992e75bece33878,
     type: 3}
   m_PrefabInstance: {fileID: 1966122194}
   m_PrefabAsset: {fileID: 0}
