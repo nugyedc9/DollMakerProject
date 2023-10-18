@@ -9,8 +9,9 @@ namespace player
     public class Player : MonoBehaviour
     {
         [Header ("CameraThing")]
-        [SerializeField] CinemachineVirtualCamera WorkshopView;
         [SerializeField] CinemachineVirtualCamera FirstPerson;
+        [SerializeField] CinemachineVirtualCamera WorkshopView;
+        [SerializeField] CinemachineVirtualCamera BedView;
 
         [Header ("PlayerThing")]
         PlayerMovement pMove;
@@ -32,18 +33,21 @@ namespace player
         public void Start()
         {
             pMove = GetComponent<PlayerMovement>();
+            StartCoroutine(BedCutscene());
         }
 
         public void OnEnable()
         {
             ChangePOV.Register(WorkshopView);
             ChangePOV.Register(FirstPerson);
-            ChangePOV.SwitchCamera(WorkshopView);
+            ChangePOV.Register(BedView);
+            ChangePOV.SwitchCamera(BedView);
         }
         public void OnDisable()
         {
             ChangePOV.UnRegister(WorkshopView);
             ChangePOV.UnRegister(FirstPerson);  
+            ChangePOV.UnRegister(BedView);  
         }
 
 
@@ -62,10 +66,10 @@ namespace player
                     {
                         //print("Camera switch requested");
                         {
-                            if (ChangePOV.IsActiveCamera(WorkshopView))
+                            if (ChangePOV.IsActiveCamera(FirstPerson))
                             {
                                 //print("Switching to FirstPerson");
-                                ChangePOV.SwitchCamera(FirstPerson);
+                                ChangePOV.SwitchCamera(WorkshopView);
                                 Cursor.visible = true;
                                 Cursor.lockState = CursorLockMode.None;
                                 FootStep.enabled = false;
@@ -83,13 +87,12 @@ namespace player
             }
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (ChangePOV.IsActiveCamera(FirstPerson))
+                if (ChangePOV.IsActiveCamera(WorkshopView))
                 {
-                    ChangePOV.SwitchCamera(WorkshopView);
+                    ChangePOV.SwitchCamera(FirstPerson);
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                     pMove.walkAble();
-                    pAttack.CanAttack();
                     pHand.SetActive(true);
                     MiniG2Off.SetActive(false);
                 }
@@ -98,22 +101,47 @@ namespace player
             {
                 if (!ItemHave)
                 {
-                    if (ChangePOV.IsActiveCamera(FirstPerson))
+                    if (ChangePOV.IsActiveCamera(WorkshopView))
                     {
-                        ChangePOV.SwitchCamera(WorkshopView);
+                        ChangePOV.SwitchCamera(FirstPerson);
                         Cursor.visible = false;
                         Cursor.lockState = CursorLockMode.Locked;
                         pMove.walkAble();
-                        pAttack.CanAttack();
                         pHand.SetActive(true);
                         MiniG2Off.SetActive(false);
                     }
+                }
+            }
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                if (ChangePOV.IsActiveCamera(BedView))
+                {
+                    ChangePOV.SwitchCamera(FirstPerson);
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    pMove.walkAble();
+                    pHand.SetActive(true);
+                    MiniG2Off.SetActive(false);
                 }
             }
 
 
             #endregion
 
+        }
+
+        IEnumerator BedCutscene()
+        {
+            yield return new WaitForSeconds(3);
+            if (ChangePOV.IsActiveCamera(BedView))
+            {
+                ChangePOV.SwitchCamera(FirstPerson);
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                pMove.walkAble();
+                pHand.SetActive(true);
+                MiniG2Off.SetActive(false);
+            }
         }
 
         public void HaveItem()
@@ -124,6 +152,8 @@ namespace player
         {
             ItemHave = false;
         }
+
+
     }
 
 }

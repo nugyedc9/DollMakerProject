@@ -50,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         Ray r = new Ray(RH.position, RH.forward);
+        if(CrossOnHand) Attack = true;
         #region Attack
         if (Attack)
         {

@@ -51,14 +51,11 @@ public class MiniG2 : MonoBehaviour
     {
         CurrentDollCreatingState = DollCreatingState.Start;
         Instance = this;
-        Canplay = GetComponent<CanPlayMini1>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (CurrentDollCreatingState == DollCreatingState.Start)
         {
             //print("StartState");
@@ -113,8 +110,9 @@ public class MiniG2 : MonoBehaviour
             StopAllCoroutines();
             TotelDollCanva.SetActive(true);
             TotelDoll++;
-            Canplay.DollFnish();
             curBar = 0;
+            Canplay.Dolllost();
+            Canplay.ClothLost();
             G2bar.SetMinBar(curBar);
             if(TotelDoll != DollHave)
                 DollHave = TotelDoll;
