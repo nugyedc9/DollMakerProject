@@ -72,16 +72,7 @@ public class MiniG2 : MonoBehaviour
         {
            // print("SkillState");
             working = false;
-            /*if (Input.GetKeyUp(KeyCode.Space))
-            {
-                StopAllCoroutines();
-                print("GeykeySpace");
-                CurrentDollCreatingState = DollCreatingState.Start;
-                barSlider.SetActive(false);
-                curBar += 10;
-                G2bar.SetMinBar(curBar);
-                curRan = Random.Range(minRan, maxRan);
-            }*/
+          
             if(CountAction == 0)
             {
                 StartCoroutine(spawnRan());
@@ -130,40 +121,6 @@ public class MiniG2 : MonoBehaviour
 
         TotelD.text = "Totel Doll :  " + TotelDoll;
 
-      /*  if (!StopMiniG2)
-        {
-            if (curBar >= maxBar)
-            {
-
-                StartMiniG2 = false;
-                StopMiniG2 = true;
-                barSlider.SetActive(false);
-                StopAllCoroutines();
-                TotelDoll++;
-                curBar = 0;
-            }
-            if (curBar >= minBar && curBar < maxBar && working) 
-            {
-                StartCoroutine("RandomShowBar");
-            }
-            if (StartMiniG2)
-            {
-                curBar += 1 * Time.deltaTime;
-                G2bar.SetMinBar(curBar);
-            }
-        }
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            StartMiniG2 = true;
-            StopMiniG2 = false;
-            WorkThis++;
-        }
-        if(WorkThis >=1)
-        {
-            WorkThis -= 0.1f * Time.deltaTime;
-            if(WorkThis <= 0)
-            { WorkThis = 0; }   
-        }*/
     }
 
     IEnumerator RandomShowBar()

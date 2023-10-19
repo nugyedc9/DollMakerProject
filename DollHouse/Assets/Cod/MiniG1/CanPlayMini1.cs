@@ -53,19 +53,17 @@ public class CanPlayMini1 : MonoBehaviour
         {
             ClothHave++;
             Cloth = true;
-            if (ClothHave == 0)
+            if (ClothHave == 1)
             {
                 Clothobj1.SetActive(true);
-                Clothobj2.SetActive(false);
                 Destroy(collision.gameObject);
             }
-            if(ClothHave == 1)
+            if(ClothHave == 2)
             {
                 Clothobj2.SetActive(true);
-                Clothobj3.SetActive(false);
                 Destroy(collision.gameObject);
             }
-            if (ClothHave == 2)
+            if (ClothHave == 3)
             {
                 Clothobj3.SetActive(true);
                 Destroy(collision.gameObject);
@@ -75,19 +73,17 @@ public class CanPlayMini1 : MonoBehaviour
         {
             DollHave++;
             Doll = true;
-            if (DollHave == 0)
+            if (DollHave == 1)
             {
                 Dollobj1.SetActive(true);
-                Dollobj2.SetActive(false);
-                Destroy(collision.gameObject);
-            }
-            if(DollHave == 1)
-            {
-                Dollobj2.SetActive(true);
-                Dollobj3.SetActive(false);
                 Destroy(collision.gameObject);
             }
             if(DollHave == 2)
+            {
+                Dollobj2.SetActive(true);
+                Destroy(collision.gameObject);
+            }
+            if(DollHave == 3)
             {
                 Dollobj3.SetActive(true);
                 Destroy(collision.gameObject);

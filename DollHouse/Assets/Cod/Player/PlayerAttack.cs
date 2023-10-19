@@ -2,8 +2,9 @@ using player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
+using UnityEditor.Rendering;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 
 public class PlayerAttack : MonoBehaviour
@@ -42,6 +43,11 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
+    private Door DoorInterect;
+
+    public UnityEvent LightOutEvent;
+    public UnityEvent GetKey;
+
     private void Start()
     {
         //ShootAudio = GetComponent<AudioSource>();
@@ -69,10 +75,41 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
+
             }
 
         }
         #endregion
+
+        Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.Raycast(Interect, out RaycastHit hitInterect, Pickrange))
+            {
+                //  print(hitInterect.collider.gameObject);
+                if (hitInterect.collider.gameObject.tag == "Lantern")
+                {
+                    Light.SetActive(true);
+                    LanternAni.SetTrigger("LightUp");
+                    LightOn = true;
+                    LightOnHand = true;
+                    pointLight.SetActive(true);
+                    Destroy(hitInterect.collider.gameObject);
+                }
+                if (hitInterect.collider.gameObject.tag == "Door")
+                {
+                    DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();
+                    DoorInterect.DoorAni();
+
+                }
+                if (hitInterect.collider.gameObject.tag == "Key")
+                {
+                    print("GetKey");
+                    GetKey.Invoke();
+                    Destroy(hitInterect.collider.gameObject);
+                }
+            }
+        }
 
         if (CanDropItem)
         {
@@ -101,28 +138,13 @@ public class PlayerAttack : MonoBehaviour
                     DropCloth();
                 }
             }
-            Ray LanternPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
-            if (Input.GetKeyDown(KeyCode.E)) 
-                {
-                    if (Physics.Raycast(LanternPick, out RaycastHit hitLantern, Pickrange))
-                    {
-                        if (hitLantern.collider.gameObject.tag == "Lantern")
-                        {
-                            Light.SetActive(true);
-                            LanternAni.SetTrigger("LightUp");
-                            LightOn = true;
-                            LightOnHand = true;
-                            pointLight.SetActive(true);
-                            Destroy(hitLantern.collider.gameObject);
-                        }
-                    }
-                }
 
         }
         else
         {
             Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
-            if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
                 if (Physics.Raycast(RPick, out RaycastHit hitInfo, Pickrange))
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
@@ -153,16 +175,16 @@ public class PlayerAttack : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
 
                     }
-                    if(hitInfo.collider.gameObject.tag == "Lantern")
+                    if (hitInfo.collider.gameObject.tag == "Lantern")
                     {
                         Light.SetActive(true);
                         LanternAni.SetTrigger("LightUp");
-                        LightOn = true;
+                        LightOn = true; 
                         LightOnHand = true;
                         pointLight.SetActive(true);
                         Destroy(hitInfo.collider.gameObject);
                     }
-               }
+                }
             }
         }
 
@@ -316,6 +338,11 @@ public class PlayerAttack : MonoBehaviour
                 ClothOnHand = false;
                 DropCloth();
             }
+        }
+        if (collision.gameObject.tag == "LightOutEvent")
+        {
+            LightOutEvent.Invoke();
+            Destroy(collision.gameObject);
         }
     }
 }
