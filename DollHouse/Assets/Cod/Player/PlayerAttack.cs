@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
-    private Door DoorInterect;
+    public Door DoorInterect;
 
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
