@@ -20,12 +20,12 @@ public class Door : MonoBehaviour
         {
             if (!D)
             {
-                doorAni.Play("Door", 0, 0);
+                doorAni.Play("Door_open", 0, 0);
                 D = true;
             }
             else
             {
-                doorAni.Play("DoorClose", 0, 0);
+                doorAni.Play("Door_close", 0, 0);
                 D = false;
             }
         }
@@ -34,7 +34,7 @@ public class Door : MonoBehaviour
    public void LockEvent()  
     {
         Lock = true;
-        doorAni.Play("DoorClose", 0, 0);
+        doorAni.Play("Door_close", 0, 0);
         D = false;
     }
     public void HaveKey()
