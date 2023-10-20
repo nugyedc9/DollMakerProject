@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using player;
 using System.Collections;
 using System.Collections.Generic;
@@ -375,3 +377,4 @@ public class PlayerAttack : MonoBehaviour
     }
 }
 
+#endif
