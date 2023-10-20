@@ -43,12 +43,16 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
+    [Header("ForntDoorEvent")]
+    public GameObject CanvaForntDoor;
+
     private Door DoorInterect;
     private Event Ghostevent;
 
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
     public UnityEvent GhostEvent;
+    public UnityEvent EventCloseDoor;
 
     private void Start()
     {
@@ -110,6 +114,12 @@ public class PlayerAttack : MonoBehaviour
                     GetKey.Invoke();
                     Destroy(hitInterect.collider.gameObject);
                 }
+                if (hitInterect.collider.gameObject.tag == "ForntDoor") 
+                {
+                    DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();  
+                   DoorInterect.ForntDoor();
+                  //  CanvaForntDoor.SetActive(true);
+                }
             }
         }
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
@@ -153,7 +163,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
         }
-        else
+        else if (!CanDropItem) 
         {
             Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
             if (Input.GetKeyDown(KeyCode.E))
@@ -356,6 +366,11 @@ public class PlayerAttack : MonoBehaviour
         {
             LightOutEvent.Invoke();
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag == "CloseDoorEvent")
+        {
+            EventCloseDoor.Invoke();
+            Destroy(collision.gameObject );
         }
     }
 }

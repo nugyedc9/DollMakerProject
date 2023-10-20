@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 using Unity.VisualScripting;
 
@@ -29,6 +30,9 @@ namespace player
         [Header("Audio")]
         public AudioSource StartWork = null;
         public float AudioRange;
+
+        [Header("Event")]
+        public UnityEvent Dollmake;
 
         public void Start()
         {
@@ -76,6 +80,14 @@ namespace player
                                 pMove.Stopwalk();
                                 pAttack.StopAttack();
                                 pHand.SetActive(false);
+                                if (Input.GetKeyDown(KeyCode.Space))
+                                {
+                                    MiniG2Off.SetActive(true);
+                                }
+                                if (Input.GetKeyUp(KeyCode.Space))
+                                {
+                                    MiniG2Off.SetActive(false);
+                                }
                             }
                         }
                     }
@@ -123,6 +135,19 @@ namespace player
                     pHand.SetActive(true);
                     MiniG2Off.SetActive(false);
                 }
+                if (ChangePOV.IsActiveCamera(WorkshopView))
+                {
+                    MiniG2Off.SetActive(true);
+                    Dollmake.Invoke();
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (ChangePOV.IsActiveCamera(WorkshopView))
+                {
+                    MiniG2Off.SetActive(false);
+                    Dollmake.Invoke();
+                }
             }
 
 
@@ -132,7 +157,7 @@ namespace player
 
         IEnumerator BedCutscene()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(7);
             if (ChangePOV.IsActiveCamera(BedView))
             {
                 ChangePOV.SwitchCamera(FirstPerson);
@@ -153,6 +178,11 @@ namespace player
             ItemHave = false;
         }
 
+
+        public void Checkclick()
+        {
+            print("Click");
+        }
 
     }
 

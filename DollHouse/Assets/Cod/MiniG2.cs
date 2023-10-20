@@ -74,10 +74,10 @@ public class MiniG2 : MonoBehaviour
             working = false;
           
             if(CountAction == 0)
-            {
-                StartCoroutine(spawnRan());
+            {   
+                StartCoroutine(spawnRan()); 
             }
-            if(CountAction == ActionInGame)
+            if(CountAction >= ActionInGame)
             {
                 StopAllCoroutines();
                 CurrentDollCreatingState = DollCreatingState.ClearSkillCheck;
@@ -85,7 +85,7 @@ public class MiniG2 : MonoBehaviour
         }
         else if(CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
         {
-            if(Point == MaxPoint)
+            if(Point >= MaxPoint)
             {
                 CurrentDollCreatingState = DollCreatingState.Start;
                 Point = 0;
@@ -130,7 +130,6 @@ public class MiniG2 : MonoBehaviour
         yield return wait;
            // barSlider.SetActive(true); 
         CurrentDollCreatingState = DollCreatingState.TrySkillCheckButton;
-        yield break;
     }
 
     public void Workingnow()
@@ -159,7 +158,9 @@ public class MiniG2 : MonoBehaviour
     {
         if(TotelDoll != DollHave)
         {
-
+            if(CountAction !=0)
+            CountAction = 0;
+            CurrentDollCreatingState = DollCreatingState.Start;
         }
         else
         {

@@ -40,6 +40,11 @@ public class Door : MonoBehaviour
         }
     }
 
+    public void ForntDoor()
+    {
+        DoorSound.Stop();
+    }
+
    public void LockEvent()  
     {
         DoorSound.clip = doorlock; DoorSound.Play();

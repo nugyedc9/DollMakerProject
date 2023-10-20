@@ -26,7 +26,7 @@ public class Event : MonoBehaviour
 
     IEnumerator waitdelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(9);
         Ghost1.gameObject.SetActive(false);
     }
 
