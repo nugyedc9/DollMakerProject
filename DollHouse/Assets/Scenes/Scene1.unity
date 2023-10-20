@@ -17499,6 +17499,8 @@ MonoBehaviour:
   rayCastOffset: {x: 0, y: 0, z: 0}
   P: {fileID: 1188691981}
   DamageGhost: 1
+  BlackSphere: {fileID: 0}
+  GhostFrom: {fileID: 0}
   GhostCloseDistance: {fileID: 1062685572}
   radius: 10
   angle: 90
@@ -18955,7 +18957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1145837327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19164,6 +19166,8 @@ MonoBehaviour:
   rayCastOffset: {x: 0, y: 0, z: 0}
   P: {fileID: 1188691981}
   DamageGhost: 1
+  BlackSphere: {fileID: 486645427}
+  GhostFrom: {fileID: 797607240}
   GhostCloseDistance: {fileID: 1145837329}
   radius: 10
   angle: 90
@@ -26460,6 +26464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ghostT_Pose01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43aba6f0020b0bf43a057ced3fa1b8c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

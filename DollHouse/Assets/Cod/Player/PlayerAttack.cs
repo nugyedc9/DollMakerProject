@@ -1,9 +1,7 @@
-#if UNITY_EDITOR
-
 using player;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
@@ -376,5 +374,3 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 }
-
-#endif

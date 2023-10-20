@@ -28,9 +28,9 @@ public class Ghost : MonoBehaviour, HearPlayer
     public float DamageGhost;
 
     [Header("Ghost")]
-   /* public GameObject BlackSphere;
-    public GameObject GhostFrom;*/
-    public CapsuleCollider GhostCloseDistance;
+    public GameObject BlackSphere;
+    public GameObject GhostFrom;
+    public BoxCollider GhostCloseDistance;
 
     [Header("GhostView")]
     public float radius;
@@ -79,8 +79,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             getHit = false;
             stopSearch = true;
             chasing = false;
-           /* BlackSphere.SetActive(false);
-            GhostFrom.SetActive(true);*/
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(true);
             StopAllCoroutines();
             GhostAni.SetTrigger("Dead");
             StunTime(1);
@@ -102,8 +102,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         #region Chase
         if (chasing == true)
         {
-         /*   BlackSphere.SetActive(false);
-            GhostFrom.SetActive(true);*/
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(true);
             searching = false;
             dest = player.position; 
             enemyGhost.destination = dest;
@@ -125,8 +125,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         #region Walk
         if (walking == true )
         {
-           /* BlackSphere.SetActive(true);
-            GhostFrom.SetActive(false);*/
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             chasing = false;
             dest = currentDest.position;
             enemyGhost.destination = dest;
@@ -155,8 +155,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         #region Search
         if (searching == true)  
         {
-           /* BlackSphere.SetActive(true);
-            GhostFrom.SetActive(false);*/
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             dest = LastSound;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
@@ -182,8 +182,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             chasing = false;
             searching = false;
             stopSearch = true;
-           /* BlackSphere.SetActive(true);
-            GhostFrom.SetActive(false);*/
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             StunTime(1);
             if (curStun <= 0)
             {
@@ -224,7 +224,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         Attacked=false;
         randNum = Random.Range(0, destinationAmount);
         currentDest= destination[randNum];  
-       /* GhostAni.ResetTrigger("Idle");
+    /*    GhostAni.ResetTrigger("Idle");
         GhostAni.SetTrigger("Walk");*/
     }
     #endregion
@@ -238,7 +238,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         yield return new WaitForSeconds(IdleTime);
         walking= true;
-        /*GhostAni.ResetTrigger("Sprint");
+      /*  GhostAni.ResetTrigger("Sprint");
         GhostAni.SetTrigger("Walk");*/
     }
     #endregion
