@@ -31,6 +31,7 @@ namespace player
         public AudioClip Footsaound;
         public float AudioRange;
 
+
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -59,6 +60,7 @@ namespace player
                     else
                        FootStep.enabled = false;
                 }
+
 
                 if (Grounded)
                     rb.drag = groundDrag;

@@ -43,10 +43,12 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
-    public Door DoorInterect;
+    private Door DoorInterect;
+    private Event Ghostevent;
 
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
+    public UnityEvent GhostEvent;
 
     private void Start()
     {
@@ -110,6 +112,17 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
+        {
+            if (hitevent.collider.tag == "GhostEvent")
+            {
+                GhostEvent.Invoke();
+                Destroy(hitevent.collider.gameObject);  
+            }
+        }
+
+
+
 
         if (CanDropItem)
         {

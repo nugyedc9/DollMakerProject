@@ -15,13 +15,14 @@ public class StairClimb : MonoBehaviour
      {
          rigidBody = GetComponent<Rigidbody>();
 
-        // stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
      }
 
      private void FixedUpdate()
      {
          stepClimb();
-     }
+
+    }
 
      void stepClimb()
      {

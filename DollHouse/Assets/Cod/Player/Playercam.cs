@@ -12,6 +12,10 @@ public class Playercam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public Vector3 _direction;
+    [SerializeField] private float smoothTime = 0.05f;
+    private float _currentVelocity;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,7 +32,12 @@ public class Playercam : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+      /*  var targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
+        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, smoothTime);
+        transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);*/
     }
 }

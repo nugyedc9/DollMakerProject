@@ -30,7 +30,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     [Header("Ghost")]
     public GameObject BlackSphere;
     public GameObject GhostFrom;
-    public BoxCollider GhostCloseDistance;
+    public MeshCollider GhostCloseDistance;
 
     [Header("GhostView")]
     public float radius;
@@ -39,6 +39,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public GameObject PlayerPos;
     public LayerMask layerPLayer;
     public LayerMask obstructionMask;
+    public LayerMask ground;
     public bool canSeePlayer;
 
     [Header("audio")]
@@ -59,10 +60,10 @@ public class Ghost : MonoBehaviour, HearPlayer
         currentDest = destination[randNum];
         curStun = Stun;
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
-        AudioGhost.enabled = true;
+        AudioGhost.enabled = true;  
         FoundPlayer.enabled = false;
         DiedGhost.enabled = false;
-       // _stateGhost = StateGhost.Mist;
+        _stateGhost = StateGhost.Mist;
     }
 
     // Update is called once per frame
@@ -113,7 +114,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 P.Takedamage(DamageGhost);
                 StopAllCoroutines();
                 StartCoroutine("Attack");
-                /*GhostAni.ResetTrigger("Sprint");
+               /* GhostAni.ResetTrigger("Sprint");
                 GhostAni.SetTrigger("Jumpscare");
                 StartCoroutine(deathRoutine());*/
                 chasing = false;
@@ -134,8 +135,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             
             if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
             {
-                /* GhostAni.ResetTrigger("Walk");
-                    GhostAni.SetTrigger("Idle");*/
+                 GhostAni.ResetTrigger("Walk");
+                    GhostAni.SetTrigger("Idle");
                 enemyGhost.speed = 0;
                 StopAllCoroutines();
                 StartCoroutine(stayIdle());
@@ -223,8 +224,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         Attacked=false;
         randNum = Random.Range(0, destinationAmount);
         currentDest= destination[randNum];  
-       /* GhostAni.ResetTrigger("Idle");
-        GhostAni.SetTrigger("Walk");*/
+        GhostAni.ResetTrigger("Idle");
+        GhostAni.SetTrigger("Walk");
     }
     #endregion
 
@@ -334,6 +335,24 @@ public class Ghost : MonoBehaviour, HearPlayer
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
+                    canSeePlayer = true;
+                    if (!Attacked)
+                    {
+                        walking = false;
+                        StopAllCoroutines();
+                        StartCoroutine(chaseRoutine());
+                        chasing = true;
+                    }
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    StartCoroutine("stayIdle");
+                    canSeePlayer = false;
+
+                }
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ground))
                 {
                     canSeePlayer = true;
                     if (!Attacked)

@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Event : MonoBehaviour
 {
 
-    public UnityEvent LightOut;
+    public Animator Ghost1;
+    public AudioSource Ghost1Sound;
+    public AudioClip lmao;
+    
 
 
-    void Start()
+    private void Awake()
     {
-        
+        Ghost1 = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GhostEvent1()
     {
-        
+        Ghost1Sound.clip = lmao;
+        Ghost1Sound.Play();
+        Ghost1.Play("Ghost1", 0, 0);
+        StartCoroutine(waitdelay());
     }
 
-    public void OnCollisionEnter(Collision collision)
+    IEnumerator waitdelay()
     {
-        if(collision.gameObject.tag == "Player")
-        {
-            LightOut.Invoke();
-            Destroy(gameObject);
-        }
+        yield return new WaitForSeconds(1);
+        Ghost1.gameObject.SetActive(false);
     }
+
 }
+    
