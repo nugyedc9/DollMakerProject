@@ -45,7 +45,7 @@ namespace player
 
         private Door DoorInterect;
         public PlayerMovement PMove;
-        private bool TutorialWork = true;
+        private bool TutorialWork;
 
         public void Start()
         {
@@ -96,12 +96,10 @@ namespace player
                                 pMove.Stopwalk();
                                 pAttack.StopAttack();
                                 pHand.SetActive(false);
-                                if(TutorialWork) WorkTutorial.SetActive(true);
-                                else WorkTutorial.SetActive(false);
+                                if(!TutorialWork) WorkTutorial.SetActive(true);
                                 if (Input.GetKeyDown(KeyCode.Space))
                                 {
                                     MiniG2Off.SetActive(true);
-                                    TutorialWork = false;
                                 }
                                 if (Input.GetKeyUp(KeyCode.Space))
                                 {
@@ -190,6 +188,8 @@ namespace player
                 {
                     MiniG2Off.SetActive(false);
                     StartWork.Stop();
+                    TutorialWork = true;
+                    if(TutorialWork) WorkTutorial.SetActive(false);
                     Dollmake.Invoke();
                 }
             }
