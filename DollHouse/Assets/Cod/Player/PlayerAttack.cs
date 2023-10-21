@@ -43,8 +43,6 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
-    [Header("ForntDoorEvent")]
-    public GameObject CanvaForntDoor;
 
     private Door DoorInterect;
     private Event Ghostevent;
@@ -57,6 +55,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         //ShootAudio = GetComponent<AudioSource>();
+        
     }
 
     void Update()
@@ -114,12 +113,6 @@ public class PlayerAttack : MonoBehaviour
                     GetKey.Invoke();
                     Destroy(hitInterect.collider.gameObject);
                 }
-                if (hitInterect.collider.gameObject.tag == "ForntDoor") 
-                {
-                    DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();  
-                   DoorInterect.ForntDoor();
-                  //  CanvaForntDoor.SetActive(true);
-                }
             }
         }
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
@@ -136,7 +129,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (CanDropItem)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.G))
             {
                 if (CrossOnHand)
                 {
@@ -232,6 +225,9 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         #endregion
+
+        
+
     }
 
     void Shoot()
@@ -362,15 +358,25 @@ public class PlayerAttack : MonoBehaviour
                 DropCloth();
             }
         }
-        if (collision.gameObject.tag == "LightOutEvent")
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "LightOutEvent")
         {
             LightOutEvent.Invoke();
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
-        if(collision.gameObject.tag == "CloseDoorEvent")
+        if (other.gameObject.tag == "CloseDoorEvent")
         {
             EventCloseDoor.Invoke();
-            Destroy(collision.gameObject );
+            Destroy(other.gameObject);
+        }
+        if ((other.gameObject.tag == "Tutorial"))
+        {
+            Destroy(other.gameObject);
         }
     }
+
+
 }

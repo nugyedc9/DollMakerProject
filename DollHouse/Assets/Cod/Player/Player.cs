@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using Cinemachine;
 using Unity.VisualScripting;
@@ -13,6 +14,8 @@ namespace player
         [SerializeField] CinemachineVirtualCamera FirstPerson;
         [SerializeField] CinemachineVirtualCamera WorkshopView;
         [SerializeField] CinemachineVirtualCamera BedView;
+        [SerializeField] CinemachineVirtualCamera ForntDoorView;
+        [SerializeField] CinemachineVirtualCamera FinalCutSecne;
 
         [Header ("PlayerThing")]
         PlayerMovement pMove;
@@ -21,11 +24,15 @@ namespace player
         public PlayerAttack pAttack;
         public GameObject pHand;
         public AudioSource FootStep;
-        public bool ItemHave;
 
         [Header("CanavThing")]
-        public GameObject canvaTotelDoll;
+        public GameObject canvaTutorial;
         public GameObject MiniG2Off;
+        public int DialogNow = 0;
+        public GameObject CanvaBedView;
+        public GameObject CanvaForntDoor;
+        public Image ImageDialogue;
+        [SerializeField] public Sprite[] Dialog;
 
         [Header("Audio")]
         public AudioSource StartWork = null;
@@ -33,6 +40,10 @@ namespace player
 
         [Header("Event")]
         public UnityEvent Dollmake;
+        public UnityEvent CutSceneFinal;
+
+        private Door DoorInterect;
+        public PlayerMovement PMove;
 
         public void Start()
         {
@@ -45,6 +56,7 @@ namespace player
             ChangePOV.Register(WorkshopView);
             ChangePOV.Register(FirstPerson);
             ChangePOV.Register(BedView);
+            ChangePOV.Register(ForntDoorView);
             ChangePOV.SwitchCamera(BedView);
         }
         public void OnDisable()
@@ -52,6 +64,7 @@ namespace player
             ChangePOV.UnRegister(WorkshopView);
             ChangePOV.UnRegister(FirstPerson);  
             ChangePOV.UnRegister(BedView);  
+            ChangePOV.UnRegister(ForntDoorView);  
         }
 
 
@@ -91,15 +104,52 @@ namespace player
                             }
                         }
                     }
-                  
+                }
+                if (hitinfo.collider.gameObject.tag == "ForntDoor")
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        if (ChangePOV.IsActiveCamera(FirstPerson))
+                        {
+                            DoorInterect = hitinfo.collider.gameObject.GetComponent<Door>();
+                            DoorInterect.ForntDoor();
+                            CanvaForntDoor.SetActive(true);
+                            PMove.Stopwalk();
+                            ChangePOV.SwitchCamera(ForntDoorView);
+                        }
+                    }
 
-                }  
-                
-               
+                }
+
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (ChangePOV.IsActiveCamera(ForntDoorView))
             {
-                if (ChangePOV.IsActiveCamera(WorkshopView))
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    DialogNow++;
+                    if (DialogNow < Dialog.Length) ImageDialogue.sprite = Dialog[DialogNow];
+
+                }
+            }
+            if (Input.GetButton("Fire1"))
+            {
+                if (DialogNow >= Dialog.Length)
+                {
+                    if (ChangePOV.IsActiveCamera(ForntDoorView))
+                    {
+                        ChangePOV.SwitchCamera(FirstPerson);
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        pMove.walkAble();
+                        CanvaForntDoor.SetActive(false);
+                    }
+                }
+            }
+
+
+            if (ChangePOV.IsActiveCamera(WorkshopView))
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     ChangePOV.SwitchCamera(FirstPerson);
                     Cursor.visible = false;
@@ -109,22 +159,8 @@ namespace player
                     MiniG2Off.SetActive(false);
                 }
             }
-            if (ItemHave)
-            {
-                if (!ItemHave)
-                {
-                    if (ChangePOV.IsActiveCamera(WorkshopView))
-                    {
-                        ChangePOV.SwitchCamera(FirstPerson);
-                        Cursor.visible = false;
-                        Cursor.lockState = CursorLockMode.Locked;
-                        pMove.walkAble();
-                        pHand.SetActive(true);
-                        MiniG2Off.SetActive(false);
-                    }
-                }
-            }
-            if(Input.GetKeyDown(KeyCode.Space))
+
+                if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (ChangePOV.IsActiveCamera(BedView))
                 {
@@ -150,7 +186,6 @@ namespace player
                 }
             }
 
-
             #endregion
 
         }
@@ -158,7 +193,7 @@ namespace player
         IEnumerator BedCutscene()
         {
             yield return new WaitForSeconds(7);
-            if (ChangePOV.IsActiveCamera(BedView))
+            if (ChangePOV.IsActiveCamera(BedView))  
             {
                 ChangePOV.SwitchCamera(FirstPerson);
                 Cursor.visible = false;
@@ -166,24 +201,30 @@ namespace player
                 pMove.walkAble();
                 pHand.SetActive(true);
                 MiniG2Off.SetActive(false);
+                canvaTutorial.SetActive(true) ; 
             }
-        }
+            yield return new WaitForSeconds(2);
+            CanvaBedView.SetActive(false);
 
-        public void HaveItem()
-        {
-            ItemHave = true;
         }
-        public void NoItem()
-        {
-            ItemHave = false;
-        }
-
 
         public void Checkclick()
         {
             print("Click");
         }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.tag == "FinalCutScene")
+            {
+                ChangePOV.SwitchCamera(FinalCutSecne);
+                CutSceneFinal.Invoke();
+            }
+        }
+
+ 
+
     }
+
 
 }

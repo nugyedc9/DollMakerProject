@@ -1,8 +1,11 @@
+using player;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine;
+using UnityEngine.Events;
 
 public enum DollCreatingState { Start, TrySkillCheckButton, ClearSkillCheck, FinishMiniG2 }; 
 
@@ -43,8 +46,11 @@ public class MiniG2 : MonoBehaviour
     [SerializeField] GameObject SpawnAction;
     [SerializeField] CanPlayMini1 Canplay;
 
+    public UnityEvent Cutscene;
+
     private DollCreatingState CurrentDollCreatingState;
     public static MiniG2 Instance;
+    [SerializeField] public Player PCut;
 
     // Start is called before the first frame update
     void Start()
@@ -120,6 +126,11 @@ public class MiniG2 : MonoBehaviour
         }
 
         TotelD.text = "Totel Doll :  " + TotelDoll;
+
+        if(TotelDoll == 2)
+        {
+            Cutscene.Invoke();
+        }
 
     }
 

@@ -42,7 +42,7 @@ namespace player
         {
             if (canWalk)
             {
-                Grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, Ground);
+                Grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f);
 
                 MyInput();
                 SpeedControl();

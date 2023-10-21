@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Event : MonoBehaviour
@@ -8,6 +9,7 @@ public class Event : MonoBehaviour
     public Animator Ghost1;
     public AudioSource Ghost1Sound;
     public AudioClip lmao;
+    public Animator CutFinal;
     
 
 
@@ -28,6 +30,13 @@ public class Event : MonoBehaviour
     {
         yield return new WaitForSeconds(9);
         Ghost1.gameObject.SetActive(false);
+    }
+
+    public void Cutscene()
+    {
+        Ghost1Sound.clip = lmao;
+        Ghost1Sound.Play();
+        CutFinal.Play("FinalCutr",0,0);
     }
 
 }

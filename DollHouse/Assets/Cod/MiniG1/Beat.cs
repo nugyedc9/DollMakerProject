@@ -20,11 +20,8 @@ public class Beat : MonoBehaviour
     {
         if(Input.GetKeyDown(keyToPress))
         {
-                //SpawnBeat.Instance.MakeScore();
                 MiniG2.Instance.Workingnow();
                 Destroy(gameObject);
-                               
-            
         }
 
     }
