@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Door : MonoBehaviour
     public Animator doorAni;
     public bool D;
     public bool Lock;
+    public GameObject DoorLock;
     public AudioSource DoorSound;
     public AudioClip open;
     public AudioClip close;
@@ -38,6 +40,11 @@ public class Door : MonoBehaviour
                 D = false;
             }
         }
+        else
+        {
+            StartCoroutine(doorLockDelay());
+            DoorSound.clip = doorlock; DoorSound.Play();
+        }
     }
 
     public void ForntDoor()
@@ -57,6 +64,12 @@ public class Door : MonoBehaviour
         Lock = false;
     }
 
+    IEnumerator doorLockDelay()
+    {
+        DoorLock.SetActive(true);
+        yield return new WaitForSeconds(2);
+        DoorLock.SetActive(false);
+    }
 
   
 }

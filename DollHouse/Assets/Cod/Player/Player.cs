@@ -33,9 +33,10 @@ namespace player
         public GameObject CanvaForntDoor;
         public Image ImageDialogue;
         [SerializeField] public Sprite[] Dialog;
+        public GameObject WorkTutorial;
 
         [Header("Audio")]
-        public AudioSource StartWork = null;
+        public AudioSource StartWork;
         public float AudioRange;
 
         [Header("Event")]
@@ -44,10 +45,12 @@ namespace player
 
         private Door DoorInterect;
         public PlayerMovement PMove;
+        private bool TutorialWork = true;
 
         public void Start()
         {
             pMove = GetComponent<PlayerMovement>();
+            StartWork.Stop();
             StartCoroutine(BedCutscene());
         }
 
@@ -93,9 +96,12 @@ namespace player
                                 pMove.Stopwalk();
                                 pAttack.StopAttack();
                                 pHand.SetActive(false);
+                                if(TutorialWork) WorkTutorial.SetActive(true);
+                                else WorkTutorial.SetActive(false);
                                 if (Input.GetKeyDown(KeyCode.Space))
                                 {
                                     MiniG2Off.SetActive(true);
+                                    TutorialWork = false;
                                 }
                                 if (Input.GetKeyUp(KeyCode.Space))
                                 {
@@ -174,6 +180,7 @@ namespace player
                 if (ChangePOV.IsActiveCamera(WorkshopView))
                 {
                     MiniG2Off.SetActive(true);
+                    StartWork.Play();
                     Dollmake.Invoke();
                 }
             }
@@ -182,6 +189,7 @@ namespace player
                 if (ChangePOV.IsActiveCamera(WorkshopView))
                 {
                     MiniG2Off.SetActive(false);
+                    StartWork.Stop();
                     Dollmake.Invoke();
                 }
             }
@@ -221,8 +229,6 @@ namespace player
                 CutSceneFinal.Invoke();
             }
         }
-
- 
 
     }
 

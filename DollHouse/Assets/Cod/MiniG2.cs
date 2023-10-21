@@ -42,11 +42,14 @@ public class MiniG2 : MonoBehaviour
     public float Point;
     public float MaxPoint;
 
+    [Header("Dialog Pick Item")]
+
     [SerializeField] GameObject[] Action;
     [SerializeField] GameObject SpawnAction;
     [SerializeField] CanPlayMini1 Canplay;
 
     public UnityEvent Cutscene;
+    public UnityEvent PickItem2;
 
     private DollCreatingState CurrentDollCreatingState;
     public static MiniG2 Instance;
@@ -65,7 +68,7 @@ public class MiniG2 : MonoBehaviour
         if (CurrentDollCreatingState == DollCreatingState.Start)
         {
             //print("StartState");
-            curBar += 1 * Time.deltaTime;
+            curBar += 3 * Time.deltaTime;
             G2bar.SetMinBar(curBar);
             DollHave += 0.01f * Time.deltaTime;
             working = true;
@@ -125,12 +128,17 @@ public class MiniG2 : MonoBehaviour
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
-        TotelD.text = "Totel Doll :  " + TotelDoll;
+        TotelD.text = "Total Doll :  " + TotelDoll;
 
         if(TotelDoll == 2)
         {
             Cutscene.Invoke();
         }
+        if(TotelDoll == 1)
+        {
+            PickItem2.Invoke();
+        }
+
 
     }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -43,6 +43,20 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
+    [Header("CanvaInterect")]
+    public GameObject CanvaDialog;
+    public Image CanvaImage;
+    public Sprite PickItem1;
+    public Sprite PickItem2;
+    public Sprite GoRadioPlay;
+    public Sprite FinishWork1;
+    public Sprite LightOut;
+    public Sprite Getlantern;
+    public Sprite DoorLockEvent;
+    public Sprite GhostSpawn;
+    public Sprite BeQuiet;
+    private bool dialogCheck;
+
 
     private Door DoorInterect;
     private Event Ghostevent;
@@ -51,6 +65,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent GetKey;
     public UnityEvent GhostEvent;
     public UnityEvent EventCloseDoor;
+    public UnityEvent Radio;
 
     private void Start()
     {
@@ -111,8 +126,15 @@ public class PlayerAttack : MonoBehaviour
                 {
                     print("GetKey");
                     GetKey.Invoke();
+                    CanvaImage.sprite = GhostSpawn;
+                    StartCoroutine(GhostSpawnDelay());
                     Destroy(hitInterect.collider.gameObject);
                 }
+                if (hitInterect.collider.gameObject.tag == "Radio")
+                {
+                    Radio.Invoke();
+                }
+
             }
         }
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
@@ -226,7 +248,13 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
-        
+
+        if (dialogCheck)
+        {
+            StopAllCoroutines();
+            StartCoroutine(DelayDialog());
+            dialogCheck = false;
+        }
 
     }
 
@@ -376,6 +404,76 @@ public class PlayerAttack : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "PickItem1")
+        {
+            CanvaImage.sprite = PickItem1;
+            dialogCheck = true;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "GoRadioPlay")
+        {
+            CanvaImage.sprite = GoRadioPlay;
+            dialogCheck = true;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "LightOutEvent")
+        {
+            CanvaImage.sprite = LightOut;
+            StartCoroutine(LightOutDelay());
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "ClostDoorEvent")
+        {
+            CanvaImage.sprite = DoorLockEvent;
+            dialogCheck = true;
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "BeQuiet")
+        {
+            CanvaImage.sprite = BeQuiet;
+            dialogCheck = true;
+            Destroy(other.gameObject);
+        }
+
+    }
+
+    public void PickItem2Event()
+    {
+        CanvaImage.sprite = FinishWork1;
+        StartCoroutine(PickItem2Delay());
+    }
+
+    IEnumerator DelayDialog()
+    {
+        CanvaDialog.SetActive(true);
+        yield return new WaitForSeconds(3);
+        CanvaDialog.SetActive(false);
+        dialogCheck = false;
+    }
+
+    IEnumerator PickItem2Delay()
+    {
+        CanvaDialog.SetActive(true) ;
+        yield return new WaitForSeconds(3);
+        CanvaImage.sprite = PickItem2;
+        yield return new WaitForSeconds(3);
+        CanvaDialog.SetActive(false);
+    }
+    IEnumerator LightOutDelay()
+    {
+        CanvaDialog.SetActive(true);
+        yield return new WaitForSeconds(3);
+        CanvaImage.sprite = Getlantern;
+        yield return new WaitForSeconds(3);
+        CanvaDialog.SetActive(false);
+    }
+    IEnumerator GhostSpawnDelay()
+    {
+        CanvaDialog.SetActive(true);
+        yield return new WaitForSeconds(3);
+        CanvaImage.sprite = BeQuiet;
+        yield return new WaitForSeconds(3);
+        CanvaDialog.SetActive(false);
     }
 
 
