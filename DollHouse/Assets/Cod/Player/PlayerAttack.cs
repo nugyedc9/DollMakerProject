@@ -20,9 +20,11 @@ public class PlayerAttack : MonoBehaviour
     public float Pickrange;
     private Vector3 destination;
 
+    [Header("Audio")]
     public AudioClip HitGhostSound;   
     public AudioClip HitWindSound;
     public AudioSource HitAudio;
+    public AudioClip LightOutLetsGooo;
 
 
     [Header("PLayerLight")]
@@ -393,6 +395,8 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.tag == "LightOutEvent")
         {
             LightOutEvent.Invoke();
+            HitAudio.clip = LightOutLetsGooo;
+            HitAudio.Play();    
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "CloseDoorEvent")

@@ -54,11 +54,12 @@ public class Door : MonoBehaviour
 
    public void LockEvent()  
     {
-        DoorSound.clip = doorlock; DoorSound.Play();
+        DoorSound.clip = close; DoorSound.Play();
         Lock = true;
         doorAni.Play("Door_close", 0, 0);
         D = false;
     }
+
     public void HaveKey()
     {
         Lock = false;

@@ -226,6 +226,7 @@ namespace player
             if(other.gameObject.tag == "FinalCutScene")
             {
                 ChangePOV.SwitchCamera(FinalCutSecne);
+                StartWork.Stop();
                 CutSceneFinal.Invoke();
             }
         }
