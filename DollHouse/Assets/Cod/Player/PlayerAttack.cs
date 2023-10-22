@@ -450,7 +450,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator DelayDialog()
     {
         CanvaDialog.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
         dialogCheck = false;
     }
@@ -458,25 +458,25 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator PickItem2Delay()
     {
         CanvaDialog.SetActive(true) ;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaImage.sprite = PickItem2;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
     IEnumerator LightOutDelay()
     {
         CanvaDialog.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaImage.sprite = Getlantern;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
     IEnumerator GhostSpawnDelay()
     {
         CanvaDialog.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaImage.sprite = BeQuiet;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
 
