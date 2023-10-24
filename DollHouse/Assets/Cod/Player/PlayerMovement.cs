@@ -16,7 +16,7 @@ namespace player
         public LayerMask Ground;
         bool Grounded;
         bool canWalk = true;
-        public bool Crouch;
+        public bool Crouch,G;
 
         public Transform orientation;
 
@@ -63,9 +63,16 @@ namespace player
 
 
                 if (Grounded)
+                {
                     rb.drag = groundDrag;
+                    G = true;
+                }
                 else
+                {
                     rb.drag = 0;
+                    G= false;   
+                    rb.AddForce(moveDirection.normalized / 50f, ForceMode.Force);
+                }
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
                     Crouch = true;
@@ -81,7 +88,7 @@ namespace player
 
         private void FixedUpdate()
         {
-            if(!Crouch)
+            if(!Crouch&& G)
             MovePlayer();
             if(Crouch)
                 CrouchPlayer();
@@ -96,6 +103,7 @@ namespace player
 
         public void MovePlayer()
         {
+            
             moveDirection = orientation.forward * vericalInput + orientation.right * horizontalInput;
 
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
