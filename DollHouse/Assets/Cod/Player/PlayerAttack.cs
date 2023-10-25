@@ -88,7 +88,7 @@ public class PlayerAttack : MonoBehaviour
                HitAudio.clip = HitWindSound;
                 
                 HitAudio.Play();
-                if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
+                if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
@@ -96,8 +96,6 @@ public class PlayerAttack : MonoBehaviour
                         StartCoroutine(AttackReset());
                     }
                 }
-
-
             }
 
         }
