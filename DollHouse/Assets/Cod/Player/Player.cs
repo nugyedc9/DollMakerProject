@@ -46,6 +46,7 @@ namespace player
         private Door DoorInterect;
         public PlayerMovement PMove;
         private bool TutorialWork;
+        private Beat BeatDe;
 
         public void Start()
         {
@@ -104,6 +105,8 @@ namespace player
                                 if (Input.GetKeyUp(KeyCode.Space))
                                 {
                                     MiniG2Off.SetActive(false);
+                                    BeatDe = GetComponent<Beat>();
+                                    BeatDe.ExitMini1();
                                 }
                             }
                         }

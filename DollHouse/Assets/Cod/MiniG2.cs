@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.Events;
 
-public enum DollCreatingState { Start, TrySkillCheckButton, ClearSkillCheck, FinishMiniG2 }; 
+public enum DollCreatingState { Start, TrySkillCheckButton, ClearSkillCheck, FinishMiniG2 };
 
 public class MiniG2 : MonoBehaviour
 {
     public float maxRan, minRan, curRan, maxBar, curBar, minBar;
     public float WorkThis;
 
+    float SkipNextStep = 4;
+    float CurSkipNextStep;
 
     [Header("Score")]
     public float Score;
@@ -28,7 +29,12 @@ public class MiniG2 : MonoBehaviour
     public bool StartMiniG2;
     public bool StopMiniG2;
     public bool working;
-    public GameObject barSlider, Stick, canvaMiniG2;
+    public GameObject canvaMiniG2;
+
+    [Header("Audio")]
+    public AudioSource SoundSoure;
+    public AudioClip Alertsound;
+
     public MiniG2Bar G2bar;
 
     [Header("SpawnAction")]
@@ -45,7 +51,7 @@ public class MiniG2 : MonoBehaviour
     [Header("Dialog Pick Item")]
 
     [SerializeField] GameObject[] Action;
-    [SerializeField] GameObject SpawnAction;
+    [SerializeField] GameObject[] DestroyBeat;
     [SerializeField] CanPlayMini1 Canplay;
 
     public UnityEvent Cutscene;
@@ -65,6 +71,8 @@ public class MiniG2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DestroyBeat = GameObject.FindGameObjectsWithTag("HeadBeat");
+
         if (CurrentDollCreatingState == DollCreatingState.Start)
         {
             //print("StartState");
@@ -73,37 +81,48 @@ public class MiniG2 : MonoBehaviour
             DollHave += 0.01f * Time.deltaTime;
             working = true;
             if (curBar >= minBar && curBar < maxBar && working)
-            {            
+            {
                 StartCoroutine(RandomShowBar());
             }
         }
         else if (CurrentDollCreatingState == DollCreatingState.TrySkillCheckButton)
         {
-           // print("SkillState");
+            // print("SkillState");
             working = false;
-          
-            if(CountAction == 0)
-            {   
-                StartCoroutine(spawnRan()); 
+
+            if (CountAction == 0)
+            {
+                StartCoroutine(spawnRan());
             }
-            if(CountAction >= ActionInGame)
+            if (CountAction >= ActionInGame)
             {
                 StopAllCoroutines();
                 CurrentDollCreatingState = DollCreatingState.ClearSkillCheck;
             }
         }
-        else if(CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
+        else if (CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
         {
-            if(Point >= MaxPoint)
+            curBar += 1 * Time.deltaTime;
+            G2bar.SetMinBar(curBar);    
+            if (Point >= MaxPoint)
             {
                 CurrentDollCreatingState = DollCreatingState.Start;
                 Point = 0;
                 CountAction = 0;
             }
+            CurSkipNextStep += 1 * Time.deltaTime;
+            if(CurSkipNextStep >= SkipNextStep)
+            {
+                CurSkipNextStep = 0;
+                Point = 0;
+                CountAction = 0;
+                CurrentDollCreatingState = DollCreatingState.Start;
+            }
+
         }
         else if (CurrentDollCreatingState == DollCreatingState.FinishMiniG2)
         {
-           // print("finsh");
+            // print("finsh");
             StartMiniG2 = false;
             StopMiniG2 = true;
             canvaMiniG2.SetActive(false);
@@ -114,7 +133,7 @@ public class MiniG2 : MonoBehaviour
             Canplay.Dolllost();
             Canplay.ClothLost();
             G2bar.SetMinBar(curBar);
-            if(TotelDoll != DollHave)
+            if (TotelDoll != DollHave)
                 DollHave = TotelDoll;
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -130,11 +149,11 @@ public class MiniG2 : MonoBehaviour
 
         TotelD.text = "Total Doll :  " + TotelDoll;
 
-        if(TotelDoll == 2)
+        if (TotelDoll == 2)
         {
             Cutscene.Invoke();
         }
-        if(TotelDoll == 1)
+        if (TotelDoll == 1)
         {
             PickItem2.Invoke();
         }
@@ -144,13 +163,13 @@ public class MiniG2 : MonoBehaviour
 
     IEnumerator RandomShowBar()
     {
-        WaitForSeconds wait = new WaitForSeconds(curRan);
-
-        yield return wait;
-           // barSlider.SetActive(true); 
+        SoundSoure.clip = Alertsound;
+        SoundSoure.Play();
+        //WaitForSeconds wait = new WaitForSeconds(curRan);
+        yield return new WaitForSeconds(curRan);
+        // barSlider.SetActive(true);    
         CurrentDollCreatingState = DollCreatingState.TrySkillCheckButton;
     }
-
     public void Workingnow()
     {
         curBar += 2.5f;
@@ -168,22 +187,30 @@ public class MiniG2 : MonoBehaviour
             var position = new Vector3(wantedX, wantedY);
             GameObject ActionObj = Instantiate(Action[Random.Range(0, Action.Length)], position, Quaternion.identity);
             ActionObj.transform.parent = transform;
-            CountAction++;
+            CountAction++;         
             yield return new WaitForSeconds(Spawnsecond);
         }
     }
 
     public void CheckStart()
     {
-        if(TotelDoll != DollHave)
+        if (TotelDoll != DollHave)
         {
-            if(CountAction !=0)
-            CountAction = 0;
+            if (CountAction != 0)
+                CountAction = 0;
             CurrentDollCreatingState = DollCreatingState.Start;
         }
         else
         {
             CurrentDollCreatingState = DollCreatingState.Start;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject headBeat in DestroyBeat)
+        {
+            Destroy(headBeat);
         }
     }
 

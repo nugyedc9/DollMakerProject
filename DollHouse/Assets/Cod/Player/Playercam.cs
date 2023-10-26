@@ -13,7 +13,7 @@ public class Playercam : MonoBehaviour
     float yRotation;
 
     public Vector3 _direction;
-    [SerializeField] private float smoothTime = 0.05f;
+    //[SerializeField] private float smoothTime = 0.05f;
     private float _currentVelocity;
 
     private void Start()
