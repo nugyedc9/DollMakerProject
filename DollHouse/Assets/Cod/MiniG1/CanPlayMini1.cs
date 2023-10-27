@@ -1,3 +1,4 @@
+using player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class CanPlayMini1 : MonoBehaviour
     public GameObject Dollobj1, Dollobj2, Dollobj3;
     public GameObject Clothobj1, Clothobj2, Clothobj3;  
     public float ClothHave, DollHave;
+    public Player player;
     
 
     // Start is called before the first frame update
@@ -37,11 +39,13 @@ public class CanPlayMini1 : MonoBehaviour
         if (Cloth && Doll)
         {
             canClick.SetActive(true);
+            player.PlaySoundWork();
         }
         else
         {
             canClick.SetActive(false);
             MiniG.SetActive(false);
+            player.StopSoundWork();
         }
 
     }

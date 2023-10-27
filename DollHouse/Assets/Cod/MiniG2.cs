@@ -34,6 +34,10 @@ public class MiniG2 : MonoBehaviour
     [Header("Audio")]
     public AudioSource SoundSoure;
     public AudioClip Alertsound;
+    public AudioClip FinishSound;
+    public AudioClip FailSound;
+    public AudioClip SuccessSound;
+
 
     public MiniG2Bar G2bar;
 
@@ -144,6 +148,8 @@ public class MiniG2 : MonoBehaviour
 
         if (curBar >= maxBar)
         {
+            SoundSoure.clip = FinishSound;
+            SoundSoure.Play();
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
@@ -158,6 +164,10 @@ public class MiniG2 : MonoBehaviour
             PickItem2.Invoke();
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
 
     }
 
@@ -172,7 +182,16 @@ public class MiniG2 : MonoBehaviour
     }
     public void Workingnow()
     {
+        SoundSoure.clip = SuccessSound; SoundSoure.Play();
         curBar += 2.5f;
+        G2bar.SetMinBar(curBar);
+        Point++;
+        curRan = Random.Range(minRan, maxRan);
+    }
+    public void failCheck()
+    {
+        SoundSoure.clip = FailSound; SoundSoure.Play(); 
+        curBar -= 2.5f;
         G2bar.SetMinBar(curBar);
         Point++;
         curRan = Random.Range(minRan, maxRan);

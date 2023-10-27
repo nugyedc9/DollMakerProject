@@ -37,6 +37,8 @@ namespace player
 
         [Header("Audio")]
         public AudioSource StartWork;
+        public AudioClip canWorkSound;
+        public AudioClip cantWorkSound;
         public float AudioRange;
 
         [Header("Event")]
@@ -45,7 +47,7 @@ namespace player
 
         private Door DoorInterect;
         public PlayerMovement PMove;
-        private bool TutorialWork;
+        private bool TutorialWork, workSound;
         private Beat BeatDe;
 
         public void Start()
@@ -180,9 +182,17 @@ namespace player
                 }
                 if (ChangePOV.IsActiveCamera(WorkshopView))
                 {
-                    MiniG2Off.SetActive(true);
-                    StartWork.Play();
+                    MiniG2Off.SetActive(true);                 
                     Dollmake.Invoke();
+                    if (workSound)
+                    {
+                        StartWork.clip = canWorkSound;
+                        StartWork.Play();
+                    }
+                    else
+                    {
+                        StartWork.clip = cantWorkSound; StartWork.Play();
+                    }
                 }
             }
             if (Input.GetKeyUp(KeyCode.Space))
@@ -234,6 +244,14 @@ namespace player
             }
         }
 
+        public void PlaySoundWork()
+        {
+            workSound = true;
+        }
+        public void StopSoundWork()
+        {
+            workSound = false;
+        }
     }
 
 

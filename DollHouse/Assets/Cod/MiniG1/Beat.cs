@@ -45,7 +45,7 @@ public class Beat : MonoBehaviour
     {
         if(other.gameObject.tag == "BeatA")
         {
-
+            //MiniG2.Instance.failCheck();
             canBePressed = false;
             StartCoroutine(DelayDestroy());
         }
