@@ -98,7 +98,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6f98365ee6fae4048b0b6ac0508d5090,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d9fe0a679b55d324b8819ceed8dea489,
     type: 2}
 --- !u!196 &4
@@ -6796,7 +6797,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330132049
 GameObject:
@@ -9062,6 +9063,7 @@ GameObject:
   - component: {fileID: 486645428}
   - component: {fileID: 486645430}
   - component: {fileID: 486645429}
+  - component: {fileID: 486645431}
   m_Layer: 7
   m_Name: Blacksphere
   m_TagString: Untagged
@@ -9078,7 +9080,7 @@ Transform:
   m_GameObject: {fileID: 486645427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.57, z: 0}
-  m_LocalScale: {x: 0.21, y: 0.21, z: 0.21}
+  m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1145837327}
@@ -9125,7 +9127,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 652b72e5a9d45d24bbde4c79eba3d609, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 106abc40b72790a468e8c610ce9b4f78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9148,6 +9150,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfbaf167a031d14796ae2f12c5496d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &486645431
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486645427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b0d2b2d340fa5844919091d76443e01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &499880605
 GameObject:
   m_ObjectHideFlags: 0
@@ -11005,7 +11028,7 @@ Transform:
   - {fileID: 1145837327}
   - {fileID: 1048142763}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &631858970
 GameObject:
@@ -11294,7 +11317,7 @@ Transform:
   - {fileID: 839802945}
   - {fileID: 2090950126}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &656838847
 PrefabInstance:
@@ -12496,7 +12519,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &714009524
 PrefabInstance:
@@ -13809,7 +13832,7 @@ Transform:
   - {fileID: 702043436}
   - {fileID: 2134993520}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787184896
 GameObject:
@@ -13998,7 +14021,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f715e7342a0a83540bfe8cbf19dc4394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d7376d81be2c2f46a9d6a7e971a9172, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19324,7 +19347,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: cb5309f0a9e8c1649b1fe3732a16d42f, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: bc1965b04be88d448ab7ebd9429be8dc, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
@@ -21042,7 +21065,7 @@ Transform:
   - {fileID: 1369285270}
   - {fileID: 1517864441}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161889331
 GameObject:
@@ -22299,7 +22322,7 @@ Transform:
   - {fileID: 138850690}
   - {fileID: 273261114}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -38.7, z: 0}
 --- !u!1 &1196049731 stripped
 GameObject:
@@ -28590,7 +28613,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 43aba6f0020b0bf43a057ced3fa1b8c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 43aba6f0020b0bf43a057ced3fa1b8c3,
         type: 3}
@@ -32529,7 +32552,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757575315
 PrefabInstance:
@@ -32733,6 +32756,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765724535}
   m_CullTransparentMesh: 1
+--- !u!1001 &1772708408
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -99.22172
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.458473
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8576fd0cb8e2c040bfa7d14f64b420b,
+        type: 3}
+      propertyPath: m_Name
+      value: Modular Joe House No texture
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8576fd0cb8e2c040bfa7d14f64b420b, type: 3}
 --- !u!1 &1777110896
 GameObject:
   m_ObjectHideFlags: 0
@@ -58518,7 +58614,7 @@ Transform:
   - {fileID: 1048609227}
   - {fileID: 1850687941}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3089181636768675904
 GameObject:
