@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Beat : MonoBehaviour
@@ -8,16 +9,17 @@ public class Beat : MonoBehaviour
     public bool canBePressed;
     public KeyCode keyToPress;
 
-    
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(keyToPress))
         {
             if (canBePressed)
@@ -25,6 +27,13 @@ public class Beat : MonoBehaviour
                 MiniG2.Instance.Workingnow();
                 Destroy(gameObject);
             }
+        }
+        else if (Input.anyKeyDown && !Input.GetKeyDown(keyToPress) && canBePressed)
+        {
+
+            MiniG2.Instance.failCheck();
+            Destroy(gameObject);
+
         }
         if ( !transform.parent.gameObject.activeSelf)
         {
@@ -36,7 +45,6 @@ public class Beat : MonoBehaviour
     {
         if (other.gameObject.tag == "BeatA")
         {   
-
             canBePressed = true;
         }
     }
@@ -45,11 +53,11 @@ public class Beat : MonoBehaviour
     {
         if(other.gameObject.tag == "BeatA")
         {
-            //MiniG2.Instance.failCheck();
             canBePressed = false;
             StartCoroutine(DelayDestroy());
         }
     }
+
 
     IEnumerator DelayDestroy()
     {
@@ -57,7 +65,7 @@ public class Beat : MonoBehaviour
         {
 
             yield return new WaitForSeconds(0.1f);
-          //  SpawnBeat.Instance.missTake();
+            MiniG2.Instance.failCheck();
             Destroy(gameObject);
         }
     }

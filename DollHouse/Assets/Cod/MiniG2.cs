@@ -107,21 +107,23 @@ public class MiniG2 : MonoBehaviour
         else if (CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
         {
             curBar += 1 * Time.deltaTime;
-            G2bar.SetMinBar(curBar);    
+            G2bar.SetMinBar(curBar);
+
             if (Point >= MaxPoint)
             {
                 CurrentDollCreatingState = DollCreatingState.Start;
                 Point = 0;
                 CountAction = 0;
             }
-            CurSkipNextStep += 1 * Time.deltaTime;
-            if(CurSkipNextStep >= SkipNextStep)
+                CurSkipNextStep += 1 * Time.deltaTime;
+            if (CurSkipNextStep >= SkipNextStep)
             {
                 CurSkipNextStep = 0;
                 Point = 0;
                 CountAction = 0;
                 CurrentDollCreatingState = DollCreatingState.Start;
             }
+            
 
         }
         else if (CurrentDollCreatingState == DollCreatingState.FinishMiniG2)
