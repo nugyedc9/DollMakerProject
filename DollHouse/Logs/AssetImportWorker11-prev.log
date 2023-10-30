@@ -1,0 +1,993 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.0f1 (fb119bb0b476) revision 16454043'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Professional' Language: 'en' Physical Memory: 16223 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker11
+-projectPath
+D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+-logFile
+Logs/AssetImportWorker11.log
+-srvPort
+55131
+Successfully changed project path to: D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [24788] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 2035908046 [EditorId] 2035908046 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [24788] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 2035908046 [EditorId] 2035908046 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 7.37 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.0f1 (fb119bb0b476)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 (ID=0x2882)
+    Vendor:   NVIDIA
+    VRAM:     7971 MB
+    Driver:   31.0.15.4592
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56136
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006124 seconds.
+- Loaded All Assemblies, in  0.262 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.207 seconds
+Domain Reload Profiling: 468ms
+	BeginReloadAssembly (71ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (107ms)
+		LoadAssemblies (69ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (102ms)
+			TypeCache.Refresh (101ms)
+				TypeCache.ScanAssembly (92ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (208ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (162ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (109ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.713 seconds
+Refreshing native plugins compatible for Editor in 2.19 ms, found 5 plugins.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.770 seconds
+Domain Reload Profiling: 1482ms
+	BeginReloadAssembly (100ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (17ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (540ms)
+		LoadAssemblies (245ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (339ms)
+			TypeCache.Refresh (302ms)
+				TypeCache.ScanAssembly (290ms)
+			ScanForSourceGeneratedMonoScriptInfo (29ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (771ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (602ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (72ms)
+			ProcessInitializeOnLoadAttributes (341ms)
+			ProcessInitializeOnLoadMethodAttributes (176ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 2.16 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7561 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 146 unused Assets / (4.9 MB). Loaded Objects now: 8031.
+Memory consumption went from 339.5 MB to 334.7 MB.
+Total: 3.672900 ms (FindLiveObjects: 0.377100 ms CreateObjectMapping: 0.165200 ms MarkObjects: 2.551200 ms  DeleteObjects: 0.578100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 227187.334384 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Furniture/Materials/dfk_bed_single_01.mat
+  artifactKey: Guid(f5f2fa5c76d4ae24ab44167688700f4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Furniture/Materials/dfk_bed_single_01.mat using Guid(f5f2fa5c76d4ae24ab44167688700f4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '197226d70540dade9f62e73518d96c70') in 0.008818 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Steps, Floor, Ceiling/Materials/dfk_ceiling_wood.mat
+  artifactKey: Guid(d6b481e3d6121b14f9ddbed57766c9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Steps, Floor, Ceiling/Materials/dfk_ceiling_wood.mat using Guid(d6b481e3d6121b14f9ddbed57766c9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aac38bbb27809491d72e8e8f9f3c0fba') in 0.001093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/dfk_door_01.mat
+  artifactKey: Guid(08f42fbfe6bb3d4449245131e3347c71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/dfk_door_01.mat using Guid(08f42fbfe6bb3d4449245131e3347c71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c89d405a4622749c25b992f48cacb6fe') in 0.001017 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.164041 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Furniture/Materials/dfk_wardrobe_01.mat
+  artifactKey: Guid(b9885eb7867a21e49abc66f498a62775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Furniture/Materials/dfk_wardrobe_01.mat using Guid(b9885eb7867a21e49abc66f498a62775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '460258fbece5f8199c8ff928bcaa129e') in 0.001412 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Assest 3D/DHWallDoor/DHWallDoor.mat
+  artifactKey: Guid(87bf87cd00c2d4e40bd65bddf2af9750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/DHWallDoor/DHWallDoor.mat using Guid(87bf87cd00c2d4e40bd65bddf2af9750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a5873b9f74680d4b026ca17ab6712b3') in 0.000989 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Texture/DHFloolV2/DHFloolV2.mat
+  artifactKey: Guid(9fa2ab0e02f47394786ba94dc520c04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/DHFloolV2/DHFloolV2.mat using Guid(9fa2ab0e02f47394786ba94dc520c04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03607eaab1fb2587c47b560ba3423948') in 0.001050 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.125738 seconds.
+  path: Assets/Free Assest/Furniture assest/Old Cabinet/Materials/M_cabinet.mat
+  artifactKey: Guid(98012d1931461924d848b05c6f03d1d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Old Cabinet/Materials/M_cabinet.mat using Guid(98012d1931461924d848b05c6f03d1d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9efb1fd46ff7bab0a19dd1d56a241d7c') in 0.001107 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Materials/M_Imphenzia_LowPollyStyle.mat
+  artifactKey: Guid(6209e65906b7d3b45ae8ea4784695500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Materials/M_Imphenzia_LowPollyStyle.mat using Guid(6209e65906b7d3b45ae8ea4784695500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8653897899eb19c2a84d5ac81ec2a78d') in 0.000980 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.062162 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Seedling.fbx
+  artifactKey: Guid(b2b7476788d729b49b2e7f709f686d65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Seedling.fbx using Guid(b2b7476788d729b49b2e7f709f686d65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '188d2e3069471e3bf0152e304455e97d') in 0.002316 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Purple Book.fbx
+  artifactKey: Guid(e9bffd5ceb3415b40b0b7dcae0ae6a03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Purple Book.fbx using Guid(e9bffd5ceb3415b40b0b7dcae0ae6a03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a3953a9589764920b71a43a97ce6653') in 0.001309 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.005936 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Triple Cactus.fbx
+  artifactKey: Guid(3ea3d2a5bf18aa84284124fe246a65b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Triple Cactus.fbx using Guid(3ea3d2a5bf18aa84284124fe246a65b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82991102b078812efeaa4ec03996fb7e') in 0.001782 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Standart Chair.fbx
+  artifactKey: Guid(ac9176d8a9cecdc44a0e387e329ee31c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Standart Chair.fbx using Guid(ac9176d8a9cecdc44a0e387e329ee31c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b65f6eea9f3a90171591fe7c59cd0408') in 0.002090 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat
+  artifactKey: Guid(e73a58f6e2794ae7b1b7e50b7fb811b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat using Guid(e73a58f6e2794ae7b1b7e50b7fb811b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7c8ad9c840cca62eb429b8023b240af') in 0.001015 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.047413 seconds.
+  path: Assets/Free Assest/Furniture assest/Free Furniture/wardrobe2.fbx
+  artifactKey: Guid(6e7b5e52b6cd5784783284778ea96070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Free Furniture/wardrobe2.fbx using Guid(6e7b5e52b6cd5784783284778ea96070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de96889218132d25cf1b9f2cfdfed256') in 0.004967 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 39
+========================================================================
+Received Import Request.
+  Time since last request: 6.050717 seconds.
+  path: Assets/Free Assest/AllSkyFree/_AllSkyFreeDemoEnvironment/Materials/AllSkyDemoEnv_Flag_Red.mat
+  artifactKey: Guid(33230baef4dda4cf4bd25fcb15d0d06f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/AllSkyFree/_AllSkyFreeDemoEnvironment/Materials/AllSkyDemoEnv_Flag_Red.mat using Guid(33230baef4dda4cf4bd25fcb15d0d06f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e38b453c81942a645e18a727e1957e6e') in 0.001279 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.033975 seconds.
+  path: Assets/Free Assest/Furniture assest/BathroomPack/Materials/Bathtub.mat
+  artifactKey: Guid(0e4f6c0faa37bed4b8c556d1917631cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/BathroomPack/Materials/Bathtub.mat using Guid(0e4f6c0faa37bed4b8c556d1917631cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52344713a272b2aceee874692ea0c1e2') in 0.001677 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/AllSkyFree/Cold Night/Cold Night.mat
+  artifactKey: Guid(9af23ba5fa5364ff598888460e0e2759) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/AllSkyFree/Cold Night/Cold Night.mat using Guid(9af23ba5fa5364ff598888460e0e2759) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffa8c64d5761a9462b73358ee25e856b') in 0.000994 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.142536 seconds.
+  path: Assets/Free Assest/Texture/Five Seamless Tileable Ground Textures/Materials/Grass.mat
+  artifactKey: Guid(11729fa27a679db4fbeedeff9e7512fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Five Seamless Tileable Ground Textures/Materials/Grass.mat using Guid(11729fa27a679db4fbeedeff9e7512fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '498bc5a5be3862be1761de9c43c1934e') in 0.000906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.114053 seconds.
+  path: Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Materials/Material_Emmision_Red.mat
+  artifactKey: Guid(cdb37826a04b3ed43b5807afee542f08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Materials/Material_Emmision_Red.mat using Guid(cdb37826a04b3ed43b5807afee542f08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a58a056220684021b03995642fe1107f') in 0.001156 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001941 seconds.
+  path: Assets/Free Assest/AllSkyFree/Night MoonBurst/Night Moon Burst.mat
+  artifactKey: Guid(c494c335823f54b52b2e87e1b7a63a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/AllSkyFree/Night MoonBurst/Night Moon Burst.mat using Guid(c494c335823f54b52b2e87e1b7a63a23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f50fe33468a6b141da95ab9f02fbd56d') in 0.001103 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Free Assest/Furniture assest/BathroomPack/Meshes/Toilet.FBX
+  artifactKey: Guid(165cde1f98443764985f93087e6870bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/BathroomPack/Meshes/Toilet.FBX using Guid(165cde1f98443764985f93087e6870bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3839c10f73f90417b5150d41d692fda') in 0.003181 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 0.059912 seconds.
+  path: Assets/Assest 3D/Ghost/ghost_TPose.fbx
+  artifactKey: Guid(7ade07c2db4641441811cec848d8d5ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/Ghost/ghost_TPose.fbx using Guid(7ade07c2db4641441811cec848d8d5ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a3851d5d8480bb064d0b9f52705d779') in 0.006116 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 110
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Free Assest/Texture/TudorPack/Materials/Plaster.mat
+  artifactKey: Guid(1af9a9a712fef47bdb406f7f3fe4658f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/TudorPack/Materials/Plaster.mat using Guid(1af9a9a712fef47bdb406f7f3fe4658f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a74260b7b38d76c57b634da096605a0') in 0.001044 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.048430 seconds.
+  path: Assets/Free Assest/Furniture assest/BathroomPack/Materials/Sink.mat
+  artifactKey: Guid(f2499f811bb2fa74b8166f7c16bc0b45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/BathroomPack/Materials/Sink.mat using Guid(f2499f811bb2fa74b8166f7c16bc0b45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72566a5d24a2235be50b3dc03a9e5078') in 0.001751 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Free Assest/Furniture assest/Old Cabinet/Materials/T_cabinet_AlbedoTransparency.mat
+  artifactKey: Guid(ae9452b04a4d90f439211e63c806bd3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Old Cabinet/Materials/T_cabinet_AlbedoTransparency.mat using Guid(ae9452b04a4d90f439211e63c806bd3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d3cb34508c696ccc8cc8e8873b78f06') in 0.001177 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.092867 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/SAND/SAND_Underwater/Materials/Sand_Underwater_Shell.mat
+  artifactKey: Guid(1b27c859b87e6ab4d8473dc82a6d7d8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/SAND/SAND_Underwater/Materials/Sand_Underwater_Shell.mat using Guid(1b27c859b87e6ab4d8473dc82a6d7d8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83d8f9dffe7483a92a4a9db827ebe31b') in 0.001351 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/MAP/Old House/Stair/Stair1.fbx
+  artifactKey: Guid(ee98719c165e4844d94f1bd5390eb533) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MAP/Old House/Stair/Stair1.fbx using Guid(ee98719c165e4844d94f1bd5390eb533) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bfb7b3f4515da6f6effda589b3ca0c4') in 0.001752 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.107851 seconds.
+  path: Assets/Texture/Furniture/401ModularF2UV.fbx
+  artifactKey: Guid(98a90c6a23058f348856bd01e77fdb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Texture/Furniture/401ModularF2UV.fbx using Guid(98a90c6a23058f348856bd01e77fdb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a24272abb87330adb3013b066f6bc508') in 0.002793 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 40
+========================================================================
+Received Import Request.
+  Time since last request: 89.741266 seconds.
+  path: Assets/Assest 2D/New Render Texture.renderTexture
+  artifactKey: Guid(b107631adb4583c43aea1bb79c787fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 2D/New Render Texture.renderTexture using Guid(b107631adb4583c43aea1bb79c787fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dd4de54cff2d0423b46a7f1eedc988b') in 0.000943 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 836.145280 seconds.
+  path: Assets/Assest 2D/Shader
+  artifactKey: Guid(a8d0b0eb1dd178b4eb40926b8ec4ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 2D/Shader using Guid(a8d0b0eb1dd178b4eb40926b8ec4ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '213f99aafd33ad75447fc526de1f2591') in 0.000678 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 24.241382 seconds.
+  path: Assets/Assest 2D/Shader/Cross.shadergraph
+  artifactKey: Guid(f583868ed7894d9448ecb73d3fdb1c28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 2D/Shader/Cross.shadergraph using Guid(f583868ed7894d9448ecb73d3fdb1c28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7ca63b27d0ffc903ea373e3ea28c453') in 0.002294 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 53.641784 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_SquareTile_Flat/Materials/UnderRoof_SquareTile_Flat_C.mat
+  artifactKey: Guid(6015400315f291e48aa54dfe395b0591) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_SquareTile_Flat/Materials/UnderRoof_SquareTile_Flat_C.mat using Guid(6015400315f291e48aa54dfe395b0591) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4545e2956228128702a8cc5f4c90ce76') in 0.001371 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.081560 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Materials/Rocks_Cliff_B_BC_B.mat
+  artifactKey: Guid(38eaf5109156569489bf8f2929fd35a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Materials/Rocks_Cliff_B_BC_B.mat using Guid(38eaf5109156569489bf8f2929fd35a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3131bbcb432ed3419a34f7ea5d5d0c9e') in 0.001085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001828 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_RoundTile_Bump/Materials/Roof_RoundTile_Bump_D.mat
+  artifactKey: Guid(42e90f338d58beb4eaa509aa9527f5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_RoundTile_Bump/Materials/Roof_RoundTile_Bump_D.mat using Guid(42e90f338d58beb4eaa509aa9527f5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90fd9a75fcf2b56f8c7fa13a975cc401') in 0.001435 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Volcanic/Materials/Rocks_Volcanic_B.mat
+  artifactKey: Guid(3f532fd3bc3865a47b05fffc3fe2b8f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Volcanic/Materials/Rocks_Volcanic_B.mat using Guid(3f532fd3bc3865a47b05fffc3fe2b8f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b09bb177fbc43b4ca82fca892189414c') in 0.001082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_RoundTile_Bump/Materials/Roof_RoundTile_Bump_B.mat
+  artifactKey: Guid(aaeb19242acd726419288a3797a2472c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROOF/ROOF_RoundTile_Bump/Materials/Roof_RoundTile_Bump_B.mat using Guid(aaeb19242acd726419288a3797a2472c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b1b1cee238045c1b1954264c97f6094') in 0.001001 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Volcanic/Materials/Rocks_Volcanic_C.mat
+  artifactKey: Guid(de88005d1f5e1554494e69b81da77235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/ROCKS/ROCKS_Volcanic/Materials/Rocks_Volcanic_C.mat using Guid(de88005d1f5e1554494e69b81da77235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f085c0eda326537933b145da799b5f5') in 0.001053 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.211630 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Gaming Screen.fbx
+  artifactKey: Guid(61d2840a32922d642b60bd582e7d4554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Gaming Screen.fbx using Guid(61d2840a32922d642b60bd582e7d4554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1de3cdb89f66c041ded20e9dc346071') in 0.001827 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Cylinder Lamp.fbx
+  artifactKey: Guid(463d37cb9531858459b89a23f7121366) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Cylinder Lamp.fbx using Guid(463d37cb9531858459b89a23f7121366) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2c6ce9c43328b501fcab1fd8e8e7f39') in 0.001699 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Yellow Vase.fbx
+  artifactKey: Guid(a3c8436bd2348474a824d0baa0786aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Yellow Vase.fbx using Guid(a3c8436bd2348474a824d0baa0786aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38ddd88911710e224cf239cc952639f5') in 0.001693 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.141097 seconds.
+  path: Assets/Assest 3D/LampTable/Materials/Lamp_Table_Front.mat
+  artifactKey: Guid(8e603f3d560f7124dbe6e83f7e712c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/LampTable/Materials/Lamp_Table_Front.mat using Guid(8e603f3d560f7124dbe6e83f7e712c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b4809f2b13c829db7a3b31540cff40e') in 0.008136 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Assest 3D/Key/key1.fbx
+  artifactKey: Guid(06c17254da59e3142bcb7ff6b51098ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/Key/key1.fbx using Guid(06c17254da59e3142bcb7ff6b51098ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7b3af340c41d7714bfcc228def26d42') in 0.001757 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Furniture/Source/Materials/komm2_BaseColor.mat
+  artifactKey: Guid(331e08cdd401b9445adbabe2ad6b1da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Furniture/Source/Materials/komm2_BaseColor.mat using Guid(331e08cdd401b9445adbabe2ad6b1da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be90f4a971d10956754dd10f0854c204') in 0.001048 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.056962 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerPurple_B.mat
+  artifactKey: Guid(0fd41b82b4608c84aa03280b40065be9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerPurple_B.mat using Guid(0fd41b82b4608c84aa03280b40065be9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d98ee113c7a3917a21d43a448af5e6e') in 0.001052 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerYellow_A.mat
+  artifactKey: Guid(7767531b8a941a042a8ee276f93d467f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerYellow_A.mat using Guid(7767531b8a941a042a8ee276f93d467f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcaec46423c238167f7cac590d3a6401') in 0.001514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerBlue_B.mat
+  artifactKey: Guid(42baaf87d7ee9524dabc246e0cdf08e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerBlue_B.mat using Guid(42baaf87d7ee9524dabc246e0cdf08e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a7d9dcd999cd2da1543edff0918d177') in 0.001016 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerYellow_B.mat
+  artifactKey: Guid(9f345e69573084a44b4366cc49cdcd63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerYellow_B.mat using Guid(9f345e69573084a44b4366cc49cdcd63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f0cd1f23647dde7619ae0b18e191ffc') in 0.001056 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerRed_B.mat
+  artifactKey: Guid(4eab6b53002d5de45b5530e6eb17d953) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerRed_B.mat using Guid(4eab6b53002d5de45b5530e6eb17d953) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97badf10f6002974cb9a23e06c69c147') in 0.003138 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.245842 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Materials/Grass_Dense_Tint_01_Base_B.mat
+  artifactKey: Guid(7cdafb159eb941a45ac8fb89a05295a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Materials/Grass_Dense_Tint_01_Base_B.mat using Guid(7cdafb159eb941a45ac8fb89a05295a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a90e99e05447acead8bb3fad5a15117') in 0.001659 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.028333 seconds.
+  path: Assets/Assest 2D/Prop/Materials/Cross.mat
+  artifactKey: Guid(5a10ecec03b907f469709e0d75314fbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 2D/Prop/Materials/Cross.mat using Guid(5a10ecec03b907f469709e0d75314fbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21dae2c2947bf2f60ecdfa3ff189153f') in 0.001135 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.595366 seconds.
+  path: Assets/Free Assest/Texture/Five Seamless Tileable Ground Textures/Materials/Brown Stony.mat
+  artifactKey: Guid(1af41386b6aebff43af8aff2e57927a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Five Seamless Tileable Ground Textures/Materials/Brown Stony.mat using Guid(1af41386b6aebff43af8aff2e57927a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca0b863067e61644b27bd93f078ca92c') in 0.001323 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.151661 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/dfk_doorframe.mat
+  artifactKey: Guid(5bf37ad0c6c555b42bcd76fb10e99685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/dfk_doorframe.mat using Guid(5bf37ad0c6c555b42bcd76fb10e99685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae804903ecd00aaca55610e6e966c414') in 0.001283 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Steps, Floor, Ceiling/Materials/dfk_floor_01.mat
+  artifactKey: Guid(58242cd8a87c62944973d9412a7092d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Steps, Floor, Ceiling/Materials/dfk_floor_01.mat using Guid(58242cd8a87c62944973d9412a7092d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4eddac484194eb95a5dfe06d310a023') in 0.001651 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Containers/Materials/dfk_small_containers_brown.mat
+  artifactKey: Guid(53d4b7211aac9684db15d4565b5f8772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Containers/Materials/dfk_small_containers_brown.mat using Guid(53d4b7211aac9684db15d4565b5f8772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e51fe61284adf17036c1b2e2459d2340') in 0.001621 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008266 seconds.
+  path: Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/Doorframe.mat
+  artifactKey: Guid(25851f0d2747d9f43a7df94ea7383dfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/RunemarkStudio/DarkFantasyKit [Free]/Meshes/Doors and Gates/Materials/Doorframe.mat using Guid(25851f0d2747d9f43a7df94ea7383dfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1df70a93306d8ce2ecc85bfb0ff8adba') in 0.001383 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.082339 seconds.
+  path: Assets/Free Assest/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset.mat
+  artifactKey: Guid(7416536dbe0334cfd888dd1beb75a9fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset.mat using Guid(7416536dbe0334cfd888dd1beb75a9fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fc88d8ec6ea88bd97bc06ec42ffb06d') in 0.001150 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Free Assest/AllSkyFree/Epic_GloriousPink/Epic_GloriousPink.mat
+  artifactKey: Guid(8b7dd0809c7c6498789fa32a61eaa6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/AllSkyFree/Epic_GloriousPink/Epic_GloriousPink.mat using Guid(8b7dd0809c7c6498789fa32a61eaa6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e52f5a47ca780e1b9d052271d6496781') in 0.000995 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.134205 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Double Bed.fbx
+  artifactKey: Guid(e81c5345af796424b8bed30fdfaa6b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Double Bed.fbx using Guid(e81c5345af796424b8bed30fdfaa6b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63f30f555b7131fe2a5861aadd8ef1a4') in 0.002233 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.131484 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Gaming Chair.fbx
+  artifactKey: Guid(ddc350bb222a74a48b551b3a7f4f69ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Gaming Chair.fbx using Guid(ddc350bb222a74a48b551b3a7f4f69ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cead3862a5b681df42d8bf4d96e89cbe') in 0.001782 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.008874 seconds.
+  path: Assets/Assest 3D/SewingTable/SewingTable_SideView.fbx
+  artifactKey: Guid(3bb148ca86fbf6f40b3f880cb8c03510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/SewingTable/SewingTable_SideView.fbx using Guid(3bb148ca86fbf6f40b3f880cb8c03510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92cf2af24043302e447901dde2ec03ad') in 0.009952 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 2.357198 seconds.
+  path: Assets/Assest 3D/Doll/doll 1/doll 1.fbx
+  artifactKey: Guid(9fff939b657587d4e8923f690cf52f2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/Doll/doll 1/doll 1.fbx using Guid(9fff939b657587d4e8923f690cf52f2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '369baeecbbdc758d6ce05c8eccd094f2') in 0.006172 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Free Assest/Furniture assest/Free Furniture/table.fbx
+  artifactKey: Guid(f3988961bf2377947b9553ffeff6c05b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Free Furniture/table.fbx using Guid(f3988961bf2377947b9553ffeff6c05b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82aa0f24d1e5df53ce3807870011cd5d') in 0.012650 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 27
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Assest 3D/Doll/Doll_StandingHere_Irealized/Doll_StandingHere_Irealized.fbx
+  artifactKey: Guid(51b5508f77ea2ca479c46977fb3a567c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 3D/Doll/Doll_StandingHere_Irealized/Doll_StandingHere_Irealized.fbx using Guid(51b5508f77ea2ca479c46977fb3a567c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5175255db5d763b2634b4a68fa643af8') in 0.002268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Free Assest/Furniture assest/Free Furniture/table4.fbx
+  artifactKey: Guid(d35f2838ab65ee7418eeb2185d330b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Free Furniture/table4.fbx using Guid(d35f2838ab65ee7418eeb2185d330b3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d59db473b31eaa6975ed04391267f63') in 0.008930 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.330596 seconds.
+  path: Assets/Free Assest/Furniture assest/Patrick.K Models/Free Low Poly Furniture v1/Materials/Plastic.mat
+  artifactKey: Guid(ba249d943288eff439271ba0536f2687) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Patrick.K Models/Free Low Poly Furniture v1/Materials/Plastic.mat using Guid(ba249d943288eff439271ba0536f2687) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48c8f73e3558051bb7099627a41fade3') in 0.008878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Free Assest/Furniture assest/Patrick.K Models/Free Low Poly Furniture v1/Models/Pack_01/Materials/Plastick.001.mat
+  artifactKey: Guid(8825d27f857281743821e0ce7749b65c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Patrick.K Models/Free Low Poly Furniture v1/Models/Pack_01/Materials/Plastick.001.mat using Guid(8825d27f857281743821e0ce7749b65c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edd25685604381cf39765682d1478e0d') in 0.001059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.209611 seconds.
+  path: Assets/Free Assest/Furniture assest/AK STUDIO ART/Radio/Models/Radio/Radio.fbx
+  artifactKey: Guid(f89b17440ce8a9b48bc0a7848f51c858) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/AK STUDIO ART/Radio/Models/Radio/Radio.fbx using Guid(f89b17440ce8a9b48bc0a7848f51c858) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ac1d7910080d35f9c4324ca0f33642d') in 0.002526 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.200657 seconds.
+  path: Assets/Free Assest/Furniture assest/BathroomPack/Meshes/ToiletRollHolder.FBX
+  artifactKey: Guid(bb08d373e2f49f549871c82d2cb5b8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/BathroomPack/Meshes/ToiletRollHolder.FBX using Guid(bb08d373e2f49f549871c82d2cb5b8f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8232aba8e90e83ad327f73f5138d9b1c') in 0.002685 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.005292 seconds.
+  path: Assets/Free Assest/Furniture assest/BathroomPack/Meshes/ToiletRoll.FBX
+  artifactKey: Guid(d3b45504293888a4aaa594423fa1e273) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/BathroomPack/Meshes/ToiletRoll.FBX using Guid(d3b45504293888a4aaa594423fa1e273) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03a08d5a94d7c1cd424f69e7f38b2d1b') in 0.001784 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 1.382448 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Single Bed.fbx
+  artifactKey: Guid(88bfcb4cfbf572c4090d7535fdd4fed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Single Bed.fbx using Guid(88bfcb4cfbf572c4090d7535fdd4fed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd74db59872c4f852b8a74cc1377fbf2') in 0.002303 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.012053 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Wall Bookshelf Large.fbx
+  artifactKey: Guid(64dccf619abaee04ab1842c4ec5e5f70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Wall Bookshelf Large.fbx using Guid(64dccf619abaee04ab1842c4ec5e5f70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13506f07b3adc0d8a765a258d6249183') in 0.001802 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Twin Wardrobe.fbx
+  artifactKey: Guid(2e478b462dd4cdd47ac83b5a69d74ec2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Twin Wardrobe.fbx using Guid(2e478b462dd4cdd47ac83b5a69d74ec2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec07bb2a34f61651b24f3a6d1d89fd45') in 0.001513 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.023145 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Black Book.fbx
+  artifactKey: Guid(30663d2e0eae90940b64eff3e2f719f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Black Book.fbx using Guid(30663d2e0eae90940b64eff3e2f719f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3242b668bd6747b6470e8b24b998b97') in 0.001560 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/L-Shaped Bookshelf.fbx
+  artifactKey: Guid(492df7511a68f19488494c654356defd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/L-Shaped Bookshelf.fbx using Guid(492df7511a68f19488494c654356defd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e2635012586daf60fb85c30932d3db0') in 0.008268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Blue Vase.fbx
+  artifactKey: Guid(824c8db400013dd4bb682dbbe289f48a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Blue Vase.fbx using Guid(824c8db400013dd4bb682dbbe289f48a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8d6591a1de26a217753eacee9372cc0') in 0.002623 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Big Mouse.fbx
+  artifactKey: Guid(c12191cd2f81c5748b201a73a4608f2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Big Mouse.fbx using Guid(c12191cd2f81c5748b201a73a4608f2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a0437028eeb17a52a21f691ab2ea4af') in 0.002034 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.041370 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Laptop.fbx
+  artifactKey: Guid(d8ea38793a6bd104aa20d7dc912caba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Laptop.fbx using Guid(d8ea38793a6bd104aa20d7dc912caba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '338efb9d8890903570385e85036b00c7') in 0.001879 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/L-Shaped Couch.fbx
+  artifactKey: Guid(c63715b0b8bef004a95d82d55cc527c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/L-Shaped Couch.fbx using Guid(c63715b0b8bef004a95d82d55cc527c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34140e2a65ca6b649bf63de055ae46a0') in 0.001950 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Green Book.fbx
+  artifactKey: Guid(c15b7d73296b9054c8e17343a5c273c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Models/Green Book.fbx using Guid(c15b7d73296b9054c8e17343a5c273c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08336f571baa1994df11dd02007a11de') in 0.001875 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_DiningHall_01_WoodenChear#1.fbx
+  artifactKey: Guid(06063f551160d5f4192daa15a3c6f042) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_DiningHall_01_WoodenChear#1.fbx using Guid(06063f551160d5f4192daa15a3c6f042) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5627d5ba660e7303fe8394859e4f453f') in 0.001814 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_DiningHall_01_WoodenChear#2.fbx
+  artifactKey: Guid(c80fb3990183d344fa2324303c88be54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_DiningHall_01_WoodenChear#2.fbx using Guid(c80fb3990183d344fa2324303c88be54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c911a20fd791247de895bd075f27d0a') in 0.001798 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_Library_01_BookShelve_1.fbx
+  artifactKey: Guid(96e8e095ce718cb48ab139ad2ca550e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/CatBorg Studio/3D Dungeon Lowpoly Pack/Models/01_Library_01_BookShelve_1.fbx using Guid(96e8e095ce718cb48ab139ad2ca550e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16168e322596b03ef0ef566d7ba0b31e') in 0.002042 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.173592 seconds.
+  path: Assets/Free Assest/Furniture assest/Low Poly Furniture/Demos/Materials/Ground_AllAssetsScene.mat
+  artifactKey: Guid(a365d57dfc187de49bca6e05c8483093) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Low Poly Furniture/Demos/Materials/Ground_AllAssetsScene.mat using Guid(a365d57dfc187de49bca6e05c8483093) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2f2c9dbb58c0a4d3a4d2caf43622235') in 0.001078 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerYellow_B.mat
+  artifactKey: Guid(c147ff3bd0c44734ab1d726ec8c6a28d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerYellow_B.mat using Guid(c147ff3bd0c44734ab1d726ec8c6a28d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8335edb0760db4415406e706fc24db04') in 0.001392 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_Rocks.mat
+  artifactKey: Guid(438bebb537619934383f5748b89a6b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_Rocks.mat using Guid(438bebb537619934383f5748b89a6b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73bdce347d41bd159224ebd4c46d4ba4') in 0.001037 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.032796 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerRed_A.mat
+  artifactKey: Guid(62b42cccc50638d4589ab23e170bbfb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerRed_A.mat using Guid(62b42cccc50638d4589ab23e170bbfb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5faf88cffc646970b4d42bbb0e07b3c') in 0.001406 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.056159 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerRed_B.mat
+  artifactKey: Guid(d1264135f8ef85d4c8e48104847adcb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerRed_B.mat using Guid(d1264135f8ef85d4c8e48104847adcb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b0d3972e33fd9d223d17ef00d37005a') in 0.001046 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.014296 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerYellow_A.mat
+  artifactKey: Guid(576bffa7053b49243a5c05b682894d7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerYellow_A.mat using Guid(576bffa7053b49243a5c05b682894d7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fce6389dcd62f117b266726c2fae10e') in 0.001062 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.066720 seconds.
+  path: Assets/Free Assest/Furniture assest/Free Furniture/seater.fbx
+  artifactKey: Guid(7c5c87eeab64fa2458ea544d184080d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Furniture assest/Free Furniture/seater.fbx using Guid(7c5c87eeab64fa2458ea544d184080d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d9df2574f89bc270fe987ebcd09e871') in 0.002465 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-MediumItalic.ttf
+  artifactKey: Guid(d93c1bc57fdf1ac4dad1bf04fac05464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-MediumItalic.ttf using Guid(d93c1bc57fdf1ac4dad1bf04fac05464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '542f11cf882308ac22599a983c6c6340') in 0.004758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Medium.ttf
+  artifactKey: Guid(a51a3aebb43ac044989270407476b208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Medium.ttf using Guid(a51a3aebb43ac044989270407476b208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21b36f051d5a7319ce155047340db065') in 0.002077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-BoldItalic.ttf
+  artifactKey: Guid(dfb97a9307a577a41bcacba34b9a7e32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-BoldItalic.ttf using Guid(dfb97a9307a577a41bcacba34b9a7e32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97bfa1448c69ec5807cc16ab4c01ab69') in 0.001922 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 1.173234 seconds.
+  path: Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Regular.ttf
+  artifactKey: Guid(30dc370b164eefc43b95744fc796dad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Regular.ttf using Guid(30dc370b164eefc43b95744fc796dad0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '709514be5f6ff2e769742871e99b0d98') in 0.002627 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Italic.ttf
+  artifactKey: Guid(c839255fc8f6b4b4d90bf8c1af9f9bd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.searcher/Editor/Resources/FlatSkin/Font/Roboto-Italic.ttf using Guid(c839255fc8f6b4b4d90bf8c1af9f9bd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2500f0c0540157a79bd1b6027d4a4cf8') in 0.002575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.014187 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Materials/Grass_Dense_Tint_01_Leaves_A.mat
+  artifactKey: Guid(91bf4af0f70ef3045a6215a4c90676dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Materials/Grass_Dense_Tint_01_Leaves_A.mat using Guid(91bf4af0f70ef3045a6215a4c90676dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ca912f4dbe8a7d8beab34322885ede8') in 0.001204 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Base_B.mat
+  artifactKey: Guid(78a1f99ebf53f0e499adaea8bea793c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Base_B.mat using Guid(78a1f99ebf53f0e499adaea8bea793c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '494cb6a12eda04cf0897b6cb70a598b0') in 0.001013 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Leaves_A.mat
+  artifactKey: Guid(f009355b42a5ee54d9d51a286520d472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Leaves_A.mat using Guid(f009355b42a5ee54d9d51a286520d472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ec143fae5d931d4cfc25e412f83264c') in 0.001469 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.123936 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Leaves_B.mat
+  artifactKey: Guid(a87ac08e690bb8f4eab5eb0a60502961) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Materials/Grass_Dense_Tint_02_Leaves_B.mat using Guid(a87ac08e690bb8f4eab5eb0a60502961) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccd90b83d786c65d92c0f861f3f68937') in 0.001248 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerPurple_A.mat
+  artifactKey: Guid(e5c75e771ad5773489360ae2b93d803e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_01/Material/Grass_Flower_Tint_01_FlowerPurple_A.mat using Guid(e5c75e771ad5773489360ae2b93d803e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64a9a71d31d086220d79e16d08a00a42') in 0.000984 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.005354 seconds.
+  path: Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerPurple_A.mat
+  artifactKey: Guid(8e88134442e7a9248a99f59bbd172423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Material/Grass_Flower_Tint_02_FlowerPurple_A.mat using Guid(8e88134442e7a9248a99f59bbd172423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec0bd5709e1aab2b77118dd54661d0f2') in 0.001029 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.497644 seconds.
+  path: Assets/Free Assest/Texture/Hand Painted Seamless Wood Texture/Materials/M_Wood3.mat
+  artifactKey: Guid(df52f4d0325777d49bbe6e566536e284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Free Assest/Texture/Hand Painted Seamless Wood Texture/Materials/M_Wood3.mat using Guid(df52f4d0325777d49bbe6e566536e284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd858807a0027387fca5d3e9302a9d8a9') in 0.001286 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
