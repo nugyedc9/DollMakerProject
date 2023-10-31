@@ -21,7 +21,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     Transform currentDest;
     Vector3 dest;
     int randNum;
-    public int destinationAmount;
+    public int FirstDest,destinationAmount;
     public Vector3 rayCastOffset;
 
     [Header("Player")]
@@ -32,6 +32,11 @@ public class Ghost : MonoBehaviour, HearPlayer
     public GameObject BlackSphere;
     public GameObject GhostFrom;
     public BoxCollider GhostCloseDistance;
+
+    [Header("Ghost spawn")]
+    public Transform GhostTransFrom;
+    public Transform Spawn1, Spawn2, Spawn3;
+
 
     [Header("GhostView")]
     public float radius;
@@ -57,7 +62,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     // Start is called before the first frame update
     void Start()
     {
-        randNum = Random.Range(0, destinationAmount);
+        randNum = Random.Range(FirstDest, destinationAmount);
         currentDest = destination[randNum];
         curStun = Stun;
         PlayerPos = GameObject.FindGameObjectWithTag("Player");
@@ -312,7 +317,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (Stay)
         {
             IdleTime = Random.Range(minIdleTime, maxIdleTime); 
-            randNum = Random.Range(0, destinationAmount);
+            randNum = Random.Range(FirstDest, destinationAmount);
             currentDest = destination[randNum];
             Stay = false;
         }
@@ -407,6 +412,25 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
+    public void playerNearSpawn1()
+    {
+        GhostTransFrom.position = Spawn1.position;
+        FirstDest = 0;
+        destinationAmount = 2;
+    }
+    public void playerNearSpawn2()
+    {
+        GhostTransFrom.position = Spawn2.position;
+        FirstDest = 3;
+        destinationAmount = 5;
+    }
+    public void playerNearSpawn3()
+    {
+        GhostTransFrom.position = Spawn3.position;
+        FirstDest = 6;
+        destinationAmount = 8;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Orb")
@@ -422,6 +446,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         curStun -= St * Time.deltaTime;
     }
+
+    #region Ghostview
 
     public void FieldOfViewCheck()
     {
@@ -496,6 +522,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             canSeePlayer = false;
         }*/
     }
+
+    #endregion
 
 
 }
