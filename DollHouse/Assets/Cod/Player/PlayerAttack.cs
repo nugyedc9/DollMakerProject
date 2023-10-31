@@ -57,10 +57,14 @@ public class PlayerAttack : MonoBehaviour
     public Sprite DoorLockEvent;
     public Sprite GhostSpawn;
     public Sprite BeQuiet;
-    private bool dialogCheck;
+    public Image InterectAble;
+    public Sprite InterectSprite;
+    public Sprite pointSprite;
+    private bool dialogCheck, InterectItem;
 
 
     private Door DoorInterect;
+    private Ghost GhostHit;
     private Event Ghostevent;
 
     public UnityEvent LightOutEvent;
@@ -93,7 +97,9 @@ public class PlayerAttack : MonoBehaviour
                     if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
                         HitAudio.clip = HitGhostSound;
-                        StartCoroutine(AttackReset());
+                        GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
+                        GhostHit.PlayerHitGhost();
+                       // StartCoroutine(AttackReset());
                     }
                 }
             }
@@ -142,10 +148,24 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.tag == "GhostEvent")
             {
                 GhostEvent.Invoke();
-                Destroy(hitevent.collider.gameObject);  
+                Destroy(hitevent.collider.gameObject);
             }
+            if (hitevent.collider.gameObject.tag == "Key") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Radio") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Door") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Lantern") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Cross") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Doll") InterectItem = true;
+            else if (hitevent.collider.gameObject.tag == "Cloth") InterectItem = true;
+            else InterectItem = false;
         }
+        else InterectItem = false;
 
+        if (InterectItem)
+        {
+            InterectAble.sprite = InterectSprite;
+        }
+        else InterectAble.sprite = pointSprite;
 
 
 

@@ -82,20 +82,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             HpGhost = 0;
         if(HpGhost == 0)
         {
-            getHit = false;
-            stopSearch = true;
-            chasing = false;
-            BlackSphere.SetActive(false);
-            GhostFrom.SetActive(true);
             StopAllCoroutines();
-            GhostAni.SetTrigger("Dead");
-            StunTime(1);
-            DiedGhost.enabled = true;
-            if (curStun <= 0)
-            {
-                Destroy(gameObject);
-            }
-
+            _stateGhost = StateGhost.Dead;
         }
 
         #region BoxcolliderActive
@@ -158,6 +146,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             dest = player.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
+            GhostAni.SetTrigger("Run");
             ChaseGhost.enabled = true;
             if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box)
             {
@@ -171,6 +160,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             stopSearch = true;
             enemyGhost.speed = 0;
+            GhostAni.SetTrigger("HitPlayer");
             StartCoroutine(Attack());
         }
         
@@ -192,6 +182,22 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (curStun == 0)
         {
             curStun = Stun;
+        }
+
+        if(_stateGhost == StateGhost.Dead)
+        {
+            getHit = false;
+            stopSearch = true;
+            chasing = false;
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(true);
+            GhostAni.SetTrigger("Dead");
+            StunTime(1);
+            DiedGhost.enabled = true;
+            if (curStun <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
 
         #region Old Code
@@ -357,6 +363,13 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region Attack
     IEnumerator Attack()
     {
+        stopSearch = true;
+        enemyGhost.speed = 0;
+        yield return new WaitForSeconds(2);
+        stopSearch = false;
+        Attacked = false;
+        _stateGhost = StateGhost.Idle;
+
         /*  print("AttackGhost");
           Attacked = true;
           walking = false;
@@ -370,12 +383,7 @@ public class Ghost : MonoBehaviour, HearPlayer
           walking = true;
           stopSearch= false;
           Attacked = false;*/
-        stopSearch = true;
-        enemyGhost.speed = 0;
-        yield return new WaitForSeconds(2);
-        stopSearch = false;
-        Attacked = false;
-        _stateGhost = StateGhost.Idle;
+        
     }
     #endregion
 
@@ -442,6 +450,13 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
     }
 
+    public void PlayerHitGhost()
+    {
+        getHit = true;
+        HpGhost -= 1;
+        _stateGhost = StateGhost.PHit;
+    }
+
     public void StunTime(float St)
     {
         curStun -= St * Time.deltaTime;
@@ -476,6 +491,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                     if (!Attacked && !Tun)
                     {
                         _stateGhost = StateGhost.Hunt;
+                        stopSearch = true;
                     }                    
                 }
                 else
@@ -498,6 +514,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                     if (!Attacked && !Tun)
                     {
                         _stateGhost = StateGhost.Hunt;
+                        stopSearch = true;
                     }
                 }
                 else
