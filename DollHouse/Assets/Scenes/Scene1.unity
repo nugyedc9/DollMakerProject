@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.054974325, g: 0.0723244, b: 0.14715435, a: 1}
+  m_IndirectSpecularColor: {r: 0.054974206, g: 0.07232488, b: 0.14715387, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4174,8 +4174,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198896328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -0.081, z: 0.298}
-  m_LocalScale: {x: 0.010704736, y: 0.010704736, z: 0.010704736}
+  m_LocalPosition: {x: 0.047, y: -0.091, z: 0.291}
+  m_LocalScale: {x: 0.01556918, y: 0.01556918, z: 0.01556918}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 431990909}
@@ -4222,7 +4222,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7861db6a1bf359940a42725c7a0faa1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 142e822beb40fe64fac5cd8789ed305b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6634,7 +6634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &347529424
 Transform:
   m_ObjectHideFlags: 0
@@ -17815,6 +17815,7 @@ MonoBehaviour:
   HpGhost: 1
   Stun: 3
   curStun: 0
+  lowSpeed: 0
   walking: 0
   chasing: 0
   searching: 0
@@ -19334,6 +19335,7 @@ MonoBehaviour:
   HpGhost: 2
   Stun: 3
   curStun: 0
+  lowSpeed: 0
   walking: 0
   chasing: 0
   searching: 0
@@ -20301,13 +20303,6 @@ MonoBehaviour:
   RH: {fileID: 504468086}
   pickUPPoint: {fileID: 125961549}
   InterectRange: 2
-  Attack: 0
-  LightOn: 0
-  CanDropItem: 0
-  CrossOnHand: 0
-  DollOnHand: 0
-  ClothOnHand: 0
-  LightOnHand: 0
   Pickrange: 3
   HitGhostSound: {fileID: 8300000, guid: 10f22cc1de47a6d4a94779a9c489f15a, type: 3}
   HitWindSound: {fileID: 8300000, guid: d6824b87cd847694c9069448d15ef4ca, type: 3}
@@ -20339,6 +20334,7 @@ MonoBehaviour:
   InterectAble: {fileID: 864845418}
   InterectSprite: {fileID: 21300000, guid: 33fa874bbc24cbd4d83bf6485d055d9d, type: 3}
   pointSprite: {fileID: 21300000, guid: 4e4f569fef794084fa7ea407f9e3abfa, type: 3}
+  Holddown: 0
   LightOutEvent:
     m_PersistentCalls:
       m_Calls:

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public enum StateGhost { Walk,Idle, Search, Hunt,HitP,PHit, Dead};
+public enum StateGhost { Walk,Idle, Search, Hunt,HitP,PHit,ChangePosition , Dead};
 public class Ghost : MonoBehaviour, HearPlayer
 {
 
@@ -14,7 +14,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public List<Transform> destination;
     public Animator GhostAni;
     public float walkSpeed, chaseSpeed,AfterHitSpeed, minIdleTime, maxIdleTime, IdleTime, sightDistance, 
-        catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun;
+        catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun , lowSpeed;
     public bool walking, chasing, searching,stopSearch , Attacked, getHit;
     public Transform player;
     public Vector3 LastSound;
@@ -69,6 +69,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         AudioGhost.enabled = true;  
         FoundPlayer.enabled = false;
         DiedGhost.enabled = false;
+        lowSpeed = chaseSpeed;
         _stateGhost = StateGhost.Walk;
     }
 
@@ -166,9 +167,18 @@ public class Ghost : MonoBehaviour, HearPlayer
         
         if(_stateGhost == StateGhost.PHit)
         {
+            float lowSpeed;
+            lowSpeed = chaseSpeed;
+            lowSpeed -= 0.2f * Time.deltaTime;
+            enemyGhost.speed = lowSpeed;
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
-            StunTime(1);
+            if(lowSpeed < 0.5)
+            {
+                lowSpeed = 0.5f;
+            }
+
+           /* StunTime(1);
             Tun = true;
             stopSearch = true;
             if (curStun <= 0)
@@ -176,12 +186,17 @@ public class Ghost : MonoBehaviour, HearPlayer
                 StopAllCoroutines();
                 StartCoroutine("Hit");
                 curStun = 0;
-            }
+            }*/
 
         }
         if (curStun == 0)
         {
             curStun = Stun;
+        }
+
+        if(_stateGhost == StateGhost.ChangePosition)
+        {
+
         }
 
         if(_stateGhost == StateGhost.Dead)
@@ -305,7 +320,7 @@ public class Ghost : MonoBehaviour, HearPlayer
          */
         #endregion
     }
-
+    
     public void RespondToSound(Sound sound)
     {
         //Debug.Log(name + " read sound" +  sound.pos);
@@ -443,18 +458,24 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         if(collision.gameObject.tag == "Orb")
         {
-            getHit = true;
-            HpGhost -= 1;
-            _stateGhost = StateGhost.PHit;
-            Destroy(collision.gameObject);
+            lowSpeed = chaseSpeed;
+            lowSpeed -= 0.5f * Time.deltaTime;
+            enemyGhost.speed = lowSpeed;
+            if (lowSpeed < 0.5)
+            {
+                lowSpeed = 0.5f;
+            }
         }
     }
-
     public void PlayerHitGhost()
     {
-        getHit = true;
-        HpGhost -= 1;
-        _stateGhost = StateGhost.PHit;
+        lowSpeed -= 0.3f * Time.deltaTime;
+        enemyGhost.speed = lowSpeed;    
+        if (lowSpeed < 0.1)
+        {
+            lowSpeed = 0.1f;
+            _stateGhost = StateGhost.ChangePosition;
+        }
     }
 
     public void StunTime(float St)

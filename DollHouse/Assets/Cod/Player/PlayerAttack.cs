@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
+    private bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
     public float Pickrange;
     private Vector3 destination;
 
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
-    [Header("CanvaInterect")]
+    [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
     public Image CanvaImage;
     public Sprite PickItem1;
@@ -57,6 +57,8 @@ public class PlayerAttack : MonoBehaviour
     public Sprite DoorLockEvent;
     public Sprite GhostSpawn;
     public Sprite BeQuiet;
+
+    [Header("CanvaInterect")]
     public Image InterectAble;
     public Sprite InterectSprite;
     public Sprite pointSprite;
@@ -65,8 +67,9 @@ public class PlayerAttack : MonoBehaviour
 
     private Door DoorInterect;
     private Ghost GhostHit;
-    private Event Ghostevent;
+    public bool Holddown;
 
+    [Header("AllEvent")]
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
     public UnityEvent GhostEvent;
@@ -75,35 +78,47 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        //ShootAudio = GetComponent<AudioSource>();
-        
+        //ShootAudio = GetComponent<AudioSource>();        
     }
 
     void Update()
     {
         Ray r = new Ray(RH.position, RH.forward);
-        if(CrossOnHand) Attack = true;
+
+
         #region Attack
+        if(CrossOnHand) Attack = true;
         if (Attack)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetMouseButtonDown(0))
             {
+
                 CorssAni.SetTrigger("AttackCorss");
-               HitAudio.clip = HitWindSound;
-                
-                HitAudio.Play();
-                if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
+                HitAudio.clip = HitWindSound;
+                HitAudio.Play(); 
+                Holddown = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                CorssAni.SetTrigger("NotAttack");
+                Holddown = false;
+            }
+        }
+        if (Holddown)
+        {
+            if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
+            {
+                if (hitinfo.collider.gameObject.tag == "Ghost")
                 {
-                    if (hitinfo.collider.gameObject.tag == "Ghost")
-                    {
-                        HitAudio.clip = HitGhostSound;
-                        GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
-                        GhostHit.PlayerHitGhost();
-                       // StartCoroutine(AttackReset());
-                    }
+
+
+                    HitAudio.clip = HitGhostSound;
+                    GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
+                    GhostHit.PlayerHitGhost();
+
+                    //StartCoroutine(AttackReset());
                 }
             }
-
         }
         #endregion
 
@@ -143,6 +158,8 @@ public class PlayerAttack : MonoBehaviour
 
             }
         }
+
+        #region Show what can interect
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
         {
             if (hitevent.collider.tag == "GhostEvent")
@@ -166,7 +183,7 @@ public class PlayerAttack : MonoBehaviour
             InterectAble.sprite = InterectSprite;
         }
         else InterectAble.sprite = pointSprite;
-
+        #endregion
 
 
         if (CanDropItem)
@@ -177,24 +194,21 @@ public class PlayerAttack : MonoBehaviour
                 {
                     CorssR.SetActive(false);
                     Attack = false;
-                    CanDropItem = false;
-                    CrossOnHand = false;
                     DropCross();
                 }
                 if (DollOnHand)
                 {
                     DollR.SetActive(false);
-                    CanDropItem = false;
-                    DollOnHand = false;
                     DropDoll();
                 }
                 if (ClothOnHand)
                 {
                     ClothR.SetActive(false);
-                    CanDropItem= false;
-                    ClothOnHand = false;
                     DropCloth();
                 }
+
+                CanDropItem = false;
+                CrossOnHand = false;
             }
 
         }
