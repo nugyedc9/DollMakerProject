@@ -34,8 +34,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     public BoxCollider GhostCloseDistance;
 
     [Header("Ghost spawn")]
-    public Vector3 GhostTransFrom;
-    public Vector3 Spawn1, Spawn2, Spawn3;
+    public Transform GhostTransFrom;
+    public Transform Spawn1, Spawn2, Spawn3;
 
 
     [Header("GhostView")]
@@ -445,7 +445,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void playerNearSpawn1()
     {
         Debug.LogError("Sapwn1");
-        GhostTransFrom = Spawn1;
+        GhostTransFrom.position = Spawn1.position;
         FirstDest = 0;
         destinationAmount = 3;
         NearSpawn1 = true; NearSpawn2 = false; NearSpawn3 = false;
@@ -453,7 +453,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void playerNearSpawn2()
     {
         Debug.LogError("Sapwn2");
-        GhostTransFrom = Spawn2;
+        GhostTransFrom.position = Spawn2.position;
         FirstDest = 4;
         destinationAmount = 6;
         NearSpawn1 = false; NearSpawn2 = true; NearSpawn3 = false;
@@ -476,11 +476,11 @@ public class Ghost : MonoBehaviour, HearPlayer
         if(collision.gameObject.tag == "Orb")
         {
             lowSpeed = chaseSpeed;
-            lowSpeed -= 0.5f * Time.deltaTime;
+            lowSpeed -= 1f * Time.deltaTime;
             enemyGhost.speed = lowSpeed;
-            if (lowSpeed < 0.5)
+            if (lowSpeed < 1)
             {
-                lowSpeed = 0.5f;
+                lowSpeed = 1f;
             }
         }
     }
@@ -489,11 +489,11 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     public void PlayerHitGhost()
     {
-        lowSpeed -= 0.5f * Time.deltaTime;
+        lowSpeed -= 1f * Time.deltaTime;
         enemyGhost.speed = lowSpeed;    
-        if (lowSpeed < 0.5)
+        if (lowSpeed < 1)
         {
-            lowSpeed = 0.5f;
+            lowSpeed = 1f;
             _stateGhost = StateGhost.ChangePosition;
         }
     }
@@ -541,6 +541,8 @@ public class Ghost : MonoBehaviour, HearPlayer
                 else
                 {
                     canSeePlayer = false;
+                   // print("After hunt");
+
                 }
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ground))
                 {
