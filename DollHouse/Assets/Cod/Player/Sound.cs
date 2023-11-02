@@ -8,7 +8,7 @@ namespace player
     {
         public Sound(Vector3 _pos, float _range)
         {
-            pos = _pos;
+            pos =  new Vector3(_pos.x, 0f, _pos.z);
             range = _range;
         }
 

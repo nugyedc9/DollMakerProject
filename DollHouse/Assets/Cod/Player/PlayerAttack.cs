@@ -103,7 +103,7 @@ public class PlayerAttack : MonoBehaviour
                 CorssAni.SetTrigger("NotAttack");
                 Holddown = false;
             }
-        }
+        } else Holddown = false;
         if (Holddown)
         {
             if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
