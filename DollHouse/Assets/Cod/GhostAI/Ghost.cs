@@ -205,19 +205,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if(_stateGhost == StateGhost.ChangePosition)
         {
-            if (NearSpawn1 && !NearSpawn2 && !NearSpawn3)
-            {
-                playerNearSpawn2();
-            }
-            else if (!NearSpawn1 && NearSpawn2 && !NearSpawn3)
-            {
-                //  playerNearSpawn3();
-                playerNearSpawn1();
-            }
-            else if (!NearSpawn1 && !NearSpawn2 && NearSpawn3)
-            {
-                playerNearSpawn1();
-            }
+            playerNearSpawn2();
             Debug.Log("IdleState after changepos");
             _stateGhost = StateGhost.Idle;
         }
@@ -446,20 +434,16 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void playerNearSpawn1()
     {
         Debug.LogError("Sapwn1");
-        enemyGhost.updatePosition = true;
-        GhostTransFrom.position = Spawn1.position; 
+        enemyGhost.Warp(Spawn1.position);
         FirstDest = 0;
         destinationAmount = 3;
-        NearSpawn1 = true; NearSpawn2 = false; NearSpawn3 = false;
     }
     public void playerNearSpawn2()
     {
         Debug.LogError("Sapwn2");
-        enemyGhost.updatePosition = true;
-        GhostTransFrom.position = new Vector3(Spawn2.position.x, Spawn2.position.y, Spawn2.position.z);
+        enemyGhost.Warp(Spawn2.position);
         FirstDest = 4;
         destinationAmount = 6;
-        NearSpawn1 = false; NearSpawn2 = true; NearSpawn3 = false;
         Debug.Log("Destination set to: " + GhostTransFrom.position);    
     }
    /* public void playerNearSpawn3()
@@ -493,7 +477,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     public void PlayerHitGhost()
     {
-        lowSpeed -= 1f * Time.deltaTime;
+        lowSpeed -= 2f * Time.deltaTime;
         enemyGhost.speed = lowSpeed;    
         if (lowSpeed < 1)
         {
