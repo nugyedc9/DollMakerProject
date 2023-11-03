@@ -6,6 +6,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 destination;
 
     [Header("Audio")]
-    public AudioClip HitGhostSound;   
+    public AudioClip HitGhostSound;
     public AudioClip HitWindSound;
     public AudioSource HitAudio;
     public AudioClip LightOutLetsGooo;
@@ -29,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("PLayerLight")]
     public GameObject Light;
-    public GameObject pointLight; 
+    public GameObject pointLight;
     public Animator LanternAni;
 
     [Header("Item On Hand")]
@@ -61,7 +62,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("CanvaInterect")]
     public Image InterectAble;
     public Sprite InterectSprite;
-    public Sprite pointSprite;
+    public Sprite pointSprite; 
+    public GameObject ItemText;
+    public TextMeshProUGUI ItemName;
     private bool dialogCheck, InterectItem;
 
 
@@ -87,7 +90,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         #region Attack
-        if(CrossOnHand) Attack = true;
+        if (CrossOnHand) Attack = true;
         if (Attack)
         {
             if (Input.GetMouseButtonDown(0))
@@ -95,7 +98,7 @@ public class PlayerAttack : MonoBehaviour
 
                 CorssAni.SetTrigger("AttackCorss");
                 HitAudio.clip = HitWindSound;
-                HitAudio.Play(); 
+                HitAudio.Play();
                 Holddown = true;
             }
             else if (Input.GetMouseButtonUp(0))
@@ -167,22 +170,80 @@ public class PlayerAttack : MonoBehaviour
                 GhostEvent.Invoke();
                 Destroy(hitevent.collider.gameObject);
             }
-            if (hitevent.collider.gameObject.tag == "Key") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Radio") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Door") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Lantern") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Cross") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Doll") InterectItem = true;
-            else if (hitevent.collider.gameObject.tag == "Cloth") InterectItem = true;
-            else InterectItem = false;
+            if (hitevent.collider.gameObject.tag == "Key")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Key";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Radio")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Radio";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Door")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Door";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Lantern")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Lantern";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Cross")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Cross";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Doll")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Doll";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Cloth")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Cloth";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "DeskWorkShop";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Basket")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Basket";
+                InterectItem = true;
+            }
+            else
+            {
+                InterectItem = false;
+                ItemText.SetActive(false);
+            }
         }
-        else InterectItem = false;
+        else
+        {
+            InterectItem = false;
+        }
 
         if (InterectItem)
         {
             InterectAble.sprite = InterectSprite;
         }
-        else InterectAble.sprite = pointSprite;
+        else
+        {
+            ItemText.SetActive(false);
+            InterectAble.sprite = pointSprite;
+        }
         #endregion
 
 

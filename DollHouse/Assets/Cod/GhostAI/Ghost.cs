@@ -62,6 +62,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     // Start is called before the first frame update
     void Start()
     {
+        enemyGhost = GetComponent<NavMeshAgent>();
         randNum = Random.Range(FirstDest, destinationAmount);
         currentDest = destination[randNum];
         curStun = Stun;
@@ -445,7 +446,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void playerNearSpawn1()
     {
         Debug.LogError("Sapwn1");
-        GhostTransFrom.position = Spawn1.position;
+        enemyGhost.updatePosition = true;
+        GhostTransFrom.position = Spawn1.position; 
         FirstDest = 0;
         destinationAmount = 3;
         NearSpawn1 = true; NearSpawn2 = false; NearSpawn3 = false;
@@ -453,10 +455,12 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void playerNearSpawn2()
     {
         Debug.LogError("Sapwn2");
-        GhostTransFrom.position = Spawn2.position;
+        enemyGhost.updatePosition = true;
+        GhostTransFrom.position = new Vector3(Spawn2.position.x, Spawn2.position.y, Spawn2.position.z);
         FirstDest = 4;
         destinationAmount = 6;
         NearSpawn1 = false; NearSpawn2 = true; NearSpawn3 = false;
+        Debug.Log("Destination set to: " + GhostTransFrom.position);    
     }
    /* public void playerNearSpawn3()
     {
