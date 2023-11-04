@@ -497,6 +497,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             lowSpeed -= 2f * Time.deltaTime;
             enemyGhost.speed = lowSpeed;
+            GhostAni.SetTrigger("PHit");
             if (lowSpeed < 1)
             {
                 if (HpGhost == 1) HpGhost = 0;
