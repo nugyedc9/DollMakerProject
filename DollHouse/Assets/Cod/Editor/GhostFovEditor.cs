@@ -5,7 +5,7 @@ using UnityEngine;
 [CustomEditor(typeof(Ghost))]
 public class GhostFovEditor : Editor
 {
-    private void OnSceneGUI()   
+  /*  private void OnSceneGUI()   
     {
         Ghost fov =(Ghost)target;   
         Handles.color = Color.white;
@@ -29,5 +29,5 @@ public class GhostFovEditor : Editor
     {
         angleInDegrees += eulerY;
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
+    }*/
 }

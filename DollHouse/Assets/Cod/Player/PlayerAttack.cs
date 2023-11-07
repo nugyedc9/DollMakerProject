@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    private bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
+    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
     public float Pickrange;
     private Vector3 destination;
 
@@ -270,6 +270,8 @@ public class PlayerAttack : MonoBehaviour
 
                 CanDropItem = false;
                 CrossOnHand = false;
+                DollOnHand = false;
+                ClothOnHand = false;
             }
 
         }

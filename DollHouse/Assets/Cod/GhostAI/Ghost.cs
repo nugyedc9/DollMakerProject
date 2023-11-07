@@ -12,10 +12,10 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     public NavMeshAgent enemyGhost;
     public List<Transform> destination;
-    public Animator GhostAni;
+    [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime, 
         catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun , lowSpeed;
-    public bool walking, chasing, searching,stopSearch , Attacked, getHit;
+    public bool walking, chasing, searching,stopSearch , Attacked, getHit,ded,getAttack;
     public Transform player;
     public Vector3 LastSound;
     Transform currentDest;
@@ -38,7 +38,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public Transform Spawn1, Spawn2, Spawn3;
 
 
-    [Header("GhostView")]
+    /*[Header("GhostView")]
     public float radius;
     [Range(0, 360)]
     public float angle;
@@ -46,7 +46,17 @@ public class Ghost : MonoBehaviour, HearPlayer
     public LayerMask layerPLayer;
     public LayerMask obstructionMask;
     public LayerMask ground;
-    public bool canSeePlayer;
+    public bool canSeePlayer;*/
+
+    [Header("Ghost vision cone")]
+    public Material VisionConeMaterial;
+    public float VisionRange;
+    public float VisionAngle;
+    public LayerMask VisionObstructingLayer;
+    public LayerMask PlayerLayer;
+    public int VisionConeResolution = 120;
+    Mesh VisionConeMesh;
+    MeshFilter MeshFilter_;
 
     [Header("audio")]
     public AudioSource FoundPlayer;
@@ -56,7 +66,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     bool chaseC, DiedC;
 
     private StateGhost _stateGhost;
-    bool Stay, Box, Tun;
+    bool Stay, Box, Tun, PAttack, cansee;
 
 
     // Start is called before the first frame update
@@ -66,9 +76,18 @@ public class Ghost : MonoBehaviour, HearPlayer
         randNum = Random.Range(FirstDest, destinationAmount);
         currentDest = destination[randNum];
         curStun = Stun;
-        PlayerPos = GameObject.FindGameObjectWithTag("Player"); 
+       // PlayerPos = GameObject.FindGameObjectWithTag("Player"); 
         FoundPlayer.enabled = false;
         lowSpeed = chaseSpeed;
+
+        #region Vision Cone
+        cansee = true;
+        transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
+        MeshFilter_ = transform.AddComponent<MeshFilter>();
+        VisionConeMesh = new Mesh();
+        VisionAngle *= Mathf.Deg2Rad;
+        #endregion
+
         playerNearSpawn1();
         _stateGhost = StateGhost.Walk;
     }
@@ -76,7 +95,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(FovRountine());
+       // StartCoroutine(FovRountine());
+        DrawVisionCone();
         DistanceAmount = enemyGhost.remainingDistance;
 
         if(HpGhost < 0)
@@ -149,20 +169,33 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(true);
+            ChaseGhost.enabled = true;
+            FoundPlayer.enabled = true;
             dest = player.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
-            GhostAni.SetTrigger("Run");
+            if (!chasing)
+            {
+                GhostAni.Play("G_Run", 0, 0);
+                chasing = true;
+            }
+           // GhostAni.SetTrigger("Run");
             if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box)
             {
-                Attacked = true;
                 Tun = true;
+                HpPlayer.Takedamage(DamageGhost);
+                if (!Attacked)
+                {
+                    GhostAni.Play("G_atk", 0, 0);
+                    Attacked = true;
+                }
+              //  GhostAni.SetTrigger("HitPlayer");
                 _stateGhost = StateGhost.HitP;
             }
-            if (!canSeePlayer)
+            /*if (!canSeePlayer)
             {
                 _stateGhost = StateGhost.Idle;
-            }
+            }*/
         }
 
         if( _stateGhost == StateGhost.HitP)
@@ -173,8 +206,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 HpPlayer.Takedamage(DamageGhost);
                 Attacked = false;
             }
-            enemyGhost.speed = 0;
-            GhostAni.SetTrigger("HitPlayer");
+            enemyGhost.speed = 0;    
             StartCoroutine(Attack());
         }
         
@@ -206,8 +238,10 @@ public class Ghost : MonoBehaviour, HearPlayer
         if(_stateGhost == StateGhost.ChangePosition)
         {
             getHit = false;
+            getAttack = false;
             DiedGhost.enabled = true;
-            GhostAni.SetTrigger("Dead");
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             GhostCloseDistance.enabled = false;
             Tun = true;
             HpGhost = 1;
@@ -224,7 +258,12 @@ public class Ghost : MonoBehaviour, HearPlayer
             chasing = false;
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(true);
-            GhostAni.SetTrigger("Dead");
+            if (!ded)
+            {
+                GhostAni.Play("G_dead", 0, 0);
+                ded = true;
+            }
+           // GhostAni.SetTrigger("Dead");
             StunTime();
             DiedGhost.enabled = true;
             if (curStun <= 0)
@@ -232,6 +271,12 @@ public class Ghost : MonoBehaviour, HearPlayer
                 Destroy(gameObject);
             }
         }
+
+        #region Animation play
+        if(_stateGhost != StateGhost.Hunt) chasing = false;
+        if (_stateGhost != StateGhost.Dead) ded = false;
+        if (_stateGhost != StateGhost.HitP) Attacked = false;
+        #endregion
 
         #region Old Code
         /* #region Chase
@@ -338,7 +383,7 @@ public class Ghost : MonoBehaviour, HearPlayer
          */
         #endregion
     }
-    
+
     public void RespondToSound(Sound sound)
     {
         //Debug.Log(name + " read sound" +  sound.pos);
@@ -400,7 +445,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         stopSearch = true;
         enemyGhost.speed = 0;
         yield return new WaitForSeconds(3);
-        GhostAni.SetTrigger("AfterPHit");
         stopSearch = false;
         Tun = false;
         _stateGhost = StateGhost.Idle;
@@ -423,7 +467,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
-    IEnumerator FovRountine()
+   /* IEnumerator FovRountine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
 
@@ -432,14 +476,18 @@ public class Ghost : MonoBehaviour, HearPlayer
             yield return wait;
             FieldOfViewCheck();
         }
-    }
+    }*/
 
     IEnumerator DelayChagePos()
     {
+        enemyGhost.speed = 0;
         yield return new WaitForSeconds(2);
         GhostCloseDistance.enabled = true;
         Tun = false;
         getHit = true;
+        cansee = true;
+        lowSpeed = chaseSpeed;
+        _stateGhost = StateGhost.Idle;
         playerNearSpawn2();
     }
 
@@ -495,17 +543,26 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         if (getHit)
         {
-            lowSpeed -= 2f * Time.deltaTime;
+            lowSpeed -= 1.3f * Time.deltaTime;
             enemyGhost.speed = lowSpeed;
-            GhostAni.SetTrigger("PHit");
+            if (!getAttack)
+            {
+                GhostAni.Play("G_getatk", 0, 0);
+                getAttack = true;
+            }
+            //GhostAni.SetTrigger("Phit");
+            PAttack = true;
             if (lowSpeed < 1)
             {
                 if (HpGhost == 1) HpGhost = 0;
+                cansee = false;
                 _stateGhost = StateGhost.ChangePosition;
             }
 
         }
     }
+
+    public void PAttackTofalse() { PAttack = false; }
 
     public void StunTime()
     {
@@ -514,7 +571,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     #region Ghostview
 
-    public void FieldOfViewCheck()
+    /*public void FieldOfViewCheck()
     {
 
         Collider[] rangeCheck = Physics.OverlapSphere(transform.position, radius, layerPLayer);
@@ -537,7 +594,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                          StopAllCoroutines();
                          StartCoroutine(chaseRoutine());
                          chasing = true;
-                     }*/
+                     }
 
                     canSeePlayer = true;
                     if (!Attacked && !Tun && canSeePlayer)
@@ -580,9 +637,56 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             canSeePlayer = false;
         }
-    }
+    }*/
 
     #endregion
 
+    #region Vision Cone
+    void DrawVisionCone()
+    {
+        int[] triangles = new int[(VisionConeResolution - 1) * 3];
+        Vector3[] Vertices = new Vector3[VisionConeResolution + 1];
+        Vertices[0] = Vector3.zero;
+        float Currentangle = -VisionAngle / 2;
+        float angleIcrement = VisionAngle / (VisionConeResolution - 1);
+        float Sine;
+        float Cosine;
 
+        for (int i = 0; i < VisionConeResolution; i++)
+        {
+            Sine = Mathf.Sin(Currentangle);
+            Cosine = Mathf.Cos(Currentangle);
+            Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
+            Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
+            if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
+            {
+                Vertices[i + 1] = VertForward * hit.distance;
+            }
+            else
+            {
+                Vertices[i + 1] = VertForward * VisionRange;
+            }
+
+            if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit PlayerHitRay, VisionRange, PlayerLayer))
+            {
+                Vertices[i + 1] = VertForward * PlayerHitRay.distance;
+                if(cansee)
+                _stateGhost = StateGhost.Hunt;
+            }
+
+
+            Currentangle += angleIcrement;
+        }
+        for (int i = 0, j = 0; i < triangles.Length; i += 3, j++)
+        {
+            triangles[i] = 0;
+            triangles[i + 1] = j + 1;
+            triangles[i + 2] = j + 2;
+        }
+        VisionConeMesh.Clear();
+        VisionConeMesh.vertices = Vertices;
+        VisionConeMesh.triangles = triangles;
+        MeshFilter_.mesh = VisionConeMesh;
+    }
+    #endregion
 }
