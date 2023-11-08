@@ -46,6 +46,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject DollD;
     public GameObject ClothD;
 
+    [Header("CrossAction")]
+    public float curHpCross;
+    private bool crossruin;
+
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
     public Image CanvaImage;
@@ -70,6 +74,7 @@ public class PlayerAttack : MonoBehaviour
 
     private Door DoorInterect;
     private Ghost GhostHit;
+    private CrossCheck CrossUse;
     public bool Holddown;
 
     [Header("AllEvent")]
@@ -80,8 +85,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent Radio;
 
     private void Start()
-    {
-        //ShootAudio = GetComponent<AudioSource>();        
+    {       
     }
 
     void Update()
@@ -113,8 +117,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hitinfo.collider.gameObject.tag == "Ghost")
                 {
-
-
+                    crossruin = true;
                     HitAudio.clip = HitGhostSound;
                     GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
                     GhostHit.PlayerHitGhost();
@@ -123,6 +126,8 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+
+
         #endregion
 
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
@@ -284,7 +289,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
                     {
-
+                        CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                        curHpCross = CrossUse.curHp;
                         CrossOnHand = true;
                         Attack = true;
                         CorssR.SetActive(true);
@@ -573,6 +579,16 @@ public class PlayerAttack : MonoBehaviour
         CanvaImage.sprite = BeQuiet;
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
+    }
+
+    public void CrossRuin()
+    {
+        if (crossruin)
+        {
+            curHpCross--;
+            CrossUse.curHp = curHpCross;
+            crossruin = false;
+        }
     }
 
 

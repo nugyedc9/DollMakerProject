@@ -26,6 +26,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     [Header("Player")]
     [SerializeField] PlayerHp HpPlayer;
+    [SerializeField] PlayerAttack PAttack;
     public float DamageGhost;
 
     [Header("Ghost")]
@@ -218,6 +219,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (!HpLow)
             {
                 HpGhost--;
+                PAttack.CrossRuin();
                 HpLow = true;
             }
             cansee = false;
@@ -525,7 +527,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
          if (!getHit)
          {
-             lowSpeed -= 1.3f * Time.deltaTime;
+             lowSpeed -= 4f * Time.deltaTime;
              enemyGhost.speed = lowSpeed;
             if (!getAttack)
             {
