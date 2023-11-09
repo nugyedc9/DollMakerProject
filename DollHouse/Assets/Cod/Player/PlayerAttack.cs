@@ -72,10 +72,14 @@ public class PlayerAttack : MonoBehaviour
     private bool dialogCheck, InterectItem;
 
 
+    [Header("PauseGame")]
+    public GameObject PauseMenu;
+    private bool isPause;
+
     private Door DoorInterect;
     private Ghost GhostHit;
     private CrossCheck CrossUse;
-    public bool Holddown;
+    private bool Holddown;
 
     [Header("AllEvent")]
     public UnityEvent LightOutEvent;
@@ -86,6 +90,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {       
+        PauseMenu.SetActive(false);
     }
 
     void Update()
@@ -94,20 +99,24 @@ public class PlayerAttack : MonoBehaviour
 
 
         #region Attack
-        if (CrossOnHand) Attack = true;
         if (Attack)
         {
             if (Input.GetMouseButtonDown(0))
             {
 
-                CorssAni.SetTrigger("AttackCorss");
+                if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
+                if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
+                if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
+
                 HitAudio.clip = HitWindSound;
                 HitAudio.Play();
                 Holddown = true;
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                CorssAni.SetTrigger("NotAttack");
+                if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
+                if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
+                if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
                 Holddown = false;
             }
         } else Holddown = false;
@@ -126,9 +135,13 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-
-
         #endregion
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPause) PauseGame();
+            else ResumeGame();
+        }
 
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
         if (Input.GetKeyDown(KeyCode.E))
@@ -591,5 +604,27 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+
+    #region Pause game
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseMenu.SetActive(true);
+        isPause = true;
+        Attack = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        PauseMenu.SetActive(false);
+        isPause = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        if (CrossOnHand) Attack = true;
+    }
+    #endregion
 
 }

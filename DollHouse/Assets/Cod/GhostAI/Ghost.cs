@@ -216,6 +216,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (lowSpeed < 1)
         {
+            GhostCloseDistance.enabled = false;
             if (!HpLow)
             {
                 HpGhost--;
@@ -224,11 +225,11 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
             cansee = false;
             _stateGhost = StateGhost.ChangePosition;
+            lowSpeed = chaseSpeed;
         }
 
         if (_stateGhost == StateGhost.ChangePosition)
         {
-            lowSpeed = chaseSpeed;
             HpLow = false;
             getHit = false;
             getAttack = false;
@@ -237,7 +238,6 @@ public class Ghost : MonoBehaviour, HearPlayer
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
             DiedGhost.enabled = true;
-            GhostCloseDistance.enabled = false;
             StartCoroutine(DelayChagePos());
            // Debug.Log("IdleState after changepos");
         }
