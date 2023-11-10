@@ -67,7 +67,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     bool chaseC, DiedC;
 
     private StateGhost _stateGhost;
-    bool Stay, Box;
+    bool Stay, Box, Phit;
 
 
     // Start is called before the first frame update
@@ -113,13 +113,16 @@ public class Ghost : MonoBehaviour, HearPlayer
         #region BoxcolliderActive
         if (enemyGhost.remainingDistance <= 0.3f)
         {
-            GhostCloseDistance.enabled = false;
-            Box = false;
+                GhostCloseDistance.enabled = false;
+                Box = false;          
         }
         else
         {
-            GhostCloseDistance.enabled = true;
-            Box = true;
+            if (!Phit)
+            {
+                GhostCloseDistance.enabled = true;
+                Box = true;
+            }
         }
         #endregion
 
@@ -216,6 +219,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (lowSpeed < 1)
         {
+            Phit = true;
             GhostCloseDistance.enabled = false;
             if (!HpLow)
             {
@@ -225,6 +229,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
             cansee = false;
             _stateGhost = StateGhost.ChangePosition;
+            enemyGhost.speed = 0;
             lowSpeed = chaseSpeed;
         }
 
@@ -466,11 +471,11 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     IEnumerator DelayChagePos()
     {
-        enemyGhost.speed = 0;
         yield return new WaitForSeconds(2);
         GhostCloseDistance.enabled = true;
         getHit = false;
         cansee = true;
+        Phit = false;
         _stateGhost = StateGhost.Idle;
         playerNearSpawn2();
     }

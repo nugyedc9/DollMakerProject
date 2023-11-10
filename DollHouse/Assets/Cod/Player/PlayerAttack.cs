@@ -143,6 +143,7 @@ public class PlayerAttack : MonoBehaviour
             else ResumeGame();
         }
 
+        #region Interect evnet
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -179,6 +180,7 @@ public class PlayerAttack : MonoBehaviour
 
             }
         }
+        #endregion
 
         #region Show what can interect
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
@@ -265,6 +267,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
 
+        #region Pick drop item
         if (CanDropItem)
         {
             if (Input.GetKeyDown(KeyCode.G))
@@ -341,6 +344,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        #endregion
 
         #region LightUP
         if (Input.GetKeyDown(KeyCode.F))
@@ -374,6 +378,8 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+
+    #region Drop prefeb item
     void Shoot()
     {
         Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -464,7 +470,6 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-
     public void StopAttack()
     {
         Attack = false;
@@ -503,7 +508,9 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Dialogue event
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "LightOutEvent")
@@ -593,6 +600,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
+    #endregion
 
     public void CrossRuin()
     {
