@@ -7,7 +7,7 @@ public class CrossCheck : MonoBehaviour
 
     [Header("Hp Thing")]
 
-    private float MaxHp = 3;
+    public float MaxHp;
     public float curHp;
     public delegate void OnItemDamaged(int damage);
     public static event OnItemDamaged ItemDamagedEvent;

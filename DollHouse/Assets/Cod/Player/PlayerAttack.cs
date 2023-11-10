@@ -43,6 +43,8 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Item Drop")]
     public GameObject CrossD;
+    public GameObject CrossD2;
+    public GameObject CrossD1;
     public GameObject DollD;
     public GameObject ClothD;
 
@@ -96,7 +98,6 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         Ray r = new Ray(RH.position, RH.forward);
-
 
         #region Attack
         if (Attack)
@@ -274,9 +275,24 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (CrossOnHand)
                 {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross();
+                    if (curHpCross == 3)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross();
+                    }
+                    if(curHpCross == 2)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross2();
+                    }
+                    if(curHpCross == 1)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross1();
+                    }
                 }
                 if (DollOnHand)
                 {
@@ -311,7 +327,9 @@ public class PlayerAttack : MonoBehaviour
                         Attack = true;
                         CorssR.SetActive(true);
                         CanDropItem = true;
-                        CorssAni.SetTrigger("OnHand");
+                        if(curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if(curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if(curHpCross == 1) CorssAni.SetTrigger("OnHand3");
                         Destroy(hitInfo.collider.gameObject);
                         // print("Cross");
                     }
@@ -410,6 +428,36 @@ public class PlayerAttack : MonoBehaviour
         DropingCross(RH);
 
     }
+    void DropCross2()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingCross2(RH);
+
+    }
+    void DropCross1()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingCross1(RH);
+
+    }
     void DropDoll()
     {
         Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -452,6 +500,17 @@ public class PlayerAttack : MonoBehaviour
         var projectileOBj = Instantiate(CrossD, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
     }
+    void DropingCross2(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(CrossD2, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+    void DropingCross1(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(CrossD1, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+
     void DropingDoll(Transform FirePoint)
     {
         var projectileOBj = Instantiate(DollD, FirePoint.position, Quaternion.identity) as GameObject;
@@ -608,6 +667,7 @@ public class PlayerAttack : MonoBehaviour
         {
             curHpCross--;
             CrossUse.curHp = curHpCross;
+            if(curHpCross == 0) curHpCross = 1;
             crossruin = false;
         }
     }
