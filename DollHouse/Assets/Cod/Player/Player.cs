@@ -85,8 +85,7 @@ namespace player
             if (Physics.Raycast(r, out RaycastHit hitinfo, InterectRange))
             {
                 if (hitinfo.collider.gameObject.tag == "DeskWorkShop")
-                {
-                    print(hitinfo.collider.gameObject.tag);
+                {                  
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         //print("Camera switch requested");

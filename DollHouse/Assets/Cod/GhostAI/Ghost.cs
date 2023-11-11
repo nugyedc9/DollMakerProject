@@ -15,10 +15,10 @@ public class Ghost : MonoBehaviour, HearPlayer
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
         catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun, lowSpeed;
-    private bool   ChaseCheck,
+    private bool   
         chasing, searching, stopSearch, Attacked, getHit,
         ded, HpLow, getAttack, cansee;
-    public Transform player;
+    public Transform player;    
     public Vector3 LastSound;
     Transform currentDest;
     Vector3 dest;
@@ -162,7 +162,6 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Hunt)
         {
-            ChaseCheck = true;
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(true);
             ChaseGhost.enabled = true;
@@ -171,6 +170,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
             getAttack = false;
+            StunTime();
             if (!chasing)
             {
                 if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_Run"))
@@ -178,9 +178,10 @@ public class Ghost : MonoBehaviour, HearPlayer
                 chasing = true;
             }
             // GhostAni.SetTrigger("Run");
-            if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box)
+            if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box && curStun < 0)
             {
                 cansee = false;
+                curStun = 0;
                 if (!Attacked)
                 {
                     GhostAni.Play("G_atk", 0, 0);
@@ -190,7 +191,6 @@ public class Ghost : MonoBehaviour, HearPlayer
                 _stateGhost = StateGhost.HitP;
             }
         }
-        else ChaseCheck = false;
 
         if (_stateGhost == StateGhost.HitP)
         {

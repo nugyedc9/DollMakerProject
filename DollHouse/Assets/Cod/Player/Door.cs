@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
     {
         DoorSound.clip = close; DoorSound.Play();
         Lock = true;
-        doorAni.Play("Door_close", 0, 0);
+        doorAni.Play("Door_closefast", 0, 0);
         D = false;
     }
 
