@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -55,15 +56,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
     public Image CanvaImage;
-    public Sprite PickItem1;
-    public Sprite PickItem2;
-    public Sprite GoRadioPlay;
-    public Sprite FinishWork1;
-    public Sprite LightOut;
-    public Sprite Getlantern;
-    public Sprite DoorLockEvent;
-    public Sprite GhostSpawn;
-    public Sprite BeQuiet;
+    [SerializeField] public string[] Dialogue;
+    public TextMeshProUGUI Textdialogue;
 
     [Header("CanvaInterect")]
     public Image InterectAble;
@@ -127,11 +121,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hitinfo.collider.gameObject.tag == "Ghost")
                 {
-                    crossruin = true;
-                    HitAudio.clip = HitGhostSound;
-                    GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
-                    GhostHit.PlayerHitGhost();
-
+                    if (curHpCross != 1)
+                    {
+                        crossruin = true;
+                        HitAudio.clip = HitGhostSound;
+                        GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
+                        GhostHit.PlayerHitGhost();
+                    }
                     //StartCoroutine(AttackReset());
                 }
             }
@@ -168,9 +164,8 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hitInterect.collider.gameObject.tag == "Key")
                 {
-                    print("GetKey");
+                    
                     GetKey.Invoke();
-                    CanvaImage.sprite = GhostSpawn;
                     StartCoroutine(GhostSpawnDelay());
                     Destroy(hitInterect.collider.gameObject);
                 }
@@ -245,6 +240,12 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Basket";
                 InterectItem = true;
             }
+            else if (hitevent.collider.gameObject.tag == "FrontDoor")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "FrontDoor";
+                InterectItem = true;
+            }
             else
             {
                 InterectItem = false;
@@ -311,6 +312,7 @@ public class PlayerAttack : MonoBehaviour
                 ClothOnHand = false;
             }
 
+
         }
         else if (!CanDropItem) 
         {
@@ -350,21 +352,30 @@ public class PlayerAttack : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
 
                     }
-                    if (hitInfo.collider.gameObject.tag == "Lantern")
-                    {
-                        Light.SetActive(true);
-                        LanternAni.SetTrigger("LightUp");
-                        LightOn = true; 
-                        LightOnHand = true;
-                        pointLight.SetActive(true);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
+                
                 }
             }
         }
         #endregion
 
         #region LightUP
+
+        Ray LPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
+        if (Input.GetKeyDown(KeyCode.E))
+            if (Physics.Raycast(LPick, out RaycastHit hitInfo, Pickrange))
+            {
+                if (hitInfo.collider.gameObject.tag == "Lantern")
+                {
+                    Light.SetActive(true);
+                    LanternAni.SetTrigger("LightUp");
+                    LightOn = true;
+                    LightOnHand = true;
+                    pointLight.SetActive(true);
+                    Destroy(hitInfo.collider.gameObject);
+                }
+            }
+
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (LightOnHand)
@@ -590,31 +601,31 @@ public class PlayerAttack : MonoBehaviour
         }
         if (other.gameObject.tag == "PickItem1")
         {
-            CanvaImage.sprite = PickItem1;
+            Textdialogue.text = Dialogue[0];
             dialogCheck = true;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "GoRadioPlay")
         {
-            CanvaImage.sprite = GoRadioPlay;
+            Textdialogue.text = Dialogue[1];
             dialogCheck = true;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "LightOutEvent")
         {
-            CanvaImage.sprite = LightOut;
+            Textdialogue.text = Dialogue[3];               
             StartCoroutine(LightOutDelay());
             Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "ClostDoorEvent")
+        if (other.gameObject.tag == "CloseDoorEvent")
         {
-            CanvaImage.sprite = DoorLockEvent;
+            Textdialogue.text = Dialogue[4];
             dialogCheck = true;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "BeQuiet")
         {
-            CanvaImage.sprite = BeQuiet;
+            Textdialogue.text = Dialogue[5];
             dialogCheck = true;
             Destroy(other.gameObject);
         }
@@ -623,7 +634,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void PickItem2Event()
     {
-        CanvaImage.sprite = FinishWork1;
+        Textdialogue.text = Dialogue[1];
         StartCoroutine(PickItem2Delay());
     }
 
@@ -639,7 +650,7 @@ public class PlayerAttack : MonoBehaviour
     {
         CanvaDialog.SetActive(true) ;
         yield return new WaitForSeconds(5);
-        CanvaImage.sprite = PickItem2;
+        Textdialogue.text = Dialogue[2];
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
@@ -647,7 +658,7 @@ public class PlayerAttack : MonoBehaviour
     {
         CanvaDialog.SetActive(true);
         yield return new WaitForSeconds(5);
-        CanvaImage.sprite = Getlantern;
+        Textdialogue.text = Dialogue[1];
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
@@ -655,7 +666,7 @@ public class PlayerAttack : MonoBehaviour
     {
         CanvaDialog.SetActive(true);
         yield return new WaitForSeconds(5);
-        CanvaImage.sprite = BeQuiet;
+        Textdialogue.text = Dialogue[1];
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }

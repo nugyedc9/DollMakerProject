@@ -15,7 +15,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
         catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun, lowSpeed;
-    private bool walking, IdleCheck, ChaseCheck,
+    private bool   ChaseCheck,
         chasing, searching, stopSearch, Attacked, getHit,
         ded, HpLow, getAttack, cansee;
     public Transform player;
@@ -107,7 +107,6 @@ public class Ghost : MonoBehaviour, HearPlayer
             GhostCloseDistance.enabled = false;
             Box = false;
         }
-        else
         {
             if (!Phit)
             {
@@ -120,7 +119,6 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Walk)
         {
-            walking = true;
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
             stopSearch = false;
@@ -134,20 +132,18 @@ public class Ghost : MonoBehaviour, HearPlayer
                 _stateGhost = StateGhost.Idle;
             }
         }
-        else walking = false;
 
         if (_stateGhost == StateGhost.Idle)
         {
-            IdleCheck = true;
             stopSearch = false;
             cansee = true;
+            getHit = false;
             MistGhost.enabled = true;
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
             DiedGhost.enabled = false;
             StartCoroutine(stayIdle());
         }
-        else IdleCheck = false;
 
         if (_stateGhost == StateGhost.Search)
         {
@@ -193,10 +189,6 @@ public class Ghost : MonoBehaviour, HearPlayer
                 //  GhostAni.SetTrigger("HitPlayer");
                 _stateGhost = StateGhost.HitP;
             }
-            /*if (!canSeePlayer)
-            {
-                _stateGhost = StateGhost.Idle;
-            }*/
         }
         else ChaseCheck = false;
 
@@ -215,13 +207,15 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (lowSpeed < 1)
         {
             Phit = true;
+            getHit = true;
+            stopSearch = true;
             GhostCloseDistance.enabled = false;
+            StopAllCoroutines();
             if (!HpLow)
             {
                 HpGhost--;
                 ToSpawn++;
                 PAttack.CrossRuin();
-                GhostAni.Play("G_dead", 0, 0);
                 HpLow = true;
             }
             cansee = false;
@@ -236,7 +230,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             enemyGhost.speed = 0;
             HpLow = false;
-            getHit = false;
             getAttack = false;
             chasing = false;
             BlackSphere.SetActive(true);
@@ -248,13 +241,16 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Dead)
         {
-            HpLow = false;
-            stopSearch = true;
             cansee = false;
+            enemyGhost.speed = 0;
+            HpLow = false;
+            getAttack = false;
+            chasing = false;
             if (!ded)
             {
                 GhostFrom.SetActive(true);
-                GhostAni.Play("G_dead", 0, 0);
+                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_dead"))
+                    GhostAni.Play("G_dead", 0, 0);
                 DiedGhost.enabled = true;
                 ded = true;
             }
@@ -262,12 +258,11 @@ public class Ghost : MonoBehaviour, HearPlayer
             StunTime();
             if (curStun < 0)
             {
-                Phit = true;
-                GhostCloseDistance.enabled = false;
                 FoundPlayer.enabled = false;
                 DiedGhost.enabled = false;
                 MistGhost.enabled = false;
                 ChaseGhost.enabled = false;
+
                 BlackSphere.SetActive (false);
                 GhostFrom.SetActive (false);
                 StartCoroutine(AfterDead());
@@ -410,9 +405,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
 
 
-
- 
-
     #region Vision Cone
    private bool PlayerInsight;
 
@@ -448,6 +440,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 {
                     if (curStun > 1)
                         PlayerInsight = true;
+                    StopAllCoroutines();
                     _stateGhost = StateGhost.Hunt;
                 }
             }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Cinemachine;
+using TMPro;
 using Unity.VisualScripting;
 
 namespace player
@@ -32,7 +33,8 @@ namespace player
         public GameObject CanvaBedView;
         public GameObject CanvaForntDoor;
         public Image ImageDialogue;
-        [SerializeField] public Sprite[] Dialog;
+        [SerializeField] public string[] Dialog;
+        public TextMeshProUGUI TextDialogue;
         public GameObject WorkTutorial;
 
         [Header("Audio")]
@@ -120,6 +122,7 @@ namespace player
                     {
                         if (ChangePOV.IsActiveCamera(FirstPerson))
                         {
+                            TextDialogue.text = Dialog[DialogNow];
                             DoorInterect = hitinfo.collider.gameObject.GetComponent<Door>();
                             DoorInterect.ForntDoor();
                             CanvaForntDoor.SetActive(true);
@@ -136,7 +139,7 @@ namespace player
                 if (Input.GetButtonDown("Fire1"))
                 {
                     DialogNow++;
-                    if (DialogNow < Dialog.Length) ImageDialogue.sprite = Dialog[DialogNow];
+                    if (DialogNow < Dialog.Length) TextDialogue.text = Dialog[DialogNow];
 
                 }
             }
