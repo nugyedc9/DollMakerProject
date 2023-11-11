@@ -15,7 +15,7 @@ D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-52431
+53599
 Successfully changed project path to: D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
 D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,11 +49,11 @@ D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [21952] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 986147462 [EditorId] 986147462 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [10548] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 2037356551 [EditorId] 2037356551 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [21952] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 986147462 [EditorId] 986147462 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [10548] Host "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 2037356551 [EditorId] 2037356551 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 6.42 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 5.69 ms, found 5 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.0f1 (fb119bb0b476)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Resources/UnitySubsystems
@@ -69,44 +69,44 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56244
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56404
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.005219 seconds.
-- Loaded All Assemblies, in  0.255 seconds
+Registered in 0.005867 seconds.
+- Loaded All Assemblies, in  0.258 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.203 seconds
-Domain Reload Profiling: 458ms
-	BeginReloadAssembly (60ms)
+- Finished resetting the current domain, in  0.212 seconds
+Domain Reload Profiling: 468ms
+	BeginReloadAssembly (65ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (25ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (112ms)
-		LoadAssemblies (58ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (109ms)
+		LoadAssemblies (63ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (108ms)
-			TypeCache.Refresh (107ms)
-				TypeCache.ScanAssembly (95ms)
+		AnalyzeDomain (103ms)
+			TypeCache.Refresh (102ms)
+				TypeCache.ScanAssembly (93ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (204ms)
+	FinalizeReload (212ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (162ms)
+		SetupLoadedEditorAssemblies (165ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			SetLoadedEditorAssemblies (5ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
 			ProcessInitializeOnLoadAttributes (110ms)
-			ProcessInitializeOnLoadMethodAttributes (38ms)
+			ProcessInitializeOnLoadMethodAttributes (40ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -116,8 +116,8 @@ Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.829 seconds
-Refreshing native plugins compatible for Editor in 2.28 ms, found 5 plugins.
+- Loaded All Assemblies, in  0.664 seconds
+Refreshing native plugins compatible for Editor in 2.04 ms, found 5 plugins.
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
@@ -130,47 +130,47 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  1.686 seconds
-Domain Reload Profiling: 2513ms
-	BeginReloadAssembly (110ms)
+- Finished resetting the current domain, in  1.352 seconds
+Domain Reload Profiling: 2014ms
+	BeginReloadAssembly (94ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (4ms)
+		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (19ms)
-	RebuildCommonClasses (32ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (37ms)
-	LoadAllAssembliesAndSetupDomain (641ms)
-		LoadAssemblies (270ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (505ms)
+		LoadAssemblies (234ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (422ms)
-			TypeCache.Refresh (375ms)
-				TypeCache.ScanAssembly (360ms)
-			ScanForSourceGeneratedMonoScriptInfo (38ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (1686ms)
+		AnalyzeDomain (314ms)
+			TypeCache.Refresh (280ms)
+				TypeCache.ScanAssembly (268ms)
+			ScanForSourceGeneratedMonoScriptInfo (26ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1352ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1476ms)
+		SetupLoadedEditorAssemblies (1205ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
+			InitializePlatformSupportModulesInManaged (5ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (83ms)
-			ProcessInitializeOnLoadAttributes (400ms)
-			ProcessInitializeOnLoadMethodAttributes (975ms)
-			AfterProcessingInitializeOnLoad (7ms)
+			BeforeProcessingInitializeOnLoad (67ms)
+			ProcessInitializeOnLoadAttributes (316ms)
+			ProcessInitializeOnLoadMethodAttributes (808ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (5ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 2.53 ms, found 5 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 6.86 ms, found 5 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 7463 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 135 unused Assets / (3.6 MB). Loaded Objects now: 7956.
 Memory consumption went from 330.1 MB to 326.5 MB.
-Total: 5.358400 ms (FindLiveObjects: 0.397300 ms CreateObjectMapping: 0.196100 ms MarkObjects: 4.222800 ms  DeleteObjects: 0.540700 ms)
+Total: 3.914800 ms (FindLiveObjects: 0.392100 ms CreateObjectMapping: 0.201100 ms MarkObjects: 2.836900 ms  DeleteObjects: 0.483500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -185,19 +185,27 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 12798.521780 seconds.
-  path: Assets/Scenes/Scene1.unity
-  artifactKey: Guid(9aa4b53dbe772984a8bb5a7031999cc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Scene1.unity using Guid(9aa4b53dbe772984a8bb5a7031999cc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efad7aaa4b8815e430d840e609204361') in 0.002565 seconds
+  Time since last request: 17836.312501 seconds.
+  path: Assets/TextMesh Pro/Fonts/MixStitch SDF.asset
+  artifactKey: Guid(f84ec25cc22a63a42b395c1c58c43d8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Fonts/MixStitch SDF.asset using Guid(f84ec25cc22a63a42b395c1c58c43d8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16ab4f681ce94594d47df13834ca5016') in 0.024866 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 562.176993 seconds.
+  path: Assets/Assest 2D/Ui/Scene/Crossfade_End.anim
+  artifactKey: Guid(a97bf3a65d352f54c856dcdcd8844689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assest 2D/Ui/Scene/Crossfade_End.anim using Guid(a97bf3a65d352f54c856dcdcd8844689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '418e89a974ad7920074513c0c40516f0') in 0.002472 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.657 seconds
-Refreshing native plugins compatible for Editor in 2.20 ms, found 5 plugins.
+- Loaded All Assemblies, in  0.728 seconds
+Refreshing native plugins compatible for Editor in 2.44 ms, found 5 plugins.
 Native extension for WindowsStandalone target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
@@ -206,114 +214,114 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.971 seconds
-Domain Reload Profiling: 1626ms
-	BeginReloadAssembly (136ms)
+- Finished resetting the current domain, in  1.042 seconds
+Domain Reload Profiling: 1768ms
+	BeginReloadAssembly (148ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (9ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (48ms)
-	RebuildCommonClasses (26ms)
+		CreateAndSetChildDomain (47ms)
+	RebuildCommonClasses (27ms)
 	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (460ms)
-		LoadAssemblies (223ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (513ms)
+		LoadAssemblies (286ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (283ms)
-			TypeCache.Refresh (274ms)
-				TypeCache.ScanAssembly (263ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (971ms)
+		AnalyzeDomain (282ms)
+			TypeCache.Refresh (265ms)
+				TypeCache.ScanAssembly (254ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1042ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (362ms)
+		SetupLoadedEditorAssemblies (369ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (6ms)
-			SetLoadedEditorAssemblies (4ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (65ms)
-			ProcessInitializeOnLoadAttributes (253ms)
-			ProcessInitializeOnLoadMethodAttributes (28ms)
+			ProcessInitializeOnLoadAttributes (266ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
 			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (36ms)
+Refreshing native plugins compatible for Editor in 2.57 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7108 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 85 unused Assets / (3.6 MB). Loaded Objects now: 7982.
+Memory consumption went from 281.6 MB to 278.0 MB.
+Total: 3.894600 ms (FindLiveObjects: 0.348800 ms CreateObjectMapping: 0.173700 ms MarkObjects: 2.931700 ms  DeleteObjects: 0.439300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.688 seconds
+Refreshing native plugins compatible for Editor in 2.46 ms, found 5 plugins.
+Native extension for WindowsStandalone target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.033 seconds
+Domain Reload Profiling: 1719ms
+	BeginReloadAssembly (136ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (11ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (42ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (494ms)
+		LoadAssemblies (239ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (304ms)
+			TypeCache.Refresh (289ms)
+				TypeCache.ScanAssembly (276ms)
+			ScanForSourceGeneratedMonoScriptInfo (6ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1033ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (450ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (99ms)
+			ProcessInitializeOnLoadAttributes (314ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (36ms)
 Refreshing native plugins compatible for Editor in 2.21 ms, found 5 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 7107 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 85 unused Assets / (3.6 MB). Loaded Objects now: 7980.
-Memory consumption went from 281.6 MB to 277.9 MB.
-Total: 4.087300 ms (FindLiveObjects: 0.384700 ms CreateObjectMapping: 0.178800 ms MarkObjects: 3.029500 ms  DeleteObjects: 0.493100 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.609 seconds
-Refreshing native plugins compatible for Editor in 2.34 ms, found 5 plugins.
-Native extension for WindowsStandalone target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.877 seconds
-Domain Reload Profiling: 1484ms
-	BeginReloadAssembly (128ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (9ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (42ms)
-	RebuildCommonClasses (23ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (424ms)
-		LoadAssemblies (204ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (263ms)
-			TypeCache.Refresh (255ms)
-				TypeCache.ScanAssembly (244ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (9ms)
-	FinalizeReload (878ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (344ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (4ms)
-			SetLoadedEditorAssemblies (3ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (64ms)
-			ProcessInitializeOnLoadAttributes (244ms)
-			ProcessInitializeOnLoadMethodAttributes (23ms)
-			AfterProcessingInitializeOnLoad (6ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (35ms)
-Refreshing native plugins compatible for Editor in 3.57 ms, found 5 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 7101 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 85 unused Assets / (3.6 MB). Loaded Objects now: 7997.
-Memory consumption went from 280.3 MB to 276.7 MB.
-Total: 3.895400 ms (FindLiveObjects: 0.370400 ms CreateObjectMapping: 0.172100 ms MarkObjects: 2.734000 ms  DeleteObjects: 0.617800 ms)
+Unloading 7102 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 85 unused Assets / (3.6 MB). Loaded Objects now: 7999.
+Memory consumption went from 280.4 MB to 276.8 MB.
+Total: 3.868700 ms (FindLiveObjects: 0.375100 ms CreateObjectMapping: 0.176400 ms MarkObjects: 2.776100 ms  DeleteObjects: 0.540100 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -329,76 +337,84 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 966.362953 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowc.ttf
-  artifactKey: Guid(71ad4f0da53a8e9429922b5b29586c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowc.ttf using Guid(71ad4f0da53a8e9429922b5b29586c92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e69a697c5af8c921c1bd42448c585f34') in 0.025163 seconds
+  Time since last request: 757.820444 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/icon_mbsassetpack.png
+  artifactKey: Guid(c52e79d4d146fb648ab74cf2a4d21b5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/icon_mbsassetpack.png using Guid(c52e79d4d146fb648ab74cf2a4d21b5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ae0fce6b9f4e09a651b41744cf75e3b') in 0.031717 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowci.ttf
-  artifactKey: Guid(35f82d4544f266a4c92eafaa0e56bcc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowci.ttf using Guid(35f82d4544f266a4c92eafaa0e56bcc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e79f32bf78e33c4a52d7b47f9c9fd760') in 0.002234 seconds
+  Time since last request: 0.004615 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconObjPicker-w.png
+  artifactKey: Guid(e5fec1dc885b1624abc690f8c7ddf510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconObjPicker-w.png using Guid(e5fec1dc885b1624abc690f8c7ddf510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d545b7bbf9a386074feb8a311ca64f4') in 0.001565 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe.ttf
-  artifactKey: Guid(910ea0026f647b3458b17206748dcf77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe.ttf using Guid(910ea0026f647b3458b17206748dcf77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50a3961ee62b8e16c95893c78df585bf') in 0.002011 seconds
+  Time since last request: 0.002693 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconPlacingTypeTopSide-w.png
+  artifactKey: Guid(ed3de9cb14ae11b4da8eb054459e7e21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconPlacingTypeTopSide-w.png using Guid(ed3de9cb14ae11b4da8eb054459e7e21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '721e2738ff702fb513e021fd68c541ec') in 0.001328 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconToolbarPlacer-w.png
+  artifactKey: Guid(58d3de2d15cf5b744b1022c217ebdc2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconToolbarPlacer-w.png using Guid(58d3de2d15cf5b744b1022c217ebdc2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a5190320c245f4274bc6deffac28529') in 0.001429 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconToolbarFloor-b.png
+  artifactKey: Guid(49d4b3de0304d60458e5bfd439953ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconToolbarFloor-b.png using Guid(49d4b3de0304d60458e5bfd439953ef0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5924c340467fbe01ab192fadc824131') in 0.001257 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
   Time since last request: 0.000013 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsc.ttf
-  artifactKey: Guid(f3e830ca813b76a4d8593642404efcad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsc.ttf using Guid(f3e830ca813b76a4d8593642404efcad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bbbe3001d9d1eef9cbf30af39d37964') in 0.003123 seconds
+  path: Assets/All Assest/MBS/InternalData/Icons/iconToolbarPlacer-b.png
+  artifactKey: Guid(a3fcb5c2831340a409d8bb4e03183aa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconToolbarPlacer-b.png using Guid(a3fcb5c2831340a409d8bb4e03183aa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17957684a2ca556c7ee3c364e2caa7d4') in 0.001051 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsci.ttf
-  artifactKey: Guid(3fab7ca6230472c4b9f6ccb649431c6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsci.ttf using Guid(3fab7ca6230472c4b9f6ccb649431c6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd52c8255fc06081a96cb14ee53890900') in 0.001538 seconds
+  Time since last request: 0.000013 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconToolbarWall-w.png
+  artifactKey: Guid(4d100479078d746438b28d95cfbca7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconToolbarWall-w.png using Guid(4d100479078d746438b28d95cfbca7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5017ebf96bce146b98ef67ba0c573e41') in 0.001217 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 3.704366 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowc 1.ttf
-  artifactKey: Guid(5b6593038e3aa1d4a817797a9fb4dc50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowc 1.ttf using Guid(5b6593038e3aa1d4a817797a9fb4dc50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9862d7d052dbdb4d44a6d7b917bad59') in 0.002337 seconds
+  Time since last request: 0.000012 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconPlacingTypeTop-b.png
+  artifactKey: Guid(d1fd6971627384d498e7f23bd468cfc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconPlacingTypeTop-b.png using Guid(d1fd6971627384d498e7f23bd468cfc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f4c47acc54a78421803f8c3fd2d22da') in 0.001225 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe 1.ttf
-  artifactKey: Guid(29759c4c1fda33b4dbd84233a88491b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe 1.ttf using Guid(29759c4c1fda33b4dbd84233a88491b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3723f0d98c99d76dc434ebb5526dbd8b') in 0.002265 seconds
+  Time since last request: 0.000011 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/iconObjPicker-b.png
+  artifactKey: Guid(022f80c3110a4dd4e8aa9ab5e91b7b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/iconObjPicker-b.png using Guid(022f80c3110a4dd4e8aa9ab5e91b7b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '415ed5d38baa2aea53b1553611131274') in 0.000934 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 44.179583 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe SDF.asset
-  artifactKey: Guid(efeae0fca64f7f34b8237e488cb26236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowe SDF.asset using Guid(efeae0fca64f7f34b8237e488cb26236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96db0e583f0413671605e9e3a947d626') in 0.012442 seconds
+  Time since last request: 0.000010 seconds.
+  path: Assets/All Assest/MBS/InternalData/Icons/icon_mbswall.png
+  artifactKey: Guid(a2eabece6aff098489973741e00c4be6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/MBS/InternalData/Icons/icon_mbswall.png using Guid(a2eabece6aff098489973741e00c4be6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07d41e045a39867290759f6491d536c1') in 0.001248 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 5
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsci SDF.asset
-  artifactKey: Guid(8d060571b05bf884693253f72e32a025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TextMesh Pro/Fonts/blood_crow/bloodcrowsci SDF.asset using Guid(8d060571b05bf884693253f72e32a025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03ee86cbc9178fa880d7e164f2773dda') in 0.002064 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 5
+Number of asset objects unloaded after import = 1
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server
