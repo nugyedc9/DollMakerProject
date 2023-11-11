@@ -93,11 +93,11 @@ public class Ghost : MonoBehaviour, HearPlayer
         DrawVisionCone();
         DistanceAmount = enemyGhost.remainingDistance;
 
-        if (HpGhost < 1)
+     /*   if (HpGhost < 1)
         {
             StopAllCoroutines();
             _stateGhost = StateGhost.Dead;
-        }
+        }*/
 
         if (curStun == 0) curStun = Stun;
 
@@ -140,6 +140,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             IdleCheck = true;
             stopSearch = false;
+            cansee = true;
             MistGhost.enabled = true;
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
@@ -152,7 +153,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             //  Debug.Log("SearchState");
             dest = LastSound;
-            cansee = true;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
             if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
@@ -225,9 +225,11 @@ public class Ghost : MonoBehaviour, HearPlayer
                 HpLow = true;
             }
             cansee = false;
-            _stateGhost = StateGhost.ChangePosition;
             enemyGhost.speed = 0;
             lowSpeed = chaseSpeed;
+            if (ToSpawn != 3)
+                _stateGhost = StateGhost.ChangePosition;
+            else _stateGhost = StateGhost.Dead;
         }
 
         if (_stateGhost == StateGhost.ChangePosition)
@@ -246,13 +248,12 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Dead)
         {
-            getHit = true;
             HpLow = false;
             stopSearch = true;
-            BlackSphere.SetActive(false);
-            GhostFrom.SetActive(true);
+            cansee = false;
             if (!ded)
             {
+                GhostFrom.SetActive(true);
                 GhostAni.Play("G_dead", 0, 0);
                 DiedGhost.enabled = true;
                 ded = true;
@@ -261,11 +262,13 @@ public class Ghost : MonoBehaviour, HearPlayer
             StunTime();
             if (curStun < 0)
             {
+                Phit = true;
                 GhostCloseDistance.enabled = false;
                 FoundPlayer.enabled = false;
                 DiedGhost.enabled = false;
                 MistGhost.enabled = false;
                 ChaseGhost.enabled = false;
+                BlackSphere.SetActive (false);
                 GhostFrom.SetActive (false);
                 StartCoroutine(AfterDead());
                 curStun = 0;
@@ -342,17 +345,13 @@ public class Ghost : MonoBehaviour, HearPlayer
             playerNearSpawn3();
             _stateGhost = StateGhost.Idle;
         }
-        if (ToSpawn == 3)
-        {
-            _stateGhost = StateGhost.Dead;
-        }
     }
 
     IEnumerator AfterDead()
     {
         yield return new WaitForSeconds(20);
         playerNearSpawn1();
-        GhostCloseDistance.enabled = true;
+        Phit = false;
         ToSpawn = 0;
         _stateGhost = StateGhost.Idle;
     }
@@ -387,28 +386,12 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     #endregion
 
-    #region CollEnter
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Orb")
-        {
-            lowSpeed = chaseSpeed;
-            lowSpeed -= 1f * Time.deltaTime;
-            enemyGhost.speed = lowSpeed;
-            if (lowSpeed < 1)
-            {
-                lowSpeed = 1f;
-            }
-        }
-    }
-    #endregion
-
+    
     public void PlayerHitGhost()
     {
         if (!getHit)
         {
-            lowSpeed -= 4f * Time.deltaTime;
+            lowSpeed -= 8f * Time.deltaTime;
             enemyGhost.speed = lowSpeed;
             if (!getAttack)
             {
@@ -428,9 +411,11 @@ public class Ghost : MonoBehaviour, HearPlayer
 
 
 
-    private bool PlayerInsight;
+ 
 
     #region Vision Cone
+   private bool PlayerInsight;
+
     void DrawVisionCone()
     {
         int[] triangles = new int[(VisionConeResolution - 1) * 3];
