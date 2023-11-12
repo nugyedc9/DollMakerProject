@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(Ghost))]
+//[CustomEditor(typeof(Ghost))]
 public class GhostFovEditor : Editor
 {
   /*  private void OnSceneGUI()   

@@ -1,4 +1,3 @@
-
 using player;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,11 +7,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour
 {
-#if UNITY_EDITOR
     public float ShootSpeed = 30;
     public float DropSpeed;
     public Camera FpsCam;
@@ -541,6 +538,7 @@ public class PlayerAttack : MonoBehaviour
         Shoot();
     }
 
+#endregion
 
     public void StopAttack()
     {
@@ -548,6 +546,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void CanAttack()
     {
+        if(CrossOnHand) 
         Attack = true;
     }
 
@@ -580,7 +579,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-    #endregion
+    
 
     #region Dialogue event
     public void OnTriggerEnter(Collider other)
@@ -707,5 +706,4 @@ public class PlayerAttack : MonoBehaviour
         if (CrossOnHand) Attack = true;
     }
     #endregion
-#endif
 }

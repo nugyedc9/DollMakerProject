@@ -22,7 +22,7 @@ namespace player
         PlayerMovement pMove;
         public Transform Interact;
         public float InterectRange;
-        public PlayerAttack pAttack;
+        [SerializeField] public PlayerAttack pAttack;
         public GameObject pHand;
         public AudioSource FootStep;
 
@@ -165,6 +165,7 @@ namespace player
                     ChangePOV.SwitchCamera(FirstPerson);
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
+                    pAttack.CanAttack();
                     pMove.walkAble();
                     pHand.SetActive(true);
                     MiniG2Off.SetActive(false);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014362437, g: 0.052481882, b: 0.068111666, a: 1}
+  m_IndirectSpecularColor: {r: 0.014377271, g: 0.05229356, b: 0.06780622, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1170,9 +1170,12 @@ MonoBehaviour:
   StartMiniG2: 0
   StopMiniG2: 1
   working: 1
-  barSlider: {fileID: 0}
-  Stick: {fileID: 0}
   canvaMiniG2: {fileID: 1523395364}
+  SoundSoure: {fileID: 0}
+  Alertsound: {fileID: 0}
+  FinishSound: {fileID: 0}
+  FailSound: {fileID: 0}
+  SuccessSound: {fileID: 0}
   G2bar: {fileID: 85830385}
   minTranX: 200
   minTranY: 200
@@ -1188,8 +1191,15 @@ MonoBehaviour:
   - {fileID: 8243971272034565154, guid: f394a321ea2e42f4da85c9e978623dac, type: 3}
   - {fileID: 1891372027829788091, guid: ea995008d6962944a8ef05b4df6eb6b5, type: 3}
   - {fileID: 3966899024939382298, guid: efcaa5973583b6b419f9ace102a4c5dc, type: 3}
-  SpawnAction: {fileID: 2008676781}
+  DestroyBeat: []
   Canplay: {fileID: 0}
+  Cutscene:
+    m_PersistentCalls:
+      m_Calls: []
+  PickItem2:
+    m_PersistentCalls:
+      m_Calls: []
+  PCut: {fileID: 0}
 --- !u!114 &85830385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3163,7 +3173,7 @@ SpriteRenderer:
   m_Size: {x: 19.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &177057240
@@ -31580,43 +31590,41 @@ MonoBehaviour:
   GhostAni: {fileID: 1458706775}
   walkSpeed: 2
   chaseSpeed: 4
-  AfterHitSpeed: 1
   minIdleTime: 1
   maxIdleTime: 3
   IdleTime: 3
-  sightDistance: 10
   catchDistance: 1
   chaseTime: 3
   DistanceAmount: 0
   HpGhost: 1
   Stun: 3
   curStun: 0
-  walking: 0
-  chasing: 0
-  searching: 0
-  stopSearch: 0
-  Attacked: 0
-  getHit: 0
+  lowSpeed: 0
   player: {fileID: 1388500678}
   LastSound: {x: 0, y: 0, z: 0}
+  FirstDest: 0
   destinationAmount: 3
   rayCastOffset: {x: 0, y: 0, z: 0}
-  P: {fileID: 1388500683}
+  HpPlayer: {fileID: 0}
+  PAttack: {fileID: 0}
   DamageGhost: 1
   BlackSphere: {fileID: 177057237}
   GhostFrom: {fileID: 1458706771}
   GhostCloseDistance: {fileID: 826680748}
-  radius: 10
-  angle: 90
-  PlayerPos: {fileID: 1388500676}
-  layerPLayer:
+  GhostTransFrom: {fileID: 0}
+  Spawn1: {fileID: 0}
+  Spawn2: {fileID: 0}
+  Spawn3: {fileID: 0}
+  VisionConeMaterial: {fileID: 0}
+  VisionRange: 0
+  VisionAngle: 0
+  VisionObstructingLayer:
     serializedVersion: 2
-    m_Bits: 256
-  obstructionMask:
+    m_Bits: 0
+  PlayerLayer:
     serializedVersion: 2
-    m_Bits: 512
-  canSeePlayer: 0
-  AudioGhost: {fileID: 826680751}
+    m_Bits: 0
+  VisionConeResolution: 120
   FoundPlayer: {fileID: 320965572}
   MistGhost: {fileID: 8300000, guid: 3b1694138b97f374585d080995518735, type: 3}
   ChaseGhost: {fileID: 211447357}
@@ -37289,9 +37297,12 @@ MonoBehaviour:
   StartMiniG2: 0
   StopMiniG2: 1
   working: 1
-  barSlider: {fileID: 0}
-  Stick: {fileID: 0}
   canvaMiniG2: {fileID: 819739471}
+  SoundSoure: {fileID: 0}
+  Alertsound: {fileID: 0}
+  FinishSound: {fileID: 0}
+  FailSound: {fileID: 0}
+  SuccessSound: {fileID: 0}
   G2bar: {fileID: 1173471997}
   minTranX: 200
   minTranY: 200
@@ -37307,8 +37318,15 @@ MonoBehaviour:
   - {fileID: 8243971272034565154, guid: f394a321ea2e42f4da85c9e978623dac, type: 3}
   - {fileID: 1891372027829788091, guid: ea995008d6962944a8ef05b4df6eb6b5, type: 3}
   - {fileID: 3966899024939382298, guid: efcaa5973583b6b419f9ace102a4c5dc, type: 3}
-  SpawnAction: {fileID: 1069339309}
+  DestroyBeat: []
   Canplay: {fileID: 1467647527}
+  Cutscene:
+    m_PersistentCalls:
+      m_Calls: []
+  PickItem2:
+    m_PersistentCalls:
+      m_Calls: []
+  PCut: {fileID: 0}
 --- !u!65 &1173979844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41238,6 +41256,7 @@ MonoBehaviour:
   Clothobj3: {fileID: 0}
   ClothHave: 0
   DollHave: 0
+  player: {fileID: 0}
 --- !u!65 &1368415841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41444,6 +41463,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   Crouch: 0
+  G: 0
   orientation: {fileID: 677145542}
   FootStep: {fileID: 1388500682}
   Footsaound: {fileID: 8300000, guid: 721d1a1c08e49364aa4fea5784bfda7d, type: 3}
@@ -41463,16 +41483,33 @@ MonoBehaviour:
   FirstPerson: {fileID: 1183379931}
   WorkshopView: {fileID: 2024467916}
   BedView: {fileID: 0}
+  ForntDoorView: {fileID: 0}
+  FinalCutSecne: {fileID: 0}
   Interact: {fileID: 1823688467}
   InterectRange: 1
   pAttack: {fileID: 1388500684}
   pHand: {fileID: 2095013831}
   FootStep: {fileID: 1388500682}
-  ItemHave: 0
-  canvaTotelDoll: {fileID: 0}
+  canvaTutorial: {fileID: 0}
   MiniG2Off: {fileID: 819739471}
+  DialogNow: 0
+  CanvaBedView: {fileID: 0}
+  CanvaForntDoor: {fileID: 0}
+  ImageDialogue: {fileID: 0}
+  Dialog: []
+  TextDialogue: {fileID: 0}
+  WorkTutorial: {fileID: 0}
   StartWork: {fileID: 1689166793}
+  canWorkSound: {fileID: 0}
+  cantWorkSound: {fileID: 0}
   AudioRange: 30
+  Dollmake:
+    m_PersistentCalls:
+      m_Calls: []
+  CutSceneFinal:
+    m_PersistentCalls:
+      m_Calls: []
+  PMove: {fileID: 0}
 --- !u!82 &1388500682
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41618,6 +41655,7 @@ MonoBehaviour:
   HitGhostSound: {fileID: 8300000, guid: 10f22cc1de47a6d4a94779a9c489f15a, type: 3}
   HitWindSound: {fileID: 8300000, guid: d6824b87cd847694c9069448d15ef4ca, type: 3}
   HitAudio: {fileID: 1305677575}
+  LightOutLetsGooo: {fileID: 0}
   Light: {fileID: 1822199751}
   pointLight: {fileID: 1474563109}
   LanternAni: {fileID: 1822199755}
@@ -41628,8 +41666,36 @@ MonoBehaviour:
   ClothR: {fileID: 1969680249}
   ClothAni: {fileID: 0}
   CrossD: {fileID: 8783135903777039210, guid: bfb5cb067d8d8cf40a209927e1d41324, type: 3}
+  CrossD2: {fileID: 0}
+  CrossD1: {fileID: 0}
   DollD: {fileID: 7701665418793429515, guid: 5642f325aa64d404e835740e76f75047, type: 3}
   ClothD: {fileID: 6668781995242878639, guid: 69bf79dacb44bfe4d992e75bece33878, type: 3}
+  curHpCross: 0
+  CanvaDialog: {fileID: 0}
+  CanvaImage: {fileID: 0}
+  Dialogue: []
+  Textdialogue: {fileID: 0}
+  InterectAble: {fileID: 0}
+  InterectSprite: {fileID: 0}
+  pointSprite: {fileID: 0}
+  ItemText: {fileID: 0}
+  ItemName: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  LightOutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  GetKey:
+    m_PersistentCalls:
+      m_Calls: []
+  GhostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EventCloseDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  Radio:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1388500685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42789,6 +42855,7 @@ MonoBehaviour:
   Clothobj3: {fileID: 0}
   ClothHave: 0
   DollHave: 0
+  player: {fileID: 0}
 --- !u!65 &1467647528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48969,54 +49036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1823688467}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 16
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!65 &1825769080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52302,6 +52321,7 @@ MonoBehaviour:
   SenX: 200
   SenY: 200
   orientation: {fileID: 677145542}
+  _direction: {x: 0, y: 0, z: 0}
 --- !u!114 &2024467919
 MonoBehaviour:
   m_ObjectHideFlags: 0
