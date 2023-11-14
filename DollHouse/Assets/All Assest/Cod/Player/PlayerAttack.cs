@@ -66,6 +66,9 @@ public class PlayerAttack : MonoBehaviour
     public TextMeshProUGUI ItemName;
     private bool dialogCheck, InterectItem;
 
+    [Header("TextShow")]
+    public TextMeshProUGUI TextYouhere;
+    public TextMeshProUGUI NeedToDo;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -581,9 +584,10 @@ public class PlayerAttack : MonoBehaviour
     }
     
 
-    #region Dialogue event
+    #region Trigger enter
     public void OnTriggerEnter(Collider other)
     {
+        #region Dialogue event
         if (other.gameObject.tag == "LightOutEvent")
         {
             LightOutEvent.Invoke();
@@ -631,6 +635,57 @@ public class PlayerAttack : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+        #endregion
+
+
+        #region Enter room
+
+        if (other.gameObject.tag == "BedRoom1")
+        {
+            TextYouhere.text = "Bed room 1";
+        }
+        if (other.gameObject.tag == "BedRoom2")
+        {
+            TextYouhere.text = "Bed room 2";
+        }
+        if (other.gameObject.tag == "BedRoom3")
+        {
+            TextYouhere.text = "Bed room 3";
+        }
+        if (other.gameObject.tag == "WalkWayF2")
+        {
+            TextYouhere.text = "Walk way F2";
+        }
+        if (other.gameObject.tag == "WalkWayF1")
+        {
+            TextYouhere.text = "Walk way F1";
+        }
+        if (other.gameObject.tag == "ToiletF2")
+        {
+            TextYouhere.text = "Toilet F2";
+        }
+        if (other.gameObject.tag == "FrontDoor")
+        {
+            TextYouhere.text = "Front door";
+        }
+        if (other.gameObject.tag == "Library")
+        {
+            TextYouhere.text = "Library";
+        }
+        if (other.gameObject.tag == "DollMakerRoom")
+        {
+            TextYouhere.text = "Doll maker room";
+        }
+        if (other.gameObject.tag == "DinnerRoom")
+        {
+            TextYouhere.text = "Dinner room";
+        }
+        if (other.gameObject.tag == "Kitchen")
+        {
+            TextYouhere.text = "Kitchen";
+        }
+        #endregion
+
     }
 
     public void PickItem2Event()
@@ -672,6 +727,8 @@ public class PlayerAttack : MonoBehaviour
         CanvaDialog.SetActive(false);
     }
     #endregion
+
+
 
     public void CrossRuin()
     {
