@@ -63,6 +63,7 @@ public class PlayerAttack : MonoBehaviour
     public Sprite InterectSprite;
     public Sprite pointSprite; 
     public GameObject ItemText;
+    public GameObject E;
     public TextMeshProUGUI ItemName;
     private bool dialogCheck, InterectItem;
 
@@ -191,48 +192,56 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.gameObject.tag == "Key")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Key";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Radio";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Door")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Door";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Lantern";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cross")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Cross";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Doll")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Doll";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cloth")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "Cloth";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "DeskWorkShop";
                 InterectItem = true;
             }
@@ -245,12 +254,14 @@ public class PlayerAttack : MonoBehaviour
             else if (hitevent.collider.gameObject.tag == "FrontDoor")
             {
                 ItemText.SetActive(true);
+                E.SetActive(true);
                 ItemName.text = "FrontDoor";
                 InterectItem = true;
             }
             else
             {
                 InterectItem = false;
+                E.SetActive(false);
                 ItemText.SetActive(false);
             }
         }
