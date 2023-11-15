@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Item Change")]
     public int ItemSelect = 0;
     private int Itemhave,Dollhave,Clothhave;
-    private bool showCross,showDoll,showCloth;
+    private bool showCross,showDoll,showCloth,setTriggerCross;
 
 
     [Header("Item Drop")]
@@ -76,7 +76,11 @@ public class PlayerAttack : MonoBehaviour
     [Header("TextShow")]
     public TextMeshProUGUI TextYouhere;
     public TextMeshProUGUI NeedToDo;
-    public TextMeshProUGUI tutorialText;
+    public TextMeshProUGUI StoryText;
+    public GameObject Tutext1;
+    public GameObject Tutext2;
+    public TextMeshProUGUI tutorialText1;
+    public TextMeshProUGUI tutorialText2;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -193,7 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hitInterect.collider.gameObject.tag == "Key")
                 {
-                    
+
                     GetKey.Invoke();
                     StartCoroutine(GhostSpawnDelay());
                     Destroy(hitInterect.collider.gameObject);
@@ -325,6 +329,7 @@ public class PlayerAttack : MonoBehaviour
                 }
                 Itemhave--;
                 CrossOnHand = false;
+                Tutext1.SetActive(false); Tutext2.SetActive(false);
             }
 
             if (Dollhave != 0)
@@ -334,6 +339,7 @@ public class PlayerAttack : MonoBehaviour
                     DropDoll();
                     Itemhave--;
                     Dollhave--;
+
                 }
             }
 
@@ -343,37 +349,79 @@ public class PlayerAttack : MonoBehaviour
                 {
                     DropCloth();
                     Itemhave--;
-                    Clothhave--;    
+                    Clothhave--;
+
                 }
             }
 
         }
 
-        // Show what on hand
+        //Show Cross on hand
         if (ItemSelect == 0 && CrossOnHand)
         {
             CorssR.SetActive(true);
             showCross = true;
+            if(!isPause)
+            Attack = true;
+            Tutext1.SetActive(true);
+            tutorialText1.text = "Attack [Hold left]";
+            if (setTriggerCross)
+            {
+                if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                setTriggerCross = false;
+            }
+
+        }
+        else if(ItemSelect == 0 && !CrossOnHand) 
+        {
+            CorssR.SetActive(false);
+            showCross = false;
+            Tutext1.SetActive(false);
+            Attack = false;
         }
         else
         {
             CorssR.SetActive(false);
             showCross = false;
+            Attack = false;
+            setTriggerCross = true;
         }
+
+        //Show Doll on hand
         if (ItemSelect == 1 && DollOnHand)
         {
             DollR.SetActive(true);
             showDoll = true;
+            Tutext1.SetActive(true);
+            tutorialText1.text = "Drop [G]";
+        }
+        else if (ItemSelect == 1 && !DollOnHand)
+        {
+            showDoll = false;
+            Tutext1.SetActive(false);
+            DollR.SetActive(false);
         }
         else
         {
             showDoll = false;
             DollR.SetActive(false);
         }
+
+        // Show cloth on hand
         if (ItemSelect == 2 && ClothOnHand)
         {
             ClothR.SetActive(true);
             showCloth = true;
+            Tutext1.SetActive(true);
+            tutorialText1.text = "Drop [G]";
+        }
+        else if (ItemSelect == 2 && !ClothOnHand)
+        {
+            Tutext1.SetActive(false);
+            ClothR.SetActive(false);
+            showCloth = false;
         }
         else
         {
@@ -382,6 +430,11 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // if don't have item
+        if(Itemhave == 0)
+        {
+            Tutext1.SetActive(false);
+        }
+                
         if(Clothhave == 0)
         {
             ClothR.SetActive(false);
@@ -465,6 +518,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hitInfo.collider.gameObject.tag == "Lantern")
                 {
+                    Tutext2.SetActive(true);
+                    tutorialText2.text = "Light off [F]";
                     Light.SetActive(true);
                     LanternAni.SetTrigger("LightUp");
                     LightOn = true;
@@ -481,6 +536,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (!LightOn)
                 {
+                    tutorialText2.text = "Light off [F]";
                     Light.gameObject.SetActive(true);
                     LanternAni.SetTrigger("LightUp");
                     LightOn = true;
@@ -488,6 +544,7 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else
                 {
+                    tutorialText2.text = "Light on [F]";
                     Light.gameObject.SetActive(false);
                     LightOn = false;
                     pointLight.SetActive(false);
@@ -788,8 +845,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (other.gameObject.tag == "Story")
         {
-            if(StoryNow == 0)tutorialText.text = "Explore bed room";
-            if(StoryNow == 1)tutorialText.text = "Go to front door";
+            if(StoryNow == 0)StoryText.text = "Explore bed room";
+            if(StoryNow == 1)StoryText.text = "Go to front door";
 
             Destroy(other.gameObject);
             StoryNow++;
