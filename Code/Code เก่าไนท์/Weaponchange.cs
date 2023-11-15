@@ -45,8 +45,6 @@ public class Weaponchange : MonoBehaviour
             selectedWeapon = 2;
         }
 
-
-
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();

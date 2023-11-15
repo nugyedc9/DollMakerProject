@@ -46,6 +46,7 @@ namespace player
         [Header("Event")]
         public UnityEvent Dollmake;
         public UnityEvent CutSceneFinal;
+        public UnityEvent GoBackDoor;
 
         private Door DoorInterect;
         public PlayerMovement PMove;
@@ -154,6 +155,7 @@ namespace player
                         pMove.walkAble();
                         CanvaForntDoor.SetActive(false);
                     }
+                    GoBackDoor.Invoke();
                 }
             }
 

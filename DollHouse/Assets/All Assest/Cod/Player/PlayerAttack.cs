@@ -41,6 +41,12 @@ public class PlayerAttack : MonoBehaviour
     public GameObject ClothR;
     public Animator ClothAni;
 
+    [Header("Item Change")]
+    public int ItemSelect = 0;
+    private int Itemhave,Dollhave,Clothhave;
+    private bool showCross,showDoll,showCloth;
+
+
     [Header("Item Drop")]
     public GameObject CrossD;
     public GameObject CrossD2;
@@ -63,13 +69,14 @@ public class PlayerAttack : MonoBehaviour
     public Sprite InterectSprite;
     public Sprite pointSprite; 
     public GameObject ItemText;
-    public GameObject E;
     public TextMeshProUGUI ItemName;
+    private int StoryNow;
     private bool dialogCheck, InterectItem;
 
     [Header("TextShow")]
     public TextMeshProUGUI TextYouhere;
     public TextMeshProUGUI NeedToDo;
+    public TextMeshProUGUI tutorialText;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -143,6 +150,25 @@ public class PlayerAttack : MonoBehaviour
             else ResumeGame();
         }
 
+        #region Item Change
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (ItemSelect >= 2)
+                ItemSelect = 0;
+            else
+                ItemSelect++;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (ItemSelect <= 0)
+                ItemSelect = 2;
+            else
+                ItemSelect--;
+        }
+
+        #endregion
+
         #region Interect evnet
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
         if (Input.GetKeyDown(KeyCode.E))
@@ -192,57 +218,49 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.gameObject.tag == "Key")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Key";
+                ItemName.text = "Key  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Radio";
+                ItemName.text = "Radio  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Door")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Door";
+                ItemName.text = "Door  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Lantern";
+                ItemName.text = "Lantern  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cross")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Cross";
+                ItemName.text = "Cross  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Doll")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Doll";
+                ItemName.text = "Doll  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cloth")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "Cloth";
+                ItemName.text = "Cloth  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "DeskWorkShop";
+                ItemName.text = "DeskWorkShop  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Basket")
@@ -254,14 +272,12 @@ public class PlayerAttack : MonoBehaviour
             else if (hitevent.collider.gameObject.tag == "FrontDoor")
             {
                 ItemText.SetActive(true);
-                E.SetActive(true);
-                ItemName.text = "FrontDoor";
+                ItemName.text = "FrontDoor  [E]";
                 InterectItem = true;
             }
             else
             {
                 InterectItem = false;
-                E.SetActive(false);
                 ItemText.SetActive(false);
             }
         }
@@ -283,91 +299,161 @@ public class PlayerAttack : MonoBehaviour
 
 
         #region Pick drop item
-        if (CanDropItem)
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                if (CrossOnHand)
-                {
-                    if (curHpCross == 3)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross();
-                    }
-                    if(curHpCross == 2)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross2();
-                    }
-                    if(curHpCross == 1)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross1();
-                    }
-                }
-                if (DollOnHand)
-                {
-                    DollR.SetActive(false);
-                    DropDoll();
-                }
-                if (ClothOnHand)
-                {
-                    ClothR.SetActive(false);
-                    DropCloth();
-                }
 
-                CanDropItem = false;
+        //Drop item
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (CrossOnHand && showCross)
+            {
+                if (curHpCross == 3)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross();
+                }
+                if (curHpCross == 2)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross2();
+                }
+                if (curHpCross == 1)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross1();
+                }
+                Itemhave--;
                 CrossOnHand = false;
-                DollOnHand = false;
-                ClothOnHand = false;
             }
 
+            if (Dollhave != 0)
+            {
+                if (DollOnHand && showDoll)
+                {
+                    DropDoll();
+                    Itemhave--;
+                    Dollhave--;
+                }
+            }
+
+            if (Clothhave != 0)
+            {
+                if (ClothOnHand && showCloth)
+                {
+                    DropCloth();
+                    Itemhave--;
+                    Clothhave--;    
+                }
+            }
 
         }
-        else if (!CanDropItem) 
-        {
-            Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (Physics.Raycast(RPick, out RaycastHit hitInfo, Pickrange))
-                {
-                    if (hitInfo.collider.gameObject.tag == "Cross")
-                    {
-                        CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                        curHpCross = CrossUse.curHp;
-                        CrossOnHand = true;
-                        Attack = true;
-                        CorssR.SetActive(true);
-                        CanDropItem = true;
-                        if(curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                        if(curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                        if(curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                        Destroy(hitInfo.collider.gameObject);
-                        // print("Cross");
-                    }
-                    if (hitInfo.collider.gameObject.tag == "Doll")
-                    {
-                        // DollAni.SetTrigger("OnHand");
-                        DollOnHand = true;
-                        DollR.SetActive(true);
-                        CanDropItem = true;
-                        Destroy(hitInfo.collider.gameObject);
-                        //print("doll");
-                    }
-                    if (hitInfo.collider.gameObject.tag == "Cloth")
-                    {
-                        ClothOnHand = true;
-                        ClothR.SetActive(true);
-                        CanDropItem = true;
-                        Destroy(hitInfo.collider.gameObject);
 
+        // Show what on hand
+        if (ItemSelect == 0 && CrossOnHand)
+        {
+            CorssR.SetActive(true);
+            showCross = true;
+        }
+        else
+        {
+            CorssR.SetActive(false);
+            showCross = false;
+        }
+        if (ItemSelect == 1 && DollOnHand)
+        {
+            DollR.SetActive(true);
+            showDoll = true;
+        }
+        else
+        {
+            showDoll = false;
+            DollR.SetActive(false);
+        }
+        if (ItemSelect == 2 && ClothOnHand)
+        {
+            ClothR.SetActive(true);
+            showCloth = true;
+        }
+        else
+        {
+            ClothR.SetActive(false);
+            showCloth = false;
+        }
+
+        // if don't have item
+        if(Clothhave == 0)
+        {
+            ClothR.SetActive(false);
+            ClothOnHand = false;
+        }
+        if (Dollhave == 0)
+        {
+            DollR.SetActive(false);
+            DollOnHand = false;
+        }
+
+        // Pick item
+        Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.Raycast(RPick, out RaycastHit hitInfo, Pickrange))
+            {
+                if ( Itemhave != 3)
+                {
+                    if (!CrossOnHand)
+                    {
+                        if (hitInfo.collider.gameObject.tag == "Cross")
+                        {
+                            CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                            curHpCross = CrossUse.curHp;
+                            CrossOnHand = true;
+                            Attack = true;
+                            CorssR.SetActive(true);
+                            if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                            if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                            if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                            Destroy(hitInfo.collider.gameObject);
+                            // print("Cross");
+                            DollR.SetActive(false);
+                            ClothR.SetActive(false);
+                            Itemhave++;
+                            ItemSelect = 0;
+                        }
                     }
-                
+                    if (Dollhave != 3)
+                    {
+                        if (hitInfo.collider.gameObject.tag == "Doll")
+                        {
+                            // DollAni.SetTrigger("OnHand");
+                            DollOnHand = true;
+                            DollR.SetActive(true);
+                            Destroy(hitInfo.collider.gameObject);
+                            //print("doll");
+                            CorssR.SetActive(false);
+                            ClothR.SetActive(false);
+                            Itemhave++;
+                            Dollhave++;
+                            ItemSelect = 1;
+                        }
+                    }
+                    if (Clothhave != 3)
+                    {
+                        if (hitInfo.collider.gameObject.tag == "Cloth")
+                        {
+                            ClothOnHand = true;
+                            ClothR.SetActive(true);
+                            Destroy(hitInfo.collider.gameObject);
+                            DollR.SetActive(false);
+                            CorssR.SetActive(false);
+                            Itemhave++;
+                            Clothhave++;
+                            ItemSelect = 2;
+                        }
+                    }
                 }
             }
+
         }
         #endregion
 
@@ -692,6 +778,23 @@ public class PlayerAttack : MonoBehaviour
             TextYouhere.text = "Dinner room";
         }
         if (other.gameObject.tag == "Kitchen")
+        {
+            TextYouhere.text = "Kitchen";
+        }
+        #endregion
+
+
+        #region Tutorial Text
+
+        if (other.gameObject.tag == "Story")
+        {
+            if(StoryNow == 0)tutorialText.text = "Explore bed room";
+            if(StoryNow == 1)tutorialText.text = "Go to front door";
+
+            Destroy(other.gameObject);
+            StoryNow++;
+        }
+        if (other.gameObject.tag == "tutorial")
         {
             TextYouhere.text = "Kitchen";
         }
