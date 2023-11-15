@@ -10,6 +10,7 @@ public class StairClimb : MonoBehaviour
      [SerializeField] GameObject stepRayLower;
      [SerializeField] float stepHeight = 0.3f;
      [SerializeField] float stepSmooth = 2f;
+    public LayerMask layerMask;
 
 
     private void Awake()
@@ -31,7 +32,7 @@ public class StairClimb : MonoBehaviour
      void stepClimb()
      {
          RaycastHit hitLower;
-        LayerMask layerMask = ~LayerMask.GetMask("Wall");
+        //LayerMask layerMask = ~LayerMask.GetMask("Wall");
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.3f,layerMask) || Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.back), out hitLower, 0.3f,layerMask))
          {
             RaycastHit hitUpper;
