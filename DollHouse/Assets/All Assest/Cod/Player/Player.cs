@@ -37,6 +37,19 @@ namespace player
         public TextMeshProUGUI TextDialogue;
         public GameObject WorkTutorial;
 
+        [Header("CanvaTutorial")]
+        public CanPlayMini1 ItemCheck;
+        public GameObject Dollhave;
+        public GameObject Clothhave;
+        public TextMeshProUGUI DollTotel;
+        public TextMeshProUGUI ClothTotel;
+        public GameObject HowToUse1GOBJ;
+        public GameObject HowToUse2GOBJ;
+        public GameObject HowToUse3GOBJ;
+        public TextMeshProUGUI HowToUse1;
+        public TextMeshProUGUI HowToUse2;
+        public TextMeshProUGUI HowToUse3;
+
         [Header("Audio")]
         public AudioSource StartWork;
         public AudioClip canWorkSound;
@@ -97,10 +110,23 @@ namespace player
                                 ChangePOV.SwitchCamera(WorkshopView);
                                 Cursor.visible = true;
                                 Cursor.lockState = CursorLockMode.None;
+
                                 FootStep.enabled = false;
                                 pMove.Stopwalk();
                                 pAttack.StopAttack();
                                 pHand.SetActive(false);
+
+                                Dollhave.SetActive(true);
+                                Clothhave.SetActive(true);
+                                DollTotel.text = "Doll " + ItemCheck.DollHave + " / 3" ;
+                                ClothTotel.text = "Cloth " + ItemCheck.ClothHave + " / 3" ;
+                                HowToUse3GOBJ.SetActive(true); 
+                                HowToUse2GOBJ.SetActive(true); 
+                                HowToUse1GOBJ.SetActive(true); 
+                                HowToUse1.text = "Start sewing [Hold space]";
+                                HowToUse2.text = "Skill check [W/A/S/D]";
+                                HowToUse3.text = "Quit table [Q]";
+
                                 if(!TutorialWork) WorkTutorial.SetActive(true);
                                 if (Input.GetKeyDown(KeyCode.Space))
                                 {
@@ -171,6 +197,14 @@ namespace player
                     pMove.walkAble();
                     pHand.SetActive(true);
                     MiniG2Off.SetActive(false);
+
+                    Dollhave.SetActive(false);
+                    Clothhave.SetActive(false);
+                    HowToUse1GOBJ.SetActive(false);
+                    HowToUse3GOBJ.SetActive(false);
+                    HowToUse2GOBJ.SetActive(false);
+
+                    workSound = false;
                 }
             }
 

@@ -155,7 +155,7 @@ public class MiniG2 : MonoBehaviour
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
-        TotelD.text = "Total Doll :  " + TotelDoll;
+        TotelD.text = "Total Doll :  " + TotelDoll + " / 6";
 
         if (TotelDoll == 2)
         {

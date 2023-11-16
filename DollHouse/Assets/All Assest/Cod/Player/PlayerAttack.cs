@@ -70,31 +70,37 @@ public class PlayerAttack : MonoBehaviour
     public Sprite pointSprite; 
     public GameObject ItemText;
     public TextMeshProUGUI ItemName;
-    private int StoryNow;
+    public int StoryNow;
     private bool dialogCheck, InterectItem;
 
     [Header("TextShow")]
     public TextMeshProUGUI TextYouhere;
     public TextMeshProUGUI NeedToDo;
-    public TextMeshProUGUI StoryText;
     public GameObject Tutext1;
     public GameObject Tutext2;
+    public GameObject Tutext3;
     public TextMeshProUGUI tutorialText1;
     public TextMeshProUGUI tutorialText2;
+    public TextMeshProUGUI tutorialText3;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
-    private bool isPause;
+    private bool isPause, Working;
 
     private Door DoorInterect;
     private Ghost GhostHit;
     private CrossCheck CrossUse;
     private bool Holddown;
 
+    [Header("Story Event")]
+    public UnityEvent CheckFrontDoor;
+    public UnityEvent ExploreHouse;
+
     [Header("AllEvent")]
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
-    public UnityEvent GhostEvent;
+    public UnityEvent GhostEvent1;
+    public UnityEvent GhostEvent2;
     public UnityEvent EventCloseDoor;
     public UnityEvent Radio;
 
@@ -193,7 +199,22 @@ public class PlayerAttack : MonoBehaviour
                 {
                     DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();
                     DoorInterect.DoorAni();
-
+                    if(StoryNow == 2)
+                    {
+                        if (DoorInterect.Lock == true)
+                        {
+                            Textdialogue.text = "Need to check front door first.";
+                            dialogCheck = true;
+                        }
+                    }
+                    if(StoryNow == 3)
+                    {
+                        if (DoorInterect.Lock == true)
+                        {
+                            Textdialogue.text = "Need to find the key.";
+                            dialogCheck = true;
+                        }
+                    }
                 }
                 if (hitInterect.collider.gameObject.tag == "Key")
                 {
@@ -216,7 +237,12 @@ public class PlayerAttack : MonoBehaviour
         {
             if (hitevent.collider.tag == "GhostEvent")
             {
-                GhostEvent.Invoke();
+                GhostEvent1.Invoke();
+                Destroy(hitevent.collider.gameObject);
+            }
+            if (hitevent.collider.tag == "GhostEvent2")
+            {
+                GhostEvent2.Invoke();
                 Destroy(hitevent.collider.gameObject);
             }
             if (hitevent.collider.gameObject.tag == "Key")
@@ -304,209 +330,221 @@ public class PlayerAttack : MonoBehaviour
 
         #region Pick drop item
 
-        //Drop item
-        if (Input.GetKeyDown(KeyCode.G))
+        if(Itemhave != 0)
         {
-            if (CrossOnHand && showCross)
+            Tutext3.SetActive(true);
+            tutorialText3.text = "Select item [Scroll mouse]";
+        }
+        else
+        {
+            Tutext3.SetActive(false);
+        }
+        if (!Working)
+        {
+            //Drop item
+            if (Input.GetKeyDown(KeyCode.G))
             {
-                if (curHpCross == 3)
+                if (CrossOnHand && showCross)
                 {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross();
-                }
-                if (curHpCross == 2)
-                {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross2();
-                }
-                if (curHpCross == 1)
-                {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross1();
-                }
-                Itemhave--;
-                CrossOnHand = false;
-                Tutext1.SetActive(false); Tutext2.SetActive(false);
-            }
-
-            if (Dollhave != 0)
-            {
-                if (DollOnHand && showDoll)
-                {
-                    DropDoll();
+                    if (curHpCross == 3)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross();
+                    }
+                    if (curHpCross == 2)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross2();
+                    }
+                    if (curHpCross == 1)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross1();
+                    }
                     Itemhave--;
-                    Dollhave--;
-
+                    CrossOnHand = false;
+                    Tutext1.SetActive(false); Tutext2.SetActive(false);
                 }
-            }
 
-            if (Clothhave != 0)
-            {
-                if (ClothOnHand && showCloth)
+                if (Dollhave != 0)
                 {
-                    DropCloth();
-                    Itemhave--;
-                    Clothhave--;
+                    if (DollOnHand && showDoll)
+                    {
+                        DropDoll();
+                        Itemhave--;
+                        Dollhave--;
 
+                    }
                 }
-            }
 
-        }
-
-        //Show Cross on hand
-        if (ItemSelect == 0 && CrossOnHand)
-        {
-            CorssR.SetActive(true);
-            showCross = true;
-            if(!isPause)
-            Attack = true;
-            Tutext1.SetActive(true);
-            tutorialText1.text = "Attack [Hold left]";
-            if (setTriggerCross)
-            {
-                if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                setTriggerCross = false;
-            }
-
-        }
-        else if(ItemSelect == 0 && !CrossOnHand) 
-        {
-            CorssR.SetActive(false);
-            showCross = false;
-            Tutext1.SetActive(false);
-            Attack = false;
-        }
-        else
-        {
-            CorssR.SetActive(false);
-            showCross = false;
-            Attack = false;
-            setTriggerCross = true;
-        }
-
-        //Show Doll on hand
-        if (ItemSelect == 1 && DollOnHand)
-        {
-            DollR.SetActive(true);
-            showDoll = true;
-            Tutext1.SetActive(true);
-            tutorialText1.text = "Drop [G]";
-        }
-        else if (ItemSelect == 1 && !DollOnHand)
-        {
-            showDoll = false;
-            Tutext1.SetActive(false);
-            DollR.SetActive(false);
-        }
-        else
-        {
-            showDoll = false;
-            DollR.SetActive(false);
-        }
-
-        // Show cloth on hand
-        if (ItemSelect == 2 && ClothOnHand)
-        {
-            ClothR.SetActive(true);
-            showCloth = true;
-            Tutext1.SetActive(true);
-            tutorialText1.text = "Drop [G]";
-        }
-        else if (ItemSelect == 2 && !ClothOnHand)
-        {
-            Tutext1.SetActive(false);
-            ClothR.SetActive(false);
-            showCloth = false;
-        }
-        else
-        {
-            ClothR.SetActive(false);
-            showCloth = false;
-        }
-
-        // if don't have item
-        if(Itemhave == 0)
-        {
-            Tutext1.SetActive(false);
-        }
-                
-        if(Clothhave == 0)
-        {
-            ClothR.SetActive(false);
-            ClothOnHand = false;
-        }
-        if (Dollhave == 0)
-        {
-            DollR.SetActive(false);
-            DollOnHand = false;
-        }
-
-        // Pick item
-        Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (Physics.Raycast(RPick, out RaycastHit hitInfo, Pickrange))
-            {
-                if ( Itemhave != 3)
+                if (Clothhave != 0)
                 {
-                    if (!CrossOnHand)
+                    if (ClothOnHand && showCloth)
                     {
-                        if (hitInfo.collider.gameObject.tag == "Cross")
-                        {
-                            CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                            curHpCross = CrossUse.curHp;
-                            CrossOnHand = true;
-                            Attack = true;
-                            CorssR.SetActive(true);
-                            if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                            if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                            if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                            Destroy(hitInfo.collider.gameObject);
-                            // print("Cross");
-                            DollR.SetActive(false);
-                            ClothR.SetActive(false);
-                            Itemhave++;
-                            ItemSelect = 0;
-                        }
+                        DropCloth();
+                        Itemhave--;
+                        Clothhave--;
+
                     }
-                    if (Dollhave != 3)
+                }
+
+            }
+
+            //Show Cross on hand
+            if (ItemSelect == 0 && CrossOnHand)
+            {
+                CorssR.SetActive(true);
+                showCross = true;
+                if (!isPause)
+                    Attack = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Attack [Hold left]";
+                if (setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = false;
+                }
+
+            }
+            else if (ItemSelect == 0 && !CrossOnHand)
+            {
+                CorssR.SetActive(false);
+                showCross = false;
+                Tutext1.SetActive(false);
+                Attack = false;
+            }
+            else
+            {
+                CorssR.SetActive(false);
+                showCross = false;
+                Attack = false;
+                setTriggerCross = true;
+            }
+
+            //Show Doll on hand
+            if (ItemSelect == 1 && DollOnHand)
+            {
+                DollR.SetActive(true);
+                showDoll = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 1 && !DollOnHand)
+            {
+                showDoll = false;
+                Tutext1.SetActive(false);
+                DollR.SetActive(false);
+            }
+            else
+            {
+                showDoll = false;
+                DollR.SetActive(false);
+            }
+
+            // Show cloth on hand
+            if (ItemSelect == 2 && ClothOnHand)
+            {
+                ClothR.SetActive(true);
+                showCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 2 && !ClothOnHand)
+            {
+                Tutext1.SetActive(false);
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+            else
+            {
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+
+            // if don't have item
+            if (Itemhave == 0)
+            {
+                Tutext1.SetActive(false);
+            }
+
+            if (Clothhave == 0)
+            {
+                ClothR.SetActive(false);
+                ClothOnHand = false;
+            }
+            if (Dollhave == 0)
+            {
+                DollR.SetActive(false);
+                DollOnHand = false;
+            }
+
+            // Pick item
+            Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (Physics.Raycast(RPick, out RaycastHit hitInfo, Pickrange))
+                {
+                    if (Itemhave != 3)
                     {
-                        if (hitInfo.collider.gameObject.tag == "Doll")
+                        if (!CrossOnHand)
                         {
-                            // DollAni.SetTrigger("OnHand");
-                            DollOnHand = true;
-                            DollR.SetActive(true);
-                            Destroy(hitInfo.collider.gameObject);
-                            //print("doll");
-                            CorssR.SetActive(false);
-                            ClothR.SetActive(false);
-                            Itemhave++;
-                            Dollhave++;
-                            ItemSelect = 1;
+                            if (hitInfo.collider.gameObject.tag == "Cross")
+                            {
+                                CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                                curHpCross = CrossUse.curHp;
+                                CrossOnHand = true;
+                                Attack = true;
+                                CorssR.SetActive(true);
+                                if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                                if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                                if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                                Destroy(hitInfo.collider.gameObject);
+                                // print("Cross");
+                                DollR.SetActive(false);
+                                ClothR.SetActive(false);
+                                Itemhave++;
+                                ItemSelect = 0;
+                            }
                         }
-                    }
-                    if (Clothhave != 3)
-                    {
-                        if (hitInfo.collider.gameObject.tag == "Cloth")
+                        if (Dollhave != 3)
                         {
-                            ClothOnHand = true;
-                            ClothR.SetActive(true);
-                            Destroy(hitInfo.collider.gameObject);
-                            DollR.SetActive(false);
-                            CorssR.SetActive(false);
-                            Itemhave++;
-                            Clothhave++;
-                            ItemSelect = 2;
+                            if (hitInfo.collider.gameObject.tag == "Doll")
+                            {
+                                // DollAni.SetTrigger("OnHand");
+                                DollOnHand = true;
+                                DollR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                //print("doll");
+                                CorssR.SetActive(false);
+                                ClothR.SetActive(false);
+                                Itemhave++;
+                                Dollhave++;
+                                ItemSelect = 1;
+                            }
+                        }
+                        if (Clothhave != 3)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "Cloth")
+                            {
+                                ClothOnHand = true;
+                                ClothR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                DollR.SetActive(false);
+                                CorssR.SetActive(false);
+                                Itemhave++;
+                                Clothhave++;
+                                ItemSelect = 2;
+                            }
                         }
                     }
                 }
-            }
 
+            }
         }
         #endregion
 
@@ -560,6 +598,19 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(DelayDialog());
             dialogCheck = false;
         }
+
+
+        #region Need to do next
+        if (StoryNow == 1) NeedToDo.text = "Explore bed room";
+        if (StoryNow == 2)
+        {
+            NeedToDo.text = "Go to check front door";
+            CheckFrontDoor.Invoke();
+        }
+        if (StoryNow == 3) NeedToDo.text = "Go to back door or explore house";            
+        if (StoryNow == 4) NeedToDo.text = "Make doll at workshop";            
+        if (StoryNow == 5) NeedToDo.text = "Find doll and cloth";            
+        #endregion
 
     }
 
@@ -838,22 +889,19 @@ public class PlayerAttack : MonoBehaviour
         {
             TextYouhere.text = "Kitchen";
         }
+        if (other.gameObject.tag == "Storage")
+        {
+            TextYouhere.text = "Storage";
+        }
         #endregion
 
 
-        #region Tutorial Text
+        #region Story Text
 
         if (other.gameObject.tag == "Story")
         {
-            if(StoryNow == 0)StoryText.text = "Explore bed room";
-            if(StoryNow == 1)StoryText.text = "Go to front door";
-
             Destroy(other.gameObject);
             StoryNow++;
-        }
-        if (other.gameObject.tag == "tutorial")
-        {
-            TextYouhere.text = "Kitchen";
         }
         #endregion
 
@@ -899,7 +947,14 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
-
+    public void WorkShopview()
+    {
+        Working = true;
+    }
+    public void QuitWorkShop()
+    {
+        Working = false;
+    }
 
     public void CrossRuin()
     {

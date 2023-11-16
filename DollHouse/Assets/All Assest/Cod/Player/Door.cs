@@ -60,9 +60,14 @@ public class Door : MonoBehaviour
         D = false;
     }
 
-    public void HaveKey()
+    public void UnLockDoor()
     {
         Lock = false;
+    }
+
+    public void LockDoor()
+    {
+        Lock = true;
     }
 
     IEnumerator doorLockDelay()

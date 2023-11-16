@@ -16,7 +16,7 @@ namespace player
         public LayerMask Ground;
         bool Grounded;
         bool canWalk = true;
-        public bool Crouch,G;
+        public bool Crouch,G,InCutScene;
 
         public Transform orientation;
 
@@ -135,11 +135,14 @@ namespace player
         public void walkAble()
         {
             canWalk = true;
+            InCutScene = false;
         }
 
         public void Stopwalk()
         {
             canWalk = false;
+            InCutScene = true;
+            if(InCutScene) { FootStep.enabled = false; }
         }
     }
 }
