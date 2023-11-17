@@ -31,6 +31,10 @@ public class MiniG2 : MonoBehaviour
     public bool working;
     public GameObject canvaMiniG2;
 
+    [Header("Finish doll")]
+    public GameObject[] FinshDoll;
+    private int FinishDollHave;
+
     [Header("Audio")]
     public AudioSource SoundSoure;
     public AudioClip Alertsound;
@@ -140,7 +144,11 @@ public class MiniG2 : MonoBehaviour
             Canplay.ClothLost();
             G2bar.SetMinBar(curBar);
             if (TotelDoll != DollHave)
+            {
                 DollHave = TotelDoll;
+                FinishDollHave++;
+                ShowFinishDoll();
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -155,11 +163,11 @@ public class MiniG2 : MonoBehaviour
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
-        TotelD.text = "Total Doll :  " + TotelDoll + " / 6";
+        TotelD.text = "Finish Doll :  " + TotelDoll + " / 6";
 
-        if (TotelDoll == 2)
+        if (TotelDoll == 4)
         {
-            Cutscene.Invoke();
+
         }
         if (TotelDoll == 1)
         {
@@ -211,6 +219,11 @@ public class MiniG2 : MonoBehaviour
             CountAction++;         
             yield return new WaitForSeconds(Spawnsecond);
         }
+    }
+
+    public void ShowFinishDoll()
+    {
+        FinshDoll[FinishDollHave].SetActive(true);
     }
 
     public void CheckStart()

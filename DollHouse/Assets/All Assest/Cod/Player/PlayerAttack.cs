@@ -89,8 +89,9 @@ public class PlayerAttack : MonoBehaviour
 
     private Door DoorInterect;
     private Ghost GhostHit;
+    private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown;
+    private bool Holddown,LightOut;
 
     [Header("Story Event")]
     public UnityEvent CheckFrontDoor;
@@ -227,6 +228,14 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Radio.Invoke();
                 }
+                if (hitInterect.collider.gameObject.tag == "LightSwitch")
+                {
+                    DoEvent = hitInterect.collider.gameObject.GetComponent<Event>();
+                    if(!LightOut)
+                    DoEvent.TurnOnLight();
+                    else
+                        DoEvent.GhostLightOut();
+                }
 
             }
         }
@@ -303,6 +312,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 ItemText.SetActive(true);
                 ItemName.text = "FrontDoor  [E]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "LightSwitch")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "LightSwitch  [E]";
                 InterectItem = true;
             }
             else

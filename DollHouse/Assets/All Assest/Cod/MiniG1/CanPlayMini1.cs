@@ -2,6 +2,7 @@ using player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CanPlayMini1 : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class CanPlayMini1 : MonoBehaviour
     public GameObject Clothobj1, Clothobj2, Clothobj3;  
     public float ClothHave, DollHave;
     public Player player;
+    public TextMeshProUGUI DollTotel;
+    public TextMeshProUGUI ClothTotel;
     
 
     // Start is called before the first frame update
@@ -47,7 +50,8 @@ public class CanPlayMini1 : MonoBehaviour
             MiniG.SetActive(false);
             player.StopSoundWork();
         }
-
+        DollTotel.text = "Doll " + DollHave + " / 3";
+        ClothTotel.text = "Cloth " + ClothHave + " / 3";
     }
 
 

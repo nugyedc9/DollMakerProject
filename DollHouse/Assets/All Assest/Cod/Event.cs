@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-
 public class Event : MonoBehaviour
 {
-
+    [Header("GhostThing")]
     public Animator Ghost1;
     public AudioSource Ghost1Sound;
     public AudioClip lmao;
     public Animator CutFinal;
-    
+
+    [Header("Light on / off")]
+    public GameObject LightSwitchOn;
+    public GameObject LightSwitchOff;
+    public GameObject LightOn;
+    public GameObject LightOff;
+    public AudioSource LightSound;
+    bool TurnLight;
+
 
 
     private void Awake()
@@ -34,6 +41,42 @@ public class Event : MonoBehaviour
         StartCoroutine(waitdelay());
     }
 
+    public void TurnOnLight()
+    {
+        LightSound.Play();
+
+            if (!TurnLight)
+            {
+                LightOn.SetActive(true);
+                LightOff.SetActive(false);
+                LightSwitchOn.SetActive(true);
+                LightSwitchOff.SetActive(false);
+                TurnLight = true;
+            }
+            else
+            {
+                LightOn.SetActive(false);
+                LightOff.SetActive(true);
+                LightSwitchOn.SetActive(false);
+                LightSwitchOff.SetActive(true);
+                TurnLight = false;
+            }
+    }
+
+    public void GhostLightOut()
+    {
+        LightOff.SetActive(true);
+        if (!TurnLight)
+        {
+            LightSwitchOn.SetActive(true);
+            LightSwitchOff.SetActive(false);
+        }
+        else
+        {
+            LightSwitchOn.SetActive(false);
+            LightSwitchOff.SetActive(true);
+        }
+    }
     IEnumerator waitdelay()
     {
         yield return new WaitForSeconds(9);

@@ -41,8 +41,6 @@ namespace player
         public CanPlayMini1 ItemCheck;
         public GameObject Dollhave;
         public GameObject Clothhave;
-        public TextMeshProUGUI DollTotel;
-        public TextMeshProUGUI ClothTotel;
         public GameObject HowToUse1GOBJ;
         public GameObject HowToUse2GOBJ;
         public GameObject HowToUse3GOBJ;
@@ -118,8 +116,6 @@ namespace player
 
                                 Dollhave.SetActive(true);
                                 Clothhave.SetActive(true);
-                                DollTotel.text = "Doll " + ItemCheck.DollHave + " / 3" ;
-                                ClothTotel.text = "Cloth " + ItemCheck.ClothHave + " / 3" ;
                                 HowToUse3GOBJ.SetActive(true); 
                                 HowToUse2GOBJ.SetActive(true); 
                                 HowToUse1GOBJ.SetActive(true); 
