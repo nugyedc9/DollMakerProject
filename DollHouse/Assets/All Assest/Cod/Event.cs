@@ -16,7 +16,7 @@ public class Event : MonoBehaviour
     public GameObject LightOn;
     public GameObject LightOff;
     public AudioSource LightSound;
-    bool TurnLight;
+    public bool TurnLight;
 
 
 

@@ -72,7 +72,6 @@ public class MiniG2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CurrentDollCreatingState = DollCreatingState.Start;
         Instance = this;
     }
 
@@ -145,9 +144,11 @@ public class MiniG2 : MonoBehaviour
             G2bar.SetMinBar(curBar);
             if (TotelDoll != DollHave)
             {
+                print("finsh");
                 DollHave = TotelDoll;
                 FinishDollHave++;
                 ShowFinishDoll();
+                CurrentDollCreatingState = DollCreatingState.Start;
             }
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -174,10 +175,6 @@ public class MiniG2 : MonoBehaviour
             PickItem2.Invoke();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-
-        }
 
     }
 
@@ -226,7 +223,7 @@ public class MiniG2 : MonoBehaviour
         FinshDoll[FinishDollHave].SetActive(true);
     }
 
-    public void CheckStart()
+ /*   public void CheckStart()
     {
         if (TotelDoll != DollHave)
         {
@@ -238,7 +235,7 @@ public class MiniG2 : MonoBehaviour
         {
             CurrentDollCreatingState = DollCreatingState.Start;
         }
-    }
+    }*/
 
     private void OnDisable()
     {

@@ -91,17 +91,17 @@ public class PlayerAttack : MonoBehaviour
     private Ghost GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut;
+    private bool Holddown,LightOut,DialogueStory;
 
-    [Header("Story Event")]
-    public UnityEvent CheckFrontDoor;
-    public UnityEvent ExploreHouse;
 
     [Header("AllEvent")]
+    public UnityEvent CheckFrontDoor;
+    public UnityEvent CanExplore;
     public UnityEvent LightOutEvent;
     public UnityEvent GetKey;
     public UnityEvent GhostEvent1;
     public UnityEvent GhostEvent2;
+    public UnityEvent GhostSpawn;
     public UnityEvent EventCloseDoor;
     public UnityEvent Radio;
 
@@ -208,7 +208,7 @@ public class PlayerAttack : MonoBehaviour
                             dialogCheck = true;
                         }
                     }
-                    if(StoryNow == 3)
+                    if(StoryNow >= 5)
                     {
                         if (DoorInterect.Lock == true)
                         {
@@ -219,10 +219,19 @@ public class PlayerAttack : MonoBehaviour
                 }
                 if (hitInterect.collider.gameObject.tag == "Key")
                 {
+                    if (StoryNow < 5)
+                    {
 
-                    GetKey.Invoke();
-                    StartCoroutine(GhostSpawnDelay());
-                    Destroy(hitInterect.collider.gameObject);
+                        Textdialogue.text = "Key for back door.";
+                        dialogCheck = true;
+                    }
+                    if( StoryNow == 5)
+                    {
+                        Textdialogue.text = "(Feel weird. Maybe THAT THING appears. Let's take the cross for sure.)";
+                        dialogCheck = true;
+                        GetKey.Invoke();
+                        Destroy(hitInterect.collider.gameObject);
+                    }
                 }
                 if (hitInterect.collider.gameObject.tag == "Radio")
                 {
@@ -510,20 +519,28 @@ public class PlayerAttack : MonoBehaviour
                         {
                             if (hitInfo.collider.gameObject.tag == "Cross")
                             {
-                                CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                                curHpCross = CrossUse.curHp;
-                                CrossOnHand = true;
-                                Attack = true;
-                                CorssR.SetActive(true);
-                                if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                                if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                                if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                                Destroy(hitInfo.collider.gameObject);
-                                // print("Cross");
-                                DollR.SetActive(false);
-                                ClothR.SetActive(false);
-                                Itemhave++;
-                                ItemSelect = 0;
+                                if (StoryNow >= 5)
+                                {
+                                    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                                    curHpCross = CrossUse.curHp;
+                                    CrossOnHand = true;
+                                    Attack = true;
+                                    CorssR.SetActive(true);
+                                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                                    Destroy(hitInfo.collider.gameObject);
+                                    // print("Cross");
+                                    DollR.SetActive(false);
+                                    ClothR.SetActive(false);
+                                    Itemhave++;
+                                    ItemSelect = 0;
+                                }
+                                else
+                                {
+                                    Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand)";
+                                    dialogCheck = true;
+                                }
                             }
                         }
                         if (Dollhave != 3)
@@ -622,9 +639,22 @@ public class PlayerAttack : MonoBehaviour
             NeedToDo.text = "Go to check front door";
             CheckFrontDoor.Invoke();
         }
-        if (StoryNow == 3) NeedToDo.text = "Go to back door or explore house";            
-        if (StoryNow == 4) NeedToDo.text = "Make doll at workshop";            
-        if (StoryNow == 5) NeedToDo.text = "Find doll and cloth";            
+        if (StoryNow == 3)
+        {
+            NeedToDo.text = "Go to back door or explore house";
+            CanExplore.Invoke();
+        }
+        if (StoryNow == 4) NeedToDo.text = "Make doll at workshop";
+        if (StoryNow == 5)
+        {
+            NeedToDo.text = "Find doll and cloth to finish job";
+            if (DialogueStory)
+            {
+                Textdialogue.text = "(Ah.. out of tools. let's check the storage room)";
+                dialogCheck = true;
+                DialogueStory = false;
+            }
+        }
         #endregion
 
     }
@@ -838,8 +868,8 @@ public class PlayerAttack : MonoBehaviour
         }
         if (other.gameObject.tag == "LightOutEvent")
         {
-            Textdialogue.text = Dialogue[3];               
-            StartCoroutine(LightOutDelay());
+            Textdialogue.text = "What a mass and now light out!?";
+            dialogCheck = true;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "CloseDoorEvent")
@@ -917,6 +947,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Destroy(other.gameObject);
             StoryNow++;
+            DialogueStory = true;
         }
         #endregion
 
@@ -944,22 +975,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
     }
-    IEnumerator LightOutDelay()
-    {
-        CanvaDialog.SetActive(true);
-        yield return new WaitForSeconds(5);
-        Textdialogue.text = Dialogue[1];
-        yield return new WaitForSeconds(5);
-        CanvaDialog.SetActive(false);
-    }
-    IEnumerator GhostSpawnDelay()
-    {
-        CanvaDialog.SetActive(true);
-        yield return new WaitForSeconds(5);
-        Textdialogue.text = Dialogue[1];
-        yield return new WaitForSeconds(5);
-        CanvaDialog.SetActive(false);
-    }
+
     #endregion
 
     public void WorkShopview()

@@ -7,9 +7,8 @@ public class Door : MonoBehaviour
 {
 
     public Animator doorAni;
-    public bool D;
+    public bool D,key1;
     public bool Lock;
-    public GameObject DoorLock;
     public AudioSource DoorSound;
     public AudioClip open;
     public AudioClip close;
@@ -19,6 +18,14 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         doorAni = GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+        if (key1)
+        {
+            UnLockDoor();          
+        }
     }
 
     public void DoorAni()
@@ -31,6 +38,7 @@ public class Door : MonoBehaviour
                 DoorSound.Play();
                 doorAni.Play("Door_open", 0, 0);
                 D = true;
+                key1 = false;
             }
             else
             {
@@ -42,7 +50,6 @@ public class Door : MonoBehaviour
         }
         else
         {
-            StartCoroutine(doorLockDelay());
             DoorSound.clip = doorlock; DoorSound.Play();
         }
     }
@@ -60,6 +67,10 @@ public class Door : MonoBehaviour
         D = false;
     }
 
+    public void Key1()
+    {
+        key1 = true;
+    }
     public void UnLockDoor()
     {
         Lock = false;
@@ -70,12 +81,6 @@ public class Door : MonoBehaviour
         Lock = true;
     }
 
-    IEnumerator doorLockDelay()
-    {
-        DoorLock.SetActive(true);
-        yield return new WaitForSeconds(2);
-        DoorLock.SetActive(false);
-    }
 
   
 }
