@@ -100,6 +100,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent CheckFrontDoor;
     public UnityEvent CanExplore;
     public UnityEvent LightOutEvent;
+    public UnityEvent BreakerCheck;
     public UnityEvent GetKey;
     public UnityEvent GhostEvent1;
     public UnityEvent GhostEvent2;
@@ -263,6 +264,14 @@ public class PlayerAttack : MonoBehaviour
                     else
                         DoEvent.GhostLightOut();
                 }
+                if (hitInterect.collider.gameObject.tag == "Breaker")
+                {
+                    if (StoryNow == 5)
+                    {
+                        LightOut = false;
+                        BreakerCheck.Invoke();
+                    }
+                }
 
             }
         }
@@ -281,7 +290,7 @@ public class PlayerAttack : MonoBehaviour
                 GhostEvent2.Invoke();
                 Destroy(hitevent.collider.gameObject);
             }
-            if (hitevent.collider.tag == "GhostEvent2")
+            if (hitevent.collider.tag == "GhostEvent3")
             {
                 GhostEvent3.Invoke();
                 Textdialogue.text = "(Did she just take my doll!?)";
@@ -364,6 +373,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 ItemText.SetActive(true);
                 ItemName.text = "Bed  [E]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Breaker")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Breaker [E]";
                 InterectItem = true;
             }
             else
@@ -902,6 +917,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.tag == "LightOutEvent")
         {
             LightOutEvent.Invoke();
+            LightOut = true;
             HitAudio.clip = LightOutLetsGooo;
             HitAudio.Play();    
             Destroy(other.gameObject);

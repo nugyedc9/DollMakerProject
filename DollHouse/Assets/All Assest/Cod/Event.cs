@@ -84,6 +84,8 @@ public class Event : MonoBehaviour
             LightSwitchOff.SetActive(true);
         }
     }
+
+
     IEnumerator waitdelay()
     {
         yield return new WaitForSeconds(9);
