@@ -14,7 +14,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public List<Transform> destination;
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
-        catchDistance, chaseTime, DistanceAmount, HpGhost, Stun, curStun, lowSpeed;
+        catchDistance, chaseTime,AfterAttackDelay, DistanceAmount, HpGhost, Stun, curStun, lowSpeed, AfterDeadDelay;
     private bool   
         chasing, searching, stopSearch, Attacked, getHit,
         ded, HpLow, getAttack, cansee;
@@ -317,7 +317,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     #region Attack
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(AfterAttackDelay);
         _stateGhost = StateGhost.Idle;
 
     }
@@ -344,7 +344,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     IEnumerator AfterDead()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(AfterDeadDelay);
         playerNearSpawn1();
         Phit = false;
         ToSpawn = 0;
