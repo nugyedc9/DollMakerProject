@@ -196,6 +196,8 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             stopSearch = true;
             enemyGhost.speed = 0;
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(false);
             if (Attacked)
             {
                 HpPlayer.Takedamage(DamageGhost);

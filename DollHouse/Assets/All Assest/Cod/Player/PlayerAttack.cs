@@ -87,13 +87,14 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
+    public GameObject EndGame;
     private bool isPause, Working;
 
     private Door DoorInterect;
     private Ghost GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut,DialogueStory;
+    private bool Holddown,LightOut,DialogueStory,EndD1;
 
 
     [Header("AllEvent")]
@@ -163,8 +164,12 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPause) PauseGame();
-            else ResumeGame();
+            if (!EndD1)
+            {
+                if (!isPause) PauseGame();
+                else ResumeGame();
+            }
+            
         }
 
         #region Item Change
@@ -253,7 +258,8 @@ public class PlayerAttack : MonoBehaviour
                     if(StoryNow == 6)
                     {
                         Textdialogue.text = "**Amazing go to sleep cutscene play** ZZZ..";
-                        dialogCheck = true;
+                        dialogCheck = true;                    
+                        EndD1 = true;
                     }
                 }
                 if (hitInterect.collider.gameObject.tag == "LightSwitch")
@@ -1042,6 +1048,10 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
         dialogCheck = false;
+        if (EndD1)
+        {
+            EndGame.SetActive(true);
+        }
     }
 
     IEnumerator PickItem2Delay()
