@@ -40,6 +40,8 @@ public class PlayerAttack : MonoBehaviour
     public Animator DollAni;
     public GameObject ClothR;
     public Animator ClothAni;
+    public GameObject Inventory, BlackCross, BlackDoll, BlackCloth;
+    public TextMeshProUGUI DollTotel,ClothTotel;
 
     [Header("Item Change")]
     public int ItemSelect = 0;
@@ -386,7 +388,6 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
-
         #region Pick drop item
 
         if(Itemhave != 0)
@@ -435,7 +436,7 @@ public class PlayerAttack : MonoBehaviour
                         DropDoll();
                         Itemhave--;
                         Dollhave--;
-
+                        DollTotel.text = "x" + Dollhave;
                     }
                 }
 
@@ -446,7 +447,7 @@ public class PlayerAttack : MonoBehaviour
                         DropCloth();
                         Itemhave--;
                         Clothhave--;
-
+                        ClothTotel.text = "x" + Clothhave;
                     }
                 }
 
@@ -467,6 +468,7 @@ public class PlayerAttack : MonoBehaviour
                     if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
                     if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
                     setTriggerCross = false;
+                    BlackCross.SetActive(false);
                 }
 
             }
@@ -476,6 +478,7 @@ public class PlayerAttack : MonoBehaviour
                 showCross = false;
                 Tutext1.SetActive(false);
                 Attack = false;
+                BlackCross.SetActive(true);
             }
             else
             {
@@ -483,6 +486,7 @@ public class PlayerAttack : MonoBehaviour
                 showCross = false;
                 Attack = false;
                 setTriggerCross = true;
+                BlackCross.SetActive(true);
             }
 
             //Show Doll on hand
@@ -492,17 +496,20 @@ public class PlayerAttack : MonoBehaviour
                 showDoll = true;
                 Tutext1.SetActive(true);
                 tutorialText1.text = "Drop [G]";
+                BlackDoll.SetActive(false);
             }
             else if (ItemSelect == 1 && !DollOnHand)
             {
                 showDoll = false;
                 Tutext1.SetActive(false);
                 DollR.SetActive(false);
+                BlackDoll.SetActive(true);
             }
             else
             {
                 showDoll = false;
                 DollR.SetActive(false);
+                BlackDoll.SetActive(true);
             }
 
             // Show cloth on hand
@@ -512,17 +519,20 @@ public class PlayerAttack : MonoBehaviour
                 showCloth = true;
                 Tutext1.SetActive(true);
                 tutorialText1.text = "Drop [G]";
+                BlackCloth.SetActive(false);
             }
             else if (ItemSelect == 2 && !ClothOnHand)
             {
                 Tutext1.SetActive(false);
                 ClothR.SetActive(false);
                 showCloth = false;
+                BlackCloth.SetActive(true);
             }
             else
             {
                 ClothR.SetActive(false);
                 showCloth = false;
+                BlackCloth.SetActive(true);
             }
 
             // if don't have item
@@ -592,6 +602,8 @@ public class PlayerAttack : MonoBehaviour
                                 Itemhave++;
                                 Dollhave++;
                                 ItemSelect = 1;
+                                Inventory.SetActive(true);
+                                DollTotel.text = "x" + Dollhave;
                             }
                         }
                         if (Clothhave != 3)
@@ -606,6 +618,8 @@ public class PlayerAttack : MonoBehaviour
                                 Itemhave++;
                                 Clothhave++;
                                 ItemSelect = 2;
+                                Inventory.SetActive(true);
+                                ClothTotel.text = "x" + Clothhave;
                             }
                         }                       
                     }
