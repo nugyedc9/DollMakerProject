@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5148869836780226727}
   - component: {fileID: 4062670928085264178}
+  - component: {fileID: 7988019477771158331}
   m_Layer: 0
   m_Name: Lamp_Table_Front
   m_TagString: Untagged
@@ -109,11 +110,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197530617251012542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -17.923534, z: 0.16327296}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -11.908267, y: 0.15031156, z: 10.678789}
+  m_LocalScale: {x: 0.030630106, y: 0.030630106, z: 0.030630106}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6830037069320690641}
+  m_Father: {fileID: 5720105813973093113}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4062670928085264178
@@ -168,6 +169,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7988019477771158331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197530617251012542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acfbaf167a031d14796ae2f12c5496d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2233532296595535674
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,11 +291,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2502057217875892125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.908267, y: 0.6993113, z: 10.668793}
+  m_LocalPosition: {x: -11.908267, y: 0.6993113, z: 10.668789}
   m_LocalScale: {x: 0.030630106, y: 0.030630106, z: 0.030630106}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5148869836780226727}
+  m_Children: []
   m_Father: {fileID: 5720105813973093113}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -464,6 +476,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6830037069320690641}
+  - {fileID: 5148869836780226727}
   - {fileID: 4189971292660567715}
   - {fileID: 2709458581944948560}
   - {fileID: 5009702852826856158}
