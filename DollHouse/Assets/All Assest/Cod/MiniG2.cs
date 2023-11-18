@@ -23,7 +23,6 @@ public class MiniG2 : MonoBehaviour
     public float Miss;
     public float TotelDoll = 0;
     public float DollHave;
-    public GameObject TotelDollCanva;
     public TextMeshProUGUI TotelD;
 
     [Header("GameObj")]
@@ -140,7 +139,6 @@ public class MiniG2 : MonoBehaviour
             StopMiniG2 = true;
             canvaMiniG2.SetActive(false);
             StopAllCoroutines();
-            TotelDollCanva.SetActive(true);
             TotelDoll++;
             curBar = 0;
             Canplay.Dolllost();
@@ -151,6 +149,7 @@ public class MiniG2 : MonoBehaviour
                 print("finsh");
                 DollHave = TotelDoll;
                 FinishDollHave++;
+                Canplay.AddTotalDoll();
                 ShowFinishDoll();
                 CurrentDollCreatingState = DollCreatingState.Start;
             }
@@ -168,13 +167,12 @@ public class MiniG2 : MonoBehaviour
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
-        TotelD.text = "Finish Doll :  " + TotelDoll + " / 6";
 
         if (TotelDoll == 4)
         {
             if (!pass4doll)
             {
-                TotelDoll--;
+                Canplay.LosttotalDoll();
                 FinshDoll[FinishDollHave].SetActive(false);
                 FinishDollHave--;
                 Make4Doll.Invoke();

@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
     public Animator ClothAni;
     public GameObject Inventory, BlackCross, BlackDoll, BlackCloth;
     public TextMeshProUGUI DollTotel,ClothTotel;
+    public CanPlayMini1 takeFinishDoll;
 
     [Header("Item Change")]
     public int ItemSelect = 0;
@@ -339,7 +340,7 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Doll  [E]";
                 InterectItem = true;
             }
-            else if (hitevent.collider.gameObject.tag == "FinshDoll")
+            else if (hitevent.collider.gameObject.tag == "FinishDoll")
             {
                 ItemText.SetActive(true);
                 ItemName.text = "FinshDoll  [E]";
@@ -363,7 +364,7 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Basket";
                 InterectItem = true;
             }
-            else if (hitevent.collider.gameObject.tag == "FrontDoor")
+            else if (hitevent.collider.gameObject.tag == "ForntDoor")
             {
                 ItemText.SetActive(true);
                 ItemName.text = "FrontDoor  [E]";
@@ -668,9 +669,10 @@ public class PlayerAttack : MonoBehaviour
                     Destroy(hitInfo.collider.gameObject);
                 }
 
-                if (hitInfo.collider.gameObject.tag == "FinshDoll")
+                if (hitInfo.collider.gameObject.tag == "FinishDoll")
                 {
                     GetFinshDoll.Invoke();
+                    takeFinishDoll.AddTotalDoll();
                     Destroy(hitInfo.collider.gameObject);
                 }
             }
@@ -733,9 +735,13 @@ public class PlayerAttack : MonoBehaviour
         }
         if (StoryNow == 6)
         {
-            NeedToDo.text = "Exorcise ghosts and go to bed";
-            Textdialogue.text = "(That is for today. Now I need to do something to sleep in peace.)";
-            dialogCheck = true;
+            if (DialogueStory)
+            {
+                NeedToDo.text = "Exorcise ghosts and go to bed";
+                Textdialogue.text = "(That is for today. Now I need to do something to sleep in peace.)";
+                dialogCheck = true;
+                DialogueStory = false;
+            }
         }
         #endregion
 
@@ -1051,6 +1057,12 @@ public class PlayerAttack : MonoBehaviour
         if (EndD1)
         {
             EndGame.SetActive(true);
+            Time.timeScale = 0;
+            PauseMenu.SetActive(true);
+            isPause = true;
+            Attack = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
