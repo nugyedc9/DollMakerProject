@@ -980,7 +980,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (other.gameObject.tag == "BedRoom1")
         {
-            TextYouhere.text = "Bed room 1";
+            TextYouhere.text = "My Room";
         }
         if (other.gameObject.tag == "BedRoom2")
         {
@@ -988,23 +988,23 @@ public class PlayerAttack : MonoBehaviour
         }
         if (other.gameObject.tag == "BedRoom3")
         {
-            TextYouhere.text = "Bed room 3";
+            TextYouhere.text = "Bed room 1";
         }
         if (other.gameObject.tag == "WalkWayF2")
         {
-            TextYouhere.text = "Walk way F2";
+            TextYouhere.text = "Second Floor";
         }
         if (other.gameObject.tag == "WalkWayF1")
         {
-            TextYouhere.text = "Walk way F1";
+            TextYouhere.text = "First Floor";
         }
         if (other.gameObject.tag == "ToiletF2")
         {
-            TextYouhere.text = "Toilet F2";
+            TextYouhere.text = "Bath Room";
         }
         if (other.gameObject.tag == "FrontDoor")
         {
-            TextYouhere.text = "Front door";
+            TextYouhere.text = "Front Door";
         }
         if (other.gameObject.tag == "Library")
         {
@@ -1012,11 +1012,11 @@ public class PlayerAttack : MonoBehaviour
         }
         if (other.gameObject.tag == "DollMakerRoom")
         {
-            TextYouhere.text = "Doll maker room";
+            TextYouhere.text = "Sewing Room";
         }
         if (other.gameObject.tag == "DinnerRoom")
         {
-            TextYouhere.text = "Dinner room";
+            TextYouhere.text = "Dining Room";
         }
         if (other.gameObject.tag == "Kitchen")
         {
@@ -1024,7 +1024,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (other.gameObject.tag == "Storage")
         {
-            TextYouhere.text = "Storage";
+            TextYouhere.text = "Storage Room";
         }
         #endregion
 
