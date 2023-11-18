@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,20 +65,25 @@ public class MiniG2 : MonoBehaviour
 
     public UnityEvent Cutscene;
     public UnityEvent PickItem2;
+    public UnityEvent Make4Doll;
+    public UnityEvent Make6Doll;
 
     private DollCreatingState CurrentDollCreatingState;
     public static MiniG2 Instance;
     [SerializeField] public Player PCut;
+    private bool pass4doll;
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
+
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {             
+
         DestroyBeat = GameObject.FindGameObjectsWithTag("HeadBeat");
 
         if (CurrentDollCreatingState == DollCreatingState.Start)
@@ -125,9 +131,7 @@ public class MiniG2 : MonoBehaviour
                 Point = 0;
                 CountAction = 0;
                 CurrentDollCreatingState = DollCreatingState.Start;
-            }
-            
-
+            }           
         }
         else if (CurrentDollCreatingState == DollCreatingState.FinishMiniG2)
         {
@@ -168,13 +172,47 @@ public class MiniG2 : MonoBehaviour
 
         if (TotelDoll == 4)
         {
-
+            if (!pass4doll)
+            {
+                TotelDoll--;
+                FinshDoll[FinishDollHave].SetActive(false);
+                FinishDollHave--;
+                Make4Doll.Invoke();
+                pass4doll = true;
+            }
         }
         if (TotelDoll == 1)
         {
             PickItem2.Invoke();
         }
+        if(TotelDoll == 6)
+        {
+            Make6Doll.Invoke();
+        }
 
+        #region Screen check
+        if (Screen.width < 4000 && Screen.height < 2200)
+        {
+            minTranX = Screen.width - 3500;
+            maxTranX = Screen.width - 500;
+            minTranY = Screen.height - 1700;
+            maxTranY = Screen.height - 500;
+        }
+        if (Screen.width < 2000 && Screen.height < 1100)
+        {
+            minTranX = Screen.width - 1700;
+            maxTranX = Screen.width - 300;
+            minTranY = Screen.height - 900;
+            maxTranY = Screen.height - 500;
+        }
+        if (Screen.width < 1400 && Screen.height < 900)
+        {
+            minTranX = Screen.width - 1200;
+            maxTranX = Screen.width - 200;
+            minTranY = Screen.height - 700;
+            maxTranY = Screen.height - 200;
+        }
+        #endregion
 
     }
 
@@ -243,6 +281,12 @@ public class MiniG2 : MonoBehaviour
         {
             Destroy(headBeat);
         }
+    }
+
+    public void GetFinishDoll()
+    {
+        FinishDollHave++;
+        FinshDoll[FinishDollHave].SetActive(true);
     }
 
 }

@@ -101,13 +101,16 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent GetKey;
     public UnityEvent GhostEvent1;
     public UnityEvent GhostEvent2;
+    public UnityEvent GhostEvent3;
     public UnityEvent GhostSpawn;
+    public UnityEvent GetFinshDoll;
     public UnityEvent EventCloseDoor;
     public UnityEvent Radio;
 
     private void Start()
     {       
         PauseMenu.SetActive(false);
+
     }
 
     void Update()
@@ -237,6 +240,19 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Radio.Invoke();
                 }
+                if (hitInterect.collider.gameObject.tag == "Bed")
+                {
+                    if (StoryNow < 6)
+                    {
+                        Textdialogue.text = "I can't sleep now";
+                        dialogCheck = true;
+                    }
+                    if(StoryNow == 6)
+                    {
+                        Textdialogue.text = "**Amazing go to sleep cutscene play** ZZZ..";
+                        dialogCheck = true;
+                    }
+                }
                 if (hitInterect.collider.gameObject.tag == "LightSwitch")
                 {
                     DoEvent = hitInterect.collider.gameObject.GetComponent<Event>();
@@ -261,6 +277,13 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.tag == "GhostEvent2")
             {
                 GhostEvent2.Invoke();
+                Destroy(hitevent.collider.gameObject);
+            }
+            if (hitevent.collider.tag == "GhostEvent2")
+            {
+                GhostEvent3.Invoke();
+                Textdialogue.text = "(Did she just take my doll!?)";
+                dialogCheck = true;
                 Destroy(hitevent.collider.gameObject);
             }
             if (hitevent.collider.gameObject.tag == "Key")
@@ -299,6 +322,12 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Doll  [E]";
                 InterectItem = true;
             }
+            else if (hitevent.collider.gameObject.tag == "FinshDoll")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "FinshDoll  [E]";
+                InterectItem = true;
+            }
             else if (hitevent.collider.gameObject.tag == "Cloth")
             {
                 ItemText.SetActive(true);
@@ -327,6 +356,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 ItemText.SetActive(true);
                 ItemName.text = "LightSwitch  [E]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Bed")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Bed  [E]";
                 InterectItem = true;
             }
             else
@@ -572,7 +607,7 @@ public class PlayerAttack : MonoBehaviour
                                 Clothhave++;
                                 ItemSelect = 2;
                             }
-                        }
+                        }                       
                     }
                 }
 
@@ -595,6 +630,12 @@ public class PlayerAttack : MonoBehaviour
                     LightOn = true;
                     LightOnHand = true;
                     pointLight.SetActive(true);
+                    Destroy(hitInfo.collider.gameObject);
+                }
+
+                if (hitInfo.collider.gameObject.tag == "FinshDoll")
+                {
+                    GetFinshDoll.Invoke();
                     Destroy(hitInfo.collider.gameObject);
                 }
             }
@@ -654,6 +695,12 @@ public class PlayerAttack : MonoBehaviour
                 dialogCheck = true;
                 DialogueStory = false;
             }
+        }
+        if (StoryNow == 6)
+        {
+            NeedToDo.text = "Exorcise ghosts and go to bed";
+            Textdialogue.text = "(That is for today. Now I need to do something to sleep in peace.)";
+            dialogCheck = true;
         }
         #endregion
 
