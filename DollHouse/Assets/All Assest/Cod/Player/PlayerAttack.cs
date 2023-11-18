@@ -114,7 +114,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {       
-        PauseMenu.SetActive(false);
 
     }
 
@@ -1058,7 +1057,6 @@ public class PlayerAttack : MonoBehaviour
         {
             EndGame.SetActive(true);
             Time.timeScale = 0;
-            PauseMenu.SetActive(true);
             isPause = true;
             Attack = false;
             Cursor.visible = true;
