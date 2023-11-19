@@ -15,7 +15,7 @@ public class MiniG2 : MonoBehaviour
     public float WorkThis;
 
     float SkipNextStep = 4;
-    float CurSkipNextStep;
+    float CurSkipNextStep, curSkipTrySkill;
 
     [Header("Score")]
     public float Score;
@@ -109,7 +109,15 @@ public class MiniG2 : MonoBehaviour
             if (CountAction >= ActionInGame)
             {
                 StopAllCoroutines();
+                curSkipTrySkill = 0;
                 CurrentDollCreatingState = DollCreatingState.ClearSkillCheck;
+            }
+            curSkipTrySkill += 1 * Time.deltaTime;
+            if (curSkipTrySkill >= SkipNextStep)
+            {
+                curSkipTrySkill = 0;
+                CountAction = 0; Point = 0;
+                CurrentDollCreatingState = DollCreatingState.Start;
             }
         }
         else if (CurrentDollCreatingState == DollCreatingState.ClearSkillCheck)
@@ -119,6 +127,7 @@ public class MiniG2 : MonoBehaviour
 
             if (Point >= MaxPoint)
             {
+                CurSkipNextStep = 0;
                 CurrentDollCreatingState = DollCreatingState.Start;
                 Point = 0;
                 CountAction = 0;
@@ -164,6 +173,10 @@ public class MiniG2 : MonoBehaviour
         {
             SoundSoure.clip = FinishSound;
             SoundSoure.Play();
+            CurSkipNextStep = 0;
+            Point = 0;
+            CountAction = 0;
+            curSkipTrySkill = 0;
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
