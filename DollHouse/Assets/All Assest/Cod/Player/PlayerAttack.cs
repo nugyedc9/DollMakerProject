@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -40,14 +41,14 @@ public class PlayerAttack : MonoBehaviour
     public Animator DollAni;
     public GameObject ClothR;
     public Animator ClothAni;
-    public GameObject Inventory, BlackCross, BlackDoll, BlackCloth;
-    public TextMeshProUGUI DollTotel,ClothTotel;
+    public GameObject[] itemInventory1, itemInventory2, itemInventory3;
+    public GameObject Inventory, InvPoint1, InvPoint2, InvPoint3;
     public CanPlayMini1 takeFinishDoll;
 
     [Header("Item Change")]
     public int ItemSelect = 0;
     private int Itemhave,Dollhave,Clothhave;
-    private bool showCross,showDoll,showCloth,setTriggerCross;
+    private bool showCross,showDoll,showCloth,setTriggerCross, box1 , box2, box3;
 
 
     [Header("Item Drop")]
@@ -56,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject CrossD1;
     public GameObject DollD;
     public GameObject ClothD;
+    private bool CrossInv1, CrossInv2, CrossInv3, DollInv1, DollInv2, DollInv3, ClothInv1, ClothInv2, ClothInv3;
 
     [Header("CrossAction")]
     public float curHpCross;
@@ -174,20 +176,270 @@ public class PlayerAttack : MonoBehaviour
 
         #region Item Change
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        #region Key1
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (ItemSelect >= 2)
-                ItemSelect = 0;
+            ItemSelect = 0;
+            if (ItemSelect == 0)
+            {
+                InvPoint1.SetActive(true);
+                InvPoint2.SetActive(false);
+                InvPoint3.SetActive(false);
+            }
+            if (CrossInv1)
+            {
+                CorssR.SetActive(true);
+                CrossOnHand = true;
+                showCross = true;
+                if (!isPause)
+                    Attack = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Attack [Hold left]";
+                if (setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = false;
+                }
+
+            }
+            else if (ItemSelect == 0 && !CrossOnHand)
+            {
+                CorssR.SetActive(false);
+                showCross = false;
+                Tutext1.SetActive(false);
+                Attack = false;
+            }
             else
-                ItemSelect++;
+            {
+                CrossOnHand = false;
+                CorssR.SetActive(false);
+                showCross = false;
+                Attack = false;
+                setTriggerCross = true;
+            }
+
+            if (DollInv1)
+            {
+                DollOnHand = true;
+                DollR.SetActive(true);
+                showDoll = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 0 && !DollOnHand)
+            {
+                showDoll = false;
+                Tutext1.SetActive(false);
+                DollR.SetActive(false);
+            }
+            else
+            {
+                DollOnHand = false;
+                showDoll = false;
+                DollR.SetActive(false);
+            }
+            if (ClothInv1)
+            {
+                ClothOnHand = true;
+                ClothR.SetActive(true);
+                showCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 0 && !ClothOnHand)
+            {
+                Tutext1.SetActive(false);
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+            else
+            {
+                ClothOnHand = false;
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        #endregion
+
+        #region Key2
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (ItemSelect <= 0)
-                ItemSelect = 2;
+            ItemSelect = 1;
+            if (ItemSelect == 1)
+            {
+                InvPoint1.SetActive(false);
+                InvPoint2.SetActive(true);
+                InvPoint3.SetActive(false);
+            }
+            if (CrossInv2)
+            {
+                CrossOnHand = true;
+                CorssR.SetActive(true);
+                showCross = true;
+                if (!isPause)
+                    Attack = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Attack [Hold left]";
+                if (setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = false;
+                }
+
+            }
+            else if (ItemSelect == 1 && !CrossOnHand)
+            {
+                CorssR.SetActive(false);
+                showCross = false;
+                Tutext1.SetActive(false);
+                Attack = false;
+            }
             else
-                ItemSelect--;
+            {
+                CrossOnHand = false;
+                CorssR.SetActive(false);
+                showCross = false;
+                Attack = false;
+                setTriggerCross = true;
+            }
+
+            if (DollInv2)
+            {
+                DollOnHand = true;
+                DollR.SetActive(true);
+                showDoll = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 1 && !DollOnHand)
+            {
+                showDoll = false;
+                Tutext1.SetActive(false);
+                DollR.SetActive(false);
+            }
+            else
+            {
+                DollOnHand = false;
+                showDoll = false;
+                DollR.SetActive(false);
+            }
+
+            if (ClothInv2)
+            {
+                ClothOnHand =true;
+                ClothR.SetActive(true);
+                showCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 1 && !ClothOnHand)
+            {
+                Tutext1.SetActive(false);
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+            else
+            {
+                ClothOnHand = false;
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+
         }
+        #endregion
+
+        #region Key3
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ItemSelect = 2;
+            if (ItemSelect == 2)
+            {
+                InvPoint1.SetActive(false);
+                InvPoint2.SetActive(false);
+                InvPoint3.SetActive(true);
+            }
+            if (CrossInv3)
+            {
+                CrossOnHand = true;
+                CorssR.SetActive(true);
+                showCross = true;
+                if (!isPause)
+                    Attack = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Attack [Hold left]";
+                if (setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = false;
+                }
+
+            }
+            else if (ItemSelect == 2 && !CrossOnHand)
+            {
+                CorssR.SetActive(false);
+                showCross = false;
+                Tutext1.SetActive(false);
+                Attack = false;
+            }
+            else
+            {
+                CrossOnHand = false;
+                CorssR.SetActive(false);
+                showCross = false;
+                Attack = false;
+                setTriggerCross = true;
+            }
+
+            if (DollInv3)
+            {
+                DollOnHand = true;
+                DollR.SetActive(true);
+                showDoll = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 2 && !DollOnHand)
+            {
+                showDoll = false;
+                Tutext1.SetActive(false);
+                DollR.SetActive(false);
+            }
+            else
+            {
+                DollOnHand = false;
+                showDoll = false;
+                DollR.SetActive(false);
+            }
+            if (ClothInv3)
+            {
+                ClothOnHand = true;
+                ClothR.SetActive(true);
+                showCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+            }
+            else if (ItemSelect == 2 && !ClothOnHand)
+            {
+                Tutext1.SetActive(false);
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+            else
+            {
+                ClothOnHand = false;
+                ClothR.SetActive(false);
+                showCloth = false;
+            }
+
+        }
+        #endregion
 
         #endregion
 
@@ -414,7 +666,7 @@ public class PlayerAttack : MonoBehaviour
         if(Itemhave != 0)
         {
             Tutext3.SetActive(true);
-            tutorialText3.text = "Select item [Scroll mouse]";
+            tutorialText3.text = "Select item [1],[2],[3]";
         }
         else
         {
@@ -425,135 +677,216 @@ public class PlayerAttack : MonoBehaviour
             //Drop item
             if (Input.GetKeyDown(KeyCode.G))
             {
-                if (CrossOnHand && showCross)
+                if (ItemSelect == 0)
                 {
-                    if (curHpCross == 3)
+                    box1 = false;
+                    if (CrossOnHand && showCross)
                     {
+                        if (curHpCross == 3)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross();
+                        }
+                        if (curHpCross == 2)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross2();
+                        }
+                        if (curHpCross == 1)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross1();
+                        }
+                        Itemhave--;
+                        CrossOnHand = false;
+                        Tutext1.SetActive(false); Tutext2.SetActive(false);
                         CorssR.SetActive(false);
+                        showCross = false;
                         Attack = false;
-                        DropCross();
+                        setTriggerCross = true;
+                        if (CrossInv1)
+                        {
+                            itemInventory1[0].SetActive(false);
+                            CrossInv1 = false;
+                        }
                     }
-                    if (curHpCross == 2)
+
+
+                        if (DollOnHand && showDoll)
+                        {
+                            DropDoll();
+                            Itemhave--;
+                            Dollhave--;
+                            Tutext1.SetActive(false);
+                            showDoll = false;
+                            DollR.SetActive(false);
+                            if (DollInv1)
+                            {
+                                itemInventory1[1].SetActive(false);
+                                DollInv1 = false;
+                            }
+                        }
+                    
+
+                        if (ClothOnHand && showCloth)
+                        {
+                            DropCloth();
+                            Itemhave--;
+                            Clothhave--;
+                            Tutext1.SetActive(false);
+                            ClothR.SetActive(false);
+                            showCloth = false;
+                            if (ClothInv1)
+                            {
+                                itemInventory1[2].SetActive(false);
+                                ClothInv1 = false;
+                            }
+
+                        }
+                    
+                }
+                if (ItemSelect == 1)
+                {
+                    box2 = false;
+                    if (CrossOnHand && showCross)
                     {
+                        if (curHpCross == 3)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross();
+                        }
+                        if (curHpCross == 2)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross2();
+                        }
+                        if (curHpCross == 1)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross1();
+                        }
+                        Itemhave--;
+                        CrossOnHand = false;
+                        Tutext1.SetActive(false); Tutext2.SetActive(false);
                         CorssR.SetActive(false);
+                        showCross = false;
                         Attack = false;
-                        DropCross2();
+                        setTriggerCross = true;
+                        if (CrossInv2)
+                        {
+                            itemInventory2[0].SetActive(false);
+                            CrossInv1 = false;
+                        }
                     }
-                    if (curHpCross == 1)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross1();
-                    }
-                    Itemhave--;
-                    CrossOnHand = false;
-                    Tutext1.SetActive(false); Tutext2.SetActive(false);
+
+
+                        if (DollOnHand && showDoll)
+                        {
+                            DropDoll();
+                            Itemhave--;
+                            Dollhave--;
+                            Tutext1.SetActive(false);
+                            showDoll = false;
+                            DollR.SetActive(false);
+                            if (DollInv2)
+                            {
+                                itemInventory2[1].SetActive(false);
+                                DollInv2 = false;
+                            }
+                        }
+                    
+                        if (ClothOnHand && showCloth)
+                        {
+                            DropCloth();
+                            Itemhave--;
+                            Clothhave--;
+                            Tutext1.SetActive(false);
+                            ClothR.SetActive(false);
+                            showCloth = false;
+                            if (ClothInv2)
+                            {
+                                itemInventory2[2].SetActive(false);
+                                ClothInv2 = false;
+                            }
+
+                        }                                               
                 }
 
-                if (Dollhave != 0)
+                if (ItemSelect == 2)
                 {
+                    box3 = false;
+                    if (CrossOnHand && showCross)
+                    {
+                        if (curHpCross == 3)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross();
+                        }
+                        if (curHpCross == 2)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross2();
+                        }
+                        if (curHpCross == 1)
+                        {
+                            CorssR.SetActive(false);
+                            Attack = false;
+                            DropCross1();
+                        }
+                        Itemhave--;
+                        CrossOnHand = false;
+                        Tutext1.SetActive(false); Tutext2.SetActive(false);
+                        CorssR.SetActive(false);
+                        showCross = false;
+                        Attack = false;
+                        setTriggerCross = true;
+                        if (CrossInv3)
+                        {
+                            itemInventory3[0].SetActive(false);
+                            CrossInv3 = false;
+                        }
+                    }
+
+
                     if (DollOnHand && showDoll)
                     {
                         DropDoll();
                         Itemhave--;
                         Dollhave--;
-                        DollTotel.text = "x" + Dollhave;
+                        Tutext1.SetActive(false);
+                        showDoll = false;
+                        DollR.SetActive(false);
+                        if (DollInv3)
+                        {
+                            itemInventory3[1].SetActive(false);
+                            DollInv3 = false;
+                        }
                     }
-                }
 
-                if (Clothhave != 0)
-                {
                     if (ClothOnHand && showCloth)
                     {
                         DropCloth();
                         Itemhave--;
                         Clothhave--;
-                        ClothTotel.text = "x" + Clothhave;
+                        Tutext1.SetActive(false);
+                        ClothR.SetActive(false);
+                        showCloth = false;
+                        if (ClothInv3)
+                        {
+                            itemInventory3[2].SetActive(false);
+                            ClothInv3 = false;
+                        }
                     }
+
                 }
-
-            }
-
-            //Show Cross on hand
-            if (ItemSelect == 0 && CrossOnHand)
-            {
-                CorssR.SetActive(true);
-                showCross = true;
-                if (!isPause)
-                    Attack = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Attack [Hold left]";
-                if (setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = false;
-                    BlackCross.SetActive(false);
-                }
-
-            }
-            else if (ItemSelect == 0 && !CrossOnHand)
-            {
-                CorssR.SetActive(false);
-                showCross = false;
-                Tutext1.SetActive(false);
-                Attack = false;
-                BlackCross.SetActive(true);
-            }
-            else
-            {
-                CorssR.SetActive(false);
-                showCross = false;
-                Attack = false;
-                setTriggerCross = true;
-                BlackCross.SetActive(true);
-            }
-
-            //Show Doll on hand
-            if (ItemSelect == 1 && DollOnHand)
-            {
-                DollR.SetActive(true);
-                showDoll = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                BlackDoll.SetActive(false);
-            }
-            else if (ItemSelect == 1 && !DollOnHand)
-            {
-                showDoll = false;
-                Tutext1.SetActive(false);
-                DollR.SetActive(false);
-                BlackDoll.SetActive(true);
-            }
-            else
-            {
-                showDoll = false;
-                DollR.SetActive(false);
-                BlackDoll.SetActive(true);
-            }
-
-            // Show cloth on hand
-            if (ItemSelect == 2 && ClothOnHand)
-            {
-                ClothR.SetActive(true);
-                showCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                BlackCloth.SetActive(false);
-            }
-            else if (ItemSelect == 2 && !ClothOnHand)
-            {
-                Tutext1.SetActive(false);
-                ClothR.SetActive(false);
-                showCloth = false;
-                BlackCloth.SetActive(true);
-            }
-            else
-            {
-                ClothR.SetActive(false);
-                showCloth = false;
-                BlackCloth.SetActive(true);
             }
 
             // if don't have item
@@ -590,6 +923,9 @@ public class PlayerAttack : MonoBehaviour
                                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                                     curHpCross = CrossUse.curHp;
                                     CrossOnHand = true;
+                                    DollOnHand = false;
+                                    ClothOnHand = false;
+                                    showCross = true;
                                     Attack = true;
                                     CorssR.SetActive(true);
                                     if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
@@ -597,10 +933,41 @@ public class PlayerAttack : MonoBehaviour
                                     if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
                                     Destroy(hitInfo.collider.gameObject);
                                     // print("Cross");
+                                    Tutext1.SetActive(true);
+                                    tutorialText1.text = "Attack [Hold left]";
                                     DollR.SetActive(false);
                                     ClothR.SetActive(false);
                                     Itemhave++;
-                                    ItemSelect = 0;
+                                    if(Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                    {
+                                        itemInventory1[0].SetActive(true);
+                                        CrossInv1 = true;
+                                        ItemSelect = 0;
+                                        box1 = true;
+                                        InvPoint1.SetActive(true);
+                                        InvPoint2.SetActive(false);
+                                        InvPoint3.SetActive(false);
+                                    }
+                                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                    {
+                                        itemInventory2[0].SetActive(true);
+                                        CrossInv2 = true;
+                                        ItemSelect = 1;
+                                        box2 = true;
+                                        InvPoint1.SetActive(false);
+                                        InvPoint2.SetActive(true);
+                                        InvPoint3.SetActive(false);
+                                    }
+                                    else if (Itemhave == 3 && !box3)
+                                    {
+                                        itemInventory3[0].SetActive(true);
+                                        CrossInv3 = true;
+                                        ItemSelect = 2;
+                                        box3 = true;
+                                        InvPoint1.SetActive(false);
+                                        InvPoint2.SetActive(false);
+                                        InvPoint3.SetActive(true);
+                                    }
                                 }
                                 else
                                 {
@@ -615,16 +982,49 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 // DollAni.SetTrigger("OnHand");
                                 DollOnHand = true;
+                                CrossOnHand = false;
+                                ClothOnHand = false;
+                                showDoll = true;
                                 DollR.SetActive(true);
                                 Destroy(hitInfo.collider.gameObject);
                                 //print("doll");
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
                                 CorssR.SetActive(false);
                                 ClothR.SetActive(false);
                                 Itemhave++;
                                 Dollhave++;
-                                ItemSelect = 1;
                                 Inventory.SetActive(true);
-                                DollTotel.text = "x" + Dollhave;
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[1].SetActive(true);
+                                    DollInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[1].SetActive(true);
+                                    DollInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[1].SetActive(true);
+                                    DollInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
                             }
                         }
                         if (Clothhave != 3)
@@ -632,15 +1032,48 @@ public class PlayerAttack : MonoBehaviour
                             if (hitInfo.collider.gameObject.tag == "Cloth")
                             {
                                 ClothOnHand = true;
+                                DollOnHand = false;
+                                CrossOnHand = false;
+                                showCloth = true;
                                 ClothR.SetActive(true);
                                 Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
                                 DollR.SetActive(false);
                                 CorssR.SetActive(false);
                                 Itemhave++;
                                 Clothhave++;
-                                ItemSelect = 2;
                                 Inventory.SetActive(true);
-                                ClothTotel.text = "x" + Clothhave;
+                                if (Itemhave == 1 && !box1  || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[2].SetActive(true);
+                                    ClothInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[2].SetActive(true);
+                                    ClothInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[2].SetActive(true);
+                                    ClothInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
                             }
                         }                       
                     }
@@ -895,27 +1328,49 @@ public class PlayerAttack : MonoBehaviour
         if (collision.gameObject.tag == "Ghost")
         {
             //print("GhostHit");
-            if (CrossOnHand)
+            if (CrossOnHand && showCross)
             {
-                CorssR.SetActive(false);
-                Attack = false;
-                CanDropItem = false;
+                if (curHpCross == 3)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross();
+                }
+                if (curHpCross == 2)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross2();
+                }
+                if (curHpCross == 1)
+                {
+                    CorssR.SetActive(false);
+                    Attack = false;
+                    DropCross1();
+                }
+                Itemhave--;
                 CrossOnHand = false;
-                DropCross();
+                Tutext1.SetActive(false); Tutext2.SetActive(false);
             }
-            if (DollOnHand)
+
+            if (Dollhave != 0)
             {
-                DollR.SetActive(false);
-                CanDropItem = false;
-                DollOnHand = false;
-                DropDoll();
+                if (DollOnHand && showDoll)
+                {
+                    DropDoll();
+                    Itemhave--;
+                    Dollhave--;
+                }
             }
-            if (ClothOnHand)
+
+            if (Clothhave != 0)
             {
-                ClothR.SetActive(false);
-                CanDropItem = false;
-                ClothOnHand = false;
-                DropCloth();
+                if (ClothOnHand && showCloth)
+                {
+                    DropCloth();
+                    Itemhave--;
+                    Clothhave--;
+                }
             }
         }
     }
