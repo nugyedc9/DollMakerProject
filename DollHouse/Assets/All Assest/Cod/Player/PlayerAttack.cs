@@ -781,7 +781,7 @@ public class PlayerAttack : MonoBehaviour
                         if (CrossInv2)
                         {
                             itemInventory2[0].SetActive(false);
-                            CrossInv1 = false;
+                            CrossInv2 = false;
                         }
                     }
 
