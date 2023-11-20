@@ -9,14 +9,15 @@ public class PlayerHp : MonoBehaviour
 
     public float MaxHp;
     public float curHp;
-    public float Delayvideo;
-    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes;
-    private bool Playvideo;
+    public float Delayvideo,DeadDelayvideo;
+    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes, blurEye, DeadVideo;
+    private bool PlayGetHit, normaleye, Playdead;
 
 
     public void Start()
     {
         curHp = MaxHp;
+        normaleye = true;
     }
 
     public void Update()
@@ -25,17 +26,22 @@ public class PlayerHp : MonoBehaviour
             curHp = 0;
         if(curHp < 1)
         {
-            DeadCanva.SetActive(true);
-            Time.timeScale = 0f;
+            if(!Playdead)
+            {
+                DeadVideo.SetActive(true);
+                StartCoroutine(DeadPlay());
+                Playdead = true;
+            }
         }
-        if (curHp < 2)
+        if (curHp < 2 && normaleye)
         {
-            Hp1.SetActive(true);
-            if(!Playvideo)
+            if(!PlayGetHit)
             {
                 Takeingeyes.SetActive(true);
                 StartCoroutine(Takeyourballs());
-                Playvideo = true;
+                Hp1.SetActive(true);
+                PlayGetHit = true;
+                normaleye = false;
             }
         }
 
@@ -45,10 +51,33 @@ public class PlayerHp : MonoBehaviour
         curHp -= damage;
     }
 
+    public void Heal()
+    {
+        curHp++;
+        blurEye.SetActive(false);
+        PlayGetHit = false;
+        normaleye = true;
+    }
+
+    public void openEyes()
+    {
+        Hp1.SetActive(false);
+        blurEye.SetActive(true);
+    }
+
     IEnumerator Takeyourballs()
     {
         yield return new WaitForSeconds(Delayvideo);
         Takeingeyes.SetActive(false);
     }
 
+    IEnumerator DeadPlay()
+    {
+        yield return new WaitForSeconds(DeadDelayvideo);
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        DeadCanva.SetActive(true);
+
+    }
 }

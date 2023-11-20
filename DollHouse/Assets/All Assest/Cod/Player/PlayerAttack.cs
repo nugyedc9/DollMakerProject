@@ -34,6 +34,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject pointLight;
     public Animator LanternAni;
 
+    [Header("Hp player")]
+    public PlayerHp HpPlayer;
+    private bool OpenEye;
+
     [Header("Item On Hand")]
     public GameObject CorssR;
     public Animator CorssAni;
@@ -649,6 +653,19 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Breaker [E]";
                 InterectItem = true;
             }
+            else if (hitevent.collider.gameObject.tag == "Scissors")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Scissors [E]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "EyeWash")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "EyeWash [E]";
+                InterectItem = true;
+            }
+
             else
             {
                 InterectItem = false;
@@ -1110,7 +1127,7 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
-        #region LightUP
+        #region Pick up only
 
         Ray LPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
         if (Input.GetKeyDown(KeyCode.E))
@@ -1133,6 +1150,34 @@ public class PlayerAttack : MonoBehaviour
                     GetFinshDoll.Invoke();
                     takeFinishDoll.AddTotalDoll();
                     Destroy(hitInfo.collider.gameObject);
+                }
+
+                if (hitInfo.collider.gameObject.tag == "Scissors")
+                {
+                    if(HpPlayer.curHp == 1)
+                    {
+                        HpPlayer.openEyes();
+                        OpenEye = true;
+                    }
+                    else
+                    {
+                        Textdialogue.text = "(Might be used to something but not this time.)";
+                        dialogCheck = true;
+                    }
+                }
+
+                if (hitInfo.collider.gameObject.tag == "EyeWash")
+                {
+                    if (HpPlayer.curHp == 1 && OpenEye)
+                    {
+                        HpPlayer.Heal();
+                        OpenEye = false;
+                    }
+                    else
+                    {
+                        Textdialogue.text = "(I can see it clearly. No need to wash.)";
+                        dialogCheck = true;
+                    }
                 }
             }
 
