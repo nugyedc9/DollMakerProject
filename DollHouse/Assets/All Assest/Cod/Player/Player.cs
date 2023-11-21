@@ -37,13 +37,14 @@ namespace player
         public TextMeshProUGUI TextDialogue;
         public GameObject WorkTutorial;
 
-        [Header("CanvaTutorial")]
+        [Header("Canva Work Shop")]
         public CanPlayMini1 ItemCheck;
         public GameObject Dollhave;
         public GameObject Clothhave;
         public GameObject HowToUse1GOBJ;
         public GameObject HowToUse2GOBJ;
         public GameObject HowToUse3GOBJ;
+        public GameObject TotalDoll;
         public TextMeshProUGUI HowToUse1;
         public TextMeshProUGUI HowToUse2;
         public TextMeshProUGUI HowToUse3;
@@ -119,6 +120,7 @@ namespace player
                                 HowToUse3GOBJ.SetActive(true); 
                                 HowToUse2GOBJ.SetActive(true); 
                                 HowToUse1GOBJ.SetActive(true); 
+                                TotalDoll.SetActive(true);
                                 HowToUse1.text = "Start sewing [Hold space]";
                                 HowToUse2.text = "Skill check [W/A/S/D]";
                                 HowToUse3.text = "Quit table [Q]";
@@ -199,7 +201,7 @@ namespace player
                     HowToUse1GOBJ.SetActive(false);
                     HowToUse3GOBJ.SetActive(false);
                     HowToUse2GOBJ.SetActive(false);
-
+                    TotalDoll.SetActive(false);
                     workSound = false;
                 }
             }

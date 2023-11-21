@@ -107,12 +107,15 @@ public class Ghost : MonoBehaviour, HearPlayer
             GhostCloseDistance.enabled = false;
             Box = false;
         }
+        if (!Phit)
         {
-            if (!Phit)
-            {
-                GhostCloseDistance.enabled = true;
-                Box = true;
-            }
+            GhostCloseDistance.enabled = true;
+            Box = true;
+        }
+        else
+        {
+            GhostCloseDistance.enabled = false;
+            Box = false;
         }
         #endregion
 
@@ -138,6 +141,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             stopSearch = false;
             cansee = true;
             getHit = false;
+            Phit = false;
             MistGhost.enabled = true;
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
@@ -203,6 +207,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 HpPlayer.Takedamage(DamageGhost);
                 Attacked = false;
             }
+            Phit = true;
             StartCoroutine(Attack());
         }
 
@@ -321,7 +326,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         yield return new WaitForSeconds(AfterAttackDelay);
         _stateGhost = StateGhost.Idle;
-
     }
     #endregion
 

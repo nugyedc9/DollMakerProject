@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerHp : MonoBehaviour
 {
+    public PlayerAttack PAttack;
+
     [Header("Hp Thing")]
 
     public float MaxHp;
     public float curHp;
     public float Delayvideo,DeadDelayvideo;
-    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes, blurEye, DeadVideo;
-    private bool PlayGetHit, normaleye, Playdead;
+    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes, blurEye, DeadVideo,THowToHeal;
+    private bool PlayGetHit, normaleye, Playdead, tuHeal;
 
 
     public void Start()
@@ -41,7 +43,7 @@ public class PlayerHp : MonoBehaviour
                 StartCoroutine(Takeyourballs());
                 Hp1.SetActive(true);
                 PlayGetHit = true;
-                normaleye = false;
+                normaleye = false;            
             }
         }
 
@@ -69,6 +71,12 @@ public class PlayerHp : MonoBehaviour
     {
         yield return new WaitForSeconds(Delayvideo);
         Takeingeyes.SetActive(false);
+        if (!tuHeal)
+        {
+            THowToHeal.SetActive(true);
+            tuHeal = true;
+            PAttack.DelayTHeal();
+        }
     }
 
     IEnumerator DeadPlay()
@@ -78,6 +86,5 @@ public class PlayerHp : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         DeadCanva.SetActive(true);
-
     }
 }

@@ -92,6 +92,14 @@ public class PlayerAttack : MonoBehaviour
     public TextMeshProUGUI tutorialText2;
     public TextMeshProUGUI tutorialText3;
 
+    [Header("Tutorial game")]
+    public GameObject TStaetGame;
+    public GameObject TWhatToDO;
+    public GameObject THowToDoll;
+    public GameObject TGhostCum;
+    public GameObject THowToCross;
+    public GameObject THowToHeal;
+
     [Header("PauseGame")]
     public GameObject PauseMenu;
     public GameObject EndGame;
@@ -101,7 +109,7 @@ public class PlayerAttack : MonoBehaviour
     private Ghost GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut,DialogueStory,EndD1;
+    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross , firstGhosuCum;
 
 
     [Header("AllEvent")]
@@ -498,12 +506,18 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (StoryNow < 5)
                     {
-
                         Textdialogue.text = "Key for back door.";
                         dialogCheck = true;
                     }
                     if( StoryNow == 5)
                     {
+                        if (!firstGhosuCum)
+                        {
+                            Time.timeScale = 0;
+                            TGhostCum.SetActive(true);
+                            CloseTurial = true;
+                            firstGhosuCum = true;
+                        }
                         Textdialogue.text = "(Feel weird. Maybe THAT THING appears. Let's take the cross for sure.)";
                         dialogCheck = true;
                         GetKey.Invoke();
@@ -953,6 +967,11 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 if (StoryNow >= 5)
                                 {
+                                    if (!firstPickCross)
+                                    {
+                                        StartCoroutine(DelayTutorialhowToCross());
+                                        firstPickCross = true;
+                                    }
                                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                                     curHpCross = CrossUse.curHp;
                                     CrossOnHand = true;
@@ -1131,6 +1150,7 @@ public class PlayerAttack : MonoBehaviour
 
         Ray LPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
         if (Input.GetKeyDown(KeyCode.E))
+        {
             if (Physics.Raycast(LPick, out RaycastHit hitInfo, Pickrange))
             {
                 if (hitInfo.collider.gameObject.tag == "Lantern")
@@ -1154,7 +1174,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.tag == "Scissors")
                 {
-                    if(HpPlayer.curHp == 1)
+                    if (HpPlayer.curHp == 1)
                     {
                         HpPlayer.openEyes();
                         OpenEye = true;
@@ -1172,6 +1192,7 @@ public class PlayerAttack : MonoBehaviour
                     {
                         HpPlayer.Heal();
                         OpenEye = false;
+                        Destroy(hitInfo.collider.gameObject);
                     }
                     else
                     {
@@ -1179,8 +1200,25 @@ public class PlayerAttack : MonoBehaviour
                         dialogCheck = true;
                     }
                 }
+
+               
+
             }
 
+            #region CloseTutorial
+            if (CloseTurial)
+            {
+                TStaetGame.SetActive(false);
+                TWhatToDO.SetActive(false);
+                THowToDoll.SetActive(false);
+                TGhostCum.SetActive(false);
+                THowToCross.SetActive(false);
+                THowToHeal.SetActive(false);
+                Time.timeScale = 1;
+                CloseTurial = false;
+            }
+                #endregion
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -1215,7 +1253,15 @@ public class PlayerAttack : MonoBehaviour
 
 
         #region Need to do next
-        if (StoryNow == 1) NeedToDo.text = "Explore bed room";
+        if (StoryNow == 1)
+        {
+            NeedToDo.text = "Explore bed room";
+            if (DialogueStory)
+            {
+                StartCoroutine(DelayTutorialStartGame());
+                DialogueStory = false;
+            }
+        }
         if (StoryNow == 2)
         {
             NeedToDo.text = "Go to check front door";
@@ -1223,10 +1269,25 @@ public class PlayerAttack : MonoBehaviour
         }
         if (StoryNow == 3)
         {
-            NeedToDo.text = "Go to back door or explore house";
+            if (DialogueStory)
+            {
+                StartCoroutine(DelayTutorialWhatToDo());
+                DialogueStory = false;
+            }
+            NeedToDo.text = "Go to sewing room or explore house";
             CanExplore.Invoke();
         }
-        if (StoryNow == 4) NeedToDo.text = "Make doll at workshop";
+        if (StoryNow == 4)
+        {
+            NeedToDo.text = "Make doll at workshop";
+            if (DialogueStory)
+            {
+                Time.timeScale = 0;
+                THowToDoll.SetActive(true);
+                CloseTurial = true;
+                DialogueStory = false;
+            }
+        }
         if (StoryNow == 5)
         {
             NeedToDo.text = "Find doll and cloth to finish job";
@@ -1395,58 +1456,59 @@ public class PlayerAttack : MonoBehaviour
         Attack = true;
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ghost")
+    #region Ghost hit 
+    /*   public void OnCollisionEnter(Collision collision)
         {
-            //print("GhostHit");
-            if (CrossOnHand && showCross)
+            if (collision.gameObject.tag == "Ghost")
             {
-                if (curHpCross == 3)
+                //print("GhostHit");
+                if (CrossOnHand && showCross)
                 {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross();
-                }
-                if (curHpCross == 2)
-                {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross2();
-                }
-                if (curHpCross == 1)
-                {
-                    CorssR.SetActive(false);
-                    Attack = false;
-                    DropCross1();
-                }
-                Itemhave--;
-                CrossOnHand = false;
-                Tutext1.SetActive(false); Tutext2.SetActive(false);
-            }
-
-            if (Dollhave != 0)
-            {
-                if (DollOnHand && showDoll)
-                {
-                    DropDoll();
+                    if (curHpCross == 3)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross();
+                    }
+                    if (curHpCross == 2)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross2();
+                    }
+                    if (curHpCross == 1)
+                    {
+                        CorssR.SetActive(false);
+                        Attack = false;
+                        DropCross1();
+                    }
                     Itemhave--;
-                    Dollhave--;
+                    CrossOnHand = false;
+                    Tutext1.SetActive(false); Tutext2.SetActive(false);
                 }
-            }
 
-            if (Clothhave != 0)
-            {
-                if (ClothOnHand && showCloth)
+                if (Dollhave != 0)
                 {
-                    DropCloth();
-                    Itemhave--;
-                    Clothhave--;
+                    if (DollOnHand && showDoll)
+                    {
+                        DropDoll();
+                        Itemhave--;
+                        Dollhave--;
+                    }
+                }
+
+                if (Clothhave != 0)
+                {
+                    if (ClothOnHand && showCloth)
+                    {
+                        DropCloth();
+                        Itemhave--;
+                        Clothhave--;
+                    }
                 }
             }
-        }
-    }
-    
+        }*/
+    #endregion
 
     #region Trigger enter
     public void OnTriggerEnter(Collider other)
@@ -1467,6 +1529,9 @@ public class PlayerAttack : MonoBehaviour
         }
         if ((other.gameObject.tag == "Tutorial"))
         {
+            Time.timeScale = 0;
+            TGhostCum.SetActive(true);
+            CloseTurial = true;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "PickItem1")
@@ -1600,6 +1665,28 @@ public class PlayerAttack : MonoBehaviour
         CanvaDialog.SetActive(false);
     }
 
+    IEnumerator DelayTutorialStartGame()
+    {
+        yield return new WaitForSeconds(9);
+        Time.timeScale = 0;
+        TStaetGame.SetActive(true);
+        CloseTurial = true;
+    }
+
+    IEnumerator DelayTutorialWhatToDo()
+    {
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0;
+        TWhatToDO.SetActive(true);
+        CloseTurial = true;
+    }
+    IEnumerator DelayTutorialhowToCross()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 0;
+        THowToCross.SetActive(true);
+        CloseTurial = true;      
+    }
     #endregion
 
     public void WorkShopview()
@@ -1609,6 +1696,12 @@ public class PlayerAttack : MonoBehaviour
     public void QuitWorkShop()
     {
         Working = false;
+    }
+
+    public void DelayTHeal()
+    {
+        Time.timeScale = 0;
+        CloseTurial = true;
     }
 
     public void CrossRuin()

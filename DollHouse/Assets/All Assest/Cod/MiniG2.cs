@@ -24,6 +24,7 @@ public class MiniG2 : MonoBehaviour
     public float TotelDoll = 0;
     public float DollHave;
     public TextMeshProUGUI TotelD;
+    public TextMeshProUGUI TotelDInWorkShop;
 
     [Header("GameObj")]
     public bool StartMiniG2;
@@ -200,6 +201,8 @@ public class MiniG2 : MonoBehaviour
         {
             Make6Doll.Invoke();
         }
+
+        TotelDInWorkShop.text = "Finish Doll :  " + TotelDoll + " / 6";
 
         #region Screen check
         if (Screen.width < 4000 && Screen.height < 2200)
