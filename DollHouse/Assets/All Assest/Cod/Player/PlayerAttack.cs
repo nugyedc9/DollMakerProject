@@ -40,11 +40,10 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Item On Hand")]
     public GameObject CorssR;
+    public GameObject HolyLight;
     public Animator CorssAni;
     public GameObject DollR;
-    public Animator DollAni;
     public GameObject ClothR;
-    public Animator ClothAni;
     public GameObject[] itemInventory1, itemInventory2, itemInventory3;
     public GameObject Inventory, InvPoint1, InvPoint2, InvPoint3;
     public CanPlayMini1 takeFinishDoll;
@@ -113,7 +112,7 @@ public class PlayerAttack : MonoBehaviour
     private Ghost GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross , firstGhosuCum;
+    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross;
 
 
     [Header("AllEvent")]
@@ -191,6 +190,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (curHpCross != 1)
                     {
+                        HolyLight.SetActive(true);
                         crossruin = true;
                         HitAudio.clip = HitGhostSound;
                         GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
@@ -200,9 +200,10 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        else HolyLight.SetActive(false);
         #endregion
 
-        #region Map and pause
+        #region Map pause tutorial
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!EndD1)
@@ -219,6 +220,14 @@ public class PlayerAttack : MonoBehaviour
             else CloseMap();
 
         }
+        if(CloseTurial)
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Attack = false;
+        }
+
         #endregion
 
         #region Item Change
@@ -524,13 +533,6 @@ public class PlayerAttack : MonoBehaviour
                     }
                     if( StoryNow == 5)
                     {
-                        if (!firstGhosuCum)
-                        {
-                            Time.timeScale = 0;
-                            TGhostCum.SetActive(true);
-                            CloseTurial = true;
-                            firstGhosuCum = true;
-                        }
                         Textdialogue.text = "(Feel weird. Maybe THAT THING appears. Let's take the cross for sure.)";
                         dialogCheck = true;
                         GetKey.Invoke();
@@ -983,11 +985,6 @@ public class PlayerAttack : MonoBehaviour
                             { 
                                 if (Crosshave != 1)
                                 {
-                                    if (!firstPickCross)
-                                    {
-                                        StartCoroutine(DelayTutorialhowToCross());
-                                        firstPickCross = true;
-                                    }
                                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                                     curHpCross = CrossUse.curHp;
                                     Crosshave++;
@@ -1010,6 +1007,12 @@ public class PlayerAttack : MonoBehaviour
                                     ClothR.SetActive(false);
                                     Itemhave++;
                                     Inventory.SetActive(true);
+                                    if (!firstPickCross)
+                                    {
+                                        StartCoroutine(DelayTutorialhowToCross());
+                                        firstPickCross = true;
+                                        StopAttack();
+                                    }
                                     if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
                                     {
                                         if (curHpCross == 3) itemInventory1[0].SetActive(true);
@@ -1462,8 +1465,11 @@ public class PlayerAttack : MonoBehaviour
     }
     public void CanAttack()
     {
-        if(CrossOnHand) 
-        Attack = true;
+        if (CrossOnHand)
+        {
+            StartCoroutine(DelayCanAtack());
+        }
+
     }
 
     #region Ghost hit 
@@ -1705,6 +1711,12 @@ public class PlayerAttack : MonoBehaviour
         THowToCross.SetActive(true);
         CloseTurial = true;      
     }
+    IEnumerator DelayCanAtack()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Attack = true;
+    }
+
     #endregion
 
     #region Enter work shop view
@@ -1739,6 +1751,7 @@ public class PlayerAttack : MonoBehaviour
             CloseTurial = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            CanAttack();
         }
     }
     #endregion

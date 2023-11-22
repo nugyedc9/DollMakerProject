@@ -76,6 +76,7 @@ public class PlayerHp : MonoBehaviour
             THowToHeal.SetActive(true);
             tuHeal = true;
             PAttack.DelayTHeal();
+            PAttack.StopAttack();
         }
     }
 
