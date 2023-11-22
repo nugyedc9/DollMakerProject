@@ -23,7 +23,10 @@ public class CanPlayMini1 : MonoBehaviour
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
     public TextMeshProUGUI TotalDoll;
-    
+
+    [Header("Finish doll")]
+    public GameObject[] FinshDoll;
+    private int FinishDollHave;
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +86,12 @@ public class CanPlayMini1 : MonoBehaviour
         Clothobj[ClothHave].SetActive(false );
         ClothHave--;
         if(ClothHave == 0) Cloth = false;
+    }
+
+    public void GetFinishDoll()
+    {
+        FinishDollHave++;
+        FinshDoll[FinishDollHave].SetActive(true);
     }
 
     public void AddTotalDoll()

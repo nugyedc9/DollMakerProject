@@ -24,6 +24,7 @@ namespace player
         public float InterectRange;
         [SerializeField] public PlayerAttack pAttack;
         public GameObject pHand;
+        public GameObject Ghost4Jump;
         public AudioSource FootStep;
 
         [Header("CanavThing")]
@@ -44,7 +45,6 @@ namespace player
         public GameObject HowToUse1GOBJ;
         public GameObject HowToUse2GOBJ;
         public GameObject HowToUse3GOBJ;
-        public GameObject TotalDoll;
         public TextMeshProUGUI HowToUse1;
         public TextMeshProUGUI HowToUse2;
         public TextMeshProUGUI HowToUse3;
@@ -120,7 +120,6 @@ namespace player
                                 HowToUse3GOBJ.SetActive(true); 
                                 HowToUse2GOBJ.SetActive(true); 
                                 HowToUse1GOBJ.SetActive(true); 
-                                TotalDoll.SetActive(true);
                                 HowToUse1.text = "Start sewing [Hold space]";
                                 HowToUse2.text = "Skill check [W/A/S/D]";
                                 HowToUse3.text = "Quit table [Q]";
@@ -201,10 +200,10 @@ namespace player
                     HowToUse1GOBJ.SetActive(false);
                     HowToUse3GOBJ.SetActive(false);
                     HowToUse2GOBJ.SetActive(false);
-                    TotalDoll.SetActive(false);
                     workSound = false;
                 }
             }
+            else StartWork.Stop();
 
                 if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -279,6 +278,37 @@ namespace player
                 StartWork.Stop();
                 CutSceneFinal.Invoke();
             }
+        }
+
+        public void Jump4Doll()
+        {
+            if (ChangePOV.IsActiveCamera(WorkshopView))
+            {
+
+                ChangePOV.SwitchCamera(FirstPerson);
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                pAttack.CanAttack();
+                pMove.walkAble();
+                pHand.SetActive(true);
+                MiniG2Off.SetActive(false);
+
+                Dollhave.SetActive(false);
+                Clothhave.SetActive(false);
+                HowToUse1GOBJ.SetActive(false);
+                HowToUse3GOBJ.SetActive(false);
+                HowToUse2GOBJ.SetActive(false);
+                workSound = false;
+                Ghost4Jump.SetActive(true);
+                StartCoroutine(Delay4DollJump());
+            }
+        }
+
+        IEnumerator Delay4DollJump()
+        {
+            yield return new WaitForSeconds(3);
+            Ghost4Jump.SetActive(false);
+            Destroy(Ghost4Jump.gameObject);
         }
 
         public void PlaySoundWork()

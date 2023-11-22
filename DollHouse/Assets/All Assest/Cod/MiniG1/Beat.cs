@@ -46,6 +46,7 @@ public class Beat : MonoBehaviour
         if (other.gameObject.tag == "BeatA")
         {   
             canBePressed = true;
+            StartCoroutine(DelayGetinDestroy());
         }
     }
 
@@ -65,6 +66,17 @@ public class Beat : MonoBehaviour
         {
 
             yield return new WaitForSeconds(0.1f);
+            MiniG2.Instance.failCheck();
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator DelayGetinDestroy()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(0.3f);
             MiniG2.Instance.failCheck();
             Destroy(gameObject);
         }

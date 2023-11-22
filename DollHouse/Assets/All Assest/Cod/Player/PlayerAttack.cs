@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Item Change")]
     public int ItemSelect = 0;
-    private int Itemhave,Dollhave,Clothhave;
+    private int Itemhave,Dollhave,Clothhave, Crosshave;
     private bool showCross,showDoll,showCloth,setTriggerCross, box1 , box2, box3;
 
 
@@ -99,6 +99,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject TGhostCum;
     public GameObject THowToCross;
     public GameObject THowToHeal;
+
+    [Header("Map")]
+    public GameObject MapCanva;
+    private bool MapOn;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -198,6 +202,7 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
+        #region Map and pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!EndD1)
@@ -207,6 +212,14 @@ public class PlayerAttack : MonoBehaviour
             }
             
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if(!MapOn)OpenMap();
+            else CloseMap();
+
+        }
+        #endregion
 
         #region Item Change
 
@@ -742,6 +755,7 @@ public class PlayerAttack : MonoBehaviour
                             DropCross1();
                         }
                         Itemhave--;
+                        Crosshave--;
                         CrossOnHand = false;
                         Tutext1.SetActive(false); Tutext2.SetActive(false);
                         CorssR.SetActive(false);
@@ -815,6 +829,7 @@ public class PlayerAttack : MonoBehaviour
                             DropCross1();
                         }
                         Itemhave--;
+                        Crosshave--;
                         CrossOnHand = false;
                         Tutext1.SetActive(false); Tutext2.SetActive(false);
                         CorssR.SetActive(false);
@@ -887,6 +902,7 @@ public class PlayerAttack : MonoBehaviour
                             DropCross1();
                         }
                         Itemhave--;
+                        Crosshave--;
                         CrossOnHand = false;
                         Tutext1.SetActive(false); Tutext2.SetActive(false);
                         CorssR.SetActive(false);
@@ -899,7 +915,7 @@ public class PlayerAttack : MonoBehaviour
                             if (curHpCross == 2) itemInventory3[3].SetActive(false);
                             if (curHpCross == 1) itemInventory3[4].SetActive(false);
                             CrossInv3 = false;
-                        }
+                        }                       
                     }
 
 
@@ -961,11 +977,11 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (Itemhave != 3)
                     {
-                        if (!CrossOnHand)
-                        {
+                        if (StoryNow >= 5) 
+                        { 
                             if (hitInfo.collider.gameObject.tag == "Cross")
-                            {
-                                if (StoryNow >= 5)
+                            { 
+                                if (Crosshave != 1)
                                 {
                                     if (!firstPickCross)
                                     {
@@ -974,6 +990,7 @@ public class PlayerAttack : MonoBehaviour
                                     }
                                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                                     curHpCross = CrossUse.curHp;
+                                    Crosshave++;
                                     CrossOnHand = true;
                                     DollOnHand = false;
                                     ClothOnHand = false;
@@ -1032,10 +1049,16 @@ public class PlayerAttack : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand)";
+                                    Textdialogue.text = "(I can only have one.)";
                                     dialogCheck = true;
                                 }
                             }
+                            else
+                            {
+                                Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand.)";
+                                dialogCheck = true;
+                            }
+
                         }
                         if (Dollhave != 3)
                         {
@@ -1167,8 +1190,8 @@ public class PlayerAttack : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.tag == "FinishDoll")
                 {
-                    GetFinshDoll.Invoke();
                     takeFinishDoll.AddTotalDoll();
+                    takeFinishDoll.GetFinishDoll();
                     Destroy(hitInfo.collider.gameObject);
                 }
 
@@ -1205,19 +1228,6 @@ public class PlayerAttack : MonoBehaviour
 
             }
 
-            #region CloseTutorial
-            if (CloseTurial)
-            {
-                TStaetGame.SetActive(false);
-                TWhatToDO.SetActive(false);
-                THowToDoll.SetActive(false);
-                TGhostCum.SetActive(false);
-                THowToCross.SetActive(false);
-                THowToHeal.SetActive(false);
-                Time.timeScale = 1;
-                CloseTurial = false;
-            }
-                #endregion
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -1242,15 +1252,6 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         #endregion
-
-
-        if (dialogCheck)
-        {
-            StopAllCoroutines();
-            StartCoroutine(DelayDialog());
-            dialogCheck = false;
-        }
-
 
         #region Need to do next
         if (StoryNow == 1)
@@ -1284,6 +1285,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 Time.timeScale = 0;
                 THowToDoll.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 CloseTurial = true;
                 DialogueStory = false;
             }
@@ -1309,6 +1312,13 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         #endregion
+
+        if (dialogCheck)
+        {
+            StopAllCoroutines();
+            StartCoroutine(DelayDialog());
+            dialogCheck = false;
+        }
 
     }
 
@@ -1532,6 +1542,8 @@ public class PlayerAttack : MonoBehaviour
             Time.timeScale = 0;
             TGhostCum.SetActive(true);
             CloseTurial = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "PickItem1")
@@ -1669,6 +1681,8 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(9);
         Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         TStaetGame.SetActive(true);
         CloseTurial = true;
     }
@@ -1677,6 +1691,8 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         TWhatToDO.SetActive(true);
         CloseTurial = true;
     }
@@ -1684,11 +1700,14 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         THowToCross.SetActive(true);
         CloseTurial = true;      
     }
     #endregion
 
+    #region Enter work shop view
     public void WorkShopview()
     {
         Working = true;
@@ -1697,12 +1716,32 @@ public class PlayerAttack : MonoBehaviour
     {
         Working = false;
     }
+    #endregion
 
     public void DelayTHeal()
     {
         Time.timeScale = 0;
         CloseTurial = true;
     }
+
+    #region close all tutorial
+    public void CloseAllTutorial()
+    {
+        if (CloseTurial)
+        {
+            TStaetGame.SetActive(false);
+            TWhatToDO.SetActive(false);
+            THowToDoll.SetActive(false);
+            TGhostCum.SetActive(false);
+            THowToCross.SetActive(false);
+            THowToHeal.SetActive(false);
+            Time.timeScale = 1;
+            CloseTurial = false;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    #endregion
 
     public void CrossRuin()
     {
@@ -1715,6 +1754,22 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+
+    #region Map
+
+    public void OpenMap()
+    {
+        MapOn = true;
+        MapCanva.SetActive(true);
+    }
+
+    public void CloseMap()
+    {
+        MapOn = false;
+        MapCanva.SetActive(false);
+    }
+
+    #endregion
 
     #region Pause game
     public void PauseGame()

@@ -24,7 +24,6 @@ public class MiniG2 : MonoBehaviour
     public float TotelDoll = 0;
     public float DollHave;
     public TextMeshProUGUI TotelD;
-    public TextMeshProUGUI TotelDInWorkShop;
 
     [Header("GameObj")]
     public bool StartMiniG2;
@@ -158,9 +157,7 @@ public class MiniG2 : MonoBehaviour
             {
                 print("finsh");
                 DollHave = TotelDoll;
-                FinishDollHave++;
-                Canplay.AddTotalDoll();
-                ShowFinishDoll();
+                GetFinishDoll();
                 CurrentDollCreatingState = DollCreatingState.Start;
             }
         }
@@ -178,6 +175,7 @@ public class MiniG2 : MonoBehaviour
             Point = 0;
             CountAction = 0;
             curSkipTrySkill = 0;
+            StopAllCoroutines();
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
@@ -186,7 +184,6 @@ public class MiniG2 : MonoBehaviour
         {
             if (!pass4doll)
             {
-                Canplay.LosttotalDoll();
                 FinshDoll[FinishDollHave].SetActive(false);
                 FinishDollHave--;
                 Make4Doll.Invoke();
@@ -202,7 +199,6 @@ public class MiniG2 : MonoBehaviour
             Make6Doll.Invoke();
         }
 
-        TotelDInWorkShop.text = "Finish Doll :  " + TotelDoll + " / 6";
 
         #region Screen check
         if (Screen.width < 4000 && Screen.height < 2200)
@@ -302,5 +298,4 @@ public class MiniG2 : MonoBehaviour
         FinishDollHave++;
         FinshDoll[FinishDollHave].SetActive(true);
     }
-
 }
