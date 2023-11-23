@@ -138,6 +138,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent GetKey;
     public UnityEvent GhostEvent1;
     public UnityEvent GhostEvent2;
+    public UnityEvent GhostEvent21;
     public UnityEvent GhostEvent3;
     public UnityEvent GhostSpawn;
     public UnityEvent GetFinshDoll;
@@ -619,6 +620,13 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.tag == "GhostEvent2")
             {
                 GhostEvent2.Invoke();
+                Ambience.clip = AfterJumpGhost;
+                Ambience.Play();
+                Destroy(hitevent.collider.gameObject);
+            }
+            if (hitevent.collider.tag == "GhostEvent21")
+            {
+                GhostEvent21.Invoke();
                 Ambience.clip = AfterJumpGhost;
                 Ambience.Play();
                 Destroy(hitevent.collider.gameObject);
