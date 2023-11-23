@@ -60,7 +60,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public AudioSource Ambience; 
 
     private StateGhost _stateGhost;
-    bool Stay, Box, Phit, StopCount;
+    bool Stay, Box, Phit, StopCount,pause;
 
 
     // Start is called before the first frame update
@@ -74,7 +74,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         FoundPlayer.enabled = false;
         lowSpeed = chaseSpeed;
         ToSpawn = 0;
-
+        Ambience.Play();
         #region Vision Cone
         cansee = true;
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
@@ -94,11 +94,26 @@ public class Ghost : MonoBehaviour, HearPlayer
         DrawVisionCone();
         DistanceAmount = enemyGhost.remainingDistance;
 
-     /*   if (HpGhost < 1)
+        /*   if (HpGhost < 1)
+           {
+               StopAllCoroutines();
+               _stateGhost = StateGhost.Dead;
+           }*/
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            StopAllCoroutines();
-            _stateGhost = StateGhost.Dead;
-        }*/
+            if (!pause) pause = true;
+            else pause = false;
+        }
+
+        if (pause)
+        {
+            MistGhost.enabled = false;
+            ChaseGhost.enabled = false;
+            FoundPlayer.enabled = false;
+            DiedGhost.enabled = false;
+            Ambience.enabled = false;
+        }
 
         if (curStun == 0) curStun = Stun;
 
@@ -143,7 +158,11 @@ public class Ghost : MonoBehaviour, HearPlayer
             cansee = true;
             getHit = false;
             Phit = false;
-            MistGhost.enabled = true;
+            if (!pause)
+            {
+                MistGhost.enabled = true;
+                Ambience.enabled = true;
+            }
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
             DiedGhost.enabled = false;
@@ -169,8 +188,12 @@ public class Ghost : MonoBehaviour, HearPlayer
         {
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(true);
-            ChaseGhost.enabled = true;
-            FoundPlayer.enabled = true;
+            if (!pause)
+            {
+                ChaseGhost.enabled = true;
+                FoundPlayer.enabled = true;
+                Ambience.enabled = true;
+            }
             dest = player.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
@@ -200,10 +223,11 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (_stateGhost == StateGhost.HitP)
         {
             stopSearch = true;
+            cansee = false;
             enemyGhost.speed = 0;
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(false);
-            ChaseGhost.enabled=false; FoundPlayer.enabled=false;
+                ChaseGhost.enabled = false; FoundPlayer.enabled = false; MistGhost.enabled = false;
             if (Attacked)
             {
                 HpPlayer.Takedamage(DamageGhost);
@@ -261,6 +285,7 @@ public class Ghost : MonoBehaviour, HearPlayer
                 GhostFrom.SetActive(true);
                 if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_dead"))
                     GhostAni.Play("G_dead", 0, 0);
+                if(!pause) 
                 DiedGhost.enabled = true;
                 ded = true;
             }

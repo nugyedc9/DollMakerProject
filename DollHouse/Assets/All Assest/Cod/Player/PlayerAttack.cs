@@ -133,6 +133,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("AllEvent")]
     public UnityEvent CheckFrontDoor;
     public UnityEvent CanExplore;
+    public UnityEvent Doorclose;
     public UnityEvent LightOutEvent;
     public UnityEvent BreakerCheck;
     public UnityEvent GetKey;
@@ -1385,6 +1386,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 Textdialogue.text = "(Ah.. out of tools. let's check the storage room)";
                 dialogCheck = true;
+                Doorclose.Invoke();
                 DialogueStory = false;
             }
         }
@@ -1778,7 +1780,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator DelayTutorialStartGame()
     {
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(8);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
