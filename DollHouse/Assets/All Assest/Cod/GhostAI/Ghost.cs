@@ -57,6 +57,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public AudioSource MistGhost;
     public AudioSource ChaseGhost;
     public AudioSource DiedGhost;
+    public AudioSource Ambience; 
 
     private StateGhost _stateGhost;
     bool Stay, Box, Phit, StopCount;
@@ -254,6 +255,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             HpLow = false;
             getAttack = false;
             chasing = false;
+            Ambience.Stop();
             if (!ded)
             {
                 GhostFrom.SetActive(true);
@@ -353,6 +355,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         yield return new WaitForSeconds(AfterDeadDelay);
         playerNearSpawn1();
+        Ambience.Play();
         Phit = false;
         ToSpawn = 0;
         _stateGhost = StateGhost.Idle;

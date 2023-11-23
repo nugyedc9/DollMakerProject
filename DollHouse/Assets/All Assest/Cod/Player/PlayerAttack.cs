@@ -1866,6 +1866,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private bool GetDollLast;
+    public void GetAllDolls()
+    {
+        if (!GetDollLast)
+        {
+            StoryNow++;
+            DialogueStory = true;
+            GetDollLast = true;
+        }
+    }
 
     #region Map
 

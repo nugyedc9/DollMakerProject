@@ -2,6 +2,7 @@ using player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 
 public class CanPlayMini1 : MonoBehaviour
@@ -27,6 +28,10 @@ public class CanPlayMini1 : MonoBehaviour
     [Header("Finish doll")]
     public GameObject[] FinshDoll;
     private int FinishDollHave;
+
+    public AudioSource MakeDollFinish;
+
+    public UnityEvent Dolls6;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +59,12 @@ public class CanPlayMini1 : MonoBehaviour
         ClothTotel.text = "Cloth " + ClothHave + " / 6";
 
         TotalDoll.text = "Finish Doll :  " + TotelDollHave + " / 6";
+
+        if(TotelDollHave == 6)
+        {
+            Dolls6.Invoke();
+        }
+
     }
 
 
@@ -79,6 +90,7 @@ public class CanPlayMini1 : MonoBehaviour
     {
         Dollobj[DollHave].SetActive(false);
         DollHave--;
+        MakeDollFinish.Play();
         if (DollHave == 0) Doll = false;
     }
     public void ClothLost()
