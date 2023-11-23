@@ -39,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
     public AudioClip DropCrossSound;
     public AudioClip DropDollSound;
     public AudioClip DropClothSound;
+    public AudioClip FinishDollPick;
     public AudioClip KeyPickSound;
     public AudioClip LightClickSound;
     public AudioClip BreakerClickSound;
@@ -66,7 +67,6 @@ public class PlayerAttack : MonoBehaviour
     public int ItemSelect = 0;
     private int Itemhave,Dollhave,Clothhave, Crosshave;
     private bool showCross,showDoll,showCloth,setTriggerCross, box1 , box2, box3;
-
 
     [Header("Item Drop")]
     public GameObject CrossD;
@@ -222,6 +222,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Map pause tutorial
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!EndD1 || CloseTurial)
@@ -236,7 +237,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if(!MapOn)OpenMap();
             else CloseMap();
-
         }
         if(CloseTurial)
         {
@@ -1280,6 +1280,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     takeFinishDoll.AddTotalDoll();
                     takeFinishDoll.GetFinishDoll();
+                    InterectSound.clip = FinishDollPick;
+                    InterectSound.Play();
                     Destroy(hitInfo.collider.gameObject);
                 }
 
@@ -1325,6 +1327,8 @@ public class PlayerAttack : MonoBehaviour
                 if (!LightOn)
                 {
                     tutorialText2.text = "Light off [F]";
+                    InterectSound.clip = LanternPickSound;
+                    InterectSound.Play();
                     Light.gameObject.SetActive(true);
                     LanternAni.SetTrigger("LightUp");
                     LightOn = true;
@@ -1347,6 +1351,8 @@ public class PlayerAttack : MonoBehaviour
             NeedToDo.text = "Explore bed room";
             if (DialogueStory)
             {
+                CanvaDialog.SetActive(true);
+                Textdialogue.text = "Who knocking on the door this time!?";
                 StartCoroutine(DelayTutorialStartGame());
                 DialogueStory = false;
             }
@@ -1555,7 +1561,6 @@ public class PlayerAttack : MonoBehaviour
         {
             StartCoroutine(DelayCanAtack());
         }
-
     }
 
     #region old Ghost hit 
@@ -1611,6 +1616,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }*/
     #endregion
+
 
     #region Trigger enter
     public void OnTriggerEnter(Collider other)
@@ -1780,13 +1786,17 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator DelayTutorialStartGame()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(6);
+        Textdialogue.text = "Really annoying....";
+        yield return new WaitForSeconds(2);
+        dialogCheck = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         TStaetGame.SetActive(true);
         CloseTurial = true;
     }
+
 
     IEnumerator DelayTutorialWhatToDo()
     {

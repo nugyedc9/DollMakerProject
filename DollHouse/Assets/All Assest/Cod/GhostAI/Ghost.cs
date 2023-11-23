@@ -60,7 +60,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public AudioSource Ambience; 
 
     private StateGhost _stateGhost;
-    bool Stay, Box, Phit, StopCount,pause;
+    bool Stay, Box, Phit, StopCount,pause,pauseAmbience;
 
 
     // Start is called before the first frame update
@@ -94,7 +94,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         DrawVisionCone();
         DistanceAmount = enemyGhost.remainingDistance;
 
-        /*   if (HpGhost < 1)
+        /*if (HpGhost < 1)
            {
                StopAllCoroutines();
                _stateGhost = StateGhost.Dead;
@@ -112,7 +112,8 @@ public class Ghost : MonoBehaviour, HearPlayer
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
             DiedGhost.enabled = false;
-            Ambience.enabled = false;
+            Ambience.Pause();
+            pauseAmbience = true;
         }
 
         if (curStun == 0) curStun = Stun;
@@ -141,6 +142,15 @@ public class Ghost : MonoBehaviour, HearPlayer
             BlackSphere.SetActive(true);
             GhostFrom.SetActive(false);
             stopSearch = false;
+            if (!pause)
+            {
+                Ambience.enabled = true;
+                if (pauseAmbience)
+                {
+                    Ambience.Play();
+                    pauseAmbience = false;
+                }
+            }
             dest = currentDest.position;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
@@ -162,6 +172,11 @@ public class Ghost : MonoBehaviour, HearPlayer
             {
                 MistGhost.enabled = true;
                 Ambience.enabled = true;
+                if (pauseAmbience)
+                {
+                    Ambience.Play();
+                    pauseAmbience = false;
+                }
             }
             ChaseGhost.enabled = false;
             FoundPlayer.enabled = false;
@@ -193,6 +208,11 @@ public class Ghost : MonoBehaviour, HearPlayer
                 ChaseGhost.enabled = true;
                 FoundPlayer.enabled = true;
                 Ambience.enabled = true;
+                if(pauseAmbience)
+                {
+                    Ambience.Play();
+                    pauseAmbience = false;
+                }
             }
             dest = player.position;
             enemyGhost.destination = dest;
@@ -348,7 +368,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     #endregion
 
 
-
     #region Attack
     IEnumerator Attack()
     {
@@ -385,8 +404,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         ToSpawn = 0;
         _stateGhost = StateGhost.Idle;
     }
-
-
 
     #endregion
 

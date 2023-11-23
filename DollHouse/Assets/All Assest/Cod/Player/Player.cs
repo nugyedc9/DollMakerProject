@@ -258,7 +258,7 @@ namespace player
                 pMove.walkAble();
                 pHand.SetActive(true);
                 MiniG2Off.SetActive(false);
-                canvaTutorial.SetActive(true) ; 
+                //canvaTutorial.SetActive(true) ; 
             }
             yield return new WaitForSeconds(2);
             CanvaBedView.SetActive(false);
