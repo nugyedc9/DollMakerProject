@@ -27,7 +27,21 @@ public class PlayerAttack : MonoBehaviour
     public AudioClip HitWindSound;
     public AudioSource HitAudio;
     public AudioClip LightOutLetsGooo;
+    public AudioSource Ambience;
+    public AudioClip AfterJumpGhost;
+    public AudioSource InterectSound;
 
+    [Header("PickItemSound")]
+    public AudioClip LanternPickSound;
+    public AudioClip CrossPickSound;
+    public AudioClip DollPickSound;
+    public AudioClip ClothPickSound;
+    public AudioClip DropCrossSound;
+    public AudioClip DropDollSound;
+    public AudioClip DropClothSound;
+    public AudioClip KeyPickSound;
+    public AudioClip LightClickSound;
+    public AudioClip BreakerClickSound;
 
     [Header("PLayerLight")]
     public GameObject Light;
@@ -84,6 +98,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("TextShow")]
     public TextMeshProUGUI TextYouhere;
     public TextMeshProUGUI NeedToDo;
+    public Animator NeedToDoAnimate;
     public GameObject Tutext1;
     public GameObject Tutext2;
     public GameObject Tutext3;
@@ -190,9 +205,10 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (curHpCross != 1)
                     {
-                        HolyLight.SetActive(true);
+                        StartCoroutine(DelayHolyLight());
                         crossruin = true;
                         HitAudio.clip = HitGhostSound;
+                        HitAudio.Play();
                         GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
                         GhostHit.PlayerHitGhost();
                     }
@@ -206,7 +222,7 @@ public class PlayerAttack : MonoBehaviour
         #region Map pause tutorial
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!EndD1)
+            if (!EndD1 || CloseTurial)
             {
                 if (!isPause) PauseGame();
                 else ResumeGame();
@@ -498,6 +514,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Light.SetActive(true);
                     LanternAni.SetTrigger("LightUp");
+                    InterectSound.clip = LanternPickSound;
+                    InterectSound.Play();
                     LightOn = true;
                     LightOnHand = true;
                     pointLight.SetActive(true);
@@ -535,6 +553,8 @@ public class PlayerAttack : MonoBehaviour
                     {
                         Textdialogue.text = "(Feel weird. Maybe THAT THING appears. Let's take the cross for sure.)";
                         dialogCheck = true;
+                        InterectSound.clip = KeyPickSound;
+                        InterectSound.Play();
                         GetKey.Invoke();
                         Destroy(hitInterect.collider.gameObject);
                     }
@@ -552,18 +572,26 @@ public class PlayerAttack : MonoBehaviour
                     }
                     if(StoryNow == 6)
                     {
-                        Textdialogue.text = "**Amazing go to sleep cutscene play** ZZZ..";
-                        dialogCheck = true;                    
+                        Textdialogue.text = "**Amazing go to sleep cutscene play** ZZZ..";                  
                         EndD1 = true;
+                        StartCoroutine(DelayEndind());
                     }
                 }
                 if (hitInterect.collider.gameObject.tag == "LightSwitch")
                 {
                     DoEvent = hitInterect.collider.gameObject.GetComponent<Event>();
-                    if(!LightOut)
-                    DoEvent.TurnOnLight();
+                    if (!LightOut)
+                    {
+                        DoEvent.TurnOnLight();
+                        InterectSound.clip = LightClickSound;
+                        InterectSound.Play();
+                    }
                     else
+                    {
                         DoEvent.GhostLightOut();
+                        InterectSound.clip = LightClickSound;
+                        InterectSound.Play();
+                    }
                 }
                 if (hitInterect.collider.gameObject.tag == "Breaker")
                 {
@@ -571,6 +599,8 @@ public class PlayerAttack : MonoBehaviour
                     {
                         LightOut = false;
                         BreakerCheck.Invoke();
+                        InterectSound.clip = BreakerClickSound;
+                        InterectSound.Play();
                     }
                 }
 
@@ -589,6 +619,8 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.tag == "GhostEvent2")
             {
                 GhostEvent2.Invoke();
+                Ambience.clip = AfterJumpGhost;
+                Ambience.Play();
                 Destroy(hitevent.collider.gameObject);
             }
             if (hitevent.collider.tag == "GhostEvent3")
@@ -738,6 +770,8 @@ public class PlayerAttack : MonoBehaviour
                     box1 = false;
                     if (CrossOnHand && showCross)
                     {
+                        InterectSound.clip = DropCrossSound;
+                        InterectSound.Play();
                         if (curHpCross == 3)
                         {
                             CorssR.SetActive(false);
@@ -776,7 +810,9 @@ public class PlayerAttack : MonoBehaviour
 
                         if (DollOnHand && showDoll)
                         {
-                            DropDoll();
+                        InterectSound.clip = DropDollSound;
+                        InterectSound.Play();
+                        DropDoll();
                             Itemhave--;
                             Dollhave--;
                             Tutext1.SetActive(false);
@@ -792,7 +828,10 @@ public class PlayerAttack : MonoBehaviour
 
                         if (ClothOnHand && showCloth)
                         {
-                            DropCloth();
+
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+                        DropCloth();
                             Itemhave--;
                             Clothhave--;
                             Tutext1.SetActive(false);
@@ -812,6 +851,9 @@ public class PlayerAttack : MonoBehaviour
                     box2 = false;
                     if (CrossOnHand && showCross)
                     {
+                        InterectSound.clip = DropCrossSound;
+                        InterectSound.Play();
+
                         if (curHpCross == 3)
                         {
                             CorssR.SetActive(false);
@@ -850,7 +892,10 @@ public class PlayerAttack : MonoBehaviour
 
                         if (DollOnHand && showDoll)
                         {
-                            DropDoll();
+                        InterectSound.clip = DropDollSound;
+                        InterectSound.Play();
+
+                        DropDoll();
                             Itemhave--;
                             Dollhave--;
                             Tutext1.SetActive(false);
@@ -862,22 +907,25 @@ public class PlayerAttack : MonoBehaviour
                                 DollInv2 = false;
                             }
                         }
-                    
-                        if (ClothOnHand && showCloth)
-                        {
-                            DropCloth();
-                            Itemhave--;
-                            Clothhave--;
-                            Tutext1.SetActive(false);
-                            ClothR.SetActive(false);
-                            showCloth = false;
-                            if (ClothInv2)
-                            {
-                                itemInventory2[2].SetActive(false);
-                                ClothInv2 = false;
-                            }
 
-                        }                                               
+                    if (ClothOnHand && showCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropCloth();
+                        Itemhave--;
+                        Clothhave--;
+                        Tutext1.SetActive(false);
+                        ClothR.SetActive(false);
+                        showCloth = false;
+                        if (ClothInv2)
+                        {
+                            itemInventory2[2].SetActive(false);
+                            ClothInv2 = false;
+                        }
+
+                    }                                            
                 }
 
                 if (ItemSelect == 2)
@@ -885,6 +933,9 @@ public class PlayerAttack : MonoBehaviour
                     box3 = false;
                     if (CrossOnHand && showCross)
                     {
+                        InterectSound.clip = DropCrossSound;
+                        InterectSound.Play();
+
                         if (curHpCross == 3)
                         {
                             CorssR.SetActive(false);
@@ -923,6 +974,9 @@ public class PlayerAttack : MonoBehaviour
 
                     if (DollOnHand && showDoll)
                     {
+                        InterectSound.clip = DropDollSound;
+                        InterectSound.Play();
+
                         DropDoll();
                         Itemhave--;
                         Dollhave--;
@@ -938,6 +992,9 @@ public class PlayerAttack : MonoBehaviour
 
                     if (ClothOnHand && showCloth)
                     {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
                         DropCloth();
                         Itemhave--;
                         Clothhave--;
@@ -979,25 +1036,32 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (Itemhave != 3)
                     {
-                        if (StoryNow >= 5) 
-                        { 
+                        if (StoryNow >= 5)
+                        {
                             if (hitInfo.collider.gameObject.tag == "Cross")
-                            { 
+                            {
                                 if (Crosshave != 1)
                                 {
                                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                                     curHpCross = CrossUse.curHp;
                                     Crosshave++;
+
+
                                     CrossOnHand = true;
                                     DollOnHand = false;
                                     ClothOnHand = false;
                                     showCross = true;
                                     Attack = true;
+
+                                    InterectSound.clip = CrossPickSound;
+                                    InterectSound.Play();
+
                                     CorssR.SetActive(true);
                                     if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
                                     if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
                                     if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
                                     Destroy(hitInfo.collider.gameObject);
+
                                     // print("Cross");
                                     Tutext1.SetActive(true);
                                     Tutext2.SetActive(true);
@@ -1056,13 +1120,17 @@ public class PlayerAttack : MonoBehaviour
                                     dialogCheck = true;
                                 }
                             }
-                            else
+                        }
+
+                        else if (StoryNow < 5)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "Cross")
                             {
                                 Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand.)";
                                 dialogCheck = true;
                             }
-
                         }
+
                         if (Dollhave != 3)
                         {
                             if (hitInfo.collider.gameObject.tag == "Doll")
@@ -1072,6 +1140,10 @@ public class PlayerAttack : MonoBehaviour
                                 CrossOnHand = false;
                                 ClothOnHand = false;
                                 showDoll = true;
+
+                                InterectSound.clip = DollPickSound;
+                                InterectSound.Play();
+
                                 DollR.SetActive(true);
                                 Destroy(hitInfo.collider.gameObject);
                                 //print("doll");
@@ -1123,6 +1195,10 @@ public class PlayerAttack : MonoBehaviour
                                 DollOnHand = false;
                                 CrossOnHand = false;
                                 showCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
                                 ClothR.SetActive(true);
                                 Destroy(hitInfo.collider.gameObject);
                                 Tutext1.SetActive(true);
@@ -1472,7 +1548,7 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    #region Ghost hit 
+    #region old Ghost hit 
     /*   public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Ghost")
@@ -1643,6 +1719,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (other.gameObject.tag == "Story")
         {
+            NeedToDoAnimate.Play("ToDoAmiate", 0, 0);
             Destroy(other.gameObject);
             StoryNow++;
             DialogueStory = true;
@@ -1663,6 +1740,12 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(5);
         CanvaDialog.SetActive(false);
         dialogCheck = false;
+    }
+
+    IEnumerator DelayEndind()
+    {
+        CanvaDialog.SetActive(true);    
+        yield return new WaitForSeconds(1);
         if (EndD1)
         {
             EndGame.SetActive(true);
@@ -1671,6 +1754,8 @@ public class PlayerAttack : MonoBehaviour
             Attack = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            CanvaDialog.SetActive(false);
+            dialogCheck = false;
         }
     }
 
@@ -1715,6 +1800,12 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Attack = true;
+    }
+
+    IEnumerator DelayHolyLight()
+    {
+        yield return new WaitForSeconds(0.5f);
+        HolyLight.SetActive(true);
     }
 
     #endregion
