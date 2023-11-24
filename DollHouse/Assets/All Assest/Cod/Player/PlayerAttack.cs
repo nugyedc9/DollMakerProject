@@ -127,7 +127,7 @@ public class PlayerAttack : MonoBehaviour
     private Ghost GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross;
+    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx;
 
 
     [Header("AllEvent")]
@@ -171,10 +171,11 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
-                if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
-                if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
 
+                    if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
+                    if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
+                
                 if (CrossInv1)
                 {
                     if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
@@ -207,6 +208,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (curHpCross != 1)
                     {
+                        GhostEx = true;
                         StartCoroutine(DelayHolyLight());
                         crossruin = true;
                         HitAudio.clip = HitGhostSound;
@@ -215,7 +217,7 @@ public class PlayerAttack : MonoBehaviour
                         GhostHit.PlayerHitGhost();
                     }
                     //StartCoroutine(AttackReset());
-                }
+                }else HolyLight.SetActive(false);
             }
         }
         else HolyLight.SetActive(false);
@@ -1387,7 +1389,9 @@ public class PlayerAttack : MonoBehaviour
         }
         if (StoryNow == 5)
         {
+            if(FindDoll)
             NeedToDo.text = "Find doll and cloth to finish job";
+
             if (DialogueStory)
             {
                 Textdialogue.text = "(Ah.. out of tools. let's check the storage room)";
@@ -1400,7 +1404,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (DialogueStory)
             {
-                NeedToDo.text = "Exorcise ghosts and go to bed";
+                NeedToDo.text = "Go to bed";
                 Textdialogue.text = "(That is for today. Now I need to do something to sleep in peace.)";
                 dialogCheck = true;
                 DialogueStory = false;
@@ -1668,10 +1672,9 @@ public class PlayerAttack : MonoBehaviour
             dialogCheck = true;
             Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "BeQuiet")
+        if (other.gameObject.tag == "Make6Dolls")
         {
-            Textdialogue.text = Dialogue[5];
-            dialogCheck = true;
+            Make6Dolls();
             Destroy(other.gameObject);
         }
 
@@ -1826,6 +1829,15 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         HolyLight.SetActive(true);
+        if (GhostEx)
+        {
+            if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
+            if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
+            if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
+            GhostEx = false;    
+        }
+        yield return new WaitForSeconds(0.5f);
+        HolyLight.SetActive(false);
     }
 
     #endregion
@@ -1887,6 +1899,12 @@ public class PlayerAttack : MonoBehaviour
             DialogueStory = true;
             GetDollLast = true;
         }
+    }
+    bool FindDoll;
+    public void Make6Dolls()
+    {
+        FindDoll = true;
+        NeedToDo.text = "Collect All Dolls";
     }
 
     #region Map

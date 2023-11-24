@@ -37,6 +37,7 @@ namespace player
         [SerializeField] public string[] Dialog;
         public TextMeshProUGUI TextDialogue;
         public GameObject WorkTutorial;
+        public GameObject ItemOnPlayer;
 
         [Header("Canva Work Shop")]
         public CanPlayMini1 ItemCheck;
@@ -115,6 +116,7 @@ namespace player
                                 pAttack.StopAttack();
                                 pHand.SetActive(false);
 
+                                ItemOnPlayer.SetActive(false);
                                 Dollhave.SetActive(true);
                                 Clothhave.SetActive(true);
                                 HowToUse3GOBJ.SetActive(true); 
@@ -195,6 +197,7 @@ namespace player
                     pHand.SetActive(true);
                     MiniG2Off.SetActive(false);
 
+                    ItemOnPlayer.SetActive(true);
                     Dollhave.SetActive(false);
                     Clothhave.SetActive(false);
                     HowToUse1GOBJ.SetActive(false);
@@ -293,6 +296,7 @@ namespace player
                 pHand.SetActive(true);
                 MiniG2Off.SetActive(false);
 
+                ItemOnPlayer.SetActive(true);
                 Dollhave.SetActive(false);
                 Clothhave.SetActive(false);
                 HowToUse1GOBJ.SetActive(false);

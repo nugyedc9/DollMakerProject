@@ -60,7 +60,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public AudioSource Ambience; 
 
     private StateGhost _stateGhost;
-    bool Stay, Box, Phit, StopCount,pause,pauseAmbience;
+    bool Stay, Box, Phit, StopCount,pause,pauseAmbience, Crouch;
 
 
     // Start is called before the first frame update
@@ -105,6 +105,14 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (!pause) pause = true;
             else pause = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            VisionRange = 5;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+            VisionRange = 10;
+
 
         if (pause)
         {
@@ -426,7 +434,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     public void playerNearSpawn3()
     {
-        GhostTransFrom.position = Spawn3.position;
+        enemyGhost.Warp(Spawn3.position);
         FirstDest = 7;
         destinationAmount = 9;
     }

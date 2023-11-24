@@ -65,6 +65,7 @@ public class MiniG2 : MonoBehaviour
     public UnityEvent Cutscene;
     public UnityEvent PickItem2;
     public UnityEvent Make4Doll;
+    public UnityEvent Make6Doll;
 
     private DollCreatingState CurrentDollCreatingState;
     public static MiniG2 Instance;
@@ -178,6 +179,11 @@ public class MiniG2 : MonoBehaviour
             CurrentDollCreatingState = DollCreatingState.FinishMiniG2;
         }
 
+
+        if(TotelDoll == 6)
+        {
+            Make6Doll.Invoke();
+        }
 
         if (TotelDoll == 4)
         {

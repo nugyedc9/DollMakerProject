@@ -12,7 +12,7 @@ public class PlayerHp : MonoBehaviour
     public float MaxHp;
     public float curHp;
     public float Delayvideo,DeadDelayvideo;
-    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes, blurEye, DeadVideo,THowToHeal;
+    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye, DeadVideo,THowToHeal;
     private bool PlayGetHit, normaleye, Playdead, tuHeal;
 
 
@@ -65,6 +65,8 @@ public class PlayerHp : MonoBehaviour
     {
         Hp1.SetActive(false);
         blurEye.SetActive(true);
+        CutLine.SetActive(true);
+        StartCoroutine(CutLineEye());
     }
 
     IEnumerator Takeyourballs()
@@ -78,6 +80,12 @@ public class PlayerHp : MonoBehaviour
             PAttack.DelayTHeal();
             PAttack.StopAttack();
         }
+    }
+
+    IEnumerator CutLineEye()
+    {
+        yield return new WaitForSeconds(3);
+        CutLine.SetActive(false);
     }
 
     IEnumerator DeadPlay()

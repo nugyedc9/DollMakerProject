@@ -73,12 +73,12 @@ namespace player
                     G= false;   
                     rb.AddForce(moveDirection.normalized / 50f, ForceMode.Force);
                 }
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
                     Crouch = true;
                     FootStep.enabled = false;
                 }
-                else if (Input.GetKeyUp(KeyCode.LeftControl))
+                else if (Input.GetKeyUp(KeyCode.LeftShift))
                     Crouch = false;
             }
            
