@@ -34,7 +34,6 @@ public class Event : MonoBehaviour
         Ghost1.Play("Event1", 0, 0);
         StartCoroutine(waitdelay());
     }
-
     public void GhostEvent2()
     {
         GhostSound.clip = Ghost2Clip;

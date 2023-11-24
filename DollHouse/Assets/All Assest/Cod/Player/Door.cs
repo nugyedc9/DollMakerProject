@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Door : MonoBehaviour
@@ -14,6 +16,9 @@ public class Door : MonoBehaviour
     public AudioClip close;
     public AudioClip knock;
     public AudioClip doorlock;
+
+    public UnityEvent IffopenDoor;
+    public UnityEvent IffcloseDoor;
 
     private void Awake()
     {
@@ -65,6 +70,22 @@ public class Door : MonoBehaviour
         Lock = true;
         doorAni.Play("Door_closefast", 0, 0);
         D = false;
+    }
+
+    bool jump1shot;
+
+    public void Jump1Atctive()
+    {
+        if (D) IffopenDoor.Invoke();
+        else
+        {
+            DoorSound.clip = open;
+            DoorSound.Play();
+            doorAni.Play("Door_open", 0, 0);
+            D = true;
+            key1 = false;
+            IffopenDoor.Invoke();
+        }
     }
 
     public void Key1()

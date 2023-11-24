@@ -138,6 +138,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent BreakerCheck;
     public UnityEvent GetKey;
     public UnityEvent GhostEvent1;
+    public UnityEvent GhostEvent12;
     public UnityEvent GhostEvent2;
     public UnityEvent GhostEvent21;
     public UnityEvent GhostEvent3;
@@ -1389,7 +1390,6 @@ public class PlayerAttack : MonoBehaviour
         }
         if (StoryNow == 5)
         {
-            if(FindDoll)
             NeedToDo.text = "Find doll and cloth to finish job";
 
             if (DialogueStory)
