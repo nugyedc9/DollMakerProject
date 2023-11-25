@@ -561,6 +561,11 @@ public class PlayerAttack : MonoBehaviour
                         InterectSound.clip = KeyPickSound;
                         InterectSound.Play();
                         GetKey.Invoke();
+                        Time.timeScale = 0;
+                        TGhostCum.SetActive(true);
+                        CloseTurial = true;
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
                         Destroy(hitInterect.collider.gameObject);
                     }
                 }
