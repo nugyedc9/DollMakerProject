@@ -532,4 +532,10 @@ public class Ghost : MonoBehaviour, HearPlayer
         MeshFilter_.mesh = VisionConeMesh;
     }
     #endregion
+
+    public void endgame()
+    {
+        pause = true;
+    }
+
 }

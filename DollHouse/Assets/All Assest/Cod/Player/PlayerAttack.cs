@@ -146,6 +146,7 @@ public class PlayerAttack : MonoBehaviour
     public UnityEvent GetFinshDoll;
     public UnityEvent EventCloseDoor;
     public UnityEvent Radio;
+    public UnityEvent EndgameCloseSound;
 
     private void Start()
     {       
@@ -1780,6 +1781,7 @@ public class PlayerAttack : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             CanvaDialog.SetActive(false);
             dialogCheck = false;
+            EndgameCloseSound.Invoke();
         }
     }
 
