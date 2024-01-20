@@ -1,0 +1,953 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.0f1 (fb119bb0b476) revision 16454043'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Professional' Language: 'en' Physical Memory: 16223 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+58865
+Successfully changed project path to: D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [8548] Host "[IP] 192.168.1.110 [Port] 0 [Flags] 2 [Guid] 1156281914 [EditorId] 1156281914 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [8548] Host "[IP] 192.168.1.110 [Port] 0 [Flags] 2 [Guid] 1156281914 [EditorId] 1156281914 [Version] 1048832 [Id] WindowsEditor(7,Prince) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 6.57 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.0f1 (fb119bb0b476)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK WORK WORK/Thesis/DollMakerProject/DollHouse/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 (ID=0x2882)
+    Vendor:   NVIDIA
+    VRAM:     7971 MB
+    Driver:   31.0.15.4633
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56592
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006424 seconds.
+- Loaded All Assemblies, in  0.264 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.185 seconds
+Domain Reload Profiling: 448ms
+	BeginReloadAssembly (88ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (98ms)
+		LoadAssemblies (86ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (93ms)
+			TypeCache.Refresh (93ms)
+				TypeCache.ScanAssembly (84ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (186ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (144ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (96ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\WORK WORK WORK\Thesis\DollMakerProject\DollHouse\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.753 seconds
+Refreshing native plugins compatible for Editor in 2.29 ms, found 5 plugins.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.650 seconds
+Domain Reload Profiling: 2401ms
+	BeginReloadAssembly (93ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (15ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (597ms)
+		LoadAssemblies (340ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (303ms)
+			TypeCache.Refresh (269ms)
+				TypeCache.ScanAssembly (257ms)
+			ScanForSourceGeneratedMonoScriptInfo (25ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1651ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1485ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (70ms)
+			ProcessInitializeOnLoadAttributes (325ms)
+			ProcessInitializeOnLoadMethodAttributes (1076ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 7.47 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7466 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 135 unused Assets / (3.6 MB). Loaded Objects now: 7961.
+Memory consumption went from 333.6 MB to 330.0 MB.
+Total: 9.171900 ms (FindLiveObjects: 1.589300 ms CreateObjectMapping: 0.527500 ms MarkObjects: 4.925100 ms  DeleteObjects: 2.127600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 336612.691663 seconds.
+  path: Assets/All Assest/Assest 3D/Cross/Cross.fbx
+  artifactKey: Guid(d1d62a9af300a3a4e8d583e9da9e58cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 3D/Cross/Cross.fbx using Guid(d1d62a9af300a3a4e8d583e9da9e58cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab8151954b4014d5bfe4e56383755f44') in 0.057106 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.840080 seconds.
+  path: Assets/All Assest/Assest 3D/Corridor/Boox01.fbx
+  artifactKey: Guid(8935ef4bf36deb04cae5ba0481d24202) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 3D/Corridor/Boox01.fbx using Guid(8935ef4bf36deb04cae5ba0481d24202) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '053046fe13a5698a18da7df125bedd99') in 0.003589 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/All Assest/Assest 3D/Corridor/Wire01.fbx
+  artifactKey: Guid(c50a4896d9569c145ba447c758402e01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 3D/Corridor/Wire01.fbx using Guid(c50a4896d9569c145ba447c758402e01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd4f8b65b2ebc8770b4ddf5c0119a7ff') in 0.003957 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.972467 seconds.
+  path: Assets/All Assest/Assest 3D/Cloth/Cloth.fbx
+  artifactKey: Guid(a8363eaada4439145a7fa7286602d91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 3D/Cloth/Cloth.fbx using Guid(a8363eaada4439145a7fa7286602d91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0dd8021ca8efb58c10ce465aa8875085') in 0.002441 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 27.586266 seconds.
+  path: Assets/All Assest/Texture/TuDorWood04/TuDorWood04_ambientocclusion.png
+  artifactKey: Guid(818e7a131b6b0414090babdcd6b2a29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TuDorWood04/TuDorWood04_ambientocclusion.png using Guid(818e7a131b6b0414090babdcd6b2a29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e81e4198f5b78795db84015a21b97f7d') in 0.002763 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.009934 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/Materials/WoodPlankTiling_basecolor.mat
+  artifactKey: Guid(f007ad2bad329d74e8706a8d8d0d2153) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/Materials/WoodPlankTiling_basecolor.mat using Guid(f007ad2bad329d74e8706a8d8d0d2153) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03b3d54b113a339e9864f6408de17ede') in 0.001137 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008284 seconds.
+  path: Assets/All Assest/Texture/TuDorWood04/TuDorWood04_basecolor.png
+  artifactKey: Guid(c4fec853bdf15824e81a3b14bb3ee87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TuDorWood04/TuDorWood04_basecolor.png using Guid(c4fec853bdf15824e81a3b14bb3ee87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06e48fa764798c38d600189b4e2b35c6') in 0.003555 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.009192 seconds.
+  path: Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_roughness.png
+  artifactKey: Guid(20d371a5e7920f84690b30705dd11c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_roughness.png using Guid(20d371a5e7920f84690b30705dd11c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e5dfd27acaa270b685099547e8a3c5e') in 0.003141 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.015543 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_metallic.png
+  artifactKey: Guid(47d9bb2b19fa08846a4a7e5f47cdae4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_metallic.png using Guid(47d9bb2b19fa08846a4a7e5f47cdae4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fc3533547f1e8ab9b5f78a1adee5258') in 0.003505 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002779 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/Materials
+  artifactKey: Guid(39255e58a301ba545828622d05720fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/Materials using Guid(39255e58a301ba545828622d05720fbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '225cb3674a2d83998ae9d5de0d45b1fe') in 0.000445 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.003001 seconds.
+  path: Assets/All Assest/Texture/TudorMetall/TudorMetall_basecolor.png
+  artifactKey: Guid(03b4b0ce6d7f55741b201da3ef35b702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TudorMetall/TudorMetall_basecolor.png using Guid(03b4b0ce6d7f55741b201da3ef35b702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f176083e88d0affa88a2e1dbd422d76d') in 0.003195 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005738 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_ambientocclusion.png
+  artifactKey: Guid(6d37151cb06d40d43914c28597368a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_ambientocclusion.png using Guid(6d37151cb06d40d43914c28597368a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7361c85669f6bdd32cd317ff9d77ad75') in 0.002957 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.010474 seconds.
+  path: Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Red.png
+  artifactKey: Guid(a54b6f8d060466242828073e16fe312c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Red.png using Guid(a54b6f8d060466242828073e16fe312c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '776f6f2056c6e51ac8ea23edc18f4fd0') in 0.003200 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.012180 seconds.
+  path: Assets/All Assest/Texture/DLWoodBase/DHWoodBasenormal.png
+  artifactKey: Guid(fcd91cfe714849541a99905cc6340b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/DLWoodBase/DHWoodBasenormal.png using Guid(fcd91cfe714849541a99905cc6340b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33ae544bb73e2f38619ea4b2ea2706d6') in 0.002924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001345 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/Materials
+  artifactKey: Guid(67d04f5ebbfb558448ac5e51d0a021f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/Materials using Guid(67d04f5ebbfb558448ac5e51d0a021f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20311f82a552a7f9d624cc40fa5fe3a0') in 0.000523 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.004757 seconds.
+  path: Assets/All Assest/Texture/New Texture/TuDorWood04/Wood04Markmap.png
+  artifactKey: Guid(7b70d09ac272b9e4ea6e13545ad5d52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TuDorWood04/Wood04Markmap.png using Guid(7b70d09ac272b9e4ea6e13545ad5d52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8065dc481f8971b10bb468eeaf6c46f3') in 0.005165 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005184 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/Materials/TudorMetall_basecolor.mat
+  artifactKey: Guid(4e0ce10aa62ed8742b3973664c4d0a25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/Materials/TudorMetall_basecolor.mat using Guid(4e0ce10aa62ed8742b3973664c4d0a25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2358784acf5dbc30d1736d73cfe27568') in 0.001040 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003640 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_MarkMap.png
+  artifactKey: Guid(ea632ec32e2387e48b644f2180e47f6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_MarkMap.png using Guid(ea632ec32e2387e48b644f2180e47f6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe17fb6f3a27786b996c64fb11a3ced4') in 0.002599 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002385 seconds.
+  path: Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_ambientocclusion.png
+  artifactKey: Guid(33e0ff78d42a9f9479ecd2a2e9679088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_ambientocclusion.png using Guid(33e0ff78d42a9f9479ecd2a2e9679088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d743018fb1c3661c8c7cc189f21c2ef') in 0.001342 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004277 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWallBase/DHWallbasecolor.png
+  artifactKey: Guid(750bc20cb206ad54a807f8e2d76c847e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWallBase/DHWallbasecolor.png using Guid(750bc20cb206ad54a807f8e2d76c847e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dccd548ab807b92998dfbd4fb6984ba') in 0.002193 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005756 seconds.
+  path: Assets/All Assest/Texture/TudorMetall/TudorMetall_roughness.png
+  artifactKey: Guid(1ac6cbf160b8e8a47b646f8cff52fb76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TudorMetall/TudorMetall_roughness.png using Guid(1ac6cbf160b8e8a47b646f8cff52fb76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bc37cc49386261803052e3f8299604d') in 0.003118 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004129 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_roughness.png
+  artifactKey: Guid(e64a7d6eee90d1f4aa683aa5ec71635a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_roughness.png using Guid(e64a7d6eee90d1f4aa683aa5ec71635a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ff041e5f28f60e9fa0602d7e76db03a') in 0.003083 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003816 seconds.
+  path: Assets/All Assest/Texture/DHFloolV2/DHFloorF2V2Normal.png
+  artifactKey: Guid(0d22c6fba8aea404cb518ae33dca11db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/DHFloolV2/DHFloorF2V2Normal.png using Guid(0d22c6fba8aea404cb518ae33dca11db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07276e4245bdea73be0c7598baa29b3c') in 0.002211 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008461 seconds.
+  path: Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_basecolor.png
+  artifactKey: Guid(3fecc25fbdadd32479677c95d9f402e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TuDorWood04/TuDorWood04_basecolor.png using Guid(3fecc25fbdadd32479677c95d9f402e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b96628a6ac162deda7c1d320e534eeda') in 0.001754 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004320 seconds.
+  path: Assets/All Assest/Texture/Furniture/401ModelerF2Test01 1.fbx
+  artifactKey: Guid(2a18efb566c26bd4a87f7aafdb109be8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/Furniture/401ModelerF2Test01 1.fbx using Guid(2a18efb566c26bd4a87f7aafdb109be8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b278151783bc79fa5ec998554bf82a57') in 0.003391 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 38
+========================================================================
+Received Import Request.
+  Time since last request: 0.007897 seconds.
+  path: Assets/All Assest/Sound/Player/Walk Wood sound1.mp3
+  artifactKey: Guid(186ae4c149933894c9280214ddae248e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Player/Walk Wood sound1.mp3 using Guid(186ae4c149933894c9280214ddae248e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c83348f89b5dfa32c909e1f3a49658ea') in 0.000938 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.019179 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBasenormal.png
+  artifactKey: Guid(4a2d9f27bbe02874c8c47c80c35555d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBasenormal.png using Guid(4a2d9f27bbe02874c8c47c80c35555d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eea5a078ae5b57e755605704252850d9') in 0.001611 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.015931 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling.unitypackage
+  artifactKey: Guid(487423256acfd4645a451e47b1eb5430) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling.unitypackage using Guid(487423256acfd4645a451e47b1eb5430) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ee44e1f0bf40886f9148cd34868c8fc') in 0.000832 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002323 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWallBase/DHWallbase.png
+  artifactKey: Guid(a5fcd21015764254087bf135597622da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWallBase/DHWallbase.png using Guid(a5fcd21015764254087bf135597622da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '922228c18b432e96c8efe2f9b7a21dcc') in 0.002042 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005122 seconds.
+  path: Assets/All Assest/Sound/Player/PlayerATK.wav
+  artifactKey: Guid(d6824b87cd847694c9069448d15ef4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Player/PlayerATK.wav using Guid(d6824b87cd847694c9069448d15ef4ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f3c86dd63b95fe3825ae9a32308b930') in 0.000906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006038 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWallBase/DHWallnormal.png
+  artifactKey: Guid(67525bfa28b57624b8550c1a951fb814) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWallBase/DHWallnormal.png using Guid(67525bfa28b57624b8550c1a951fb814) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac98621903afe7ff9715279b52dc7d66') in 0.001909 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001290 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/Materials
+  artifactKey: Guid(f5eaa89d945942f4d9b4d58371398a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/Materials using Guid(f5eaa89d945942f4d9b4d58371398a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe92c55fc288cf43ceef693102935f3d') in 0.000486 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.003045 seconds.
+  path: Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Brown.png
+  artifactKey: Guid(0dda6ae7c50854940957461b0c66080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Brown.png using Guid(0dda6ae7c50854940957461b0c66080b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dbae3dcd8f09cc7ae127567538e5cd9e') in 0.002906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003721 seconds.
+  path: Assets/All Assest/Sound/Ghost/New sound/Found Player.mp3
+  artifactKey: Guid(77438e9860f6eb34f9d8246c2a2711e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/New sound/Found Player.mp3 using Guid(77438e9860f6eb34f9d8246c2a2711e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2553f7ece185e1c2f4ad35ae22bb408a') in 0.000833 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001946 seconds.
+  path: Assets/All Assest/Texture/Woodbase/New Material.mat
+  artifactKey: Guid(957b770f05e6b5c4cbb25866c912de7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/Woodbase/New Material.mat using Guid(957b770f05e6b5c4cbb25866c912de7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f943b73a8ab1571c89b0612b9724b846') in 0.001095 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.012876 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_basecolor.png
+  artifactKey: Guid(eb75488871f6fb946b5895e6af8a66ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_basecolor.png using Guid(eb75488871f6fb946b5895e6af8a66ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f169a2df6387bfb12eb6abd1608968c') in 0.002948 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003970 seconds.
+  path: Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_roughness.png
+  artifactKey: Guid(dbd6c0965711bd9478d096c8563c65bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_roughness.png using Guid(dbd6c0965711bd9478d096c8563c65bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f51dc0a9be6aace4745b894d21ff7f5c') in 0.002989 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006587 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_roughness.png
+  artifactKey: Guid(2b75aa267cfb4564ca27f3cd1339c094) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_roughness.png using Guid(2b75aa267cfb4564ca27f3cd1339c094) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07b6fca1cd68b9beea9d19c953d9c831') in 0.001624 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005943 seconds.
+  path: Assets/All Assest/Texture/DLWoodBase/DHWoodBaseMaterial.mat
+  artifactKey: Guid(670b55c07e4d42847b280b24aa034809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/DLWoodBase/DHWoodBaseMaterial.mat using Guid(670b55c07e4d42847b280b24aa034809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b029fcd99f2eaf8f65cdf980786fc498') in 0.001024 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005315 seconds.
+  path: Assets/All Assest/Texture/TuDorWood04/Materials/TuDorWood04_basecolor.mat
+  artifactKey: Guid(a61aa30f199f1d14ab84d4b33c530121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TuDorWood04/Materials/TuDorWood04_basecolor.mat using Guid(a61aa30f199f1d14ab84d4b33c530121) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f4b244783b114ca3dfd06e114de9c44') in 0.001099 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.012902 seconds.
+  path: Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_normal.png
+  artifactKey: Guid(a9b93ef2acef9494b88ae2d944bfd4c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_normal.png using Guid(a9b93ef2acef9494b88ae2d944bfd4c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32d2fb0fb46dbb1aae41c73d238e80f5') in 0.003045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002040 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_normal.png
+  artifactKey: Guid(6004fce5a37a2ec498a2ffca102abfb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_normal.png using Guid(6004fce5a37a2ec498a2ffca102abfb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c055b50b75f4393eb7a7e776fede2acc') in 0.003025 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004099 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseC02.png
+  artifactKey: Guid(585a0e5295f9be34497e99a10134efbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseC02.png using Guid(585a0e5295f9be34497e99a10134efbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f16ba3663dfedcc80da2f6e4a8467c9a') in 0.003308 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.007424 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_MaskMap.png
+  artifactKey: Guid(2e809d5323bfd584aabc9749ba01e725) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_MaskMap.png using Guid(2e809d5323bfd584aabc9749ba01e725) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adfde622bf9186bdac6095f1493d8067') in 0.004411 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006273 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseroughness.png
+  artifactKey: Guid(81c98b9207dd34a47a0d7b9c8196d8ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseroughness.png using Guid(81c98b9207dd34a47a0d7b9c8196d8ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de1a96f6f66ea6ce8ac2f7e7cf2c28ff') in 0.003052 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004812 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_normal.png
+  artifactKey: Guid(1a910dc99df9ace4c966594a0feb8529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_normal.png using Guid(1a910dc99df9ace4c966594a0feb8529) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '110c66c1c4c1181275936bb83ed3a8cc') in 0.002866 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002780 seconds.
+  path: Assets/All Assest/Sound/Ghost/New sound/Ghost chase.mp3
+  artifactKey: Guid(5a1471ba51b0f794d951c1256434c022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/New sound/Ghost chase.mp3 using Guid(5a1471ba51b0f794d951c1256434c022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bffd8699e1d6449b335ea0b9532218d') in 0.000969 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001578 seconds.
+  path: Assets/All Assest/Texture/DLWoodBase/Materials
+  artifactKey: Guid(2cb4e42627848dd4da24d9d3c893f5b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/DLWoodBase/Materials using Guid(2cb4e42627848dd4da24d9d3c893f5b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fdb74478ceb376744e89351249339ec') in 0.000438 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.002165 seconds.
+  path: Assets/All Assest/Texture/Furniture/401ModularF2UV.fbx
+  artifactKey: Guid(98a90c6a23058f348856bd01e77fdb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/Furniture/401ModularF2UV.fbx using Guid(98a90c6a23058f348856bd01e77fdb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee1ec8807e5ebf0c81716ec2ea2c1071') in 0.002490 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 40
+========================================================================
+Received Import Request.
+  Time since last request: 0.004485 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_roughness.png
+  artifactKey: Guid(8f2f0ae7a91e52e4fa21fc3cffb0e5c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_roughness.png using Guid(8f2f0ae7a91e52e4fa21fc3cffb0e5c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8aef9723234f2faefa90b3e9b902e06') in 0.001735 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008954 seconds.
+  path: Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloorMaskMap.png
+  artifactKey: Guid(2d4c6ca6f1a38f642b3aefe459c3e2f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloorMaskMap.png using Guid(2d4c6ca6f1a38f642b3aefe459c3e2f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2cb4c4599b24ab46f6a1b285bd41f8ed') in 0.004674 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.084753 seconds.
+  path: Assets/All Assest/Sound/Ghost/Girl laugue.wav
+  artifactKey: Guid(0d7cc4ac35bd32046844918fd09dfc95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/Girl laugue.wav using Guid(0d7cc4ac35bd32046844918fd09dfc95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1109301f77b706b798c1109967b28018') in 0.000973 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.016893 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling.unitypackage
+  artifactKey: Guid(1aa1d41afa21fbd4a8bfe6b123c0c972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling.unitypackage using Guid(1aa1d41afa21fbd4a8bfe6b123c0c972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad4482ee65fcaddd8a3a689dda01fabb') in 0.000727 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.014314 seconds.
+  path: Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_normal.png
+  artifactKey: Guid(97a1299e0cf20ea4b9884a8ca42a734d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_normal.png using Guid(97a1299e0cf20ea4b9884a8ca42a734d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12af304061e4d12d28f82d3d01324974') in 0.001584 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.013644 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBase.png
+  artifactKey: Guid(58d49a2b8beb3694088c5cfb02962fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBase.png using Guid(58d49a2b8beb3694088c5cfb02962fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '313167ed1f90b816b1750dd4becadd7b') in 0.001817 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002633 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling.mat
+  artifactKey: Guid(9fbf5bc518e18654e91b788cb525dcf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling.mat using Guid(9fbf5bc518e18654e91b788cb525dcf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84845a525dcbdef17e8e018c69322a75') in 0.001051 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005098 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_ambientocclusion.png
+  artifactKey: Guid(68a7b320605cbe24ea4c2ce4e5388626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_ambientocclusion.png using Guid(68a7b320605cbe24ea4c2ce4e5388626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce892217f4f99a01b1fc6813220cf0a5') in 0.001512 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004547 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_roughness.png
+  artifactKey: Guid(4d77d8f252474d447bd00f2d0ca00670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_roughness.png using Guid(4d77d8f252474d447bd00f2d0ca00670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09ca4cab04f391a8b95e09510d1a414f') in 0.001660 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.012134 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/TudorWall.mat
+  artifactKey: Guid(41be5ac043994af4cbfda3afabf523b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/TudorWall.mat using Guid(41be5ac043994af4cbfda3afabf523b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d478b38fab3d937cf47a79ca5443031') in 0.001062 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008689 seconds.
+  path: Assets/All Assest/Texture/TudorMetall/TudorMetall_normal.png
+  artifactKey: Guid(cc8834ccdf9b6a24b9de0d24acf99cd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TudorMetall/TudorMetall_normal.png using Guid(cc8834ccdf9b6a24b9de0d24acf99cd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc99c9fe5025f674f960e223bd7603bb') in 0.001667 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.027273 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_basecolor.png
+  artifactKey: Guid(9d2d73d4c837d144590c164501fc637c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_basecolor.png using Guid(9d2d73d4c837d144590c164501fc637c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd86b1f89b1ee146cc8a2804c826c1718') in 0.001936 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006816 seconds.
+  path: Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Green.png
+  artifactKey: Guid(1f0633521aecef140b6b3158437d7e48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/Cloth/Texture_Sofa_Green.png using Guid(1f0633521aecef140b6b3158437d7e48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46f7c3499c9e350d268db54c53a705f4') in 0.002929 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.011899 seconds.
+  path: Assets/All Assest/Sound/Ghost/Jumpscare1.wav
+  artifactKey: Guid(a47b583f842711a4faaa9d34c11aec91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/Jumpscare1.wav using Guid(a47b583f842711a4faaa9d34c11aec91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0eda01a592ced7d25edf535648aa56d') in 0.000836 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.012127 seconds.
+  path: Assets/All Assest/Texture/TuDorWood04/TuDorWood04_roughness.png
+  artifactKey: Guid(78e9d9f07b859e547bf477d2b6662e6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TuDorWood04/TuDorWood04_roughness.png using Guid(78e9d9f07b859e547bf477d2b6662e6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbe140ff27b0df95936f4867773648d3') in 0.001496 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003571 seconds.
+  path: Assets/All Assest/Texture/TudorMetall/TudorMetall_metallic.png
+  artifactKey: Guid(0f5c932d3f0a4144583ae2714cbdb3f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TudorMetall/TudorMetall_metallic.png using Guid(0f5c932d3f0a4144583ae2714cbdb3f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '836bda7e4691b28dbd6978345187a2d2') in 0.001614 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.013175 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_basecolor.png
+  artifactKey: Guid(cdf0620d058833e4d897aae9af84d64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_basecolor.png using Guid(cdf0620d058833e4d897aae9af84d64b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91ebe431b204fff9c7cb7bb49686abda') in 0.002902 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.004748 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_normal.png
+  artifactKey: Guid(706897349a6adcc4c89e6b55080cd2b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_normal.png using Guid(706897349a6adcc4c89e6b55080cd2b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '409611ccfdae7ebd8c7f12ee544197d3') in 0.003045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.003760 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBasebasecolor.png
+  artifactKey: Guid(63ef0ffc40b845a4d866acfc270ef4b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBasebasecolor.png using Guid(63ef0ffc40b845a4d866acfc270ef4b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3682c4b4de5e14ebebae7b393e22c4e8') in 0.003164 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002003 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/Materials/TudorWall_basecolor.mat
+  artifactKey: Guid(95cde07a4a88c84488adb3d252bd899d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/Materials/TudorWall_basecolor.mat using Guid(95cde07a4a88c84488adb3d252bd899d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c6b9779c52ed92740dc0f0e994e7410') in 0.001021 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002614 seconds.
+  path: Assets/All Assest/Sound/Ghost/New sound/Ghost Smoke Mode.mp3
+  artifactKey: Guid(ef8c1bb463152b043a1b0528c0e9f741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/New sound/Ghost Smoke Mode.mp3 using Guid(ef8c1bb463152b043a1b0528c0e9f741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22344a1daca35c1287676d5d034c4fc2') in 0.000747 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001606 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/Materials/WoodPlankTiling_basecolor.mat
+  artifactKey: Guid(37aece670af1bd946970ee3d438fba60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/Materials/WoodPlankTiling_basecolor.mat using Guid(37aece670af1bd946970ee3d438fba60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f74a92ae8a2cff4df8dfe1de0cefac1d') in 0.000919 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008816 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_basecolor.png
+  artifactKey: Guid(5a160d77a48bb6348a30683c4fff7eea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_basecolor.png using Guid(5a160d77a48bb6348a30683c4fff7eea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f68a43add25cf26797839d01749124c') in 0.001570 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001408 seconds.
+  path: Assets/All Assest/Texture/New Texture/Cloth/Materials
+  artifactKey: Guid(4d55b795df1060e49bdea49dea6d21a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/Cloth/Materials using Guid(4d55b795df1060e49bdea49dea6d21a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c99e621d52c3a2afa65b49265f6d1b6') in 0.000448 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.008332 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_ambientocclusion.png
+  artifactKey: Guid(9885471e109a0a3428f65ec0675a8600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling/WoodPlankTiling_ambientocclusion.png using Guid(9885471e109a0a3428f65ec0675a8600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f6903f9c8365f9b5f368e4a2c6ab882') in 0.001558 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002161 seconds.
+  path: Assets/All Assest/Sound/Player/Walk Wood sound2.mp3
+  artifactKey: Guid(1d3bb6fb223ffc54fa64e5b9d8419979) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Player/Walk Wood sound2.mp3 using Guid(1d3bb6fb223ffc54fa64e5b9d8419979) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b89cf093acd027f8057fcd5cfcc328') in 0.000885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008961 seconds.
+  path: Assets/All Assest/Sound/Ghost/Squish blood.wav
+  artifactKey: Guid(562b4f14e1822784eb6e3697439e3820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/Squish blood.wav using Guid(562b4f14e1822784eb6e3697439e3820) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b90256bdbb23e6fe8863ab93a9381b7c') in 0.000810 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003530 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/Materials/DHWoodBaseC02.mat
+  artifactKey: Guid(28b75119fca6b2847a2dbc4451ef9162) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/Materials/DHWoodBaseC02.mat using Guid(28b75119fca6b2847a2dbc4451ef9162) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cf8f9f2c73938d321f3baed18b2b7c6') in 0.000937 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002793 seconds.
+  path: Assets/All Assest/Texture/TuDorWood04/Materials
+  artifactKey: Guid(75aefd9d1b35c864999533bf081337d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/TuDorWood04/Materials using Guid(75aefd9d1b35c864999533bf081337d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16168679e5d69626a03dc97f70d27177') in 0.000414 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.004853 seconds.
+  path: Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_ambientocclusion.png
+  artifactKey: Guid(83ec51bfd16067a4696467b7237288d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_ambientocclusion.png using Guid(83ec51bfd16067a4696467b7237288d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4713b0211f0260d7420106b8408e7c41') in 0.002963 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.002499 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_basecolor.png
+  artifactKey: Guid(c13e9fb545a00e2478a328f63cf9b3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorMetall/TudorMetall_basecolor.png using Guid(c13e9fb545a00e2478a328f63cf9b3ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '724a79a512d42fb87b70d6698f24a077') in 0.001637 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.011320 seconds.
+  path: Assets/All Assest/Sound/Ghost/girl 555.wav
+  artifactKey: Guid(8e14fcf6bd7704f4dbcaa73357c85af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/girl 555.wav using Guid(8e14fcf6bd7704f4dbcaa73357c85af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5bdd1c5bcd47ca5d62218ca0ad5d67a') in 0.000859 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006381 seconds.
+  path: Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_MaskMap.png
+  artifactKey: Guid(a00dd3a29f4f556459f7639f5ee596fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/WoodPlankTiling/WoodPlankTiling_MaskMap.png using Guid(a00dd3a29f4f556459f7639f5ee596fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7310d8f98b47a1c087051161584a491e') in 0.002268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.004705 seconds.
+  path: Assets/All Assest/Sound/Player/Walk.mp3
+  artifactKey: Guid(721d1a1c08e49364aa4fea5784bfda7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Player/Walk.mp3 using Guid(721d1a1c08e49364aa4fea5784bfda7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '572ebc12287a6b646df2a85bc3aa3521') in 0.000938 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.007231 seconds.
+  path: Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseambientocclusion.png
+  artifactKey: Guid(45e1e2f04b1a5e04fa2cab72818a2079) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/DLWoodBase/DHWoodBaseambientocclusion.png using Guid(45e1e2f04b1a5e04fa2cab72818a2079) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '721495b3630db265222688475b4286d1') in 0.002930 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.005099 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_normal.png
+  artifactKey: Guid(faa9fcb915e078946af9420a2e826170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_normal.png using Guid(faa9fcb915e078946af9420a2e826170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc2fc0449a35e71a3b9e9ceb53140db4') in 0.001625 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.012698 seconds.
+  path: Assets/All Assest/Texture/Woodbase/DHWoodBasenormal.png
+  artifactKey: Guid(b128d043d949f644d864a32cc810068f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/Woodbase/DHWoodBasenormal.png using Guid(b128d043d949f644d864a32cc810068f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '970702ff00b740143b3d72d7928dfbca') in 0.002906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.007681 seconds.
+  path: Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_basecolor.png
+  artifactKey: Guid(a69ae95d6fc360945b384e6c37114707) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_basecolor.png using Guid(a69ae95d6fc360945b384e6c37114707) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2348fe5878af788d547e2ea4dfb9fd53') in 0.003071 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003538 seconds.
+  path: Assets/All Assest/Sound/Ghost/New sound/Ghost die.mp3
+  artifactKey: Guid(90fc93fcf0cdae94fbb932f393b4d143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Sound/Ghost/New sound/Ghost die.mp3 using Guid(90fc93fcf0cdae94fbb932f393b4d143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a063e0d4e9567934e34a46fdadf4e767') in 0.000886 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008524 seconds.
+  path: Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_basecolor.png
+  artifactKey: Guid(2f0295dd52dce6348947f30986c237bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_basecolor.png using Guid(2f0295dd52dce6348947f30986c237bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e4bd888c715a99d508a6317a5ccb141') in 0.001471 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.015181 seconds.
+  path: Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_normal.png
+  artifactKey: Guid(7ae7a068ec2cac247a4d108bc62abd53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TudorWall/TudorWall_normal.png using Guid(7ae7a068ec2cac247a4d108bc62abd53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3570336f5583d0e20754a172ca158f9') in 0.001908 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.003900 seconds.
+  path: Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_ambientocclusion.png
+  artifactKey: Guid(9d91276e73d85af42bcdeb77468bc6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/SkibidiToiletFloor/SkibidiToiletFloor_ambientocclusion.png using Guid(9d91276e73d85af42bcdeb77468bc6cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bf0e009658aa257b4be32336ff24665') in 0.001830 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.009423 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_MaskMap.png
+  artifactKey: Guid(96bc3cb0f8e102e4f91293fe7d40da65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/WoodPlankTiling_MaskMap.png using Guid(96bc3cb0f8e102e4f91293fe7d40da65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8072d8956cbb187dd6b4413d704242b4') in 0.002305 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.006753 seconds.
+  path: Assets/All Assest/Texture/Wallbase/DHWallnormal.png
+  artifactKey: Guid(a45ab47cdba30a346aa2867c9409e070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/Wallbase/DHWallnormal.png using Guid(a45ab47cdba30a346aa2867c9409e070) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '301aa0f27d0b0ac630d33b3c1f51013c') in 0.002203 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.001713 seconds.
+  path: Assets/All Assest/Texture/WoodPlankTiling 1/Materials/WoodPlankTiling_basecolor.mat
+  artifactKey: Guid(e5d2f22b7b334fb4b807d75ad8c2f68a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/WoodPlankTiling 1/Materials/WoodPlankTiling_basecolor.mat using Guid(e5d2f22b7b334fb4b807d75ad8c2f68a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4c5ba8e981eebe3a61e48748347f666') in 0.001232 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001690 seconds.
+  path: Assets/All Assest/Texture/New Texture/TuDorWood04/Materials/TuDorWood04_basecolor.mat
+  artifactKey: Guid(6d23d4d3842648c4799f5cdb9538ecef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/New Texture/TuDorWood04/Materials/TuDorWood04_basecolor.mat using Guid(6d23d4d3842648c4799f5cdb9538ecef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40dfe110fa4dbadabd98116566b66f63') in 0.000976 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.008022 seconds.
+  path: Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_roughness.png
+  artifactKey: Guid(d9bb676e1a1e7624790448536776d2d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Texture/SkibidiToiletFloor/SkibidiToiletFloor_roughness.png using Guid(d9bb676e1a1e7624790448536776d2d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5028e292b9328542c50ef75d83356200') in 0.001752 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
