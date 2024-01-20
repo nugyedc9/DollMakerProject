@@ -20,10 +20,10 @@ public class CanPlayMini1 : MonoBehaviour
     public GameObject[] Clothobj;
     public int ClothHave, DollHave, TotelDollHave;
     public Player player;
-    public TextMeshProUGUI DollTotel;
+   /* public TextMeshProUGUI DollTotel;
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
-    public TextMeshProUGUI TotalDoll;
+    public TextMeshProUGUI TotalDoll;*/
 
     [Header("Finish doll")]
     public GameObject[] FinshDoll;
@@ -47,7 +47,7 @@ public class CanPlayMini1 : MonoBehaviour
         {
             canClick.SetActive(true);
             player.PlaySoundWork();
-            TotalDollCanva.SetActive(true);
+            /*TotalDollCanva.SetActive(true);*/
         }
         else
         {
@@ -55,10 +55,10 @@ public class CanPlayMini1 : MonoBehaviour
             MiniG.SetActive(false);
             player.StopSoundWork();
         }
-        DollTotel.text = "Doll " + DollHave + " / 6";
+    /*    DollTotel.text = "Doll " + DollHave + " / 6";
         ClothTotel.text = "Cloth " + ClothHave + " / 6";
 
-        TotalDoll.text = "Finish Doll :  " + TotelDollHave + " / 6";
+        TotalDoll.text = "Finish Doll :  " + TotelDollHave + " / 6";*/
 
         if(TotelDollHave == 6)
         {

@@ -227,7 +227,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region Map pause tutorial
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+      /*  if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!EndD1 || CloseTurial)
             {
@@ -235,13 +235,13 @@ public class PlayerAttack : MonoBehaviour
                 else ResumeGame();
             }
             
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.M))
+     /*   if (Input.GetKeyDown(KeyCode.M))
         {
             if(!MapOn)OpenMap();
             else CloseMap();
-        }
+        }*/
         if(CloseTurial)
         {
             Time.timeScale = 0;
@@ -1914,7 +1914,7 @@ public class PlayerAttack : MonoBehaviour
         NeedToDo.text = "Collect All Dolls";
     }
 
-    #region Map
+/*    #region Map
 
     public void OpenMap()
     {
@@ -1929,8 +1929,8 @@ public class PlayerAttack : MonoBehaviour
     }
 
     #endregion
-
-    #region Pause game
+*/
+/*    #region Pause game
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -1951,4 +1951,4 @@ public class PlayerAttack : MonoBehaviour
         if (CrossOnHand) Attack = true;
     }
     #endregion
-}
+*/}
