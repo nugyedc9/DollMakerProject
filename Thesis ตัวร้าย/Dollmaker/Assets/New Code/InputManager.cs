@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput.OnFootActions onFoot;
     private PlayerMotor motor;
     private PlayerLook look;
-
+    private bool CanWalk = true;
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -35,7 +35,22 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
+        onFoot.Disable();
+    }
+
+    public void StopWalk()
+    {
+        if (CanWalk)
+        {
+            CanWalk = false;
             onFoot.Disable();
+        }
+        else
+        {
+            onFoot.Enable();
+            CanWalk = true;
+        }
+        
     }
 
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public Camera cam;
+    public CinemachineVirtualCamera cam;
     private float xRotation = 0f;
 
     public float xSensetivity = 30f;
