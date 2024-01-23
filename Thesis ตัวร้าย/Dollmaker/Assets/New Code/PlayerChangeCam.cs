@@ -14,6 +14,9 @@ public class PlayerChangeCam : MonoBehaviour
     public Transform InterectTransform;
     public float InterectRange;
     public InputManager _InputManager;
+
+    [Header("Mini Game")]
+    public GameObject MiniGame;
     private void OnEnable()
     {
         ChangePOV.Register(FirstpersonView);
@@ -55,6 +58,14 @@ public class PlayerChangeCam : MonoBehaviour
                         ChangePOV.SwitchCamera(FirstpersonView);
                     }
                 }
+            }
+        }
+
+        if (ChangePOV.IsActiveCamera(WorkShopView))
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+
             }
         }
     }
