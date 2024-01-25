@@ -74,6 +74,7 @@ public class MiniGame : MonoBehaviour
             PlayAnimate = true;
             SkillCheckPass.Clear();
             CheckBallInBox.ResetPassBox();
+            BoxNum.text = " ";
             _CurrentState = MiniGameState.Start;
         }
 
@@ -95,6 +96,7 @@ public class MiniGame : MonoBehaviour
         {
             PassBox++;
             CheckBallInBox.EndExample();
+            CheckBallInBox.ResetColorBox();
         }
     }
 
