@@ -39,7 +39,7 @@ public class PlayerChangeCam : MonoBehaviour
     private void Update()
     {
         Ray ray = new Ray(InterectTransform.position, InterectTransform.forward);
-        Debug.DrawRay(InterectTransform.position, InterectTransform.forward);
+        //Debug.DrawRay(InterectTransform.position, InterectTransform.forward);
         if(Physics.Raycast(ray, out RaycastHit hitInfo, InterectRange))
         {
            // Debug.Log(hitInfo.collider.gameObject.tag);
