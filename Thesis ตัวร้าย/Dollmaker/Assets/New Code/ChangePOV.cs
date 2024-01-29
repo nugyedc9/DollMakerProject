@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+/*
 public static class ChangePOV
 {
     static List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>(); 
@@ -40,4 +40,4 @@ public static class ChangePOV
         cameras.Remove(cam);
         Debug.Log("camera UnRegister: " + cam);
     }
-}
+}*/
