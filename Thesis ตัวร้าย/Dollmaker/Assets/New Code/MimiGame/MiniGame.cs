@@ -18,6 +18,7 @@ public class MiniGame : MonoBehaviour
     public float TotalFinish;
     public float PassboxExample, PassBox; // For check to make random.
     Queue<float> SkillCheckPass = new Queue<float>();
+    public GameObject HoldSpaceText;
     [SerializeField] private TMP_Text BoxNum; // For check number of box
 
     private bool Example = true, PlayAnimate = true, CurrectBox;
@@ -25,7 +26,7 @@ public class MiniGame : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
+        Instance = this; 
         _CurrentState = MiniGameState.Start;
     }
 
@@ -35,7 +36,7 @@ public class MiniGame : MonoBehaviour
         {
             if (PlayAnimate)
             {
-                BallAnimate.Play("StartMove", 0, 0);
+                BallAnimate.Play("StartMove",0 ,0);
                 PlayAnimate = false;
             }
             if(PassboxExample >= 9)
@@ -49,7 +50,15 @@ public class MiniGame : MonoBehaviour
         
         if(_CurrentState == MiniGameState.ClearSkillCheck)
         {
-            if(PassBox >= 9)
+            HoldSpaceText.SetActive(true);
+            if (!PlayAnimate && ClickBoxCount == 0)
+            {
+                StartCoroutine(DelayAnimationBall());
+                PlayAnimate = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))  BallAnimate.GetComponent <Animator>().enabled = true;          
+            else if (Input.GetKeyUp(KeyCode.Space)) BallAnimate.GetComponent<Animator>().enabled = false;
+            if (PassBox >= 9)
             {
                 PassBox = 0;
                 _CurrentState = MiniGameState.FailSkillCheck;
@@ -69,6 +78,7 @@ public class MiniGame : MonoBehaviour
 
         if(_CurrentState == MiniGameState.FailSkillCheck)
         {
+            HoldSpaceText.SetActive(false);
             PassBox = 0;
             Example = true; 
             PlayAnimate = true;
@@ -82,6 +92,12 @@ public class MiniGame : MonoBehaviour
         {
 
         }
+    }
+
+    IEnumerator DelayAnimationBall()
+    {
+        yield return new WaitForSeconds(0.15f);
+        BallAnimate.GetComponent<Animator>().enabled = false;
     }
 
     #region forCheck
