@@ -49,8 +49,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     public LayerMask VisionObstructingLayer;
     public LayerMask PlayerLayer;
     public int VisionConeResolution = 120;
-    Mesh VisionConeMesh;
-    MeshFilter MeshFilter_;
+      Mesh VisionConeMesh;
+     MeshFilter MeshFilter_;
 
     [Header("audio")]
     public AudioSource FoundPlayer;
@@ -75,12 +75,13 @@ public class Ghost : MonoBehaviour, HearPlayer
         lowSpeed = chaseSpeed;
         ToSpawn = 0;
         Ambience.Play();
+
         #region Vision Cone
         cansee = true;
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
-        VisionAngle *= Mathf.Deg2Rad;
+        VisionAngle *= Mathf.Deg2Rad;   
         #endregion
 
         playerNearSpawn1();
@@ -194,7 +195,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Search)
         {
-            //  Debug.Log("SearchState");
+              //Debug.Log("SearchState");
             dest = LastSound;
             enemyGhost.destination = dest;
             enemyGhost.speed = walkSpeed;
@@ -487,15 +488,9 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
             {
                 Vertices[i + 1] = VertForward * hit.distance;
-            }
-            else
+                if (Physics.Raycast(transform.position, RaycastDirection, out  hit, VisionRange, PlayerLayer))
             {
-                Vertices[i + 1] = VertForward * VisionRange;
-            }
-
-            if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit PlayerHitRay, VisionRange, PlayerLayer))
-            {
-                Vertices[i + 1] = VertForward * PlayerHitRay.distance;
+                Vertices[i + 1] = VertForward * hit.distance;
                 if (cansee)
                 {
                     if (curStun > 1)
@@ -516,6 +511,13 @@ public class Ghost : MonoBehaviour, HearPlayer
                 }
 
             }
+            }
+            else
+            {
+                Vertices[i + 1] = VertForward * VisionRange;
+            }
+
+            
 
 
             Currentangle += angleIcrement;
