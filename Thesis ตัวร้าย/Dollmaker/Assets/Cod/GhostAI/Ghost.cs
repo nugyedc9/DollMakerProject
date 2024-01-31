@@ -488,33 +488,34 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
             {
                 Vertices[i + 1] = VertForward * hit.distance;
-                if (Physics.Raycast(transform.position, RaycastDirection, out  hit, VisionRange, PlayerLayer))
-            {
-                Vertices[i + 1] = VertForward * hit.distance;
-                if (cansee)
-                {
-                    if (curStun > 1)
-                        PlayerInsight = true;
-                    StopAllCoroutines();
-                    _stateGhost = StateGhost.Hunt;
-                }
-            }
-            else
-            {
-                if (PlayerInsight)
-                {
-                    StunTime();
-                    if (curStun < 1)
-                    {
-                        PlayerInsight = false;
-                    }
-                }
 
-            }
             }
             else
             {
                 Vertices[i + 1] = VertForward * VisionRange;
+                if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
+                {
+                    Vertices[i + 1] = VertForward * hit.distance;
+                    if (cansee)
+                    {
+                        if (curStun > 1)
+                            PlayerInsight = true;
+                        StopAllCoroutines();
+                        _stateGhost = StateGhost.Hunt;
+                    }
+                }
+                else
+                {
+                    if (PlayerInsight)
+                    {
+                        StunTime();
+                        if (curStun < 1)
+                        {
+                            PlayerInsight = false;
+                        }
+                    }
+
+                }
             }
 
             
