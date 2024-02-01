@@ -20,14 +20,15 @@ public class MiniGame : MonoBehaviour
     Queue<float> SkillCheckPass = new Queue<float>();
     public GameObject HoldSpaceText;
     [SerializeField] private TMP_Text BoxNum; // For check number of box
+    public TextMeshProUGUI ProcessDollText;
 
-    private bool Example = true, PlayAnimate = true, CurrectBox;
-    private float ClickBoxCount;
+    private bool Example = true, PlayAnimate = true, CurrectBox, FinishCheck;
+    public float ClickBoxCount, ProcessDoll, FinishProcessdoll, Dollhave;
 
     private void Start()
     {
         Instance = this; 
-        _CurrentState = MiniGameState.Start;
+       // _CurrentState = MiniGameState.Start;
     }
 
     private void Update()
@@ -46,6 +47,12 @@ public class MiniGame : MonoBehaviour
                 ClickBoxCount = 0;
                 Example = false;
             }
+            if(ProcessDoll == 0 && !FinishCheck)
+            {
+                FinishProcessdoll = Random.Range(3, 5);
+                FinishCheck = true;
+            }
+            ProcessDollText.text = ProcessDoll + " / " + FinishProcessdoll;
         }
         
         if(_CurrentState == MiniGameState.ClearSkillCheck)
@@ -74,6 +81,10 @@ public class MiniGame : MonoBehaviour
                 StartCoroutine(Delayclick());
                 CurrectBox = false;
             }
+            if (SkillCheckPass.Count == 0)
+            {
+                _CurrentState = MiniGameState.FinishSkillCheck;
+            }
         }
 
         if(_CurrentState == MiniGameState.FailSkillCheck)
@@ -90,7 +101,33 @@ public class MiniGame : MonoBehaviour
 
         if(_CurrentState == MiniGameState.FinishSkillCheck)
         {
-
+            if(ProcessDoll != FinishProcessdoll)
+            {
+                _CurrentState = MiniGameState.Start;
+                HoldSpaceText.SetActive(false);
+                PassBox = 0;
+                Example = true;
+                PlayAnimate = true;
+                SkillCheckPass.Clear();
+                CheckBallInBox.ResetPassBox();
+                BoxNum.text = " ";
+                ProcessDoll++;
+                if (ProcessDoll == FinishProcessdoll)
+                {
+                    Dollhave++;
+                    ProcessDoll = 0;
+                    FinishCheck = false;
+                    HoldSpaceText.SetActive(false);
+                    PassBox = 0;
+                    Example = true;
+                    PlayAnimate = true;
+                    SkillCheckPass.Clear();
+                    CheckBallInBox.ResetPassBox();
+                    BoxNum.text = " ";
+                    _CurrentState = MiniGameState.Start;
+                }
+            }
+            
         }
     }
 
