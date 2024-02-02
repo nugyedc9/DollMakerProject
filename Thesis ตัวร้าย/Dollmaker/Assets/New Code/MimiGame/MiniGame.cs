@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum MiniGameState { Start, ClearSkillCheck, FailSkillCheck, FinishSkillCheck};
+public enum MiniGameState { Start, ClearSkillCheck, FailSkillCheck, FinishSkillCheck, LeaveDesk};
 
 public class MiniGame : MonoBehaviour
 {
     private MiniGameState _CurrentState;
     private static MiniGame Instance;
+    public GameObject MiniGameActive;
     [Header("Animation skill check")]
     [SerializeField] public Animator BallAnimate;
     public BallInBox CheckBallInBox;
@@ -18,21 +19,22 @@ public class MiniGame : MonoBehaviour
     public float TotalFinish;
     public float PassboxExample, PassBox; // For check to make random.
     Queue<float> SkillCheckPass = new Queue<float>();
-    public GameObject HoldSpaceText;
+    public GameObject HoldSpaceText, PassSpace;
     [SerializeField] private TMP_Text BoxNum; // For check number of box
     public TextMeshProUGUI ProcessDollText;
 
-    private bool Example = true, PlayAnimate = true, CurrectBox, FinishCheck;
+    private bool Example = true, PlayAnimate = true, CurrectBox, FinishCheck, passStart;
     public float ClickBoxCount, ProcessDoll, FinishProcessdoll, Dollhave;
 
     private void Start()
     {
-        Instance = this; 
-       // _CurrentState = MiniGameState.Start;
+        Instance = this;
+        // _CurrentState = MiniGameState.Start;
+        _CurrentState = MiniGameState.LeaveDesk;
     }
 
     private void Update()
-    {
+    {     
         if(_CurrentState == MiniGameState.Start)
         {
             if (PlayAnimate)
@@ -95,6 +97,7 @@ public class MiniGame : MonoBehaviour
             PlayAnimate = true;
             SkillCheckPass.Clear();
             CheckBallInBox.ResetPassBox();
+            CheckBallInBox.StartExample();
             BoxNum.text = " ";
             _CurrentState = MiniGameState.Start;
         }
@@ -128,6 +131,28 @@ public class MiniGame : MonoBehaviour
                 }
             }
             
+        }
+
+        if(_CurrentState == MiniGameState.LeaveDesk)
+        {
+            PassSpace.SetActive(true);
+            HoldSpaceText.SetActive(false);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PassSpace.SetActive(false);
+                PassBox = 0;
+                PassboxExample = 0;
+                Example = true;
+                PlayAnimate = true;
+                SkillCheckPass.Clear();
+                CheckBallInBox.ResetPassBox();
+                BoxNum.text = " ";
+                BallAnimate.GetComponent<Animator>().enabled = true;
+                _CurrentState = MiniGameState.Start;
+                passStart=true;
+            }
+        
         }
     }
 
@@ -189,6 +214,11 @@ public class MiniGame : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         ClickBoxCount = 0;
+    }
+
+    public void LeaveMinigame()
+    {
+        _CurrentState = MiniGameState.LeaveDesk;
     }
 
     #endregion

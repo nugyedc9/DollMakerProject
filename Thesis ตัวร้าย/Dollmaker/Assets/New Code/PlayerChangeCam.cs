@@ -16,7 +16,11 @@ public class PlayerChangeCam : MonoBehaviour
     public InputManager _InputManager;
 
     [Header("Mini Game")]
-    public GameObject MiniGame;
+    public GameObject minigame;
+    public MiniGame minigamestate;
+
+    private bool CamOnPerson = true, canplayMinigame;
+
     private void OnEnable()
     {
         ChangePOV.Register(FirstpersonView);
@@ -51,22 +55,44 @@ public class PlayerChangeCam : MonoBehaviour
                     {
                         _InputManager.StopWalk();
                         ChangePOV.SwitchCamera(WorkShopView);
-                    }
-                    else if(ChangePOV.IsActiveCamera(WorkShopView))
-                    {
-                        _InputManager.StopWalk();
-                        ChangePOV.SwitchCamera(FirstpersonView);
+                        if(canplayMinigame) minigame.SetActive(true);
+                       else minigame.SetActive(false);
+                        StartCoroutine(DelayCamera());
                     }
                 }
             }
         }
 
-        if (ChangePOV.IsActiveCamera(WorkShopView))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKey(KeyCode.Space))
+            if(!CamOnPerson)
             {
-
+                if (ChangePOV.IsActiveCamera(WorkShopView))
+                {
+                    _InputManager.StopWalk();
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    minigame.SetActive(false);
+                    minigamestate.LeaveMinigame();
+                    CamOnPerson = true;
+                }
             }
         }
+
+    }
+
+    public void HaveDollAndCloth()
+    {
+        canplayMinigame = true;
+    }
+
+    public void dontHaveDollAndCloth()
+    {
+        canplayMinigame = false;
+    }
+    IEnumerator DelayCamera()
+    {
+        yield return new WaitForSeconds(1f);
+            CamOnPerson = false;
+        
     }
 }
