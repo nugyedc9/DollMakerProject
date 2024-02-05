@@ -17,7 +17,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Mini Game")]
     public GameObject minigame;
-    public MiniGame minigamestate;
+    public MiniGameAuidition minigamestate;
 
     private bool CamOnPerson = true, canplayMinigame;
 
@@ -42,6 +42,8 @@ public class PlayerChangeCam : MonoBehaviour
 
     private void Update()
     {
+
+        if (!canplayMinigame) StartCoroutine(DelayCloseMiniGame());
         Ray ray = new Ray(InterectTransform.position, InterectTransform.forward);
         //Debug.DrawRay(InterectTransform.position, InterectTransform.forward);
         if(Physics.Raycast(ray, out RaycastHit hitInfo, InterectRange))
@@ -55,8 +57,7 @@ public class PlayerChangeCam : MonoBehaviour
                     {
                         _InputManager.StopWalk();
                         ChangePOV.SwitchCamera(WorkShopView);
-                        if(canplayMinigame) minigame.SetActive(true);
-                       else minigame.SetActive(false);
+                        if(canplayMinigame) minigame.SetActive(true);                      
                         StartCoroutine(DelayCamera());
                     }
                 }
@@ -89,10 +90,16 @@ public class PlayerChangeCam : MonoBehaviour
     {
         canplayMinigame = false;
     }
+
+    IEnumerator DelayCloseMiniGame()
+    {
+        yield return new WaitForSeconds(0.1f);
+        minigame.SetActive(false) ;
+    }
+
     IEnumerator DelayCamera()
     {
         yield return new WaitForSeconds(1f);
-            CamOnPerson = false;
-        
+            CamOnPerson = false;       
     }
 }

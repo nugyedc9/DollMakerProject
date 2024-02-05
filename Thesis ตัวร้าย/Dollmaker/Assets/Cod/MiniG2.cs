@@ -150,8 +150,8 @@ public class MiniG2 : MonoBehaviour
             StopAllCoroutines();
             TotelDoll++;
             curBar = 0;
-            Canplay.Dolllost();
-            Canplay.ClothLost();
+           /* Canplay.Dolllost();
+            Canplay.ClothLost();*/
             G2bar.SetMinBar(curBar);
             if (TotelDoll != DollHave)
             {
@@ -273,7 +273,7 @@ public class MiniG2 : MonoBehaviour
         FinshDoll[FinishDollHave].SetActive(true);
     }
 
- /*   public void CheckStart()
+/*    public void CheckStart()
     {
         if (TotelDoll != DollHave)
         {

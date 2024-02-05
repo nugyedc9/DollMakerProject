@@ -14,14 +14,13 @@ public class CanPlayMini1 : MonoBehaviour
     public int DestinationSpawnAmount;*/
 
     public GameObject canClick;
-    public GameObject MiniG;
     public bool Cloth, Doll;
     public GameObject[] Dollobj;
     public GameObject[] Clothobj;
     public int ClothHave, DollHave, TotelDollHave;
     public Player player;
     public PlayerChangeCam minigame;
-    public MiniGame minigamestate;
+    public MiniGameAuidition minigamestate;
     public TextMeshProUGUI DollTotel;
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
@@ -51,13 +50,15 @@ public class CanPlayMini1 : MonoBehaviour
             //  player.PlaySoundWork();
             //  TotalDollCanva.SetActive(true);
             minigame.HaveDollAndCloth();
+            minigamestate.ItemHaveCheck();
         }
         else
         {
             //canClick.SetActive(false);
-            MiniG.SetActive(false);
             minigame.dontHaveDollAndCloth();
             minigamestate.LeaveMinigame();
+            minigamestate.DontHaveItem();
+
            // player.StopSoundWork();
         }
         /*DollTotel.text = "Doll " + DollHave + " / 6";
@@ -68,8 +69,9 @@ public class CanPlayMini1 : MonoBehaviour
         if(TotelDollHave == 6)
         {
             Dolls6.Invoke();
-        }
-
+        } 
+        if (DollHave == 0) Doll = false;
+        if(ClothHave == 0) Cloth = false;
     }
 
 
@@ -77,38 +79,42 @@ public class CanPlayMini1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Cloth")
         {
-            ClothHave++;
+           Clothobj[ClothHave].SetActive(true);
             Cloth = true;
-            Clothobj[ClothHave].SetActive(true);
+             ClothHave++;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Doll")
         {
-            DollHave++;
+           Dollobj[DollHave].SetActive(true);
             Doll = true;
-            Dollobj[DollHave].SetActive(true);
+             DollHave++;
             Destroy(collision.gameObject);
         }
     }
 
     public void Dolllost()
     {
-        Dollobj[DollHave].SetActive(false);
         DollHave--;
-        MakeDollFinish.Play();
-        if (DollHave == 0) Doll = false;
+        Dollobj[DollHave].SetActive(false);       
+       // MakeDollFinish.Play();      
     }
     public void ClothLost()
     {
-        Clothobj[ClothHave].SetActive(false );
         ClothHave--;
-        if(ClothHave == 0) Cloth = false;
+        Clothobj[ClothHave].SetActive(false );             
     }
 
     public void GetFinishDoll()
-    {
+    {      
+        FinshDoll[FinishDollHave].SetActive(true); 
         FinishDollHave++;
-        FinshDoll[FinishDollHave].SetActive(true);
+    }
+
+    public void FinishDoll()
+    {
+        Dolllost();
+        ClothLost();
     }
 
     public void AddTotalDoll()

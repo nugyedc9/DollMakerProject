@@ -4,13 +4,18 @@ using UnityEngine;
 using TMPro;
 
 
-public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, FinishSkillCheck, LeaveDesk };
+public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, FinishSkillCheck, LeaveDesk, ItemLost };
 
 public class MiniGameAuidition : MonoBehaviour
 {
     private MiniGameAuditionState _Currentstate;
     private MiniGameAuidition Instance;
     public GameObject MiniGameAuditionActive;
+    public CanPlayMini1 canPlay;
+
+    [Header("Bar")]
+    public MiniG2Bar Bar;
+    public float curBar, maxBar, minBar;
 
     [Header("Score")]
     public float Total;
@@ -22,150 +27,223 @@ public class MiniGameAuidition : MonoBehaviour
     public GameObject[] AuditionPrefabs;
     public Vector2[] audititionPosition;
     public GameObject[] AuditionPosition;
+    public GameObject[] PassAuditionPosition;
+    public GameObject[] FinishDoll;
     public GameObject AuditionShow;
 
     Queue<float> AuditionPass = new Queue<float>();
 
-    private bool DelaySpawn = true, oneRandom = true, printPeek, Fail;
-    public int CurrectPass;
+    private bool DelaySpawn = true, HoldSpace, printPeek, Fail ;
+    public bool HaveItem, Finish;
+    private int CurrectPass, FinishDollHave;
     [SerializeField] GameObject[] AuditionOnSceen;
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
-        _Currentstate = MiniGameAuditionState.Start;
+        _Currentstate = MiniGameAuditionState.LeaveDesk;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if (Input.GetKeyDown(KeyCode.Space)) HoldSpace = true;
+        else if(Input.GetKeyUp(KeyCode.Space)) HoldSpace= false;
 
-
-        if (_Currentstate == MiniGameAuditionState.Start)
+        if (HoldSpace && HaveItem)
         {
-            if (SlotAuditionPass <= 4)
-            {
-                if (DelaySpawn)
-                {
-                    DelaySpawn = false; 
-                    Randomspawn = Random.Range(0, AuditionPrefabs.Length);                
-                    StartCoroutine(SpawnRandomAudition());                  
-                }
+            curBar += 3 * Time.deltaTime;
+            Bar.SetMinBar(curBar);
+            if(curBar <= 0) curBar = 0;
 
-            }
-            else _Currentstate = MiniGameAuditionState.ClearSkillCheck;
-        }
+            if (_Currentstate == MiniGameAuditionState.Start)
+            {
+                    if (SlotAuditionPass <= 4)
+                    {
+                        if (DelaySpawn)
+                        {
+                            DelaySpawn = false;
+                            Randomspawn = Random.Range(0, AuditionPrefabs.Length);
+                            StartCoroutine(SpawnRandomAudition());
+                        }
 
-        if(_Currentstate == MiniGameAuditionState.ClearSkillCheck)
-        {
-            if (CurrectPass == 5)
-            {
-                _Currentstate = MiniGameAuditionState.FinishSkillCheck;
+                    }
+                    else
+                    {
+                        _Currentstate = MiniGameAuditionState.ClearSkillCheck;
+                        SlotAuditionPass = 0;
+                    }
             }
-            #region WASD
-            if (!printPeek)
+
+            if (_Currentstate == MiniGameAuditionState.ClearSkillCheck)
             {
-                print(AuditionPass.Peek());
-                printPeek = true;
-            }
-            if (AuditionPass.Peek() == 0)
-            {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (CurrectPass == 5)
                 {
-                    AuditionPass.Dequeue();
-                    CurrectPass++;
-                    printPeek = false;
+                    _Currentstate = MiniGameAuditionState.FinishSkillCheck;
                 }
-                
-            }else
+                #region WASD
+                if (!printPeek)
+                {
+                   // print(AuditionPass.Peek());
+                    printPeek = true;
+                }
+                if (AuditionPass.Peek() == 0)
+                {
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        AuditionPass.Dequeue();
+                        CurrectPass++;
+                        printPeek = false;
+                        SpawnAuditionPassPrefabs(0);
+                    }
+
+                }
+                else
                 {
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
                         printPeek = false;
+                        SpawnAuditionPassPrefabs(0);
                     }
                 }
-             if (AuditionPass.Peek() == 1)
-            {
-                if (Input.GetKeyDown(KeyCode.A))
+                if (AuditionPass.Peek() == 1)
                 {
-                    AuditionPass.Dequeue();
-                    CurrectPass++;
-                    printPeek = false;
+                    if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        AuditionPass.Dequeue();
+                        CurrectPass++;
+                        printPeek = false;
+                        SpawnAuditionPassPrefabs(1);
+                    }
+
                 }
-                
-            }else
+                else
                 {
                     if (Input.GetKeyDown(KeyCode.A))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
                         printPeek = false;
+                        SpawnAuditionPassPrefabs(1);
                     }
                 }
-             if (AuditionPass.Peek() == 2)
-            {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (AuditionPass.Peek() == 2)
                 {
-                    AuditionPass.Dequeue();
-                    CurrectPass++;
-                    printPeek = false;
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        AuditionPass.Dequeue();
+                        CurrectPass++;
+                        printPeek = false;
+                        SpawnAuditionPassPrefabs(2);
+                    }
+
                 }
-               
-            } else
+                else
                 {
                     if (Input.GetKeyDown(KeyCode.S))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
                         printPeek = false;
+                        SpawnAuditionPassPrefabs(2);
                     }
                 }
-             if (AuditionPass.Peek() == 3)
-            {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (AuditionPass.Peek() == 3)
                 {
-                    AuditionPass.Dequeue();
-                    CurrectPass++;
-                    printPeek = false;
+                    if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        AuditionPass.Dequeue();
+                        CurrectPass++;
+                        printPeek = false;
+                        SpawnAuditionPassPrefabs(3);
+                    }
+
                 }
-                
-            }else
+                else
                 {
                     if (Input.GetKeyDown(KeyCode.D))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
                         printPeek = false;
+                        SpawnAuditionPassPrefabs(3);
                     }
                 }
-            #endregion
+                #endregion
 
-            
+
+            }
+
+            if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
+            {
+                if (!Fail)
+                {
+                    curBar -= 20;
+                    StartCoroutine(FailDelay());
+                    Fail = true;
+                }
+                print("Fail");
+            }
+
+            if (_Currentstate == MiniGameAuditionState.FinishSkillCheck)
+            {
+                AuditionPass.Clear();
+                AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                {
+                    Destroy(SpawnOnSceen);
+                }
+                curBar += 15;
+                SlotAuditionPass = 0;
+                CurrectPass = 0;
+                Finish = true;
+                _Currentstate = MiniGameAuditionState.Start;
+                print("finish");
+            }
         }
 
-        if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
+        if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {
-            if (!Fail)
+            if (HoldSpace)
             {
-                StartCoroutine(FailDelay());
-                Fail = true;
+                AuditionPass.Clear();
+                AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                {
+                    Destroy(SpawnOnSceen);
+                }
+                SlotAuditionPass = 0;
+                CurrectPass = 0;
+                _Currentstate = MiniGameAuditionState.Start;
             }
-            print("Fail");
         }
-        if(_Currentstate == MiniGameAuditionState.FinishSkillCheck)
+
+        if(_Currentstate == MiniGameAuditionState.ItemLost)
         {
-            AuditionPass.Clear();
-            AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-            foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+            if (Finish)
             {
-                Destroy(SpawnOnSceen);
+                
+                print("LostItem");
+                Finish = false;
+                canPlay.FinishDoll();
+                GetFinishDoll();            
             }
-            SlotAuditionPass = 0;
-            CurrectPass = 0;
-            _Currentstate = MiniGameAuditionState.Start;
-            print("finish");
+            _Currentstate = MiniGameAuditionState.LeaveDesk;
         }
+
+        if (curBar >= maxBar)
+        {   
+            _Currentstate = MiniGameAuditionState.ItemLost;     curBar = 0;   
+        }
+        
     }
 
+    public void SpawnAuditionPassPrefabs(int PrefabsSpawn)
+    {
+        GameObject SpawnPass = Instantiate(AuditionPrefabs[PrefabsSpawn], new Vector2(0, 0), Quaternion.identity);
+        SpawnPass.transform.SetParent(PassAuditionPosition[SlotAuditionPass].transform, false);
+        SlotAuditionPass++;
+    }
 
     IEnumerator SpawnRandomAudition()
     {
@@ -178,7 +256,7 @@ public class MiniGameAuidition : MonoBehaviour
 
     IEnumerator FailDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);       
         AuditionPass.Clear();
         AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
         foreach (GameObject SpawnOnSceen in AuditionOnSceen)
@@ -203,5 +281,23 @@ public class MiniGameAuidition : MonoBehaviour
         {
             Destroy(SpawnOnSceen);
         }
+    }
+
+    public void LeaveMinigame()
+    {
+        _Currentstate = MiniGameAuditionState.LeaveDesk;
+    }
+    public void GetFinishDoll()
+    {
+        FinishDoll[FinishDollHave].SetActive(true);
+            FinishDollHave++;
+    }
+    public void ItemHaveCheck()
+    {
+        HaveItem = true;
+    }
+    public void DontHaveItem()
+    {
+        HaveItem = false;
     }
 }
