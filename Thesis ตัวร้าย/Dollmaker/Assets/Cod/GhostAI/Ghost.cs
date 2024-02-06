@@ -11,7 +11,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 {
 
     public NavMeshAgent enemyGhost;
-    public List<Transform> destination;
+    
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
         catchDistance, chaseTime,AfterAttackDelay, DistanceAmount, HpGhost, Stun, curStun, lowSpeed, AfterDeadDelay;
@@ -40,6 +40,8 @@ public class Ghost : MonoBehaviour, HearPlayer
     public Transform GhostTransFrom;
     public Transform Spawn1, Spawn2, Spawn3;
     private float ToSpawn;
+    public int Spawn1DistinationStart, SpawnDistinationEnd, Spawn2DistinationStart, Spawn2DistinationEnd, Spawn3DistinationStart, Spawn3DistinationEnd;
+    public List<Transform> destination;
 
 
     [Header("Ghost vision cone")]
@@ -423,21 +425,21 @@ public class Ghost : MonoBehaviour, HearPlayer
     {
         // Debug.LogError("Sapwn1");
         enemyGhost.Warp(Spawn1.position);
-        FirstDest = 0;
-        destinationAmount = 3;
+        FirstDest = Spawn1DistinationStart;
+        destinationAmount = Spawn2DistinationEnd;
     }
     public void playerNearSpawn2()
     {
         //Debug.LogError("Sapwn2");
         enemyGhost.Warp(Spawn2.position);
-        FirstDest = 4;
-        destinationAmount = 6;
+        FirstDest = Spawn2DistinationStart;
+        destinationAmount = Spawn2DistinationEnd;
     }
     public void playerNearSpawn3()
     {
         enemyGhost.Warp(Spawn3.position);
-        FirstDest = 7;
-        destinationAmount = 9;
+        FirstDest = Spawn3DistinationStart;
+        destinationAmount = Spawn3DistinationEnd;
     }
 
     #endregion
