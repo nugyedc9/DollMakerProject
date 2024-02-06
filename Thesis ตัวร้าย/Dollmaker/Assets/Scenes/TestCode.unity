@@ -18404,7 +18404,6 @@ GameObject:
   - component: {fileID: 1548215655}
   - component: {fileID: 1548215654}
   - component: {fileID: 1548215653}
-  - component: {fileID: 1548215652}
   - component: {fileID: 1548215658}
   - component: {fileID: 1548215656}
   - component: {fileID: 1548215657}
@@ -18415,27 +18414,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1548215652
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548215651}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1548215653
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37814,6 +37792,10 @@ PrefabInstance:
       propertyPath: THowToCross
       value: 
       objectReference: {fileID: 635306610}
+    - target: {fileID: 2626959476714156206, guid: 07816ae49badac541bc8cbcae8327ef0, type: 3}
+      propertyPath: takeFinishDoll
+      value: 
+      objectReference: {fileID: 1548215657}
     - target: {fileID: 2634711518001944105, guid: 07816ae49badac541bc8cbcae8327ef0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1

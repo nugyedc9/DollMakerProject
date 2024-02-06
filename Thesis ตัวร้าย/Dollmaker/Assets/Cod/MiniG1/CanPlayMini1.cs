@@ -93,6 +93,20 @@ public class CanPlayMini1 : MonoBehaviour
         }
     }
 
+    public void AddDollOnDesk(int i)
+    {
+        Dollobj[DollHave].SetActive(true);
+        Doll = true;
+        DollHave += i;
+    }
+
+    public void AddClothOndesk(int i)
+    {
+        Clothobj[ClothHave].SetActive(true);
+        Cloth = true;
+        ClothHave += i;
+    }
+
     public void Dolllost()
     {
         DollHave--;

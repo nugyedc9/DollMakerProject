@@ -1329,133 +1329,60 @@ public class PlayerAttack : MonoBehaviour
                 #region Drop on desk
                 if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
                 {
-                    if (ItemSelect == 0)
+                    if (Clothhave > 0 || Dollhave > 0)
                     {
-                        if (DollOnHand && showDoll)
+                        takeFinishDoll.AddDollOnDesk(Dollhave);
+                        takeFinishDoll.AddClothOndesk(Clothhave);
+
+                        Itemhave = 0;
+                        Dollhave = 0;
+                        Clothhave = 0;
+
+                        //Doll on hand
+                        Tutext1.SetActive(false);
+                        showDoll = false;
+                        DollR.SetActive(false);
+                        if (DollInv1)
                         {
-                            InterectSound.clip = DropDollSound;
-                            InterectSound.Play();
-                            DropDoll();
-                            Itemhave--;
-                            Dollhave--;
-                            Tutext1.SetActive(false);
-                            showDoll = false;
-                            DollR.SetActive(false);
-                            if (DollInv1)
-                            {
-                                itemInventory1[1].SetActive(false);
-                                DollInv1 = false;
-                            }
+                            itemInventory1[1].SetActive(false);
+                            DollInv1 = false;
                         }
-
-
-                        if (ClothOnHand && showCloth)
+                         if (DollInv2)
                         {
-
-                            InterectSound.clip = DropClothSound;
-                            InterectSound.Play();
-                            DropCloth();
-                            Itemhave--;
-                            Clothhave--;
-                            Tutext1.SetActive(false);
-                            ClothR.SetActive(false);
-                            showCloth = false;
-                            if (ClothInv1)
-                            {
-                                itemInventory1[2].SetActive(false);
-                                ClothInv1 = false;
-                            }
-
+                            itemInventory2[1].SetActive(false);
+                            DollInv2 = false;
+                        }
+                         if (DollInv3)
+                        {
+                            itemInventory3[1].SetActive(false);
+                            DollInv3 = false;
+                        }
+                        // Cloth on hand
+                        showCloth = false;
+                        ClothR.SetActive(false);
+                        if (ClothInv1)
+                        {
+                            itemInventory1[2].SetActive(false);
+                            ClothInv1 = false;
+                        }
+                         if (ClothInv2)
+                        {
+                            itemInventory2[2].SetActive(false);
+                            ClothInv2 = false;
+                        }
+                         if (ClothInv3)
+                        {
+                            itemInventory3[2].SetActive(false);
+                            ClothInv3 = false;
                         }
                     }
 
-                    if (ItemSelect == 1)
-                    {
-                        if (DollOnHand && showDoll)
-                        {
-                            InterectSound.clip = DropDollSound;
-                            InterectSound.Play();
-
-                            DropDoll();
-                            Itemhave--;
-                            Dollhave--;
-                            Tutext1.SetActive(false);
-                            showDoll = false;
-                            DollR.SetActive(false);
-                            if (DollInv2)
-                            {
-                                itemInventory2[1].SetActive(false);
-                                DollInv2 = false;
-                            }
-                        }
-
-                        if (ClothOnHand && showCloth)
-                        {
-                            InterectSound.clip = DropClothSound;
-                            InterectSound.Play();
-
-                            DropCloth();
-                            Itemhave--;
-                            Clothhave--;
-                            Tutext1.SetActive(false);
-                            ClothR.SetActive(false);
-                            showCloth = false;
-                            if (ClothInv2)
-                            {
-                                itemInventory2[2].SetActive(false);
-                                ClothInv2 = false;
-                            }
-
-                        }
-                    }
-
-                    if (ItemSelect == 2)
-                    {
-                        if (DollOnHand && showDoll)
-                        {
-                            InterectSound.clip = DropDollSound;
-                            InterectSound.Play();
-
-                            DropDoll();
-                            Itemhave--;
-                            Dollhave--;
-                            Tutext1.SetActive(false);
-                            showDoll = false;
-                            DollR.SetActive(false);
-                            if (DollInv3)
-                            {
-                                itemInventory3[1].SetActive(false);
-                                DollInv3 = false;
-                            }
-                        }
-
-                        if (ClothOnHand && showCloth)
-                        {
-                            InterectSound.clip = DropClothSound;
-                            InterectSound.Play();
-
-                            DropCloth();
-                            Itemhave--;
-                            Clothhave--;
-                            Tutext1.SetActive(false);
-                            ClothR.SetActive(false);
-                            showCloth = false;
-                            if (ClothInv3)
-                            {
-                                itemInventory3[2].SetActive(false);
-                                ClothInv3 = false;
-                            }
-                        }
-                    }
                 }
                 #endregion
 
             }
 
-            #region Check doll cloth on hand
-            if (ClothOnHand || DollOnHand) changeCam.ItemOnHand();
-            else changeCam.NoItem();
-            #endregion
+
 
         }
 
