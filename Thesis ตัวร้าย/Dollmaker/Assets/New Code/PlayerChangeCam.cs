@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,9 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject minigame;
     public MiniGameAuidition minigamestate;
 
-    private bool CamOnPerson = true, canplayMinigame;
+    public PlayerAttack Throwitem;
+
+    private bool CamOnPerson = true, canplayMinigame, HaveItem;
 
     private void OnEnable()
     {
@@ -53,13 +56,14 @@ public class PlayerChangeCam : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.E))
                 {
-                    if (ChangePOV.IsActiveCamera(FirstpersonView))
-                    {
-                        _InputManager.StopWalk();
-                        ChangePOV.SwitchCamera(WorkShopView);
-                        if(canplayMinigame) minigame.SetActive(true);                      
-                        StartCoroutine(DelayCamera());
-                    }
+                    if(!HaveItem)
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            _InputManager.StopWalk();
+                            ChangePOV.SwitchCamera(WorkShopView);
+                            if (canplayMinigame) minigame.SetActive(true);
+                            StartCoroutine(DelayCamera());
+                        }
                 }
             }
         }
@@ -102,4 +106,21 @@ public class PlayerChangeCam : MonoBehaviour
         yield return new WaitForSeconds(1f);
             CamOnPerson = false;       
     }
+
+    IEnumerator DelayDropItem()
+    {
+        yield return new WaitForSeconds(0.1f);
+        HaveItem = false;
+    }
+
+    public void ItemOnHand()
+    {
+        HaveItem = true;
+    }
+
+    public void NoItem()
+    {
+        StartCoroutine(DelayDropItem());
+    }
+
 }

@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
     public float Pickrange;
     private Vector3 destination;
+    public PlayerChangeCam changeCam;
 
     [Header("Audio")]
     public AudioClip HitGhostSound;
@@ -1267,6 +1268,7 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
+        // Have drop item on desk
         #region Pick up only
 
         Ray LPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
@@ -1324,9 +1326,136 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
-               
+                #region Drop on desk
+                if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
+                {
+                    if (ItemSelect == 0)
+                    {
+                        if (DollOnHand && showDoll)
+                        {
+                            InterectSound.clip = DropDollSound;
+                            InterectSound.Play();
+                            DropDoll();
+                            Itemhave--;
+                            Dollhave--;
+                            Tutext1.SetActive(false);
+                            showDoll = false;
+                            DollR.SetActive(false);
+                            if (DollInv1)
+                            {
+                                itemInventory1[1].SetActive(false);
+                                DollInv1 = false;
+                            }
+                        }
+
+
+                        if (ClothOnHand && showCloth)
+                        {
+
+                            InterectSound.clip = DropClothSound;
+                            InterectSound.Play();
+                            DropCloth();
+                            Itemhave--;
+                            Clothhave--;
+                            Tutext1.SetActive(false);
+                            ClothR.SetActive(false);
+                            showCloth = false;
+                            if (ClothInv1)
+                            {
+                                itemInventory1[2].SetActive(false);
+                                ClothInv1 = false;
+                            }
+
+                        }
+                    }
+
+                    if (ItemSelect == 1)
+                    {
+                        if (DollOnHand && showDoll)
+                        {
+                            InterectSound.clip = DropDollSound;
+                            InterectSound.Play();
+
+                            DropDoll();
+                            Itemhave--;
+                            Dollhave--;
+                            Tutext1.SetActive(false);
+                            showDoll = false;
+                            DollR.SetActive(false);
+                            if (DollInv2)
+                            {
+                                itemInventory2[1].SetActive(false);
+                                DollInv2 = false;
+                            }
+                        }
+
+                        if (ClothOnHand && showCloth)
+                        {
+                            InterectSound.clip = DropClothSound;
+                            InterectSound.Play();
+
+                            DropCloth();
+                            Itemhave--;
+                            Clothhave--;
+                            Tutext1.SetActive(false);
+                            ClothR.SetActive(false);
+                            showCloth = false;
+                            if (ClothInv2)
+                            {
+                                itemInventory2[2].SetActive(false);
+                                ClothInv2 = false;
+                            }
+
+                        }
+                    }
+
+                    if (ItemSelect == 2)
+                    {
+                        if (DollOnHand && showDoll)
+                        {
+                            InterectSound.clip = DropDollSound;
+                            InterectSound.Play();
+
+                            DropDoll();
+                            Itemhave--;
+                            Dollhave--;
+                            Tutext1.SetActive(false);
+                            showDoll = false;
+                            DollR.SetActive(false);
+                            if (DollInv3)
+                            {
+                                itemInventory3[1].SetActive(false);
+                                DollInv3 = false;
+                            }
+                        }
+
+                        if (ClothOnHand && showCloth)
+                        {
+                            InterectSound.clip = DropClothSound;
+                            InterectSound.Play();
+
+                            DropCloth();
+                            Itemhave--;
+                            Clothhave--;
+                            Tutext1.SetActive(false);
+                            ClothR.SetActive(false);
+                            showCloth = false;
+                            if (ClothInv3)
+                            {
+                                itemInventory3[2].SetActive(false);
+                                ClothInv3 = false;
+                            }
+                        }
+                    }
+                }
+                #endregion
 
             }
+
+            #region Check doll cloth on hand
+            if (ClothOnHand || DollOnHand) changeCam.ItemOnHand();
+            else changeCam.NoItem();
+            #endregion
 
         }
 
@@ -1426,6 +1555,7 @@ public class PlayerAttack : MonoBehaviour
             dialogCheck = false;
         }
 
+  
     }
 
 
@@ -1490,7 +1620,7 @@ public class PlayerAttack : MonoBehaviour
         DropingCross1(RH);
 
     }
-    void DropDoll()
+   public void DropDoll()
     {
         Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -1505,7 +1635,7 @@ public class PlayerAttack : MonoBehaviour
         DropingDoll(RH);
 
     }
-    void DropCloth()
+   public void DropCloth()
     {
         Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
