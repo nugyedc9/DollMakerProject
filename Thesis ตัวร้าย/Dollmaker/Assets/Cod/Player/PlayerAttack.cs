@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Item Change")]
     public int ItemSelect = 0;
-    private int Itemhave,Dollhave,Clothhave, Crosshave;
+    public int Itemhave,Dollhave,Clothhave, Crosshave;
     private bool showCross,showDoll,showCloth,setTriggerCross, box1 , box2, box3;
 
     [Header("Item Drop")]
@@ -1333,10 +1333,18 @@ public class PlayerAttack : MonoBehaviour
                     {
                         takeFinishDoll.AddDollOnDesk(Dollhave);
                         takeFinishDoll.AddClothOndesk(Clothhave);
-
+                        box1 = false; box2 = false; box3 = false;
                         Itemhave = 0;
                         Dollhave = 0;
                         Clothhave = 0;
+                        if (Crosshave == 1)
+                        {
+                            Itemhave = 1;
+                            if(CrossInv1) box1 = true;
+                            if(CrossInv2) box2 = true;
+                            if(CrossInv3) box3 = true;
+                        }
+
 
                         //Doll on hand
                         Tutext1.SetActive(false);
@@ -1347,12 +1355,12 @@ public class PlayerAttack : MonoBehaviour
                             itemInventory1[1].SetActive(false);
                             DollInv1 = false;
                         }
-                         if (DollInv2)
+                        if (DollInv2)
                         {
                             itemInventory2[1].SetActive(false);
                             DollInv2 = false;
                         }
-                         if (DollInv3)
+                        if (DollInv3)
                         {
                             itemInventory3[1].SetActive(false);
                             DollInv3 = false;
@@ -1365,12 +1373,12 @@ public class PlayerAttack : MonoBehaviour
                             itemInventory1[2].SetActive(false);
                             ClothInv1 = false;
                         }
-                         if (ClothInv2)
+                        if (ClothInv2)
                         {
                             itemInventory2[2].SetActive(false);
                             ClothInv2 = false;
                         }
-                         if (ClothInv3)
+                        if (ClothInv3)
                         {
                             itemInventory3[2].SetActive(false);
                             ClothInv3 = false;
