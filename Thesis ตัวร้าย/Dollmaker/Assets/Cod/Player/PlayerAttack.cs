@@ -1331,18 +1331,13 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (Clothhave > 0 || Dollhave > 0)
                     {
-                        takeFinishDoll.AddDollOnDesk(Dollhave);
-                        takeFinishDoll.AddClothOndesk(Clothhave);
-                        box1 = false; box2 = false; box3 = false;
-                        Itemhave = 0;
-                        Dollhave = 0;
-                        Clothhave = 0;
+                       
                         if (Crosshave == 1)
                         {
                             Itemhave = 1;
-                            if(CrossInv1) box1 = true;
-                            if(CrossInv2) box2 = true;
-                            if(CrossInv3) box3 = true;
+                            if (CrossInv1) box1 = true;
+                            if (CrossInv2) box2 = true;
+                            if (CrossInv3) box3 = true;
                         }
 
 
@@ -1350,49 +1345,105 @@ public class PlayerAttack : MonoBehaviour
                         Tutext1.SetActive(false);
                         showDoll = false;
                         DollR.SetActive(false);
-                        if (DollInv1)
+                        if (ItemSelect == 0)
                         {
-                            itemInventory1[1].SetActive(false);
-                            DollInv1 = false;
+                            if (DollInv1)
+                            {
+                                itemInventory1[1].SetActive(false);
+                                takeFinishDoll.AddDollOnDesk(1);
+                                Dollhave--;
+                                Itemhave--;
+                                box1 = false;
+                                DollInv1 = false;
+                            }
                         }
-                        if (DollInv2)
+                        else if (ItemSelect == 1)
                         {
-                            itemInventory2[1].SetActive(false);
-                            DollInv2 = false;
+                            if (DollInv2)
+                            {
+                                itemInventory2[1].SetActive(false);
+                                takeFinishDoll.AddDollOnDesk(1);
+                                box2 = false;
+                                Dollhave--;
+                                Itemhave--;
+                                DollInv2 = false;
+                            }
                         }
-                        if (DollInv3)
+                        else if (ItemSelect == 2)
                         {
-                            itemInventory3[1].SetActive(false);
-                            DollInv3 = false;
+                            if (DollInv3)
+                            {
+                                itemInventory3[1].SetActive(false);
+                                takeFinishDoll.AddDollOnDesk(1);
+                                box3 = false;
+                                Dollhave--;
+                                Itemhave--;
+                                DollInv3 = false;
+                            }
                         }
                         // Cloth on hand
                         showCloth = false;
                         ClothR.SetActive(false);
-                        if (ClothInv1)
+                        if (ItemSelect == 0)
                         {
-                            itemInventory1[2].SetActive(false);
-                            ClothInv1 = false;
+                            if (ClothInv1)
+                            {
+                                itemInventory1[2].SetActive(false);
+                                takeFinishDoll.AddClothOndesk(1);
+                                box1 = false;
+                                Clothhave--;
+                                Itemhave--;
+                                ClothInv1 = false;
+                            }
                         }
-                        if (ClothInv2)
+                        else if (ItemSelect == 1)
                         {
-                            itemInventory2[2].SetActive(false);
-                            ClothInv2 = false;
+                            if (ClothInv2)
+                            {
+                                itemInventory2[2].SetActive(false);
+                                takeFinishDoll.AddClothOndesk(1);
+                                box2 = false;
+                                Clothhave--;
+                                Itemhave--;
+                                ClothInv2 = false;
+                            }
                         }
-                        if (ClothInv3)
+                        else if (ItemSelect == 2)
                         {
-                            itemInventory3[2].SetActive(false);
-                            ClothInv3 = false;
+                            if (ClothInv3)
+                            {
+                                itemInventory3[2].SetActive(false);
+                                takeFinishDoll.AddClothOndesk(1);
+                                box3 = false;
+                                Clothhave--;
+                                Itemhave--;
+                                ClothInv3 = false;
+                            }
                         }
                     }
 
                 }
                 #endregion
-
             }
-
-
-
         }
+
+        #region Check item on hand to active mini game
+        if(ItemSelect == 0)
+        {
+            if (DollInv1 || ClothInv1) changeCam.ItemOnHand();
+            else changeCam.NoItem();
+        }
+        else if(ItemSelect == 1)
+        {
+            if (DollInv2 || ClothInv2) changeCam.ItemOnHand();
+            else changeCam.NoItem();
+        }
+        else if(ItemSelect == 2)
+        {
+            if(DollInv3 || ClothInv3) changeCam.ItemOnHand();
+            else changeCam.NoItem();
+        }
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.F))
         {

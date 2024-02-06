@@ -22,7 +22,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     public PlayerAttack Throwitem;
 
-    private bool CamOnPerson = true, canplayMinigame;
+    private bool CamOnPerson = true, canplayMinigame, HaveItem;
 
     private void OnEnable()
     {
@@ -54,13 +54,16 @@ public class PlayerChangeCam : MonoBehaviour
            // Debug.Log(hitInfo.collider.gameObject.tag);
             if(hitInfo.collider.gameObject.tag == "WorkShopDesk")
             {
-                if(Input.GetKeyDown(KeyCode.E))
+                if (!HaveItem)
                 {
-                    if (ChangePOV.IsActiveCamera(FirstpersonView))
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        _InputManager.StopWalk();
-                        ChangePOV.SwitchCamera(WorkShopView);
-                        StartCoroutine(DelayCamera());
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            _InputManager.StopWalk();
+                            ChangePOV.SwitchCamera(WorkShopView);
+                            StartCoroutine(DelayCamera());
+                        }
                     }
                 }
             }
@@ -111,6 +114,20 @@ public class PlayerChangeCam : MonoBehaviour
             CamOnPerson = false;       
     }
     
+    public void ItemOnHand()
+    {
+        HaveItem = true;
+    }
 
+    public void NoItem()
+    {
+        StartCoroutine(DelayNoitem());
+    }
+
+    IEnumerator DelayNoitem()
+    {
+        yield return new WaitForSeconds(0.1f);
+        HaveItem = false;
+    }
 
 }
