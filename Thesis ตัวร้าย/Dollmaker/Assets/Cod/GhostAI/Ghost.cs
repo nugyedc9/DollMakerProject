@@ -284,7 +284,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (!HpLow)
             {
                 HpGhost--;
-                ToSpawn++;
+                //ToSpawn++;
                 PAttack.CrossRuin();
                 HpLow = true;
             }
@@ -292,7 +292,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             enemyGhost.speed = 0;
             lowSpeed = chaseSpeed;
             if (ToSpawn != 3)
-                _stateGhost = StateGhost.ChangePosition;
+                _stateGhost = StateGhost.Dead;
             else _stateGhost = StateGhost.Dead;
         }
 
