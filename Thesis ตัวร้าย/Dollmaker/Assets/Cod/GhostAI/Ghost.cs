@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public enum StateGhost { Walk, Idle, Search, Hunt, HitP, ChangePosition, Dead };
+public enum StateGhost { Walk, Idle, Search, Hunt, HitP, ChangePosition, Dead, Spawn };
 public class Ghost : MonoBehaviour, HearPlayer
 {
 
@@ -33,7 +33,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
     [Header("Ghost")]
     public GameObject BlackSphere;
-    public GameObject GhostFrom;
+    public GameObject GhostFrom, GhostLight;
     public BoxCollider GhostCloseDistance;
 
     [Header("Ghost spawn")]
@@ -87,7 +87,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         #endregion
 
         playerNearSpawn1();
-        _stateGhost = StateGhost.Walk;
+        _stateGhost = StateGhost.Spawn;
     }
 
     // Update is called once per frame
@@ -147,6 +147,12 @@ public class Ghost : MonoBehaviour, HearPlayer
         }
         #endregion
 
+        if(_stateGhost == StateGhost.Spawn)
+        {
+            BlackSphere.SetActive(false);
+            GhostFrom.SetActive(false);
+            StartCoroutine(DelaySpawnGhost());
+        }
 
         if (_stateGhost == StateGhost.Walk)
         {
@@ -378,7 +384,6 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
-
     #region Attack
     IEnumerator Attack()
     {
@@ -387,6 +392,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
+    #region Change Position
     IEnumerator DelayChagePos()
     {
         yield return new WaitForSeconds(2);
@@ -397,15 +403,17 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (ToSpawn == 1)
         {
             playerNearSpawn2();
-            _stateGhost = StateGhost.Idle;
+            _stateGhost = StateGhost.Spawn;
         }
         if (ToSpawn == 2)
         {
             playerNearSpawn3();
-            _stateGhost = StateGhost.Idle;
+            _stateGhost = StateGhost.Spawn;
         }
     }
+    #endregion
 
+    #region After dead
     IEnumerator AfterDead()
     {
         yield return new WaitForSeconds(AfterDeadDelay);
@@ -413,8 +421,21 @@ public class Ghost : MonoBehaviour, HearPlayer
         Ambience.Play();
         Phit = false;
         ToSpawn = 0;
-        _stateGhost = StateGhost.Idle;
+        _stateGhost = StateGhost.Spawn;
     }
+
+    #endregion
+
+    #region SpawnGhost
+    IEnumerator DelaySpawnGhost()
+    {
+        GhostLight.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        GhostLight.SetActive(false);
+        _stateGhost = StateGhost.Idle;
+
+    }
+    #endregion
 
     #endregion
 
