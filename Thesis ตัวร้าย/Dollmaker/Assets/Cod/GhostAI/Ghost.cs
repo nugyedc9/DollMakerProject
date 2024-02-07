@@ -430,6 +430,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     IEnumerator DelaySpawnGhost()
     {
         GhostLight.SetActive(true);
+        cansee = false;
         yield return new WaitForSeconds(10f);
         GhostLight.SetActive(false);
         _stateGhost = StateGhost.Idle;
@@ -511,7 +512,6 @@ public class Ghost : MonoBehaviour, HearPlayer
             if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
             {
                 Vertices[i + 1] = VertForward * hit.distance;
-
             }
             else
             {
