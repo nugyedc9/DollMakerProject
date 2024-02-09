@@ -1,5 +1,137 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &295122121894536760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5235559522137720704}
+  - component: {fileID: 3049295767065552588}
+  m_Layer: 0
+  m_Name: Amib
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5235559522137720704
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295122121894536760}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7811873751824881156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 99.93, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!82 &3049295767065552588
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295122121894536760}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b57e1aa1632395c4289b905216cb1597, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.91
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 11.26
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &874205999732524287
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,13 +144,13 @@ GameObject:
   - component: {fileID: 8429505591176616368}
   - component: {fileID: 7296634049456592005}
   - component: {fileID: 1533373882087695786}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &995939743260072390
 Transform:
   m_ObjectHideFlags: 0
@@ -36,6 +168,7 @@ Transform:
   - {fileID: 3255370080175053503}
   - {fileID: 5201452031958333459}
   - {fileID: 7811873751824881156}
+  - {fileID: 1418472949860156446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8429505591176616368
@@ -51,21 +184,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGhost: {fileID: 7296634049456592005}
-  destination:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   GhostAni: {fileID: 4628707883043825594}
   walkSpeed: 2
-  chaseSpeed: 4
+  chaseSpeed: 2
   minIdleTime: 3
-  maxIdleTime: 5
+  maxIdleTime: 4
   IdleTime: 3
   catchDistance: 1
   chaseTime: 3
@@ -86,26 +209,43 @@ MonoBehaviour:
   DamageGhost: 1
   BlackSphere: {fileID: 6809691392219784186}
   GhostFrom: {fileID: 2221295874315754231}
+  GhostLight: {fileID: 2928780468934188546}
   GhostCloseDistance: {fileID: 1533373882087695786}
   GhostTransFrom: {fileID: 995939743260072390}
   Spawn1: {fileID: 0}
   Spawn2: {fileID: 0}
   Spawn3: {fileID: 0}
+  Spawn1DistinationStart: 0
+  SpawnDistinationEnd: 2
+  Spawn2DistinationStart: 3
+  Spawn2DistinationEnd: 4
+  Spawn3DistinationStart: 6
+  Spawn3DistinationEnd: 8
+  destination:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   VisionConeMaterial: {fileID: 2100000, guid: 2decd1114ed8d0a4d95fd8486780cda3, type: 2}
-  VisionRange: 10
+  VisionRange: 8
   VisionAngle: 360
   VisionObstructingLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   PlayerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   VisionConeResolution: 120
   FoundPlayer: {fileID: 5151398340827253608}
   MistGhost: {fileID: 2393477492216102794}
   ChaseGhost: {fileID: 9008048846377412809}
   DiedGhost: {fileID: 5265159423936428759}
-  Ambience: {fileID: 0}
+  Ambience: {fileID: 3049295767065552588}
 --- !u!195 &7296634049456592005
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,7 +301,7 @@ GameObject:
   - component: {fileID: 690526909334683635}
   - component: {fileID: 322070793847999164}
   - component: {fileID: 1952120122935632926}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7811873751824881156}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +425,7 @@ Transform:
   - {fileID: 3115398502693802154}
   - {fileID: 1437873733833618897}
   - {fileID: 8150288247169247792}
+  - {fileID: 5235559522137720704}
   m_Father: {fileID: 995939743260072390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2221295874315754231
@@ -299,7 +440,7 @@ GameObject:
   - component: {fileID: 8711871274906129165}
   - component: {fileID: 8433745976225837245}
   - component: {fileID: 4628707883043825594}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GhostSprite
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -406,6 +547,122 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &2928780468934188546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1418472949860156446}
+  - component: {fileID: 7727500368949937999}
+  - component: {fileID: 6114963698872206116}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1418472949860156446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928780468934188546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.361, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 995939743260072390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &7727500368949937999
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928780468934188546}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 5
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!95 &6114963698872206116
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928780468934188546}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9d68b54ac8e8694ab62546019b37355, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3376872418587812699
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8066305777622012617}
   - component: {fileID: 6498816713805248568}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +707,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4.266779
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -510,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9047458334575326888}
   - component: {fileID: 5151398340827253608}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FoundPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8150288247169247792}
   - component: {fileID: 5265159423936428759}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: DiedGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +1034,7 @@ GameObject:
   - component: {fileID: 5766649347143055284}
   - component: {fileID: 5585165231370966692}
   - component: {fileID: 5899706361166460085}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Blacksphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -907,7 +1164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437873733833618897}
   - component: {fileID: 9008048846377412809}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ChaseGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3115398502693802154}
   - component: {fileID: 2393477492216102794}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MistGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1172,7 +1429,7 @@ GameObject:
   - component: {fileID: 6748051386199978949}
   - component: {fileID: 2289625059164249028}
   - component: {fileID: 3612429000579675795}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1504,7 @@ GameObject:
   - component: {fileID: 3296259302334738}
   - component: {fileID: 1076544078788630711}
   - component: {fileID: 1460961486842271248}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

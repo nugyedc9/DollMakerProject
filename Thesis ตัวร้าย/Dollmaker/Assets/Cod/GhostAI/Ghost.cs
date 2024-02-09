@@ -350,7 +350,13 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (_stateGhost != StateGhost.Hunt) chasing = false;
         #endregion
 
-
+        #region If Player out sight
+        if (curStun < 0)
+        {         
+            _stateGhost = StateGhost.Idle;
+            curStun = Stun;
+        }
+        #endregion
     }
 
     public void RespondToSound(Sound sound)
@@ -448,7 +454,7 @@ public class Ghost : MonoBehaviour, HearPlayer
         // Debug.LogError("Sapwn1");
         enemyGhost.Warp(Spawn1.position);
         FirstDest = Spawn1DistinationStart;
-        destinationAmount = Spawn2DistinationEnd;
+        destinationAmount = SpawnDistinationEnd;
     }
     public void playerNearSpawn2()
     {
@@ -530,12 +536,9 @@ public class Ghost : MonoBehaviour, HearPlayer
                 else
                 {
                     if (PlayerInsight)
-                    {
-                        StunTime();
-                        if (curStun < 1)
-                        {
-                            PlayerInsight = false;
-                        }
+                    {                          
+                        PlayerInsight = false;
+                        StunTime();                
                     }
 
                 }

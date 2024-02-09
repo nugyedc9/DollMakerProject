@@ -1056,7 +1056,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (Itemhave != 3)
                     {
-                        if (StoryNow >= 5)
+                        if (StoryNow >= 0)
                         {
                             if (hitInfo.collider.gameObject.tag == "Cross")
                             {

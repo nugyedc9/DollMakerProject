@@ -19,7 +19,7 @@ public class CanPlayMini1 : MonoBehaviour
     public GameObject[] Clothobj;
     public int ClothHave, DollHave, TotelDollHave;
     public Player player;
-    public PlayerChangeCam minigame;
+    public PlayerChangeCam DeskView;
     public MiniGameAuidition minigamestate;
     public TextMeshProUGUI DollTotel;
     public TextMeshProUGUI ClothTotel;
@@ -49,13 +49,13 @@ public class CanPlayMini1 : MonoBehaviour
             // canClick.SetActive(true);
             //  player.PlaySoundWork();
             //  TotalDollCanva.SetActive(true);
-            minigame.HaveDollAndCloth();
+            DeskView.HaveDollAndCloth();
             minigamestate.ItemHaveCheck();
         }
         else
         {
             //canClick.SetActive(false);
-            minigame.dontHaveDollAndCloth();
+            DeskView.dontHaveDollAndCloth();
             minigamestate.LeaveMinigame();
             minigamestate.DontHaveItem();
 
