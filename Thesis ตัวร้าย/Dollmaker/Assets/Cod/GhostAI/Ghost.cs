@@ -11,12 +11,11 @@ public class Ghost : MonoBehaviour, HearPlayer
 {
 
     public NavMeshAgent enemyGhost;
-    
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
         catchDistance, chaseTime,AfterAttackDelay, DistanceAmount, HpGhost, Stun, curStun, lowSpeed, AfterDeadDelay;
     private bool   
-        chasing, searching, stopSearch, Attacked, getHit,
+        chasing, stopSearch, searching, Attacked, getHit,
         ded, HpLow, getAttack, cansee;
     public Transform player;    
     public Vector3 LastSound;
@@ -29,6 +28,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     [Header("Player")]
     [SerializeField] PlayerHp HpPlayer;
     [SerializeField] PlayerAttack PAttack;
+    public Transform PlayerFailMiniGamePOS;
     public float DamageGhost;
 
     [Header("Ghost")]
@@ -40,13 +40,14 @@ public class Ghost : MonoBehaviour, HearPlayer
     public Transform GhostTransFrom;
     public Transform Spawn1, Spawn2, Spawn3;
     private float ToSpawn;
-    public int Spawn1DistinationStart, SpawnDistinationEnd, Spawn2DistinationStart, Spawn2DistinationEnd, Spawn3DistinationStart, Spawn3DistinationEnd;
+    public int Spawn1DistinationStart, SpawnDistinationEnd, Spawn2DistinationStart, 
+        Spawn2DistinationEnd, Spawn3DistinationStart, Spawn3DistinationEnd;
     public List<Transform> destination;
 
 
     [Header("Ghost vision cone")]
     public Material VisionConeMaterial;
-    public float VisionRange;
+    public float VisionRange, HearRange;
     public float VisionAngle;
     public LayerMask VisionObstructingLayer;
     public LayerMask PlayerLayer;
@@ -62,7 +63,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public AudioSource Ambience; 
 
     private StateGhost _stateGhost;
-    bool Stay, Box, Phit, StopCount,pause,pauseAmbience, Crouch;
+    bool Stay, Box, Phit, StopCount,pause,pauseAmbience, PlayFoundAudio, AfterNotice;
 
 
     // Start is called before the first frame update
@@ -112,10 +113,14 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             VisionRange = 5;
+            HearRange = 0;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
-            VisionRange = 10;
-
+        {
+            VisionRange = 8;
+            HearRange = 10;
+        }
+           
 
         if (pause)
         {
@@ -154,33 +159,35 @@ public class Ghost : MonoBehaviour, HearPlayer
             StartCoroutine(DelaySpawnGhost());
         }
 
-        if (_stateGhost == StateGhost.Walk)
-        {
-            BlackSphere.SetActive(true);
-            GhostFrom.SetActive(false);
-            stopSearch = false;
-            if (!pause)
+            if (_stateGhost == StateGhost.Walk)
             {
-                Ambience.enabled = true;
-                if (pauseAmbience)
+              //  print("Walk State");
+                BlackSphere.SetActive(true);
+                GhostFrom.SetActive(false);
+                stopSearch = false;
+                if (!pause)
                 {
-                    Ambience.Play();
-                    pauseAmbience = false;
+                    Ambience.enabled = true;
+                    if (pauseAmbience)
+                    {
+                        Ambience.Play();
+                        pauseAmbience = false;
+                    }
                 }
-            }
-            dest = currentDest.position;
-            enemyGhost.destination = dest;
-            enemyGhost.speed = walkSpeed;
-            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
-            {
-                Stay = true;
-                //Debug.Log("IdleState after walk");
-                _stateGhost = StateGhost.Idle;
-            }
-        }
+                dest = currentDest.position;
+                enemyGhost.destination = dest;
+                enemyGhost.speed = walkSpeed;
+                if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
+                {
+                    Stay = true;
+                    _stateGhost = StateGhost.Idle;
+                }
+            }       
 
         if (_stateGhost == StateGhost.Idle)
         {
+          //  print("Idle State");
+            PlayFoundAudio = false;
             stopSearch = false;
             cansee = true;
             getHit = false;
@@ -203,27 +210,36 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Search)
         {
-              //Debug.Log("SearchState");
-            dest = LastSound;
+           // print("Search");
+            dest = PlayerFailMiniGamePOS.position;
             enemyGhost.destination = dest;
-            enemyGhost.speed = walkSpeed;
-            if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
+            enemyGhost.speed = chaseSpeed;
+            if(searching)
             {
-                Stay = true;
-                // Debug.Log("IdleState after search");
-                _stateGhost = StateGhost.Idle;
+                StartCoroutine(DelayAfterNotice());
+                searching = false;
             }
+            if (AfterNotice)
+            {
+                if (enemyGhost.remainingDistance <= enemyGhost.stoppingDistance)
+                {
+                    _stateGhost = StateGhost.Idle;
+                    AfterNotice = false;
+                }
+            }
+            
         }
 
 
         if (_stateGhost == StateGhost.Hunt)
         {
+            stopSearch = false;
             BlackSphere.SetActive(false);
             GhostFrom.SetActive(true);
             if (!pause)
             {
                 ChaseGhost.enabled = true;
-                FoundPlayer.enabled = true;
+                if(!PlayFoundAudio) {  FoundPlayer.enabled = true; PlayFoundAudio = true; }           
                 Ambience.enabled = true;
                 if(pauseAmbience)
                 {
@@ -235,7 +251,6 @@ public class Ghost : MonoBehaviour, HearPlayer
             enemyGhost.destination = dest;
             enemyGhost.speed = chaseSpeed;
             getAttack = false;
-            StunTime();
             if (!chasing)
             {
                 if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_Run"))
@@ -243,10 +258,9 @@ public class Ghost : MonoBehaviour, HearPlayer
                 chasing = true;
             }
             // GhostAni.SetTrigger("Run");
-            if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box && curStun < 0)
+            if (enemyGhost.remainingDistance <= catchDistance && enemyGhost.remainingDistance != 0 && Box)
             {
                 cansee = false;
-                curStun = 0;
                 if (!Attacked)
                 {
                     GhostAni.Play("G_atk", 0, 0);
@@ -444,6 +458,12 @@ public class Ghost : MonoBehaviour, HearPlayer
     }
     #endregion
 
+    IEnumerator DelayAfterNotice()
+    {
+        yield return new WaitForSeconds(0.2f);
+        AfterNotice = true;
+    }
+
     #endregion
 
 
@@ -544,11 +564,9 @@ public class Ghost : MonoBehaviour, HearPlayer
                 }
             }
 
-            
-
-
             Currentangle += angleIcrement;
         }
+
         for (int i = 0, j = 0; i < triangles.Length; i += 3, j++)
         {
             triangles[i] = 0;
@@ -565,6 +583,13 @@ public class Ghost : MonoBehaviour, HearPlayer
     public void endgame()
     {
         pause = true;
+    }
+
+    public void PlayerFailSkillCheck()
+    {
+        searching = true;
+        StopAllCoroutines();
+        _stateGhost = StateGhost.Search;
     }
 
 }

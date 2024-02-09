@@ -12,6 +12,7 @@ public class MiniGameAuidition : MonoBehaviour
     private MiniGameAuidition Instance;
     public GameObject MiniGameAuditionActive;
     public CanPlayMini1 canPlay;
+    public Ghost GhostcomeTocheck;
 
     [Header("Bar")]
     public MiniG2Bar Bar;
@@ -30,6 +31,10 @@ public class MiniGameAuidition : MonoBehaviour
     public GameObject[] PassAuditionPosition;
     public GameObject[] FinishDoll;
     public GameObject AuditionShow;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip GhostNotice;
 
     Queue<float> AuditionPass = new Queue<float>();
 
@@ -180,6 +185,9 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     curBar -= 20;
                     StartCoroutine(FailDelay());
+                    GhostcomeTocheck.PlayerFailSkillCheck();
+                    audioSource.clip = GhostNotice;
+                    audioSource.Play();
                     Fail = true;
                 }
                 print("Fail");
