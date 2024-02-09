@@ -293,7 +293,13 @@ public class PlayerAttack : MonoBehaviour
                 CorssR.SetActive(false);
                 showCross = false;
                 Attack = false;
-                setTriggerCross = true;
+                if (!setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = true;
+                }
             }
             
 
@@ -376,7 +382,13 @@ public class PlayerAttack : MonoBehaviour
                 CorssR.SetActive(false);
                 showCross = false;
                 Attack = false;
-                setTriggerCross = true;
+                if (!setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = true;
+                }
             }
             if (ItemSelect == 1 && !CrossOnHand)
             {
@@ -466,7 +478,13 @@ public class PlayerAttack : MonoBehaviour
                 CorssR.SetActive(false);
                 showCross = false;
                 Attack = false;
-                setTriggerCross = true;
+                if (!setTriggerCross)
+                {
+                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    setTriggerCross = true;
+                }
             }
             
 
