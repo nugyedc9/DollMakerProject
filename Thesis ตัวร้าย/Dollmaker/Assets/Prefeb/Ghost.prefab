@@ -169,6 +169,7 @@ Transform:
   - {fileID: 5201452031958333459}
   - {fileID: 7811873751824881156}
   - {fileID: 1418472949860156446}
+  - {fileID: 2007079838910998973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8429505591176616368
@@ -206,6 +207,7 @@ MonoBehaviour:
   rayCastOffset: {x: 0, y: 0, z: 0}
   HpPlayer: {fileID: 0}
   PAttack: {fileID: 0}
+  PlayerFailMiniGamePOS: {fileID: 0}
   DamageGhost: 1
   BlackSphere: {fileID: 6809691392219784186}
   GhostFrom: {fileID: 2221295874315754231}
@@ -231,8 +233,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  HeadVistion: {fileID: 1726422355009202736}
   VisionConeMaterial: {fileID: 2100000, guid: 2decd1114ed8d0a4d95fd8486780cda3, type: 2}
   VisionRange: 8
+  HearRange: 0
   VisionAngle: 360
   VisionObstructingLayer:
     serializedVersion: 2
@@ -426,6 +430,37 @@ Transform:
   - {fileID: 1437873733833618897}
   - {fileID: 8150288247169247792}
   - {fileID: 5235559522137720704}
+  m_Father: {fileID: 995939743260072390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1726422355009202736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007079838910998973}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007079838910998973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726422355009202736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.158, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 995939743260072390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2221295874315754231

@@ -13,7 +13,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     public NavMeshAgent enemyGhost;
     [SerializeField] public Animator GhostAni;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, IdleTime,
-        catchDistance, chaseTime,AfterAttackDelay, DistanceAmount, HpGhost, Stun, curStun, lowSpeed, AfterDeadDelay;
+        catchDistance, chaseTime,AfterAttackDelay, DistanceAmount, HpGhost, Stun, curStun, lowSpeed, AfterDeadDelay, canseePlayerTime;
     private bool   
         chasing, stopSearch, searching, Attacked, getHit,
         ded, HpLow, getAttack, cansee;
@@ -46,6 +46,7 @@ public class Ghost : MonoBehaviour, HearPlayer
 
 
     [Header("Ghost vision cone")]
+    public GameObject HeadVistion;
     public Material VisionConeMaterial;
     public float VisionRange, HearRange;
     public float VisionAngle;
@@ -186,7 +187,9 @@ public class Ghost : MonoBehaviour, HearPlayer
 
         if (_stateGhost == StateGhost.Idle)
         {
-          //  print("Idle State");
+            //  print("Idle State");
+            BlackSphere.SetActive(true);
+            GhostFrom.SetActive(false);
             PlayFoundAudio = false;
             stopSearch = false;
             cansee = true;
@@ -342,7 +345,7 @@ public class Ghost : MonoBehaviour, HearPlayer
             }
             if(!StopCount) 
             StunTime();
-            if (curStun < 0)
+            if (curStun <= 0)
             {
                 FoundPlayer.enabled = false;
                 DiedGhost.enabled = false;
@@ -364,13 +367,6 @@ public class Ghost : MonoBehaviour, HearPlayer
         if (_stateGhost != StateGhost.Hunt) chasing = false;
         #endregion
 
-        #region If Player out sight
-        if (curStun < 0)
-        {         
-            _stateGhost = StateGhost.Idle;
-            curStun = Stun;
-        }
-        #endregion
     }
 
     public void RespondToSound(Sound sound)
@@ -515,9 +511,16 @@ public class Ghost : MonoBehaviour, HearPlayer
         curStun -= 1 * Time.deltaTime;
     }
 
+    IEnumerator DelaySeePlayer()
+    {
+        yield return new WaitForSeconds(canseePlayerTime);
+        Stay = true;
+        _stateGhost = StateGhost.Idle;
+    }
+
 
     #region Vision Cone
-   private bool PlayerInsight;
+   public bool PlayerInsight;
 
     void DrawVisionCone()
     {
@@ -547,18 +550,19 @@ public class Ghost : MonoBehaviour, HearPlayer
                     Vertices[i + 1] = VertForward * hit.distance;
                     if (cansee)
                     {
-                        if (curStun > 1)
-                            PlayerInsight = true;
-                        StopAllCoroutines();
-                        _stateGhost = StateGhost.Hunt;
+                        
+                            PlayerInsight = true;   
+                            StopAllCoroutines();
+                        _stateGhost = StateGhost.Hunt;                       
+                                        
                     }
                 }
                 else
                 {
                     if (PlayerInsight)
-                    {                          
+                    {
+                        StartCoroutine(DelaySeePlayer());
                         PlayerInsight = false;
-                        StunTime();                
                     }
 
                 }
