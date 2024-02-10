@@ -1319,7 +1319,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (HpPlayer.curHp == 1)
                     {
-                        HpPlayer.openEyes();
+                       // HpPlayer.openEyes();
                         OpenEye = true;
                     }
                     else

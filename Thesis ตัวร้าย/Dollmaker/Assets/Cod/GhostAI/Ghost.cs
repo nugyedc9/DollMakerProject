@@ -29,7 +29,7 @@ public class Ghost : MonoBehaviour, HearPlayer
     [SerializeField] PlayerHp HpPlayer;
     [SerializeField] PlayerAttack PAttack;
     public Transform PlayerFailMiniGamePOS;
-    public float DamageGhost;
+    public int DamageGhost;
 
     [Header("Ghost")]
     public GameObject BlackSphere;
