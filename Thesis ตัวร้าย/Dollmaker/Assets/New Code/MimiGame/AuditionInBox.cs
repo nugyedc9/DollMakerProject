@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using static UnityEditor.ShaderData;
 
 public class AuditionInBox : MonoBehaviour
 {
