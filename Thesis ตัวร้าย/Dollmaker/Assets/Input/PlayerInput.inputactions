@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "8d1c666f-231f-444f-914f-b003e73407d0",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -99,10 +90,27 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "OnLook",
+            "id": "5453adfa-bedc-4a11-8c34-f05870695ded",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "2b2e9f61-d0f6-4b40-b44c-923448c11405",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "2c622847-0148-46a5-8523-231db1c7575c",
+                    "id": "63742d96-9150-48a0-8233-d7b1c3d1585c",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",

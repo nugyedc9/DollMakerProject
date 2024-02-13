@@ -44,15 +44,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""8d1c666f-231f-444f-914f-b003e73407d0"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -121,10 +112,27 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""OnLook"",
+            ""id"": ""5453adfa-bedc-4a11-8c34-f05870695ded"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""2b2e9f61-d0f6-4b40-b44c-923448c11405"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2c622847-0148-46a5-8523-231db1c7575c"",
+                    ""id"": ""63742d96-9150-48a0-8233-d7b1c3d1585c"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -142,7 +150,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
-        m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
+        // OnLook
+        m_OnLook = asset.FindActionMap("OnLook", throwIfNotFound: true);
+        m_OnLook_Look = m_OnLook.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,14 +216,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IOnFootActions> m_OnFootActionsCallbackInterfaces = new List<IOnFootActions>();
     private readonly InputAction m_OnFoot_Movement;
     private readonly InputAction m_OnFoot_Jump;
-    private readonly InputAction m_OnFoot_Look;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
         public OnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
-        public InputAction @Look => m_Wrapper.m_OnFoot_Look;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,9 +237,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Look.started += instance.OnLook;
-            @Look.performed += instance.OnLook;
-            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -242,9 +247,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -262,10 +264,59 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public OnFootActions @OnFoot => new OnFootActions(this);
+
+    // OnLook
+    private readonly InputActionMap m_OnLook;
+    private List<IOnLookActions> m_OnLookActionsCallbackInterfaces = new List<IOnLookActions>();
+    private readonly InputAction m_OnLook_Look;
+    public struct OnLookActions
+    {
+        private @PlayerInput m_Wrapper;
+        public OnLookActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_OnLook_Look;
+        public InputActionMap Get() { return m_Wrapper.m_OnLook; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OnLookActions set) { return set.Get(); }
+        public void AddCallbacks(IOnLookActions instance)
+        {
+            if (instance == null || m_Wrapper.m_OnLookActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_OnLookActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+        }
+
+        private void UnregisterCallbacks(IOnLookActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+        }
+
+        public void RemoveCallbacks(IOnLookActions instance)
+        {
+            if (m_Wrapper.m_OnLookActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IOnLookActions instance)
+        {
+            foreach (var item in m_Wrapper.m_OnLookActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_OnLookActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public OnLookActions @OnLook => new OnLookActions(this);
     public interface IOnFootActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IOnLookActions
+    {
         void OnLook(InputAction.CallbackContext context);
     }
 }

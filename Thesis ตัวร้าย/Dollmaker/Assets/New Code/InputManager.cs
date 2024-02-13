@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerInput.OnFootActions onFoot;
+    private PlayerInput.OnLookActions onLook;
     private PlayerMotor motor;
     private PlayerLook look;
     private bool CanWalk = true;
@@ -14,6 +15,7 @@ public class InputManager : MonoBehaviour
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        onLook = playerInput.OnLook;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
         onFoot.Jump.performed += ctx => motor.Jump();
@@ -25,17 +27,19 @@ public class InputManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        look.ProcessLook(onLook.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()
     {
         onFoot.Enable();
+        onLook.Enable();
     }
 
     private void OnDisable()
     {
         onFoot.Disable();
+        onLook.Disable();
     }
 
     public void StopWalk()
@@ -43,11 +47,13 @@ public class InputManager : MonoBehaviour
         if (CanWalk)
         {
             CanWalk = false;
+            look.camNum(0);
             onFoot.Disable();
         }
         else
         {
             onFoot.Enable();
+            look.camNum(0);
             CanWalk = true;
         }
         
