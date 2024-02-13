@@ -125,7 +125,7 @@ public class PlayerAttack : MonoBehaviour
     private bool isPause, Working;
 
     private Door DoorInterect;
-    private Ghost GhostHit;
+    private GhostStateManager GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
     private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx;
@@ -216,8 +216,8 @@ public class PlayerAttack : MonoBehaviour
                         crossruin = true;
                         HitAudio.clip = HitGhostSound;
                         HitAudio.Play();
-                        GhostHit = hitinfo.collider.gameObject.GetComponent<Ghost>();
-                        GhostHit.PlayerHitGhost();
+                        GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
+                        GhostHit.Playerhit();
                     }
                     //StartCoroutine(AttackReset());
                 }else HolyLight.SetActive(false);

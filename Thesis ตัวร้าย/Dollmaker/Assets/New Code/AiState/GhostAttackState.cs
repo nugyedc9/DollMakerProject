@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GhostAttackState : GhostBaseState
 {
-    float TimeHit, TreeSce = 3;
+    float TimeHit, TreeSce = 2;
     bool hitplayer;
     public override void EnterState(GhostStateManager state)
     {
@@ -11,15 +11,17 @@ public class GhostAttackState : GhostBaseState
 
     public override void UpdateState(GhostStateManager state)
     {
+
         if (state.AnimAttack)
         {
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_atk"))
                 state.GhostAni.Play("G_atk", 0, 0);
+            state.DelayHitPlayer = 2;
             state.enemyGhost.speed = 0;
             TimeHit = TreeSce;
             state.AnimAttack = false;
         }
-
+        state.DrawVisionCone();
         if (hitplayer)
         {
             TimeHit = TreeSce;
@@ -36,17 +38,16 @@ public class GhostAttackState : GhostBaseState
             }
             state.AnimAlert = true;
             TimeHit -= Time.deltaTime;
-            if(TimeHit < 0)
+            if (TimeHit < 0)
             {
-                state.DelayHitPlayer = 2;
                 hitplayer = true;
             }
         }
         else
         {
-            if(TimeHit < 0)
+            if (TimeHit < 0)
             {
-                state.SwitchState(state.IdleState);
+                state.SwitchState(state.AlertState);
             }
         }
 

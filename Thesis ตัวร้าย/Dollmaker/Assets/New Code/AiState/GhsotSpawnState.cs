@@ -4,13 +4,15 @@ using UnityEngine;
 public class GhsotSpawnState : GhostBaseState
 {
 
-    bool Spawned;
     float Timer;
     
     public override void EnterState(GhostStateManager state)
     {
         Timer = state.SpawnTimer;
+        state.GhostBoxCol.enabled = true;
         state.Cansee = false;
+        state.HpCross = false;
+        state.PlayerHitDelay = state.HuntSpeed;
         state.GhostLight.SetActive(true);
         state.GhostFrom.SetActive(false);
     }

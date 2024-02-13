@@ -20,14 +20,17 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("Player")]
     public PlayerHp HpPlayer;
+    public PlayerAttack PAttack;
+    public bool HpCross;
 
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
     public Animator GhostAni;
+    public BoxCollider GhostBoxCol;
     public GameObject GhostFrom, GhostLight;
     public float DistanceAmount,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        AnimAlert, AnimHunt, AnimAttack;
+        AnimAlert, AnimHunt, AnimAttack, GetHit, GetAttack, ChangePos;
     
 
     [Header("Ghost vision cone")]
@@ -50,7 +53,8 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("Timer Thing")]
     public float SpawnTimer;
-    public float RandomMinIdle, RandomMaxIdle, playerOutOfSight, DelayHitPlayer;
+    public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
+        DelayHitPlayer, PlayerHitDelay, ChangePosDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -82,12 +86,38 @@ public class GhostStateManager : MonoBehaviour
         {
             DelayHitPlayer -= Time.deltaTime;
         }
+        if(PlayerHitDelay < 0)
+        {
+            if (!HpCross)
+            {
+                PAttack.CrossRuin();
+                GhostBoxCol.enabled = false;
+                SwitchState(GetAtKState);
+                HpCross = true;
+            }
+        }
     }
 
     public void SwitchState(GhostBaseState state)
     {
         CurrentState = state;
         state.EnterState(this);
+    }
+
+    public void Playerhit()
+    {
+        if (!GetHit)
+        {
+            PlayerHitDelay -= 8 * Time.deltaTime;
+            enemyGhost.speed = PlayerHitDelay;
+            if (!GetAttack)
+            {
+                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_getatk"))
+                    GhostAni.Play("G_getatk", 0, 0);
+                ChangePos = true;
+                GetAttack = true;
+            }
+        }
     }
 
     float curplayerOutSight;
@@ -134,13 +164,14 @@ public class GhostStateManager : MonoBehaviour
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
                         CanseePlayer = false;
-                        }
+                    }
+
                     if (playerOutOfSight < 0)
                     {
                         if (PlayerInSight)
                         {
                             RandomInIdle = true;
-                            Debug.Log("IdleAfterPlayer");
+                           // Debug.Log("IdleAfterPlayer");
                             SwitchState(IdleState);
                             PlayerInSight = false;
                         }
