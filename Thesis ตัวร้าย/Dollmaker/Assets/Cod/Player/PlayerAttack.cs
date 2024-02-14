@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, LightOnHand;
+    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, ScissorOnHand, LightOnHand;
     public float Pickrange;
     private Vector3 destination;
     public PlayerChangeCam changeCam;
@@ -59,23 +59,24 @@ public class PlayerAttack : MonoBehaviour
     public GameObject HolyLight;
     public Animator CorssAni;
     public GameObject DollR;
-    public GameObject ClothR;
+    public GameObject ClothR, ScissorR;
     public GameObject[] itemInventory1, itemInventory2, itemInventory3;
     public GameObject Inventory, InvPoint1, InvPoint2, InvPoint3;
     public CanPlayMini1 takeFinishDoll;
 
     [Header("Item Change")]
     public int ItemSelect = 0;
-    public int Itemhave,Dollhave,Clothhave, Crosshave;
-    private bool showCross,showDoll,showCloth,setTriggerCross, box1 , box2, box3;
+    public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave;
+    private bool showCross,showDoll,showCloth, showScissor,setTriggerCross, box1 , box2, box3;
 
     [Header("Item Drop")]
     public GameObject CrossD;
     public GameObject CrossD2;
     public GameObject CrossD1;
     public GameObject DollD;
-    public GameObject ClothD;
-    private bool CrossInv1, CrossInv2, CrossInv3, DollInv1, DollInv2, DollInv3, ClothInv1, ClothInv2, ClothInv3;
+    public GameObject ClothD, ScissorD;
+    private bool CrossInv1, CrossInv2, CrossInv3, DollInv1, DollInv2, DollInv3, ClothInv1, ClothInv2, ClothInv3
+        ,ScissorInv1, ScissorInv2, ScissorInv3;
 
     [Header("CrossAction")]
     public float curHpCross;
@@ -334,6 +335,22 @@ public class PlayerAttack : MonoBehaviour
                 ClothR.SetActive(false);
                 showCloth = false;
             }
+            if (ScissorInv1)
+            {
+                ScissorOnHand = true;
+                ScissorR.SetActive(true);
+                showScissor = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                ScissorOnHand = false;
+                ScissorR.SetActive(false);
+                showScissor = false;
+            }
+
             if (!box1)
             {
                 Tutext1.SetActive (false);
@@ -429,6 +446,21 @@ public class PlayerAttack : MonoBehaviour
                 ClothR.SetActive(false);
                 showCloth = false;
             }
+            if (ScissorInv2)
+            {
+                ScissorOnHand = true;
+                ScissorR.SetActive(true);
+                showScissor = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                ScissorOnHand = false;
+                ScissorR.SetActive(false);
+                showScissor = false;
+            }
             if (!box2)
             {
                 Tutext1.SetActive(false);
@@ -517,6 +549,21 @@ public class PlayerAttack : MonoBehaviour
                 ClothOnHand = false;
                 ClothR.SetActive(false);
                 showCloth = false;
+            }
+            if (ScissorInv3)
+            {
+                ScissorOnHand = true;
+                ScissorR.SetActive(true);
+                showScissor = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                ScissorOnHand = false;
+                ScissorR.SetActive(false);
+                showScissor = false;
             }
             if (!box3)
             {
@@ -881,7 +928,24 @@ public class PlayerAttack : MonoBehaviour
                             }
 
                         }
-                    
+                    if (ScissorOnHand && showScissor)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropScissor();
+                        Itemhave--;
+                        ScissorHave--;
+                        Tutext1.SetActive(false);
+                        ScissorR.SetActive(false);
+                        showScissor = false;
+                        if (ScissorInv1)
+                        {
+                            itemInventory1[5].SetActive(false);
+                            ScissorInv1 = false;
+                        }
+                    }
+
                 }
                 if (ItemSelect == 1)
                 {
@@ -962,7 +1026,24 @@ public class PlayerAttack : MonoBehaviour
                             ClothInv2 = false;
                         }
 
-                    }                                            
+                    }
+                    if (ScissorOnHand && showScissor)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropScissor();
+                        Itemhave--;
+                        ScissorHave--;
+                        Tutext1.SetActive(false);
+                        ScissorR.SetActive(false);
+                        showScissor = false;
+                        if (ScissorInv2)
+                        {
+                            itemInventory2[5].SetActive(false);
+                            ScissorInv2 = false;
+                        }
+                    }
                 }
 
                 if (ItemSelect == 2)
@@ -1045,6 +1126,24 @@ public class PlayerAttack : MonoBehaviour
                         }
                     }
 
+                    if (ScissorOnHand && showScissor)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropScissor();
+                        Itemhave--;
+                        ScissorHave--;
+                        Tutext1.SetActive(false);
+                        ScissorR.SetActive(false);
+                        showScissor = false;
+                        if (ScissorInv3)
+                        {
+                            itemInventory3[5].SetActive(false);
+                            ScissorInv3 = false;
+                        }
+                    }
+
                 }
             }
 
@@ -1063,6 +1162,11 @@ public class PlayerAttack : MonoBehaviour
             {
                 DollR.SetActive(false);
                 DollOnHand = false;
+            }
+            if(ScissorHave == 0)
+            {
+                ScissorR.SetActive(false);
+                ScissorOnHand = false;
             }
 
             // Pick item
@@ -1089,6 +1193,7 @@ public class PlayerAttack : MonoBehaviour
                                     DollOnHand = false;
                                     ClothOnHand = false;
                                     showCross = true;
+                                    ScissorOnHand = false;
                                     Attack = true;
 
                                     InterectSound.clip = CrossPickSound;
@@ -1107,6 +1212,7 @@ public class PlayerAttack : MonoBehaviour
                                     tutorialText2.text = "Drop [G]";
                                     DollR.SetActive(false);
                                     ClothR.SetActive(false);
+                                    ScissorR.SetActive(false);
                                     Itemhave++;
                                     Inventory.SetActive(true);
                                     if (!firstPickCross)
@@ -1177,6 +1283,7 @@ public class PlayerAttack : MonoBehaviour
                                 DollOnHand = true;
                                 CrossOnHand = false;
                                 ClothOnHand = false;
+                                ScissorOnHand = false;
                                 showDoll = true;
 
                                 InterectSound.clip = DollPickSound;
@@ -1190,6 +1297,7 @@ public class PlayerAttack : MonoBehaviour
                                 tutorialText2.text = "";
                                 CorssR.SetActive(false);
                                 ClothR.SetActive(false);
+                                ScissorR.SetActive(false);
                                 Itemhave++;
                                 Dollhave++;
                                 Inventory.SetActive(true);
@@ -1232,6 +1340,7 @@ public class PlayerAttack : MonoBehaviour
                                 ClothOnHand = true;
                                 DollOnHand = false;
                                 CrossOnHand = false;
+                                ScissorOnHand = false;
                                 showCloth = true;
 
                                 InterectSound.clip = ClothPickSound;
@@ -1244,6 +1353,7 @@ public class PlayerAttack : MonoBehaviour
                                 tutorialText2.text = "";
                                 DollR.SetActive(false);
                                 CorssR.SetActive(false);
+                                ScissorR.SetActive(false);
                                 Itemhave++;
                                 Clothhave++;
                                 Inventory.SetActive(true);
@@ -1278,7 +1388,64 @@ public class PlayerAttack : MonoBehaviour
                                     InvPoint3.SetActive(true);
                                 }
                             }
-                        }                       
+                        }
+
+                        if (ScissorHave != 1)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "Scissors")
+                            {
+                                ScissorOnHand = true;
+                                ClothOnHand = false;
+                                DollOnHand = false;
+                                CrossOnHand = false;
+                                showScissor = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                ScissorR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";
+                                DollR.SetActive(false);
+                                CorssR.SetActive(false);
+                                ClothR.SetActive(false);
+                                Itemhave++;
+                                ScissorHave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[5].SetActive(true);
+                                    ScissorInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[5].SetActive(true);
+                                    ScissorInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[5].SetActive(true);
+                                    ScissorInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -1315,7 +1482,7 @@ public class PlayerAttack : MonoBehaviour
                     Destroy(hitInfo.collider.gameObject);
                 }
 
-                if (hitInfo.collider.gameObject.tag == "Scissors")
+                /*if (hitInfo.collider.gameObject.tag == "Scissors")
                 {
                     if (HpPlayer.curHp == 1)
                     {
@@ -1327,7 +1494,7 @@ public class PlayerAttack : MonoBehaviour
                         Textdialogue.text = "(Might be used to something but not this time.)";
                         dialogCheck = true;
                     }
-                }
+                }*/
 
                 if (hitInfo.collider.gameObject.tag == "EyeWash")
                 {
@@ -1655,6 +1822,22 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+    public void DropScissor()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingScissor(RH);
+
+    }
+
     void Attacking(Transform FirePoint)
     {
         var projectileOBj = Instantiate(projectile, FirePoint.position, Quaternion.identity) as GameObject;
@@ -1687,6 +1870,12 @@ public class PlayerAttack : MonoBehaviour
         var projectileOBj = Instantiate(ClothD, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
     }
+    void DropingScissor(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(ScissorD, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+
 
     IEnumerator AttackReset()
     {

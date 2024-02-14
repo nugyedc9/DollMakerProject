@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput.OnLookActions onLook;
     private PlayerMotor motor;
     private PlayerLook look;
-    private bool CanWalk = true;
+    private bool CanWalk = true, Ondesk, HoldSpace;
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -18,16 +18,32 @@ public class InputManager : MonoBehaviour
         onLook = playerInput.OnLook;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
-        onFoot.Jump.performed += ctx => motor.Jump();
+       // onFoot.Jump.performed += ctx => motor.Jump();
     }
     // Update is called once per frame
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) HoldSpace = true;
+        else if (Input.GetKeyUp(KeyCode.Space)) HoldSpace = false;
+    }
+
     void FixedUpdate()
     {
-        motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        if (CanWalk)
+        {
+            motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        }
     }
     private void LateUpdate()
     {
-        look.ProcessLook(onLook.Look.ReadValue<Vector2>());
+        if (!Ondesk)
+            look.ProcessLook(onLook.Look.ReadValue<Vector2>());
+        else
+        {
+            if(!HoldSpace)
+            look.ProcesslookOnDesk(onLook.Look.ReadValue<Vector2>());
+        }
     }
 
     private void OnEnable()
@@ -46,14 +62,12 @@ public class InputManager : MonoBehaviour
     {
         if (CanWalk)
         {
-            CanWalk = false;
-            look.camNum(0);
-            onFoot.Disable();
+            Ondesk = true;
+            CanWalk = false;           
         }
         else
         {
-            onFoot.Enable();
-            look.camNum(0);
+            Ondesk = false;
             CanWalk = true;
         }
         

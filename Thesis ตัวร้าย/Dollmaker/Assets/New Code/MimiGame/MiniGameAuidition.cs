@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
-public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, TimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
+public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, TimeOut, ClearTimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
 
 public class MiniGameAuidition : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class MiniGameAuidition : MonoBehaviour
 
     [Header("Timer")]
     public float Timer;
+    float TimerInStateTime;
 
     [Header("Prefabs Audition")]
     public GameObject[] AuditionPrefabs;
@@ -49,6 +50,7 @@ public class MiniGameAuidition : MonoBehaviour
     private float CurTimer;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
+    [SerializeField] GameObject CutHere;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +104,9 @@ public class MiniGameAuidition : MonoBehaviour
 
                 if (Timer <= 0)
                 {
-                    ButtonCutLineOBJ.SetActive(true);
+                    //ButtonCutLineOBJ.SetActive(true);
+                    CurrectFrame(2);
+                    CutHere.SetActive(true);
                     _Currentstate = MiniGameAuditionState.TimeOut;
                 }
 
@@ -220,21 +224,36 @@ public class MiniGameAuidition : MonoBehaviour
                     audioSource.Play();
                     Fail = true;
                 }
-                print("Fail");
+                //print("Fail");
             }
 
             if(_Currentstate == MiniGameAuditionState.TimeOut)
             {
                 ShowMouse();
-                NeedToCutLine = true;
+                NeedToCutLine = true;                
                 if (cutLine)
                 {                 
-                    CurrectFrame(2);
-                    StartCoroutine(DelayTimeOut());     
-                    ButtonCutLineOBJ.SetActive(false);
-                    cutLine = false;
+                    TimerInStateTime -= Time.deltaTime;   
+                    if(TimerInStateTime < 0)
+                    {                   
+                        NeedToCutLine = false;
+                        CloseMouse();
+                        _Currentstate = MiniGameAuditionState.ClearTimeOut;
+                        cutLine = false;
+                    }
+                   // ButtonCutLineOBJ.SetActive(false);
+                    
                 }
                 
+            }
+
+            if(_Currentstate == MiniGameAuditionState.ClearTimeOut)
+            {
+                if (!Fail)
+                {
+                    StartCoroutine(FailDelay());
+                    Fail = true;
+                }
             }
 
             if (_Currentstate == MiniGameAuditionState.FinishSkillCheck)
@@ -251,6 +270,7 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     Destroy(FrameOnScene);
                 }
+                CutHere.SetActive(false);
                 curBar += 15;
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
@@ -270,11 +290,11 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     Destroy(SpawnOnSceen);
                 }
-                FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                /*FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
                 foreach (GameObject FrameOnScene in FrameClear)
                 {
                     Destroy(FrameOnScene);
-                }
+                }*/
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
                 _Currentstate = MiniGameAuditionState.Start;
@@ -337,19 +357,13 @@ public class MiniGameAuidition : MonoBehaviour
         {
             Destroy(FrameOnScene);
         }
+        CutHere.SetActive(false);
         SlotAuditionPass = 0;
         CurrectPass = 0;
         Fail = false;
         _Currentstate = MiniGameAuditionState.Start;
     }
 
-    IEnumerator DelayTimeOut()
-    {
-        yield return new WaitForSeconds(2);
-        _Currentstate = MiniGameAuditionState.FinishSkillCheck;
-        NeedToCutLine = false;
-        CloseMouse();
-    }
 
     public void AddBoxNumber(float ThisBox)
     {        
@@ -374,6 +388,7 @@ public class MiniGameAuidition : MonoBehaviour
 
     public void LeaveMinigame()
     {
+        if(!NeedToCutLine)
         _Currentstate = MiniGameAuditionState.LeaveDesk;
     }
     public void GetFinishDoll()

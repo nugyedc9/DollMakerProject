@@ -10,7 +10,6 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,22 +24,23 @@ public class PlayerMotor : MonoBehaviour
 
     public void ProcessMove(Vector2 Input)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = Input.x;
-        moveDirection.z = Input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-        playerVelocity.y += gravity * Time.deltaTime;
-        if (isGrounded && playerVelocity.y < 0)
-            playerVelocity.y = -2f;
-        controller.Move(playerVelocity * Time.deltaTime);
+            Vector3 moveDirection = Vector3.zero;
+            moveDirection.x = Input.x;
+            moveDirection.z = Input.y;
+            controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+            playerVelocity.y += gravity * Time.deltaTime;
+            if (isGrounded && playerVelocity.y < 0)
+                playerVelocity.y = -2f;
+            controller.Move(playerVelocity * Time.deltaTime);        
     }
 
     public void Jump()
     {
-        if(isGrounded)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
-        }
+            if (isGrounded)
+            {
+                playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            }       
     }
+
 
 }

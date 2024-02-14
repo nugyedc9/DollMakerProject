@@ -13,12 +13,7 @@ public class PlayerLook : MonoBehaviour
     public float xSensetivity = 30f;
     public float ySensetivity = 30f;
 
-    int num;
 
-    public void Awake()
-    {
-        num = 0;    
-    }
 
     public void ProcessLook(Vector2 input)
     {
@@ -26,13 +21,18 @@ public class PlayerLook : MonoBehaviour
         float mouseY = input.y;
         xRotation -= (mouseY * Time.deltaTime) * ySensetivity;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        cam[num].transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        CamHold[num].transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensetivity);
+        cam[0].transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        CamHold[0].transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensetivity);
     }
 
-
-    public void camNum(int Num)
+    public void ProcesslookOnDesk(Vector2 input)
     {
-        num = Num;
+        float mouseX = input.x;
+        float mouseY = input.y;
+        xRotation += (mouseX * Time.deltaTime) * ySensetivity;
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+        cam[1].transform.localRotation = Quaternion.Euler(0f, xRotation, 0f);
+        //CamHold[1].transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensetivity);
     }
+
 }
