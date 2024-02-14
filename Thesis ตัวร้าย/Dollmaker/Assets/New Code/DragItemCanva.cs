@@ -10,6 +10,7 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private float x, y, z, Timer;
 
     public MiniGameAuidition minigame;
+    public Animator ScissorAnim;
 
     public bool blockX, blockY, blockZ;
 
@@ -28,7 +29,10 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if(collision.gameObject.tag == "MiniGCutCanva")
         {
             minigame.ButtonCutLine();
+            gameObject.GetComponent<Animator>().enabled = true;
+            ScissorAnim.Play("CutLine");           
             Timer = 2;
+            Draging = false;
         }
     }
 
@@ -38,10 +42,13 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             Timer -= Time.deltaTime;
         }
-        if (Timer < 0)
+        if (!Draging)
         {
-            transform.localPosition = orginalPosition;
-            Draging = false;
+            if (Timer < 0)
+            {
+                transform.localPosition = orginalPosition;
+                gameObject.GetComponent<Animator>().enabled = false;
+            }
         }
     }
 
