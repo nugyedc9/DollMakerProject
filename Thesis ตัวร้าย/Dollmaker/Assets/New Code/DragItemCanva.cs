@@ -10,6 +10,8 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private float x, y, z, Timer;
 
     public MiniGameAuidition minigame;
+    public CanPlayMini1 canplayMinIgame;
+    public PlayerAttack PushdollCloth;
     public Animator ScissorAnim;
 
     public bool blockX, blockY, blockZ;
@@ -33,6 +35,10 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             ScissorAnim.Play("CutLine");           
             Timer = 2;
             Draging = false;
+        }
+        if(collision.gameObject.tag == "Basket")
+        {
+            PushdollCloth.pushItemInbasket();
         }
     }
 

@@ -141,6 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995939743260072390}
+  - component: {fileID: 7783268489981432293}
   - component: {fileID: 8429505591176616368}
   - component: {fileID: 7296634049456592005}
   - component: {fileID: 1533373882087695786}
@@ -172,7 +173,7 @@ Transform:
   - {fileID: 2007079838910998973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8429505591176616368
+--- !u!114 &7783268489981432293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,13 +182,79 @@ MonoBehaviour:
   m_GameObject: {fileID: 874205999732524287}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ff484a7357463498cf5e8e31f0f228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HpPlayer: {fileID: 0}
+  PAttack: {fileID: 0}
+  HpCross: 0
+  enemyGhost: {fileID: 7296634049456592005}
+  GhostAni: {fileID: 4628707883043825594}
+  GhostBoxCol: {fileID: 1533373882087695786}
+  GhostFrom: {fileID: 2221295874315754231}
+  GhostLight: {fileID: 2928780468934188546}
+  DistanceAmount: 0
+  WalkSpeed: 2
+  HuntSpeed: 2
+  RandomInIdle: 0
+  PlayerInSight: 0
+  CanseePlayer: 0
+  HitPlayer: 0
+  AnimAlert: 0
+  AnimHunt: 0
+  AnimAttack: 0
+  GetHit: 0
+  GetAttack: 0
+  ChangePos: 0
+  HeadVistion: {fileID: 0}
+  VisionConeMaterial: {fileID: 2100000, guid: 2decd1114ed8d0a4d95fd8486780cda3, type: 2}
+  VisionRange: 8
+  HearRange: 10
+  VisionAngle: 360
+  VisionObstructingLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  VisionConeResolution: 120
+  Cansee: 0
+  destination:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Dest: {x: 0, y: 0, z: 0}
+  playerPos: {fileID: 0}
+  CurrentDest: {fileID: 0}
+  DestinationMin: 0
+  DestinationMax: 5
+  SpawnTimer: 10
+  RandomMinIdle: 2
+  RandomMaxIdle: 3
+  playerOutOfSight: 5
+  DelayHitPlayer: 0
+  PlayerHitDelay: 0
+  ChangePosDelay: 10
+--- !u!114 &8429505591176616368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874205999732524287}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9322e2b81bec44481d5a71af966748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGhost: {fileID: 7296634049456592005}
+  Punctuate: 0
   GhostAni: {fileID: 4628707883043825594}
   walkSpeed: 2
-  chaseSpeed: 2
+  chaseSpeed: 2.5
   minIdleTime: 3
   maxIdleTime: 4
   IdleTime: 3
@@ -196,10 +263,11 @@ MonoBehaviour:
   AfterAttackDelay: 45
   DistanceAmount: 0
   HpGhost: 3
-  Stun: 2
+  Stun: 1
   curStun: 0
   lowSpeed: 0
   AfterDeadDelay: 180
+  canseePlayerTime: 5
   player: {fileID: 0}
   LastSound: {x: 0, y: 0, z: 0}
   FirstDest: 0
@@ -227,16 +295,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   HeadVistion: {fileID: 1726422355009202736}
   VisionConeMaterial: {fileID: 2100000, guid: 2decd1114ed8d0a4d95fd8486780cda3, type: 2}
   VisionRange: 8
-  HearRange: 0
+  HearRange: 10
   VisionAngle: 360
   VisionObstructingLayer:
     serializedVersion: 2
@@ -250,6 +312,9 @@ MonoBehaviour:
   ChaseGhost: {fileID: 9008048846377412809}
   DiedGhost: {fileID: 5265159423936428759}
   Ambience: {fileID: 3049295767065552588}
+  PlayerInsight: 0
+  PLayerOutSight: 0
+  chasing: 0
 --- !u!195 &7296634049456592005
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -491,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 2221295874315754231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000038146973, y: 1.7033837, z: 0}
+  m_LocalPosition: {x: 0.000003814697, y: 1.7033837, z: 0}
   m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -517,7 +582,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9763388ed08d47449ab52c7bb2d7378, type: 2}
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -593,6 +658,7 @@ GameObject:
   - component: {fileID: 1418472949860156446}
   - component: {fileID: 7727500368949937999}
   - component: {fileID: 6114963698872206116}
+  - component: {fileID: 5480054466218293853}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -626,7 +692,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09411765, g: 0.019607844, b: 0.20784314, a: 1}
   m_Intensity: 1
   m_Range: 5
   m_SpotAngle: 30
@@ -666,7 +732,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -698,6 +764,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5480054466218293853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928780468934188546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &3376872418587812699
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8066305777622012617}
   - component: {fileID: 6498816713805248568}
+  - component: {fileID: 6916501666048300619}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -781,7 +871,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
@@ -792,6 +882,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6916501666048300619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376872418587812699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &4197548432707992274
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +951,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 77438e9860f6eb34f9d8246c2a2711e0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2d53396be85defd49833c8897d14cce6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1075,7 +1188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5201452031958333459
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,7 +1237,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f9763388ed08d47449ab52c7bb2d7378, type: 2}
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

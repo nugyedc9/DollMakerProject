@@ -227,6 +227,7 @@ public class PlayerAttack : MonoBehaviour
         else HolyLight.SetActive(false);
         #endregion
 
+
         #region Map pause tutorial
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -808,6 +809,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 ItemText.SetActive(true);
                 ItemName.text = "EyeWash [E]";
+                InterectItem = true;
+            }
+             else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Machine [Left Click]";
                 InterectItem = true;
             }
 
@@ -1512,7 +1519,7 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 #region Drop on desk
-                if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
+          /*      if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
                 {
                     if (Clothhave > 0 || Dollhave > 0)
                     {
@@ -1607,7 +1614,7 @@ public class PlayerAttack : MonoBehaviour
                         }
                     }
 
-                }
+                }*/
                 #endregion
             }
         }
@@ -1838,6 +1845,7 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+    #region Throw item prefabs
     void Attacking(Transform FirePoint)
     {
         var projectileOBj = Instantiate(projectile, FirePoint.position, Quaternion.identity) as GameObject;
@@ -1875,7 +1883,7 @@ public class PlayerAttack : MonoBehaviour
         var projectileOBj = Instantiate(ScissorD, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
     }
-
+    #endregion
 
     IEnumerator AttackReset()
     {
@@ -2237,6 +2245,104 @@ public class PlayerAttack : MonoBehaviour
         FindDoll = true;
         NeedToDo.text = "Collect All Dolls";
     }
+
+    #region Player drag Item on Desk
+    public void pushItemInbasket()
+    {
+        if (Clothhave > 0 || Dollhave > 0)
+        {
+
+            if (Crosshave == 1)
+            {
+                Itemhave = 1;
+                if (CrossInv1) box1 = true;
+                if (CrossInv2) box2 = true;
+                if (CrossInv3) box3 = true;
+            }
+
+
+            //Doll on hand
+            Tutext1.SetActive(false);
+            showDoll = false;
+            DollR.SetActive(false);
+            if (ItemSelect == 0)
+            {
+                if (DollInv1)
+                {
+                    itemInventory1[1].SetActive(false);
+                    takeFinishDoll.AddDollOnDesk(1);
+                    Dollhave--;
+                    Itemhave--;
+                    box1 = false;
+                    DollInv1 = false;
+                }
+            }
+            else if (ItemSelect == 1)
+            {
+                if (DollInv2)
+                {
+                    itemInventory2[1].SetActive(false);
+                    takeFinishDoll.AddDollOnDesk(1);
+                    box2 = false;
+                    Dollhave--;
+                    Itemhave--;
+                    DollInv2 = false;
+                }
+            }
+            else if (ItemSelect == 2)
+            {
+                if (DollInv3)
+                {
+                    itemInventory3[1].SetActive(false);
+                    takeFinishDoll.AddDollOnDesk(1);
+                    box3 = false;
+                    Dollhave--;
+                    Itemhave--;
+                    DollInv3 = false;
+                }
+            }
+            // Cloth on hand
+            showCloth = false;
+            ClothR.SetActive(false);
+            if (ItemSelect == 0)
+            {
+                if (ClothInv1)
+                {
+                    itemInventory1[2].SetActive(false);
+                    takeFinishDoll.AddClothOndesk(1);
+                    box1 = false;
+                    Clothhave--;
+                    Itemhave--;
+                    ClothInv1 = false;
+                }
+            }
+            else if (ItemSelect == 1)
+            {
+                if (ClothInv2)
+                {
+                    itemInventory2[2].SetActive(false);
+                    takeFinishDoll.AddClothOndesk(1);
+                    box2 = false;
+                    Clothhave--;
+                    Itemhave--;
+                    ClothInv2 = false;
+                }
+            }
+            else if (ItemSelect == 2)
+            {
+                if (ClothInv3)
+                {
+                    itemInventory3[2].SetActive(false);
+                    takeFinishDoll.AddClothOndesk(1);
+                    box3 = false;
+                    Clothhave--;
+                    Itemhave--;
+                    ClothInv3 = false;
+                }
+            }
+        }
+    }
+    #endregion
 
     #region Map
 

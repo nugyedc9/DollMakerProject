@@ -47,7 +47,7 @@ public class MiniGameAuidition : MonoBehaviour
     private bool DelaySpawn = true, HoldSpace, printPeek, Fail, cutLine, NeedToCutLine ;
     public bool HaveItem, Finish;
     private int CurrectPass, FinishDollHave;
-    private float CurTimer;
+    private float CurTimer, FailDelay;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
@@ -90,7 +90,9 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     _Currentstate = MiniGameAuditionState.ClearSkillCheck;
                     Timer = CurTimer;
+                    FailDelay = 2;
                     SlotAuditionPass = 0;
+                    Fail = false;
                 }
             }
 
@@ -107,6 +109,7 @@ public class MiniGameAuidition : MonoBehaviour
                     //ButtonCutLineOBJ.SetActive(true);
                     CurrectFrame(2);
                     CutHere.SetActive(true);
+                    NeedToCutLine = true;
                     _Currentstate = MiniGameAuditionState.TimeOut;
                 }
 
@@ -214,45 +217,53 @@ public class MiniGameAuidition : MonoBehaviour
             }
 
             if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
-            {
+            {              
+                FailDelay -= Time.deltaTime;
                 if (!Fail)
                 {
                     curBar -= 20;
-                    StartCoroutine(FailDelay());
                     GhostcomeTocheck.PlayerFailSkillCheck();
                     audioSource.clip = GhostNotice;
                     audioSource.Play();
                     Fail = true;
                 }
+                if (FailDelay < 0)
+                {
+                    AuditionPass.Clear();
+                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                    {
+                        Destroy(SpawnOnSceen);
+                    }
+                    FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                    foreach (GameObject FrameOnScene in FrameClear)
+                    {
+                        Destroy(FrameOnScene);
+                    }
+                    SlotAuditionPass = 0;
+                    CurrectPass = 0;                 
+                    _Currentstate = MiniGameAuditionState.Start;
+                }
                 //print("Fail");
             }
 
-            if(_Currentstate == MiniGameAuditionState.TimeOut)
-            {
-                ShowMouse();
-                NeedToCutLine = true;                
-                if (cutLine)
-                {                 
-                    TimerInStateTime -= Time.deltaTime;   
-                    if(TimerInStateTime < 0)
-                    {                   
-                        NeedToCutLine = false;
-                        CloseMouse();
-                        _Currentstate = MiniGameAuditionState.ClearTimeOut;
-                        cutLine = false;
-                    }
-                   // ButtonCutLineOBJ.SetActive(false);
-                    
-                }
-                
-            }
+            
 
             if(_Currentstate == MiniGameAuditionState.ClearTimeOut)
             {
-                if (!Fail)
+                FailDelay -= Time.deltaTime;
+                if (FailDelay < 0)
                 {
-                    StartCoroutine(FailDelay());
-                    Fail = true;
+                    AuditionPass.Clear();
+                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                    {
+                        Destroy(SpawnOnSceen);
+                    }
+                    CutHere.SetActive(false);
+                    SlotAuditionPass = 0;
+                    CurrectPass = 0;
+                    _Currentstate = MiniGameAuditionState.Start;
                 }
             }
 
@@ -279,7 +290,35 @@ public class MiniGameAuidition : MonoBehaviour
                 print("finish");
             }
         }
+        if (_Currentstate == MiniGameAuditionState.TimeOut)
+        {
+            ShowMouse();           
+            if (cutLine)
+            {
+                TimerInStateTime -= Time.deltaTime;
+                if (TimerInStateTime < 0)
+                {
+                    NeedToCutLine = false;
+                    CloseMouse();
+                    curBar = 0;
+                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                    {
+                        Destroy(SpawnOnSceen);
+                    }
+                    FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                    foreach (GameObject FrameOnScene in FrameClear)
+                    {
+                        Destroy(FrameOnScene);
+                    }
+                    StartCoroutine(TimeoutDelay());
+                    cutLine = false;
+                }
+                // ButtonCutLineOBJ.SetActive(false);
 
+            }
+
+        }
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {
             if (HoldSpace)
@@ -290,11 +329,11 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     Destroy(SpawnOnSceen);
                 }
-                /*FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
                 foreach (GameObject FrameOnScene in FrameClear)
                 {
                     Destroy(FrameOnScene);
-                }*/
+                }
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
                 _Currentstate = MiniGameAuditionState.Start;
@@ -343,27 +382,32 @@ public class MiniGameAuidition : MonoBehaviour
         DelaySpawn = true;
     }
 
-    IEnumerator FailDelay()
+   /* IEnumerator FailDelay()
     {
         yield return new WaitForSeconds(2f);       
         AuditionPass.Clear();
         AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-        FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
         foreach (GameObject SpawnOnSceen in AuditionOnSceen)
         {
             Destroy(SpawnOnSceen);
-        }
-        foreach (GameObject FrameOnScene in FrameClear)
-        {
-            Destroy(FrameOnScene);
         }
         CutHere.SetActive(false);
         SlotAuditionPass = 0;
         CurrectPass = 0;
         Fail = false;
         _Currentstate = MiniGameAuditionState.Start;
-    }
+    }*/
 
+    IEnumerator TimeoutDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        AuditionPass.Clear();
+        CutHere.SetActive(false);
+        SlotAuditionPass = 0;
+        CurrectPass = 0;
+        Fail = false;
+        _Currentstate = MiniGameAuditionState.Start;
+    }
 
     public void AddBoxNumber(float ThisBox)
     {        
@@ -388,8 +432,13 @@ public class MiniGameAuidition : MonoBehaviour
 
     public void LeaveMinigame()
     {
-        if(!NeedToCutLine)
-        _Currentstate = MiniGameAuditionState.LeaveDesk;
+        if (!NeedToCutLine)
+        {
+            HoldSpace = false;
+            _Currentstate = MiniGameAuditionState.LeaveDesk;
+        }
+        else { CloseMouse(); }
+    
     }
     public void GetFinishDoll()
     {

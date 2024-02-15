@@ -9,6 +9,8 @@ public class PlayerChangeCam : MonoBehaviour
     [Header ("Camera")]
     [SerializeField] CinemachineVirtualCamera FirstpersonView;
     [SerializeField] CinemachineVirtualCamera WorkShopView;
+    [SerializeField] CinemachineVirtualCamera MachineCloseUp;
+    [SerializeField] CinemachineVirtualCamera BasketcloseUp;
 
     [Header("Interect")]
     public Transform InterectTransform;
@@ -16,17 +18,21 @@ public class PlayerChangeCam : MonoBehaviour
     public InputManager _InputManager;
 
     [Header("Mini Game")]
-    public GameObject minigame;
+    public BoxCollider minigameBoxCol;
+    public BoxCollider BasketCol;
+    public GameObject MiniGame, ItemOnPlayer, TextOnPlayer, pushHere;
     public MiniGameAuidition minigamestate;
 
     public PlayerAttack Throwitem;
 
-    private bool CamOnPerson = true, canplayMinigame, HaveItem;
+    private bool CamOnPerson = true, CamOnDesk, canplayMinigame, HaveItem;
 
     private void OnEnable()
     {
         ChangePOV.Register(FirstpersonView);
         ChangePOV.Register(WorkShopView);
+        ChangePOV.Register(MachineCloseUp);
+        ChangePOV.Register(BasketcloseUp);
         ChangePOV.SwitchCamera(FirstpersonView);
     }
 
@@ -53,40 +59,96 @@ public class PlayerChangeCam : MonoBehaviour
            // Debug.Log(hitInfo.collider.gameObject.tag);
             if(hitInfo.collider.gameObject.tag == "WorkShopDesk")
             {
-                if (!HaveItem)
-                {
+               // if (!HaveItem)
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         if (ChangePOV.IsActiveCamera(FirstpersonView))
                         {
                             _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+                            ItemOnPlayer.SetActive(false);
+                            TextOnPlayer.SetActive(false);
+                            CamOnDesk = true;
                             ChangePOV.SwitchCamera(WorkShopView);
                             StartCoroutine(DelayCamera());
                         }
                     }
+                
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hitInfo.collider.gameObject.tag == "MachineMiniGame")
+                {
+                    if (ChangePOV.IsActiveCamera(WorkShopView))
+                    {
+                        MiniGame.SetActive(true);
+                        ChangePOV.SwitchCamera(MachineCloseUp);
+                        CamOnDesk = false;
+                        minigameBoxCol.enabled = false;
+                        CamOnPerson = false;
+                    }
+                }
+                if(hitInfo.collider.gameObject.tag == "Basket")
+                {
+                    if (ChangePOV.IsActiveCamera(WorkShopView))
+                    {
+                        ChangePOV.SwitchCamera(BasketcloseUp);
+                        CamOnDesk = false;
+                        ShowMouse();
+                        BasketCol.enabled = false;
+                        pushHere.SetActive(true);
+                        CamOnPerson = false;
+                    }
+
                 }
             }
         }
 
         if (ChangePOV.IsActiveCamera(WorkShopView))
         {
-            if (canplayMinigame) minigame.SetActive(true);
-            else minigame.SetActive(false);
+            if (canplayMinigame) minigameBoxCol.enabled = true;
+            else minigameBoxCol.enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(!CamOnPerson)
+            if (!CamOnPerson)
             {
-                if (ChangePOV.IsActiveCamera(WorkShopView))
+                if (CamOnDesk)
                 {
-                    _InputManager.StopWalk();
-                    ChangePOV.SwitchCamera(FirstpersonView);
-                    minigame.SetActive(false);
-                    minigamestate.LeaveMinigame();
-                    CamOnPerson = true;
+                    if (ChangePOV.IsActiveCamera(WorkShopView))
+                    {
+                        _InputManager.StopWalk();
+                        Throwitem.CanAttack();
+                        ItemOnPlayer.SetActive(true);
+                        TextOnPlayer.SetActive(true);
+                        ChangePOV.SwitchCamera(FirstpersonView);
+                        minigameBoxCol.enabled = false;
+                        minigamestate.LeaveMinigame();
+                        CamOnPerson = true;
+                    }
+                }
+                if (!CamOnDesk)
+                {
+                    if (ChangePOV.IsActiveCamera(MachineCloseUp))
+                    {
+                        MiniGame.SetActive(false);
+                        ChangePOV.SwitchCamera(WorkShopView);
+                        CamOnDesk = true;
+                        CamOnPerson = false;
+                    }
+                    if (ChangePOV.IsActiveCamera(BasketcloseUp))
+                    {
+                        ChangePOV.SwitchCamera(WorkShopView);
+                        BasketCol.enabled = true ;
+                        CloseMouse();
+                        pushHere.SetActive(false);
+                        CamOnDesk = true;
+                        CamOnPerson=false;
+                    }
                 }
             }
+           
         }
 
     }
@@ -104,7 +166,7 @@ public class PlayerChangeCam : MonoBehaviour
     IEnumerator DelayCloseMiniGame()
     {
         yield return new WaitForSeconds(0.1f);
-        minigame.SetActive(false) ;
+        minigameBoxCol.enabled = false ;
     }
 
     IEnumerator DelayCamera()
@@ -127,6 +189,18 @@ public class PlayerChangeCam : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         HaveItem = false;
+    }
+
+    public void ShowMouse()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void CloseMouse()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }

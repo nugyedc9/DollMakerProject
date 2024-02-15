@@ -20,7 +20,7 @@ public class GhostHuntState : GhostBaseState
                 state.GhostAni.Play("G_Run", 0, 0);
             state.AnimHunt = false;
         }
-        if(state.enemyGhost.remainingDistance <= 2)
+        if(state.enemyGhost.remainingDistance <= 1)
         {
             state.AnimAttack = true;
             state.HitPlayer = true;

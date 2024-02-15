@@ -34,6 +34,7 @@ public class CanPlayMini1 : MonoBehaviour
 
     public UnityEvent Dolls6;
 
+
     // Start is called before the first frame update
     void Start()
     {
