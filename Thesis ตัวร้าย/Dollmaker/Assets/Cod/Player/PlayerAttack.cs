@@ -2246,6 +2246,29 @@ public class PlayerAttack : MonoBehaviour
         NeedToDo.text = "Collect All Dolls";
     }
 
+    public void Mouseselect(int i)
+    {
+        ItemSelect = i;
+        if (ItemSelect == 0)
+        {
+            InvPoint1.SetActive(true);
+            InvPoint2.SetActive(false);
+            InvPoint3.SetActive(false);
+        }
+        else if (ItemSelect == 1)
+        {
+            InvPoint1.SetActive(false);
+            InvPoint2.SetActive(true);
+            InvPoint3.SetActive(false);
+        }
+        else if (ItemSelect == 2)
+        {
+            InvPoint1.SetActive(false);
+            InvPoint2.SetActive(false);
+            InvPoint3.SetActive(true);
+        }
+    }
+
     #region Player drag Item on Desk
     public void pushItemInbasket()
     {

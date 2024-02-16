@@ -42,9 +42,12 @@ public class MiniGameAuidition : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip GhostNotice;
 
+    [Header("Animator")]
+    public Animator Needle;
+
     Queue<float> AuditionPass = new Queue<float>();
 
-    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, cutLine, NeedToCutLine ;
+    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, cutLine, NeedToCutLine , NeedleWorking;
     public bool HaveItem, Finish;
     private int CurrectPass, FinishDollHave;
     private float CurTimer, FailDelay;
@@ -63,9 +66,9 @@ public class MiniGameAuidition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Space)) HoldSpace = true;
-        else if(Input.GetKeyUp(KeyCode.Space)) HoldSpace= false;
+
+        if (Input.GetKeyDown(KeyCode.Space)) { HoldSpace = true; if (NeedleWorking) Needle.Play("NeedleAnim"); }
+        else if (Input.GetKeyUp(KeyCode.Space)){ HoldSpace = false;  Needle.enabled = false; }
 
         if (HoldSpace && HaveItem)
         {
@@ -73,9 +76,12 @@ public class MiniGameAuidition : MonoBehaviour
             curBar += 3 * Time.deltaTime;
             Bar.SetMinBar(curBar);
             if(curBar <= 0) curBar = 0;
+            if(!NeedleWorking) Needle.enabled = false;
 
             if (_Currentstate == MiniGameAuditionState.Start)
             {
+                NeedleWorking = true;
+                Needle.enabled = true;
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
@@ -98,6 +104,7 @@ public class MiniGameAuidition : MonoBehaviour
 
             if (_Currentstate == MiniGameAuditionState.ClearSkillCheck)
             {
+                Needle.enabled = true;
                 if(Timer <= CurTimer)
                 {
                     Timer -= Time.deltaTime;
@@ -225,6 +232,8 @@ public class MiniGameAuidition : MonoBehaviour
                     GhostcomeTocheck.PlayerFailSkillCheck();
                     audioSource.clip = GhostNotice;
                     audioSource.Play();
+                    NeedleWorking = false;
+                    Needle.enabled = false;
                     Fail = true;
                 }
                 if (FailDelay < 0)
@@ -255,6 +264,7 @@ public class MiniGameAuidition : MonoBehaviour
                 if (FailDelay < 0)
                 {
                     AuditionPass.Clear();
+                    Needle.enabled = false;
                     AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
                     foreach (GameObject SpawnOnSceen in AuditionOnSceen)
                     {
@@ -292,10 +302,11 @@ public class MiniGameAuidition : MonoBehaviour
         }
         if (_Currentstate == MiniGameAuditionState.TimeOut)
         {
-            ShowMouse();           
+            ShowMouse();   
+            NeedleWorking = false;       
             if (cutLine)
             {
-                TimerInStateTime -= Time.deltaTime;
+                TimerInStateTime -= Time.deltaTime;                
                 if (TimerInStateTime < 0)
                 {
                     NeedToCutLine = false;

@@ -25,6 +25,7 @@ public class CanPlayMini1 : MonoBehaviour
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
     public TextMeshProUGUI TotalDoll;
+    public Animator animator;
 
     [Header("Finish doll")]
     public GameObject[] FinshDoll;
@@ -40,6 +41,7 @@ public class CanPlayMini1 : MonoBehaviour
     {
        /* ReadNumSpawn = Random.Range(0, DestinationSpawnAmount);
         CurrentDesSpawn = DestinationItemSpawn[ReadNumSpawn];*/
+       animator.enabled = false;
     }
 
     // Update is called once per frame
