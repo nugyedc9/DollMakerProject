@@ -52,7 +52,11 @@ public class PlayerHp : MonoBehaviour
         {
             blurEye.SetActive(true);
         }
-        if(Delayvideo > 0) Delayvideo -= Time.deltaTime;
+        if(curHp >= 2)
+        {
+            blurEye.SetActive(false);
+        }
+        if (Delayvideo > 0) Delayvideo -= Time.deltaTime;
         if(Delayvideo < 0)
         {
             PlayerGetHit.enabled = false;
