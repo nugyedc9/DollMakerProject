@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1018978149859944463}
   - component: {fileID: 5106546462741773208}
   - component: {fileID: 5757428712638977956}
-  - component: {fileID: 2088656446608980591}
   m_Layer: 0
   m_Name: Cru1
   m_TagString: Cross
@@ -164,35 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 3
   curHp: 3
---- !u!114 &2088656446608980591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765590911036182225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 152aa328c0d08074ea72da1eb4bfbe37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HeadVistion: {fileID: 0}
-  VisionConeMaterial: {fileID: 2100000, guid: 2decd1114ed8d0a4d95fd8486780cda3, type: 2}
-  VisionRange: 5
-  HearRange: 0
-  VisionAngle: 360
-  VisionObstructingLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  VisionConeResolution: 120
-  Cansee: 1
-  CanIterectUI: {fileID: 8177325611200792013}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1001 &1332192640017240299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,10 +295,5 @@ PrefabInstance:
 --- !u!224 &2194685437554523770 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 867489260250787473, guid: 53c9b708c7045b945be336a1c2ffe205, type: 3}
-  m_PrefabInstance: {fileID: 1332192640017240299}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &8177325611200792013 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 7135764994818168102, guid: 53c9b708c7045b945be336a1c2ffe205, type: 3}
   m_PrefabInstance: {fileID: 1332192640017240299}
   m_PrefabAsset: {fileID: 0}

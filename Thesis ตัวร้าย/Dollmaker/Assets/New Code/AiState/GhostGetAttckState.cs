@@ -15,9 +15,9 @@ public class GhostGetAttckState : GhostBaseState
         state.DrawVisionCone();
         if (state.ChangePos)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("gethurt_anima"))
-                state.GhostAni.Play("gethurt_anima", 0, 0);
-            CurDelay = state.ChangePosDelay;
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("dead_anima"))
+                state.GhostAni.Play("dead_anima", 0, 0);
+            CurDelay = 2;
             state.ChangePos = false;
         }
 
@@ -25,7 +25,7 @@ public class GhostGetAttckState : GhostBaseState
 
         if(CurDelay < 0)
         {
-            state.SwitchState(state.SpawnState);
+            state.SwitchState(state.DiedState);
         }
     }
 }
