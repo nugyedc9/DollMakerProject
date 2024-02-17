@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerHp : MonoBehaviour
 {
     public PlayerAttack PAttack;
+    public Animator PlayerGetHit;
 
     [Header("Hp Thing")]
 
     public int MaxHp;
     public int curHp;
     public float Delayvideo,DeadDelayvideo;
-    public GameObject[] HpPic;
+    public GameObject[] HpPic, DMGPic;
     public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye, DeadVideo,THowToHeal;
     private bool PlayGetHit, normaleye, Playdead, tuHeal;
 
@@ -36,7 +37,7 @@ public class PlayerHp : MonoBehaviour
                 Playdead = true;
             }
         }
-        if (curHp < 3 && normaleye)
+      /*  if (curHp < 3 && normaleye)
         {
             if(!PlayGetHit)
             {
@@ -46,24 +47,37 @@ public class PlayerHp : MonoBehaviour
                 PlayGetHit = true;
                 normaleye = false;            
             }
-        }
-        if(curHp < 3)
+        }*/
+        if(curHp < 2)
         {
             blurEye.SetActive(true);
         }
-
-
+        if(Delayvideo > 0) Delayvideo -= Time.deltaTime;
+        if(Delayvideo < 0)
+        {
+            PlayerGetHit.enabled = false;
+            Hp2.SetActive(false);
+            Delayvideo = 0;
+        }
     }
     public void Takedamage(int damage)
     { 
         int i = curHp - 1;
+        Hp2.SetActive(true);
+        PlayerGetHit.enabled = true;
+        PlayerGetHit.Play("PlayerGetHit");
+        Delayvideo = 3;
         HpPic[i].SetActive(false);
+        DMGPic[i].SetActive(true);
         curHp -= damage;     
     }
 
     public void Heal()
     {
+        int i = curHp;
         curHp++;
+        HpPic[i].SetActive(true);
+        DMGPic[i].SetActive(false);
         if (curHp > 3)
         {
             blurEye.SetActive(false);

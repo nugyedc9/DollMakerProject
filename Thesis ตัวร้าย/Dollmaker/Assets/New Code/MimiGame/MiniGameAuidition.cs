@@ -44,6 +44,7 @@ public class MiniGameAuidition : MonoBehaviour
 
     [Header("Animator")]
     public Animator Needle;
+    public Animator ClothMove;
 
     Queue<float> AuditionPass = new Queue<float>();
 
@@ -67,8 +68,21 @@ public class MiniGameAuidition : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space)) { HoldSpace = true; if (NeedleWorking) Needle.Play("NeedleAnim"); }
-        else if (Input.GetKeyUp(KeyCode.Space)){ HoldSpace = false;  Needle.enabled = false; }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            HoldSpace = true;
+            if (NeedleWorking)
+            {
+                Needle.Play("NeedleAnim");
+                ClothMove.Play("ClothAnim");
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            HoldSpace = false; 
+            Needle.enabled = false; 
+            ClothMove.enabled = false;
+        }
 
         if (HoldSpace && HaveItem)
         {
@@ -76,12 +90,17 @@ public class MiniGameAuidition : MonoBehaviour
             curBar += 3 * Time.deltaTime;
             Bar.SetMinBar(curBar);
             if(curBar <= 0) curBar = 0;
-            if(!NeedleWorking) Needle.enabled = false;
+            if (!NeedleWorking)
+            {
+                Needle.enabled = false;
+                ClothMove.enabled = false;
+            }
 
             if (_Currentstate == MiniGameAuditionState.Start)
             {
                 NeedleWorking = true;
                 Needle.enabled = true;
+                ClothMove.enabled = true;
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
@@ -105,7 +124,8 @@ public class MiniGameAuidition : MonoBehaviour
             if (_Currentstate == MiniGameAuditionState.ClearSkillCheck)
             {
                 Needle.enabled = true;
-                if(Timer <= CurTimer)
+                ClothMove.enabled = true;
+                if (Timer <= CurTimer)
                 {
                     Timer -= Time.deltaTime;
                     TellTime(Timer);
@@ -234,6 +254,7 @@ public class MiniGameAuidition : MonoBehaviour
                     audioSource.Play();
                     NeedleWorking = false;
                     Needle.enabled = false;
+                    ClothMove.enabled = false;
                     Fail = true;
                 }
                 if (FailDelay < 0)
@@ -265,6 +286,7 @@ public class MiniGameAuidition : MonoBehaviour
                 {
                     AuditionPass.Clear();
                     Needle.enabled = false;
+                    ClothMove.enabled = false;
                     AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
                     foreach (GameObject SpawnOnSceen in AuditionOnSceen)
                     {

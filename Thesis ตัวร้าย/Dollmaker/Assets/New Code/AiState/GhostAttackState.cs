@@ -14,8 +14,8 @@ public class GhostAttackState : GhostBaseState
 
         if (state.AnimAttack)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_atk"))
-                state.GhostAni.Play("G_atk", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atk_ani"))
+                state.GhostAni.Play("atk_ani", 0, 0);
             state.DelayHitPlayer = 2;
             state.enemyGhost.speed = 2.5f;
             TimeHit = TreeSce;

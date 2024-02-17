@@ -11,6 +11,8 @@ public class GhsotIdleState : GhostBaseState
     {
         state.GhostFrom.SetActive(true);
         state.AnimAlert = true;
+        state.AnimWalk = true;
+        Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -22,8 +24,8 @@ public class GhsotIdleState : GhostBaseState
             IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
             Dest = Random.Range(state.DestinationMin, state.DestinationMax);
             state.CurrentDest = state.destination[Dest];
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_smoke"))
-                state.GhostAni.Play("G_smoke", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("demo_idleanima"))
+                state.GhostAni.Play("demo_idleanima", 0, 0);
             state.enemyGhost.speed = 0;
             state.RandomInIdle = false;
         }

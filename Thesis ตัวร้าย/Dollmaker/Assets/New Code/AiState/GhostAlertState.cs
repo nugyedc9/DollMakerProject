@@ -15,8 +15,8 @@ public class GhostAlertState : GhostBaseState
 
         if (state.AnimAlert)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_getatk"))
-                state.GhostAni.Play("G_getatk", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("found_anima"))
+                state.GhostAni.Play("found_anima", 0, 0);
             DelayTime = 1;
             state.enemyGhost.speed = 0;
             state.AnimAlert = false;

@@ -17,7 +17,7 @@ public class GhostStateManager : MonoBehaviour
     public GhostGetAttckState GetAtKState = new GhostGetAttckState();
     public GhostDiedState DiedState = new GhostDiedState();
     public GhsotSpawnState SpawnState = new GhsotSpawnState();
-    public GhsotDetectPlayerSpawn DetectPlayer = new GhsotDetectPlayerSpawn();
+    public GhsotDetectPlayerSpawn DetectPlayerState = new GhsotDetectPlayerSpawn();
 
     [Header("Player")]
     public PlayerHp HpPlayer;
@@ -31,7 +31,7 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostFrom, GhostLight;
     public float DistanceAmount,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        AnimAlert, AnimHunt, AnimAttack, GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
+        AnimAlert, AnimHunt,AnimWalk , AnimSpawn,AnimAttack, GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
     
 
     [Header("Ghost vision cone")]
@@ -61,7 +61,7 @@ public class GhostStateManager : MonoBehaviour
     void Start()
     {
         enemyGhost = GetComponent<NavMeshAgent>();
-        CurrentState = DetectPlayer;
+        CurrentState = SpawnState;
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
 
@@ -113,8 +113,8 @@ public class GhostStateManager : MonoBehaviour
             enemyGhost.speed = PlayerHitDelay;
             if (!GetAttack)
             {
-                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("G_getatk"))
-                    GhostAni.Play("G_getatk", 0, 0);
+                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atk_ani"))
+                    GhostAni.Play("atk_ani", 0, 0);
                 ChangePos = true;
                 GetAttack = true;
             }
@@ -144,25 +144,22 @@ public class GhostStateManager : MonoBehaviour
                 if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
                 {
                     Vertices[i + 1] = VertForward * hit.distance;
+            
                 }
                 else
                 {
 
-                    Vertices[i + 1] = VertForward * VisionRange;
+                   Vertices[i + 1] = VertForward * VisionRange; 
                     if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
-                        Vertices[i + 1] = VertForward * hit.distance;
-                        if (PlayerDetectSpawn)
-                        {
-                            if (DelayHitPlayer <= 0)
+                        Debug.Log("hit Player Layers");
+                            if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
                             {
                                 SwitchState(AlertState);
                                 playerOutOfSight = curplayerOutSight;
                                 PlayerInSight = true;
                                 CanseePlayer = true;
                             }
-                        }
-                        else SwitchState(SpawnState);
                     }
 
                     else

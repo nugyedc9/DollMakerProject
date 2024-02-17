@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using TMPro;
 //using UnityEditor.PackageManager;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour 
 {
     public float ShootSpeed = 30;
     public float DropSpeed;
@@ -1505,17 +1505,12 @@ public class PlayerAttack : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.tag == "EyeWash")
                 {
-                    if (HpPlayer.curHp == 1 && OpenEye)
+                    if (HpPlayer.curHp < 4)
                     {
-                        HpPlayer.Heal();
-                        OpenEye = false;
+                        HpPlayer.Heal();                     
                         Destroy(hitInfo.collider.gameObject);
                     }
-                    else
-                    {
-                        Textdialogue.text = "(I can see it clearly. No need to wash.)";
-                        dialogCheck = true;
-                    }
+                 
                 }
 
                 #region Drop on desk

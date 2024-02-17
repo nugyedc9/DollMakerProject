@@ -28,8 +28,8 @@ public class PlayerChangeCam : MonoBehaviour
     public PlayerAttack Throwitem;
 
     private bool CamOnPerson = true, CamOnDesk, canplayMinigame, HaveItem
-        , WakeUp, TimeBool = true;
-    float Timer; 
+        , WakeUp, TimeBool = true, Delay;
+    float TimerWakeUP, Closecanva; 
 
     private void OnEnable()
     {
@@ -53,26 +53,36 @@ public class PlayerChangeCam : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; 
-        Timer = 11;
+        Cursor.lockState = CursorLockMode.Locked;
+        TimerWakeUP = 11;
     }
 
     private void Update()
     {
         #region Wake UP
         if(TimeBool)
-        Timer -= Time.deltaTime;
-        if(Timer <= 0)
+        TimerWakeUP -= Time.deltaTime;
+        if (Delay)
+        {
+            Closecanva -= Time.deltaTime;
+        }
+        if (TimerWakeUP <= 0)
         {
             if (!WakeUp)
             {
                 if (ChangePOV.IsActiveCamera(BedCam))
                 {
                     Objective.SetActive(true);
+                    Delay = true;         
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
             }
-    
+        }
+
+        if(Closecanva <= 0)
+        {
+            Objective.SetActive(false);
+            Delay = false;
         }
         #endregion
 
