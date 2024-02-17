@@ -73,7 +73,8 @@ public class PlayerChangeCam : MonoBehaviour
                 if (ChangePOV.IsActiveCamera(BedCam))
                 {
                     Objective.SetActive(true);
-                    Delay = true;         
+                    Delay = true;
+                    Closecanva = 5;
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
             }
