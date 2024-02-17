@@ -371,24 +371,27 @@ public class MiniGameAuidition : MonoBehaviour
                 CurrectPass = 0;
                 _Currentstate = MiniGameAuditionState.Start;
             }
+
         }
 
         if(_Currentstate == MiniGameAuditionState.ItemLost)
         {
             if (Finish)
             {
-                
-               // print("LostItem");
+                Needle.enabled = false;
+                ClothMove.enabled = false;
+                // print("LostItem");
                 Finish = false;
                 canPlay.FinishDoll();
                 GetFinishDoll();            
             }
-            _Currentstate = MiniGameAuditionState.LeaveDesk;
+                _Currentstate = MiniGameAuditionState.LeaveDesk;
+            
         }
 
         if (curBar >= maxBar)
         {   
-            _Currentstate = MiniGameAuditionState.ItemLost;     curBar = 0;   
+            _Currentstate = MiniGameAuditionState.ItemLost;      curBar = 0;   
         }
         
     }

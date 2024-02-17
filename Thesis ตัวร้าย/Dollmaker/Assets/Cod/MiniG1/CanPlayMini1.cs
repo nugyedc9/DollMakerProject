@@ -31,7 +31,8 @@ public class CanPlayMini1 : MonoBehaviour
     [Header("Finish doll")]
     public GameObject[] FinshDoll;
     private int FinishDollHave;
-
+    private float DelayFinish1doll;
+    public GameObject Finishgame;
     public AudioSource MakeDollFinish;
 
     public UnityEvent Dolls6;
@@ -77,6 +78,13 @@ public class CanPlayMini1 : MonoBehaviour
         } 
         if (DollHave == 0) Doll = false;
         if(ClothHave == 0) Cloth = false;
+
+        if(DelayFinish1doll > 0) DelayFinish1doll -= Time.deltaTime;
+        if(DelayFinish1doll < 0)
+        {
+            Time.timeScale = 0f;
+            Finishgame.SetActive(true);
+        }
     }
 
 
@@ -132,6 +140,7 @@ public class CanPlayMini1 : MonoBehaviour
 
     public void FinishDoll()
     {
+        DelayFinish1doll = 5f;
         Dolllost();
         ClothLost();
     }
