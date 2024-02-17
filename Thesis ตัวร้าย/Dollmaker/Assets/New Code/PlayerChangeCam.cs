@@ -11,11 +11,13 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera WorkShopView;
     [SerializeField] CinemachineVirtualCamera MachineCloseUp;
     [SerializeField] CinemachineVirtualCamera BasketcloseUp;
+    [SerializeField] CinemachineVirtualCamera BedCam;
 
     [Header("Interect")]
     public Transform InterectTransform;
     public float InterectRange;
     public InputManager _InputManager;
+    public GameObject Objective;
 
     [Header("Mini Game")]
     public BoxCollider minigameBoxCol;
@@ -25,7 +27,9 @@ public class PlayerChangeCam : MonoBehaviour
 
     public PlayerAttack Throwitem;
 
-    private bool CamOnPerson = true, CamOnDesk, canplayMinigame, HaveItem;
+    private bool CamOnPerson = true, CamOnDesk, canplayMinigame, HaveItem
+        , WakeUp, TimeBool = true;
+    float Timer; 
 
     private void OnEnable()
     {
@@ -33,23 +37,45 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(WorkShopView);
         ChangePOV.Register(MachineCloseUp);
         ChangePOV.Register(BasketcloseUp);
-        ChangePOV.SwitchCamera(FirstpersonView);
+        ChangePOV.Register(BedCam);
+        ChangePOV.SwitchCamera(BedCam);
     }
 
     private void OnDisable()
     {
         ChangePOV.UnRegister(FirstpersonView);
         ChangePOV.UnRegister(WorkShopView);
+        ChangePOV.UnRegister(MachineCloseUp);
+        ChangePOV.UnRegister(BasketcloseUp);
+        ChangePOV.UnRegister(BedCam);
     }
 
     private void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked; 
+        Timer = 11;
     }
 
     private void Update()
     {
+        #region Wake UP
+        if(TimeBool)
+        Timer -= Time.deltaTime;
+        if(Timer <= 0)
+        {
+            if (!WakeUp)
+            {
+                if (ChangePOV.IsActiveCamera(BedCam))
+                {
+                    Objective.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                }
+            }
+    
+        }
+        #endregion
+
 
         if (!canplayMinigame) StartCoroutine(DelayCloseMiniGame());
         Ray ray = new Ray(InterectTransform.position, InterectTransform.forward);

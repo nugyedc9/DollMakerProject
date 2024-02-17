@@ -17,6 +17,7 @@ public class GhostStateManager : MonoBehaviour
     public GhostGetAttckState GetAtKState = new GhostGetAttckState();
     public GhostDiedState DiedState = new GhostDiedState();
     public GhsotSpawnState SpawnState = new GhsotSpawnState();
+    public GhsotDetectPlayerSpawn DetectPlayer = new GhsotDetectPlayerSpawn();
 
     [Header("Player")]
     public PlayerHp HpPlayer;
@@ -30,7 +31,7 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostFrom, GhostLight;
     public float DistanceAmount,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        AnimAlert, AnimHunt, AnimAttack, GetHit, GetAttack, ChangePos;
+        AnimAlert, AnimHunt, AnimAttack, GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
     
 
     [Header("Ghost vision cone")]
@@ -60,7 +61,7 @@ public class GhostStateManager : MonoBehaviour
     void Start()
     {
         enemyGhost = GetComponent<NavMeshAgent>();
-        CurrentState = SpawnState;
+        CurrentState = DetectPlayer;
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
 
@@ -150,14 +151,18 @@ public class GhostStateManager : MonoBehaviour
                     Vertices[i + 1] = VertForward * VisionRange;
                     if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
-                        if (DelayHitPlayer <= 0)
+                        Vertices[i + 1] = VertForward * hit.distance;
+                        if (PlayerDetectSpawn)
                         {
-                            Vertices[i + 1] = VertForward * hit.distance;
-                            SwitchState(AlertState);
-                            playerOutOfSight = curplayerOutSight;
-                            PlayerInSight = true;
-                            CanseePlayer = true;
+                            if (DelayHitPlayer <= 0)
+                            {
+                                SwitchState(AlertState);
+                                playerOutOfSight = curplayerOutSight;
+                                PlayerInSight = true;
+                                CanseePlayer = true;
+                            }
                         }
+                        else SwitchState(SpawnState);
                     }
 
                     else
