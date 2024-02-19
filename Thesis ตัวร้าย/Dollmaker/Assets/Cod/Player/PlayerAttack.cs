@@ -19,7 +19,11 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand, ClothOnHand, ScissorOnHand, LightOnHand;
+    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand,
+        ClothOnHand, ScissorOnHand, LightOnHand,
+        RedClothOnHand, BlueClothOnHand, GreenClothOnHand, YellowClothOnHand
+        ;
+
     public float Pickrange;
     private Vector3 destination;
     public PlayerChangeCam changeCam;
@@ -60,24 +64,38 @@ public class PlayerAttack : MonoBehaviour
     public GameObject HolyLight;
     public Animator CorssAni;
     public GameObject DollR;
-    public GameObject ClothR, ScissorR;
+    public GameObject ClothR, ScissorR,
+        RedClothR, BlueClothR, GreenClothR, YellowClothR;
     public GameObject[] itemInventory1, itemInventory2, itemInventory3;
     public GameObject Inventory, InvPoint1, InvPoint2, InvPoint3;
     public CanPlayMini1 takeFinishDoll;
 
     [Header("Item Change")]
     public int ItemSelect = 0;
-    public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave;
-    private bool showCross,showDoll,showCloth, showScissor,setTriggerCross, box1 , box2, box3;
+    public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave,
+        RedClothHave, GreenClothHave, BlueClothHave, YellowClothHave;
+
+    private bool showCross,showDoll,showCloth, showScissor,
+        ShowRedCloth, ShowGreenCloth, ShowBlueCloth, ShowYellowCloth,
+        setTriggerCross, box1 , box2, box3;
 
     [Header("Item Drop")]
     public GameObject CrossD;
     public GameObject CrossD2;
     public GameObject CrossD1;
     public GameObject DollD;
-    public GameObject ClothD, ScissorD;
-    private bool CrossInv1, CrossInv2, CrossInv3, DollInv1, DollInv2, DollInv3, ClothInv1, ClothInv2, ClothInv3
-        ,ScissorInv1, ScissorInv2, ScissorInv3;
+    public GameObject ClothD, ScissorD,
+        RedClothD, BlueClothD, GreenClothD, YellowClothD
+        ;
+    private bool CrossInv1, CrossInv2, CrossInv3,
+        DollInv1, DollInv2, DollInv3,
+        ClothInv1, ClothInv2, ClothInv3
+        , ScissorInv1, ScissorInv2, ScissorInv3,
+        RedCloInv1, RedCloInv2, RedCloInv3,
+        GreenCloInv1, GreenCloInv2, GreenCloInv3,
+        BlueCloInv1, BlueCloInv2, BlueCloInv3,
+        YellowCloInv1, YellowCloInv2, YellowCloInv3
+        ;
 
     [Header("CrossAction")]
     public float curHpCross;
@@ -307,8 +325,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (!isPause) PauseGame();
                 else ResumeGame();
-            }
-            
+            }            
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -1255,6 +1272,7 @@ public class PlayerAttack : MonoBehaviour
                 ScissorOnHand = false;
             }
 
+            #region Pick Up Item
             // Pick item
             Ray RPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
             Debug.DrawRay(pickUPPoint.position, pickUPPoint.forward);
@@ -1266,6 +1284,7 @@ public class PlayerAttack : MonoBehaviour
                     {
                         if (StoryNow >= 0)
                         {
+                            #region Cross
                             if (hitInfo.collider.gameObject.tag == "Cross")
                             {
                                 if (Crosshave != 1)
@@ -1275,11 +1294,8 @@ public class PlayerAttack : MonoBehaviour
                                     Crosshave++;
 
 
+                                    CloseOnHand();
                                     CrossOnHand = true;
-                                    DollOnHand = false;
-                                    ClothOnHand = false;
-                                    showCross = true;
-                                    ScissorOnHand = false;
                                     Attack = true;
 
                                     InterectSound.clip = CrossPickSound;
@@ -1352,24 +1368,24 @@ public class PlayerAttack : MonoBehaviour
                             }
                         }
 
-                        else if (StoryNow < 5)
+                       /* else if (StoryNow < 5)
                         {
                             if (hitInfo.collider.gameObject.tag == "Cross")
                             {
                                 Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand.)";
                                 dialogCheck = true;
                             }
-                        }
+                        }*/
+#endregion 
 
+                        #region Doll
                         if (Dollhave != 3)
                         {
                             if (hitInfo.collider.gameObject.tag == "Doll")
                             {
                                 // DollAni.SetTrigger("OnHand");
+                                CloseOnHand();
                                 DollOnHand = true;
-                                CrossOnHand = false;
-                                ClothOnHand = false;
-                                ScissorOnHand = false;
                                 showDoll = true;
 
                                 InterectSound.clip = DollPickSound;
@@ -1419,14 +1435,15 @@ public class PlayerAttack : MonoBehaviour
                                 }
                             }
                         }
+                        #endregion
+
+                        #region Cloth
                         if (Clothhave != 3)
                         {
                             if (hitInfo.collider.gameObject.tag == "Cloth")
                             {
+                                CloseOnHand();
                                 ClothOnHand = true;
-                                DollOnHand = false;
-                                CrossOnHand = false;
-                                ScissorOnHand = false;
                                 showCloth = true;
 
                                 InterectSound.clip = ClothPickSound;
@@ -1475,15 +1492,15 @@ public class PlayerAttack : MonoBehaviour
                                 }
                             }
                         }
+#endregion
 
+                        #region Scissor
                         if (ScissorHave != 1)
                         {
                             if (hitInfo.collider.gameObject.tag == "Scissors")
                             {
+                                CloseOnHand();
                                 ScissorOnHand = true;
-                                ClothOnHand = false;
-                                DollOnHand = false;
-                                CrossOnHand = false;
                                 showScissor = true;
 
                                 InterectSound.clip = ClothPickSound;
@@ -1532,10 +1549,233 @@ public class PlayerAttack : MonoBehaviour
                                 }
                             }
                         }
+                        #endregion
+
+                        #region RedCloth
+                        if (RedClothHave != 3)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "RedCloth")
+                            {
+                                CloseOnHand();
+                                RedClothOnHand = true;
+                                ShowRedCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                CloseItemInInv();
+                                RedClothR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";                             
+                                Itemhave++;
+                                RedClothHave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[6].SetActive(true);
+                                    RedCloInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[6].SetActive(true);
+                                    RedCloInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[6].SetActive(true);
+                                    RedCloInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        #region BlueCloth
+                        if (BlueClothHave != 3)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "BlueCloth")
+                            {
+                                CloseOnHand();
+                                BlueClothOnHand = true;
+                                ShowBlueCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                CloseItemInInv();
+                                BlueClothR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";
+                                Itemhave++;
+                                BlueClothHave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[7].SetActive(true);
+                                    BlueCloInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[7].SetActive(true);
+                                    BlueCloInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[7].SetActive(true);
+                                    BlueCloInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        #region GreenCloth
+                        if (GreenClothHave != 3)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "GreenCloth")
+                            {
+                                CloseOnHand();
+                                GreenClothOnHand = true;
+                                ShowGreenCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                CloseItemInInv();
+                                GreenClothR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";
+                                Itemhave++;
+                                GreenClothHave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[8].SetActive(true);
+                                    GreenCloInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[8].SetActive(true);
+                                    GreenCloInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[8].SetActive(true);
+                                    GreenCloInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        #region YellowCloth
+                        if (YellowClothHave != 3)
+                        {
+                            if (hitInfo.collider.gameObject.tag == "YellowCloth")
+                            {
+                                CloseOnHand();
+                                YellowClothOnHand = true;
+                                ShowYellowCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                CloseItemInInv();
+                                YellowClothR.SetActive(true);
+                                Destroy(hitInfo.collider.gameObject);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";
+                                Itemhave++;
+                                YellowClothHave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[9].SetActive(true);
+                                    YellowCloInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[9].SetActive(true);
+                                    YellowCloInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[9].SetActive(true);
+                                    YellowCloInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+                            }
+                           
+                        } 
+                        #endregion
                     }
                 }
 
             }
+            #endregion
         }
         #endregion
 
@@ -1979,61 +2219,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    #region old Ghost hit 
-    /*   public void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.tag == "Ghost")
-            {
-                //print("GhostHit");
-                if (CrossOnHand && showCross)
-                {
-                    if (curHpCross == 3)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross();
-                    }
-                    if (curHpCross == 2)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross2();
-                    }
-                    if (curHpCross == 1)
-                    {
-                        CorssR.SetActive(false);
-                        Attack = false;
-                        DropCross1();
-                    }
-                    Itemhave--;
-                    CrossOnHand = false;
-                    Tutext1.SetActive(false); Tutext2.SetActive(false);
-                }
-
-                if (Dollhave != 0)
-                {
-                    if (DollOnHand && showDoll)
-                    {
-                        DropDoll();
-                        Itemhave--;
-                        Dollhave--;
-                    }
-                }
-
-                if (Clothhave != 0)
-                {
-                    if (ClothOnHand && showCloth)
-                    {
-                        DropCloth();
-                        Itemhave--;
-                        Clothhave--;
-                    }
-                }
-            }
-        }*/
-    #endregion
-
-
     #region Trigger enter
     public void OnTriggerEnter(Collider other)
     {
@@ -2292,6 +2477,32 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
+    #region CloseOnHand
+    public void CloseOnHand()
+    {
+        DollOnHand = false;
+        CrossOnHand = false;
+        ClothOnHand = false;
+        RedClothOnHand = false;
+        GreenClothOnHand = false;
+        BlueClothOnHand = false;
+        YellowClothOnHand = false;
+        ScissorOnHand = false;
+    }
+
+    public void CloseItemInInv()
+    {
+        DollR.SetActive(false);
+        CorssR.SetActive(false);
+        ClothR.SetActive(false);
+        ScissorR.SetActive(false);
+        RedClothR.SetActive(false);
+        GreenClothR.SetActive(false);
+        BlueClothR.SetActive(false);
+        YellowClothR.SetActive(false);
+    }
+    #endregion
+
     public void CrossRuin()
     {
         if (crossruin)
@@ -2349,55 +2560,9 @@ public class PlayerAttack : MonoBehaviour
         if (Clothhave > 0 || Dollhave > 0)
         {
 
-            if (Crosshave == 1)
-            {
-                Itemhave = 1;
-                if (CrossInv1) box1 = true;
-                if (CrossInv2) box2 = true;
-                if (CrossInv3) box3 = true;
-            }
-
-
             //Doll on hand
             Tutext1.SetActive(false);
-            showDoll = false;
-            DollR.SetActive(false);
-            if (ItemSelect == 0)
-            {
-                if (DollInv1)
-                {
-                    itemInventory1[1].SetActive(false);
-                    takeFinishDoll.AddDollOnDesk(1);
-                    Dollhave--;
-                    Itemhave--;
-                    box1 = false;
-                    DollInv1 = false;
-                }
-            }
-            else if (ItemSelect == 1)
-            {
-                if (DollInv2)
-                {
-                    itemInventory2[1].SetActive(false);
-                    takeFinishDoll.AddDollOnDesk(1);
-                    box2 = false;
-                    Dollhave--;
-                    Itemhave--;
-                    DollInv2 = false;
-                }
-            }
-            else if (ItemSelect == 2)
-            {
-                if (DollInv3)
-                {
-                    itemInventory3[1].SetActive(false);
-                    takeFinishDoll.AddDollOnDesk(1);
-                    box3 = false;
-                    Dollhave--;
-                    Itemhave--;
-                    DollInv3 = false;
-                }
-            }
+          
             // Cloth on hand
             showCloth = false;
             ClothR.SetActive(false);
@@ -2406,7 +2571,6 @@ public class PlayerAttack : MonoBehaviour
                 if (ClothInv1)
                 {
                     itemInventory1[2].SetActive(false);
-                    takeFinishDoll.AddClothOndesk(1);
                     box1 = false;
                     Clothhave--;
                     Itemhave--;
@@ -2418,7 +2582,6 @@ public class PlayerAttack : MonoBehaviour
                 if (ClothInv2)
                 {
                     itemInventory2[2].SetActive(false);
-                    takeFinishDoll.AddClothOndesk(1);
                     box2 = false;
                     Clothhave--;
                     Itemhave--;
@@ -2430,7 +2593,6 @@ public class PlayerAttack : MonoBehaviour
                 if (ClothInv3)
                 {
                     itemInventory3[2].SetActive(false);
-                    takeFinishDoll.AddClothOndesk(1);
                     box3 = false;
                     Clothhave--;
                     Itemhave--;
@@ -2440,6 +2602,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     #endregion
+
+    public void GetclothDesign()
+    {
+
+    }
 
     #region Map
 

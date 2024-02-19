@@ -7,15 +7,16 @@ using UnityEngine.EventSystems;
 public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector2 lastMousePosition;
-    private float x, y, z, Timer;
+    private float Timer;
+
+    [Header("Cloth Design")]
+    public GameObject Cloth;
+    public DesignSelect designSelect;
 
     public MiniGameAuidition minigame;
     public CanPlayMini1 canplayMinIgame;
     public PlayerAttack PushdollCloth;
-    public Animator ScissorAnim;
-
-    public bool blockX, blockY, blockZ;
-
+    public Animator ScissorAnim;  
     public bool toOrginal;
     private bool Draging;
 
@@ -36,13 +37,25 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Timer = 2;
             Draging = false;
         }
-        if(collision.gameObject.tag == "Basket")
-        {
-            PushdollCloth.pushItemInbasket();
-        }
-        if(collision.gameObject.tag == "ClothDrop")
-        {
+    }
 
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ClothDrop")
+        {
+            toOrginal = false;
+
+                Cloth.SetActive(true);
+                designSelect.HaveCloth = true;
+                PushdollCloth.pushItemInbasket();          
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "ClothDrop")
+        {
+            toOrginal = true;
         }
     }
 
@@ -66,6 +79,7 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         lastMousePosition = eventData.position;
         Draging = true;
+        toOrginal = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -75,21 +89,6 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Vector2 diff = curremtMousePosition - lastMousePosition;
 
             transform.position = Input.mousePosition;
-
-            //   RectTransform rectTransform = GetComponent<RectTransform>();
-
-            x = y = z = 0;
-
-            if (!blockX)
-                x = diff.x;
-
-            if (!blockY)
-                y = diff.y;
-
-            if (!blockZ)
-                z = transform.localPosition.z;
-
-            //   rectTransform.position = rectTransform.position + new Vector3(x, y, z);
 
             lastMousePosition = curremtMousePosition;
         }

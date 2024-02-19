@@ -27,6 +27,8 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("SelectDesign")]
     public GameObject DesignSelect;
+    public GameObject Book;
+    public Animator PushBookDown;
 
     public PlayerAttack Throwitem;
 
@@ -125,6 +127,7 @@ public class PlayerChangeCam : MonoBehaviour
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         DesignSelect.SetActive(true);
+                        Book.SetActive(true);
                         ShowMouse();
                         ItemOnPlayer.SetActive(false);
                         TextOnPlayer.SetActive(false);
@@ -179,6 +182,7 @@ public class PlayerChangeCam : MonoBehaviour
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                         DesignSelect.SetActive(false);
+                        Book.SetActive(false);
                         CloseMouse();
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
