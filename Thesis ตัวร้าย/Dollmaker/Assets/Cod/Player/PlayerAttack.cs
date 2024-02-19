@@ -763,7 +763,7 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Cloth  [E]";
                 InterectItem = true;
             }
-            else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
+            else if (hitevent.collider.gameObject.tag == "WorkShopDesk")
             {
                 ItemText.SetActive(true);
                 ItemName.text = "DeskWorkShop  [E]";
