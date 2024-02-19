@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -61,7 +62,7 @@ public class GhostStateManager : MonoBehaviour
     void Start()
     {
         enemyGhost = GetComponent<NavMeshAgent>();
-        CurrentState = SpawnState;
+        CurrentState = DetectPlayerState;
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
 
@@ -96,7 +97,7 @@ public class GhostStateManager : MonoBehaviour
                 SwitchState(GetAtKState);
                 HpCross = true;
             }
-        }
+        }   if(Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState) ;
     }
 
     public void SwitchState(GhostBaseState state)
@@ -119,6 +120,8 @@ public class GhostStateManager : MonoBehaviour
                 GetAttack = true;
             }
         }
+
+     
     }
 
     float curplayerOutSight;
@@ -139,22 +142,27 @@ public class GhostStateManager : MonoBehaviour
             {
                 Sine = Mathf.Sin(Currentangle);
                 Cosine = Mathf.Cos(Currentangle);
-                Vector3 RaycastDirection = (transform.forward * Cosine) + (transform.right * Sine);
+                Vector3 RaycastDirection = (HeadVistion.transform.forward * Cosine) + (HeadVistion.transform.right * Sine);
                 Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-                if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
+                if (Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
                 {
-                    Vertices[i + 1] = VertForward * hit.distance;
-            
+                    Vertices[i + 1] = VertForward * hit.distance;          
                 }
-                else
+                else if(!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, VisionObstructingLayer))
                 {
 
                    Vertices[i + 1] = VertForward * VisionRange; 
-                    if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
+                    if (Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
-                        Debug.Log("hit Player Layers");
-                            if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
+                        Vertices[i + 1] = VertForward * hit.distance;
+                        if (PlayerDetectSpawn)
+                        {
+                                SwitchState(SpawnState);                           
+                        }
+                        if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
                             {
+
+                            if(!CanseePlayer)
                                 SwitchState(AlertState);
                                 playerOutOfSight = curplayerOutSight;
                                 PlayerInSight = true;
@@ -162,7 +170,7 @@ public class GhostStateManager : MonoBehaviour
                             }
                     }
 
-                    else
+                    else if (!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
                         CanseePlayer = false;
@@ -181,7 +189,6 @@ public class GhostStateManager : MonoBehaviour
                     }
                 }
 
-
                 Currentangle += angleIcrement;
 
             }
@@ -196,6 +203,8 @@ public class GhostStateManager : MonoBehaviour
             VisionConeMesh.triangles = triangles;
             MeshFilter_.mesh = VisionConeMesh;
         }
+
+      
     }
 
 }

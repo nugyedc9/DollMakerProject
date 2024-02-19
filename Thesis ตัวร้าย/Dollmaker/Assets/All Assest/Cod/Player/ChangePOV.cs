@@ -32,12 +32,12 @@ public static class ChangePOV
     public static void Register(CinemachineVirtualCamera cam)
     {
         cameras.Add(cam);
-        Debug.Log("camera Register: " + cam);
+        //Debug.Log("camera Register: " + cam);
     }
 
     public static void UnRegister(CinemachineVirtualCamera cam)
     {
         cameras.Remove(cam);
-        Debug.Log("camera UnRegister: " + cam);
+        //Debug.Log("camera UnRegister: " + cam);
     }
 }

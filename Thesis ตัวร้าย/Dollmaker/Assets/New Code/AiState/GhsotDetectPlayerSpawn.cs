@@ -7,7 +7,7 @@ public class GhsotDetectPlayerSpawn : GhostBaseState
     {
         state.AnimSpawn = true;
         state.PlayerDetectSpawn = true;
-        state.GhostBoxCol.enabled = true;
+        state.GhostBoxCol.enabled = false;
         state.Cansee = true;
         state.HpCross = false;
         state.PlayerHitDelay = state.HuntSpeed;

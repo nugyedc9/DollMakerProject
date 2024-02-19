@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GhostAlertState : GhostBaseState
@@ -6,12 +7,12 @@ public class GhostAlertState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-
+        Debug.Log("Alert");
     }
 
     public override void UpdateState(GhostStateManager state)
     {
-        state.DrawVisionCone();
+       // state.DrawVisionCone();
 
         if (state.AnimAlert)
         {

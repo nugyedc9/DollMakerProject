@@ -16,6 +16,7 @@ public class GhsotSpawnState : GhostBaseState
         state.PlayerHitDelay = state.HuntSpeed;
         state.GhostLight.SetActive(true);
         state.GhostFrom.SetActive(true);
+        Debug.Log("Sapwn");
     }
 
     public override void UpdateState(GhostStateManager state)
