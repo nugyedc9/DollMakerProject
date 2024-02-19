@@ -40,6 +40,10 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             PushdollCloth.pushItemInbasket();
         }
+        if(collision.gameObject.tag == "ClothDrop")
+        {
+
+        }
     }
 
     private void Update()

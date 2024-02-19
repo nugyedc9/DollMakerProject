@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.PackageManager;
 //using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour 
@@ -227,6 +228,76 @@ public class PlayerAttack : MonoBehaviour
         else HolyLight.SetActive(false);
         #endregion
 
+        #region CutRollCloth
+        if(Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
+            {
+                if(hitinfo.collider.gameObject.tag == "RollCloth")
+                {
+                    if (ScissorOnHand)
+                    {
+                        if (Itemhave != 3)
+                        {
+                            if (Clothhave != 3)
+                            {
+                                ClothOnHand = true;
+                                DollOnHand = false;
+                                CrossOnHand = false;
+                                ScissorOnHand = false;
+                                showCloth = true;
+
+                                InterectSound.clip = ClothPickSound;
+                                InterectSound.Play();
+
+                                ClothR.SetActive(true);
+                                Tutext1.SetActive(true);
+                                tutorialText1.text = "Drop [G]";
+                                tutorialText2.text = "";
+                                DollR.SetActive(false);
+                                CorssR.SetActive(false);
+                                ScissorR.SetActive(false);
+                                Itemhave++;
+                                Clothhave++;
+                                Inventory.SetActive(true);
+                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                {
+                                    itemInventory1[2].SetActive(true);
+                                    ClothInv1 = true;
+                                    ItemSelect = 0;
+                                    box1 = true;
+                                    InvPoint1.SetActive(true);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                {
+                                    itemInventory2[2].SetActive(true);
+                                    ClothInv2 = true;
+                                    ItemSelect = 1;
+                                    box2 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(true);
+                                    InvPoint3.SetActive(false);
+                                }
+                                else if (Itemhave == 3 && !box3)
+                                {
+                                    itemInventory3[2].SetActive(true);
+                                    ClothInv3 = true;
+                                    ItemSelect = 2;
+                                    box3 = true;
+                                    InvPoint1.SetActive(false);
+                                    InvPoint2.SetActive(false);
+                                    InvPoint3.SetActive(true);
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region Map pause tutorial
 
@@ -817,6 +888,12 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Machine [Left Click]";
                 InterectItem = true;
             }
+            else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Change View [E]";
+                InterectItem = true;
+            }
 
             else
             {
@@ -854,6 +931,7 @@ public class PlayerAttack : MonoBehaviour
         if (!Working)
         {
             //Drop item
+            #region Drop Item
             if (Input.GetKeyDown(KeyCode.G))
             {
                 if (ItemSelect == 0)
@@ -1153,6 +1231,7 @@ public class PlayerAttack : MonoBehaviour
 
                 }
             }
+            #endregion
 
             // if don't have item
             if (Itemhave == 0)
