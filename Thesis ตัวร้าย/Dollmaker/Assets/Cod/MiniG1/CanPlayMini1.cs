@@ -22,6 +22,7 @@ public class CanPlayMini1 : MonoBehaviour
     public int ClothHave, DollHave, TotelDollHave;
     public PlayerChangeCam DeskView;
     public MiniGameAuidition minigamestate;
+    public ClothColorDrop clothColorDrop;
     public TextMeshProUGUI DollTotel;
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
@@ -57,7 +58,6 @@ public class CanPlayMini1 : MonoBehaviour
             //  player.PlaySoundWork();
             //  TotalDollCanva.SetActive(true);
             CloseMouse();
-            minigame.SetActive(true);
             DropClothHere.SetActive(false);
             DeskView.CanplayMinigame = true;
             minigamestate.HaveItem = true;
@@ -67,6 +67,7 @@ public class CanPlayMini1 : MonoBehaviour
             DeskView.CanplayMinigame = false;
             minigame.SetActive(false );
             minigamestate.LeaveMinigame();
+            clothColorDrop.Finishmakecloth();
             minigamestate.HaveItem = false;
 
            // player.StopSoundWork();

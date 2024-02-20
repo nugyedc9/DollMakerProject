@@ -22,9 +22,6 @@ public class ClothColorDrop : MonoBehaviour
     [SerializeField] bool isYellow;
     public bool IsYellow { get { return isYellow; } set { isYellow = value; } }
 
-    [SerializeField] bool clothOn;
-    public bool ClothOn { get { return clothOn; } set { clothOn = value; } }
-
 
 
 
@@ -49,28 +46,24 @@ public class ClothColorDrop : MonoBehaviour
             ClothColor[0].SetActive(true);
             canplay.Cloth = true;
             PAttack.DropDesignColor();
-            ClothOn = true;
         }
         if (collision.gameObject.tag == "BlueCloth")
         {
             ClothColor[1].SetActive(true);
             canplay.Cloth = true;
             PAttack.DropDesignColor();
-            ClothOn = true;
         }
         if (collision.gameObject.tag == "GreenCloth")
         {
             ClothColor[2].SetActive(true);
             canplay.Cloth = true;
             PAttack.DropDesignColor();
-            ClothOn = true;
         }
         if (collision.gameObject.tag == "YellowCloth")
         {
             ClothColor[3].SetActive(true);
             canplay.Cloth = true;
             PAttack.DropDesignColor();
-            ClothOn = true;
         }
     }
 

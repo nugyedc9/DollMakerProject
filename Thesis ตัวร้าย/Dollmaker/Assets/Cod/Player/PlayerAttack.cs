@@ -28,6 +28,10 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 destination;
     public PlayerChangeCam changeCam;
 
+    [Header("Item Change")]
+    public int ItemSelect = 0;
+    public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave,
+        RedClothHave, GreenClothHave, BlueClothHave, YellowClothHave;
 
 
     [Header("Item On Hand")]
@@ -41,10 +45,6 @@ public class PlayerAttack : MonoBehaviour
     public GameObject Inventory, InvPoint1, InvPoint2, InvPoint3;
     public CanPlayMini1 takeFinishDoll;
 
-    [Header("Item Change")]
-    public int ItemSelect = 0;
-    public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave,
-        RedClothHave, GreenClothHave, BlueClothHave, YellowClothHave;
 
     private bool showCross,showDoll,showCloth, showScissor,
         ShowRedCloth, ShowGreenCloth, ShowBlueCloth, ShowYellowCloth,
@@ -3308,6 +3308,7 @@ public class PlayerAttack : MonoBehaviour
         #region I1
         if (ItemSelect == 0)
         {
+            box1 = false;
             if (RedClothOnHand && ShowRedCloth)
             {
                 InterectSound.clip = DropClothSound;
@@ -3377,6 +3378,7 @@ public class PlayerAttack : MonoBehaviour
         #region I2
         if (ItemSelect == 1)
         {
+            box2 = false;
             if (RedClothOnHand && ShowRedCloth)
             {
                 InterectSound.clip = DropClothSound;
@@ -3446,6 +3448,7 @@ public class PlayerAttack : MonoBehaviour
         #region I3
         if (ItemSelect == 2)
         {
+            box3 = false;
             if (RedClothOnHand && ShowRedCloth)
             {
                 InterectSound.clip = DropClothSound;

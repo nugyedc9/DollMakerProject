@@ -389,7 +389,6 @@ public class MiniGameAuidition : MonoBehaviour
                 // print("LostItem");
                 Finish = false;
                 //canPlay.FinishDoll();
-                clothColorDrop.ClothOn = false;
                 canPlay.Cloth = false;
                 GetFinishDoll();            
             }

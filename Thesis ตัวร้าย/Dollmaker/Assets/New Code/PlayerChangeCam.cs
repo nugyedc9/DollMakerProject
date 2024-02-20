@@ -21,7 +21,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Mini Game")]
     public BoxCollider minigameBoxCol;
-    public GameObject MiniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
+    public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
     public MiniGameAuidition minigamestate;
 
     [Header("SelectDesign")]
@@ -159,17 +159,24 @@ public class PlayerChangeCam : MonoBehaviour
                             ShowMouse();
                             DropHere.SetActive(true);
                         }
-                        else
-                        {
-                            CloseMouse();
-                            DropHere.SetActive(false);
-                        }
                         CamOnDesk = false;
                         minigameBoxCol.enabled = false;
                         CamOnPerson = false;
                     }
                 }
             }
+        }
+
+        if(canplayMinigame)
+        {
+            CloseMouse();
+            miniGame.SetActive(true);
+            DropHere.SetActive(false);
+        }
+        else
+        {
+            DropHere.SetActive(true);
+            miniGame.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -206,7 +213,7 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(MachineCloseUp))
                     {
-                        MiniGame.SetActive(false);
+                        miniGame.SetActive(false);
                         CloseMouse();
                         ChangePOV.SwitchCamera(WorkShopView);
                         CamOnDesk = true;
