@@ -13,12 +13,13 @@ public class CanPlayMini1 : MonoBehaviour
     int ReadNumSpawn;
     public int DestinationSpawnAmount;*/
 
-    public GameObject canClick;
-    public bool Cloth, Doll;
+    public GameObject DropClothHere, minigame;
+    public bool  Doll;
+    [SerializeField] bool cloth;
+    public bool Cloth { get {  return cloth; }  set { cloth = value; } }
     public GameObject[] Dollobj;
     public GameObject[] Clothobj;
     public int ClothHave, DollHave, TotelDollHave;
-    public Player player;
     public PlayerChangeCam DeskView;
     public MiniGameAuidition minigamestate;
     public TextMeshProUGUI DollTotel;
@@ -50,20 +51,23 @@ public class CanPlayMini1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Cloth && Doll)
+        if (Cloth)
         {
             // canClick.SetActive(true);
             //  player.PlaySoundWork();
             //  TotalDollCanva.SetActive(true);
-            DeskView.HaveDollAndCloth();
-            minigamestate.ItemHaveCheck();
+            CloseMouse();
+            minigame.SetActive(true);
+            DropClothHere.SetActive(false);
+            DeskView.CanplayMinigame = true;
+            minigamestate.HaveItem = true;
         }
         else
         {
-            //canClick.SetActive(false);
-            DeskView.dontHaveDollAndCloth();
+            DeskView.CanplayMinigame = false;
+            minigame.SetActive(false );
             minigamestate.LeaveMinigame();
-            minigamestate.DontHaveItem();
+            minigamestate.HaveItem = false;
 
            // player.StopSoundWork();
         }
@@ -76,8 +80,6 @@ public class CanPlayMini1 : MonoBehaviour
         {
             Dolls6.Invoke();
         } 
-        if (DollHave == 0) Doll = false;
-        if(ClothHave == 0) Cloth = false;
 
         if(DelayFinish1doll > 0) DelayFinish1doll -= Time.deltaTime;
         if(DelayFinish1doll < 0)
@@ -153,5 +155,17 @@ public class CanPlayMini1 : MonoBehaviour
     {
         TotelDollHave--;
     }
+    public void ShowMouse()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void CloseMouse()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
 
 }

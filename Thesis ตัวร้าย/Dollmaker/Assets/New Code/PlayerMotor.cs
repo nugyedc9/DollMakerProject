@@ -20,6 +20,10 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         isGrounded = controller.isGrounded;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            speed = 10;
+        }
     }
 
     public void ProcessMove(Vector2 Input)

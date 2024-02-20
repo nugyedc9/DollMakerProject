@@ -13,6 +13,9 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public GameObject Cloth;
     public DesignSelect designSelect;
 
+    [Header("ItemType")]
+    public bool cloth;
+
     public MiniGameAuidition minigame;
     public CanPlayMini1 canplayMinIgame;
     public PlayerAttack PushdollCloth;
@@ -31,7 +34,7 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if(collision.gameObject.tag == "MiniGCutCanva")
         {
-            minigame.ButtonCutLine();
+            minigame.cutLine = true;
             gameObject.GetComponent<Animator>().enabled = true;
             ScissorAnim.Play("CutLine");           
             Timer = 2;
@@ -41,23 +44,18 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ClothDrop")
+        if (cloth)
         {
-            toOrginal = false;
-
+            if (collision.gameObject.tag == "ClothDrop")
+            {
+                transform.localPosition = orginalPosition;
                 Cloth.SetActive(true);
                 designSelect.HaveCloth = true;
-                PushdollCloth.pushItemInbasket();          
+                PushdollCloth.pushItemInbasket();
+            }
         }
     }
 
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.tag == "ClothDrop")
-        {
-            toOrginal = true;
-        }
-    }
 
     private void Update()
     {

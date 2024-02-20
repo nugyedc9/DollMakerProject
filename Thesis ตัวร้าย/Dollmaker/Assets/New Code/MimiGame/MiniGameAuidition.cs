@@ -12,6 +12,7 @@ public class MiniGameAuidition : MonoBehaviour
     private MiniGameAuidition Instance;
     public GameObject MiniGameAuditionActive;
     public CanPlayMini1 canPlay;
+    public ClothColorDrop clothColorDrop;
     public Ghost GhostcomeTocheck;
 
     [Header("Bar")]
@@ -46,10 +47,15 @@ public class MiniGameAuidition : MonoBehaviour
     public Animator Needle;
     public Animator ClothMove;
 
+    [SerializeField] bool haveitem;
+    public bool HaveItem { get { return haveitem; } set { haveitem = value; } }
+    [SerializeField] bool CutLine;
+    public bool cutLine { get { return cutLine; } set {  cutLine = value; } }
+
     Queue<float> AuditionPass = new Queue<float>();
 
-    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, cutLine, NeedToCutLine , NeedleWorking;
-    public bool HaveItem, Finish;
+    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking;
+    public bool Finish;
     private int CurrectPass, FinishDollHave;
     private float CurTimer, FailDelay;
     [SerializeField] GameObject[] AuditionOnSceen;
@@ -382,7 +388,9 @@ public class MiniGameAuidition : MonoBehaviour
                 ClothMove.enabled = false;
                 // print("LostItem");
                 Finish = false;
-                canPlay.FinishDoll();
+                //canPlay.FinishDoll();
+                clothColorDrop.ClothOn = false;
+                canPlay.Cloth = false;
                 GetFinishDoll();            
             }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;
@@ -481,20 +489,6 @@ public class MiniGameAuidition : MonoBehaviour
         FinishDoll[FinishDollHave].SetActive(true);
             FinishDollHave++;
     }
-    public void ItemHaveCheck()
-    {
-        HaveItem = true;
-    }
-    public void DontHaveItem()
-    {
-        HaveItem = false;
-    }
-
-    public void ButtonCutLine()
-    {
-        cutLine = true;
-    }
-
     public void ShowMouse()
     {
         Cursor.visible = true;

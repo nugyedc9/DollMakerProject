@@ -28,36 +28,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 destination;
     public PlayerChangeCam changeCam;
 
-    [Header("Audio")]
-    public AudioClip HitGhostSound;
-    public AudioClip HitWindSound;
-    public AudioSource HitAudio;
-    public AudioClip LightOutLetsGooo;
-    public AudioSource Ambience;
-    public AudioClip AfterJumpGhost;
-    public AudioSource InterectSound;
 
-    [Header("PickItemSound")]
-    public AudioClip LanternPickSound;
-    public AudioClip CrossPickSound;
-    public AudioClip DollPickSound;
-    public AudioClip ClothPickSound;
-    public AudioClip DropCrossSound;
-    public AudioClip DropDollSound;
-    public AudioClip DropClothSound;
-    public AudioClip FinishDollPick;
-    public AudioClip KeyPickSound;
-    public AudioClip LightClickSound;
-    public AudioClip BreakerClickSound;
-
-    [Header("PLayerLight")]
-    public GameObject Light;
-    public GameObject pointLight;
-    public Animator LanternAni;
-
-    [Header("Hp player")]
-    public PlayerHp HpPlayer;
-    private bool OpenEye;
 
     [Header("Item On Hand")]
     public GameObject CorssR;
@@ -101,6 +72,20 @@ public class PlayerAttack : MonoBehaviour
     public float curHpCross;
     private bool crossruin;
 
+    [Header("GetDesignCloth")]
+    public DesignSelect designSelect;
+    [SerializeField] int designNum;
+    public int DesignNum { get { return designNum; } set {  designNum = value; } }
+    [Header("PLayerLight")]
+    public GameObject Light;
+    public GameObject pointLight;
+    public Animator LanternAni;
+
+    [Header("Hp player")]
+    public PlayerHp HpPlayer;
+    private bool OpenEye;
+
+
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
     public Image CanvaImage;
@@ -143,6 +128,29 @@ public class PlayerAttack : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject EndGame;
     private bool isPause, Working;
+
+    [Header("Audio")]
+    public AudioClip HitGhostSound;
+    public AudioClip HitWindSound;
+    public AudioSource HitAudio;
+    public AudioClip LightOutLetsGooo;
+    public AudioSource Ambience;
+    public AudioClip AfterJumpGhost;
+    public AudioSource InterectSound;
+
+    [Header("PickItemSound")]
+    public AudioClip LanternPickSound;
+    public AudioClip CrossPickSound;
+    public AudioClip DollPickSound;
+    public AudioClip ClothPickSound;
+    public AudioClip DropCrossSound;
+    public AudioClip DropDollSound;
+    public AudioClip DropClothSound;
+    public AudioClip FinishDollPick;
+    public AudioClip KeyPickSound;
+    public AudioClip LightClickSound;
+    public AudioClip BreakerClickSound;
+
 
     private Door DoorInterect;
     private GhostStateManager GhostHit;
@@ -439,6 +447,66 @@ public class PlayerAttack : MonoBehaviour
                 ScissorR.SetActive(false);
                 showScissor = false;
             }
+            if (RedCloInv1)
+            {
+                RedClothOnHand = true;
+                RedClothR.SetActive(true);
+                ShowRedCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                RedClothOnHand = false;
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+            }
+            if (GreenCloInv1)
+            {
+                GreenClothOnHand = true;
+                GreenClothR.SetActive(true);
+                ShowGreenCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                GreenClothOnHand = false;
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+            }
+            if (BlueCloInv1)
+            {
+                BlueClothOnHand = true;
+                BlueClothR.SetActive(true);
+                ShowBlueCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                BlueClothOnHand = false;
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+            }
+            if (YellowCloInv1)
+            {
+                YellowClothOnHand = true;
+                YellowClothR.SetActive(true);
+                ShowYellowCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                YellowClothOnHand = false;
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
+            }
 
             if (!box1)
             {
@@ -550,6 +618,66 @@ public class PlayerAttack : MonoBehaviour
                 ScissorR.SetActive(false);
                 showScissor = false;
             }
+            if (RedCloInv2)
+            {
+                RedClothOnHand = true;
+                RedClothR.SetActive(true);
+                ShowRedCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                RedClothOnHand = false;
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+            }
+            if (GreenCloInv2)
+            {
+                GreenClothOnHand = true;
+                GreenClothR.SetActive(true);
+                ShowGreenCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                GreenClothOnHand = false;
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+            }
+            if (BlueCloInv2)
+            {
+                BlueClothOnHand = true;
+                BlueClothR.SetActive(true);
+                ShowBlueCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                BlueClothOnHand = false;
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+            }
+            if (YellowCloInv2)
+            {
+                YellowClothOnHand = true;
+                YellowClothR.SetActive(true);
+                ShowYellowCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                YellowClothOnHand = false;
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
+            }
             if (!box2)
             {
                 Tutext1.SetActive(false);
@@ -653,6 +781,66 @@ public class PlayerAttack : MonoBehaviour
                 ScissorOnHand = false;
                 ScissorR.SetActive(false);
                 showScissor = false;
+            }
+            if (RedCloInv3)
+            {
+                RedClothOnHand = true;
+                RedClothR.SetActive(true);
+                ShowRedCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                RedClothOnHand = false;
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+            }
+            if (GreenCloInv3)
+            {
+                GreenClothOnHand = true;
+                GreenClothR.SetActive(true);
+                ShowGreenCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                GreenClothOnHand = false;
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+            }
+            if (BlueCloInv3)
+            {
+                BlueClothOnHand = true;
+                BlueClothR.SetActive(true);
+                ShowBlueCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                BlueClothOnHand = false;
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+            }
+            if (YellowCloInv3)
+            {
+                YellowClothOnHand = true;
+                YellowClothR.SetActive(true);
+                ShowYellowCloth = true;
+                Tutext1.SetActive(true);
+                tutorialText1.text = "Drop [G]";
+                tutorialText2.text = "";
+            }
+            else
+            {
+                YellowClothOnHand = false;
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
             }
             if (!box3)
             {
@@ -1047,6 +1235,74 @@ public class PlayerAttack : MonoBehaviour
                             ScissorInv1 = false;
                         }
                     }
+                    if (RedClothOnHand && ShowRedCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropRedCloth();
+                        Itemhave--;
+                        RedClothHave--;
+                        Tutext1.SetActive(false);
+                        RedClothR.SetActive(false);
+                        ShowRedCloth = false;
+                        if (RedCloInv1)
+                        {
+                            itemInventory1[6].SetActive(false);
+                            RedCloInv1 = false;
+                        }
+                    }
+                    if (BlueClothOnHand && ShowBlueCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropBlueCloth();
+                        Itemhave--;
+                        BlueClothHave--;
+                        Tutext1.SetActive(false);
+                        BlueClothR.SetActive(false);
+                        ShowBlueCloth = false;
+                        if (BlueCloInv1)
+                        {
+                            itemInventory1[7].SetActive(false);
+                            BlueCloInv1 = false;
+                        }
+                    }
+                    if (GreenClothOnHand && ShowGreenCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropGreenCloth();
+                        Itemhave--;
+                        GreenClothHave--;
+                        Tutext1.SetActive(false);
+                        GreenClothR.SetActive(false);
+                        ShowGreenCloth = false;
+                        if (GreenCloInv1)
+                        {
+                            itemInventory1[8].SetActive(false);
+                            GreenCloInv1 = false;
+                        }
+                    }
+                    if (YellowClothOnHand && ShowYellowCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropYellowCloth();
+                        Itemhave--;
+                        YellowClothHave--;
+                        Tutext1.SetActive(false);
+                        YellowClothR.SetActive(false);
+                        ShowYellowCloth = false;
+                        if (YellowCloInv1)
+                        {
+                            itemInventory1[9].SetActive(false);
+                            YellowCloInv1 = false;
+                        }
+                    }
 
                 }
                 if (ItemSelect == 1)
@@ -1146,6 +1402,75 @@ public class PlayerAttack : MonoBehaviour
                             ScissorInv2 = false;
                         }
                     }
+                    if (RedClothOnHand && ShowRedCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropRedCloth();
+                        Itemhave--;
+                        RedClothHave--;
+                        Tutext1.SetActive(false);
+                        RedClothR.SetActive(false);
+                        ShowRedCloth = false;
+                        if (RedCloInv2)
+                        {
+                            itemInventory2[6].SetActive(false);
+                            RedCloInv2 = false;
+                        }
+                    }
+                    if (BlueClothOnHand && ShowBlueCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropBlueCloth();
+                        Itemhave--;
+                        BlueClothHave--;
+                        Tutext1.SetActive(false);
+                        BlueClothR.SetActive(false);
+                        ShowBlueCloth = false;
+                        if (BlueCloInv2)
+                        {
+                            itemInventory2[7].SetActive(false);
+                            BlueCloInv2 = false;
+                        }
+                    }
+                    if (GreenClothOnHand && ShowGreenCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropGreenCloth();
+                        Itemhave--;
+                        GreenClothHave--;
+                        Tutext1.SetActive(false);
+                        GreenClothR.SetActive(false);
+                        ShowGreenCloth = false;
+                        if (GreenCloInv2)
+                        {
+                            itemInventory2[8].SetActive(false);
+                            GreenCloInv2 = false;
+                        }
+                    }
+                    if (YellowClothOnHand && ShowYellowCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropYellowCloth();
+                        Itemhave--;
+                        YellowClothHave--;
+                        Tutext1.SetActive(false);
+                        YellowClothR.SetActive(false);
+                        ShowYellowCloth = false;
+                        if (YellowCloInv2)
+                        {
+                            itemInventory2[9].SetActive(false);
+                            YellowCloInv2 = false;
+                        }
+                    }
+
                 }
 
                 if (ItemSelect == 2)
@@ -1243,6 +1568,74 @@ public class PlayerAttack : MonoBehaviour
                         {
                             itemInventory3[5].SetActive(false);
                             ScissorInv3 = false;
+                        }
+                    }
+                    if (RedClothOnHand && ShowRedCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropRedCloth();
+                        Itemhave--;
+                        RedClothHave--;
+                        Tutext1.SetActive(false);
+                        RedClothR.SetActive(false);
+                        ShowRedCloth = false;
+                        if (RedCloInv3)
+                        {
+                            itemInventory3[6].SetActive(false);
+                            RedCloInv3 = false;
+                        }
+                    }
+                    if (BlueClothOnHand && ShowBlueCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropBlueCloth();
+                        Itemhave--;
+                        BlueClothHave--;
+                        Tutext1.SetActive(false);
+                        BlueClothR.SetActive(false);
+                        ShowBlueCloth = false;
+                        if (BlueCloInv3)
+                        {
+                            itemInventory3[7].SetActive(false);
+                            BlueCloInv3 = false;
+                        }
+                    }
+                    if (GreenClothOnHand && ShowGreenCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropGreenCloth();
+                        Itemhave--;
+                        GreenClothHave--;
+                        Tutext1.SetActive(false);
+                        GreenClothR.SetActive(false);
+                        ShowGreenCloth = false;
+                        if (GreenCloInv3)
+                        {
+                            itemInventory3[8].SetActive(false);
+                            GreenCloInv3 = false;
+                        }
+                    }
+                    if (YellowClothOnHand && ShowYellowCloth)
+                    {
+                        InterectSound.clip = DropClothSound;
+                        InterectSound.Play();
+
+                        DropYellowCloth();
+                        Itemhave--;
+                        YellowClothHave--;
+                        Tutext1.SetActive(false);
+                        YellowClothR.SetActive(false);
+                        ShowYellowCloth = false;
+                        if (YellowCloInv3)
+                        {
+                            itemInventory3[9].SetActive(false);
+                            YellowCloInv3 = false;
                         }
                     }
 
@@ -2159,6 +2552,67 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+    public void DropRedCloth()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingRedcloth(RH);
+
+    }
+    public void DropBlueCloth()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingBluecloth(RH);
+
+    }
+    public void DropGreenCloth()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingGreencloth(RH);
+
+    }
+    public void DropYellowCloth()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        DropingYellowcloth(RH);
+
+    }
+
     #region Throw item prefabs
     void Attacking(Transform FirePoint)
     {
@@ -2195,6 +2649,26 @@ public class PlayerAttack : MonoBehaviour
     void DropingScissor(Transform FirePoint)
     {
         var projectileOBj = Instantiate(ScissorD, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+    void DropingRedcloth(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(RedClothD, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+    void DropingGreencloth(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(GreenClothD, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+    void DropingBluecloth(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(BlueClothD, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
+    }
+    void DropingYellowcloth(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(YellowClothD, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
     }
     #endregion
@@ -2605,8 +3079,441 @@ public class PlayerAttack : MonoBehaviour
 
     public void GetclothDesign()
     {
+        if (Itemhave != 3)
+        {
+            #region RedCloth
+            if (DesignNum == 0)
+            {
+                if (RedClothHave != 3)
+                {
+                    CloseOnHand();
+                    RedClothOnHand = true;
+                    ShowRedCloth = true;
 
+                    InterectSound.clip = ClothPickSound;
+                    InterectSound.Play();
+
+                    CloseItemInInv();
+                    RedClothR.SetActive(true);
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                    Itemhave++;
+                    RedClothHave++;
+                    Inventory.SetActive(true);
+                    if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                    {
+                        itemInventory1[6].SetActive(true);
+                        RedCloInv1 = true;
+                        ItemSelect = 0;
+                        box1 = true;
+                        InvPoint1.SetActive(true);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                    {
+                        itemInventory2[6].SetActive(true);
+                        RedCloInv2 = true;
+                        ItemSelect = 1;
+                        box2 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(true);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 3 && !box3)
+                    {
+                        itemInventory3[6].SetActive(true);
+                        RedCloInv3 = true;
+                        ItemSelect = 2;
+                        box3 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(true);
+                    }
+
+                }
+            }
+            #endregion
+
+            #region BlueCloth
+            if (DesignNum == 1)
+            {
+                if (BlueClothHave != 3)
+                {
+                    CloseOnHand();
+                    BlueClothOnHand = true;
+                    ShowBlueCloth = true;
+
+                    InterectSound.clip = ClothPickSound;
+                    InterectSound.Play();
+
+                    CloseItemInInv();
+                    BlueClothR.SetActive(true);
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                    Itemhave++;
+                    BlueClothHave++;
+                    Inventory.SetActive(true);
+                    if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                    {
+                        itemInventory1[7].SetActive(true);
+                        BlueCloInv1 = true;
+                        ItemSelect = 0;
+                        box1 = true;
+                        InvPoint1.SetActive(true);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                    {
+                        itemInventory2[7].SetActive(true);
+                        BlueCloInv2 = true;
+                        ItemSelect = 1;
+                        box2 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(true);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 3 && !box3)
+                    {
+                        itemInventory3[7].SetActive(true);
+                        BlueCloInv3 = true;
+                        ItemSelect = 2;
+                        box3 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(true);
+                    }
+
+                }
+            }
+            #endregion
+
+            #region GreenCloth
+            if (DesignNum == 2)
+            {
+                if (GreenClothHave != 3)
+                {
+                    CloseOnHand();
+                    GreenClothOnHand = true;
+                    ShowGreenCloth = true;
+
+                    InterectSound.clip = ClothPickSound;
+                    InterectSound.Play();
+
+                    CloseItemInInv();
+                    GreenClothR.SetActive(true);
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                    Itemhave++;
+                    GreenClothHave++;
+                    Inventory.SetActive(true);
+                    if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                    {
+                        itemInventory1[8].SetActive(true);
+                        GreenCloInv1 = true;
+                        ItemSelect = 0;
+                        box1 = true;
+                        InvPoint1.SetActive(true);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                    {
+                        itemInventory2[8].SetActive(true);
+                        GreenCloInv2 = true;
+                        ItemSelect = 1;
+                        box2 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(true);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 3 && !box3)
+                    {
+                        itemInventory3[8].SetActive(true);
+                        GreenCloInv3 = true;
+                        ItemSelect = 2;
+                        box3 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(true);
+                    }
+
+                }
+        }
+            #endregion
+
+            #region YellowCloth
+            if (DesignNum == 3)
+            {
+                if (YellowClothHave != 3)
+                {
+                    CloseOnHand();
+                    YellowClothOnHand = true;
+                    ShowYellowCloth = true;
+
+                    InterectSound.clip = ClothPickSound;
+                    InterectSound.Play();
+
+                    CloseItemInInv();
+                    YellowClothR.SetActive(true);
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                    Itemhave++;
+                    YellowClothHave++;
+                    Inventory.SetActive(true);
+                    if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                    {
+                        itemInventory1[9].SetActive(true);
+                        YellowCloInv1 = true;
+                        ItemSelect = 0;
+                        box1 = true;
+                        InvPoint1.SetActive(true);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                    {
+                        itemInventory2[9].SetActive(true);
+                        YellowCloInv2 = true;
+                        ItemSelect = 1;
+                        box2 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(true);
+                        InvPoint3.SetActive(false);
+                    }
+                    else if (Itemhave == 3 && !box3)
+                    {
+                        itemInventory3[9].SetActive(true);
+                        YellowCloInv3 = true;
+                        ItemSelect = 2;
+                        box3 = true;
+                        InvPoint1.SetActive(false);
+                        InvPoint2.SetActive(false);
+                        InvPoint3.SetActive(true);
+                    }
+
+                }
+            }
+            #endregion
+        }
     }
+
+    public void DropDesignColor()
+    {
+        #region I1
+        if (ItemSelect == 0)
+        {
+            if (RedClothOnHand && ShowRedCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                RedClothHave--;
+                Tutext1.SetActive(false);
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+                if (RedCloInv1)
+                {
+                    itemInventory1[6].SetActive(false);
+                    RedCloInv1 = false;
+                }
+            }
+            if (BlueClothOnHand && ShowBlueCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                BlueClothHave--;
+                Tutext1.SetActive(false);
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+                if (BlueCloInv1)
+                {
+                    itemInventory1[7].SetActive(false);
+                    BlueCloInv1 = false;
+                }
+            }
+            if (GreenClothOnHand && ShowGreenCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                GreenClothHave--;
+                Tutext1.SetActive(false);
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+                if (GreenCloInv1)
+                {
+                    itemInventory1[8].SetActive(false);
+                    GreenCloInv1 = false;
+                }
+            }
+            if (YellowClothOnHand && ShowYellowCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                YellowClothHave--;
+                Tutext1.SetActive(false);
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
+                if (YellowCloInv1)
+                {
+                    itemInventory1[9].SetActive(false);
+                    YellowCloInv1 = false;
+                }
+            }
+        }
+        #endregion
+        #region I2
+        if (ItemSelect == 1)
+        {
+            if (RedClothOnHand && ShowRedCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                RedClothHave--;
+                Tutext1.SetActive(false);
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+                if (RedCloInv2)
+                {
+                    itemInventory2[6].SetActive(false);
+                    RedCloInv2 = false;
+                }
+            }
+            if (BlueClothOnHand && ShowBlueCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                BlueClothHave--;
+                Tutext1.SetActive(false);
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+                if (BlueCloInv2)
+                {
+                    itemInventory2[7].SetActive(false);
+                    BlueCloInv2 = false;
+                }
+            }
+            if (GreenClothOnHand && ShowGreenCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                GreenClothHave--;
+                Tutext1.SetActive(false);
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+                if (GreenCloInv2)
+                {
+                    itemInventory2[8].SetActive(false);
+                    GreenCloInv2 = false;
+                }
+            }
+            if (YellowClothOnHand && ShowYellowCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                YellowClothHave--;
+                Tutext1.SetActive(false);
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
+                if (YellowCloInv2)
+                {
+                    itemInventory2[9].SetActive(false);
+                    YellowCloInv2 = false;
+                }
+            }
+        }
+        #endregion
+        #region I3
+        if (ItemSelect == 2)
+        {
+            if (RedClothOnHand && ShowRedCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                RedClothHave--;
+                Tutext1.SetActive(false);
+                RedClothR.SetActive(false);
+                ShowRedCloth = false;
+                if (RedCloInv3)
+                {
+                    itemInventory3[6].SetActive(false);
+                    RedCloInv3 = false;
+                }
+            }
+            if (BlueClothOnHand && ShowBlueCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                BlueClothHave--;
+                Tutext1.SetActive(false);
+                BlueClothR.SetActive(false);
+                ShowBlueCloth = false;
+                if (BlueCloInv3)
+                {
+                    itemInventory3[7].SetActive(false);
+                    BlueCloInv3 = false;
+                }
+            }
+            if (GreenClothOnHand && ShowGreenCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                GreenClothHave--;
+                Tutext1.SetActive(false);
+                GreenClothR.SetActive(false);
+                ShowGreenCloth = false;
+                if (GreenCloInv3)
+                {
+                    itemInventory3[8].SetActive(false);
+                    GreenCloInv3 = false;
+                }
+            }
+            if (YellowClothOnHand && ShowYellowCloth)
+            {
+                InterectSound.clip = DropClothSound;
+                InterectSound.Play();
+
+                Itemhave--;
+                YellowClothHave--;
+                Tutext1.SetActive(false);
+                YellowClothR.SetActive(false);
+                ShowYellowCloth = false;
+                if (YellowCloInv3)
+                {
+                    itemInventory3[9].SetActive(false);
+                    YellowCloInv3 = false;
+                }
+            }
+        }
+        #endregion
+    }
+
 
     #region Map
 
