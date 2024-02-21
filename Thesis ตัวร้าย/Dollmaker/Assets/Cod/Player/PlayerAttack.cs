@@ -76,6 +76,8 @@ public class PlayerAttack : MonoBehaviour
     public DesignSelect designSelect;
     [SerializeField] int designNum;
     public int DesignNum { get { return designNum; } set {  designNum = value; } }
+
+
     [Header("PLayerLight")]
     public GameObject Light;
     public GameObject pointLight;
@@ -2194,7 +2196,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.tag == "FinishDoll")
                 {
-                    takeFinishDoll.AddTotalDoll();
+                    takeFinishDoll.TotalDollHave++;
                     takeFinishDoll.GetFinishDoll();
                     InterectSound.clip = FinishDollPick;
                     InterectSound.Play();

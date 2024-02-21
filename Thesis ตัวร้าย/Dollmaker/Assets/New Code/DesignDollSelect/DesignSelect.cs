@@ -77,8 +77,7 @@ public class DesignSelect : MonoBehaviour
             ClothColor[PageNum].SetActive(false);
             playerAttack.GetclothDesign();
             BoxColPushCloth.SetActive(true);
-                 HaveCloth = false;
-        
+                 HaveCloth = false;      
     }
 
 }

@@ -20,14 +20,16 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject Objective;
 
     [Header("Mini Game")]
-    public BoxCollider minigameBoxCol;
-    public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
     public MiniGameAuidition minigamestate;
+    public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
 
     [Header("SelectDesign")]
     public GameObject DesignSelect;
     public GameObject Book;
     public Animator PushBookDown;
+
+    [Header("CloseBoxCol")]
+    public BoxCollider WorkShopBoxCol;
 
     public PlayerAttack Throwitem;
 
@@ -114,11 +116,12 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
+                        WorkShopBoxCol.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
                         TextOnPlayer.SetActive(false);
-                        minigameBoxCol.enabled = true;
+                            DropHere.SetActive(true);                        
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(WorkShopView);
                         StartCoroutine(DelayCamera());
@@ -137,7 +140,6 @@ public class PlayerChangeCam : MonoBehaviour
                         Throwitem.StopAttack();
                         DesignSelect.SetActive(true);
                         Book.SetActive(true);
-                        ShowMouse();
                         ItemOnPlayer.SetActive(false);
                         TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
@@ -147,37 +149,50 @@ public class PlayerChangeCam : MonoBehaviour
                 }
 
             }
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (hitInfo.collider.gameObject.tag == "MachineMiniGame")
-                {
-                    if (ChangePOV.IsActiveCamera(WorkShopView))
-                    {
-                        ChangePOV.SwitchCamera(MachineCloseUp);
-                        if (!CanplayMinigame)
+
+            #region Didn't use
+            /*            if (Input.GetMouseButtonDown(0))
                         {
-                            ShowMouse();
-                            DropHere.SetActive(true);
-                        }
-                        CamOnDesk = false;
-                        minigameBoxCol.enabled = false;
-                        CamOnPerson = false;
-                    }
+                            if (hitInfo.collider.gameObject.tag == "MachineMiniGame")
+                            {
+                                if (ChangePOV.IsActiveCamera(WorkShopView))
+                                {
+                                    ChangePOV.SwitchCamera(MachineCloseUp);
+                                    if (!CanplayMinigame)
+                                    {
+                                        ShowMouse();
+                                        DropHere.SetActive(true);
+                                    }
+                                    CamOnDesk = false;
+                                    CamOnPerson = false;
+                                }
+                            }
+                        }*/
+            #endregion
+
+        }
+
+        if (CamOnPerson)
+        {
+            CloseMouse();
+            miniGame.SetActive(false);
+        }
+        else
+        {
+            ShowMouse();
+            if (ChangePOV.IsActiveCamera(WorkShopView))
+            {
+                if (canplayMinigame)
+                {
+                    miniGame.SetActive(true);
+                }
+                else
+                {
+                    miniGame.SetActive(false);
                 }
             }
         }
 
-        if(canplayMinigame)
-        {
-            CloseMouse();
-            miniGame.SetActive(true);
-            DropHere.SetActive(false);
-        }
-        else
-        {
-            DropHere.SetActive(true);
-            miniGame.SetActive(false);
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -187,12 +202,13 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(WorkShopView))
                     {
+                        WorkShopBoxCol.enabled = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
+                        DropHere.SetActive(false);
                         ChangePOV.SwitchCamera(FirstpersonView);
-                        minigameBoxCol.enabled = false;
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
                     }
@@ -202,26 +218,26 @@ public class PlayerChangeCam : MonoBehaviour
                         Throwitem.CanAttack();
                         DesignSelect.SetActive(false);
                         Book.SetActive(false);
-                        CloseMouse();
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
                 }
+                #region Didn't use
                 if (!CamOnDesk)
                 {
                     if (ChangePOV.IsActiveCamera(MachineCloseUp))
                     {
                         miniGame.SetActive(false);
-                        CloseMouse();
                         ChangePOV.SwitchCamera(WorkShopView);
                         CamOnDesk = true;
                         CamOnPerson = false;
                     }
                 }
+                #endregion
             }
-           
+
         }
 
     }
@@ -229,7 +245,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     IEnumerator DelayCamera()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
             CamOnPerson = false;       
     }
     

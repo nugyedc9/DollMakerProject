@@ -19,7 +19,9 @@ public class CanPlayMini1 : MonoBehaviour
     public bool Cloth { get {  return cloth; }  set { cloth = value; } }
     public GameObject[] Dollobj;
     public GameObject[] Clothobj;
-    public int ClothHave, DollHave, TotelDollHave;
+    public int ClothHave, DollHave;
+    [SerializeField] int totalDollHave;
+    public int TotalDollHave { get { return totalDollHave; } set { totalDollHave = value; } }
     public PlayerChangeCam DeskView;
     public MiniGameAuidition minigamestate;
     public ClothColorDrop clothColorDrop;
@@ -77,7 +79,7 @@ public class CanPlayMini1 : MonoBehaviour
 
         TotalDoll.text = "Finish Doll :  " + TotelDollHave + " / 6";*/
 
-        if(TotelDollHave == 6)
+        if(TotalDollHave == 6)
         {
             Dolls6.Invoke();
         } 
@@ -90,7 +92,7 @@ public class CanPlayMini1 : MonoBehaviour
         }
     }
 
-
+/*
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Cloth")
@@ -107,7 +109,7 @@ public class CanPlayMini1 : MonoBehaviour
              DollHave++;
             Destroy(collision.gameObject);
         }
-    }
+    }*/
 
     public void AddDollOnDesk(int i)
     {
@@ -148,14 +150,6 @@ public class CanPlayMini1 : MonoBehaviour
         ClothLost();
     }
 
-    public void AddTotalDoll()
-    {
-        TotelDollHave++;
-    }
-    public void LosttotalDoll()
-    {
-        TotelDollHave--;
-    }
     public void ShowMouse()
     {
         Cursor.visible = true;
