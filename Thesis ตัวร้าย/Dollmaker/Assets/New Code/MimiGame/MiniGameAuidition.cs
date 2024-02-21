@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 
 public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, TimeOut, ClearTimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
@@ -57,7 +58,7 @@ public class MiniGameAuidition : MonoBehaviour
     private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking;
     public bool Finish;
     private int CurrectPass, FinishDollHave;
-    private float CurTimer, FailDelay;
+    private float CurTimer, FailDelay, ClothPlayanim;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
@@ -80,14 +81,13 @@ public class MiniGameAuidition : MonoBehaviour
             if (NeedleWorking)
             {
                 Needle.Play("NeedleAnim");
-                ClothMove.Play("ClothAnim");
+                //ClothMove.Play("ClothAnim");
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             HoldSpace = false; 
             Needle.enabled = false; 
-            ClothMove.enabled = false;
         }
 
         if (HoldSpace && HaveItem)
@@ -153,8 +153,17 @@ public class MiniGameAuidition : MonoBehaviour
                 #region WASD
                 if (!printPeek)
                 {
-                   // print(AuditionPass.Peek());
-                    printPeek = true;
+                    // print(AuditionPass.Peek());                  
+                    ClothPlayanim  -= Time.deltaTime;
+                    if(ClothPlayanim <= 0)
+                    {
+                        printPeek = true;
+                    }
+                    
+                }
+                else
+                {
+                    ClothMove.enabled = false;
                 }
                 if (AuditionPass.Peek() == 0)
                 {
@@ -164,6 +173,7 @@ public class MiniGameAuidition : MonoBehaviour
                         CurrectPass++;
                         CurrectFrame(0);
                         printPeek = false;
+                        ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(0);
                     }
 
@@ -186,6 +196,7 @@ public class MiniGameAuidition : MonoBehaviour
                         CurrectPass++;
                         CurrectFrame(0);
                         printPeek = false;
+                        ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(1);
                     }
 
@@ -208,6 +219,7 @@ public class MiniGameAuidition : MonoBehaviour
                         CurrectPass++;
                         CurrectFrame(0);
                         printPeek = false;
+                        ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(2);
                     }
 
@@ -230,6 +242,7 @@ public class MiniGameAuidition : MonoBehaviour
                         CurrectPass++;
                         CurrectFrame(0);
                         printPeek = false;
+                        ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(3);
                     }
 
