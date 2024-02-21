@@ -90,7 +90,7 @@ public class CanPlayMini1 : MonoBehaviour
         }
     }
 
-
+/*
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Cloth")
@@ -107,7 +107,7 @@ public class CanPlayMini1 : MonoBehaviour
              DollHave++;
             Destroy(collision.gameObject);
         }
-    }
+    }*/
 
     public void AddDollOnDesk(int i)
     {
