@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -412,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -881,6 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -1103,6 +1106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -1294,6 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -1905,8 +1910,8 @@ GameObject:
   - component: {fileID: 8516404919319649045}
   - component: {fileID: 8821731757176060354}
   - component: {fileID: 6831798756799521658}
-  - component: {fileID: 1554170836655465111}
   - component: {fileID: 2626959476714156206}
+  - component: {fileID: 1554170836655465111}
   - component: {fileID: 82982119938401807}
   - component: {fileID: 1171484492896332261}
   - component: {fileID: 5273760247729706253}
@@ -1988,21 +1993,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1554170836655465111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4866211288587781979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69108dcad8889a4caaf6be10b254299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  gravity: -9.8
-  jumpHeight: 1.5
 --- !u!114 &2626959476714156206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,6 +2026,16 @@ MonoBehaviour:
   YellowClothOnHand: 0
   Pickrange: 3
   changeCam: {fileID: 82982119938401807}
+  ItemSelect: 0
+  Itemhave: 0
+  Dollhave: 0
+  Clothhave: 0
+  Crosshave: 0
+  ScissorHave: 0
+  RedClothHave: 0
+  GreenClothHave: 0
+  BlueClothHave: 0
+  YellowClothHave: 0
   CorssR: {fileID: 5469824846209307266}
   HolyLight: {fileID: 4979720754456205760}
   CorssAni: {fileID: 3964294208527530961}
@@ -2084,16 +2084,6 @@ MonoBehaviour:
   InvPoint2: {fileID: 7692141374881298316}
   InvPoint3: {fileID: 1188132661406531153}
   takeFinishDoll: {fileID: 0}
-  ItemSelect: 0
-  Itemhave: 0
-  Dollhave: 0
-  Clothhave: 0
-  Crosshave: 0
-  ScissorHave: 0
-  RedClothHave: 0
-  GreenClothHave: 0
-  BlueClothHave: 0
-  YellowClothHave: 0
   CrossD: {fileID: 1765590911036182225, guid: f922b9ff7ea18aa499ed69f53607c455, type: 3}
   CrossD2: {fileID: 243524754942148530, guid: 70984edd1e09b7343ac5e2d710453f98, type: 3}
   CrossD1: {fileID: 5167569374607768853, guid: bd5e830568623b14891d8af99e6f4781, type: 3}
@@ -2727,6 +2717,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1554170836655465111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866211288587781979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69108dcad8889a4caaf6be10b254299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  gravity: -9.8
+  jumpHeight: 1.5
 --- !u!114 &82982119938401807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2748,17 +2753,18 @@ MonoBehaviour:
   InterectRange: 3
   _InputManager: {fileID: 593105749087420427}
   Objective: {fileID: 0}
-  minigameBoxCol: {fileID: 0}
-  BasketCol: {fileID: 0}
-  MiniGame: {fileID: 0}
+  minigamestate: {fileID: 0}
+  miniGame: {fileID: 0}
   ItemOnPlayer: {fileID: 5350020539525674954}
   TextOnPlayer: {fileID: 2702947236162340056}
   pushHere: {fileID: 3711283130684128396}
-  minigamestate: {fileID: 0}
+  DropHere: {fileID: 0}
   DesignSelect: {fileID: 2724515913244746235}
   Book: {fileID: 0}
   PushBookDown: {fileID: 0}
+  WorkShopBoxCol: {fileID: 0}
   Throwitem: {fileID: 2626959476714156206}
+  canplayMinigame: 0
 --- !u!114 &1171484492896332261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3112,6 +3118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -3303,6 +3310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -3878,6 +3886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -4196,6 +4205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -4387,6 +4397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -4578,6 +4589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -4769,6 +4781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
@@ -6011,6 +6024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
@@ -6112,6 +6126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
@@ -6277,6 +6292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
@@ -6378,6 +6394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
@@ -6660,6 +6677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
@@ -6771,6 +6789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
+  cloth: 0
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
