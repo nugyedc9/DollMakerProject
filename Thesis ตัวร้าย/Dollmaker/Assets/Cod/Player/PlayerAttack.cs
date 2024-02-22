@@ -3383,6 +3383,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         #endregion
+        
         #region I2
         if (ItemSelect == 1)
         {
@@ -3453,6 +3454,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         #endregion
+
         #region I3
         if (ItemSelect == 2)
         {

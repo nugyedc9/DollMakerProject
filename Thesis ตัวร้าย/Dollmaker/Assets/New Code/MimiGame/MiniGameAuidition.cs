@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 
 
-public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, TimeOut, ClearTimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
+public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, ClearTimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
 
 public class MiniGameAuidition : MonoBehaviour
 {
@@ -27,7 +27,6 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] private TMP_Text BoxNum;
 
     [Header("Timer")]
-    public float Timer;
     float TimerInStateTime;
 
     [Header("Prefabs Audition")]
@@ -58,7 +57,7 @@ public class MiniGameAuidition : MonoBehaviour
     private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking;
     public bool Finish;
     private int CurrectPass, FinishDollHave;
-    private float CurTimer, FailDelay, ClothPlayanim;
+    private float FailDelay, ClothPlayanim;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
@@ -67,7 +66,6 @@ public class MiniGameAuidition : MonoBehaviour
     void Start()
     {
         Instance = this;
-        CurTimer = Timer;
         _Currentstate = MiniGameAuditionState.LeaveDesk;
     }
 
@@ -92,8 +90,7 @@ public class MiniGameAuidition : MonoBehaviour
 
         if (HoldSpace && HaveItem)
         {
-            if(!NeedToCutLine)
-            curBar += 3 * Time.deltaTime;
+
             Bar.SetMinBar(curBar);
             if(curBar <= 0) curBar = 0;
             if (!NeedleWorking)
@@ -120,7 +117,6 @@ public class MiniGameAuidition : MonoBehaviour
                 else
                 {
                     _Currentstate = MiniGameAuditionState.ClearSkillCheck;
-                    Timer = CurTimer;
                     FailDelay = 2;
                     SlotAuditionPass = 0;
                     Fail = false;
@@ -131,25 +127,13 @@ public class MiniGameAuidition : MonoBehaviour
             {
                 Needle.enabled = true;
                 ClothMove.enabled = true;
-                if (Timer <= CurTimer)
-                {
-                    Timer -= Time.deltaTime;
-                    TellTime(Timer);
-                }
-
-                if (Timer <= 0)
-                {
-                    //ButtonCutLineOBJ.SetActive(true);
-                    CurrectFrame(2);
-                    CutHere.SetActive(true);
-                    NeedToCutLine = true;
-                    _Currentstate = MiniGameAuditionState.TimeOut;
-                }
+      
 
                 if (CurrectPass == 5)
                 {
                     _Currentstate = MiniGameAuditionState.FinishSkillCheck;
                 }
+
                 #region WASD
                 if (!printPeek)
                 {
@@ -171,6 +155,7 @@ public class MiniGameAuidition : MonoBehaviour
                     {
                         AuditionPass.Dequeue();
                         CurrectPass++;
+                        curBar += 5;
                         CurrectFrame(0);
                         printPeek = false;
                         ClothMove.enabled = true;
@@ -195,6 +180,7 @@ public class MiniGameAuidition : MonoBehaviour
                         AuditionPass.Dequeue();
                         CurrectPass++;
                         CurrectFrame(0);
+                        curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(1);
@@ -218,6 +204,7 @@ public class MiniGameAuidition : MonoBehaviour
                         AuditionPass.Dequeue();
                         CurrectPass++;
                         CurrectFrame(0);
+                        curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(2);
@@ -241,6 +228,7 @@ public class MiniGameAuidition : MonoBehaviour
                         AuditionPass.Dequeue();
                         CurrectPass++;
                         CurrectFrame(0);
+                        curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
                         SpawnAuditionPassPrefabs(3);
@@ -333,43 +321,13 @@ public class MiniGameAuidition : MonoBehaviour
                     Destroy(FrameOnScene);
                 }
                 CutHere.SetActive(false);
-                curBar += 15;
+                curBar += 10;
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
                 Finish = true;
                 _Currentstate = MiniGameAuditionState.Start;
                 print("finish");
             }
-        }
-        if (_Currentstate == MiniGameAuditionState.TimeOut)
-        {
-            ShowMouse();   
-            NeedleWorking = false;       
-            if (cutLine)
-            {
-                TimerInStateTime -= Time.deltaTime;                
-                if (TimerInStateTime < 0)
-                {
-                    NeedToCutLine = false;
-                    CloseMouse();
-                    curBar = 0;
-                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
-                    {
-                        Destroy(SpawnOnSceen);
-                    }
-                    FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
-                    foreach (GameObject FrameOnScene in FrameClear)
-                    {
-                        Destroy(FrameOnScene);
-                    }
-                    StartCoroutine(TimeoutDelay());
-                    cutLine = false;
-                }
-                // ButtonCutLineOBJ.SetActive(false);
-
-            }
-
         }
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {
