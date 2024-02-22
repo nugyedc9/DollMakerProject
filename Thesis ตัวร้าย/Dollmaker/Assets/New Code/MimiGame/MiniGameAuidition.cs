@@ -85,7 +85,8 @@ public class MiniGameAuidition : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             HoldSpace = false; 
-            Needle.enabled = false; 
+            Needle.enabled = false;
+            ClothMove.enabled = false;
         }
 
         if (HoldSpace && HaveItem)

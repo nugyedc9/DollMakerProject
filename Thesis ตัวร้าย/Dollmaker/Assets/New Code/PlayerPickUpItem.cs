@@ -8,6 +8,11 @@ public class PlayerPickUpItem : MonoBehaviour
     public InventoryManager inventoryManager;
     public Item[] itemPickUp;
 
+    [Header("CrossThing")]
+    private CrossCheck CrossUse;
+    [SerializeField] float CurHpCross;
+    public float curHpCross { get { return CurHpCross;  } set { CurHpCross = value; } }
+
     [Header("Pick Up")]
     public float Pickrange;
     public float DropSpeed;
@@ -29,6 +34,9 @@ public class PlayerPickUpItem : MonoBehaviour
 
                 if (hitInfo.collider.gameObject.tag == "Cross")
                 {
+                    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                    curHpCross = CrossUse.curHp;
+                    inventoryManager.TriggerCrossAnim = true;
                     inventoryManager.AddItem(itemPickUp[0]);
                     Destroy(hitInfo.collider.gameObject);
                 }

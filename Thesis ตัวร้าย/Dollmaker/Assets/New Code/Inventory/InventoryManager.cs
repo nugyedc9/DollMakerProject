@@ -10,8 +10,15 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     public InventorySlote[] inventoryslote;
+    public GameObject[] ItemOnHand;
     public GameObject inventoryItemPrefab;
     public PlayerPickUpItem playerPickUpItem;
+    public PlayerAttack pAttack;
+
+    [Header("CrossAction")]
+    public Animator CorssAni;
+    [SerializeField] bool triggerCrossAnim;
+    public bool TriggerCrossAnim { get { return triggerCrossAnim; } set { triggerCrossAnim = value; } }
 
     [SerializeField] int SelectedSlot;
    public int selectedSlot { get { return SelectedSlot; } set { SelectedSlot = value; } }
@@ -36,15 +43,53 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        #region ItemShow
         inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
+        if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
+        {
+            pAttack.Attack = true;
+            ItemOnHand[0].SetActive(true);
+            if (triggerCrossAnim)
+            {
+                if (playerPickUpItem.curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                if (playerPickUpItem.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                if (playerPickUpItem.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                triggerCrossAnim = false;
+            }
+        }
+        else
+        {
+            pAttack.Attack = false;
+            ItemOnHand[0].SetActive(false);
+        }
+        if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
+        {
+            ItemOnHand[1].SetActive(true);
+        }
+        else
+        {
+            ItemOnHand[1].SetActive(false);
+        }
         if (itemSlot != null && itemSlot.gameObject.CompareTag("Scissors"))
         {
             playerPickUpItem.HaveScissor = true;
+            ItemOnHand[2].SetActive(true);
         }
         else
         {
             playerPickUpItem.HaveScissor = false;
+            ItemOnHand[2].SetActive(false);
         }
+        if (itemSlot != null && itemSlot.gameObject.CompareTag("Cloth"))
+        {
+            ItemOnHand[3].SetActive(true);
+        }
+        else
+        {
+            ItemOnHand[3].SetActive(false);
+        }
+
+        #endregion
     }
 
     public void ChangeSelectedSlot(int newValue)
@@ -56,6 +101,11 @@ public class InventoryManager : MonoBehaviour
 
         inventoryslote[newValue].Select();
         selectedSlot = newValue;
+        inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
+        if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
+        {
+            triggerCrossAnim = true;
+        }
     }
 
     public bool AddItem(Item item)

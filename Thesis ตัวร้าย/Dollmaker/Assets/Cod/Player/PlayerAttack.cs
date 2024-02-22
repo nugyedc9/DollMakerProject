@@ -12,14 +12,17 @@ using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour 
 {
-    public float ShootSpeed = 30;
+    public InventoryManager inventoryManager;
+    public PlayerPickUpItem playerPickUpItem;
+    [SerializeField] bool attack;
+    public bool Attack { get { return attack; } set { attack = value; } }
     public float DropSpeed;
     public Camera FpsCam;
     public GameObject projectile;
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool Attack, LightOn, CanDropItem, CrossOnHand, DollOnHand,
+    public bool  LightOn, CanDropItem, CrossOnHand, DollOnHand,
         ClothOnHand, ScissorOnHand, LightOnHand,
         RedClothOnHand, BlueClothOnHand, GreenClothOnHand, YellowClothOnHand
         ;
@@ -193,7 +196,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-
+                curHpCross = playerPickUpItem.curHpCross;
                 if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
                 if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
                 if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
@@ -256,8 +259,9 @@ public class PlayerAttack : MonoBehaviour
         else HolyLight.SetActive(false);
         #endregion
 
-        #region CutRollCloth
-        if(Input.GetMouseButtonDown(0))
+        #region Close Cut roll Cloth
+        /*#region CutRollCloth
+        if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
             {
@@ -325,6 +329,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        #endregion*/
         #endregion
 
         #region Map pause tutorial
@@ -353,7 +358,8 @@ public class PlayerAttack : MonoBehaviour
 
         #endregion
 
-        #region Item Change
+        #region Close Item change
+    /*    #region Item Change
 
         #region Key1
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -852,6 +858,7 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
+        #endregion*/
         #endregion
 
         #region Interect evnet
@@ -2453,21 +2460,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     #region Drop prefeb item
-    void Shoot()
-    {
-        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
-            destination = hit.point;
-        else
-        {
-            destination = ray.GetPoint(1000);
-        }
-
-        Attacking(RH);
-
-    }
     void DropCross()
     {
         Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -2622,11 +2615,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     #region Throw item prefabs
-    void Attacking(Transform FirePoint)
-    {
-        var projectileOBj = Instantiate(projectile, FirePoint.position, Quaternion.identity) as GameObject;
-        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * ShootSpeed;
-    }
+
 
     void DropingCross(Transform FirePoint)
     {
@@ -2681,11 +2670,7 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
-    IEnumerator AttackReset()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Shoot();
-    }
+
 
 #endregion
 
