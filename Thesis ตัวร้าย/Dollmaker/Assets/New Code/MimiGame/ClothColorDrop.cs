@@ -6,8 +6,8 @@ public class ClothColorDrop : MonoBehaviour
 {
     // Start is called before the first frame update
     public CanPlayMini1 canplay;
-    public PlayerAttack PAttack;
     public GameObject[] ClothColor;
+    public InventoryManager inventoryManager;
 
 
     [SerializeField] bool isRed;
@@ -41,29 +41,29 @@ public class ClothColorDrop : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "RedCloth")
+        if (collision.gameObject.tag == "PieceClothRed")
         {
             ClothColor[0].SetActive(true);
             canplay.Cloth = true;
-            PAttack.DropDesignColor();
+            inventoryManager.GetSelectedItem(true);
         }
-        if (collision.gameObject.tag == "BlueCloth")
+        if (collision.gameObject.tag == "PieceClothBlue")
         {
             ClothColor[1].SetActive(true);
             canplay.Cloth = true;
-            PAttack.DropDesignColor();
+            inventoryManager.GetSelectedItem(true);
         }
-        if (collision.gameObject.tag == "GreenCloth")
+        if (collision.gameObject.tag == "PieceClothGreen")
         {
             ClothColor[2].SetActive(true);
             canplay.Cloth = true;
-            PAttack.DropDesignColor();
+            inventoryManager.GetSelectedItem(true);
         }
-        if (collision.gameObject.tag == "YellowCloth")
+        if (collision.gameObject.tag == "PieceClothYellow")
         {
             ClothColor[3].SetActive(true);
             canplay.Cloth = true;
-            PAttack.DropDesignColor();
+            inventoryManager.GetSelectedItem(true);
         }
     }
 

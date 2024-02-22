@@ -19,6 +19,7 @@ public class DragItemCanva : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public MiniGameAuidition minigame;
     public CanPlayMini1 canplayMinIgame;
     public PlayerAttack PushdollCloth;
+    public PlayerPickUpItem playerPickUpItem;
     public Animator ScissorAnim;  
     public bool toOrginal;
     private bool Draging;

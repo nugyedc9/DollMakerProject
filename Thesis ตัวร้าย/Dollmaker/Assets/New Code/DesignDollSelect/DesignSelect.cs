@@ -12,6 +12,9 @@ public class DesignSelect : MonoBehaviour
     public GameObject NextButt,PrevButt,SelectButt;
     public PlayerAttack playerAttack;
 
+    public InventoryManager inventoryManager;
+    public Item[] PieceCloth;
+
     public int PageNum;
     [SerializeField] private bool haveCloth;
     public bool HaveCloth {  get { return haveCloth; } set {  haveCloth = value; } }
@@ -26,7 +29,6 @@ public class DesignSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerAttack.DesignNum = PageNum;
         if (HaveCloth)
         {
             BoxColPushCloth.SetActive(false);
@@ -74,10 +76,10 @@ public class DesignSelect : MonoBehaviour
 
     public void SelectThisDesign()
     {
-            ClothColor[PageNum].SetActive(false);
-            playerAttack.GetclothDesign();
-            BoxColPushCloth.SetActive(true);
-                 HaveCloth = false;      
+        ClothColor[PageNum].SetActive(false);
+        inventoryManager.AddItem(PieceCloth[PageNum]);
+        BoxColPushCloth.SetActive(true);
+        HaveCloth = false;
     }
 
 }

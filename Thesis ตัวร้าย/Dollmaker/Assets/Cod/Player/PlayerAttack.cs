@@ -1124,9 +1124,13 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
-        #region Pick drop item
+        // For new inventory
 
-        if(Itemhave != 0)
+        #region Close Pick up Item
+
+     /*   #region Pick drop item
+
+        if (Itemhave != 0)
         {
             Tutext3.SetActive(true);
             tutorialText3.text = "Select item [1],[2],[3]";
@@ -1763,14 +1767,14 @@ public class PlayerAttack : MonoBehaviour
                             }
                         }
 
-                       /* else if (StoryNow < 5)
+                       *//* else if (StoryNow < 5)
                         {
                             if (hitInfo.collider.gameObject.tag == "Cross")
                             {
                                 Textdialogue.text = "(Not this time. Can only be used 2 times and only be held 1 on hand.)";
                                 dialogCheck = true;
                             }
-                        }*/
+                        }*//*
 #endregion 
 
                         #region Doll
@@ -2172,7 +2176,9 @@ public class PlayerAttack : MonoBehaviour
             }
             #endregion
         }
-        #endregion
+        #endregion*/
+
+#endregion 
 
         // Have drop item on desk
         #region Pick up only
