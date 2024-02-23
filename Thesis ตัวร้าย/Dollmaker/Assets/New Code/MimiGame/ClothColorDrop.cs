@@ -7,6 +7,7 @@ public class ClothColorDrop : MonoBehaviour
     // Start is called before the first frame update
     public CanPlayMini1 canplay;
     public GameObject[] ClothColor;
+    public GameObject hand;
     public InventoryManager inventoryManager;
 
 
@@ -44,24 +45,28 @@ public class ClothColorDrop : MonoBehaviour
         if (collision.gameObject.tag == "PieceClothRed")
         {
             ClothColor[0].SetActive(true);
+            hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothBlue")
         {
             ClothColor[1].SetActive(true);
+            hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothGreen")
         {
             ClothColor[2].SetActive(true);
+            hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothYellow")
         {
             ClothColor[3].SetActive(true);
+            hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
@@ -73,5 +78,6 @@ public class ClothColorDrop : MonoBehaviour
         IsBlue = false;
         IsGreen = false;
         IsYellow = false;
+        hand.SetActive(false);
     }
 }

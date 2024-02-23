@@ -30,7 +30,7 @@ public class CanPlayMini1 : MonoBehaviour
     public GameObject TotalDollCanva;
     public TextMeshProUGUI TotalDoll;
     public Animator animator;
-    public Animator ClothMove;
+    public Animator ClothMove, HAndMove;
 
     [Header("Finish doll")]
     public GameObject[] FinshDoll;
@@ -49,6 +49,8 @@ public class CanPlayMini1 : MonoBehaviour
         CurrentDesSpawn = DestinationItemSpawn[ReadNumSpawn];*/
        animator.enabled = false;
        ClothMove.enabled = false;
+        HAndMove.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -66,6 +68,7 @@ public class CanPlayMini1 : MonoBehaviour
         }
         else
         {
+            DropClothHere.SetActive(true);
             DeskView.CanplayMinigame = false;
             minigame.SetActive(false );
             minigamestate.LeaveMinigame();

@@ -6,16 +6,15 @@ using UnityEngine;
 public class PlayerPickUpItem : MonoBehaviour
 {
     public InventoryManager inventoryManager;
-    public Item[] itemPickUp;
+    [SerializeField] Item[] ItemPickUp;
+    public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
 
     [Header("CrossThing")]
+    public PlayerAttack PAttack;
     private CrossCheck CrossUse;
-    [SerializeField] float CurHpCross;
-    public float curHpCross { get { return CurHpCross;  } set { CurHpCross = value; } }
 
     [Header("Pick Up")]
     public float Pickrange;
-    public float DropSpeed;
     public Camera FpsCam;
     public Transform pickUPPoint;
 
@@ -35,9 +34,14 @@ public class PlayerPickUpItem : MonoBehaviour
                 if (hitInfo.collider.gameObject.tag == "Cross")
                 {
                     CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                    curHpCross = CrossUse.curHp;
+                    PAttack.curHpCross = CrossUse.curHp;
                     inventoryManager.TriggerCrossAnim = true;
+                    if(CrossUse.curHp == 3)
                     inventoryManager.AddItem(itemPickUp[0]);
+                    if (CrossUse.curHp == 2)
+                        inventoryManager.AddItem(itemPickUp[4]);
+                    if (CrossUse.curHp == 1)
+                        inventoryManager.AddItem(itemPickUp[5]);
                     Destroy(hitInfo.collider.gameObject);
                 }
                 if (hitInfo.collider.gameObject.tag == "Doll")

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7707510810997688507}
   m_Layer: 0
   m_Name: DsiCloth Red
-  m_TagString: Scissors
+  m_TagString: RedCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -0.000015258789}
+  m_AnchoredPosition: {x: 18, y: -0.000015258789}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5030878501747063883
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cde4c3a90a2c6e448a914592ccb0aa49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3ec4f84559833459293af701b1553a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -97,6 +97,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 7707510810997688507}
   toOrginal: 1
 --- !u!61 &5441451529962417615
@@ -320,6 +321,90 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.4720764, z: 1}
   m_Center: {x: 0, y: -1.0139618, z: 0}
+--- !u!1 &412828154715594734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4271204076649420754}
+  - component: {fileID: 522952620286749834}
+  m_Layer: 0
+  m_Name: 'GreenClothDesign '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4271204076649420754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412828154715594734}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012176326, y: -0.02343334, z: -0.41360927, w: 0.9100714}
+  m_LocalPosition: {x: 0.44899088, y: -0.2720003, z: 0.617}
+  m_LocalScale: {x: 0.01843926, y: 0.018439256, z: 0.01843926}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7483406523760918825}
+  m_LocalEulerAnglesHint: {x: -2.381, y: -1.869, z: -48.843}
+--- !u!212 &522952620286749834
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412828154715594734}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3a57e8ca3cb1d6c42bc1ff2705d818b1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.8, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &455711859945762540
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +422,7 @@ GameObject:
   - component: {fileID: 2726413711006841867}
   m_Layer: 0
   m_Name: DsiCloth Red
-  m_TagString: Scissors
+  m_TagString: RedCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 7, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3611901106335780045
@@ -389,7 +474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cde4c3a90a2c6e448a914592ccb0aa49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3ec4f84559833459293af701b1553a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -417,6 +502,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 2726413711006841867}
   toOrginal: 1
 --- !u!61 &2059082826200554353
@@ -715,6 +801,263 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1386476482458683542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3816342988706175253}
+  - component: {fileID: 804661174956078168}
+  - component: {fileID: 5711612525734099800}
+  - component: {fileID: 8440237223344154881}
+  - component: {fileID: 2246927750411177956}
+  - component: {fileID: 2853288739562713646}
+  m_Layer: 0
+  m_Name: PushclothOnDesk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &3816342988706175253
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6945389445198952704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 560, y: 538}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &804661174956078168
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_CullTransparentMesh: 1
+--- !u!114 &5711612525734099800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!50 &8440237223344154881
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2246927750411177956
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+  m_EdgeRadius: 0
+--- !u!114 &2853288739562713646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386476482458683542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec87eba610bfa24588f7b1ace897642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canplay: {fileID: 0}
+  ClothColor:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryManager: {fileID: 0}
+  isRed: 0
+  isBlue: 0
+  isGreen: 0
+  isYellow: 0
+--- !u!1 &1760478680243871667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 851308622202326785}
+  - component: {fileID: 2291564340799289837}
+  m_Layer: 0
+  m_Name: RedClothDesign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &851308622202326785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760478680243871667}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012176326, y: -0.02343334, z: -0.41360927, w: 0.9100714}
+  m_LocalPosition: {x: 0.44899088, y: -0.2720003, z: 0.617}
+  m_LocalScale: {x: 0.01843926, y: 0.018439256, z: 0.01843926}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7483406523760918825}
+  m_LocalEulerAnglesHint: {x: -2.381, y: -1.869, z: -48.843}
+--- !u!212 &2291564340799289837
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760478680243871667}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: bb18936841ca29d45aae2c02c7e96fd2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.8, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1891359616105377574
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +1150,7 @@ GameObject:
   - component: {fileID: 8964093100005196601}
   m_Layer: 0
   m_Name: DsiCloth Blue
-  m_TagString: Scissors
+  m_TagString: BlueCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,7 +1171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 7.000305, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8511749323446303048
@@ -859,7 +1202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0a0256a680780342be9667af000a666, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2b057bea00db5547b9592962508ad4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -887,6 +1230,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 8964093100005196601}
   toOrginal: 1
 --- !u!61 &561198866160895406
@@ -1013,6 +1357,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8234528189086598866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2857826076854273932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7260876026059512104}
+  - component: {fileID: 5505299252021259687}
+  m_Layer: 0
+  m_Name: 'YellowClothDesign '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7260876026059512104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857826076854273932}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012176326, y: -0.02343334, z: -0.41360927, w: 0.9100714}
+  m_LocalPosition: {x: 0.44899088, y: -0.2720003, z: 0.617}
+  m_LocalScale: {x: 0.01843926, y: 0.018439256, z: 0.01843926}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7483406523760918825}
+  m_LocalEulerAnglesHint: {x: -2.381, y: -1.869, z: -48.843}
+--- !u!212 &5505299252021259687
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857826076854273932}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f264d9e0463ff824689b4dc5e443e03e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.8, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &3435142151980059495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1458,7 @@ GameObject:
   - component: {fileID: 9210607602201206879}
   m_Layer: 0
   m_Name: DsiCloth Blue
-  m_TagString: Scissors
+  m_TagString: BlueCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1051,7 +1479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -0.000015258789}
+  m_AnchoredPosition: {x: 18.000162, y: -0.000015258789}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4653692134212887056
@@ -1082,7 +1510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0a0256a680780342be9667af000a666, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2b057bea00db5547b9592962508ad4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1110,6 +1538,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 9210607602201206879}
   toOrginal: 1
 --- !u!61 &4952628178872202496
@@ -1222,7 +1651,7 @@ GameObject:
   - component: {fileID: 1237438891682655385}
   m_Layer: 0
   m_Name: DsiCloth Blue
-  m_TagString: Scissors
+  m_TagString: BlueCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,7 +1672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 8.000214, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1521691838881436713
@@ -1274,7 +1703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0a0256a680780342be9667af000a666, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2b057bea00db5547b9592962508ad4c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1302,6 +1731,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 1237438891682655385}
   toOrginal: 1
 --- !u!61 &763325759118641640
@@ -1910,9 +2340,10 @@ GameObject:
   - component: {fileID: 8516404919319649045}
   - component: {fileID: 8821731757176060354}
   - component: {fileID: 6831798756799521658}
+  - component: {fileID: 5076101728002985304}
   - component: {fileID: 2626959476714156206}
-  - component: {fileID: 1554170836655465111}
   - component: {fileID: 82982119938401807}
+  - component: {fileID: 1554170836655465111}
   - component: {fileID: 1171484492896332261}
   - component: {fileID: 5273760247729706253}
   - component: {fileID: 593105749087420427}
@@ -1993,6 +2424,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5076101728002985304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866211288587781979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e218f24f5d9bf44a21835269b824c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 0}
+  ItemPickUp:
+  - {fileID: 11400000, guid: e7ae262d1015d634fbb3bc73f4262db5, type: 2}
+  - {fileID: 11400000, guid: 471c4c2acb66a6f47b742a0f16b7f6ca, type: 2}
+  - {fileID: 11400000, guid: a19d2d671bf12cd48b63c457fa6ebc6b, type: 2}
+  - {fileID: 11400000, guid: 98907b219ecd0ab499255a6c5f845384, type: 2}
+  - {fileID: 11400000, guid: 555221854dd2f2547b0d6cc424c728ca, type: 2}
+  - {fileID: 11400000, guid: 06be617e2ddf00f4b81b738f1a231ac4, type: 2}
+  PAttack: {fileID: 2626959476714156206}
+  Pickrange: 3
+  FpsCam: {fileID: 7906935934189376604}
+  pickUPPoint: {fileID: 8696058728534858003}
+  haveScissor: 0
 --- !u!114 &2626959476714156206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2005,14 +2461,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21073273d37dfd4ba1efd6516d1957b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootSpeed: 30
+  inventoryManager: {fileID: 0}
+  playerPickUpItem: {fileID: 5076101728002985304}
+  attack: 0
   DropSpeed: 0.7
   FpsCam: {fileID: 7906935934189376604}
   projectile: {fileID: 2083978850426202078, guid: 768ecdea686ec6b469ee0b9a63897a58, type: 3}
   RH: {fileID: 8696058728534858003}
   pickUPPoint: {fileID: 8696058728534858003}
   InterectRange: 3
-  Attack: 0
   LightOn: 0
   CanDropItem: 0
   CrossOnHand: 0
@@ -2042,10 +2499,10 @@ MonoBehaviour:
   DollR: {fileID: 8420297424406689685}
   ClothR: {fileID: 8607653475155331656}
   ScissorR: {fileID: 5336093732970001882}
-  RedClothR: {fileID: 0}
-  BlueClothR: {fileID: 0}
-  GreenClothR: {fileID: 0}
-  YellowClothR: {fileID: 0}
+  RedClothR: {fileID: 1760478680243871667}
+  BlueClothR: {fileID: 8770274763884232350}
+  GreenClothR: {fileID: 412828154715594734}
+  YellowClothR: {fileID: 2857826076854273932}
   itemInventory1:
   - {fileID: 4466160808263408625}
   - {fileID: 4004366932794341196}
@@ -2090,11 +2547,11 @@ MonoBehaviour:
   DollD: {fileID: 5009292507613138829, guid: 1c87a8c625414dd46951d20958e86752, type: 3}
   ClothD: {fileID: 6726076863665141871, guid: 94158f682c565634c951017d5a9b09eb, type: 3}
   ScissorD: {fileID: 8521354865205159788, guid: 2820d4e40f0f7244cb785973aa797a35, type: 3}
-  RedClothD: {fileID: 0}
-  BlueClothD: {fileID: 0}
-  GreenClothD: {fileID: 0}
-  YellowClothD: {fileID: 0}
-  curHpCross: 0
+  RedClothD: {fileID: 8957585551877475673, guid: f3ba3eef3d6a925489327cb6f47fd5b4, type: 3}
+  BlueClothD: {fileID: 1435321656669201183, guid: c96a41ebcb67b6a4e9e71fc054556355, type: 3}
+  GreenClothD: {fileID: 5568988472054750062, guid: 9cee2a1b8e0f6464b944ade6923a3c93, type: 3}
+  YellowClothD: {fileID: 3732967281788146519, guid: fa5ba3c3226d7a24b83a640cb8c5f33d, type: 3}
+  CurHpCross: 0
   designSelect: {fileID: 0}
   designNum: 0
   Light: {fileID: 0}
@@ -2112,7 +2569,7 @@ MonoBehaviour:
   - Ghost cum need to be quiet
   Textdialogue: {fileID: 703131151852546890}
   InterectAble: {fileID: 3224470534250846025}
-  InterectSprite: {fileID: 21300000, guid: 0a7733558edbccb4d820d8b84ebea528, type: 3}
+  InterectSprite: {fileID: 21300000, guid: 07b44bf95f8f77b48bd8774c703fed80, type: 3}
   pointSprite: {fileID: 21300000, guid: 1a333ecf568d20244bb2c285237a98df, type: 3}
   ItemText: {fileID: 8391464366535727479}
   ItemName: {fileID: 5355840888203718606}
@@ -2158,7 +2615,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2170,7 +2627,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2182,7 +2639,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2194,7 +2651,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2209,7 +2666,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: UnLockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2221,7 +2678,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: UnLockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2233,7 +2690,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: UnLockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2245,7 +2702,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: UnLockDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2260,7 +2717,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2272,7 +2729,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: Jump1Atctive
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2287,7 +2744,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2299,7 +2756,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2311,7 +2768,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2323,7 +2780,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2335,7 +2792,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2347,7 +2804,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2359,7 +2816,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2371,7 +2828,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2383,7 +2840,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2398,7 +2855,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2410,7 +2867,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2422,7 +2879,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2434,7 +2891,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2449,7 +2906,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: Key1
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2461,7 +2918,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2476,7 +2933,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Event, Assembly-CSharp
-        m_MethodName: GhostEvent1
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2488,7 +2945,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2500,7 +2957,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2515,7 +2972,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Event, Assembly-CSharp
-        m_MethodName: GhostEvent12
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2527,7 +2984,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2539,7 +2996,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2554,7 +3011,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Event, Assembly-CSharp
-        m_MethodName: GhostEvent2
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2566,7 +3023,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2581,7 +3038,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Event, Assembly-CSharp
-        m_MethodName: GhostEvent21
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2593,7 +3050,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2608,7 +3065,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Event, Assembly-CSharp
-        m_MethodName: GhostEvent3
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2620,7 +3077,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2635,7 +3092,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+        m_MethodName: 
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2650,7 +3107,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MiniG2, Assembly-CSharp
-        m_MethodName: GetFinishDoll
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2662,7 +3119,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: player.Player, Assembly-CSharp
-        m_MethodName: Jump4Doll
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2677,7 +3134,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockEvent
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2707,7 +3164,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Ghost, Assembly-CSharp
-        m_MethodName: endgame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2717,21 +3174,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1554170836655465111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4866211288587781979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69108dcad8889a4caaf6be10b254299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  gravity: -9.8
-  jumpHeight: 1.5
 --- !u!114 &82982119938401807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2758,13 +3200,28 @@ MonoBehaviour:
   ItemOnPlayer: {fileID: 5350020539525674954}
   TextOnPlayer: {fileID: 2702947236162340056}
   pushHere: {fileID: 3711283130684128396}
-  DropHere: {fileID: 0}
+  DropHere: {fileID: 1386476482458683542}
   DesignSelect: {fileID: 2724515913244746235}
   Book: {fileID: 0}
   PushBookDown: {fileID: 0}
   WorkShopBoxCol: {fileID: 0}
   Throwitem: {fileID: 2626959476714156206}
   canplayMinigame: 0
+--- !u!114 &1554170836655465111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866211288587781979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69108dcad8889a4caaf6be10b254299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  gravity: -9.8
+  jumpHeight: 1.5
 --- !u!114 &1171484492896332261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3042,7 +3499,7 @@ GameObject:
   - component: {fileID: 888236301125485776}
   m_Layer: 0
   m_Name: DsiCloth Yellow
-  m_TagString: Scissors
+  m_TagString: YellowCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3063,7 +3520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -0.000015258789}
+  m_AnchoredPosition: {x: 18.000162, y: -0.000015258789}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7210332015112777782
@@ -3094,7 +3551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7acca9fe66b38ca40b289f8d08f6855b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f264d9e0463ff824689b4dc5e443e03e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3122,6 +3579,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 888236301125485776}
   toOrginal: 1
 --- !u!61 &9015289035154772103
@@ -3234,7 +3692,7 @@ GameObject:
   - component: {fileID: 4327132961233512963}
   m_Layer: 0
   m_Name: DsiCloth Yellow
-  m_TagString: Scissors
+  m_TagString: YellowCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3255,7 +3713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 7.000305, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9068979346896182936
@@ -3286,7 +3744,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7acca9fe66b38ca40b289f8d08f6855b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f264d9e0463ff824689b4dc5e443e03e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3314,6 +3772,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 4327132961233512963}
   toOrginal: 1
 --- !u!61 &3757747016585128737
@@ -3810,7 +4269,7 @@ GameObject:
   - component: {fileID: 3756914293649188700}
   m_Layer: 0
   m_Name: DsiCloth Green
-  m_TagString: Scissors
+  m_TagString: GreenCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3831,7 +4290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 8.000214, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6181542353518552432
@@ -3862,7 +4321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9be5a2f2bcecc0a42a97e7cf0f505481, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a57e8ca3cb1d6c42bc1ff2705d818b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3890,6 +4349,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 3756914293649188700}
   toOrginal: 1
 --- !u!61 &8828628718468551646
@@ -4129,7 +4589,7 @@ GameObject:
   - component: {fileID: 4710558067380627671}
   m_Layer: 0
   m_Name: DsiCloth Green
-  m_TagString: Scissors
+  m_TagString: GreenCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4150,7 +4610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -0.000015258789}
+  m_AnchoredPosition: {x: 18.000162, y: -0.000015258789}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8936889410870440711
@@ -4181,7 +4641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9be5a2f2bcecc0a42a97e7cf0f505481, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a57e8ca3cb1d6c42bc1ff2705d818b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4209,6 +4669,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 4710558067380627671}
   toOrginal: 1
 --- !u!61 &2726370257921776597
@@ -4321,7 +4782,7 @@ GameObject:
   - component: {fileID: 3088233954939062273}
   m_Layer: 0
   m_Name: DsiCloth Yellow
-  m_TagString: Scissors
+  m_TagString: YellowCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4342,7 +4803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 8.000214, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8000196335766326074
@@ -4373,7 +4834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7acca9fe66b38ca40b289f8d08f6855b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f264d9e0463ff824689b4dc5e443e03e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4401,6 +4862,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 3088233954939062273}
   toOrginal: 1
 --- !u!61 &9172871386428600859
@@ -4513,7 +4975,7 @@ GameObject:
   - component: {fileID: 5818780962719081438}
   m_Layer: 0
   m_Name: DsiCloth Green
-  m_TagString: Scissors
+  m_TagString: GreenCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4534,7 +4996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 7.000305, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6881394293362232857
@@ -4565,7 +5027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9be5a2f2bcecc0a42a97e7cf0f505481, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a57e8ca3cb1d6c42bc1ff2705d818b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4593,6 +5055,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 5818780962719081438}
   toOrginal: 1
 --- !u!61 &5262523094271628804
@@ -4688,6 +5151,90 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8770274763884232350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4535637229768085605}
+  - component: {fileID: 6742928740275926100}
+  m_Layer: 0
+  m_Name: 'BlueClothDesign '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4535637229768085605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770274763884232350}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012176326, y: -0.02343334, z: -0.41360927, w: 0.9100714}
+  m_LocalPosition: {x: 0.44899088, y: -0.2720003, z: 0.617}
+  m_LocalScale: {x: 0.01843926, y: 0.018439256, z: 0.01843926}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7483406523760918825}
+  m_LocalEulerAnglesHint: {x: -2.381, y: -1.869, z: -48.843}
+--- !u!212 &6742928740275926100
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770274763884232350}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49384c08dcd686248a5de17595a1de3a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c0a0256a680780342be9667af000a666, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.8, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &8842740392342046653
 GameObject:
   m_ObjectHideFlags: 0
@@ -4705,7 +5252,7 @@ GameObject:
   - component: {fileID: 4299995925314935648}
   m_Layer: 0
   m_Name: DsiCloth Red
-  m_TagString: Scissors
+  m_TagString: RedCloth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4718,7 +5265,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8842740392342046653}
   m_LocalRotation: {x: -0.000000014901156, y: -0.000000029802312, z: -0.37558734, w: 0.92678696}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000018383324}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.65970755, y: 0.65970755, z: 0.6597075}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4726,7 +5273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.121}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -348.00073, y: 0.000045776367}
+  m_AnchoredPosition: {x: 8, y: 0.000045776367}
   m_SizeDelta: {x: 430, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6732516262077805025
@@ -4757,7 +5304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cde4c3a90a2c6e448a914592ccb0aa49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba3ec4f84559833459293af701b1553a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4785,6 +5332,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 0}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 4299995925314935648}
   toOrginal: 1
 --- !u!61 &1337311372999973420
@@ -5008,6 +5556,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2626959476714156206}
+    - target: {fileID: 7578658010953077285, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7707002734046019094, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5179,6 +5731,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3256585228251726496, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8387985432836989647}
+    - targetCorrespondingSourceObject: {fileID: 5320634504245533727, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3816342988706175253}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6966429580860495247, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
       insertIndex: -1
@@ -5303,6 +5858,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6967606310337611889, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2462600481242813453}
+    - targetCorrespondingSourceObject: {fileID: 899355204165780708, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2326328420136742503}
   m_SourcePrefab: {fileID: 100100000, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
 --- !u!1 &4509427604093617 stripped
 GameObject:
@@ -5763,6 +6321,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 899355204165780708, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
   m_PrefabInstance: {fileID: 3005108226882102559}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2326328420136742503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724515913244746235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efebf006a3c6e2b4b8d3a148befa730e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  designSelect: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  cloth: {fileID: 0}
 --- !u!1 &2775908354993750452 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1095021169449919659, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
@@ -6028,6 +6601,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!1 &4102470123217902871 stripped
@@ -6126,10 +6700,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
-  cloth: 0
+  cloth: 1
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!1 &4205008468716852428 stripped
@@ -6296,6 +6871,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!1 &4466160808263408625 stripped
@@ -6394,10 +6970,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
-  cloth: 0
+  cloth: 1
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!95 &4619988499350642813 stripped
@@ -6681,6 +7258,7 @@ MonoBehaviour:
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!224 &6027056074115850943 stripped
@@ -6789,10 +7367,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cloth: {fileID: 0}
   designSelect: {fileID: 0}
-  cloth: 0
+  cloth: 1
   minigame: {fileID: 0}
   canplayMinIgame: {fileID: 0}
   PushdollCloth: {fileID: 2626959476714156206}
+  playerPickUpItem: {fileID: 0}
   ScissorAnim: {fileID: 0}
   toOrginal: 1
 --- !u!1 &6903715272384473017 stripped
@@ -6872,6 +7451,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30, y: 30}
   m_EdgeRadius: 0
+--- !u!4 &6945389445198952704 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5320634504245533727, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
+  m_PrefabInstance: {fileID: 3005108226882102559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6994306045184546723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5234465110549787324, guid: 9a6a200d7b7d00643b00539c5b342800, type: 3}
@@ -7090,6 +7674,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2814256077191695930, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 738202901154207512}
+    - targetCorrespondingSourceObject: {fileID: 2814256077191695930, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 851308622202326785}
+    - targetCorrespondingSourceObject: {fileID: 2814256077191695930, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4535637229768085605}
+    - targetCorrespondingSourceObject: {fileID: 2814256077191695930, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4271204076649420754}
+    - targetCorrespondingSourceObject: {fileID: 2814256077191695930, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7260876026059512104}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 418797158735681235, guid: 088b506f3e2a1c34b9cf7f65edeb0bac, type: 3}
       insertIndex: -1

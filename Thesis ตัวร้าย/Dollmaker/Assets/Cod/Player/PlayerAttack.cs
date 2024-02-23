@@ -72,7 +72,8 @@ public class PlayerAttack : MonoBehaviour
         ;
 
     [Header("CrossAction")]
-    public float curHpCross;
+    [SerializeField] private float CurHpCross;
+    public float curHpCross { get { return CurHpCross; } set { CurHpCross = value; } }
     private bool crossruin;
 
     [Header("GetDesignCloth")]
@@ -191,12 +192,21 @@ public class PlayerAttack : MonoBehaviour
     {
         Ray r = new Ray(RH.position, RH.forward);
 
-        #region Attack
-        if (Attack)
+        if (Physics.Raycast(r, out RaycastHit hitCross, Pickrange))
+        {
+            if (hitCross.collider.gameObject.tag == "Cross")
+            {
+                if (Crosshave != 1)
+                {
+                    CrossUse = hitCross.collider.gameObject.GetComponent<CrossCheck>();
+                }
+            }
+        }
+                            #region Attack
+                            if (Attack)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                curHpCross = playerPickUpItem.curHpCross;
                 if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
                 if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
                 if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
@@ -211,8 +221,10 @@ public class PlayerAttack : MonoBehaviour
                     if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
                     if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
                     if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
-                
-                if (CrossInv1)
+
+                #region didn't Use
+
+               /* if (CrossInv1)
                 {
                     if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
                     if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
@@ -231,7 +243,8 @@ public class PlayerAttack : MonoBehaviour
                     if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
                     if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
                     if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
-                }
+                }*/
+                #endregion
 
                 Holddown = false;
             }
@@ -1135,9 +1148,9 @@ public class PlayerAttack : MonoBehaviour
 
         #region Close Pick up Item
 
-     /*   #region Pick drop item
+       #region Pick drop item
 
-        if (Itemhave != 0)
+     /*   if (Itemhave != 0)
         {
             Tutext3.SetActive(true);
             tutorialText3.text = "Select item [1],[2],[3]";
@@ -1654,8 +1667,9 @@ public class PlayerAttack : MonoBehaviour
 
                 }
             }
+     */
             #endregion
-
+        /*
             // if don't have item
             if (Itemhave == 0)
             {
@@ -2975,6 +2989,11 @@ public class PlayerAttack : MonoBehaviour
         if (crossruin)
         {
             curHpCross--;
+       /*     inventoryManager.GetSelectedItem(true);
+            if(curHpCross == 2)
+            inventoryManager.AddItem(playerPickUpItem.itemPickUp[4]);
+            if(curHpCross == 1)
+                inventoryManager.AddItem(playerPickUpItem.itemPickUp[5]);*/
             CrossUse.curHp = curHpCross;
             if(curHpCross == 0) curHpCross = 1;
             crossruin = false;

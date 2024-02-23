@@ -9,7 +9,7 @@ public class PlayerChangeCam : MonoBehaviour
     [Header ("Camera")]
     [SerializeField] CinemachineVirtualCamera FirstpersonView;
     [SerializeField] CinemachineVirtualCamera WorkShopView;
-    [SerializeField] CinemachineVirtualCamera MachineCloseUp;
+    [SerializeField] CinemachineVirtualCamera ChangeViewOnDesk;
     [SerializeField] CinemachineVirtualCamera DeskShopView;
     [SerializeField] CinemachineVirtualCamera BedCam;
 
@@ -21,12 +21,16 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
+    public GameObject HandSwing;
     public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
 
     [Header("SelectDesign")]
     public GameObject DesignSelect;
     public GameObject Book;
-    public Animator PushBookDown;
+
+    [Header("TurnCam")]
+    public GameObject TurnOut;
+    public GameObject TurnIn;
 
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
@@ -44,7 +48,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         ChangePOV.Register(FirstpersonView);
         ChangePOV.Register(WorkShopView);
-        ChangePOV.Register(MachineCloseUp);
+        ChangePOV.Register(ChangeViewOnDesk);
         ChangePOV.Register(BedCam);
         ChangePOV.Register(DeskShopView);
         ChangePOV.SwitchCamera(BedCam);
@@ -54,7 +58,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         ChangePOV.UnRegister(FirstpersonView);
         ChangePOV.UnRegister(WorkShopView);
-        ChangePOV.UnRegister(MachineCloseUp);
+        ChangePOV.UnRegister(ChangeViewOnDesk);
         ChangePOV.UnRegister(DeskShopView);
         ChangePOV.UnRegister(BedCam);
     }
@@ -123,6 +127,9 @@ public class PlayerChangeCam : MonoBehaviour
                         TextOnPlayer.SetActive(false);
                             DropHere.SetActive(true);                        
                         CamOnDesk = true;
+                        LookOutGhost = false;
+                        TurnOut.SetActive(true);
+                        TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(WorkShopView);
                         StartCoroutine(DelayCamera());
                     }
@@ -175,6 +182,7 @@ public class PlayerChangeCam : MonoBehaviour
         if (CamOnPerson)
         {
             CloseMouse();
+            HandSwing.SetActive(false);
             miniGame.SetActive(false);
         }
         else
@@ -184,9 +192,18 @@ public class PlayerChangeCam : MonoBehaviour
             {
                 if (canplayMinigame)
                 {
+                    HandSwing.SetActive(true);
                     miniGame.SetActive(true);
                 }
                 else
+                {
+                    HandSwing.SetActive(false );
+                    miniGame.SetActive(false);
+                }
+            }
+            if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
+            {
+                if (canplayMinigame)
                 {
                     miniGame.SetActive(false);
                 }
@@ -208,6 +225,8 @@ public class PlayerChangeCam : MonoBehaviour
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         DropHere.SetActive(false);
+                        TurnOut.SetActive(false);
+                        TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
@@ -223,19 +242,20 @@ public class PlayerChangeCam : MonoBehaviour
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
-                }
-                #region Didn't use
-                if (!CamOnDesk)
-                {
-                    if (ChangePOV.IsActiveCamera(MachineCloseUp))
+                    else if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
                     {
-                        miniGame.SetActive(false);
-                        ChangePOV.SwitchCamera(WorkShopView);
-                        CamOnDesk = true;
-                        CamOnPerson = false;
+                        WorkShopBoxCol.enabled = true;
+                        _InputManager.StopWalk();
+                        Throwitem.CanAttack();
+                        ItemOnPlayer.SetActive(true);
+                        TextOnPlayer.SetActive(true);
+                        DropHere.SetActive(false);
+                        ChangePOV.SwitchCamera(FirstpersonView);
+                        minigamestate.LeaveMinigame();
+                        CamOnPerson = true;
                     }
                 }
-                #endregion
+
             }
 
         }
@@ -275,6 +295,32 @@ public class PlayerChangeCam : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
+    bool LookOutGhost;
+    public void TrunView()
+    {
+        if (!LookOutGhost)
+        {
+            if (ChangePOV.IsActiveCamera(WorkShopView))
+            {
+                ChangePOV.SwitchCamera(ChangeViewOnDesk);
+                LookOutGhost = true;
+            }
+        }
+        else
+        {
+            if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
+            {
+                if (canplayMinigame)
+                {
+                    miniGame.SetActive(true);
+                }
+                ChangePOV.SwitchCamera(WorkShopView);
+                LookOutGhost=false;
+            } 
+        }
     }
 
 }

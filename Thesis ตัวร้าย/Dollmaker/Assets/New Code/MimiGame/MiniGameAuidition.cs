@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 
 public enum MiniGameAuditionState { Start, ClearSkillCheck, FailSkillCheck, ClearTimeOut, FinishSkillCheck, LeaveDesk, ItemLost };
@@ -14,7 +15,7 @@ public class MiniGameAuidition : MonoBehaviour
     public GameObject MiniGameAuditionActive;
     public CanPlayMini1 canPlay;
     public ClothColorDrop clothColorDrop;
-    public Ghost GhostcomeTocheck;
+    public GhostStateManager GhostcomeTocheck;
 
     [Header("Bar")]
     public MiniG2Bar Bar;
@@ -45,19 +46,19 @@ public class MiniGameAuidition : MonoBehaviour
 
     [Header("Animator")]
     public Animator Needle;
-    public Animator ClothMove;
+    public Animator ClothMove, handMove;
 
     [SerializeField] bool haveitem;
     public bool HaveItem { get { return haveitem; } set { haveitem = value; } }
     [SerializeField] bool CutLine;
-    public bool cutLine { get { return cutLine; } set {  cutLine = value; } }
+    public bool cutLine { get { return CutLine; } set {  CutLine = value; } }
 
     Queue<float> AuditionPass = new Queue<float>();
 
-    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking;
+    private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking, GetHurt;
     public bool Finish;
     private int CurrectPass, FinishDollHave;
-    private float FailDelay, ClothPlayanim;
+    private float  ClothPlayanim;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
@@ -81,12 +82,17 @@ public class MiniGameAuidition : MonoBehaviour
                 Needle.Play("NeedleAnim");
                 //ClothMove.Play("ClothAnim");
             }
+            if (!GetHurt)
+            {
+                handMove.Play("Handsewing");
+            }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             HoldSpace = false; 
             Needle.enabled = false;
             ClothMove.enabled = false;
+            handMove.enabled = false;
         }
 
         if (HoldSpace && HaveItem)
@@ -105,6 +111,7 @@ public class MiniGameAuidition : MonoBehaviour
                 NeedleWorking = true;
                 Needle.enabled = true;
                 ClothMove.enabled = true;
+                handMove.enabled = true;
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
@@ -118,7 +125,6 @@ public class MiniGameAuidition : MonoBehaviour
                 else
                 {
                     _Currentstate = MiniGameAuditionState.ClearSkillCheck;
-                    FailDelay = 2;
                     SlotAuditionPass = 0;
                     Fail = false;
                 }
@@ -128,7 +134,8 @@ public class MiniGameAuidition : MonoBehaviour
             {
                 Needle.enabled = true;
                 ClothMove.enabled = true;
-      
+                handMove.enabled= true;
+                handMove.Play("Handsewing");
 
                 if (CurrectPass == 5)
                 {
@@ -149,6 +156,7 @@ public class MiniGameAuidition : MonoBehaviour
                 else
                 {
                     ClothMove.enabled = false;
+                    handMove.enabled = false ;
                 }
                 if (AuditionPass.Peek() == 0)
                 {
@@ -160,6 +168,7 @@ public class MiniGameAuidition : MonoBehaviour
                         CurrectFrame(0);
                         printPeek = false;
                         ClothMove.enabled = true;
+                        handMove.enabled = true;
                         SpawnAuditionPassPrefabs(0);
                     }
 
@@ -169,7 +178,8 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
-                        printPeek = false;
+                        CutHere.SetActive(true);
+                        printPeek = false;cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(0);
                     }
@@ -184,6 +194,7 @@ public class MiniGameAuidition : MonoBehaviour
                         curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
+                        handMove.enabled = true;
                         SpawnAuditionPassPrefabs(1);
                     }
 
@@ -193,7 +204,9 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.A))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
+                        CutHere.SetActive(true);
                         printPeek = false;
+                        cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(1);
                     }
@@ -208,6 +221,7 @@ public class MiniGameAuidition : MonoBehaviour
                         curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
+                        handMove.enabled = true;
                         SpawnAuditionPassPrefabs(2);
                     }
 
@@ -217,7 +231,9 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.S))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
+                        CutHere.SetActive(true);
                         printPeek = false;
+                        cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(2);
                     }
@@ -232,6 +248,7 @@ public class MiniGameAuidition : MonoBehaviour
                         curBar += 5;
                         printPeek = false;
                         ClothMove.enabled = true;
+                        handMove.enabled = true;
                         SpawnAuditionPassPrefabs(3);
                     }
 
@@ -241,7 +258,9 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.D))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
+                        CutHere.SetActive(true);
                         printPeek = false;
+                        cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(3);
                     }
@@ -252,12 +271,14 @@ public class MiniGameAuidition : MonoBehaviour
             }
 
             if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
-            {              
-                FailDelay -= Time.deltaTime;
+            {
+                GetHurt = true;
+                handMove.enabled = true;
+                handMove.Play("Handhurtsewing");
                 if (!Fail)
                 {
                     curBar -= 20;
-                    GhostcomeTocheck.PlayerFailSkillCheck();
+                  //  GhostcomeTocheck.PlayerFailSkillCheck();
                     audioSource.clip = GhostNotice;
                     audioSource.Play();
                     NeedleWorking = false;
@@ -265,8 +286,9 @@ public class MiniGameAuidition : MonoBehaviour
                     ClothMove.enabled = false;
                     Fail = true;
                 }
-                if (FailDelay < 0)
+                if (cutLine)
                 {
+                    CutHere.SetActive(false);
                     AuditionPass.Clear();
                     AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
                     foreach (GameObject SpawnOnSceen in AuditionOnSceen)
@@ -279,33 +301,14 @@ public class MiniGameAuidition : MonoBehaviour
                         Destroy(FrameOnScene);
                     }
                     SlotAuditionPass = 0;
-                    CurrectPass = 0;                 
+                    CurrectPass = 0;
+                    GetHurt = false;
                     _Currentstate = MiniGameAuditionState.Start;
                 }
                 //print("Fail");
             }
 
             
-
-            if(_Currentstate == MiniGameAuditionState.ClearTimeOut)
-            {
-                FailDelay -= Time.deltaTime;
-                if (FailDelay < 0)
-                {
-                    AuditionPass.Clear();
-                    Needle.enabled = false;
-                    ClothMove.enabled = false;
-                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
-                    {
-                        Destroy(SpawnOnSceen);
-                    }
-                    CutHere.SetActive(false);
-                    SlotAuditionPass = 0;
-                    CurrectPass = 0;
-                    _Currentstate = MiniGameAuditionState.Start;
-                }
-            }
 
             if (_Currentstate == MiniGameAuditionState.FinishSkillCheck)
             {
@@ -327,7 +330,7 @@ public class MiniGameAuidition : MonoBehaviour
                 CurrectPass = 0;
                 Finish = true;
                 _Currentstate = MiniGameAuditionState.Start;
-                print("finish");
+              //  print("finish");
             }
         }
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
@@ -413,16 +416,6 @@ public class MiniGameAuidition : MonoBehaviour
         _Currentstate = MiniGameAuditionState.Start;
     }*/
 
-    IEnumerator TimeoutDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        AuditionPass.Clear();
-        CutHere.SetActive(false);
-        SlotAuditionPass = 0;
-        CurrectPass = 0;
-        Fail = false;
-        _Currentstate = MiniGameAuditionState.Start;
-    }
 
     public void AddBoxNumber(float ThisBox)
     {        

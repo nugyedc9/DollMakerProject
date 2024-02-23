@@ -9,11 +9,17 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
+public PlayerPickUpItem playerPickUpItem;
+    public PlayerAttack pAttack;
+    public Camera Cam;
+
     public InventorySlote[] inventoryslote;
     public GameObject[] ItemOnHand;
+    public GameObject[] ItemPrefab;
+    public float DropSpeed;
+    public Transform DropPoint;
     public GameObject inventoryItemPrefab;
-    public PlayerPickUpItem playerPickUpItem;
-    public PlayerAttack pAttack;
+    
 
     [Header("CrossAction")]
     public Animator CorssAni;
@@ -22,6 +28,9 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] int SelectedSlot;
    public int selectedSlot { get { return SelectedSlot; } set { SelectedSlot = value; } }
+
+    private Vector3 DesDrop;
+    bool drop;
 
     private void Awake()
     {
@@ -51,10 +60,18 @@ public class InventoryManager : MonoBehaviour
             ItemOnHand[0].SetActive(true);
             if (triggerCrossAnim)
             {
-                if (playerPickUpItem.curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                if (playerPickUpItem.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                if (playerPickUpItem.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                if (playerPickUpItem.PAttack.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
                 triggerCrossAnim = false;
+            }
+            if(drop)
+            {
+                if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
+                if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
+                if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
+                GetSelectedItem(true);
+                drop = false;
             }
         }
         else
@@ -62,33 +79,58 @@ public class InventoryManager : MonoBehaviour
             pAttack.Attack = false;
             ItemOnHand[0].SetActive(false);
         }
+
         if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
         {
             ItemOnHand[1].SetActive(true);
+            if (drop)
+            {
+                DropitemPrefabs(DropPoint, 1);
+                GetSelectedItem(true); 
+                drop = false;
+            }
         }
         else
         {
             ItemOnHand[1].SetActive(false);
         }
+
         if (itemSlot != null && itemSlot.gameObject.CompareTag("Scissors"))
         {
             playerPickUpItem.HaveScissor = true;
             ItemOnHand[2].SetActive(true);
+            if (drop)
+            {
+                DropitemPrefabs(DropPoint, 2);
+                GetSelectedItem(true);
+                drop = false;
+            }
         }
         else
         {
             playerPickUpItem.HaveScissor = false;
             ItemOnHand[2].SetActive(false);
         }
+
         if (itemSlot != null && itemSlot.gameObject.CompareTag("Cloth"))
         {
             ItemOnHand[3].SetActive(true);
+            if (drop)
+            {
+                DropitemPrefabs(DropPoint, 3);
+                GetSelectedItem(true);
+                drop = false;
+            }
         }
         else
         {
             ItemOnHand[3].SetActive(false);
         }
 
+        #endregion
+
+        #region Drop Item
+        if (Input.GetKeyDown(KeyCode.G)) drop = true;
         #endregion
     }
 
@@ -124,6 +166,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+
     void SpawnnewItem(Item item, InventorySlote slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
@@ -154,4 +197,20 @@ public class InventoryManager : MonoBehaviour
 
         return null;
     }
+    
+    public void DropitemPrefabs(Transform Droppoint , int ItemId)
+    {
+        Ray R = Cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(R, out hit)) DesDrop = hit.point;
+        else DesDrop = R.GetPoint(1000);
+
+
+        var DropObj = Instantiate(ItemPrefab[ItemId], DropPoint.position, Quaternion.identity) as GameObject;
+        DropObj.GetComponent<Rigidbody>().velocity = (DesDrop - DropPoint.position).normalized * DropSpeed;
+    }
+
+
+
 }
