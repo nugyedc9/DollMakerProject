@@ -182,13 +182,13 @@ public class GhostStateManager : MonoBehaviour
                     else if (!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
+                        CanseePlayer = false;
                     }
 
                     if (playerOutOfSight < 0)
                     {
                         if (PlayerInSight)
                         {
-                            CanseePlayer = false;
                             RandomInIdle = true;
                            // Debug.Log("IdleAfterPlayer");
                             SwitchState(IdleState);

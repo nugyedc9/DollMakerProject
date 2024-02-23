@@ -14,6 +14,7 @@ public class GhsotIdleState : GhostBaseState
         state.AnimWalk = true;
         state.GhostAmbi.clip = state.GhostIdleAmbiS;
         state.GhostAmbi.Play();
+        state.Cansee = true;
      //   Debug.Log("Idle");
     }
 

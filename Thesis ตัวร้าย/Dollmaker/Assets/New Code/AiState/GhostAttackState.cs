@@ -45,7 +45,7 @@ public class GhostAttackState : GhostBaseState
             state.AnimAlert = true;
            
             if (TimeHit < 0)
-            {
+            {            
                 hitplayer = true;            
             }
         }
