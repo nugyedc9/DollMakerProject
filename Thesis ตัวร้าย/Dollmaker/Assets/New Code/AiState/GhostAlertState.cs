@@ -7,7 +7,7 @@ public class GhostAlertState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        Debug.Log("Alert");
+       // Debug.Log("Alert");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -16,8 +16,8 @@ public class GhostAlertState : GhostBaseState
 
         if (state.AnimAlert)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("found_anima"))
-                state.GhostAni.Play("found_anima", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Found_ani"))
+                state.GhostAni.Play("Found_ani", 0, 0);
             DelayTime = 1;
             state.enemyGhost.speed = 0;
             state.AnimAlert = false;

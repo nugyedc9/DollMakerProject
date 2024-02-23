@@ -10,10 +10,13 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+    private float NomalSpeed;
+    public bool speedForTest;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        NomalSpeed = speed;
     }
 
     // Update is called once per frame
@@ -23,6 +26,17 @@ public class PlayerMotor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             speed = 10;
+        }
+        if (speedForTest)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                speed = 10;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                speed = NomalSpeed;
+            }
         }
     }
 

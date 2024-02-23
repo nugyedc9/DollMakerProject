@@ -6,19 +6,18 @@ public class GhostAttackState : GhostBaseState
     bool hitplayer;
     public override void EnterState(GhostStateManager state)
     {
-
+        TimeHit = TreeSce;
     }
 
     public override void UpdateState(GhostStateManager state)
     {
-
+        TimeHit -= Time.deltaTime;
         if (state.AnimAttack)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atk_ani"))
-                state.GhostAni.Play("atk_ani", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
+                state.GhostAni.Play("Attack_ani", 0, 0);
             state.DelayHitPlayer = 2;
-            state.enemyGhost.speed = 2.5f;
-            TimeHit = TreeSce;
+            state.enemyGhost.speed = 0f;
             state.AnimAttack = false;
         }
         state.DrawVisionCone();
@@ -29,18 +28,22 @@ public class GhostAttackState : GhostBaseState
             hitplayer = false;
         }
 
-        if (state.enemyGhost.remainingDistance < 1.5)
-        {
-            if (state.HitPlayer)
+        if (state.enemyGhost.remainingDistance < 3)
+        { 
+            if (TimeHit < 1.5)
             {
-                state.HpPlayer.Takedamage(1);
-                state.HitPlayer = false;
+                if (state.HitPlayer)
+                {
+                    state.HpPlayer.Takedamage(1);
+                    state.HitPlayer = false;
+                }
             }
+
             state.AnimAlert = true;
-            TimeHit -= Time.deltaTime;
+           
             if (TimeHit < 0)
             {
-                hitplayer = true;
+                hitplayer = true;            
             }
         }
         else

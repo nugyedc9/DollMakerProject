@@ -114,8 +114,8 @@ public class GhostStateManager : MonoBehaviour
             enemyGhost.speed = PlayerHitDelay;
             if (!GetAttack)
             {
-                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atk_ani"))
-                    GhostAni.Play("atk_ani", 0, 0);
+                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
+                    GhostAni.Play("Attack_ani", 0, 0);
                 ChangePos = true;
                 GetAttack = true;
             }
@@ -156,8 +156,9 @@ public class GhostStateManager : MonoBehaviour
                     {
                         Vertices[i + 1] = VertForward * hit.distance;
                         if (PlayerDetectSpawn)
-                        {
-                                SwitchState(SpawnState);                           
+                        {                        
+
+                            SwitchState(SpawnState);                           
                         }
                         if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
                             {

@@ -16,11 +16,11 @@ public class GhostHuntState : GhostBaseState
         state.enemyGhost.speed = state.HuntSpeed;
         if (state.AnimHunt)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("walk_ani"))
-                state.GhostAni.Play("walk_ani", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Walk_ani"))
+                state.GhostAni.Play("Walk_ani", 0, 0);
             state.AnimHunt = false;
         }
-        if(state.enemyGhost.remainingDistance <= 1)
+        if(state.enemyGhost.remainingDistance <= 2)
         {
             state.AnimAttack = true;
             state.HitPlayer = true;
