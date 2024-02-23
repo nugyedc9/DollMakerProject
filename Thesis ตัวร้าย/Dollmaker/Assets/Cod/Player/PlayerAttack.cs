@@ -185,7 +185,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {       
-
+            Light.SetActive(false);
+          pointLight.SetActive(false);
     }
 
     void Update()
@@ -202,8 +203,8 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-                            #region Attack
-                            if (Attack)
+        #region Attack
+        if (Attack)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -218,37 +219,39 @@ public class PlayerAttack : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
             {
 
-                    if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
-                    if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
+                if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
+                if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
+                if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
 
                 #region didn't Use
 
-               /* if (CrossInv1)
-                {
-                    if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
-                    if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
-                    if (curHpCross == 1) itemInventory1[4].SetActive(true); else itemInventory1[4].SetActive(false);
-                }
+                /* if (CrossInv1)
+                 {
+                     if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
+                     if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
+                     if (curHpCross == 1) itemInventory1[4].SetActive(true); else itemInventory1[4].SetActive(false);
+                 }
 
-                if (CrossInv2)
-                {
-                    if (curHpCross == 3) itemInventory2[0].SetActive(true); else itemInventory2[0].SetActive(false);
-                    if (curHpCross == 2) itemInventory2[3].SetActive(true); else itemInventory2[3].SetActive(false);
-                    if (curHpCross == 1) itemInventory2[4].SetActive(true); else itemInventory2[4].SetActive(false);
-                }
+                 if (CrossInv2)
+                 {
+                     if (curHpCross == 3) itemInventory2[0].SetActive(true); else itemInventory2[0].SetActive(false);
+                     if (curHpCross == 2) itemInventory2[3].SetActive(true); else itemInventory2[3].SetActive(false);
+                     if (curHpCross == 1) itemInventory2[4].SetActive(true); else itemInventory2[4].SetActive(false);
+                 }
 
-                if (CrossInv3)
-                {
-                    if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
-                    if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
-                    if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
-                }*/
+                 if (CrossInv3)
+                 {
+                     if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
+                     if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
+                     if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
+                 }*/
                 #endregion
 
                 Holddown = false;
             }
-        } else Holddown = false;
+        }
+        else Holddown = false;
+
         if (Holddown)
         {
             if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
@@ -2375,15 +2378,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (LightOnHand)
-            {
+
                 if (!LightOn)
                 {
                     tutorialText2.text = "Light off [F]";
                     InterectSound.clip = LanternPickSound;
                     InterectSound.Play();
                     Light.gameObject.SetActive(true);
-                    LanternAni.SetTrigger("LightUp");
                     LightOn = true;
                     pointLight.SetActive(true);
                 }
@@ -2394,7 +2395,7 @@ public class PlayerAttack : MonoBehaviour
                     LightOn = false;
                     pointLight.SetActive(false);
                 }
-            }
+            
         }
         #endregion
 

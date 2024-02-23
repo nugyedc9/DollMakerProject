@@ -52,7 +52,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
-        #region ItemShow
+        #region Item Show
         inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
         if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
         {
