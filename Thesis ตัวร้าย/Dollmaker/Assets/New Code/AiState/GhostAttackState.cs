@@ -7,6 +7,9 @@ public class GhostAttackState : GhostBaseState
     public override void EnterState(GhostStateManager state)
     {
         TimeHit = TreeSce;
+        state.GhostAudioSoure.loop = false;
+        state.GhostAudioSoure.clip = state.AttackS;
+        state.GhostAudioSoure.Play();
     }
 
     public override void UpdateState(GhostStateManager state)

@@ -4,7 +4,9 @@ public class GhostHuntState : GhostBaseState
 {
     public override void EnterState(GhostStateManager state)
     {
-
+        state.GhostAudioSoure.loop = true;
+        state.GhostAudioSoure.clip = state.HuntS;
+        state.GhostAudioSoure.Play();
     }
 
     public override void UpdateState(GhostStateManager state)

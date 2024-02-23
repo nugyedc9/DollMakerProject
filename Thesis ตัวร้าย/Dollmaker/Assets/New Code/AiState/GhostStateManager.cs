@@ -53,6 +53,12 @@ public class GhostStateManager : MonoBehaviour
     public Transform playerPos,CurrentDest;
     public int DestinationMin, DestinationMax;
 
+    [Header("---- Audio Sound ----")]
+    public AudioSource GhostAudioSoure; 
+    public AudioSource GhostAmbi;
+    public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS , GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi;
+   
+
     [Header("Timer Thing")]
     public float SpawnTimer;
     public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
@@ -79,7 +85,7 @@ public class GhostStateManager : MonoBehaviour
     {
         DistanceAmount = enemyGhost.remainingDistance;
         CurrentState.UpdateState(this);
-        if (PlayerInSight && !CanseePlayer)
+        if (PlayerInSight)
         {
             playerOutOfSight -= Time.deltaTime;
 
@@ -161,26 +167,28 @@ public class GhostStateManager : MonoBehaviour
                             SwitchState(SpawnState);                           
                         }
                         if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
+                        {
+                            playerOutOfSight = curplayerOutSight;
+                            PlayerInSight = true;
+                            if (!CanseePlayer)
                             {
-
-                            if(!CanseePlayer)
                                 SwitchState(AlertState);
-                                playerOutOfSight = curplayerOutSight;
-                                PlayerInSight = true;
                                 CanseePlayer = true;
                             }
+
+                        }
                     }
 
                     else if (!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
-                        CanseePlayer = false;
                     }
 
                     if (playerOutOfSight < 0)
                     {
                         if (PlayerInSight)
                         {
+                            CanseePlayer = false;
                             RandomInIdle = true;
                            // Debug.Log("IdleAfterPlayer");
                             SwitchState(IdleState);

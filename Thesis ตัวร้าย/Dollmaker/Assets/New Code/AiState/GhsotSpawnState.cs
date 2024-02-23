@@ -41,6 +41,8 @@ public class GhsotSpawnState : GhostBaseState
         {
             if (AnimChange)
             {
+                state.GhostAudioSoure.clip = state.SpawnS;
+                state.GhostAudioSoure.Play();
                 if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Transform_ani"))
                     state.GhostAni.Play("Transform_ani", 0, 0);
                 AnimChange = false;

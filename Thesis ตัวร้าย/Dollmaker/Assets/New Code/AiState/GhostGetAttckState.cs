@@ -6,7 +6,10 @@ public class GhostGetAttckState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        
+        state.GhostAudioSoure.loop = false;
+        state.GhostAudioSoure.clip = state.DiedS;
+        state.GhostAudioSoure.Play();
+        state.GhostAmbi.Stop();
     }
 
     public override void UpdateState(GhostStateManager state)

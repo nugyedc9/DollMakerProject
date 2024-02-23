@@ -7,7 +7,12 @@ public class GhostAlertState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-       // Debug.Log("Alert");
+        // Debug.Log("Alert");
+        state.GhostAudioSoure.loop = false;
+        state.GhostAudioSoure.clip = state.FoundS;
+        state.GhostAudioSoure.Play();
+        state.GhostAmbi.clip = state.GhostHuntAmbi;
+        state.GhostAmbi.Play();
     }
 
     public override void UpdateState(GhostStateManager state)

@@ -12,11 +12,16 @@ public class PlayerMotor : MonoBehaviour
     public float jumpHeight = 3f;
     private float NomalSpeed;
     public bool speedForTest;
+
+    [Header("Sound")]
+    public AudioSource WalkSound;
+    
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         NomalSpeed = speed;
+        WalkSound.enabled = false;
     }
 
     // Update is called once per frame
@@ -38,6 +43,13 @@ public class PlayerMotor : MonoBehaviour
                 speed = NomalSpeed;
             }
         }
+
+        #region SoundWalk
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            WalkSound.enabled = true;
+        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+            WalkSound.enabled = false;  
+        #endregion
     }
 
     public void ProcessMove(Vector2 Input)
