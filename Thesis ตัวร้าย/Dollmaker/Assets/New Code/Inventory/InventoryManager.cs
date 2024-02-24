@@ -67,6 +67,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
             if(drop)
             {
+                playerPickUpItem.ItemCount--;
                 if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
                 if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
                 if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
@@ -85,6 +86,7 @@ public PlayerPickUpItem playerPickUpItem;
             ItemOnHand[1].SetActive(true);
             if (drop)
             {
+                playerPickUpItem.ItemCount--;
                 DropitemPrefabs(DropPoint, 1);
                 GetSelectedItem(true); 
                 drop = false;
@@ -101,6 +103,7 @@ public PlayerPickUpItem playerPickUpItem;
             ItemOnHand[2].SetActive(true);
             if (drop)
             {
+                playerPickUpItem.ItemCount--;
                 DropitemPrefabs(DropPoint, 2);
                 GetSelectedItem(true);
                 drop = false;
@@ -117,6 +120,7 @@ public PlayerPickUpItem playerPickUpItem;
             ItemOnHand[3].SetActive(true);
             if (drop)
             {
+                playerPickUpItem.ItemCount--;
                 DropitemPrefabs(DropPoint, 3);
                 GetSelectedItem(true);
                 drop = false;

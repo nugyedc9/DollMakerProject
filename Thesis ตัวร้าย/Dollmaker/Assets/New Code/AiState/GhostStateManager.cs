@@ -32,7 +32,8 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostFrom, GhostLight;
     public float DistanceAmount,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        AnimAlert, AnimHunt,AnimWalk , AnimSpawn,AnimAttack, GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
+        AnimAlert, AnimHunt,AnimWalk , AnimSpawn,AnimAttack, GetHit,
+        GetAttack, ChangePos, PlayerDetectSpawn, AlertSPlay;
     
 
     [Header("Ghost vision cone")]
@@ -171,8 +172,8 @@ public class GhostStateManager : MonoBehaviour
                             playerOutOfSight = curplayerOutSight;
                             PlayerInSight = true;
                             if (!CanseePlayer)
-                            {
-                                SwitchState(AlertState);
+                            {                          
+                                SwitchState(AlertState);   
                                 CanseePlayer = true;
                             }
 
@@ -182,20 +183,9 @@ public class GhostStateManager : MonoBehaviour
                     else if (!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
-                        CanseePlayer = false;
                     }
 
-                    if (playerOutOfSight < 0)
-                    {
-                        if (PlayerInSight)
-                        {
-                            RandomInIdle = true;
-                           // Debug.Log("IdleAfterPlayer");
-                            SwitchState(IdleState);
-                            PlayerInSight = false;
-                        }
-
-                    }
+                    
                 }
 
                 Currentangle += angleIcrement;
@@ -213,7 +203,19 @@ public class GhostStateManager : MonoBehaviour
             MeshFilter_.mesh = VisionConeMesh;
         }
 
-      
+        if (playerOutOfSight < 0)
+        {
+            if (PlayerInSight)
+            {
+                AlertSPlay = false;
+                RandomInIdle = true;
+                CanseePlayer = false;
+                // Debug.Log("IdleAfterPlayer");
+                SwitchState(IdleState);
+                PlayerInSight = false;
+            }
+
+        }
     }
 
 }

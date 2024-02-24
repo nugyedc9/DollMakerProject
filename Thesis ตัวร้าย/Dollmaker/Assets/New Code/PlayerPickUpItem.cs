@@ -21,6 +21,9 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
+    [SerializeField] int itemCount;
+    public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
+
     public void Update()
     {
         Ray ray = new Ray(pickUPPoint.position, pickUPPoint.forward);
@@ -30,39 +33,54 @@ public class PlayerPickUpItem : MonoBehaviour
            // Debug.Log(hitInfo.collider.gameObject.tag);
             if (Input.GetKeyDown(KeyCode.E))
             {
-
-                if (hitInfo.collider.gameObject.tag == "Cross")
+                if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
-                    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                    PAttack.curHpCross = CrossUse.curHp;
-                    inventoryManager.TriggerCrossAnim = true;
-                    if(CrossUse.curHp == 3)
-                    inventoryManager.AddItem(itemPickUp[0]);
-                    if (CrossUse.curHp == 2)
-                        inventoryManager.AddItem(itemPickUp[4]);
-                    if (CrossUse.curHp == 1)
-                        inventoryManager.AddItem(itemPickUp[5]);
-                    Destroy(hitInfo.collider.gameObject);
-                }
-                if (hitInfo.collider.gameObject.tag == "Doll")
-                {
-                    inventoryManager.AddItem(itemPickUp[1]);
-                    Destroy(hitInfo.collider.gameObject);
-                }
-                if(hitInfo.collider.gameObject.tag == "Scissors")
-                {
-                    inventoryManager.AddItem(itemPickUp[2]);
-                    Destroy(hitInfo.collider.gameObject);
+                    if (hitInfo.collider.gameObject.tag == "Cross")
+                    {
+                        ItemCount++;
+                        CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                        PAttack.curHpCross = CrossUse.curHp;
+                        inventoryManager.TriggerCrossAnim = true;
+                        if (CrossUse.curHp == 3)
+                            inventoryManager.AddItem(itemPickUp[0]);
+                        if (CrossUse.curHp == 2)
+                            inventoryManager.AddItem(itemPickUp[4]);
+                        if (CrossUse.curHp == 1)
+                            inventoryManager.AddItem(itemPickUp[5]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "Doll")
+                    {
+                        ItemCount++;
+                        inventoryManager.AddItem(itemPickUp[1]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "Scissors")
+                    {
+                        ItemCount++;
+                        inventoryManager.AddItem(itemPickUp[2]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if(hitInfo.collider.gameObject.tag == "Cloth")
+                    {
+                        ItemCount++;
+                        inventoryManager.AddItem(itemPickUp[3]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
                 }
             }
 
             if(Input.GetMouseButtonDown(0))
             {
-                if (hitInfo.collider.gameObject.tag == "RollCloth")
+                if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
-                    if (HaveScissor)
+                    if (hitInfo.collider.gameObject.tag == "RollCloth")
                     {
-                        inventoryManager.AddItem(itemPickUp[3]);
+                        if (HaveScissor)
+                        {
+                            ItemCount++;
+                            inventoryManager.AddItem(itemPickUp[3]);
+                        }
                     }
                 }
             }

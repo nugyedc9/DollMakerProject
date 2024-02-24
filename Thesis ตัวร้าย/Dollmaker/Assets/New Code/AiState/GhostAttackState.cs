@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GhostAttackState : GhostBaseState
 {
-    float TimeHit, TreeSce = 2;
+    float TimeHit = 2, TreeSce = 2;
     bool hitplayer;
     public override void EnterState(GhostStateManager state)
     {
@@ -30,32 +30,28 @@ public class GhostAttackState : GhostBaseState
             state.SwitchState(state.IdleState);
             hitplayer = false;
         }
-
-        if (state.enemyGhost.remainingDistance < 3)
-        { 
-            if (TimeHit < 1.5)
+        if (TimeHit < 1.5)
+        {
+            if (state.enemyGhost.remainingDistance < 3)
             {
+
                 if (state.HitPlayer)
                 {
                     state.HpPlayer.Takedamage(1);
                     state.HitPlayer = false;
                 }
-            }
 
-            state.AnimAlert = true;
-           
-            if (TimeHit < 0)
-            {            
-                hitplayer = true;            
+
+                state.AnimAlert = true;
+
+                if (TimeHit < 0)
+                {
+                    hitplayer = true;
+                    state.CanseePlayer = false;
+                }
             }
         }
-        else
-        {
-            if (TimeHit < 0)
-            {
-                state.SwitchState(state.AlertState);
-            }
-        }
+
 
     }
 }
