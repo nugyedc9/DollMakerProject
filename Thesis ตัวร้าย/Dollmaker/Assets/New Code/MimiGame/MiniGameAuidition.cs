@@ -27,15 +27,18 @@ public class MiniGameAuidition : MonoBehaviour
     public int SlotAuditionPass, Randomspawn;
     [SerializeField] private TMP_Text BoxNum;
 
-    [Header("Timer")]
-    float TimerInStateTime;
+    [Header("Inventory")]
+    public InventoryManager inventoryManager;
+    public ClothColorDrop GetfinishDoll;
+    public PlayerPickUpItem playerPickUpItem; 
+    public Item[] FinishClothID;
 
     [Header("Prefabs Audition")]
     public GameObject[] AuditionPrefabs;
     public Vector2[] audititionPosition;
     public GameObject[] AuditionPosition;
     public GameObject[] PassAuditionPosition;
-    public GameObject[] FinishDoll;
+
     public GameObject[] FrameBox;
     public GameObject AuditionShow;
     public GameObject ButtonCutLineOBJ;
@@ -361,11 +364,12 @@ public class MiniGameAuidition : MonoBehaviour
             {
                 Needle.enabled = false;
                 ClothMove.enabled = false;
-                // print("LostItem");
-                Finish = false;
+                // print("LostItem");            
                 //canPlay.FinishDoll();
                 canPlay.Cloth = false;
-                GetFinishDoll();            
+                playerPickUpItem.ItemCount++;
+                inventoryManager.AddItem(FinishClothID[GetfinishDoll.FinishClothID]);
+                Finish = false;        
             }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;
             
@@ -448,11 +452,11 @@ public class MiniGameAuidition : MonoBehaviour
         else { CloseMouse(); }
     
     }
-    public void GetFinishDoll()
+/*    public void GetFinishDoll()
     {
         FinishDoll[FinishDollHave].SetActive(true);
             FinishDollHave++;
-    }
+    }*/
     public void ShowMouse()
     {
         Cursor.visible = true;

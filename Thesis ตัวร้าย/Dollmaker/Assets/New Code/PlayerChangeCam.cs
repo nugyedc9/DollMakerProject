@@ -12,6 +12,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera ChangeViewOnDesk;
     [SerializeField] CinemachineVirtualCamera DeskShopView;
     [SerializeField] CinemachineVirtualCamera BedCam;
+    [SerializeField] CinemachineVirtualCamera PushClothOnDollView;
 
     [Header("Interect")]
     public Transform InterectTransform;
@@ -28,13 +29,18 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject DesignSelect;
     public GameObject Book;
 
+    [Header("SelectDollDesign")]
+    public GameObject DesignDollSelect;
+    public GameObject BookDoll;
+    public DollDropDesignTrigger DropDoll;
+
     [Header("TurnCam")]
     public GameObject TurnOut;
     public GameObject TurnIn;
 
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
-
+    public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
 
     [SerializeField] bool canplayMinigame;
@@ -51,6 +57,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(ChangeViewOnDesk);
         ChangePOV.Register(BedCam);
         ChangePOV.Register(DeskShopView);
+        ChangePOV.Register(PushClothOnDollView);
         ChangePOV.SwitchCamera(BedCam);
     }
 
@@ -60,6 +67,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(WorkShopView);
         ChangePOV.UnRegister(ChangeViewOnDesk);
         ChangePOV.UnRegister(DeskShopView);
+        ChangePOV.UnRegister(PushClothOnDollView);
         ChangePOV.UnRegister(BedCam);
     }
 
@@ -125,7 +133,7 @@ public class PlayerChangeCam : MonoBehaviour
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
                         TextOnPlayer.SetActive(false);
-                            DropHere.SetActive(true);                        
+                        CheckCanplayMiniG.OnDesk = true;                  
                         CamOnDesk = true;
                         LookOutGhost = false;
                         TurnOut.SetActive(true);
@@ -151,6 +159,28 @@ public class PlayerChangeCam : MonoBehaviour
                         TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(DeskShopView);
+                        StartCoroutine(DelayCamera());
+                    }
+                }
+
+            }
+
+            if (hitInfo.collider.gameObject.tag == "DeskPushClothToDoll")
+            {
+                // if (!HaveItem)
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (ChangePOV.IsActiveCamera(FirstpersonView))
+                    {
+                        _InputManager.StopWalk();
+                        Throwitem.StopAttack();
+                        ItemOnPlayer.SetActive(false);
+                        if (!DropDoll.CloseboxDropDoll)
+                            DesignDollSelect.SetActive(true);
+                        BookDoll.SetActive(true);
+                        TextOnPlayer.SetActive(false);
+                        CamOnDesk = true;
+                        ChangePOV.SwitchCamera(PushClothOnDollView);
                         StartCoroutine(DelayCamera());
                     }
                 }
@@ -197,7 +227,7 @@ public class PlayerChangeCam : MonoBehaviour
                 }
                 else
                 {
-                    HandSwing.SetActive(false );
+                    HandSwing.SetActive(false);
                     miniGame.SetActive(false);
                 }
             }
@@ -227,6 +257,7 @@ public class PlayerChangeCam : MonoBehaviour
                         DropHere.SetActive(false);
                         TurnOut.SetActive(false);
                         TurnIn.SetActive(false);
+                        CheckCanplayMiniG.OnDesk = false;
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
@@ -252,6 +283,17 @@ public class PlayerChangeCam : MonoBehaviour
                         DropHere.SetActive(false);
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
+                        CamOnPerson = true;
+                    }
+                    else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
+                    {
+                        _InputManager.StopWalk();
+                        Throwitem.CanAttack();
+                        DesignDollSelect.SetActive(false);
+                        BookDoll.SetActive(false);
+                        ItemOnPlayer.SetActive(true);
+                        TextOnPlayer.SetActive(true);
+                        ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
                 }

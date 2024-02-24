@@ -9,7 +9,10 @@ public class ClothColorDrop : MonoBehaviour
     public GameObject[] ClothColor;
     public GameObject hand;
     public InventoryManager inventoryManager;
+    public PlayerPickUpItem playerPickup;
 
+    [SerializeField] int finishClothID;
+    public int FinishClothID { get { return finishClothID; } set { finishClothID = value; } }
 
     [SerializeField] bool isRed;
     public bool IsRed { get { return isRed; } set { isRed = value; } }
@@ -44,28 +47,36 @@ public class ClothColorDrop : MonoBehaviour
     {
         if (collision.gameObject.tag == "PieceClothRed")
         {
+            playerPickup.ItemCount--;
             ClothColor[0].SetActive(true);
+            finishClothID = 0;
             hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothBlue")
         {
+            playerPickup.ItemCount--;
             ClothColor[1].SetActive(true);
+            finishClothID = 1;
             hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothGreen")
         {
+            playerPickup.ItemCount--;
             ClothColor[2].SetActive(true);
+            finishClothID = 2;
             hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);
         }
         if (collision.gameObject.tag == "PieceClothYellow")
         {
+            playerPickup.ItemCount--;
             ClothColor[3].SetActive(true);
+            finishClothID = 3;
             hand.SetActive(true);
             canplay.Cloth = true;
             inventoryManager.GetSelectedItem(true);

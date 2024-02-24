@@ -24,6 +24,8 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
+    private RollClothColor pieceClothGet;
+
     public void Update()
     {
         Ray ray = new Ray(pickUPPoint.position, pickUPPoint.forward);
@@ -75,11 +77,29 @@ public class PlayerPickUpItem : MonoBehaviour
                 if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
                     if (hitInfo.collider.gameObject.tag == "RollCloth")
-                    {
+                    {                     
                         if (HaveScissor)
-                        {
+                        { 
+                            pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                             ItemCount++;
-                            inventoryManager.AddItem(itemPickUp[3]);
+                            if(pieceClothGet.pieceClothID == 0)
+                            {
+                                inventoryManager.AddItem(itemPickUp[6]);
+                            }
+                            else if(pieceClothGet.pieceClothID == 1)
+                            {
+                                inventoryManager.AddItem(itemPickUp[7]);
+                            }
+                            else if (pieceClothGet.pieceClothID == 2)
+                            {
+                                inventoryManager.AddItem(itemPickUp[8]);
+                            }
+                            else if (pieceClothGet.pieceClothID == 3)
+                            {
+                                inventoryManager.AddItem(itemPickUp[9]);
+                            }
+
+
                         }
                     }
                 }

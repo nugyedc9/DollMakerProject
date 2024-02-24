@@ -134,7 +134,11 @@ public PlayerPickUpItem playerPickUpItem;
         #endregion
 
         #region Drop Item
-        if (Input.GetKeyDown(KeyCode.G)) drop = true;
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (itemSlot != null)
+                drop = true;
+        }
         #endregion
     }
 

@@ -17,6 +17,8 @@ public class CanPlayMini1 : MonoBehaviour
     public bool  Doll;
     [SerializeField] bool cloth;
     public bool Cloth { get {  return cloth; }  set { cloth = value; } }
+    [SerializeField] bool onDesk;
+    public bool OnDesk { get { return onDesk; } set { onDesk = value; } }
     public GameObject[] Dollobj;
     public GameObject[] Clothobj;
     public int ClothHave, DollHave;
@@ -68,14 +70,19 @@ public class CanPlayMini1 : MonoBehaviour
         }
         else
         {
-            DropClothHere.SetActive(true);
+            if (onDesk)
+            {
+                DropClothHere.SetActive(true);
+            }
+            else DropClothHere.SetActive(false);
+
             DeskView.CanplayMinigame = false;
-            minigame.SetActive(false );
+            minigame.SetActive(false);
             minigamestate.LeaveMinigame();
             clothColorDrop.Finishmakecloth();
             minigamestate.HaveItem = false;
 
-           // player.StopSoundWork();
+            // player.StopSoundWork();
         }
         /*DollTotel.text = "Doll " + DollHave + " / 6";
         ClothTotel.text = "Cloth " + ClothHave + " / 6";

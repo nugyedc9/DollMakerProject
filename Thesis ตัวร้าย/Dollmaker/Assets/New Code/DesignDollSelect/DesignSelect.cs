@@ -10,7 +10,6 @@ public class DesignSelect : MonoBehaviour
     public GameObject[] ClothColor;
     public GameObject BoxColPushCloth;
     public GameObject NextButt,PrevButt,SelectButt;
-    public PlayerAttack playerAttack;
 
     public InventoryManager inventoryManager;
     public Item[] PieceCloth;
@@ -18,6 +17,11 @@ public class DesignSelect : MonoBehaviour
     public int PageNum;
     [SerializeField] private bool haveCloth;
     public bool HaveCloth {  get { return haveCloth; } set {  haveCloth = value; } }
+
+
+
+    [SerializeField] int clothColorID;
+    public int ClothColorID {  get { return clothColorID; } set {  clothColorID = value; } }
 
 
     // Start is called before the first frame update
@@ -32,13 +36,15 @@ public class DesignSelect : MonoBehaviour
         if (HaveCloth)
         {
             BoxColPushCloth.SetActive(false);
-            ClothColor[PageNum].SetActive(true);
+            ClothColor[ClothColorID].SetActive(true);
             BookPage[PageNum].SetActive(true);
             NextButt.SetActive(true);
             PrevButt.SetActive(true);
-            SelectButt.SetActive(true);
+            if (PageNum == clothColorID) SelectButt.SetActive(true);
+            else SelectButt.SetActive(false);
         }
         else SelectButt.SetActive(false);
+
 
         #region Button Show up
         if (PageNum == 0) PrevButt.SetActive(false);
@@ -53,11 +59,6 @@ public class DesignSelect : MonoBehaviour
         PageNum++;
         BookPage[PageNum].SetActive(true);
         BookPage[PageNum - 1].SetActive(false);
-        if (HaveCloth)
-        {
-            ClothColor[PageNum].SetActive(true);
-            ClothColor[PageNum - 1].SetActive(false);
-        }
         if (PageNum >= BookPage.Length - 1) PageNum = BookPage.Length - 1;
     }
 
@@ -66,11 +67,6 @@ public class DesignSelect : MonoBehaviour
         PageNum--;
         BookPage[PageNum + 1].SetActive(false);
         BookPage[PageNum].SetActive(true);
-        if (HaveCloth)
-        {
-            ClothColor[PageNum + 1].SetActive(false);
-            ClothColor[PageNum].SetActive(true);
-        }
         if (PageNum <= 0) PageNum = 0;
     }
 

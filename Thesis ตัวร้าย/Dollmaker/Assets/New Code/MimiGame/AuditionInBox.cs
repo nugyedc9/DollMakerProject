@@ -18,14 +18,14 @@ public class AuditionInBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        now = Getin.Number;
+        //now = Getin.Number;
     }
     public void OnTriggerEnter(Collider collision)
     {
 
             if (collision.gameObject.tag == "AuditionPrefabs")
-            {
-             Getin = collision.gameObject.GetComponent<AuditionPrefab>();
+            {          
+             Getin = collision.gameObject.GetComponent<AuditionPrefab>();          
                 AuditionNumber = Getin.Number;
                     AuditionGAme.AddBoxNumber(AuditionNumber);
             }
