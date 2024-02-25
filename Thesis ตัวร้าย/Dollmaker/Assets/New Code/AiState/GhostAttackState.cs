@@ -6,10 +6,12 @@ public class GhostAttackState : GhostBaseState
     bool hitplayer;
     public override void EnterState(GhostStateManager state)
     {
+       // Debug.Log("Attack");
         TimeHit = TreeSce;
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
+        state.GhostBoxCol.enabled = false;
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -44,14 +46,15 @@ public class GhostAttackState : GhostBaseState
 
                 state.AnimAlert = true;
 
-                if (TimeHit < 0)
+               
+            }
+        }
+
+         if (TimeHit < 0)
                 {
                     hitplayer = true;
                     state.CanseePlayer = false;
                 }
-            }
-        }
-
 
     }
 }

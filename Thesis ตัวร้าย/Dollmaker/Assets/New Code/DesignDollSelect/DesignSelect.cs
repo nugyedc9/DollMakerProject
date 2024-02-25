@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,6 +10,7 @@ public class DesignSelect : MonoBehaviour
     public GameObject BoxColPushCloth;
     public GameObject NextButt,PrevButt,SelectButt;
 
+    public PlayerPickUpItem playPickup;
     public InventoryManager inventoryManager;
     public Item[] PieceCloth;
 
@@ -72,10 +72,14 @@ public class DesignSelect : MonoBehaviour
 
     public void SelectThisDesign()
     {
-        ClothColor[PageNum].SetActive(false);
-        inventoryManager.AddItem(PieceCloth[PageNum]);
-        BoxColPushCloth.SetActive(true);
-        HaveCloth = false;
+        if (playPickup.ItemCount < inventoryManager.inventoryslote.Length)
+        {
+            playPickup.ItemCount++;
+            ClothColor[PageNum].SetActive(false);
+            inventoryManager.AddItem(PieceCloth[PageNum]);
+            BoxColPushCloth.SetActive(true);
+            HaveCloth = false;
+        }
     }
 
 }

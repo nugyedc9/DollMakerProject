@@ -7,7 +7,8 @@ public class GhostAlertState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        Debug.Log("Alert");
+        //Debug.Log("Alert");
+        state.GhostBoxCol.enabled = true;
         if (!state.AlertSPlay)
         {   
             state.GhostAudioSoure.loop = false;

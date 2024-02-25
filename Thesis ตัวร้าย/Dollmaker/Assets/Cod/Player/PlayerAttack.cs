@@ -1,14 +1,11 @@
 using player;
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.PackageManager;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.PackageManager;
-//using UnityEditor.PackageManager;
 
 public class PlayerAttack : MonoBehaviour 
 {

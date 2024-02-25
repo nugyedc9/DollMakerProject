@@ -55,9 +55,12 @@ public class GetDesignDoll : MonoBehaviour
     }
     public void SelectThisDesign()
     {
-        playpickUp.ItemCount++;
-        inventoryManager.AddItem(FinishDoll[DollColorID]);
-        DollDrop.GetFinishDoll();
+        if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
+        {
+            playpickUp.ItemCount++;
+            inventoryManager.AddItem(FinishDoll[DollColorID]);
+            DollDrop.GetFinishDoll();
+        }
     }
 
 }
