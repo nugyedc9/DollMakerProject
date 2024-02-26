@@ -17,9 +17,16 @@ public class GhsotIdleState : GhostBaseState
         state.GhostAmbi.clip = state.GhostIdleAmbiS;
         state.GhostAudioSoure.Stop();
         state.GhostAmbi.Play();
+        state.DelayHitPlayer = 0;
+
+        state.HpCross = false;
+        state.GetAttack = false;
+        state.PlayerHitDelay = 2;
+
+        state.HitPlayer = false;
         state.CanseePlayer = false;
         state.Cansee = true;
-     //   Debug.Log("Idle");
+        Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)

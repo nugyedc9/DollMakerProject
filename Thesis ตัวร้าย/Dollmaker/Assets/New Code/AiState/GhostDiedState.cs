@@ -11,6 +11,8 @@ public class GhostDiedState : GhostBaseState
         state.GhostAudioSoure.clip = state.DiedS;
         state.GhostAudioSoure.Play();
         state.GhostAmbi.Stop();
+        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Dead_ani"))
+            state.GhostAni.Play("Dead_ani", 0, 0);
 
     }
 

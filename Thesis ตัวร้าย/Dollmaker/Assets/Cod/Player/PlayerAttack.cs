@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using System.Threading;
 
 public class PlayerAttack : MonoBehaviour 
 {
@@ -32,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
     public int ItemSelect = 0;
     public int Itemhave,Dollhave,Clothhave, Crosshave, ScissorHave,
         RedClothHave, GreenClothHave, BlueClothHave, YellowClothHave;
+
 
 
     [Header("Item On Hand")]
@@ -71,6 +73,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("CrossAction")]
     [SerializeField] private float CurHpCross;
     public float curHpCross { get { return CurHpCross; } set { CurHpCross = value; } }
+    private float CrossTimer;
     private bool crossruin;
 
     [Header("GetDesignCloth")]
@@ -219,37 +222,14 @@ public class PlayerAttack : MonoBehaviour
                 if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
                 if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
                 if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
-
-                #region didn't Use
-
-                /* if (CrossInv1)
-                 {
-                     if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
-                     if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
-                     if (curHpCross == 1) itemInventory1[4].SetActive(true); else itemInventory1[4].SetActive(false);
-                 }
-
-                 if (CrossInv2)
-                 {
-                     if (curHpCross == 3) itemInventory2[0].SetActive(true); else itemInventory2[0].SetActive(false);
-                     if (curHpCross == 2) itemInventory2[3].SetActive(true); else itemInventory2[3].SetActive(false);
-                     if (curHpCross == 1) itemInventory2[4].SetActive(true); else itemInventory2[4].SetActive(false);
-                 }
-
-                 if (CrossInv3)
-                 {
-                     if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
-                     if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
-                     if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
-                 }*/
-                #endregion
+          
 
                 Holddown = false;
             }
         }
         else Holddown = false;
 
-        if (Holddown)
+        if (Holddown )
         {
             if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
             {
@@ -258,7 +238,7 @@ public class PlayerAttack : MonoBehaviour
                     if (curHpCross != 1)
                     {
                         GhostEx = true;
-                        StartCoroutine(DelayHolyLight());
+                        CrossTimer = 4.5f;
                         crossruin = true;
                         HitAudio.clip = HitGhostSound;
                         HitAudio.Play();
@@ -270,6 +250,32 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         else HolyLight.SetActive(false);
+
+        if(CrossTimer > 0)
+        {
+            CrossTimer -= Time.deltaTime;
+            if(CrossTimer < 3.6 && CrossTimer > 2.6f)
+            {
+                HolyLight.SetActive(true);
+                if (GhostEx)
+                {
+                    if (curHpCross == 2) CorssAni.SetTrigger("HitGhost");
+                    if (curHpCross == 1) CorssAni.SetTrigger("HitGhost2");
+                    GhostEx = false;
+                }
+            }
+            else if(CrossTimer < 0)
+            {
+                HolyLight.SetActive(false);
+                if (curHpCross == 1)
+                {
+                    playerPickUpItem.ItemCount--;
+                    inventoryManager.GetSelectedItem(true);
+                }
+            }
+        }
+
+
         #endregion
 
         #region Close Cut roll Cloth
@@ -2908,13 +2914,18 @@ public class PlayerAttack : MonoBehaviour
         HolyLight.SetActive(true);
         if (GhostEx)
         {
-            if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
-            if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
-            if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
+            if (curHpCross == 2) CorssAni.SetTrigger("HitGhost");
+            if (curHpCross == 1) CorssAni.SetTrigger("HitGhost2");
             GhostEx = false;    
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         HolyLight.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        if(curHpCross == 1)
+        {
+            playerPickUpItem.ItemCount--;
+            inventoryManager.GetSelectedItem(true);
+        }
     }
 
     #endregion
@@ -2993,7 +3004,6 @@ public class PlayerAttack : MonoBehaviour
             if(curHpCross == 1)
                 inventoryManager.AddItem(playerPickUpItem.itemPickUp[5]);*/
             CrossUse.curHp = curHpCross;
-            if(curHpCross == 0) curHpCross = 1;
             crossruin = false;
         }
     }

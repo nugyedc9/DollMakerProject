@@ -10,6 +10,9 @@ public class GhostGetAttckState : GhostBaseState
         state.GhostAudioSoure.clip = state.DiedS;
         state.GhostAudioSoure.Play();
         state.GhostAmbi.Stop();
+        state.PAttack.Attack = false;
+        CurDelay = 2;
+      //  Debug.Log("GetAttack");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -20,15 +23,35 @@ public class GhostGetAttckState : GhostBaseState
         {
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
                 state.GhostAni.Play("Damage_ani", 0, 0);
-            CurDelay = 2;
             state.ChangePos = false;
         }
 
-        CurDelay -= Time.deltaTime;
-
-        if(CurDelay < 0)
+        if(CurDelay > 0)
         {
-            state.SwitchState(state.DiedState);
+            CurDelay -= Time.deltaTime;
         }
+        
+
+        if (state.HpGhost <= 0)
+        {
+            if (CurDelay < 0)
+            {
+              //  Debug.Log("Died");
+                state.PAttack.Attack = true;
+                state.SwitchState(state.DiedState);
+            }
+        }
+       else if(state.HpGhost > 0) 
+        {
+            if(CurDelay < 0)
+            {
+             //   Debug.Log("AfterHit");
+                state.PAttack.Attack = true;
+                state.SwitchState(state.IdleState);
+                CurDelay = 0;
+            }
+        }
+
+
     }
 }

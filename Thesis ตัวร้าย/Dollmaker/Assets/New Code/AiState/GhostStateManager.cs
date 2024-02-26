@@ -27,14 +27,19 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
-    public Animator GhostAni;
     public BoxCollider GhostBoxCol;
     public GameObject GhostFrom, GhostLight;
-    public float DistanceAmount,WalkSpeed, HuntSpeed;
+    public float DistanceAmount, HpGhost ,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        AnimAlert, AnimHunt,AnimWalk , AnimSpawn,AnimAttack, GetHit,
-        GetAttack, ChangePos, PlayerDetectSpawn, AlertSPlay;
-    
+        GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
+        
+
+    [Header("GhostAnimCheck")]
+    public Animator GhostAni;
+    public bool AnimWalk, AnimAlert, AnimHunt , AnimSpawn,AnimAttack
+       , AlertSPlay;
+
+
 
     [Header("Ghost vision cone")]
     public GameObject HeadVistion;
@@ -54,16 +59,15 @@ public class GhostStateManager : MonoBehaviour
     public Transform playerPos,CurrentDest;
     public int DestinationMin, DestinationMax;
 
-    [Header("---- Audio Sound ----")]
-    public AudioSource GhostAudioSoure; 
-    public AudioSource GhostAmbi;
-    public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS , GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi;
-   
-
     [Header("Timer Thing")]
     public float SpawnTimer;
     public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
         DelayHitPlayer, PlayerHitDelay, ChangePosDelay;
+    
+    [Header("---- Audio Sound ----")]
+    public AudioSource GhostAudioSoure; 
+    public AudioSource GhostAmbi;
+    public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS , GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi;
 
     // Start is called before the first frame update
     void Start()
@@ -89,14 +93,12 @@ public class GhostStateManager : MonoBehaviour
         CurrentState.UpdateState(this);
         if (PlayerInSight)
         {
-            playerOutOfSight -= Time.deltaTime;
+            playerOutOfSight -= Time.deltaTime; 
+            DelayHitPlayer -= Time.deltaTime;
 
         }
-        if(PlayerInSight)
-        {
-            DelayHitPlayer -= Time.deltaTime;
-        }
-        if(PlayerHitDelay < 0)
+
+        if(PlayerHitDelay <= 0)
         {
             if (!HpCross)
             {
@@ -105,7 +107,8 @@ public class GhostStateManager : MonoBehaviour
                 SwitchState(GetAtKState);
                 HpCross = true;
             }
-        }   if(Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState) ;
+        }  
+        if(Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState) ;
     }
 
     public void SwitchState(GhostBaseState state)
@@ -119,11 +122,12 @@ public class GhostStateManager : MonoBehaviour
         if (!GetHit)
         {
             PlayerHitDelay -= 8 * Time.deltaTime;
-            enemyGhost.speed = PlayerHitDelay;
+            enemyGhost.speed = 0;
             if (!GetAttack)
             {
                 if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
                     GhostAni.Play("Attack_ani", 0, 0);
+                HpGhost--;
                 ChangePos = true;
                 GetAttack = true;
             }
@@ -152,15 +156,15 @@ public class GhostStateManager : MonoBehaviour
                 Cosine = Mathf.Cos(Currentangle);
                 Vector3 RaycastDirection = (HeadVistion.transform.forward * Cosine) + (HeadVistion.transform.right * Sine);
                 Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
-                if (Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
+                if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
                 {
                     Vertices[i + 1] = VertForward * hit.distance;          
                 }
-                else if(!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, VisionObstructingLayer))
+                else if(!Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, VisionObstructingLayer))
                 {
 
                    Vertices[i + 1] = VertForward * VisionRange; 
-                    if (Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
+                    if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * hit.distance;
                         if (PlayerDetectSpawn)
@@ -180,7 +184,7 @@ public class GhostStateManager : MonoBehaviour
                         }
                     }
 
-                    else if (!Physics.Raycast(HeadVistion.transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
+                    else if (!Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
                     }
