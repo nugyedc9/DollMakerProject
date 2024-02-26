@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class GhostAttackState : GhostBaseState
 {
-    float TimeHit = 2, TreeSce = 2;
-    bool hitplayer;
+    float TimeHit = 2, Sec = 1.5f;
+    bool hitplayer, PlayerInRange;
     public override void EnterState(GhostStateManager state)
     {
-       // Debug.Log("Attack");
-        TimeHit = TreeSce;
+        Debug.Log("Attack");
+        TimeHit = Sec;
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
@@ -28,33 +28,44 @@ public class GhostAttackState : GhostBaseState
         state.DrawVisionCone();
         if (hitplayer)
         {
-            TimeHit = TreeSce;
+            TimeHit = Sec;
+            state.CanseePlayer = false;
+            PlayerInRange = false;
             state.SwitchState(state.IdleState);
             hitplayer = false;
         }
-        if (TimeHit < 1.5)
+
+        if (!PlayerInRange)
         {
-            if (state.enemyGhost.remainingDistance < 3)
+            if (TimeHit < 0.5f)
             {
-
-                if (state.HitPlayer)
+                if (state.enemyGhost.remainingDistance < 2.5f)
                 {
-                    state.HpPlayer.Takedamage(1);
-                    state.HitPlayer = false;
+
+                    if (state.HitPlayer)
+                    {
+                        state.CanseePlayer = false;
+                        state.HpPlayer.Takedamage(1);
+                        state.HitPlayer = false;
+                        PlayerInRange = true;
+                    }
+
+                    state.AnimAlert = true;
+
                 }
-
-
-                state.AnimAlert = true;
-
-               
+                else
+                {
+                    hitplayer = true;
+                    PlayerInRange  = true;
+                }
             }
         }
 
-         if (TimeHit < 0)
-                {
-                    hitplayer = true;
-                    state.CanseePlayer = false;
-                }
+        if (TimeHit < 0)
+        {
+            hitplayer = true;
+            state.CanseePlayer = false;
+        }
 
     }
 }

@@ -17,6 +17,7 @@ public class GhsotIdleState : GhostBaseState
         state.GhostAmbi.clip = state.GhostIdleAmbiS;
         state.GhostAudioSoure.Stop();
         state.GhostAmbi.Play();
+        state.CanseePlayer = false;
         state.Cansee = true;
      //   Debug.Log("Idle");
     }

@@ -79,6 +79,7 @@ public class GhostStateManager : MonoBehaviour
         VisionConeMesh = new Mesh();
         VisionAngle *= Mathf.Deg2Rad;
         #endregion
+
     }
 
     // Update is called once per frame
@@ -164,7 +165,6 @@ public class GhostStateManager : MonoBehaviour
                         Vertices[i + 1] = VertForward * hit.distance;
                         if (PlayerDetectSpawn)
                         {                        
-
                             SwitchState(SpawnState);                           
                         }
                         if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
@@ -172,7 +172,7 @@ public class GhostStateManager : MonoBehaviour
                             playerOutOfSight = curplayerOutSight;
                             PlayerInSight = true;
                             if (!CanseePlayer)
-                            {                          
+                            {              
                                 SwitchState(AlertState);   
                                 CanseePlayer = true;
                             }

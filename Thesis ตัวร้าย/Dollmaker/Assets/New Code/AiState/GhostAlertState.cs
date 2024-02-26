@@ -7,7 +7,7 @@ public class GhostAlertState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        //Debug.Log("Alert");
+        Debug.Log("Alert");
         state.GhostBoxCol.enabled = true;
         if (!state.AlertSPlay)
         {   
@@ -18,7 +18,8 @@ public class GhostAlertState : GhostBaseState
             state.GhostAmbi.Play();
             state.AlertSPlay = true;
         }
-        
+        state.CurrentDest = state.playerPos.transform;
+        state.Dest = state.CurrentDest.position;
     }
 
     public override void UpdateState(GhostStateManager state)
