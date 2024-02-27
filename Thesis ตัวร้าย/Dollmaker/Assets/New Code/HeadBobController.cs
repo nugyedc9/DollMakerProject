@@ -60,6 +60,10 @@ public class HeadBobController : MonoBehaviour
     {
         if(_camera.localPosition == _startPos) return;
         _camera.localPosition = Vector3.Lerp(_camera.localPosition, _startPos, 10 * Time.deltaTime);
+        if(Time.deltaTime == 0)
+        {
+            _camera.localPosition = Vector3.Lerp(_camera.localPosition, _startPos, 10 );
+        }
     }
 
 }

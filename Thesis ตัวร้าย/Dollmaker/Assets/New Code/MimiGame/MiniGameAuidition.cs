@@ -360,18 +360,21 @@ public class MiniGameAuidition : MonoBehaviour
 
         if(_Currentstate == MiniGameAuditionState.ItemLost)
         {
-            if (Finish)
+            if (inventoryManager.KeyItemHave < 3)
             {
-                Needle.enabled = false;
-                ClothMove.enabled = false;
-                // print("LostItem");            
-                //canPlay.FinishDoll();
-                canPlay.Cloth = false;
-                playerPickUpItem.ItemCount++;
-                inventoryManager.AddItem(FinishClothID[GetfinishDoll.FinishClothID]);
-                Finish = false;        
-            }
+                if (Finish)
+                {
+                    Needle.enabled = false;
+                    ClothMove.enabled = false;
+                    // print("LostItem");            
+                    //canPlay.FinishDoll();
+                    canPlay.Cloth = false;
+                    inventoryManager.KeyItemHave++;
+                    inventoryManager.AddKeyItem(FinishClothID[GetfinishDoll.FinishClothID]);
+                    Finish = false;
+                }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;
+            }
             
         }
 

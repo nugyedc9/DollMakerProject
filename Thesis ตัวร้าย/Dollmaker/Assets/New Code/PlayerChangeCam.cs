@@ -14,6 +14,12 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera BedCam;
     [SerializeField] CinemachineVirtualCamera PushClothOnDollView;
 
+    [Header("Key Item Inventory")]
+    public TabTutorial TabOn;
+    public GameObject KeyItemInv;
+    [SerializeField] bool openkeyItemInv;
+    public bool OpenKeyItemInv {  get { return openkeyItemInv; } set { openkeyItemInv = value; } }
+
     [Header("Interect")]
     public Transform InterectTransform;
     public float InterectRange;
@@ -171,7 +177,7 @@ public class PlayerChangeCam : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
-                    {
+                    {                   
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
@@ -211,13 +217,16 @@ public class PlayerChangeCam : MonoBehaviour
 
         if (CamOnPerson)
         {
+            if(TabOn.OpenTutor == false)
             CloseMouse();
+            OpenKeyItemInv = false;
             HandSwing.SetActive(false);
             miniGame.SetActive(false);
         }
         else
         {
             ShowMouse();
+            KeyItemInv.SetActive(true);
             if (ChangePOV.IsActiveCamera(WorkShopView))
             {
                 if (canplayMinigame)
@@ -308,7 +317,8 @@ public class PlayerChangeCam : MonoBehaviour
     IEnumerator DelayCamera()
     {
         yield return new WaitForSeconds(0.1f);
-            CamOnPerson = false;       
+            CamOnPerson = false;
+        openkeyItemInv = true;
     }
     
     public void ItemOnHand()

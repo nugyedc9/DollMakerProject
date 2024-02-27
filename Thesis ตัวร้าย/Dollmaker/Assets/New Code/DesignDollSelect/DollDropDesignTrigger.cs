@@ -23,7 +23,6 @@ public class DollDropDesignTrigger : MonoBehaviour
         {
             if (!DollHave)
             {
-                playpickUp.ItemCount--;
                 inventoryManager.GetSelectedItem(true);
                 Doll.gameObject.SetActive(true);
                 DollDesignVisual[0].SetActive(true);
@@ -34,7 +33,6 @@ public class DollDropDesignTrigger : MonoBehaviour
         {
             if (collision.gameObject.tag == "FinishClothRed")
             {
-                playpickUp.ItemCount--;
                 inventoryManager.GetSelectedItem(true);
                 DollDesignVisual[0].SetActive(false);
                 if (!NeedRed)
@@ -52,7 +50,6 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothBlue")
             {
-                playpickUp.ItemCount--;
                 inventoryManager.GetSelectedItem(true);
                 DollDesignVisual[0].SetActive(false);
                 if (!NeedBlue)
@@ -73,7 +70,6 @@ public class DollDropDesignTrigger : MonoBehaviour
                 if (!NeedBlue || !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);
-                    playpickUp.ItemCount--;
                     inventoryManager.GetSelectedItem(true);
                     DollDesignVisual[3].SetActive(true);
                     designSelect.DollColorID = 1;
@@ -87,7 +83,6 @@ public class DollDropDesignTrigger : MonoBehaviour
                 if (!NeedBlue || !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);
-                    playpickUp.ItemCount--;
                     inventoryManager.GetSelectedItem(true);
                     DollDesignVisual[4].SetActive(true);
                     designSelect.DollColorID = 2;

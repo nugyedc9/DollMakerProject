@@ -55,10 +55,10 @@ public class GetDesignDoll : MonoBehaviour
     }
     public void SelectThisDesign()
     {
-        if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
+        if (inventoryManager.KeyItemHave < 3)
         {
-            playpickUp.ItemCount++;
-            inventoryManager.AddItem(FinishDoll[DollColorID]);
+            inventoryManager.KeyItemHave++;
+            inventoryManager.AddKeyItem(FinishDoll[DollColorID]);
             DollDrop.GetFinishDoll();
         }
     }

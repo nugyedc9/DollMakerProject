@@ -53,7 +53,10 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
     {
         if (!MouseDown)
         {
+            if(slotNumber >= 0 && slotNumber <= 2)
             inventoryManager.ChangeSelectedSlot(slotNumber);
+            else if(slotNumber >= 3 && slotNumber <= 5)
+                inventoryManager.ChangeSelectedKeySlot(slotNumber);
         }
     }
 }

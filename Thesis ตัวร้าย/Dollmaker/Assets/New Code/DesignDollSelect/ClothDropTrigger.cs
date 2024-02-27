@@ -14,7 +14,7 @@ public class ClothDropTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "RedCloth")
         {
-            playpickUp.ItemCount--;
+            inventoryManager.KeyItemHave--;
             designSelect.ClothColorID = 0;
             designSelect.HaveCloth = true;
             cloth.SetActive(true);
@@ -22,7 +22,7 @@ public class ClothDropTrigger : MonoBehaviour
         }
         if (collision.gameObject.tag == "BlueCloth")
         {
-            playpickUp.ItemCount--;
+            inventoryManager.KeyItemHave--;
             designSelect.ClothColorID = 1;
             designSelect.HaveCloth = true;
             cloth.SetActive(true);
@@ -30,7 +30,7 @@ public class ClothDropTrigger : MonoBehaviour
         }
         if (collision.gameObject.tag == "GreenCloth")
         {
-            playpickUp.ItemCount--;
+            inventoryManager.KeyItemHave--;
             designSelect.ClothColorID = 2;
             designSelect.HaveCloth = true;
             cloth.SetActive(true);
@@ -38,7 +38,7 @@ public class ClothDropTrigger : MonoBehaviour
         }
         if (collision.gameObject.tag == "YellowCloth")
         {
-            playpickUp.ItemCount--;
+            inventoryManager.KeyItemHave--;
             designSelect.ClothColorID = 3;
             designSelect.HaveCloth = true;
             cloth.SetActive(true);

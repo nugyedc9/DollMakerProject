@@ -10,15 +10,19 @@ public class InventoryManager : MonoBehaviour
 
 public PlayerPickUpItem playerPickUpItem;
     public PlayerAttack pAttack;
+    public TabTutorial tabTutorial;
     public Camera Cam;
 
-    public InventorySlote[] inventoryslote;
+    public InventorySlote[] inventoryslote,KeyItemInventory;
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
     public Transform DropPoint;
     public GameObject inventoryItemPrefab;
-    
+
+    [SerializeField] int keyitemHave;
+    public int KeyItemHave {  get { return keyitemHave; }  set { keyitemHave = value; } }
+
 
     [Header("CrossAction")]
     public Animator CorssAni;
@@ -52,91 +56,94 @@ public PlayerPickUpItem playerPickUpItem;
         }
 
         #region Item Show
-        inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
-        if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
+        if (selectedSlot >= 0 && selectedSlot <= 2 && tabTutorial.OpenTutor == false)
         {
-            pAttack.Attack = true;
-            ItemOnHand[0].SetActive(true);
-            if (triggerCrossAnim)
+            inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
             {
-                if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                if (playerPickUpItem.PAttack.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                triggerCrossAnim = false;
+                pAttack.Attack = true;
+                ItemOnHand[0].SetActive(true);
+                if (triggerCrossAnim)
+                {
+                    if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                    if (playerPickUpItem.PAttack.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                    if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    triggerCrossAnim = false;
+                }
+                if (drop)
+                {
+                    playerPickUpItem.ItemCount--;
+                    if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
+                    if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
+                    if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
             }
-            if(drop)
+            else
             {
-                playerPickUpItem.ItemCount--;
-                if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
-                if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
-                if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
-                GetSelectedItem(true);
-                drop = false;
+                pAttack.Attack = false;
+                ItemOnHand[0].SetActive(false);
             }
-        }
-        else
-        {
-            pAttack.Attack = false;
-            ItemOnHand[0].SetActive(false);
-        }
 
-        if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
-        {
-            ItemOnHand[1].SetActive(true);
-            if (drop)
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
             {
-                playerPickUpItem.ItemCount--;
-                DropitemPrefabs(DropPoint, 1);
-                GetSelectedItem(true); 
-                drop = false;
+                ItemOnHand[1].SetActive(true);
+                if (drop)
+                {
+                    playerPickUpItem.ItemCount--;
+                    DropitemPrefabs(DropPoint, 1);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
             }
-        }
-        else
-        {
-            ItemOnHand[1].SetActive(false);
-        }
-
-        if (itemSlot != null && itemSlot.gameObject.CompareTag("Scissors"))
-        {
-            playerPickUpItem.HaveScissor = true;
-            ItemOnHand[2].SetActive(true);
-            if (drop)
+            else
             {
-                playerPickUpItem.ItemCount--;
-                DropitemPrefabs(DropPoint, 2);
-                GetSelectedItem(true);
-                drop = false;
+                ItemOnHand[1].SetActive(false);
             }
-        }
-        else
-        {
-            playerPickUpItem.HaveScissor = false;
-            ItemOnHand[2].SetActive(false);
-        }
 
-        if (itemSlot != null && itemSlot.gameObject.CompareTag("Cloth"))
-        {
-            ItemOnHand[3].SetActive(true);
-            if (drop)
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Scissors"))
             {
-                playerPickUpItem.ItemCount--;
-                DropitemPrefabs(DropPoint, 3);
-                GetSelectedItem(true);
-                drop = false;
+                playerPickUpItem.HaveScissor = true;
+                ItemOnHand[2].SetActive(true);
+                if (drop)
+                {
+                    playerPickUpItem.ItemCount--;
+                    DropitemPrefabs(DropPoint, 2);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
             }
-        }
-        else
-        {
-            ItemOnHand[3].SetActive(false);
-        }
+            else
+            {
+                playerPickUpItem.HaveScissor = false;
+                ItemOnHand[2].SetActive(false);
+            }
 
-        #endregion
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Cloth"))
+            {
+                ItemOnHand[3].SetActive(true);
+                if (drop)
+                {
+                    playerPickUpItem.ItemCount--;
+                    DropitemPrefabs(DropPoint, 3);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                ItemOnHand[3].SetActive(false);
+            }
 
-        #region Drop Item
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (itemSlot != null)
-                drop = true;
+            #endregion
+
+            #region Drop Item
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                if (itemSlot != null)
+                    drop = true;
+            }
         }
         #endregion
     }
@@ -157,10 +164,21 @@ public PlayerPickUpItem playerPickUpItem;
         }
     }
 
+    public void ChangeSelectedKeySlot(int newValue)
+    {
+        if (selectedSlot >= 0)
+        {
+            KeyItemInventory[selectedSlot].Deselect();
+        }
+
+        KeyItemInventory[newValue].Select();
+        selectedSlot = newValue;
+    }
+
     public bool AddItem(Item item)
     {
         
-        for(int i = 0; i < inventoryslote.Length; i++)
+        for(int i = 0; i < inventoryslote.Length - 3; i++)
         {
             InventorySlote slot = inventoryslote[i];
             inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
@@ -171,6 +189,21 @@ public PlayerPickUpItem playerPickUpItem;
             }       
         }
         return false;
+    }
+
+    public bool AddKeyItem(Item item)
+    {
+            for (int i = 3; i < KeyItemInventory.Length; i++)
+            {
+                InventorySlote slot = KeyItemInventory[i];
+                inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
+                if (itemSlot == null)
+                {
+                    SpawnnewItem(item, slot);
+                    return true;
+                }
+            }     
+            return false;       
     }
 
 
@@ -204,7 +237,31 @@ public PlayerPickUpItem playerPickUpItem;
 
         return null;
     }
-    
+
+    public Item GetSelectedKeyItem(bool use)
+    {
+
+        InventorySlote slot = KeyItemInventory[selectedSlot];
+        inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
+        if (itemSlot != null)
+        {
+            Item item = itemSlot.item;
+            if (use)
+            {
+                itemSlot.Count--;
+                if (itemSlot.Count <= 0)
+                {
+
+                    Destroy(itemSlot.gameObject);
+                }
+            }
+            return item;
+        }
+
+        return null;
+    }
+
+
     public void DropitemPrefabs(Transform Droppoint , int ItemId)
     {
         Ray R = Cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
