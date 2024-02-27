@@ -111,12 +111,6 @@ public class PlayerAttack : MonoBehaviour
     public TextMeshProUGUI TextYouhere;
     public TextMeshProUGUI NeedToDo;
     public Animator NeedToDoAnimate;
-    public GameObject Tutext1;
-    public GameObject Tutext2;
-    public GameObject Tutext3;
-    public TextMeshProUGUI tutorialText1;
-    public TextMeshProUGUI tutorialText2;
-    public TextMeshProUGUI tutorialText3;
 
     [Header("Tutorial game")]
     public GameObject TStaetGame;
@@ -2216,9 +2210,7 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.Raycast(LPick, out RaycastHit hitInfo, Pickrange))
             {
                 if (hitInfo.collider.gameObject.tag == "Lantern")
-                {
-                    Tutext2.SetActive(true);
-                    tutorialText2.text = "Light off [F]";
+                {                
                     Light.SetActive(true);
                     LanternAni.SetTrigger("LightUp");
                     LightOn = true;
@@ -2383,8 +2375,7 @@ public class PlayerAttack : MonoBehaviour
         {
 
                 if (!LightOn)
-                {
-                    tutorialText2.text = "Light off [F]";
+                {                 
                     InterectSound.clip = LanternPickSound;
                     InterectSound.Play();
                     Light.gameObject.SetActive(true);
@@ -2393,7 +2384,6 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else
                 {
-                    tutorialText2.text = "Light on [F]";
                     Light.gameObject.SetActive(false);
                     LightOn = false;
                     pointLight.SetActive(false);
@@ -3055,7 +3045,6 @@ public class PlayerAttack : MonoBehaviour
         {
 
             //Doll on hand
-            Tutext1.SetActive(false);
           
             // Cloth on hand
             showCloth = false;
@@ -3097,6 +3086,8 @@ public class PlayerAttack : MonoBehaviour
     }
     #endregion
 
+    #region ClothDesign Did't use
+    /*
     public void GetclothDesign()
     {
         if (Itemhave != 3)
@@ -3170,9 +3161,6 @@ public class PlayerAttack : MonoBehaviour
 
                     CloseItemInInv();
                     BlueClothR.SetActive(true);
-                    Tutext1.SetActive(true);
-                    tutorialText1.text = "Drop [G]";
-                    tutorialText2.text = "";
                     Itemhave++;
                     BlueClothHave++;
                     Inventory.SetActive(true);
@@ -3225,9 +3213,6 @@ public class PlayerAttack : MonoBehaviour
 
                     CloseItemInInv();
                     GreenClothR.SetActive(true);
-                    Tutext1.SetActive(true);
-                    tutorialText1.text = "Drop [G]";
-                    tutorialText2.text = "";
                     Itemhave++;
                     GreenClothHave++;
                     Inventory.SetActive(true);
@@ -3280,9 +3265,6 @@ public class PlayerAttack : MonoBehaviour
 
                     CloseItemInInv();
                     YellowClothR.SetActive(true);
-                    Tutext1.SetActive(true);
-                    tutorialText1.text = "Drop [G]";
-                    tutorialText2.text = "";
                     Itemhave++;
                     YellowClothHave++;
                     Inventory.SetActive(true);
@@ -3318,11 +3300,12 @@ public class PlayerAttack : MonoBehaviour
                     }
 
                 }
-            }
-            #endregion
-        }
-    }
+            }*/
+    #endregion
 
+
+    #region DropDisign Did' use
+    /*
     public void DropDesignColor()
     {
         #region I1
@@ -3535,9 +3518,9 @@ public class PlayerAttack : MonoBehaviour
                     YellowCloInv3 = false;
                 }
             }
-        }
+        }*/
         #endregion
-    }
+    
 
 
     #region Map

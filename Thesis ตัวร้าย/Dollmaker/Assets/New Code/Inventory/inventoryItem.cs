@@ -30,7 +30,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         lastMousePosition = eventData.position;
-    
+        parentAfterDrag = transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -47,6 +47,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
             transform.localPosition = orginalPosition;
+        image.raycastTarget = true;
+        transform.SetParent(parentAfterDrag);
     }
 
      public void InitialiseItem(Item newItem)
