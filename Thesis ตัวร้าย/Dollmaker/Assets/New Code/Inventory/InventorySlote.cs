@@ -59,4 +59,6 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
                 inventoryManager.ChangeSelectedKeySlot(slotNumber);
         }
     }
+
+
 }
