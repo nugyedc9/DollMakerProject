@@ -11,6 +11,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("Image")]
     public Image image;
 
+
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = 1;
     [HideInInspector] public Transform parentAfterDrag;
@@ -29,52 +30,51 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        lastMousePosition = eventData.position;
+        //lastMousePosition = eventData.position;
         parentAfterDrag = transform.parent;
+        image.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
-    {
-            Vector2 curremtMousePosition = eventData.position;
-            Vector2 diff = curremtMousePosition - lastMousePosition;
+    { 
+        transform.position = Input.mousePosition;
+      /*  Vector2 curremtMousePosition = eventData.position;
+        Vector2 diff = curremtMousePosition - lastMousePosition;
+        lastMousePosition = curremtMousePosition;*/
 
-            transform.position = Input.mousePosition;
-
-            lastMousePosition = curremtMousePosition;
-        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-            transform.localPosition = orginalPosition;
+        transform.localPosition = orginalPosition;
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
 
-     public void InitialiseItem(Item newItem)
+    public void InitialiseItem(Item newItem)
      {
          item = newItem;
          image.sprite = newItem.image;
      }
 
-    /*
-     public void OnBeginDrag(PointerEventData eventData)
-     {
-         image.raycastTarget = false;
-         parentAfterDrag = transform.parent;
-         transform.SetParent(transform.root);
-         transform.SetAsLastSibling();
-     }
 
-     public void OnDrag(PointerEventData eventData)
-     {
-         transform.position = Input.mousePosition;
-     }
+/*    public void OnBeginDrag(PointerEventData eventData)
+    {
+        image.raycastTarget = false;
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+        transform.SetAsLastSibling();
+    }
 
-     public void OnEndDrag(PointerEventData eventData)
-     {
-         image.raycastTarget=true;
-         transform.SetParent(parentAfterDrag);
-     }*/
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = Input.mousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        image.raycastTarget = true;
+        transform.SetParent(parentAfterDrag);
+    }*/
 
 }

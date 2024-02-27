@@ -6,49 +6,55 @@ public class TabTutorial : MonoBehaviour
 {
     public PlayerAttack PAttack;
     public PlayerChangeCam Cam;
+    public Animator InvShow;
     public GameObject[] Tutorial;
-    public GameObject GuideBook ,KeyItem, PrevButt, NextButt;
+    public GameObject GuideBook ,FullInventory, PrevButt, NextButt;
     [SerializeField] bool openTutor;
      public bool OpenTutor { get { return openTutor; } set { openTutor = value; } }
     public int PageNum;
 
+    bool PlayAnimInvTab;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Cam.camOnPerSon == true)
         {
-            if (!OpenTutor)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                OpenTutor = true;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                OpenTutor = false;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                if (!OpenTutor)
+                {
+                    OpenTutor = true;
+                    InvShow.enabled = true;
+                    PlayAnimInvTab = true;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    InvShow.Play("OpenTabInv", 0, 0);
+                }
+                else
+                {
+                    PlayAnimInvTab = true;
+                    OpenTutor = false;
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    InvShow.Play("CloseTableInv", 0, 0);
+                }
             }
         }
-
 
         if(OpenTutor)
         {
-            Time.timeScale = 0;
             GuideBook.SetActive(true);
             Tutorial[PageNum].SetActive(true);
-            KeyItem.SetActive(true);
+            FullInventory.SetActive(true);
             PAttack.Attack = false;
-            
         }
         else
         {
-            Time.timeScale = 1;
-            KeyItem.SetActive(false);
+            FullInventory.SetActive(false);
             if(Cam.OpenKeyItemInv == false )
             GuideBook.SetActive(false);
             Tutorial[PageNum].SetActive(false);
-            
         }
 
         if (PageNum == 0) PrevButt.SetActive(false);

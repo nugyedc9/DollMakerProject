@@ -39,7 +39,6 @@ public class PlayerPickUpItem : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
                     {
-                        ItemCount++;
                         CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                         PAttack.curHpCross = CrossUse.curHp;
                         inventoryManager.TriggerCrossAnim = true;
@@ -53,19 +52,16 @@ public class PlayerPickUpItem : MonoBehaviour
                     }
                     if (hitInfo.collider.gameObject.tag == "Doll")
                     {
-                        ItemCount++;
                         inventoryManager.AddItem(itemPickUp[1]);
                         Destroy(hitInfo.collider.gameObject);
                     }
                     if (hitInfo.collider.gameObject.tag == "Scissors")
                     {
-                        ItemCount++;
                         inventoryManager.AddItem(itemPickUp[2]);
                         Destroy(hitInfo.collider.gameObject);
                     }
                     if(hitInfo.collider.gameObject.tag == "Cloth")
                     {
-                        ItemCount++;
                         inventoryManager.AddItem(itemPickUp[3]);
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -81,7 +77,6 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (HaveScissor)
                         { 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
-                            ItemCount++;
                             if(pieceClothGet.pieceClothID == 0)
                             {
                                 inventoryManager.AddItem(itemPickUp[6]);

@@ -72,11 +72,10 @@ public class DesignSelect : MonoBehaviour
 
     public void SelectThisDesign()
     {
-        if (inventoryManager.KeyItemHave < 3)
+        if (playPickup.ItemCount < inventoryManager.inventoryslote.Length)
         {
-            inventoryManager.KeyItemHave++;
             ClothColor[PageNum].SetActive(false);
-            inventoryManager.AddKeyItem(PieceCloth[PageNum]);
+            inventoryManager.AddItem(PieceCloth[PageNum]);
             BoxColPushCloth.SetActive(true);
             HaveCloth = false;
         }

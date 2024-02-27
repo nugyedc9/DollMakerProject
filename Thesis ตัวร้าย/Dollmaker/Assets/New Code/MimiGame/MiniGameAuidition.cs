@@ -30,7 +30,7 @@ public class MiniGameAuidition : MonoBehaviour
     [Header("Inventory")]
     public InventoryManager inventoryManager;
     public ClothColorDrop GetfinishDoll;
-    public PlayerPickUpItem playerPickUpItem; 
+    public PlayerPickUpItem playpickUp; 
     public Item[] FinishClothID;
 
     [Header("Prefabs Audition")]
@@ -360,7 +360,7 @@ public class MiniGameAuidition : MonoBehaviour
 
         if(_Currentstate == MiniGameAuditionState.ItemLost)
         {
-            if (inventoryManager.KeyItemHave < 3)
+            if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
             {
                 if (Finish)
                 {
@@ -369,8 +369,7 @@ public class MiniGameAuidition : MonoBehaviour
                     // print("LostItem");            
                     //canPlay.FinishDoll();
                     canPlay.Cloth = false;
-                    inventoryManager.KeyItemHave++;
-                    inventoryManager.AddKeyItem(FinishClothID[GetfinishDoll.FinishClothID]);
+                    inventoryManager.AddItem(FinishClothID[GetfinishDoll.FinishClothID]);
                     Finish = false;
                 }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;

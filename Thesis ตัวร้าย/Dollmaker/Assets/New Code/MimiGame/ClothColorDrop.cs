@@ -47,7 +47,6 @@ public class ClothColorDrop : MonoBehaviour
     {
         if (collision.gameObject.tag == "PieceClothRed")
         {
-            playerPickup.ItemCount--;
             ClothColor[0].SetActive(true);
             finishClothID = 0;
             hand.SetActive(true);
@@ -56,7 +55,6 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothBlue")
         {
-            playerPickup.ItemCount--;
             ClothColor[1].SetActive(true);
             finishClothID = 1;
             hand.SetActive(true);
@@ -65,7 +63,6 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothGreen")
         {
-            playerPickup.ItemCount--;
             ClothColor[2].SetActive(true);
             finishClothID = 2;
             hand.SetActive(true);
@@ -74,7 +71,6 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothYellow")
         {
-            playerPickup.ItemCount--;
             ClothColor[3].SetActive(true);
             finishClothID = 3;
             hand.SetActive(true);

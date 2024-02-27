@@ -16,7 +16,8 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
-    public GameObject KeyItemInv;
+    public GameObject OpenInvBut, CloseInvBut;
+    public Animator InvOpen;
     [SerializeField] bool openkeyItemInv;
     public bool OpenKeyItemInv {  get { return openkeyItemInv; } set { openkeyItemInv = value; } }
 
@@ -32,6 +33,7 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
 
     [Header("SelectDesign")]
+    public Animator InvAnim;
     public GameObject DesignSelect;
     public GameObject Book;
 
@@ -52,9 +54,12 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
-    private bool CamOnPerson = true, CamOnDesk, HaveItem
+    private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
-    float TimerWakeUP, Closecanva; 
+    float TimerWakeUP, Closecanva;
+
+    private bool CamOnPerson = true;
+    public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
 
     private void OnEnable()
     {
@@ -218,15 +223,17 @@ public class PlayerChangeCam : MonoBehaviour
         if (CamOnPerson)
         {
             if(TabOn.OpenTutor == false)
-            CloseMouse();
+            CloseMouse();          
             OpenKeyItemInv = false;
+            OpenInvBut.SetActive(false);
+            CloseInvBut.SetActive(false);
             HandSwing.SetActive(false);
             miniGame.SetActive(false);
         }
         else
         {
+              Throwitem.Attack = false;
             ShowMouse();
-            KeyItemInv.SetActive(true);
             if (ChangePOV.IsActiveCamera(WorkShopView))
             {
                 if (canplayMinigame)
@@ -267,6 +274,7 @@ public class PlayerChangeCam : MonoBehaviour
                         TurnOut.SetActive(false);
                         TurnIn.SetActive(false);
                         CheckCanplayMiniG.OnDesk = false;
+                        InvOpen.Play("InvClose");
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
@@ -279,6 +287,7 @@ public class PlayerChangeCam : MonoBehaviour
                         Book.SetActive(false);
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
+                        InvOpen.Play("InvClose");
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
@@ -290,6 +299,7 @@ public class PlayerChangeCam : MonoBehaviour
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         DropHere.SetActive(false);
+                        InvOpen.Play("InvClose");
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
@@ -302,6 +312,7 @@ public class PlayerChangeCam : MonoBehaviour
                         BookDoll.SetActive(false);
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
+                        InvOpen.Play("InvClose");
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
@@ -319,6 +330,8 @@ public class PlayerChangeCam : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
             CamOnPerson = false;
         openkeyItemInv = true;
+        InvAnim.enabled = true;
+        OpenInvBut.SetActive(true);
     }
     
     public void ItemOnHand()

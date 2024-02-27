@@ -263,7 +263,6 @@ public class PlayerAttack : MonoBehaviour
                 HolyLight.SetActive(false);
                 if (curHpCross == 1)
                 {
-                    playerPickUpItem.ItemCount--;
                     inventoryManager.GetSelectedItem(true);
                 }
             }
@@ -2913,7 +2912,6 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(2f);
         if(curHpCross == 1)
         {
-            playerPickUpItem.ItemCount--;
             inventoryManager.GetSelectedItem(true);
         }
     }

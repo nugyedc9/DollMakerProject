@@ -11,22 +11,23 @@ public class InventoryManager : MonoBehaviour
 public PlayerPickUpItem playerPickUpItem;
     public PlayerAttack pAttack;
     public TabTutorial tabTutorial;
+    public PlayerChangeCam ChangeCam;
     public Camera Cam;
 
-    public InventorySlote[] inventoryslote,KeyItemInventory;
+    public InventorySlote[] inventoryslote,FullInventorySlot;
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
     public Transform DropPoint;
     public GameObject inventoryItemPrefab;
 
-    [SerializeField] int keyitemHave;
-    public int KeyItemHave {  get { return keyitemHave; }  set { keyitemHave = value; } }
 
 
     [Header("CrossAction")]
     public Animator CorssAni;
     [SerializeField] bool triggerCrossAnim;
+
+    public Animator InvOpenAnim;
     public bool TriggerCrossAnim { get { return triggerCrossAnim; } set { triggerCrossAnim = value; } }
 
     [SerializeField] int SelectedSlot;
@@ -43,6 +44,7 @@ public PlayerPickUpItem playerPickUpItem;
     private void Start()
     {
         ChangeSelectedSlot(0);
+        InvOpenAnim.enabled = false;
     }
     private void Update()
     {
@@ -51,12 +53,14 @@ public PlayerPickUpItem playerPickUpItem;
             bool isNumber = int.TryParse(Input.inputString, out int number);
             if(isNumber && number > 0 && number < 4)
             {
+               
                 ChangeSelectedSlot(number - 1);
             }
         }
 
+
         #region Item Show
-        if (selectedSlot >= 0 && selectedSlot <= 2 && tabTutorial.OpenTutor == false)
+        if (selectedSlot >= 0 && selectedSlot <= 2 && tabTutorial.OpenTutor == false && ChangeCam.camOnPerSon == true)
         {
             inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
@@ -72,7 +76,6 @@ public PlayerPickUpItem playerPickUpItem;
                 }
                 if (drop)
                 {
-                    playerPickUpItem.ItemCount--;
                     if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
                     if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
                     if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
@@ -91,7 +94,6 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[1].SetActive(true);
                 if (drop)
                 {
-                    playerPickUpItem.ItemCount--;
                     DropitemPrefabs(DropPoint, 1);
                     GetSelectedItem(true);
                     drop = false;
@@ -108,7 +110,6 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[2].SetActive(true);
                 if (drop)
                 {
-                    playerPickUpItem.ItemCount--;
                     DropitemPrefabs(DropPoint, 2);
                     GetSelectedItem(true);
                     drop = false;
@@ -125,7 +126,6 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[3].SetActive(true);
                 if (drop)
                 {
-                    playerPickUpItem.ItemCount--;
                     DropitemPrefabs(DropPoint, 3);
                     GetSelectedItem(true);
                     drop = false;
@@ -164,46 +164,21 @@ public PlayerPickUpItem playerPickUpItem;
         }
     }
 
-    public void ChangeSelectedKeySlot(int newValue)
-    {
-        if (selectedSlot >= 0)
-        {
-            KeyItemInventory[selectedSlot].Deselect();
-        }
-
-        KeyItemInventory[newValue].Select();
-        selectedSlot = newValue;
-    }
-
     public bool AddItem(Item item)
     {
         
-        for(int i = 0; i < inventoryslote.Length - 3; i++)
+        for(int i = 0; i < inventoryslote.Length; i++)
         {
             InventorySlote slot = inventoryslote[i];
             inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
             if(itemSlot == null)
             {
+                playerPickUpItem.ItemCount++;
                 SpawnnewItem(item, slot);
                 return true;
             }       
         }
         return false;
-    }
-
-    public bool AddKeyItem(Item item)
-    {
-            for (int i = 3; i < KeyItemInventory.Length; i++)
-            {
-                InventorySlote slot = KeyItemInventory[i];
-                inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
-                if (itemSlot == null)
-                {
-                    SpawnnewItem(item, slot);
-                    return true;
-                }
-            }     
-            return false;       
     }
 
 
@@ -228,30 +203,7 @@ public PlayerPickUpItem playerPickUpItem;
                 itemSlot.Count--;
                 if(itemSlot.Count <= 0)
                 {
-                    
-                    Destroy(itemSlot.gameObject);
-                }
-            }
-            return item;
-        }
-
-        return null;
-    }
-
-    public Item GetSelectedKeyItem(bool use)
-    {
-
-        InventorySlote slot = KeyItemInventory[selectedSlot];
-        inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
-        if (itemSlot != null)
-        {
-            Item item = itemSlot.item;
-            if (use)
-            {
-                itemSlot.Count--;
-                if (itemSlot.Count <= 0)
-                {
-
+                    playerPickUpItem.ItemCount--;
                     Destroy(itemSlot.gameObject);
                 }
             }

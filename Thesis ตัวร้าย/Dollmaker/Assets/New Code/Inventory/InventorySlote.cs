@@ -41,7 +41,7 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if(transform.childCount == 0)
+        if (transform.childCount == 0)
         {
             inventoryItem IventoryItem = eventData.pointerDrag.GetComponent<inventoryItem>();
             IventoryItem.parentAfterDrag = transform;
@@ -53,11 +53,9 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
     {
         if (!MouseDown)
         {
-            if(slotNumber >= 0 && slotNumber <= 2)
             inventoryManager.ChangeSelectedSlot(slotNumber);
-            else if(slotNumber >= 3 && slotNumber <= 5)
-                inventoryManager.ChangeSelectedKeySlot(slotNumber);
         }
+
     }
 
 
