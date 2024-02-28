@@ -13,6 +13,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera DeskShopView;
     [SerializeField] CinemachineVirtualCamera BedCam;
     [SerializeField] CinemachineVirtualCamera PushClothOnDollView;
+    [SerializeField] CinemachineVirtualCamera makeDollTutorial;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -55,9 +56,11 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
+    public float TutorialTime;
+
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
-    float TimerWakeUP, Closecanva;
+    float TimerWakeUP, Closecanva, TutorialTimeIncode;
 
     private bool CamOnPerson = true;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
@@ -73,6 +76,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(BedCam);
         ChangePOV.Register(DeskShopView);
         ChangePOV.Register(PushClothOnDollView);
+        ChangePOV.Register(makeDollTutorial);
         ChangePOV.SwitchCamera(BedCam);
     }
 
@@ -83,6 +87,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(ChangeViewOnDesk);
         ChangePOV.UnRegister(DeskShopView);
         ChangePOV.UnRegister(PushClothOnDollView);
+        ChangePOV.UnRegister(makeDollTutorial);
         ChangePOV.UnRegister(BedCam);
     }
 
@@ -108,6 +113,23 @@ public class PlayerChangeCam : MonoBehaviour
                     _1Story.enabled = true;
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
+            }
+        }
+
+        if(TutorialTimeIncode > 0)
+        {
+            TutorialTimeIncode -= Time.deltaTime;
+        }
+        if(TutorialTimeIncode<= 0)
+        {
+            if (ChangePOV.IsActiveCamera(makeDollTutorial))
+            {
+                _InputManager.StopWalk();
+                Throwitem.CanAttack();
+                ItemOnPlayer.SetActive(true);
+                TextOnPlayer.SetActive(true);
+                ChangePOV.SwitchCamera(FirstpersonView);
+                CamOnPerson = true;
             }
         }
 
@@ -382,6 +404,19 @@ public class PlayerChangeCam : MonoBehaviour
                 ChangePOV.SwitchCamera(WorkShopView);
                 LookOutGhost=false;
             } 
+        }
+    }
+
+    public void ChangeCamToTutorial()
+    {
+        if (ChangePOV.IsActiveCamera(FirstpersonView))
+        {           
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+            ItemOnPlayer.SetActive(false);
+            TextOnPlayer.SetActive(false);
+            ChangePOV.SwitchCamera(makeDollTutorial);
+            TutorialTimeIncode = TutorialTime;
         }
     }
 
