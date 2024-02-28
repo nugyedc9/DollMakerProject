@@ -11,6 +11,10 @@ public class InputManager : MonoBehaviour
     private PlayerMotor motor;
     private PlayerLook look;
     private bool CanWalk = true, Ondesk, HoldSpace;
+
+    [SerializeField] bool onTab;
+    public bool OnTab { get { return onTab; } set {  onTab = value; } }
+
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -37,13 +41,13 @@ public class InputManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (!Ondesk)
+        if (!Ondesk && !OnTab)
             look.ProcessLook(onLook.Look.ReadValue<Vector2>());
-        else
+/*        else
         {
             if(!HoldSpace)
             look.ProcesslookOnDesk(onLook.Look.ReadValue<Vector2>());
-        }
+        }*/
     }
 
     private void OnEnable()

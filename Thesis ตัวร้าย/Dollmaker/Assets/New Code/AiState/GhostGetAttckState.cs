@@ -18,7 +18,7 @@ public class GhostGetAttckState : GhostBaseState
     public override void UpdateState(GhostStateManager state)
     {
         state.Cansee = false;
-        state.DrawVisionCone();
+
         if (state.ChangePos)
         {
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
@@ -29,6 +29,7 @@ public class GhostGetAttckState : GhostBaseState
         if(CurDelay > 0)
         {
             CurDelay -= Time.deltaTime;
+            state.enemyGhost.speed -= Time.deltaTime;
         }
         
 

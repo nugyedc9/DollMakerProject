@@ -6,6 +6,7 @@ public class TabTutorial : MonoBehaviour
 {
     public PlayerAttack PAttack;
     public PlayerChangeCam Cam;
+    public InputManager inputManager;
     public Animator InvShow;
     public GameObject[] Tutorial;
     public GameObject GuideBook ,FullInventory, PrevButt, NextButt;
@@ -29,6 +30,7 @@ public class TabTutorial : MonoBehaviour
                     PlayAnimInvTab = true;
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
+                    inputManager.OnTab = true;
                     InvShow.Play("OpenTabInv", 0, 0);
                 }
                 else
@@ -37,6 +39,7 @@ public class TabTutorial : MonoBehaviour
                     OpenTutor = false;
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
+                    inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
                 }
             }

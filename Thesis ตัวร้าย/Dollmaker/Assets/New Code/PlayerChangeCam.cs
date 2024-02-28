@@ -61,6 +61,9 @@ public class PlayerChangeCam : MonoBehaviour
     private bool CamOnPerson = true;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
 
+    [SerializeField] bool closeInterectShow;
+    public bool CloseInterectShow { get { return closeInterectShow; } set { closeInterectShow = value; } }
+
     private void OnEnable()
     {
         ChangePOV.Register(FirstpersonView);
@@ -222,6 +225,7 @@ public class PlayerChangeCam : MonoBehaviour
 
         if (CamOnPerson)
         {
+            CloseInterectShow = false;
             if(TabOn.OpenTutor == false)
             CloseMouse();          
             OpenKeyItemInv = false;
@@ -231,8 +235,7 @@ public class PlayerChangeCam : MonoBehaviour
             miniGame.SetActive(false);
         }
         else
-        {
-              Throwitem.Attack = false;
+        {          
             ShowMouse();
             if (ChangePOV.IsActiveCamera(WorkShopView))
             {
@@ -331,6 +334,8 @@ public class PlayerChangeCam : MonoBehaviour
             CamOnPerson = false;
         openkeyItemInv = true;
         InvAnim.enabled = true;
+        CloseInterectShow = true;
+        Throwitem.Attack = false;
         OpenInvBut.SetActive(true);
     }
     

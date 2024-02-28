@@ -67,7 +67,7 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothGreen")
             {
-                if (!NeedBlue || !NeedRed)
+                if (!NeedBlue && !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);
                     inventoryManager.GetSelectedItem(true);
@@ -80,7 +80,7 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothYellow")
             {
-                if (!NeedBlue || !NeedRed)
+                if (!NeedBlue && !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);
                     inventoryManager.GetSelectedItem(true);

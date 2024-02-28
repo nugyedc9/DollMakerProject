@@ -98,7 +98,7 @@ public class GhostStateManager : MonoBehaviour
 
         }
 
-        if(PlayerHitDelay <= 0)
+/*        if(PlayerHitDelay <= 0)
         {
             if (!HpCross)
             {
@@ -107,7 +107,7 @@ public class GhostStateManager : MonoBehaviour
                 SwitchState(GetAtKState);
                 HpCross = true;
             }
-        }  
+        }  */
         if(Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState) ;
     }
 
@@ -119,10 +119,8 @@ public class GhostStateManager : MonoBehaviour
 
     public void Playerhit()
     {
-        if (!GetHit)
-        {
-            PlayerHitDelay -= 8 * Time.deltaTime;
-            enemyGhost.speed = 0;
+            /*PlayerHitDelay -= 8 * Time.deltaTime;
+            enemyGhost.speed = HuntSpeed - Time.deltaTime;
             if (!GetAttack)
             {
                 if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
@@ -130,10 +128,16 @@ public class GhostStateManager : MonoBehaviour
                 HpGhost--;
                 ChangePos = true;
                 GetAttack = true;
-            }
+            }*/
+        if (!GetAttack)
+        {
+            PAttack.CrossRuin();
+            GhostBoxCol.enabled = false;
+            HpGhost--;
+            SwitchState(GetAtKState);
+            ChangePos = true;
+            GetAttack = true;
         }
-
-     
     }
 
     float curplayerOutSight;

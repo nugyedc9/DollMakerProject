@@ -337,7 +337,7 @@ public class MiniGameAuidition : MonoBehaviour
             }
         }
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
-        {
+        {         
             if (HoldSpace)
             {
                 AuditionPass.Clear();
@@ -446,6 +446,9 @@ public class MiniGameAuidition : MonoBehaviour
 
     public void LeaveMinigame()
     {
+        Needle.enabled = false;
+        ClothMove.enabled = false;
+        handMove.enabled = false;
         if (!NeedToCutLine)
         {
             HoldSpace = false;

@@ -9,9 +9,12 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
 
-    [Header("CrossThing")]
+    [Header("Cross Thing")]
     public PlayerAttack PAttack;
     private CrossCheck CrossUse;
+
+    [Header("Scrissor Thing")]
+    public Animator ScrissorAnim;
 
     [Header("Pick Up")]
     public float Pickrange;
@@ -75,7 +78,10 @@ public class PlayerPickUpItem : MonoBehaviour
                     if (hitInfo.collider.gameObject.tag == "RollCloth")
                     {                     
                         if (HaveScissor)
-                        { 
+                        {
+                            if (!ScrissorAnim.GetCurrentAnimatorStateInfo(0).IsName("cutanima"))
+                                ScrissorAnim.Play("cutanima", 0, 0);
+
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                             if(pieceClothGet.pieceClothID == 0)
                             {

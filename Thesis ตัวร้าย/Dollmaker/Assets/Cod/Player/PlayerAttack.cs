@@ -208,57 +208,39 @@ public class PlayerAttack : MonoBehaviour
 
                 HitAudio.clip = HitWindSound;
                 HitAudio.Play();
-                Holddown = true;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-
-                if (curHpCross == 3) CorssAni.SetTrigger("NotAttack");
-                if (curHpCross == 2) CorssAni.SetTrigger("NotAttack2");
-                if (curHpCross == 1) CorssAni.SetTrigger("NotAttack3");
-          
-
-                Holddown = false;
-            }
-        }
-        else Holddown = false;
-
-        if (Holddown )
-        {
-            if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
-            {
-                if (hitinfo.collider.gameObject.tag == "Ghost")
+                if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
                 {
-                    if (curHpCross != 1)
+                    if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
-                        GhostEx = true;
-                        CrossTimer = 4.5f;
-                        crossruin = true;
-                        HitAudio.clip = HitGhostSound;
-                        HitAudio.Play();
-                        GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
-                        GhostHit.Playerhit();
+                        if (curHpCross != 1)
+                        {
+                            GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
+                            GhostHit.Playerhit();
+                            curHpCross--;
+                            if (curHpCross == 2) CorssAni.SetTrigger("HitGhost");
+                            if (curHpCross == 1) CorssAni.SetTrigger("HitGhost2");
+                            CrossTimer = 4.5f;
+                            crossruin = true;
+                            HitAudio.clip = HitGhostSound;
+                            HitAudio.Play();                           
+                        }
+                        //StartCoroutine(AttackReset());
                     }
-                    //StartCoroutine(AttackReset());
-                }else HolyLight.SetActive(false);
+                    else HolyLight.SetActive(false);
+                }
             }
         }
-        else HolyLight.SetActive(false);
+
+
 
         if(CrossTimer > 0)
         {
             CrossTimer -= Time.deltaTime;
-            if(CrossTimer < 3.6 && CrossTimer > 2.6f)
+            if (CrossTimer < 3.6 && CrossTimer > 2.6f)
             {
                 HolyLight.SetActive(true);
-                if (GhostEx)
-                {
-                    if (curHpCross == 2) CorssAni.SetTrigger("HitGhost");
-                    if (curHpCross == 1) CorssAni.SetTrigger("HitGhost2");
-                    GhostEx = false;
-                }
             }
-            else if(CrossTimer < 0)
+            else if (CrossTimer < 0)
             {
                 HolyLight.SetActive(false);
                 if (curHpCross == 1)
@@ -1116,9 +1098,36 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (hitevent.collider.gameObject.tag == "DeskWorkShop")
             {
-                ItemText.SetActive(true);
-                ItemName.text = "Change View [E]";
-                InterectItem = true;
+                if (!changeCam.CloseInterectShow)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Change View [E]";
+                    InterectItem = true;
+                }
+            }
+            else if (hitevent.collider.gameObject.tag == "DeskPushClothToDoll")
+            {
+                if (!changeCam.CloseInterectShow)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Change View [E]";
+                    InterectItem = true;
+                }
+            }
+            else if (hitevent.collider.gameObject.tag == "RollCloth")
+            {
+                if (playerPickUpItem.HaveScissor)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Cut [Left Click]";
+                    InterectItem = true;
+                }
+                else if(!playerPickUpItem.HaveScissor)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Find a scrissor";
+                    InterectItem = true;
+                }
             }
 
             else
@@ -2985,12 +2994,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (crossruin)
         {
-            curHpCross--;
-       /*     inventoryManager.GetSelectedItem(true);
-            if(curHpCross == 2)
-            inventoryManager.AddItem(playerPickUpItem.itemPickUp[4]);
-            if(curHpCross == 1)
-                inventoryManager.AddItem(playerPickUpItem.itemPickUp[5]);*/
             CrossUse.curHp = curHpCross;
             crossruin = false;
         }

@@ -5,7 +5,7 @@ public class GhostHuntState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        Debug.Log("Hunt");
+        //Debug.Log("Hunt");
         state.GhostAudioSoure.loop = true;
         state.GhostAudioSoure.clip = state.HuntS;
         state.GhostAudioSoure.Play();
