@@ -10,11 +10,26 @@ public class TabTutorial : MonoBehaviour
     public Animator InvShow;
     public GameObject[] Tutorial;
     public GameObject GuideBook ,FullInventory, PrevButt, NextButt;
+
+    [Header("Story boxCol")]
+    public GameObject _2StoryCanWalk;
+    public GameObject _5StoryCanWalk;
+
+
     [SerializeField] bool openTutor;
      public bool OpenTutor { get { return openTutor; } set { openTutor = value; } }
     public int PageNum;
 
-    bool PlayAnimInvTab;
+    [SerializeField] int pageCount;
+    public int PageCount { get { return pageCount; } set { pageCount = value; } }
+
+    bool PlayAnimInvTab, Hit_2Story, Hit_5Story = true;
+
+
+    private void Awake()
+    {
+        PageCount = 8;
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,9 +44,14 @@ public class TabTutorial : MonoBehaviour
                     InvShow.enabled = true;
                     PlayAnimInvTab = true;
                     Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.lockState = CursorLockMode.None;                    
                     inputManager.OnTab = true;
                     InvShow.Play("OpenTabInv", 0, 0);
+                    
+                    if(!Hit_2Story)
+                        _2StoryCanWalk.SetActive(true);
+                    if (!Hit_5Story)
+                        _5StoryCanWalk.SetActive(true);
                 }
                 else
                 {
@@ -41,6 +61,10 @@ public class TabTutorial : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
+
+
+                    Hit_2Story = true;
+                    Hit_5Story = true;
                 }
             }
         }
@@ -62,8 +86,8 @@ public class TabTutorial : MonoBehaviour
 
         if (PageNum == 0) PrevButt.SetActive(false);
         else if (PageNum != 0) PrevButt.SetActive(true);
-        if (PageNum == Tutorial.Length - 1) NextButt.SetActive(false);
-        if (PageNum < Tutorial.Length - 1) NextButt.SetActive(true);
+        if (PageNum == pageCount - 1) NextButt.SetActive(false);
+        if (PageNum < pageCount - 1) NextButt.SetActive(true);
 
     }
 
@@ -75,13 +99,13 @@ public class TabTutorial : MonoBehaviour
 
     public void NextPage()
     {
-        if (PageNum < Tutorial.Length - 1)
+        if (PageNum < pageCount - 1)
         {
             PageNum++;
             Tutorial[PageNum-1].SetActive(false);
             Tutorial[PageNum].SetActive(false);
         }
-        if(PageNum >= Tutorial.Length - 1) PageNum = Tutorial.Length - 1;
+        if(PageNum >= pageCount - 1) PageNum = pageCount - 1;
     }
 
     public void PrevPage()
@@ -94,6 +118,11 @@ public class TabTutorial : MonoBehaviour
         }
         if(PageNum < 0) PageNum =0;
 
+    }
+
+    public void Story5()
+    {
+        Hit_5Story = false;
     }
 
 }

@@ -48,6 +48,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
+    public BoxCollider _1Story;
     public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
 
@@ -89,7 +90,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        TimerWakeUP = 11;
+        TimerWakeUP = 4;
     }
 
     private void Update()
@@ -97,30 +98,21 @@ public class PlayerChangeCam : MonoBehaviour
         #region Wake UP
         if(TimeBool)
         TimerWakeUP -= Time.deltaTime;
-        if (Delay)
-        {
-            Closecanva -= Time.deltaTime;
-        }
+
         if (TimerWakeUP <= 0)
         {
             if (!WakeUp)
             {
                 if (ChangePOV.IsActiveCamera(BedCam))
                 {
-                    Objective.SetActive(true);
-                    Delay = true;
-                    Closecanva = 5;
+                    _1Story.enabled = true;
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
             }
         }
 
-        if(Closecanva <= 0)
-        {
-            Objective.SetActive(false);
-            Delay = false;
-        }
         #endregion
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if(ChangePOV.IsActiveCamera(BedCam))

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerPickUpItem : MonoBehaviour
 {
     public InventoryManager inventoryManager;
+    public TabTutorial BookGuide;
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
 
@@ -15,6 +16,7 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [Header("Scrissor Thing")]
     public Animator ScrissorAnim;
+    public GameObject _5Story;
 
     [Header("Pick Up")]
     public float Pickrange;
@@ -28,6 +30,7 @@ public class PlayerPickUpItem : MonoBehaviour
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
     private RollClothColor pieceClothGet;
+    private DocumentID documentID;
 
     public void Update()
     {
@@ -69,6 +72,17 @@ public class PlayerPickUpItem : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
+                
+                if(hitInfo.collider.gameObject.tag == "Document")
+                {
+                    documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
+                    if(documentID.DocID == 0)
+                    {
+                        _5Story.SetActive(true);
+                        BookGuide.PageCount++;
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                }
             }
 
             if(Input.GetMouseButtonDown(0))
@@ -104,6 +118,8 @@ public class PlayerPickUpItem : MonoBehaviour
                         }
                     }
                 }
+
+                
             }
         }
 
