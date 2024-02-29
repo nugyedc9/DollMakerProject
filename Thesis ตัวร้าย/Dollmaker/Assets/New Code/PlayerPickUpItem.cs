@@ -46,6 +46,7 @@ public class PlayerPickUpItem : MonoBehaviour
     private DocumentID documentID;
     private Door DoorId;
     private FinishBasket dropFinish;
+    private StoryActive storyActive;
 
     private bool GhostComeOut;
     private int KeyId;
@@ -182,6 +183,12 @@ public class PlayerPickUpItem : MonoBehaviour
 
                 }
                 
+            }
+
+            if(hitInfo.collider.gameObject.tag == "Event")
+            {
+                storyActive = hitInfo.collider.gameObject.GetComponent<StoryActive>();
+                storyActive.LookActiveevent();
             }
         }
 

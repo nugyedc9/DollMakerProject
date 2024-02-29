@@ -23,4 +23,10 @@ public class StoryActive : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void LookActiveevent()
+    {
+        EventActive.Invoke();
+        Destroy(gameObject);    
+    }
+
 }
