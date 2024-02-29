@@ -101,8 +101,11 @@ public class PlayerChangeCam : MonoBehaviour
     private void Update()
     {
         #region Wake UP
-        if(TimeBool)
-        TimerWakeUP -= Time.deltaTime;
+        if (TimeBool)
+        {
+            TimerWakeUP -= Time.deltaTime;
+            camOnPerSon = false;
+        }
 
         if (TimerWakeUP <= 0)
         {
@@ -111,6 +114,8 @@ public class PlayerChangeCam : MonoBehaviour
                 if (ChangePOV.IsActiveCamera(BedCam))
                 {
                     _1Story.enabled = true;
+                    TimeBool = false;
+                    camOnPerSon = true;
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
             }
