@@ -156,7 +156,7 @@ public class PlayerAttack : MonoBehaviour
     private GhostStateManager GhostHit;
     private Event DoEvent;
     private CrossCheck CrossUse;
-    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx;
+    private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx, FlashLightGet;
 
 
     [Header("AllEvent")]
@@ -862,17 +862,7 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.Raycast(Interect, out RaycastHit hitInterect, Pickrange))
             {
                 //  print(hitInterect.collider.gameObject);
-                if (hitInterect.collider.gameObject.tag == "Lantern")
-                {
-                    Light.SetActive(true);
-                    LanternAni.SetTrigger("LightUp");
-                    InterectSound.clip = LanternPickSound;
-                    InterectSound.Play();
-                    LightOn = true;
-                    LightOnHand = true;
-                    pointLight.SetActive(true);
-                    Destroy(hitInterect.collider.gameObject);
-                }
+
                 if (hitInterect.collider.gameObject.tag == "Door")
                 {
                     DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();
@@ -894,45 +884,11 @@ public class PlayerAttack : MonoBehaviour
                         }
                     }
                 }
-                if (hitInterect.collider.gameObject.tag == "Key")
-                {
-                    if (StoryNow < 5)
-                    {
-                        Textdialogue.text = "Key for back door.";
-                        dialogCheck = true;
-                    }
-                    if( StoryNow == 5)
-                    {
-                        Textdialogue.text = "(Feel weird. Maybe THAT THING appears. Let's take the cross for sure.)";
-                        dialogCheck = true;
-                        InterectSound.clip = KeyPickSound;
-                        InterectSound.Play();
-                        GetKey.Invoke();
-                        Time.timeScale = 0;
-                        TGhostCum.SetActive(true);
-                        CloseTurial = true;
-                        Cursor.visible = true;
-                        Cursor.lockState = CursorLockMode.None;
-                        Destroy(hitInterect.collider.gameObject);
-                    }
-                }
-                if (hitInterect.collider.gameObject.tag == "Radio")
-                {
-                    Radio.Invoke();
-                }
+               
+      
                 if (hitInterect.collider.gameObject.tag == "Bed")
                 {
-                    if (StoryNow < 6)
-                    {
-                        Textdialogue.text = "I can't sleep now";
-                        dialogCheck = true;
-                    }
-                    if(StoryNow == 6)
-                    {
-                        Textdialogue.text = "**Amazing go to sleep cutscene play** ZZZ..";                  
-                        EndD1 = true;
-                        StartCoroutine(DelayEndind());
-                    }
+                  
                 }
                 if (hitInterect.collider.gameObject.tag == "LightSwitch")
                 {
@@ -1015,7 +971,7 @@ public class PlayerAttack : MonoBehaviour
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Lantern  [E]";
+                ItemName.text = "Flash Light  [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cross")
@@ -2220,19 +2176,10 @@ public class PlayerAttack : MonoBehaviour
                 if (hitInfo.collider.gameObject.tag == "Lantern")
                 {                
                     Light.SetActive(true);
-                    LanternAni.SetTrigger("LightUp");
                     LightOn = true;
                     LightOnHand = true;
                     pointLight.SetActive(true);
-                    Destroy(hitInfo.collider.gameObject);
-                }
-
-                if (hitInfo.collider.gameObject.tag == "FinishDoll")
-                {
-                    takeFinishDoll.TotalDollHave++;
-                    takeFinishDoll.GetFinishDoll();
-                    InterectSound.clip = FinishDollPick;
-                    InterectSound.Play();
+                    FlashLightGet = true;
                     Destroy(hitInfo.collider.gameObject);
                 }
 
@@ -2381,9 +2328,10 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-
+            if (FlashLightGet)
+            {
                 if (!LightOn)
-                {                 
+                {
                     InterectSound.clip = LanternPickSound;
                     InterectSound.Play();
                     Light.gameObject.SetActive(true);
@@ -2396,7 +2344,7 @@ public class PlayerAttack : MonoBehaviour
                     LightOn = false;
                     pointLight.SetActive(false);
                 }
-            
+            }
         }
         #endregion
 

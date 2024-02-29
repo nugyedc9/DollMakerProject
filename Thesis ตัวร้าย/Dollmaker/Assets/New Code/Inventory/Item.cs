@@ -30,6 +30,6 @@ public enum ItemType
     FinishClothGreen,
     FinishClothYellow,
     Scissors,
-    FinishDoll
-
+    FinishDoll,
+        Key
 }
