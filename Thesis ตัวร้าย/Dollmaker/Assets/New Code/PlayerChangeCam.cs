@@ -1,4 +1,5 @@
 using Cinemachine;
+using Cinemachine.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerChangeCam : MonoBehaviour
 {
-    [Header ("Camera")]
+    [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera FirstpersonView;
     [SerializeField] CinemachineVirtualCamera WorkShopView;
     [SerializeField] CinemachineVirtualCamera ChangeViewOnDesk;
@@ -17,6 +18,8 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _2MakeDollCutClothCam;
     [SerializeField] CinemachineVirtualCamera _3SewingDollCam;
     [SerializeField] CinemachineVirtualCamera _4DollandClothCam;
+
+    public Animator TutorialCam2, TutorialCam3, TutorialCam4;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -59,11 +62,12 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
-    public float TutorialTime;
+    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4;
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
-    float TimerWakeUP, Closecanva, TutorialTimeIncode;
+
+    float TimerWakeUP, Closecanva, TutorialTimeIncode, CamOnTutorial;
 
     private bool CamOnPerson = true;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
@@ -136,14 +140,48 @@ public class PlayerChangeCam : MonoBehaviour
         }
         if(TutorialTimeIncode<= 0)
         {
-            if (ChangePOV.IsActiveCamera(_4DollandClothCam))
+            if (CamOnTutorial == 0)
             {
-                _InputManager.StopWalk();
-                Throwitem.CanAttack();
-                ItemOnPlayer.SetActive(true);
-                TextOnPlayer.SetActive(true);
-                ChangePOV.SwitchCamera(FirstpersonView);
-                CamOnPerson = true;
+                if (ChangePOV.IsActiveCamera(_1GetScrissorCam))
+                {
+                    TutorialTimeIncode = TutorialTime2;
+                    TutorialCam2.Play("gocutcloth");
+                    CamOnTutorial = 1;
+                    ChangePOV.SwitchCamera(_2MakeDollCutClothCam);
+                }
+            }
+            else if (CamOnTutorial == 1)
+            {
+                if (ChangePOV.IsActiveCamera(_2MakeDollCutClothCam))
+                {
+                    TutorialTimeIncode = TutorialTime3;
+                    TutorialCam3.Play("sewingdollcloth");
+                    CamOnTutorial = 2;
+                    ChangePOV.SwitchCamera(_3SewingDollCam);
+                }
+            }
+            else if (CamOnTutorial == 2)
+            {
+                if (ChangePOV.IsActiveCamera(_3SewingDollCam))
+                {
+                    TutorialTimeIncode = TutorialTime4;
+                    TutorialCam4.Play("dollandcloth");
+                    CamOnTutorial = 3;
+                    ChangePOV.SwitchCamera(_4DollandClothCam);
+                }
+            }
+
+            else if (CamOnTutorial == 3)
+            {
+                if (ChangePOV.IsActiveCamera(_4DollandClothCam))
+                {
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                }
             }
         }
 
@@ -429,7 +467,8 @@ public class PlayerChangeCam : MonoBehaviour
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
             TextOnPlayer.SetActive(false);
-            TutorialTimeIncode = TutorialTime;
+            ChangePOV.SwitchCamera(_1GetScrissorCam);
+            TutorialTimeIncode = TutorialTime1;
         }
     }
 
