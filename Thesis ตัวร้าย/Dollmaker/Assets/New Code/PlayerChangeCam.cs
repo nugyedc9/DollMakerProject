@@ -62,12 +62,12 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
-    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4;
+    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP;
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
 
-    float TimerWakeUP, Closecanva, TutorialTimeIncode, CamOnTutorial;
+    float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
     private bool CamOnPerson = true;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
@@ -108,7 +108,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        TimerWakeUP = 4;
+        
     }
 
     private void Update()
