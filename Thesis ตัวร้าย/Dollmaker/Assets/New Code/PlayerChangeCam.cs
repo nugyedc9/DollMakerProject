@@ -134,7 +134,9 @@ public class PlayerChangeCam : MonoBehaviour
             }
         }
 
-        if(TutorialTimeIncode > 0)
+
+        #region cam tutorial
+        if (TutorialTimeIncode > 0)
         {
             TutorialTimeIncode -= Time.deltaTime;
         }
@@ -184,6 +186,7 @@ public class PlayerChangeCam : MonoBehaviour
                 }
             }
         }
+        #endregion
 
         #endregion
 

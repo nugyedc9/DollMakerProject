@@ -136,6 +136,15 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[3].SetActive(false);
             }
 
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Key"))
+            {
+                playerPickUpItem.Key = true;
+            }
+            else
+            {
+                playerPickUpItem.Key = false;
+            }
+
             #endregion
 
             #region Drop Item

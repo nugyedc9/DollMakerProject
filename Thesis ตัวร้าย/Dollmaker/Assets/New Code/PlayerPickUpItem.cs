@@ -27,13 +27,18 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
+    [SerializeField] bool key;
+    public bool Key { get { return key; } set { key = value; } }
+
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
     private RollClothColor pieceClothGet;
     private DocumentID documentID;
+    private Door DoorId;
 
     private bool GhostComeOut;
+    private int KeyId;
 
     public void Update()
     {
@@ -83,6 +88,9 @@ public class PlayerPickUpItem : MonoBehaviour
                     }
                     if(hitInfo.collider.gameObject.tag == "Key")
                     {
+                        pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
+                        KeyId = pieceClothGet.pieceClothID;
+
                         if (!GhostComeOut)
                         {
                             GhostActive.SetActive(true);
@@ -111,18 +119,18 @@ public class PlayerPickUpItem : MonoBehaviour
                 if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
                     if (hitInfo.collider.gameObject.tag == "RollCloth")
-                    {                     
+                    {
                         if (HaveScissor)
                         {
                             if (!ScrissorAnim.GetCurrentAnimatorStateInfo(0).IsName("cutanima"))
                                 ScrissorAnim.Play("cutanima", 0, 0);
 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
-                            if(pieceClothGet.pieceClothID == 0)
+                            if (pieceClothGet.pieceClothID == 0)
                             {
                                 inventoryManager.AddItem(itemPickUp[6]);
                             }
-                            else if(pieceClothGet.pieceClothID == 1)
+                            else if (pieceClothGet.pieceClothID == 1)
                             {
                                 inventoryManager.AddItem(itemPickUp[7]);
                             }
@@ -138,8 +146,20 @@ public class PlayerPickUpItem : MonoBehaviour
 
                         }
                     }
+                    if (hitInfo.collider.gameObject.tag == "Door")
+                    {
+                        if (Key)
+                        {
+                            DoorId = hitInfo.collider.gameObject.GetComponent<Door>();
+                           if(KeyId == DoorId.DoorID)
+                            {
+                                DoorId.Lock = false;
+                                inventoryManager.GetSelectedItem(true);
+                            }
+                        }
+                       
+                    }
                 }
-
                 
             }
         }

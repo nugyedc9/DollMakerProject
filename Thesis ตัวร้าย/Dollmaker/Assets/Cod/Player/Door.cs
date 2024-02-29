@@ -9,8 +9,11 @@ public class Door : MonoBehaviour
 {
 
     public Animator doorAni;
-    public bool D,key1;
-    public bool Lock;
+    public int DoorID;
+    public bool D;
+
+    [SerializeField] bool _lock;
+    public bool Lock { get { return _lock; } set { _lock = value; } }
     public AudioSource DoorSound;
     public AudioClip open;
     public AudioClip close;
@@ -27,10 +30,7 @@ public class Door : MonoBehaviour
 
     public void Update()
     {
-        if (key1)
-        {
-            UnLockDoor();          
-        }
+
     }
 
     public void DoorAni()
@@ -43,7 +43,6 @@ public class Door : MonoBehaviour
                 DoorSound.Play();
                 doorAni.Play("Door_open", 0, 0);
                 D = true;
-                key1 = false;
             }
             else
             {
@@ -83,25 +82,8 @@ public class Door : MonoBehaviour
             DoorSound.Play();
             doorAni.Play("Door_open", 0, 0);
             D = true;
-            key1 = false;
             IffopenDoor.Invoke();
         }
     }
-
-    public void Key1()
-    {
-        key1 = true;
-    }
-    public void UnLockDoor()
-    {
-        Lock = false;
-    }
-
-    public void LockDoor()
-    {
-        Lock = true;
-    }
-
-
-  
+    
 }
