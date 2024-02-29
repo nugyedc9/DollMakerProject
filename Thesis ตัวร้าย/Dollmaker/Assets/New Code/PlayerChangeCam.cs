@@ -13,7 +13,10 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera DeskShopView;
     [SerializeField] CinemachineVirtualCamera BedCam;
     [SerializeField] CinemachineVirtualCamera PushClothOnDollView;
-    [SerializeField] CinemachineVirtualCamera makeDollTutorial;
+    [SerializeField] CinemachineVirtualCamera _1GetScrissorCam;
+    [SerializeField] CinemachineVirtualCamera _2MakeDollCutClothCam;
+    [SerializeField] CinemachineVirtualCamera _3SewingDollCam;
+    [SerializeField] CinemachineVirtualCamera _4DollandClothCam;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -76,7 +79,10 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(BedCam);
         ChangePOV.Register(DeskShopView);
         ChangePOV.Register(PushClothOnDollView);
-        ChangePOV.Register(makeDollTutorial);
+        ChangePOV.Register(_1GetScrissorCam);
+        ChangePOV.Register(_2MakeDollCutClothCam);
+        ChangePOV.Register(_3SewingDollCam);
+        ChangePOV.Register(_4DollandClothCam);
         ChangePOV.SwitchCamera(BedCam);
     }
 
@@ -87,7 +93,10 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(ChangeViewOnDesk);
         ChangePOV.UnRegister(DeskShopView);
         ChangePOV.UnRegister(PushClothOnDollView);
-        ChangePOV.UnRegister(makeDollTutorial);
+        ChangePOV.UnRegister(_1GetScrissorCam);
+        ChangePOV.UnRegister(_2MakeDollCutClothCam);
+        ChangePOV.UnRegister(_3SewingDollCam);
+        ChangePOV.UnRegister(_4DollandClothCam);
         ChangePOV.UnRegister(BedCam);
     }
 
@@ -127,7 +136,7 @@ public class PlayerChangeCam : MonoBehaviour
         }
         if(TutorialTimeIncode<= 0)
         {
-            if (ChangePOV.IsActiveCamera(makeDollTutorial))
+            if (ChangePOV.IsActiveCamera(_4DollandClothCam))
             {
                 _InputManager.StopWalk();
                 Throwitem.CanAttack();
@@ -420,7 +429,6 @@ public class PlayerChangeCam : MonoBehaviour
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
             TextOnPlayer.SetActive(false);
-            ChangePOV.SwitchCamera(makeDollTutorial);
             TutorialTimeIncode = TutorialTime;
         }
     }
