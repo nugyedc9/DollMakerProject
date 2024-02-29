@@ -12,7 +12,6 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [Header("Cross Thing")]
     public PlayerAttack PAttack;
-    public GameObject GhostActive;
     private CrossCheck CrossUse;
 
     [Header("Scrissor Thing")]
@@ -74,11 +73,6 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (CrossUse.curHp == 1)
                             inventoryManager.AddItem(itemPickUp[5]);
 
-                        if (!GhostComeOut)
-                        {
-                            GhostActive.SetActive(true);
-                            GhostComeOut = true;
-                        }
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -101,12 +95,6 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                         KeyId = pieceClothGet.pieceClothID;
-
-                        if (!GhostComeOut)
-                        {
-                            GhostActive.SetActive(true);
-                            GhostComeOut = true;
-                        }
 
                         inventoryManager.AddItem(itemPickUp[10]);
                         Destroy(hitInfo.collider.gameObject);

@@ -18,6 +18,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _2MakeDollCutClothCam;
     [SerializeField] CinemachineVirtualCamera _3SewingDollCam;
     [SerializeField] CinemachineVirtualCamera _4DollandClothCam;
+    [SerializeField] CinemachineVirtualCamera DollHenshin;
 
     public Animator TutorialCam2, TutorialCam3, TutorialCam4;
 
@@ -62,14 +63,14 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
-    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP;
+    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP, ghosthenshinTime;
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
-    private bool CamOnPerson = true;
+    private bool CamOnPerson = true, OnCutScene;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
 
     [SerializeField] bool closeInterectShow;
@@ -87,6 +88,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(_2MakeDollCutClothCam);
         ChangePOV.Register(_3SewingDollCam);
         ChangePOV.Register(_4DollandClothCam);
+        ChangePOV.Register(DollHenshin);
         ChangePOV.SwitchCamera(BedCam);
     }
 
@@ -101,6 +103,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(_2MakeDollCutClothCam);
         ChangePOV.UnRegister(_3SewingDollCam);
         ChangePOV.UnRegister(_4DollandClothCam);
+        ChangePOV.UnRegister(DollHenshin);
         ChangePOV.UnRegister(BedCam);
     }
 
@@ -108,6 +111,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        OnCutScene = true;
         
     }
 
@@ -183,6 +187,21 @@ public class PlayerChangeCam : MonoBehaviour
                     TextOnPlayer.SetActive(true);
                     ChangePOV.SwitchCamera(FirstpersonView);
                     CamOnPerson = true;
+                    OnCutScene = false;
+                }
+            }
+            
+            else if(CamOnTutorial == 4)
+            {
+                if (ChangePOV.IsActiveCamera(DollHenshin))
+                {
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    OnCutScene = false;
                 }
             }
         }
@@ -304,26 +323,29 @@ public class PlayerChangeCam : MonoBehaviour
             miniGame.SetActive(false);
         }
         else
-        {          
-            ShowMouse();
-            if (ChangePOV.IsActiveCamera(WorkShopView))
+        {
+            if (!OnCutScene)
             {
-                if (canplayMinigame)
+                ShowMouse();
+                if (ChangePOV.IsActiveCamera(WorkShopView))
                 {
-                    HandSwing.SetActive(true);
-                    miniGame.SetActive(true);
+                    if (canplayMinigame)
+                    {
+                        HandSwing.SetActive(true);
+                        miniGame.SetActive(true);
+                    }
+                    else
+                    {
+                        HandSwing.SetActive(false);
+                        miniGame.SetActive(false);
+                    }
                 }
-                else
+                if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
                 {
-                    HandSwing.SetActive(false);
-                    miniGame.SetActive(false);
-                }
-            }
-            if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
-            {
-                if (canplayMinigame)
-                {
-                    miniGame.SetActive(false);
+                    if (canplayMinigame)
+                    {
+                        miniGame.SetActive(false);
+                    }
                 }
             }
         }
@@ -465,13 +487,29 @@ public class PlayerChangeCam : MonoBehaviour
     public void ChangeCamToTutorial()
     {
         if (ChangePOV.IsActiveCamera(FirstpersonView))
-        {           
+        {
+            OnCutScene = true;
             _InputManager.StopWalk();
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
             TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(_1GetScrissorCam);
             TutorialTimeIncode = TutorialTime1;
+        }
+    }
+
+    public void ChangCamToGhost()
+    {
+        if (ChangePOV.IsActiveCamera(FirstpersonView))
+        {
+            OnCutScene=true;
+            CamOnTutorial = 4;
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+            ItemOnPlayer.SetActive(false);
+            TextOnPlayer.SetActive(false);
+            ChangePOV.SwitchCamera(DollHenshin);
+            TutorialTimeIncode = ghosthenshinTime;
         }
     }
 
