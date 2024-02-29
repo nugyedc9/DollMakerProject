@@ -14,7 +14,7 @@ public PlayerPickUpItem playerPickUpItem;
     public PlayerChangeCam ChangeCam;
     public Camera Cam;
 
-    public InventorySlote[] inventoryslote,FullInventorySlot;
+    public InventorySlote[] inventoryslote;
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
@@ -32,6 +32,9 @@ public PlayerPickUpItem playerPickUpItem;
 
     [SerializeField] int SelectedSlot;
    public int selectedSlot { get { return SelectedSlot; } set { SelectedSlot = value; } }
+
+    [SerializeField] int finishDollID;
+    public int FinishDollID { get { return finishDollID; } set { finishDollID = value; } }
 
     private Vector3 DesDrop;
     bool drop;
@@ -136,6 +139,24 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[3].SetActive(false);
             }
 
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollRedBlue"))
+            {
+                FinishDollID = 0; playerPickUpItem.FDOnhand = true;
+            }else playerPickUpItem.FDOnhand = false;
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollGreen"))
+            {
+                FinishDollID = 1; playerPickUpItem.FDOnhand1 = true;
+            }
+            else playerPickUpItem.FDOnhand1 = false;
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollYellow"))
+            {
+                FinishDollID = 2; playerPickUpItem.FDOnhand2 = true;
+            }
+            else playerPickUpItem.FDOnhand2 = false;
+
+
+
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Key"))
             {
                 playerPickUpItem.Key = true;
@@ -189,6 +210,7 @@ public PlayerPickUpItem playerPickUpItem;
         }
         return false;
     }
+
 
 
     void SpawnnewItem(Item item, InventorySlote slot)

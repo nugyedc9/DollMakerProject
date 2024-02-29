@@ -197,6 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+
         #region Attack
         if (Attack)
         {
@@ -964,9 +965,29 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (hitevent.collider.gameObject.tag == "Door")
             {
-                ItemText.SetActive(true);
-                ItemName.text = "Door  [E]";
-                InterectItem = true;
+                DoorInterect = hitevent.collider.gameObject.GetComponent<Door>();
+                if (DoorInterect.Lock)
+                {
+                    if (!playerPickUpItem.Key)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Door Lock";
+                        InterectItem = true;
+                    }
+                    else
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Unlock [Left Click]";
+                        InterectItem = true;
+                    }
+                }
+                else
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Door  [E]";
+                    InterectItem = true;
+                }
+                
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {

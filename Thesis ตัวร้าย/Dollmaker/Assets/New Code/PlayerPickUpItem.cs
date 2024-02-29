@@ -30,12 +30,22 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] bool key;
     public bool Key { get { return key; } set { key = value; } }
 
+    [SerializeField] bool finishDollOnHand;
+    public bool FDOnhand { get { return finishDollOnHand; } set { finishDollOnHand = value; } }
+
+    [SerializeField] bool finishDollOnHand1;
+    public bool FDOnhand1 { get { return finishDollOnHand1; } set { finishDollOnHand1 = value; } }
+
+    [SerializeField] bool finishDollOnHand2;
+    public bool FDOnhand2 { get { return finishDollOnHand2; } set { finishDollOnHand2 = value; } }
+
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
     private RollClothColor pieceClothGet;
     private DocumentID documentID;
     private Door DoorId;
+    private FinishBasket dropFinish;
 
     private bool GhostComeOut;
     private int KeyId;
@@ -142,10 +152,9 @@ public class PlayerPickUpItem : MonoBehaviour
                             {
                                 inventoryManager.AddItem(itemPickUp[9]);
                             }
-
-
                         }
                     }
+
                     if (hitInfo.collider.gameObject.tag == "Door")
                     {
                         if (Key)
@@ -156,9 +165,21 @@ public class PlayerPickUpItem : MonoBehaviour
                                 DoorId.Lock = false;
                                 inventoryManager.GetSelectedItem(true);
                             }
-                        }
-                       
+                        }                     
                     }
+
+                    if(hitInfo.collider.gameObject.tag == "Basket")
+                    {
+                        if (FDOnhand || FDOnhand1 || FDOnhand2)
+                        {
+                            dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
+                            dropFinish.DollID = inventoryManager.FinishDollID;
+                            dropFinish.Spawndoll();
+                            inventoryManager.GetSelectedItem(true);
+                        }
+                        
+                    }
+
                 }
                 
             }
