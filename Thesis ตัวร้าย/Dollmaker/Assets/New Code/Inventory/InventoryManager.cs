@@ -159,10 +159,12 @@ public PlayerPickUpItem playerPickUpItem;
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Key"))
             {
+                ItemOnHand[4].SetActive(true);
                 playerPickUpItem.Key = true;
             }
             else
             {
+                ItemOnHand[4].SetActive(false);
                 playerPickUpItem.Key = false;
             }
 
