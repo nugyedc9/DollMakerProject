@@ -10,6 +10,7 @@ public class DesignSelect : MonoBehaviour
     public GameObject BoxColPushCloth;
     public GameObject NextButt,PrevButt,SelectButt;
 
+    public PlayerChangeCam PCam;
     public PlayerPickUpItem playPickup;
     public InventoryManager inventoryManager;
     public Item[] PieceCloth;
@@ -49,6 +50,7 @@ public class DesignSelect : MonoBehaviour
             if (PageNum == clothColorID) SelectButt.SetActive(true);
             else SelectButt.SetActive(false);
 
+            PCam._1DesignCloth = true;
             clothTutorial.SetActive(false);
         }
         else SelectButt.SetActive(false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ClothColorDrop : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ClothColorDrop : MonoBehaviour
     public GameObject hand;
     public InventoryManager inventoryManager;
     public PlayerPickUpItem playerPickup;
+    public PlayerChangeCam PCam;
 
     [Header("Tutorial Arrow")]
     public GameObject ClothTutorail;
@@ -50,6 +52,7 @@ public class ClothColorDrop : MonoBehaviour
     {
         if (collision.gameObject.tag == "PieceClothRed")
         {
+            PCam._1Sewing = true;
             ClothTutorail.SetActive(false);
             ClothColor[0].SetActive(true);
             finishClothID = 0;
@@ -59,6 +62,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothBlue")
         {
+            PCam._1Sewing = true;
             ClothTutorail.SetActive(false);
             ClothColor[1].SetActive(true);
             finishClothID = 1;
@@ -68,6 +72,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothGreen")
         {
+            PCam._1Sewing = true;
             ClothTutorail.SetActive(false);
             ClothColor[2].SetActive(true);
             finishClothID = 2;
@@ -77,6 +82,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothYellow")
         {
+            PCam._1Sewing = true;
             ClothTutorail.SetActive(false);
             ClothColor[3].SetActive(true);
             finishClothID = 3;

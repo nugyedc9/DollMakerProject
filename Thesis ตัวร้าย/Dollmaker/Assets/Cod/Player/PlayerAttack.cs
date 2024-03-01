@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public TabTutorial tabTutorial;
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
+
     public float DropSpeed;
     public Camera FpsCam;
     public GameObject projectile;
@@ -134,7 +135,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("PauseGame")]
     public GameObject PauseMenu;
     public GameObject EndGame;
-    private bool isPause, Working;
+    [SerializeField] private bool IsPause, Working;
+    public bool isPause { get { return IsPause; }  set { IsPause = value; } }
 
     [Header("------ Audio ---------")]
     public AudioClip HitGhostSound;
@@ -166,6 +168,7 @@ public class PlayerAttack : MonoBehaviour
     private CrossCheck CrossUse;
     private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx, FlashLightGet;
 
+    float DelayEse;
 
     [Header("AllEvent")]
     public UnityEvent CheckFrontDoor;
@@ -339,11 +342,21 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!EndD1 || CloseTurial || tabTutorial.OpenTutor)
+            if (  DelayEse <= 0)
             {
                 if (!isPause) PauseGame();
                 else ResumeGame();
             }            
+        }
+
+        if(tabTutorial.OpenTutor)
+        {
+            DelayEse = 1;
+        }
+        
+        else if(!tabTutorial.OpenTutor && DelayEse > 0) 
+        {
+            DelayEse -= Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -2396,6 +2409,22 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+
+        if (PCam.OnCutScene)
+        {
+            Light.gameObject.SetActive(false);
+            pointLight.SetActive(false);
+        }
+        else
+        {
+            if (LightOn)
+            {
+                Light.gameObject.SetActive(true);
+                LightOn = true;
+                pointLight.SetActive(true);
+            }
+        }
+
         #endregion
 
         #region Need to do next

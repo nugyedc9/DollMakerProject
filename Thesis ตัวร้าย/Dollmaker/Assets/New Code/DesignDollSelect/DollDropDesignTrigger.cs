@@ -11,6 +11,7 @@ public class DollDropDesignTrigger : MonoBehaviour
     public GameObject SelectButton;
     public GameObject Doll;
     public GameObject[] DollDesignVisual;
+    public PlayerChangeCam PCam;
 
 
     [Header("Tutorial Arrow")]
@@ -37,6 +38,7 @@ public class DollDropDesignTrigger : MonoBehaviour
 
                 if(!_1Doll)
                 ClothTutorial.SetActive(true); 
+                PCam._1Doll = true;
             }
         }
         if (DollHave)

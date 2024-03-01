@@ -21,6 +21,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera DollHenshin;
     [SerializeField] CinemachineVirtualCamera SleepCam;
 
+    public PlayerAttack Pattack;
     public Animator TutorialCam2, TutorialCam3, TutorialCam4;
 
     [Header("Key Item Inventory")]
@@ -73,12 +74,17 @@ public class PlayerChangeCam : MonoBehaviour
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay,
-        _1DesignCloth, _1Sewing, _1Doll;
+        _1designCloth, _1sewing, _1doll;
+
+    public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
+    public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
+    public bool _1Doll { get { return _1doll; } set { _1doll = value; } }
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
-    private bool CamOnPerson = true, OnCutScene;
+    private bool CamOnPerson = true, onCutScene;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
+    public bool OnCutScene { get { return onCutScene; } set { onCutScene = value; } }
 
     [SerializeField] bool closeInterectShow;
     public bool CloseInterectShow { get { return closeInterectShow; } set { closeInterectShow = value; } }
@@ -265,7 +271,6 @@ public class PlayerChangeCam : MonoBehaviour
                         if (!_1Sewing)
                         {
                             sewingTutorial.SetActive(true);
-                            _1Sewing = true;
                         }
                     }
                 }
@@ -291,7 +296,6 @@ public class PlayerChangeCam : MonoBehaviour
                         if (!_1DesignCloth)
                         {
                             clothTutorial.SetActive(true);
-                            _1DesignCloth = true;
                         }
                     }
                 }
@@ -319,7 +323,6 @@ public class PlayerChangeCam : MonoBehaviour
                         if (!_1Doll)
                         {
                             DollTutorial.SetActive(true);
-                            _1Doll = true;
                         }
 
                     }
@@ -353,6 +356,7 @@ public class PlayerChangeCam : MonoBehaviour
         {
             CloseInterectShow = false;
             if(TabOn.OpenTutor == false)
+                if(!Pattack.isPause)
             CloseMouse();          
             OpenKeyItemInv = false;
             OpenInvBut.SetActive(false);
@@ -412,6 +416,10 @@ public class PlayerChangeCam : MonoBehaviour
                         TurnIn.SetActive(false);
                         CheckCanplayMiniG.OnDesk = false;
                         InvOpen.Play("InvClose");
+                      
+                        if (!_1Sewing)
+                            sewingTutorial.SetActive(false);
+                        
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
@@ -425,6 +433,10 @@ public class PlayerChangeCam : MonoBehaviour
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
+
+                        if (!_1DesignCloth)
+                            clothTutorial.SetActive(false);
+
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
@@ -450,6 +462,10 @@ public class PlayerChangeCam : MonoBehaviour
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
+
+                        if (!_1Doll)
+                            DollTutorial.SetActive(false);
+
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                     }
