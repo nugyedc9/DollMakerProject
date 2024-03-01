@@ -98,7 +98,9 @@ public class PlayerAttack : MonoBehaviour
     [Header("ObjSleep")]
     public GameObject DoorEnd;
     public GameObject Granma, AudioGranma, normalDoor, _11Story;
+    public BoxCollider Bedbox;
     public Animator EndGameAnim;
+    bool endGame;
 
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
@@ -376,507 +378,517 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Close Item change
-    /*    #region Item Change
+        /*    #region Item Change
 
-        #region Key1
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+            #region Key1
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ItemSelect = 0;
+                if (ItemSelect == 0)
+                {
+                    InvPoint1.SetActive(true);
+                    InvPoint2.SetActive(false);
+                    InvPoint3.SetActive(false);
+                }
+                if (CrossInv1)
+                {
+                    CorssR.SetActive(true);
+                    CrossOnHand = true;
+                    showCross = true;
+                    if (!isPause)
+                        Attack = true;
+                    Tutext1.SetActive(true);
+                    Tutext2.SetActive(true);
+                    tutorialText1.text = "Attack [Hold left]";
+                    tutorialText2.text = "Drop [G]";
+                    if (setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = false;
+                    }
+                    if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
+                    if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
+                    if (curHpCross == 1) itemInventory1[4].SetActive(true); else itemInventory1[4].SetActive(false);
+                }
+                else
+                {
+                    CrossOnHand = false;
+                    CorssR.SetActive(false);
+                    showCross = false;
+                    Attack = false;
+                    if (!setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = true;
+                    }
+                }
+
+
+                if (DollInv1)
+                {
+                    DollOnHand = true;
+                    DollR.SetActive(true);
+                    showDoll = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    DollOnHand = false;
+                    showDoll = false;
+                    DollR.SetActive(false);
+                }
+
+                if (ClothInv1)
+                {
+                    ClothOnHand = true;
+                    ClothR.SetActive(true);
+                    showCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ClothOnHand = false;
+                    ClothR.SetActive(false);
+                    showCloth = false;
+                }
+                if (ScissorInv1)
+                {
+                    ScissorOnHand = true;
+                    ScissorR.SetActive(true);
+                    showScissor = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ScissorOnHand = false;
+                    ScissorR.SetActive(false);
+                    showScissor = false;
+                }
+                if (RedCloInv1)
+                {
+                    RedClothOnHand = true;
+                    RedClothR.SetActive(true);
+                    ShowRedCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    RedClothOnHand = false;
+                    RedClothR.SetActive(false);
+                    ShowRedCloth = false;
+                }
+                if (GreenCloInv1)
+                {
+                    GreenClothOnHand = true;
+                    GreenClothR.SetActive(true);
+                    ShowGreenCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    GreenClothOnHand = false;
+                    GreenClothR.SetActive(false);
+                    ShowGreenCloth = false;
+                }
+                if (BlueCloInv1)
+                {
+                    BlueClothOnHand = true;
+                    BlueClothR.SetActive(true);
+                    ShowBlueCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    BlueClothOnHand = false;
+                    BlueClothR.SetActive(false);
+                    ShowBlueCloth = false;
+                }
+                if (YellowCloInv1)
+                {
+                    YellowClothOnHand = true;
+                    YellowClothR.SetActive(true);
+                    ShowYellowCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    YellowClothOnHand = false;
+                    YellowClothR.SetActive(false);
+                    ShowYellowCloth = false;
+                }
+
+                if (!box1)
+                {
+                    Tutext1.SetActive (false);
+                    Tutext2.SetActive (false); 
+                }
+
+            }
+            #endregion
+
+            #region Key2
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ItemSelect = 1;
+                if (ItemSelect == 1)
+                {
+                    InvPoint1.SetActive(false);
+                    InvPoint2.SetActive(true);
+                    InvPoint3.SetActive(false);
+                }
+                if (CrossInv2)
+                {
+                    CrossOnHand = true;
+                    CorssR.SetActive(true);
+                    showCross = true;
+                    if (!isPause)
+                        Attack = true;
+                    Tutext1.SetActive(true);
+                    Tutext2.SetActive(true);
+                    tutorialText1.text = "Attack [Hold left]";
+                    tutorialText2.text = "Drop [G]";
+                    if (setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = false;
+                    }
+                    if (curHpCross == 3) itemInventory2[0].SetActive(true); else itemInventory2[0].SetActive(false);
+                    if (curHpCross == 2) itemInventory2[3].SetActive(true); else itemInventory2[3].SetActive(false);
+                    if (curHpCross == 1) itemInventory2[4].SetActive(true); else itemInventory2[4].SetActive(false);
+
+                } 
+                else
+                {
+                    CrossOnHand = false;
+                    CorssR.SetActive(false);
+                    showCross = false;
+                    Attack = false;
+                    if (!setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = true;
+                    }
+                }
+                if (ItemSelect == 1 && !CrossOnHand)
+                {
+                    CorssR.SetActive(false);
+                    showCross = false;
+                    Attack = false;
+                }
+
+
+                if (DollInv2)
+                {
+                    DollOnHand = true;
+                    DollR.SetActive(true);
+                    showDoll = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    DollOnHand = false;
+                    showDoll = false;
+                    DollR.SetActive(false);
+                }
+
+                if (ClothInv2)
+                {
+                    ClothOnHand =true;
+                    ClothR.SetActive(true);
+                    showCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ClothOnHand = false;
+                    ClothR.SetActive(false);
+                    showCloth = false;
+                }
+                if (ScissorInv2)
+                {
+                    ScissorOnHand = true;
+                    ScissorR.SetActive(true);
+                    showScissor = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ScissorOnHand = false;
+                    ScissorR.SetActive(false);
+                    showScissor = false;
+                }
+                if (RedCloInv2)
+                {
+                    RedClothOnHand = true;
+                    RedClothR.SetActive(true);
+                    ShowRedCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    RedClothOnHand = false;
+                    RedClothR.SetActive(false);
+                    ShowRedCloth = false;
+                }
+                if (GreenCloInv2)
+                {
+                    GreenClothOnHand = true;
+                    GreenClothR.SetActive(true);
+                    ShowGreenCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    GreenClothOnHand = false;
+                    GreenClothR.SetActive(false);
+                    ShowGreenCloth = false;
+                }
+                if (BlueCloInv2)
+                {
+                    BlueClothOnHand = true;
+                    BlueClothR.SetActive(true);
+                    ShowBlueCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    BlueClothOnHand = false;
+                    BlueClothR.SetActive(false);
+                    ShowBlueCloth = false;
+                }
+                if (YellowCloInv2)
+                {
+                    YellowClothOnHand = true;
+                    YellowClothR.SetActive(true);
+                    ShowYellowCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    YellowClothOnHand = false;
+                    YellowClothR.SetActive(false);
+                    ShowYellowCloth = false;
+                }
+                if (!box2)
+                {
+                    Tutext1.SetActive(false);
+                    Tutext2.SetActive(false);
+                }
+
+            }
+            #endregion
+
+            #region Key3
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ItemSelect = 2;
+                if (ItemSelect == 2)
+                {
+                    InvPoint1.SetActive(false);
+                    InvPoint2.SetActive(false);
+                    InvPoint3.SetActive(true);
+                }
+                if (CrossInv3)
+                {
+                    CrossOnHand = true;
+                    CorssR.SetActive(true);
+                    showCross = true;
+                    if (!isPause)
+                        Attack = true;
+
+                    Tutext1.SetActive(true);
+                    Tutext2.SetActive(true);
+                    tutorialText1.text = "Attack [Hold left]";
+                    tutorialText2.text = "Drop [G]";
+                    if (setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = false;
+                    }
+
+                    if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
+                    if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
+                    if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
+                }
+                else
+                {
+                    CrossOnHand = false;
+                    CorssR.SetActive(false);
+                    showCross = false;
+                    Attack = false;
+                    if (!setTriggerCross)
+                    {
+                        if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                        if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                        setTriggerCross = true;
+                    }
+                }
+
+
+                if (DollInv3)
+                {
+                    DollOnHand = true;
+                    DollR.SetActive(true);
+                    showDoll = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    DollOnHand = false;
+                    showDoll = false;
+                    DollR.SetActive(false);
+                }
+                if (ClothInv3)
+                {
+                    ClothOnHand = true;
+                    ClothR.SetActive(true);
+                    showCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ClothOnHand = false;
+                    ClothR.SetActive(false);
+                    showCloth = false;
+                }
+                if (ScissorInv3)
+                {
+                    ScissorOnHand = true;
+                    ScissorR.SetActive(true);
+                    showScissor = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    ScissorOnHand = false;
+                    ScissorR.SetActive(false);
+                    showScissor = false;
+                }
+                if (RedCloInv3)
+                {
+                    RedClothOnHand = true;
+                    RedClothR.SetActive(true);
+                    ShowRedCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    RedClothOnHand = false;
+                    RedClothR.SetActive(false);
+                    ShowRedCloth = false;
+                }
+                if (GreenCloInv3)
+                {
+                    GreenClothOnHand = true;
+                    GreenClothR.SetActive(true);
+                    ShowGreenCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    GreenClothOnHand = false;
+                    GreenClothR.SetActive(false);
+                    ShowGreenCloth = false;
+                }
+                if (BlueCloInv3)
+                {
+                    BlueClothOnHand = true;
+                    BlueClothR.SetActive(true);
+                    ShowBlueCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    BlueClothOnHand = false;
+                    BlueClothR.SetActive(false);
+                    ShowBlueCloth = false;
+                }
+                if (YellowCloInv3)
+                {
+                    YellowClothOnHand = true;
+                    YellowClothR.SetActive(true);
+                    ShowYellowCloth = true;
+                    Tutext1.SetActive(true);
+                    tutorialText1.text = "Drop [G]";
+                    tutorialText2.text = "";
+                }
+                else
+                {
+                    YellowClothOnHand = false;
+                    YellowClothR.SetActive(false);
+                    ShowYellowCloth = false;
+                }
+                if (!box3)
+                {
+                    Tutext1.SetActive(false);
+                    Tutext2.SetActive(false);
+                }
+            }
+            #endregion
+
+            #endregion*/
+        #endregion
+
+        if (!endGame)
         {
-            ItemSelect = 0;
-            if (ItemSelect == 0)
+            if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
             {
-                InvPoint1.SetActive(true);
-                InvPoint2.SetActive(false);
-                InvPoint3.SetActive(false);
-            }
-            if (CrossInv1)
-            {
-                CorssR.SetActive(true);
-                CrossOnHand = true;
-                showCross = true;
-                if (!isPause)
-                    Attack = true;
-                Tutext1.SetActive(true);
-                Tutext2.SetActive(true);
-                tutorialText1.text = "Attack [Hold left]";
-                tutorialText2.text = "Drop [G]";
-                if (setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = false;
-                }
-                if (curHpCross == 3) itemInventory1[0].SetActive(true); else itemInventory1[0].SetActive(false);
-                if (curHpCross == 2) itemInventory1[3].SetActive(true); else itemInventory1[3].SetActive(false);
-                if (curHpCross == 1) itemInventory1[4].SetActive(true); else itemInventory1[4].SetActive(false);
-            }
-            else
-            {
-                CrossOnHand = false;
-                CorssR.SetActive(false);
-                showCross = false;
-                Attack = false;
-                if (!setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = true;
-                }
+                _11Story.SetActive(true);
+                endGame = true;
             }
             
-
-            if (DollInv1)
-            {
-                DollOnHand = true;
-                DollR.SetActive(true);
-                showDoll = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                DollOnHand = false;
-                showDoll = false;
-                DollR.SetActive(false);
-            }
-
-            if (ClothInv1)
-            {
-                ClothOnHand = true;
-                ClothR.SetActive(true);
-                showCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ClothOnHand = false;
-                ClothR.SetActive(false);
-                showCloth = false;
-            }
-            if (ScissorInv1)
-            {
-                ScissorOnHand = true;
-                ScissorR.SetActive(true);
-                showScissor = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ScissorOnHand = false;
-                ScissorR.SetActive(false);
-                showScissor = false;
-            }
-            if (RedCloInv1)
-            {
-                RedClothOnHand = true;
-                RedClothR.SetActive(true);
-                ShowRedCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                RedClothOnHand = false;
-                RedClothR.SetActive(false);
-                ShowRedCloth = false;
-            }
-            if (GreenCloInv1)
-            {
-                GreenClothOnHand = true;
-                GreenClothR.SetActive(true);
-                ShowGreenCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                GreenClothOnHand = false;
-                GreenClothR.SetActive(false);
-                ShowGreenCloth = false;
-            }
-            if (BlueCloInv1)
-            {
-                BlueClothOnHand = true;
-                BlueClothR.SetActive(true);
-                ShowBlueCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                BlueClothOnHand = false;
-                BlueClothR.SetActive(false);
-                ShowBlueCloth = false;
-            }
-            if (YellowCloInv1)
-            {
-                YellowClothOnHand = true;
-                YellowClothR.SetActive(true);
-                ShowYellowCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                YellowClothOnHand = false;
-                YellowClothR.SetActive(false);
-                ShowYellowCloth = false;
-            }
-
-            if (!box1)
-            {
-                Tutext1.SetActive (false);
-                Tutext2.SetActive (false); 
-            }
-
         }
-        #endregion
-
-        #region Key2
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ItemSelect = 1;
-            if (ItemSelect == 1)
-            {
-                InvPoint1.SetActive(false);
-                InvPoint2.SetActive(true);
-                InvPoint3.SetActive(false);
-            }
-            if (CrossInv2)
-            {
-                CrossOnHand = true;
-                CorssR.SetActive(true);
-                showCross = true;
-                if (!isPause)
-                    Attack = true;
-                Tutext1.SetActive(true);
-                Tutext2.SetActive(true);
-                tutorialText1.text = "Attack [Hold left]";
-                tutorialText2.text = "Drop [G]";
-                if (setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = false;
-                }
-                if (curHpCross == 3) itemInventory2[0].SetActive(true); else itemInventory2[0].SetActive(false);
-                if (curHpCross == 2) itemInventory2[3].SetActive(true); else itemInventory2[3].SetActive(false);
-                if (curHpCross == 1) itemInventory2[4].SetActive(true); else itemInventory2[4].SetActive(false);
-
-            } 
-            else
-            {
-                CrossOnHand = false;
-                CorssR.SetActive(false);
-                showCross = false;
-                Attack = false;
-                if (!setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = true;
-                }
-            }
-            if (ItemSelect == 1 && !CrossOnHand)
-            {
-                CorssR.SetActive(false);
-                showCross = false;
-                Attack = false;
-            }
-           
-
-            if (DollInv2)
-            {
-                DollOnHand = true;
-                DollR.SetActive(true);
-                showDoll = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                DollOnHand = false;
-                showDoll = false;
-                DollR.SetActive(false);
-            }
-
-            if (ClothInv2)
-            {
-                ClothOnHand =true;
-                ClothR.SetActive(true);
-                showCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ClothOnHand = false;
-                ClothR.SetActive(false);
-                showCloth = false;
-            }
-            if (ScissorInv2)
-            {
-                ScissorOnHand = true;
-                ScissorR.SetActive(true);
-                showScissor = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ScissorOnHand = false;
-                ScissorR.SetActive(false);
-                showScissor = false;
-            }
-            if (RedCloInv2)
-            {
-                RedClothOnHand = true;
-                RedClothR.SetActive(true);
-                ShowRedCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                RedClothOnHand = false;
-                RedClothR.SetActive(false);
-                ShowRedCloth = false;
-            }
-            if (GreenCloInv2)
-            {
-                GreenClothOnHand = true;
-                GreenClothR.SetActive(true);
-                ShowGreenCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                GreenClothOnHand = false;
-                GreenClothR.SetActive(false);
-                ShowGreenCloth = false;
-            }
-            if (BlueCloInv2)
-            {
-                BlueClothOnHand = true;
-                BlueClothR.SetActive(true);
-                ShowBlueCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                BlueClothOnHand = false;
-                BlueClothR.SetActive(false);
-                ShowBlueCloth = false;
-            }
-            if (YellowCloInv2)
-            {
-                YellowClothOnHand = true;
-                YellowClothR.SetActive(true);
-                ShowYellowCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                YellowClothOnHand = false;
-                YellowClothR.SetActive(false);
-                ShowYellowCloth = false;
-            }
-            if (!box2)
-            {
-                Tutext1.SetActive(false);
-                Tutext2.SetActive(false);
-            }
-
-        }
-        #endregion
-
-        #region Key3
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ItemSelect = 2;
-            if (ItemSelect == 2)
-            {
-                InvPoint1.SetActive(false);
-                InvPoint2.SetActive(false);
-                InvPoint3.SetActive(true);
-            }
-            if (CrossInv3)
-            {
-                CrossOnHand = true;
-                CorssR.SetActive(true);
-                showCross = true;
-                if (!isPause)
-                    Attack = true;
-
-                Tutext1.SetActive(true);
-                Tutext2.SetActive(true);
-                tutorialText1.text = "Attack [Hold left]";
-                tutorialText2.text = "Drop [G]";
-                if (setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = false;
-                }
-
-                if (curHpCross == 3) itemInventory3[0].SetActive(true); else itemInventory3[0].SetActive(false);
-                if (curHpCross == 2) itemInventory3[3].SetActive(true); else itemInventory3[3].SetActive(false);
-                if (curHpCross == 1) itemInventory3[4].SetActive(true); else itemInventory3[4].SetActive(false);
-            }
-            else
-            {
-                CrossOnHand = false;
-                CorssR.SetActive(false);
-                showCross = false;
-                Attack = false;
-                if (!setTriggerCross)
-                {
-                    if (curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (curHpCross == 1) CorssAni.SetTrigger("OnHand3");
-                    setTriggerCross = true;
-                }
-            }
-            
-
-            if (DollInv3)
-            {
-                DollOnHand = true;
-                DollR.SetActive(true);
-                showDoll = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                DollOnHand = false;
-                showDoll = false;
-                DollR.SetActive(false);
-            }
-            if (ClothInv3)
-            {
-                ClothOnHand = true;
-                ClothR.SetActive(true);
-                showCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ClothOnHand = false;
-                ClothR.SetActive(false);
-                showCloth = false;
-            }
-            if (ScissorInv3)
-            {
-                ScissorOnHand = true;
-                ScissorR.SetActive(true);
-                showScissor = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                ScissorOnHand = false;
-                ScissorR.SetActive(false);
-                showScissor = false;
-            }
-            if (RedCloInv3)
-            {
-                RedClothOnHand = true;
-                RedClothR.SetActive(true);
-                ShowRedCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                RedClothOnHand = false;
-                RedClothR.SetActive(false);
-                ShowRedCloth = false;
-            }
-            if (GreenCloInv3)
-            {
-                GreenClothOnHand = true;
-                GreenClothR.SetActive(true);
-                ShowGreenCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                GreenClothOnHand = false;
-                GreenClothR.SetActive(false);
-                ShowGreenCloth = false;
-            }
-            if (BlueCloInv3)
-            {
-                BlueClothOnHand = true;
-                BlueClothR.SetActive(true);
-                ShowBlueCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                BlueClothOnHand = false;
-                BlueClothR.SetActive(false);
-                ShowBlueCloth = false;
-            }
-            if (YellowCloInv3)
-            {
-                YellowClothOnHand = true;
-                YellowClothR.SetActive(true);
-                ShowYellowCloth = true;
-                Tutext1.SetActive(true);
-                tutorialText1.text = "Drop [G]";
-                tutorialText2.text = "";
-            }
-            else
-            {
-                YellowClothOnHand = false;
-                YellowClothR.SetActive(false);
-                ShowYellowCloth = false;
-            }
-            if (!box3)
-            {
-                Tutext1.SetActive(false);
-                Tutext2.SetActive(false);
-            }
-        }
-        #endregion
-
-        #endregion*/
-        #endregion
 
         #region Interect evnet
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
@@ -913,7 +925,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                     {
-                        _11Story.SetActive(true);
+                        Bedbox.enabled = false;
                         normalDoor.SetActive(false);
                         DoorEnd.SetActive(true);
                         Granma.SetActive(true);

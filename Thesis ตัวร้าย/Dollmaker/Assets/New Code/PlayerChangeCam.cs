@@ -55,7 +55,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
-    public GameObject sewingTutorial, DollTutorial;
+    public GameObject sewingTutorial, DollTutorial, clothDoll;
 
     [Header("TurnCam")]
     public GameObject TurnOut;
@@ -79,11 +79,12 @@ public class PlayerChangeCam : MonoBehaviour
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay,
-        _1designCloth, _1sewing, _1doll;
+        _1designCloth, _1sewing, _1doll, _1clothDoll;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
     public bool _1Doll { get { return _1doll; } set { _1doll = value; } }
+    public bool _1ClothDoll { get { return _1clothDoll; } set { _1clothDoll = value; } }
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
@@ -153,6 +154,7 @@ public class PlayerChangeCam : MonoBehaviour
                     _1Story.enabled = true;
                     TimeBool = false;
                     camOnPerSon = true;
+                    OnCutScene = false;
                     _InputManager.StopWalk();
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
@@ -228,6 +230,8 @@ public class PlayerChangeCam : MonoBehaviour
 
             else if (CamOnTutorial == 5)
             {
+                OnCutScene = true;
+                camOnPerSon = false;
                 endgameCanva.SetActive(true);
                 EndGame = true;
             }
@@ -369,7 +373,7 @@ public class PlayerChangeCam : MonoBehaviour
         {
             CloseInterectShow = false;
             if(TabOn.OpenTutor == false)
-                if(!Pattack.isPause && Time.timeScale == 1)
+                if(!Pattack.isPause && Time.timeScale == 1 )
             CloseMouse();          
             OpenKeyItemInv = false;
             OpenInvBut.SetActive(false);
@@ -405,6 +409,7 @@ public class PlayerChangeCam : MonoBehaviour
             }
             else
             {
+                if(endGame) ShowMouse();
                 OpenInvBut.SetActive(false);
                 CloseInvBut.SetActive(false);
             }
@@ -478,6 +483,8 @@ public class PlayerChangeCam : MonoBehaviour
 
                         if (!_1Doll)
                             DollTutorial.SetActive(false);
+                        if(!_1clothDoll)
+                            clothDoll.SetActive(false);
 
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;

@@ -36,9 +36,12 @@ public class DollDropDesignTrigger : MonoBehaviour
                 DollHave = true;
                 DollTutorial.SetActive(false);
 
-                if(!_1Doll)
-                ClothTutorial.SetActive(true); 
-                PCam._1Doll = true;
+                if (!_1Doll)
+                {
+                    ClothTutorial.SetActive(true);
+                    PCam._1Doll = true;
+                    _1Doll = true;
+                }
             }
         }
         if (DollHave)
