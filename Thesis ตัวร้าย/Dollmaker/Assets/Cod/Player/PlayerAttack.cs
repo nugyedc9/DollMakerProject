@@ -999,7 +999,7 @@ public class PlayerAttack : MonoBehaviour
             if (hitevent.collider.gameObject.tag == "Key")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Key  [E]";
+                ItemName.text = "StorageRoom Key [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")
@@ -1022,14 +1022,14 @@ public class PlayerAttack : MonoBehaviour
                     else
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Unlock [Left Click]";
+                        ItemName.text = "Use key to Unlock [Left Click]";
                         InterectItem = true;
                     }
                 }
                 else
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Door  [E]";
+                    ItemName.text = "Open the Door [E]";
                     InterectItem = true;
                 }
                 
@@ -1037,55 +1037,61 @@ public class PlayerAttack : MonoBehaviour
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Flash Light  [E]";
+                ItemName.text = "Flash Light [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cross")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Cross  [E]";
+                ItemName.text = "Cross [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Doll")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Doll  [E]";
+                ItemName.text = "Doll [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "FinishDoll")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "FinshDoll  [E]";
+                ItemName.text = "FinishDoll [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Cloth")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Cloth  [E]";
+                ItemName.text = "Cloth [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "WorkShopDesk")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "DeskWorkShop  [E]";
+                ItemName.text = "DeskWorkShop [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Basket")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "Basket";
+                ItemName.text = "Basket [Left Click]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Document")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Letter [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "ForntDoor")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "FrontDoor  [E]";
+                ItemName.text = "FrontDoor [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "LightSwitch")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "LightSwitch  [E]";
+                ItemName.text = "LightSwitch [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Bed")
@@ -1093,13 +1099,13 @@ public class PlayerAttack : MonoBehaviour
                 if (finishBasket.SlotNum < finishBasket.NeedFinishDoll)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Need to finish work";
+                    ItemName.text = "I need to finish work";
                     InterectItem = true;
                 }
                 else if(finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Bed  [E]";
+                    ItemName.text = "Sleep [E]";
                     InterectItem = true;
                 }
                
@@ -1119,7 +1125,7 @@ public class PlayerAttack : MonoBehaviour
             else if (hitevent.collider.gameObject.tag == "EyeWash")
             {
                 ItemText.SetActive(true);
-                ItemName.text = "EyeWash [E]";
+                ItemName.text = "Eat Pill [E]";
                 InterectItem = true;
             }
              else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
@@ -1133,7 +1139,7 @@ public class PlayerAttack : MonoBehaviour
                 if (!changeCam.CloseInterectShow)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Change View [E]";
+                    ItemName.text = " Enter Cloth Cutting Table [E]";
                     InterectItem = true;
                 }
             }
@@ -1142,7 +1148,7 @@ public class PlayerAttack : MonoBehaviour
                 if (!changeCam.CloseInterectShow)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Change View [E]";
+                    ItemName.text = "Enter Doll Table [E]";
                     InterectItem = true;
                 }
             }
