@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public InventoryManager inventoryManager;
     public PlayerPickUpItem playerPickUpItem;
+    public FinishBasket finishBasket;
+    public PlayerChangeCam PCam;
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
     public float DropSpeed;
@@ -91,6 +93,10 @@ public class PlayerAttack : MonoBehaviour
     public PlayerHp HpPlayer;
     private bool OpenEye;
 
+    [Header("ObjSleep")]
+    public GameObject DoorEnd;
+    public GameObject Granma, AudioGranma, normalDoor;
+    public Animator EndGameAnim;
 
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
@@ -889,8 +895,18 @@ public class PlayerAttack : MonoBehaviour
       
                 if (hitInterect.collider.gameObject.tag == "Bed")
                 {
-                  
+                    if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
+                    {
+                        normalDoor.SetActive(false);
+                        DoorEnd.SetActive(true);
+                        Granma.SetActive(true);
+                        AudioGranma.SetActive(true) ;
+                        EndGameAnim.Play("Gosleep");
+                        PCam.ChangeCamToSleep();
+                    }
                 }
+
+
                 if (hitInterect.collider.gameObject.tag == "LightSwitch")
                 {
                     DoEvent = hitInterect.collider.gameObject.GetComponent<Event>();
@@ -1045,9 +1061,19 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (hitevent.collider.gameObject.tag == "Bed")
             {
-                ItemText.SetActive(true);
-                ItemName.text = "Bed  [E]";
-                InterectItem = true;
+                if (finishBasket.SlotNum < finishBasket.NeedFinishDoll)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Need to finish work";
+                    InterectItem = true;
+                }
+                else if(finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Bed  [E]";
+                    InterectItem = true;
+                }
+               
             }
             else if (hitevent.collider.gameObject.tag == "Breaker")
             {

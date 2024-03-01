@@ -19,6 +19,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _3SewingDollCam;
     [SerializeField] CinemachineVirtualCamera _4DollandClothCam;
     [SerializeField] CinemachineVirtualCamera DollHenshin;
+    [SerializeField] CinemachineVirtualCamera SleepCam;
 
     public Animator TutorialCam2, TutorialCam3, TutorialCam4;
 
@@ -63,7 +64,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
-    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP, ghosthenshinTime;
+    public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP, ghosthenshinTime, SleepTimer;
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay;
@@ -89,6 +90,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(_3SewingDollCam);
         ChangePOV.Register(_4DollandClothCam);
         ChangePOV.Register(DollHenshin);
+        ChangePOV.Register(SleepCam);
         ChangePOV.SwitchCamera(BedCam);
     }
 
@@ -104,6 +106,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(_3SewingDollCam);
         ChangePOV.UnRegister(_4DollandClothCam);
         ChangePOV.UnRegister(DollHenshin);
+        ChangePOV.UnRegister(SleepCam);
         ChangePOV.UnRegister(BedCam);
     }
 
@@ -213,6 +216,15 @@ public class PlayerChangeCam : MonoBehaviour
         {
             if(ChangePOV.IsActiveCamera(BedCam))
             {
+                _1Story.enabled = true;
+                TimeBool = false;
+                camOnPerSon = true;
+                ChangePOV.SwitchCamera(FirstpersonView);
+            }
+            else if (ChangePOV.IsActiveCamera(DollHenshin))
+            {
+                TimeBool = false;
+                camOnPerSon = true;
                 ChangePOV.SwitchCamera(FirstpersonView);
             }
         }
@@ -347,6 +359,11 @@ public class PlayerChangeCam : MonoBehaviour
                         miniGame.SetActive(false);
                     }
                 }
+            }
+            else
+            {
+                OpenInvBut.SetActive(false);
+                CloseInvBut.SetActive(false);
             }
         }
 
@@ -509,6 +526,21 @@ public class PlayerChangeCam : MonoBehaviour
             ItemOnPlayer.SetActive(false);
             TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(DollHenshin);
+            TutorialTimeIncode = ghosthenshinTime;
+        }
+    }
+
+    public void ChangeCamToSleep()
+    {
+        if (ChangePOV.IsActiveCamera(FirstpersonView))
+        {
+            OnCutScene = true;
+            CamOnTutorial = 5;
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+            ItemOnPlayer.SetActive(false);
+            TextOnPlayer.SetActive(false);
+            ChangePOV.SwitchCamera(SleepCam);
             TutorialTimeIncode = ghosthenshinTime;
         }
     }
