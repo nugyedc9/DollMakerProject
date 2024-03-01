@@ -16,7 +16,8 @@ public class GetDesignDoll : MonoBehaviour
 
 
     [Header("---- Audio ----")]
-    public AudioSource Confirm;
+    public AudioSource AudioSound;
+    public AudioClip ConfirmS, NextS, PrevS;
 
     [SerializeField] int dollDesingID;
     public int DollColorID { get { return dollDesingID; } set { dollDesingID = value; } }
@@ -44,6 +45,8 @@ public class GetDesignDoll : MonoBehaviour
 
     public void NextPage()
     {
+        AudioSound.clip = NextS;
+        AudioSound.Play();
         PageNum++;
         BookPage[PageNum].SetActive(true);
         BookPage[PageNum - 1].SetActive(false);
@@ -52,6 +55,8 @@ public class GetDesignDoll : MonoBehaviour
 
     public void PrevPage()
     {
+        AudioSound.clip = PrevS;
+        AudioSound.Play();
         PageNum--;
         BookPage[PageNum + 1].SetActive(false);
         BookPage[PageNum].SetActive(true);
@@ -61,7 +66,8 @@ public class GetDesignDoll : MonoBehaviour
     {
         if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
         {
-            Confirm.Play();
+            AudioSound.clip = ConfirmS;
+            AudioSound.Play();
             inventoryManager.AddItem(FinishDoll[DollColorID]);
             DollDrop.GetFinishDoll();
         }

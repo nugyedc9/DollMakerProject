@@ -19,7 +19,8 @@ public class DesignSelect : MonoBehaviour
     public GameObject clothTutorial;
 
     [Header("---- Audio ----")]
-    public AudioSource Confirm;
+    public AudioSource AudioSound;
+    public AudioClip ConfirmS, NextS, PrevS;
 
     public int PageNum;
     [SerializeField] private bool haveCloth;
@@ -66,6 +67,8 @@ public class DesignSelect : MonoBehaviour
 
     public void NextPage()
     {
+        AudioSound.clip = NextS;
+        AudioSound.Play();
         PageNum++;
         BookPage[PageNum].SetActive(true);
         BookPage[PageNum - 1].SetActive(false);
@@ -74,6 +77,8 @@ public class DesignSelect : MonoBehaviour
 
     public void PrevPage()
     {
+        AudioSound.clip = PrevS;
+        AudioSound.Play();
         PageNum--;
         BookPage[PageNum + 1].SetActive(false);
         BookPage[PageNum].SetActive(true);
@@ -84,8 +89,9 @@ public class DesignSelect : MonoBehaviour
     {
         if (playPickup.ItemCount < inventoryManager.inventoryslote.Length)
         {
-            Confirm.Play();
-            ClothColor[PageNum].SetActive(false);
+            AudioSound.clip = ConfirmS;
+            AudioSound.Play();
+             ClothColor[PageNum].SetActive(false);
             inventoryManager.AddItem(PieceCloth[PageNum]);
             BoxColPushCloth.SetActive(true);
             HaveCloth = false;

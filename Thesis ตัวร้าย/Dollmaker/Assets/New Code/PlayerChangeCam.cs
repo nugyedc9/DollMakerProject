@@ -61,6 +61,11 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject TurnOut;
     public GameObject TurnIn;
 
+    public GameObject endgameCanva;
+    [SerializeField] bool endGame;
+    public bool EndGame { get { return endGame; }set { endGame = value; } }
+
+
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
     public BoxCollider _1Story;
@@ -218,6 +223,12 @@ public class PlayerChangeCam : MonoBehaviour
                     CamOnPerson = true;
                     OnCutScene = false;
                 }
+            }
+
+            else if (CamOnTutorial == 5)
+            {
+                endgameCanva.SetActive(true);
+                EndGame = true;
             }
         }
         #endregion
@@ -583,7 +594,7 @@ public class PlayerChangeCam : MonoBehaviour
             ItemOnPlayer.SetActive(false);
             TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(SleepCam);
-            TutorialTimeIncode = ghosthenshinTime;
+            TutorialTimeIncode = SleepTimer;
         }
     }
 

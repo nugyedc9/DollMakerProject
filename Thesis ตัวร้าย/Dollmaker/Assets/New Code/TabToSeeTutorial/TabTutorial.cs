@@ -17,6 +17,9 @@ public class TabTutorial : MonoBehaviour
     public GameObject ObjectivepostIt;
     public GameObject _6Story;
 
+    [Header("---- Audio ----")]
+    public AudioSource AudioSound;
+    public AudioClip  NextS, PrevS;
 
     [SerializeField] bool openTutor;
      public bool OpenTutor { get { return openTutor; } set { openTutor = value; } }
@@ -131,6 +134,8 @@ public class TabTutorial : MonoBehaviour
     {
         if (PageNum < PageCount - 1)
         {
+            AudioSound.clip = NextS;
+            AudioSound.Play();
             PageNum++;
             Tutorial[PageNum-1].SetActive(false);
             Tutorial[PageNum].SetActive(false);
@@ -142,6 +147,8 @@ public class TabTutorial : MonoBehaviour
     {
         if (PageNum >= 0)
         {
+            AudioSound.clip = PrevS;
+            AudioSound.Play();
             PageNum--;
             Tutorial[PageNum + 1].SetActive(false);
             Tutorial[PageNum].SetActive(false);

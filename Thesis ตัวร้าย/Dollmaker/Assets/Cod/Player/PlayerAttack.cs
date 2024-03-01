@@ -342,7 +342,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (  DelayEse <= 0)
+            if (  DelayEse <= 0 && !PCam.EndGame)
             {
                 if (!isPause) PauseGame();
                 else ResumeGame();

@@ -14,6 +14,8 @@ public class GhostSearchState : GhostBaseState
         state.CurSpawn = Random.Range(0, ranmaxspawn);
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("BackFrom"))
             state.GhostAni.Play("BackFrom", 0, 0);
+        state.GhostAudioSoure.Stop();
+        state.GhostAmbi.Stop();
     }
 
     public override void UpdateState(GhostStateManager state)
