@@ -278,12 +278,14 @@ public class MiniGameAuidition : MonoBehaviour
                 GetHurt = true;
                 handMove.enabled = true;
                 handMove.Play("Handhurtsewing");
+                NeedToCutLine = true;
                 if (!Fail)
                 {
                     curBar -= 20;
                   //  GhostcomeTocheck.PlayerFailSkillCheck();
                     audioSource.clip = GhostNotice;
                     audioSource.Play();
+                    NeedToCutLine = false;
                     NeedleWorking = false;
                     Needle.enabled = false;
                     ClothMove.enabled = false;

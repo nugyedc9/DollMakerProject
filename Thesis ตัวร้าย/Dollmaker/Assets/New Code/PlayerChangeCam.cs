@@ -219,6 +219,7 @@ public class PlayerChangeCam : MonoBehaviour
                 _1Story.enabled = true;
                 TimeBool = false;
                 camOnPerSon = true;
+                OnCutScene = false;
                 ChangePOV.SwitchCamera(FirstpersonView);
             }
             else if (ChangePOV.IsActiveCamera(DollHenshin))
