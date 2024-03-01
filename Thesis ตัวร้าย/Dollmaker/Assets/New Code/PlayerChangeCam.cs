@@ -372,9 +372,11 @@ public class PlayerChangeCam : MonoBehaviour
         if (CamOnPerson)
         {
             CloseInterectShow = false;
-            if(TabOn.OpenTutor == false)
-                if(!Pattack.isPause && Time.timeScale == 1 )
-            CloseMouse();          
+            if (!TabOn.OpenTutor )
+            {
+                if (!Pattack.isPause && Time.timeScale == 1)
+                    CloseMouse();
+            }
             OpenKeyItemInv = false;
             OpenInvBut.SetActive(false);
             CloseInvBut.SetActive(false);
@@ -409,7 +411,7 @@ public class PlayerChangeCam : MonoBehaviour
             }
             else
             {
-                if(endGame) ShowMouse();
+                if (endGame) ShowMouse();
                 OpenInvBut.SetActive(false);
                 CloseInvBut.SetActive(false);
             }
