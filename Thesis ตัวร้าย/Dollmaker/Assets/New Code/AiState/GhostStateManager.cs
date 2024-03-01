@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class GhostStateManager : MonoBehaviour
@@ -54,7 +55,11 @@ public class GhostStateManager : MonoBehaviour
     MeshFilter MeshFilter_;
 
     [Header("Destinations")]
+    public int CurSpawn;
     public List<Transform> destination;
+    public List<Transform> destination2;
+    public List<Transform> destination3;
+    public Transform[] SpawnPoint;
     public Vector3 Dest;
     public Transform playerPos,CurrentDest;
     public int DestinationMin, DestinationMax;
@@ -68,6 +73,9 @@ public class GhostStateManager : MonoBehaviour
     public AudioSource GhostAudioSoure; 
     public AudioSource GhostAmbi;
     public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS , GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi;
+
+    [Header("Event")]
+    public UnityEvent EventGhostAfterDied;
 
     // Start is called before the first frame update
     void Start()
@@ -219,11 +227,16 @@ public class GhostStateManager : MonoBehaviour
                 RandomInIdle = true;
                 CanseePlayer = false;
                 // Debug.Log("IdleAfterPlayer");
-                SwitchState(IdleState);
+                SwitchState(SearchState);
                 PlayerInSight = false;
             }
 
         }
+    }
+
+    public void DeleteGhost()
+    {
+        Destroy(gameObject);
     }
 
 }

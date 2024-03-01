@@ -26,7 +26,7 @@ public class GhsotIdleState : GhostBaseState
         state.HitPlayer = false;
         state.CanseePlayer = false;
         state.Cansee = true;
-        Debug.Log("Idle");
+        //Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -40,11 +40,18 @@ public class GhsotIdleState : GhostBaseState
         if(DelayFaterSpawn)
             state.DrawVisionCone();
 
-        if(state.RandomInIdle)
+        if (state.RandomInIdle)
         {
             IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
             Dest = Random.Range(state.DestinationMin, state.DestinationMax);
-            state.CurrentDest = state.destination[Dest];
+
+            if (state.CurSpawn == 1 || state.CurSpawn == 4)
+                state.CurrentDest = state.destination[Dest];
+            else if (state.CurSpawn == 0 || state.CurSpawn == 3)
+                state.CurrentDest = state.destination2[Dest];
+            else if (state.CurSpawn == 2 || state.CurSpawn == 5)
+                state.CurrentDest = state.destination3[Dest];
+
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("demo_idleanima"))
                 state.GhostAni.Play("demo_idleanima", 0, 0);
             state.enemyGhost.speed = 0;

@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public PlayerPickUpItem playerPickUpItem;
     public FinishBasket finishBasket;
     public PlayerChangeCam PCam;
+    public TabTutorial tabTutorial;
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
     public float DropSpeed;
@@ -135,7 +136,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject EndGame;
     private bool isPause, Working;
 
-    [Header("Audio")]
+    [Header("------ Audio ---------")]
     public AudioClip HitGhostSound;
     public AudioClip HitWindSound;
     public AudioSource HitAudio;
@@ -143,6 +144,7 @@ public class PlayerAttack : MonoBehaviour
     public AudioSource Ambience;
     public AudioClip AfterJumpGhost;
     public AudioSource InterectSound;
+    public AudioSource GetHeal;
 
     [Header("PickItemSound")]
     public AudioClip LanternPickSound;
@@ -337,7 +339,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!EndD1 || CloseTurial)
+            if (!EndD1 || CloseTurial || tabTutorial.OpenTutor)
             {
                 if (!isPause) PauseGame();
                 else ResumeGame();
@@ -2248,6 +2250,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (HpPlayer.curHp < 4)
                     {
+                        GetHeal.Play();
                         HpPlayer.Heal();                     
                         Destroy(hitInfo.collider.gameObject);
                     }

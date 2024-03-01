@@ -17,6 +17,9 @@ public class PlayerHp : MonoBehaviour
     public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye, DeadVideo,THowToHeal;
     private bool PlayGetHit, normaleye, Playdead, tuHeal;
 
+    [Header("---- Audio ----")]
+    public AudioSource audioSource;
+    public AudioSource HpLow, Died;
 
     public void Start()
     {
@@ -32,7 +35,8 @@ public class PlayerHp : MonoBehaviour
         {
             if(!Playdead)
             {
-               // DeadVideo.SetActive(true);
+                // DeadVideo.SetActive(true);
+                Died.enabled = true;
                 StartCoroutine(DeadPlay());
                 Playdead = true;
             }
@@ -51,9 +55,11 @@ public class PlayerHp : MonoBehaviour
         if(curHp < 2)
         {
             blurEye.SetActive(true);
+            HpLow.enabled = true;
         }
         if(curHp >= 2)
         {
+            HpLow.enabled = false;
             blurEye.SetActive(false);
         }
         if (Delayvideo > 0) Delayvideo -= Time.deltaTime;
@@ -67,6 +73,7 @@ public class PlayerHp : MonoBehaviour
     public void Takedamage(int damage)
     { 
         int i = curHp - 1;
+        audioSource.Play();
         Hp2.SetActive(true);
         PlayerGetHit.enabled = true;
         PlayerGetHit.Play("PlayerGetHit");

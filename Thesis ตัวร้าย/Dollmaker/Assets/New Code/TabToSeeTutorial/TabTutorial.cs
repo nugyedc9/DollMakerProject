@@ -75,6 +75,23 @@ public class TabTutorial : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(OpenTutor)
+            {
+                PlayAnimInvTab = true;
+                OpenTutor = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                inputManager.OnTab = false;
+                InvShow.Play("CloseTableInv", 0, 0);
+
+
+                Hit_2Story = true;
+                Hit_5Story = true;
+            }
+        }
+
         if(OpenTutor)
         {
             GuideBook.SetActive(true);

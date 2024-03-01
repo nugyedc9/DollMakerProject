@@ -12,7 +12,13 @@ public class DollDropDesignTrigger : MonoBehaviour
     public GameObject Doll;
     public GameObject[] DollDesignVisual;
 
-    bool DollHave, NeedRed, NeedBlue;
+
+    [Header("Tutorial Arrow")]
+    public GameObject DollTutorial;
+    public GameObject ClothTutorial;
+
+
+    bool DollHave, NeedRed, NeedBlue, _1Doll;
 
     [SerializeField] bool closeboxDropDoll;
     public bool CloseboxDropDoll { get { return closeboxDropDoll; } set {  closeboxDropDoll = value; } }
@@ -27,12 +33,18 @@ public class DollDropDesignTrigger : MonoBehaviour
                 Doll.gameObject.SetActive(true);
                 DollDesignVisual[0].SetActive(true);
                 DollHave = true;
+                DollTutorial.SetActive(false);
+
+                if(!_1Doll)
+                ClothTutorial.SetActive(true); 
             }
         }
         if (DollHave)
         {
+
             if (collision.gameObject.tag == "FinishClothRed")
             {
+                ClothTutorial.SetActive(false);
                 inventoryManager.GetSelectedItem(true);
                 DollDesignVisual[0].SetActive(false);
                 if (!NeedRed)
@@ -50,6 +62,7 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothBlue")
             {
+                ClothTutorial.SetActive(false);
                 inventoryManager.GetSelectedItem(true);
                 DollDesignVisual[0].SetActive(false);
                 if (!NeedBlue)
@@ -67,6 +80,7 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothGreen")
             {
+                ClothTutorial.SetActive(false);
                 if (!NeedBlue && !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);
@@ -80,6 +94,7 @@ public class DollDropDesignTrigger : MonoBehaviour
             }
             if (collision.gameObject.tag == "FinishClothYellow")
             {
+                ClothTutorial.SetActive(false);
                 if (!NeedBlue && !NeedRed)
                 {
                     DollDesignVisual[0].SetActive(false);

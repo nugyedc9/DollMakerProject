@@ -14,6 +14,10 @@ public class GetDesignDoll : MonoBehaviour
 
     public int PageNum;
 
+
+    [Header("---- Audio ----")]
+    public AudioSource Confirm;
+
     [SerializeField] int dollDesingID;
     public int DollColorID { get { return dollDesingID; } set { dollDesingID = value; } }
 
@@ -57,6 +61,7 @@ public class GetDesignDoll : MonoBehaviour
     {
         if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
         {
+            Confirm.Play();
             inventoryManager.AddItem(FinishDoll[DollColorID]);
             DollDrop.GetFinishDoll();
         }

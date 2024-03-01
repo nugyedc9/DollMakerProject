@@ -43,9 +43,10 @@ public class MiniGameAuidition : MonoBehaviour
     public GameObject AuditionShow;
     public GameObject ButtonCutLineOBJ;
 
-    [Header("Audio")]
+    [Header("---- Audio ----")]
     public AudioSource audioSource;
-    public AudioClip GhostNotice;
+    public AudioSource machineActive;
+    public AudioClip GhostNotice, RightClick, CutLineS;
 
     [Header("Animator")]
     public Animator Needle;
@@ -115,6 +116,7 @@ public class MiniGameAuidition : MonoBehaviour
                 Needle.enabled = true;
                 ClothMove.enabled = true;
                 handMove.enabled = true;
+                machineActive.enabled = true;
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
@@ -172,6 +174,8 @@ public class MiniGameAuidition : MonoBehaviour
                         printPeek = false;
                         ClothMove.enabled = true;
                         handMove.enabled = true;
+                        audioSource.clip = RightClick;
+                        audioSource.Play();
                         SpawnAuditionPassPrefabs(0);
                     }
 
@@ -198,6 +202,8 @@ public class MiniGameAuidition : MonoBehaviour
                         printPeek = false;
                         ClothMove.enabled = true;
                         handMove.enabled = true;
+                        audioSource.clip = RightClick;
+                        audioSource.Play();
                         SpawnAuditionPassPrefabs(1);
                     }
 
@@ -225,6 +231,8 @@ public class MiniGameAuidition : MonoBehaviour
                         printPeek = false;
                         ClothMove.enabled = true;
                         handMove.enabled = true;
+                        audioSource.clip = RightClick;
+                        audioSource.Play();
                         SpawnAuditionPassPrefabs(2);
                     }
 
@@ -252,6 +260,8 @@ public class MiniGameAuidition : MonoBehaviour
                         printPeek = false;
                         ClothMove.enabled = true;
                         handMove.enabled = true;
+                        audioSource.clip = RightClick;
+                        audioSource.Play();
                         SpawnAuditionPassPrefabs(3);
                     }
 
@@ -293,6 +303,8 @@ public class MiniGameAuidition : MonoBehaviour
                 }
                 if (cutLine)
                 {
+                    audioSource.clip = CutLineS;
+                    audioSource.Play();
                     CutHere.SetActive(false);
                     AuditionPass.Clear();
                     AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
@@ -340,6 +352,7 @@ public class MiniGameAuidition : MonoBehaviour
         }
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {         
+            machineActive.enabled = false;
             if (HoldSpace)
             {
                 AuditionPass.Clear();

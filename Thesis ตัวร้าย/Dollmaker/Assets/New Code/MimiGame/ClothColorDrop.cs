@@ -11,6 +11,9 @@ public class ClothColorDrop : MonoBehaviour
     public InventoryManager inventoryManager;
     public PlayerPickUpItem playerPickup;
 
+    [Header("Tutorial Arrow")]
+    public GameObject ClothTutorail;
+
     [SerializeField] int finishClothID;
     public int FinishClothID { get { return finishClothID; } set { finishClothID = value; } }
 
@@ -47,6 +50,7 @@ public class ClothColorDrop : MonoBehaviour
     {
         if (collision.gameObject.tag == "PieceClothRed")
         {
+            ClothTutorail.SetActive(false);
             ClothColor[0].SetActive(true);
             finishClothID = 0;
             hand.SetActive(true);
@@ -55,6 +59,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothBlue")
         {
+            ClothTutorail.SetActive(false);
             ClothColor[1].SetActive(true);
             finishClothID = 1;
             hand.SetActive(true);
@@ -63,6 +68,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothGreen")
         {
+            ClothTutorail.SetActive(false);
             ClothColor[2].SetActive(true);
             finishClothID = 2;
             hand.SetActive(true);
@@ -71,6 +77,7 @@ public class ClothColorDrop : MonoBehaviour
         }
         if (collision.gameObject.tag == "PieceClothYellow")
         {
+            ClothTutorail.SetActive(false);
             ClothColor[3].SetActive(true);
             finishClothID = 3;
             hand.SetActive(true);

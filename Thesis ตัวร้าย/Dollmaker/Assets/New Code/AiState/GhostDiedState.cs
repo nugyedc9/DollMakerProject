@@ -13,7 +13,7 @@ public class GhostDiedState : GhostBaseState
         state.GhostAmbi.Stop();
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Dead_ani"))
             state.GhostAni.Play("Dead_ani", 0, 0);
-
+        state.EventGhostAfterDied.Invoke();
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -30,6 +30,7 @@ public class GhostDiedState : GhostBaseState
             state.GhostFrom.SetActive(false);
             state.GhostBoxCol.enabled = false;
             state.GhostAmbi.Stop();
+            state.DeleteGhost();
         }
     }
 }

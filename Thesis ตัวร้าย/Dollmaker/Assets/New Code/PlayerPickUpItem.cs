@@ -23,6 +23,11 @@ public class PlayerPickUpItem : MonoBehaviour
     public Camera FpsCam;
     public Transform pickUPPoint;
 
+    [Header("---- Audio ----")]
+    public AudioSource audioSource;
+    public AudioClip CrossS, DollS, ScissorS, CutClothS,
+        KeyS, DocumentS, PushFiniDollS;
+
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
@@ -63,6 +68,8 @@ public class PlayerPickUpItem : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
                     {
+                        audioSource.clip = CrossS;
+                        audioSource.Play();
                         CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                         PAttack.curHpCross = CrossUse.curHp;
                         inventoryManager.TriggerCrossAnim = true;
@@ -78,11 +85,15 @@ public class PlayerPickUpItem : MonoBehaviour
                     }
                     if (hitInfo.collider.gameObject.tag == "Doll")
                     {
+                        audioSource.clip = DollS;
+                        audioSource.Play();
                         inventoryManager.AddItem(itemPickUp[1]);
                         Destroy(hitInfo.collider.gameObject);
                     }
                     if (hitInfo.collider.gameObject.tag == "Scissors")
                     {
+                        audioSource.clip = ScissorS;
+                        audioSource.Play();
                         inventoryManager.AddItem(itemPickUp[2]);
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -93,6 +104,8 @@ public class PlayerPickUpItem : MonoBehaviour
                     }
                     if(hitInfo.collider.gameObject.tag == "Key")
                     {
+                        audioSource.clip = KeyS;
+                        audioSource.Play();
                         pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                         KeyId = pieceClothGet.pieceClothID;
 
@@ -103,6 +116,8 @@ public class PlayerPickUpItem : MonoBehaviour
                 
                 if(hitInfo.collider.gameObject.tag == "Document")
                 {
+                    audioSource.clip = DocumentS;
+                    audioSource.Play();
                     documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
                     if(documentID.DocID == 0)
                     {
@@ -121,6 +136,8 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         if (HaveScissor)
                         {
+                            audioSource.clip = CutClothS;
+                            audioSource.Play();
                             if (!ScrissorAnim.GetCurrentAnimatorStateInfo(0).IsName("cutanima"))
                                 ScrissorAnim.Play("cutanima", 0, 0);
 
@@ -161,6 +178,8 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         if (FDOnhand || FDOnhand1 || FDOnhand2)
                         {
+                            audioSource.clip = PushFiniDollS;
+                            audioSource.Play();
                             dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
                             dropFinish.DollID = inventoryManager.FinishDollID;
                             dropFinish.Spawndoll();

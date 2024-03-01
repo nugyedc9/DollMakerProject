@@ -51,6 +51,11 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject BookDoll;
     public DollDropDesignTrigger DropDoll;
 
+
+    [Header("Tutorial Arrow")]
+    public GameObject clothTutorial;
+    public GameObject sewingTutorial, DollTutorial;
+
     [Header("TurnCam")]
     public GameObject TurnOut;
     public GameObject TurnIn;
@@ -67,7 +72,8 @@ public class PlayerChangeCam : MonoBehaviour
     public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP, ghosthenshinTime, SleepTimer;
 
     private bool  CamOnDesk, HaveItem
-        , WakeUp, TimeBool = true, Delay;
+        , WakeUp, TimeBool = true, Delay,
+        _1DesignCloth, _1Sewing, _1Doll;
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
@@ -255,6 +261,12 @@ public class PlayerChangeCam : MonoBehaviour
                         TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(WorkShopView);
                         StartCoroutine(DelayCamera());
+
+                        if (!_1Sewing)
+                        {
+                            sewingTutorial.SetActive(true);
+                            _1Sewing = true;
+                        }
                     }
                 }
                 
@@ -275,6 +287,12 @@ public class PlayerChangeCam : MonoBehaviour
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(DeskShopView);
                         StartCoroutine(DelayCamera());
+
+                        if (!_1DesignCloth)
+                        {
+                            clothTutorial.SetActive(true);
+                            _1DesignCloth = true;
+                        }
                     }
                 }
 
@@ -297,6 +315,13 @@ public class PlayerChangeCam : MonoBehaviour
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(PushClothOnDollView);
                         StartCoroutine(DelayCamera());
+
+                        if (!_1Doll)
+                        {
+                            DollTutorial.SetActive(true);
+                            _1Doll = true;
+                        }
+
                     }
                 }
 

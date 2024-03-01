@@ -11,6 +11,7 @@ public class GhsotSpawnState : GhostBaseState
     {
         AnimChange = true;
         Timer = state.SpawnTimer;
+        state.PlayerDetectSpawn = true;
         state.GhostBoxCol.enabled = true;
         state.Cansee = false;
         state.HpCross = false;

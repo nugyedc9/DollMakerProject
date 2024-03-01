@@ -14,6 +14,12 @@ public class DesignSelect : MonoBehaviour
     public InventoryManager inventoryManager;
     public Item[] PieceCloth;
 
+    [Header("Tutorial Arrow")]
+    public GameObject clothTutorial;
+
+    [Header("---- Audio ----")]
+    public AudioSource Confirm;
+
     public int PageNum;
     [SerializeField] private bool haveCloth;
     public bool HaveCloth {  get { return haveCloth; } set {  haveCloth = value; } }
@@ -42,6 +48,8 @@ public class DesignSelect : MonoBehaviour
             PrevButt.SetActive(true);
             if (PageNum == clothColorID) SelectButt.SetActive(true);
             else SelectButt.SetActive(false);
+
+            clothTutorial.SetActive(false);
         }
         else SelectButt.SetActive(false);
 
@@ -74,6 +82,7 @@ public class DesignSelect : MonoBehaviour
     {
         if (playPickup.ItemCount < inventoryManager.inventoryslote.Length)
         {
+            Confirm.Play();
             ClothColor[PageNum].SetActive(false);
             inventoryManager.AddItem(PieceCloth[PageNum]);
             BoxColPushCloth.SetActive(true);
