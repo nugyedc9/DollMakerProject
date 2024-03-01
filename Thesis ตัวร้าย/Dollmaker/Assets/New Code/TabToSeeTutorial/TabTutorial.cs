@@ -43,7 +43,7 @@ public class TabTutorial : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (!OpenTutor)
+                if (!OpenTutor && !PAttack.isPause)
                 {
                     OpenTutor = true;
                     InvShow.enabled = true;
@@ -62,7 +62,7 @@ public class TabTutorial : MonoBehaviour
                         OpenObjective = true;
                     }
                 }
-                else
+                else if(OpenTutor)
                 {
                     PlayAnimInvTab = true;
                     OpenTutor = false;

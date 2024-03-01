@@ -28,6 +28,11 @@ public class PlayerPickUpItem : MonoBehaviour
     public AudioClip CrossS, DollS, ScissorS, CutClothS,
         KeyS, DocumentS, PushFiniDollS;
 
+    [Header("Tutorial Pick UP")]
+    public GameObject CrossNote;
+    public GameObject ScissorNote;
+    bool _1Cross, _1Scissor;
+
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
@@ -68,6 +73,12 @@ public class PlayerPickUpItem : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "Cross")
                     {
+                        if (!_1Cross)
+                        {
+                            ShowMouse();
+                            CrossNote.SetActive(true);
+                            _1Cross = true;
+                        }
                         audioSource.clip = CrossS;
                         audioSource.Play();
                         CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
@@ -96,6 +107,13 @@ public class PlayerPickUpItem : MonoBehaviour
                         audioSource.Play();
                         inventoryManager.AddItem(itemPickUp[2]);
                         Destroy(hitInfo.collider.gameObject);
+                        if (!_1Scissor)
+                        {
+                            ShowMouse();
+                            ScissorNote.SetActive(true);
+                            _1Scissor = true;
+                        }
+
                     }
                     if(hitInfo.collider.gameObject.tag == "Cloth")
                     {
@@ -199,6 +217,21 @@ public class PlayerPickUpItem : MonoBehaviour
             }
         }
 
+    }
+
+
+    public void ShowMouse()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void CloseMouse()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

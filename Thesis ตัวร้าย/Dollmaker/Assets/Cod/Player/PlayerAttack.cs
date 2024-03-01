@@ -97,7 +97,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("ObjSleep")]
     public GameObject DoorEnd;
-    public GameObject Granma, AudioGranma, normalDoor;
+    public GameObject Granma, AudioGranma, normalDoor, _11Story;
     public Animator EndGameAnim;
 
     [Header("CanvaDialogue")]
@@ -351,7 +351,7 @@ public class PlayerAttack : MonoBehaviour
 
         if(tabTutorial.OpenTutor)
         {
-            DelayEse = 1;
+            DelayEse = 0.5f;
         }
         
         else if(!tabTutorial.OpenTutor && DelayEse > 0) 
@@ -359,11 +359,12 @@ public class PlayerAttack : MonoBehaviour
             DelayEse -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+       /* if (Input.GetKeyDown(KeyCode.M))
         {
             if(!MapOn)OpenMap();
             else CloseMap();
-        }
+        }*/
+
         if(CloseTurial)
         {
             Time.timeScale = 0;
@@ -912,6 +913,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                     {
+                        _11Story.SetActive(true);
                         normalDoor.SetActive(false);
                         DoorEnd.SetActive(true);
                         Granma.SetActive(true);
@@ -2410,7 +2412,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (PCam.OnCutScene)
+        if (PCam.OnCutScene || !PCam.camOnPerSon)
         {
             Light.gameObject.SetActive(false);
             pointLight.SetActive(false);

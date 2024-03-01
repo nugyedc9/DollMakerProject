@@ -19,19 +19,6 @@ public class FinishBasket : MonoBehaviour
      public int SlotNum;
 
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
     public void Spawndoll()
     {
         GameObject newDoll = Instantiate(dollShow[DollID], Slot[SlotNum].transform);

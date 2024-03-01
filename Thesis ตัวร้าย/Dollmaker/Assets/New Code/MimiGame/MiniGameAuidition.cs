@@ -67,6 +67,9 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
 
+    public GameObject FailNote;
+    bool _1Fail;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -285,6 +288,12 @@ public class MiniGameAuidition : MonoBehaviour
 
             if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
             {
+                if (!_1Fail)
+                {
+                     FailNote.SetActive(true);
+                    _1Fail = true;
+                }
+
                 GetHurt = true;
                 handMove.enabled = true;
                 handMove.Play("Handhurtsewing");

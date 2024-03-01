@@ -132,7 +132,7 @@ public class PlayerChangeCam : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         OnCutScene = true;
-        
+        _InputManager.StopWalk();
     }
 
     private void Update()
@@ -153,6 +153,7 @@ public class PlayerChangeCam : MonoBehaviour
                     _1Story.enabled = true;
                     TimeBool = false;
                     camOnPerSon = true;
+                    _InputManager.StopWalk();
                     ChangePOV.SwitchCamera(FirstpersonView);
                 }
             }
@@ -243,6 +244,7 @@ public class PlayerChangeCam : MonoBehaviour
                 TimeBool = false;
                 camOnPerSon = true;
                 OnCutScene = false;
+                _InputManager.StopWalk();
                 ChangePOV.SwitchCamera(FirstpersonView);
             }
             else if (ChangePOV.IsActiveCamera(DollHenshin))
@@ -367,7 +369,7 @@ public class PlayerChangeCam : MonoBehaviour
         {
             CloseInterectShow = false;
             if(TabOn.OpenTutor == false)
-                if(!Pattack.isPause)
+                if(!Pattack.isPause && Time.timeScale == 1)
             CloseMouse();          
             OpenKeyItemInv = false;
             OpenInvBut.SetActive(false);
@@ -561,8 +563,6 @@ public class PlayerChangeCam : MonoBehaviour
             OnCutScene = true;
             _InputManager.StopWalk();
             Throwitem.StopAttack();
-            ItemOnPlayer.SetActive(false);
-            TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(_1GetScrissorCam);
             TutorialTimeIncode = TutorialTime1;
         }
@@ -576,8 +576,6 @@ public class PlayerChangeCam : MonoBehaviour
             CamOnTutorial = 4;
             _InputManager.StopWalk();
             Throwitem.StopAttack();
-            ItemOnPlayer.SetActive(false);
-            TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(DollHenshin);
             TutorialTimeIncode = ghosthenshinTime;
         }
@@ -592,7 +590,6 @@ public class PlayerChangeCam : MonoBehaviour
             _InputManager.StopWalk();
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
-            TextOnPlayer.SetActive(false);
             ChangePOV.SwitchCamera(SleepCam);
             TutorialTimeIncode = SleepTimer;
         }
