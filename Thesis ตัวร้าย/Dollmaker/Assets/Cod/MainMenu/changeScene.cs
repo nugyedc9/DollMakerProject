@@ -7,12 +7,12 @@ public class changeScene : MonoBehaviour
 {
     public void playGame()
     {
-        SceneManager.LoadSceneAsync("Scene1");
+        SceneManager.LoadSceneAsync("In House Scene");
     }
     public void LoadGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadSceneAsync("Scene1");
+        SceneManager.LoadSceneAsync("In House Scene");
     }
     public void Quitgame()
     {

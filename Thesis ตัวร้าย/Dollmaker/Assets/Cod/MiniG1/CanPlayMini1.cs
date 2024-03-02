@@ -63,6 +63,7 @@ public class CanPlayMini1 : MonoBehaviour
             // canClick.SetActive(true);
             //  player.PlaySoundWork();
             //  TotalDollCanva.SetActive(true);
+            if(!DeskView.camOnPerSon)
             CloseMouse();
             DropClothHere.SetActive(false);
             DeskView.CanplayMinigame = true;

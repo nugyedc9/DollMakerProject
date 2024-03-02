@@ -68,7 +68,7 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject CutHere;
 
     public GameObject FailNote;
-    bool _1Fail;
+    bool _1Fail, ActiveMachine;
 
     // Start is called before the first frame update
     void Start()
@@ -100,10 +100,26 @@ public class MiniGameAuidition : MonoBehaviour
             Needle.enabled = false;
             ClothMove.enabled = false;
             handMove.enabled = false;
+      
+        }
+
+        if(!HoldSpace)
+        {
+            if (ActiveMachine)
+            {
+                machineActive.enabled = false;
+                ActiveMachine = false;
+            }
         }
 
         if (HoldSpace && HaveItem)
         {
+            if (!ActiveMachine)
+            {
+                machineActive.enabled = true;
+                machineActive.Play();
+                ActiveMachine = true;
+            }
 
             Bar.SetMinBar(curBar);
             if(curBar <= 0) curBar = 0;
@@ -119,7 +135,6 @@ public class MiniGameAuidition : MonoBehaviour
                 Needle.enabled = true;
                 ClothMove.enabled = true;
                 handMove.enabled = true;
-                machineActive.enabled = true;
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
@@ -164,7 +179,7 @@ public class MiniGameAuidition : MonoBehaviour
                 else
                 {
                     ClothMove.enabled = false;
-                    handMove.enabled = false ;
+                    handMove.enabled = false;                  
                 }
                 if (AuditionPass.Peek() == 0)
                 {
@@ -362,6 +377,7 @@ public class MiniGameAuidition : MonoBehaviour
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {         
             machineActive.enabled = false;
+            ActiveMachine = false;
             if (HoldSpace)
             {
                 AuditionPass.Clear();
@@ -478,7 +494,7 @@ public class MiniGameAuidition : MonoBehaviour
             HoldSpace = false;
             _Currentstate = MiniGameAuditionState.LeaveDesk;
         }
-        else { CloseMouse(); }
+       // else { CloseMouse(); }
     
     }
 /*    public void GetFinishDoll()
@@ -486,15 +502,5 @@ public class MiniGameAuidition : MonoBehaviour
         FinishDoll[FinishDollHave].SetActive(true);
             FinishDollHave++;
     }*/
-    public void ShowMouse()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
 
-    public void CloseMouse()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 }

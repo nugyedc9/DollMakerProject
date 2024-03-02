@@ -1,5 +1,4 @@
 using Cinemachine;
-using Cinemachine.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -276,7 +275,7 @@ public class PlayerChangeCam : MonoBehaviour
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
-                        TextOnPlayer.SetActive(false);
+                      //  TextOnPlayer.SetActive(false);
                         CheckCanplayMiniG.OnDesk = true;                  
                         CamOnDesk = true;
                         LookOutGhost = false;
@@ -305,7 +304,7 @@ public class PlayerChangeCam : MonoBehaviour
                         DesignSelect.SetActive(true);
                         Book.SetActive(true);
                         ItemOnPlayer.SetActive(false);
-                        TextOnPlayer.SetActive(false);
+                       // TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(DeskShopView);
                         StartCoroutine(DelayCamera());
@@ -332,7 +331,7 @@ public class PlayerChangeCam : MonoBehaviour
                         if (!DropDoll.CloseboxDropDoll)
                             DesignDollSelect.SetActive(true);
                         BookDoll.SetActive(true);
-                        TextOnPlayer.SetActive(false);
+                      //  TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(PushClothOnDollView);
                         StartCoroutine(DelayCamera());
@@ -372,11 +371,9 @@ public class PlayerChangeCam : MonoBehaviour
         if (CamOnPerson)
         {
             CloseInterectShow = false;
-            if (!TabOn.OpenTutor )
-            {
-                if (!Pattack.isPause && Time.timeScale == 1)
+            if (!TabOn.OpenTutor && Pattack.isPause && Time.timeScale == 1 )
                     CloseMouse();
-            }
+    
             OpenKeyItemInv = false;
             OpenInvBut.SetActive(false);
             CloseInvBut.SetActive(false);
@@ -439,10 +436,11 @@ public class PlayerChangeCam : MonoBehaviour
                       
                         if (!_1Sewing)
                             sewingTutorial.SetActive(false);
-                        
+                        CloseMouse();
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
+                        CamOnDesk = false;
                     }
                     else if (ChangePOV.IsActiveCamera(DeskShopView))
                     {
@@ -456,9 +454,10 @@ public class PlayerChangeCam : MonoBehaviour
 
                         if (!_1DesignCloth)
                             clothTutorial.SetActive(false);
-
+                        CloseMouse();
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
+                        CamOnDesk = false;
                     }
                     else if (ChangePOV.IsActiveCamera(ChangeViewOnDesk))
                     {
@@ -472,6 +471,7 @@ public class PlayerChangeCam : MonoBehaviour
                         ChangePOV.SwitchCamera(FirstpersonView);
                         minigamestate.LeaveMinigame();
                         CamOnPerson = true;
+                        CamOnDesk = false;
                     }
                     else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                     {
@@ -487,9 +487,10 @@ public class PlayerChangeCam : MonoBehaviour
                             DollTutorial.SetActive(false);
                         if(!_1clothDoll)
                             clothDoll.SetActive(false);
-
+                        CloseMouse();
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
+                        CamOnDesk = false;
                     }
                 }
 
