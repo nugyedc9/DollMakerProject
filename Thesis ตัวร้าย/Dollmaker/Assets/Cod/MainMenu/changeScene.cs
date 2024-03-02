@@ -14,6 +14,11 @@ public class changeScene : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync("In House Scene");
     }
+    public void NextScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync("Cutscene Prolouge");
+    }
     public void Quitgame()
     {
         Application.Quit();
