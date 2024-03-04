@@ -264,7 +264,67 @@ public PlayerPickUpItem playerPickUpItem;
 
             #endregion
 
+            #region FinishClothColor
 
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishClothRed"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 14);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishClothBlue"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 15);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishClothGreen"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 16);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishClothYellow"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 17);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+
+            #endregion
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollRedBlue"))
             {

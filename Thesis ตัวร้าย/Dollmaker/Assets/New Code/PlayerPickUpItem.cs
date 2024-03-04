@@ -177,6 +177,29 @@ public class PlayerPickUpItem : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
                     }
                     #endregion
+
+                    #region FinishClothColor
+                    if (hitInfo.collider.gameObject.tag == "FinishClothRed")
+                    {
+                        inventoryManager.AddItem(itemPickUp[15]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "FinishClothBlue")
+                    {
+                        inventoryManager.AddItem(itemPickUp[16]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "FinishClothGreen")
+                    {
+                        inventoryManager.AddItem(itemPickUp[17]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "FinishClothYellow")
+                    {
+                        inventoryManager.AddItem(itemPickUp[18]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    #endregion
                 }
 
                 if (hitInfo.collider.gameObject.tag == "Document")
