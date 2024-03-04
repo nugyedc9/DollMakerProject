@@ -139,6 +139,132 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[3].SetActive(false);
             }
 
+            #region ClothColor
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("RedCloth"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 6);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+               // ItemOnHand[3].SetActive(false);
+            }
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("BlueCloth"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 7);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("GreenCloth"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 8);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("YellowCloth"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 9);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+
+            #endregion
+
+
+            #region PieceClothColor
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("PieceClothRed"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 10);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("PieceClothBlue"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 11);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("PieceClothGreen"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 12);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("PieceClothYellow"))
+            {
+                //ItemOnHand[6].SetActive(true);
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 13);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
+            }
+            else
+            {
+                // ItemOnHand[3].SetActive(false);
+            }
+
+            #endregion
+
+
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollRedBlue"))
             {

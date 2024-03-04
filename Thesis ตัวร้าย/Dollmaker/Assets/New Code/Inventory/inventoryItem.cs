@@ -14,7 +14,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = 1;
-    [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public Transform parentAfterDrag, ChangePos;
     [HideInInspector] public InventoryManager inventoryManager;
     private Vector3 orginalPosition;
     private Vector2 lastMousePosition;
@@ -32,6 +32,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         //lastMousePosition = eventData.position;
         parentAfterDrag = transform.parent;
+        ChangePos = transform.parent;
         image.raycastTarget = false;
     }
 

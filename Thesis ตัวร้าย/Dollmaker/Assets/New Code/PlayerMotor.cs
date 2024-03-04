@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     public float speed = 5f;
+    public float SpeedForRun = 5f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
     private float NomalSpeed;
     public bool speedForTest;
+
+    public Slider StaminaBar;
+    public float Stamina;
+    float MaxStamina;
+    bool RunOutSt, Notrun;
 
     [Header("Sound")]
     public AudioSource WalkSound;
@@ -22,25 +29,60 @@ public class PlayerMotor : MonoBehaviour
         controller = GetComponent<CharacterController>();
         NomalSpeed = speed;
         WalkSound.enabled = false;
+        MaxStamina = Stamina;
+        StaminaBar.maxValue = MaxStamina;
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = controller.isGrounded;
-        if (Input.GetKeyDown(KeyCode.P))
+
+        StaminaBar.value = Stamina;
+
+        if (Notrun)
         {
-            speed = 10;
+            if (Stamina < MaxStamina)
+            {
+                Stamina += 0.5f * Time.deltaTime;
+            }
+            else if (Stamina >= Stamina / 3)
+            {
+                RunOutSt = false;
+            }
         }
+
         if (speedForTest)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                speed = 10;
+                Notrun = false;
+                if (!RunOutSt)
+                {
+                    if (Stamina > 0)
+                    {
+                        speed = SpeedForRun;
+                        Stamina -= Time.deltaTime;
+                    }
+                }
+
+                 if (Stamina <= 0 )
+                {
+                    speed = NomalSpeed;
+                    RunOutSt = true;
+                    Stamina += 0.5f * Time.deltaTime;
+                }
+                else if( Stamina >= Stamina / 3)
+                {
+                    RunOutSt = false;
+                }
+
             }
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = NomalSpeed;
+
+                Notrun = true;
             }
         }
 

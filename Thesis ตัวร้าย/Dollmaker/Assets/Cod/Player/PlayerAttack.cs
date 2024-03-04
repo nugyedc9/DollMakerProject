@@ -1032,7 +1032,7 @@ public class PlayerAttack : MonoBehaviour
                     ItemName.text = "Open the Door [E]";
                     InterectItem = true;
                 }
-                
+
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")
             {
@@ -1102,13 +1102,13 @@ public class PlayerAttack : MonoBehaviour
                     ItemName.text = "I need to finish work";
                     InterectItem = true;
                 }
-                else if(finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
+                else if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                 {
                     ItemText.SetActive(true);
                     ItemName.text = "Sleep [E]";
                     InterectItem = true;
                 }
-               
+
             }
             else if (hitevent.collider.gameObject.tag == "Breaker")
             {
@@ -1128,7 +1128,7 @@ public class PlayerAttack : MonoBehaviour
                 ItemName.text = "Eat Pill [E]";
                 InterectItem = true;
             }
-             else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
+            else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
             {
                 ItemText.SetActive(true);
                 ItemName.text = "Machine [Left Click]";
@@ -1160,13 +1160,30 @@ public class PlayerAttack : MonoBehaviour
                     ItemName.text = "Cut [Left Click]";
                     InterectItem = true;
                 }
-                else if(!playerPickUpItem.HaveScissor)
+                else if (!playerPickUpItem.HaveScissor)
                 {
                     ItemText.SetActive(true);
                     ItemName.text = "Find a scrissor";
                     InterectItem = true;
                 }
             }
+            else if (hitevent.collider.gameObject.tag == "PieceClothRed" || hitevent.collider.gameObject.tag == "PieceClothBlue"
+                || hitevent.collider.gameObject.tag == "PieceClothGreen" || hitevent.collider.gameObject.tag == "PieceClothYellow")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "PieceCloth [E]";
+                InterectItem = true;
+            }
+
+            else if (hitevent.collider.gameObject.tag == "RedCloth" || hitevent.collider.gameObject.tag == "BlueCloth"
+                || hitevent.collider.gameObject.tag == "YellowCloth" || hitevent.collider.gameObject.tag == "GreenCloth")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Cloth [E]";
+                InterectItem = true;
+            }
+
+
 
             else
             {

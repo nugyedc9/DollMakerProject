@@ -12,7 +12,8 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [Header("Cross Thing")]
     public PlayerAttack PAttack;
-    private CrossCheck CrossUse;
+    private CrossCheck crossUse;
+    public CrossCheck CrossUse {get { return crossUse; } set { crossUse = value; } }
 
     [Header("Scrissor Thing")]
     public Animator ScrissorAnim;
@@ -130,9 +131,55 @@ public class PlayerPickUpItem : MonoBehaviour
                         inventoryManager.AddItem(itemPickUp[10]);
                         Destroy(hitInfo.collider.gameObject);
                     }
+
+                    #region ClothColor
+                    if (hitInfo.collider.gameObject.tag == "RedCloth")
+                    {
+                        inventoryManager.AddItem(itemPickUp[6]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "BlueCloth")
+                    {
+                        inventoryManager.AddItem(itemPickUp[7]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "GreenCloth")
+                    {
+                        inventoryManager.AddItem(itemPickUp[8]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "YellowCloth")
+                    {
+                        inventoryManager.AddItem(itemPickUp[9]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    #endregion
+
+                    #region PieceClothColor
+                    if (hitInfo.collider.gameObject.tag == "PieceClothRed")
+                    {
+                        inventoryManager.AddItem(itemPickUp[11]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "PieceClothBlue")
+                    {
+                        inventoryManager.AddItem(itemPickUp[12]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "PieceClothGreen")
+                    {
+                        inventoryManager.AddItem(itemPickUp[13]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    if (hitInfo.collider.gameObject.tag == "PieceClothYellow")
+                    {
+                        inventoryManager.AddItem(itemPickUp[14]);
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+                    #endregion
                 }
-                
-                if(hitInfo.collider.gameObject.tag == "Document")
+
+                if (hitInfo.collider.gameObject.tag == "Document")
                 {
                     audioSource.clip = DocumentS;
                     audioSource.Play();
@@ -152,7 +199,7 @@ public class PlayerPickUpItem : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject.tag == "RollCloth")
                     {
-                        if (HaveScissor)
+                        if (HaveScissor && !BookGuide.OpenTutor)
                         {
                             audioSource.clip = CutClothS;
                             audioSource.Play();
@@ -160,7 +207,8 @@ public class PlayerPickUpItem : MonoBehaviour
                                 ScrissorAnim.Play("cutanima", 0, 0);
 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
-                            if (pieceClothGet.pieceClothID == 0)
+                            pieceClothGet.DropitemPrefabs();
+                         /*   if (pieceClothGet.pieceClothID == 0)
                             {
                                 inventoryManager.AddItem(itemPickUp[6]);
                             }
@@ -175,7 +223,7 @@ public class PlayerPickUpItem : MonoBehaviour
                             else if (pieceClothGet.pieceClothID == 3)
                             {
                                 inventoryManager.AddItem(itemPickUp[9]);
-                            }
+                            }*/
                         }
                     }
 
