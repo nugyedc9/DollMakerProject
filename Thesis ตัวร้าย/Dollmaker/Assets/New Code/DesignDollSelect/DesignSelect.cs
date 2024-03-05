@@ -7,8 +7,9 @@ public class DesignSelect : MonoBehaviour
 {
     public GameObject[] BookPage;
     public GameObject[] ClothColor;
+    public GameObject[] ClothCutline, FirstLineCut;
     public GameObject BoxColPushCloth;
-    public GameObject NextButt,PrevButt,SelectButt;
+    public GameObject NextButt,PrevButt,SelectButt,FinishButt;
 
     public PlayerChangeCam PCam;
     public PlayerPickUpItem playPickup;
@@ -26,6 +27,7 @@ public class DesignSelect : MonoBehaviour
     [SerializeField] private bool haveCloth;
     public bool HaveCloth {  get { return haveCloth; } set {  haveCloth = value; } }
 
+    bool ConfirmThis;
 
 
     [SerializeField] int clothColorID;
@@ -48,8 +50,11 @@ public class DesignSelect : MonoBehaviour
             BookPage[PageNum].SetActive(true);
             NextButt.SetActive(true);
             PrevButt.SetActive(true);
-            if (PageNum == clothColorID) SelectButt.SetActive(true);
-            else SelectButt.SetActive(false);
+            if (!ConfirmThis)
+            {
+                if (PageNum == clothColorID) SelectButt.SetActive(true);
+                else SelectButt.SetActive(false);
+            }
 
             PCam._1DesignCloth = true;
             clothTutorial.SetActive(false);
@@ -63,6 +68,7 @@ public class DesignSelect : MonoBehaviour
         if(PageNum == BookPage.Length - 1) NextButt.SetActive(false);
         if (PageNum < BookPage.Length - 1) NextButt.SetActive(true);
         #endregion
+
     }
 
     public void NextPage()
@@ -87,13 +93,30 @@ public class DesignSelect : MonoBehaviour
 
     public void SelectThisDesign()
     {
+            AudioSound.clip = ConfirmS;
+            AudioSound.Play();
+            ClothCutline[PageNum].SetActive(true);
+            ConfirmThis = true;
+        SelectButt.SetActive(false);
+            /* ClothColor[PageNum].SetActive(false);
+            inventoryManager.AddItem(PieceCloth[PageNum]);
+            BoxColPushCloth.SetActive(true);
+            HaveCloth = false;*/
+       
+    }
+
+    public void finishThiDesign()
+    {
         if (playPickup.ItemCount < inventoryManager.inventoryslote.Length)
         {
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-             ClothColor[PageNum].SetActive(false);
+            ClothColor[PageNum].SetActive(false);
+            ClothCutline[clothColorID].SetActive(false);
             inventoryManager.AddItem(PieceCloth[PageNum]);
             BoxColPushCloth.SetActive(true);
+            FirstLineCut[clothColorID].SetActive(true);
+            ConfirmThis = false;
             HaveCloth = false;
         }
     }
