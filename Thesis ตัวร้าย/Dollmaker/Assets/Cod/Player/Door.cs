@@ -23,6 +23,12 @@ public class Door : MonoBehaviour
     public UnityEvent IffopenDoor;
     public UnityEvent IffcloseDoor;
 
+
+     [SerializeField] float delayDooropenEvent;
+    public float DelayDoorOpenEvent { get { return delayDooropenEvent; } set { delayDooropenEvent = value; } }
+
+
+
     private void Awake()
     {
         doorAni = GetComponent<Animator>();
@@ -30,7 +36,15 @@ public class Door : MonoBehaviour
 
     public void Update()
     {
-
+        if (DelayDoorOpenEvent > 0) DelayDoorOpenEvent -= Time.deltaTime;
+        else if (DelayDoorOpenEvent < 0)
+        {
+            DoorSound.clip = open;
+            DoorSound.Play();
+            doorAni.Play("Door_open", 0, 0);
+            D = true;
+            DelayDoorOpenEvent = 0;
+        }
     }
 
     public void DoorAni()
@@ -56,6 +70,10 @@ public class Door : MonoBehaviour
         {
             DoorSound.clip = doorlock; DoorSound.Play();
         }
+
+        
+
+
     }
 
     public void ForntDoor()
@@ -84,6 +102,23 @@ public class Door : MonoBehaviour
             D = true;
             IffopenDoor.Invoke();
         }
+    }
+
+
+    public void OpenDoorDelayEvent()
+    {
+        DoorSound.clip = open;
+        DoorSound.Play();
+        doorAni.Play("Door_open", 0, 0);
+        D = true;
+    }
+
+    public void CloseDoorEvent()
+    {
+        DoorSound.clip = close;
+        DoorSound.Play();
+        doorAni.Play("Door_close", 0, 0);
+        D = false;
     }
     
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
@@ -61,7 +62,7 @@ public class MiniGameAuidition : MonoBehaviour
 
     private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking, GetHurt;
     public bool Finish;
-    private int CurrectPass, FinishDollHave;
+    private int CurrectPass, failCount;
     private float  ClothPlayanim;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
@@ -69,6 +70,10 @@ public class MiniGameAuidition : MonoBehaviour
 
     public GameObject FailNote;
     bool _1Fail, ActiveMachine;
+
+    [Header("Event")]
+    public UnityEvent Fail1;
+    public UnityEvent Fail2, Fail3;
 
     // Start is called before the first frame update
     void Start()
@@ -323,6 +328,15 @@ public class MiniGameAuidition : MonoBehaviour
                     NeedleWorking = false;
                     Needle.enabled = false;
                     ClothMove.enabled = false;
+
+                    failCount++;
+                    if (failCount == 1)
+                        Fail1.Invoke();
+                    if (failCount == 2)
+                        Fail2.Invoke();
+                    if (failCount == 3)
+                        Fail3.Invoke();
+
                     Fail = true;
                 }
                 if (cutLine)

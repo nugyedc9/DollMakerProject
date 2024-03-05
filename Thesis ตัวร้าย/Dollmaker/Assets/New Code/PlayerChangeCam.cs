@@ -54,7 +54,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
-    public GameObject sewingTutorial, DollTutorial, clothDoll;
+    public GameObject sewingTutorial, DollTutorial, clothDoll, CutLine;
 
     [Header("TurnCam")]
     public GameObject TurnOut;
@@ -78,12 +78,14 @@ public class PlayerChangeCam : MonoBehaviour
 
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, Delay,
-        _1designCloth, _1sewing, _1doll, _1clothDoll;
+        _1designCloth, _1sewing, _1doll, _1clothDoll,
+        _1cutLine;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
     public bool _1Doll { get { return _1doll; } set { _1doll = value; } }
     public bool _1ClothDoll { get { return _1clothDoll; } set { _1clothDoll = value; } }
+    public bool T1CutLine { get { return _1cutLine; } set { _1cutLine = value; } }
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
@@ -456,6 +458,8 @@ public class PlayerChangeCam : MonoBehaviour
 
                         if (!_1DesignCloth)
                             clothTutorial.SetActive(false);
+                        if(!T1CutLine)
+                            CutLine.SetActive(false);
                         CloseMouse();
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;

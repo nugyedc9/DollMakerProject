@@ -18,6 +18,9 @@ public class DesignSelect : MonoBehaviour
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
+    public GameObject CutLineTutorial;
+    [SerializeField] bool _1ctline;
+    public bool _1CutLine {  get { return _1ctline; } set {  _1ctline = value; } }
 
     [Header("---- Audio ----")]
     public AudioSource AudioSound;
@@ -99,6 +102,10 @@ public class DesignSelect : MonoBehaviour
             AudioSound.Play();
             ClothCutline[PageNum].SetActive(true);
             ConfirmThis = true;
+        if (!_1CutLine)
+        {
+            CutLineTutorial.SetActive(true);
+        }
         SelectButt.SetActive(false);
             /* ClothColor[PageNum].SetActive(false);
             inventoryManager.AddItem(PieceCloth[PageNum]);
@@ -123,7 +130,7 @@ public class DesignSelect : MonoBehaviour
             ConfirmThis = false;
             HaveCloth = false;
         }
-        Debug.Log("click");
+      //  Debug.Log("click");
     }
 
 }
