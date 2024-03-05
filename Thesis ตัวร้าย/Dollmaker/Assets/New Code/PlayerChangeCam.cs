@@ -44,7 +44,7 @@ public class PlayerChangeCam : MonoBehaviour
     [Header("SelectDesign")]
     public Animator InvAnim;
     public GameObject DesignSelect;
-    public GameObject Book;
+    public GameObject Book , Allline;
 
     [Header("SelectDollDesign")]
     public GameObject DesignDollSelect;
@@ -303,6 +303,7 @@ public class PlayerChangeCam : MonoBehaviour
                         Throwitem.StopAttack();
                         DesignSelect.SetActive(true);
                         Book.SetActive(true);
+                        Allline.SetActive(true);
                         ItemOnPlayer.SetActive(false);
                        // TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
@@ -448,6 +449,7 @@ public class PlayerChangeCam : MonoBehaviour
                         Throwitem.CanAttack();
                         DesignSelect.SetActive(false);
                         Book.SetActive(false);
+                        Allline.SetActive(false);
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");

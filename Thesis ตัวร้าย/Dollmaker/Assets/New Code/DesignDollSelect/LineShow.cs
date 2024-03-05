@@ -19,5 +19,6 @@ public class LineShow : MonoBehaviour
         {
             LineAfterCut[i].SetActive(false);
         }
+        CutNum = 0;
     }
 }

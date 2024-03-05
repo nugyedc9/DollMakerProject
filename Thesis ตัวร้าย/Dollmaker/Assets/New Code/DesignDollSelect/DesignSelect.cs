@@ -29,6 +29,7 @@ public class DesignSelect : MonoBehaviour
 
     bool ConfirmThis;
 
+    [SerializeField] private LineShow lineShow;
 
     [SerializeField] int clothColorID;
     public int ClothColorID {  get { return clothColorID; } set {  clothColorID = value; } }
@@ -47,6 +48,7 @@ public class DesignSelect : MonoBehaviour
         {
             BoxColPushCloth.SetActive(false);
             ClothColor[ClothColorID].SetActive(true);
+            lineShow = ClothCutline[clothColorID].GetComponent<LineShow>();
             BookPage[PageNum].SetActive(true);
             NextButt.SetActive(true);
             PrevButt.SetActive(true);
@@ -111,14 +113,17 @@ public class DesignSelect : MonoBehaviour
         {
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-            ClothColor[PageNum].SetActive(false);
+            ClothColor[PageNum].SetActive(false);           
+            lineShow.CloseAllLine();
             ClothCutline[clothColorID].SetActive(false);
             inventoryManager.AddItem(PieceCloth[PageNum]);
             BoxColPushCloth.SetActive(true);
             FirstLineCut[clothColorID].SetActive(true);
+            FinishButt.SetActive(false);
             ConfirmThis = false;
             HaveCloth = false;
         }
+        Debug.Log("click");
     }
 
 }
