@@ -458,7 +458,7 @@ public class PlayerChangeCam : MonoBehaviour
 
                         if (!_1DesignCloth)
                             clothTutorial.SetActive(false);
-                        if(!T1CutLine)
+                        else if(!T1CutLine && _1DesignCloth)
                             CutLine.SetActive(false);
                         CloseMouse();
                         ChangePOV.SwitchCamera(FirstpersonView);
