@@ -1018,11 +1018,16 @@ public class PlayerAttack : MonoBehaviour
                         ItemText.SetActive(true);
                         ItemName.text = "Door Lock";
                         InterectItem = true;
-                    }
-                    else
+                    }                 
+                    else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID) 
                     {
                         ItemText.SetActive(true);
                         ItemName.text = "Use key to Unlock [Left Click]";
+                        InterectItem = true;
+                    }else if (playerPickUpItem.Key)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Door Lock";
                         InterectItem = true;
                     }
                 }

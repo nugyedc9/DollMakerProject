@@ -59,7 +59,8 @@ public class PlayerPickUpItem : MonoBehaviour
     private StoryActive storyActive;
 
     private bool GhostComeOut;
-    private int KeyId;
+    private int keyId;
+    public int KeyId { get { return keyId;} set { keyId = value; } }
 
     public void Update()
     {
