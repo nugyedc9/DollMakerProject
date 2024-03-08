@@ -45,6 +45,8 @@ public class Door : MonoBehaviour
             D = true;
             DelayDoorOpenEvent = 0;
         }
+
+
     }
 
     public void DoorAni()
@@ -107,18 +109,24 @@ public class Door : MonoBehaviour
 
     public void OpenDoorDelayEvent()
     {
-        DoorSound.clip = open;
-        DoorSound.Play();
-        doorAni.Play("Door_open", 0, 0);
-        D = true;
+        if (!Lock)
+        {
+            DoorSound.clip = open;
+            DoorSound.Play();
+            doorAni.Play("Door_open", 0, 0);
+            D = true;
+        }
     }
 
     public void CloseDoorEvent()
     {
-        DoorSound.clip = close;
-        DoorSound.Play();
-        doorAni.Play("Door_close", 0, 0);
-        D = false;
+        if (!Lock)
+        {
+            DoorSound.clip = close;
+            DoorSound.Play();
+            doorAni.Play("Door_close", 0, 0);
+            D = false;
+        }
     }
     
 }

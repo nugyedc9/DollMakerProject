@@ -12,6 +12,7 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
+        PlayerInRange = false;
     }
 
     public override void UpdateState(GhostStateManager state)

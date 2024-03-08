@@ -21,6 +21,8 @@ public class GhostStateManager : MonoBehaviour
     public GhsotSpawnState SpawnState = new GhsotSpawnState();
     public GhsotDetectPlayerSpawn DetectPlayerState = new GhsotDetectPlayerSpawn();
 
+    public bool ForTest;
+
     [Header("Player")]
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
@@ -106,17 +108,20 @@ public class GhostStateManager : MonoBehaviour
 
         }
 
-/*        if(PlayerHitDelay <= 0)
+        /*        if(PlayerHitDelay <= 0)
+                {
+                    if (!HpCross)
+                    {
+                        PAttack.CrossRuin();
+                        GhostBoxCol.enabled = false;
+                        SwitchState(GetAtKState);
+                        HpCross = true;
+                    }
+                }  */
+        if (ForTest)
         {
-            if (!HpCross)
-            {
-                PAttack.CrossRuin();
-                GhostBoxCol.enabled = false;
-                SwitchState(GetAtKState);
-                HpCross = true;
-            }
-        }  */
-        if(Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState) ;
+            if (Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState);
+        }
     }
 
     public void SwitchState(GhostBaseState state)
