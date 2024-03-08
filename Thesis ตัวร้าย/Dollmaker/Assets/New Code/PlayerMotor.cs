@@ -18,19 +18,22 @@ public class PlayerMotor : MonoBehaviour
     public Slider StaminaBar;
     public float Stamina;
     float MaxStamina;
-    bool RunOutSt, Notrun;
+    bool RunOutSt, Notrun, playRunSound, PLayWalkSound;
 
     [Header("Sound")]
-    public AudioSource WalkSound;
+    public AudioSource AudioOut;
+    public AudioClip WalkSound, RunSound;
+
     
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         NomalSpeed = speed;
-        WalkSound.enabled = false;
+        AudioOut.enabled = false;
         MaxStamina = Stamina;
         StaminaBar.maxValue = MaxStamina;
+        Notrun = true;
     }
 
     // Update is called once per frame
@@ -88,10 +91,36 @@ public class PlayerMotor : MonoBehaviour
 
         #region SoundWalk
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            WalkSound.enabled = true;
+        {
+            if (Notrun)
+            { 
+                AudioOut.clip = WalkSound;
+                AudioOut.enabled = true;
+                playRunSound = false;
+                if (!PLayWalkSound)
+                {
+                    AudioOut.Play();
+                    PLayWalkSound = true;
+                }
+            }
+            else
+            {
+                AudioOut.clip = RunSound;
+                if (!playRunSound)
+                {
+                    AudioOut.Play();
+                    playRunSound = true;
+                }
+                PLayWalkSound = false;
+            }
+        }
         else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
-            WalkSound.enabled = false;  
+        {
+            AudioOut.enabled = false;
+        }
         #endregion
+
+
     }
 
     public void ProcessMove(Vector2 Input)
@@ -113,6 +142,7 @@ public class PlayerMotor : MonoBehaviour
                 playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
             }       
     }
+
 
 
 }

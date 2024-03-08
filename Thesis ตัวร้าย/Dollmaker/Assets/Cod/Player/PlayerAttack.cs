@@ -947,7 +947,7 @@ public class PlayerAttack : MonoBehaviour
                     }
                     else
                     {
-                        DoEvent.GhostLightOut();
+                        //DoEvent.GhostLightOut();
                         InterectSound.clip = LightClickSound;
                         InterectSound.Play();
                     }

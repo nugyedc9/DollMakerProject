@@ -12,14 +12,16 @@ public class PlayerHp : MonoBehaviour
 
     public int MaxHp;
     public int curHp;
-    public float Delayvideo,DeadDelayvideo;
+    public float Delayvideo,DeadDelayvideo, DelayCloseHp, DelayHeartbeat;
     public GameObject[] HpPic, DMGPic;
     public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye, DeadVideo,THowToHeal;
-    private bool PlayGetHit, normaleye, Playdead, tuHeal;
+    private bool PlayGetHit, normaleye, Playdead, tuHeal,CloseHp;
 
     [Header("---- Audio ----")]
     public AudioSource audioSource;
     public AudioSource HpLow, Died;
+
+
 
     public void Start()
     {
@@ -62,6 +64,39 @@ public class PlayerHp : MonoBehaviour
             HpLow.enabled = false;
             blurEye.SetActive(false);
         }
+        if (curHp == 4)
+        {
+            if (!CloseHp)
+            {
+                DelayCloseHp = 2;
+                CloseHp = true;
+            }
+        }
+        else if (curHp < 4)
+        {
+            if (CloseHp)
+            {
+                for (int i = 0; i < HpPic.Length - 1; i++)
+                {
+                    HpPic[i].SetActive(true);
+                }
+                CloseHp = false;
+            }
+        }
+
+        if (DelayCloseHp > 0)
+        {
+            DelayCloseHp -= Time.deltaTime;
+        }   
+        else if(DelayCloseHp < 0)
+        {
+            for(int i = 0; i < HpPic.Length; i++)
+            {
+                HpPic[i].SetActive(false);
+            }
+            DelayCloseHp = 0;
+        }
+
         if (Delayvideo > 0) Delayvideo -= Time.deltaTime;
         if(Delayvideo < 0)
         {
@@ -69,6 +104,8 @@ public class PlayerHp : MonoBehaviour
             Hp2.SetActive(false);
             Delayvideo = 0;
         }
+
+
     }
     public void Takedamage(int damage)
     { 

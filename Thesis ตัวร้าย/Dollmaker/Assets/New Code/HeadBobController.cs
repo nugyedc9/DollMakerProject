@@ -5,18 +5,21 @@ using UnityEngine;
 public class HeadBobController : MonoBehaviour
 {
     [SerializeField] private bool _enable = true;
-    [SerializeField, Range(0,0.01f)] private float _amplitude = 0.015f;
+    [SerializeField, Range(0,0.01f)] private float _amplitude;
+    [SerializeField, Range(0,0.01f)] private float _Runamplitude;
     [SerializeField, Range(0, 30)] private float _frequency = 10.0f;
     [SerializeField] private Transform _camera = null;
     [SerializeField] private Transform _cameraHolder = null;
 
     private Vector3 _startPos;
     private CharacterController _controller;
+    float OGampliture;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _startPos = _camera.localPosition;
+        OGampliture = _amplitude;
     }
 
     // Update is called once per frame
@@ -26,6 +29,15 @@ public class HeadBobController : MonoBehaviour
         CheckMotion();
         ResetPosition();
         _camera.LookAt(FocusTarget());
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _amplitude =  _Runamplitude;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _amplitude = OGampliture;
+        }
     }
     private void PlayMotion(Vector3 motion)
     {

@@ -26,7 +26,9 @@ public class GhostAttackState : GhostBaseState
             state.enemyGhost.speed = 0f;
             state.AnimAttack = false;
         }
+
         state.DrawVisionCone();
+
         if (hitplayer)
         {
             TimeHit = Sec;

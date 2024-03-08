@@ -16,6 +16,7 @@ public class GhostSearchState : GhostBaseState
             state.GhostAni.Play("BackFrom", 0, 0);
         state.GhostAudioSoure.Stop();
         state.GhostAmbi.Stop();
+        state.OnPlayerAudio.enabled = false;
     }
 
     public override void UpdateState(GhostStateManager state)
