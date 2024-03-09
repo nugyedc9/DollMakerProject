@@ -14,6 +14,7 @@ public class GhostDiedState : GhostBaseState
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Dead_ani"))
             state.GhostAni.Play("Dead_ani", 0, 0);
         state.EventGhostAfterDied.Invoke();
+        state.OnPlayerAudio.enabled = false;
     }
 
     public override void UpdateState(GhostStateManager state)

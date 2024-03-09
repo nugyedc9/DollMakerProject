@@ -170,7 +170,7 @@ public class PlayerAttack : MonoBehaviour
     private CrossCheck CrossUse;
     private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx, FlashLightGet;
 
-    float DelayEse;
+    float DelayEse, Delaydoor;
 
     [Header("AllEvent")]
     public UnityEvent CheckFrontDoor;
@@ -880,6 +880,12 @@ public class PlayerAttack : MonoBehaviour
             #endregion*/
         #endregion
 
+        #region DelayDoorOpen
+
+        if(Delaydoor > 0) Delaydoor -= Time.deltaTime;
+
+        #endregion
+
         if (!endGame)
         {
             if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
@@ -901,7 +907,12 @@ public class PlayerAttack : MonoBehaviour
                 if (hitInterect.collider.gameObject.tag == "Door")
                 {
                     DoorInterect = hitInterect.collider.gameObject.GetComponent<Door>();
-                    DoorInterect.DoorAni();
+
+                    if (Delaydoor <= 0)
+                    {
+                        DoorInterect.DoorAni();
+                        Delaydoor = 1;
+                    }
                     if(StoryNow == 2)
                     {
                         if (DoorInterect.Lock == true)
@@ -926,11 +937,11 @@ public class PlayerAttack : MonoBehaviour
                     if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                     {
                         Bedbox.enabled = false;
-                        normalDoor.SetActive(false);
+                      /*  normalDoor.SetActive(false);
                         DoorEnd.SetActive(true);
                         Granma.SetActive(true);
                         AudioGranma.SetActive(true) ;
-                        EndGameAnim.Play("Gosleep");
+                        EndGameAnim.Play("Gosleep");*/
                         PCam.ChangeCamToSleep();
                     }
                 }
@@ -3063,7 +3074,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (crossruin)
         {
-            CrossUse.curHp = curHpCross;
+            //CrossUse.curHp = curHpCross;
+            playerPickUpItem.CrossUse.curHp = CurHpCross;
             crossruin = false;
         }
     }

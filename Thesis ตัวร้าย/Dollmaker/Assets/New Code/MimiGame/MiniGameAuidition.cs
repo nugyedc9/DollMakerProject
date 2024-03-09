@@ -70,10 +70,12 @@ public class MiniGameAuidition : MonoBehaviour
 
     public GameObject FailNote;
     bool _1Fail, ActiveMachine;
+    int FinishDoll;
 
     [Header("Event")]
     public UnityEvent Fail1;
     public UnityEvent Fail2, Fail3;
+    public UnityEvent Finish1;
 
     // Start is called before the first frame update
     void Start()
@@ -424,6 +426,8 @@ public class MiniGameAuidition : MonoBehaviour
                     //canPlay.FinishDoll();
                     canPlay.Cloth = false;
                     inventoryManager.AddItem(FinishClothID[GetfinishDoll.FinishClothID]);
+                    FinishDoll++;
+                    if(FinishDoll == 1) Finish1.Invoke();
                     Finish = false;
                 }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;

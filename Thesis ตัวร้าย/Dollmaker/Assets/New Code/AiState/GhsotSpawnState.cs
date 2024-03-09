@@ -6,11 +6,13 @@ public class GhsotSpawnState : GhostBaseState
 
     float Timer;
     bool AnimChange;
+    int ghostNum;
     
     public override void EnterState(GhostStateManager state)
     {
         AnimChange = true;
-        Timer = state.SpawnTimer;
+        if (ghostNum == 0) Timer = 6;
+       else if(ghostNum >= 1) Timer = state.SpawnTimer;
         state.PlayerDetectSpawn = true;
         state.GhostBoxCol.enabled = true;
         state.Cansee = false;
@@ -20,7 +22,7 @@ public class GhsotSpawnState : GhostBaseState
         state.GhostFrom.SetActive(true);
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Shake_ani"))
             state.GhostAni.Play("Shake_ani", 0, 0);
-
+        ghostNum++;
     }
 
     public override void UpdateState(GhostStateManager state)

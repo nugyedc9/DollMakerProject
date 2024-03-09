@@ -23,6 +23,7 @@ public class GhostGetAttckState : GhostBaseState
         {
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
                 state.GhostAni.Play("Damage_ani", 0, 0);
+            state.particle.Play();
             state.ChangePos = false;
         }
 

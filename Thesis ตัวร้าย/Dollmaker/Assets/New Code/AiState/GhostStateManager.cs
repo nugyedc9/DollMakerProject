@@ -31,6 +31,7 @@ public class GhostStateManager : MonoBehaviour
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
     public BoxCollider GhostBoxCol;
+    public ParticleSystem particle;
     public GameObject GhostFrom, GhostLight;
     public float DistanceAmount, HpGhost ,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
@@ -87,7 +88,7 @@ public class GhostStateManager : MonoBehaviour
         CurrentState = DetectPlayerState;
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
-
+        particle.Stop();
         #region Vision Cone
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
@@ -119,6 +120,7 @@ public class GhostStateManager : MonoBehaviour
                         HpCross = true;
                     }
                 }  */
+
         if (ForTest)
         {
             if (Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState);
@@ -133,6 +135,7 @@ public class GhostStateManager : MonoBehaviour
 
     public void Playerhit()
     {
+
             /*PlayerHitDelay -= 8 * Time.deltaTime;
             enemyGhost.speed = HuntSpeed - Time.deltaTime;
             if (!GetAttack)
@@ -143,6 +146,7 @@ public class GhostStateManager : MonoBehaviour
                 ChangePos = true;
                 GetAttack = true;
             }*/
+
         if (!GetAttack)
         {
             PAttack.CrossRuin();
@@ -185,11 +189,11 @@ public class GhostStateManager : MonoBehaviour
                     if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * hit.distance;
-                        if (PlayerDetectSpawn)
+                      if (PlayerDetectSpawn)
                         {                        
                             SwitchState(SpawnState);                           
                         }
-                        if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
+                        if (DelayHitPlayer <= 0 && !PlayerDetectSpawn) 
                         {
                             playerOutOfSight = curplayerOutSight;
                             PlayerInSight = true;
@@ -206,8 +210,7 @@ public class GhostStateManager : MonoBehaviour
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
                     }
-
-                    
+                   
                 }
 
                 Currentangle += angleIcrement;
@@ -243,6 +246,19 @@ public class GhostStateManager : MonoBehaviour
     public void DeleteGhost()
     {
         Destroy(gameObject);
+    }
+
+    public void Spawn1ghost()
+    {
+        HpCross = false;
+        GetAttack = false;
+        PlayerHitDelay = 2;
+        GhostBoxCol.enabled = true;
+       AnimAlert = true;
+       AnimWalk = true;
+        PlayerDetectSpawn = false;
+        CurrentDest = destination[0];
+        SwitchState(WalkState);
     }
 
 }

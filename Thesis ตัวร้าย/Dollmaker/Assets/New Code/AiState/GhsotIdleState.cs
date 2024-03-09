@@ -18,7 +18,7 @@ public class GhsotIdleState : GhostBaseState
         state.GhostAudioSoure.Stop();
         state.GhostAmbi.Play();
         state.DelayHitPlayer = 0;
-
+        state.particle.Stop();
         state.HpCross = false;
         state.GetAttack = false;
         state.PlayerHitDelay = 2;

@@ -14,9 +14,6 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera BedCam;
     [SerializeField] CinemachineVirtualCamera PushClothOnDollView;
     [SerializeField] CinemachineVirtualCamera _1GetScrissorCam;
-    [SerializeField] CinemachineVirtualCamera _2MakeDollCutClothCam;
-    [SerializeField] CinemachineVirtualCamera _3SewingDollCam;
-    [SerializeField] CinemachineVirtualCamera _4DollandClothCam;
     [SerializeField] CinemachineVirtualCamera DollHenshin;
     [SerializeField] CinemachineVirtualCamera SleepCam;
 
@@ -105,9 +102,6 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(DeskShopView);
         ChangePOV.Register(PushClothOnDollView);
         ChangePOV.Register(_1GetScrissorCam);
-        ChangePOV.Register(_2MakeDollCutClothCam);
-        ChangePOV.Register(_3SewingDollCam);
-        ChangePOV.Register(_4DollandClothCam);
         ChangePOV.Register(DollHenshin);
         ChangePOV.Register(SleepCam);
         ChangePOV.SwitchCamera(BedCam);
@@ -121,9 +115,6 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.UnRegister(DeskShopView);
         ChangePOV.UnRegister(PushClothOnDollView);
         ChangePOV.UnRegister(_1GetScrissorCam);
-        ChangePOV.UnRegister(_2MakeDollCutClothCam);
-        ChangePOV.UnRegister(_3SewingDollCam);
-        ChangePOV.UnRegister(_4DollandClothCam);
         ChangePOV.UnRegister(DollHenshin);
         ChangePOV.UnRegister(SleepCam);
         ChangePOV.UnRegister(BedCam);
@@ -174,37 +165,6 @@ public class PlayerChangeCam : MonoBehaviour
             {
                 if (ChangePOV.IsActiveCamera(_1GetScrissorCam))
                 {
-                    TutorialTimeIncode = TutorialTime2;
-                    TutorialCam2.Play("gocutcloth");
-                    CamOnTutorial = 1;
-                    ChangePOV.SwitchCamera(_2MakeDollCutClothCam);
-                }
-            }
-            else if (CamOnTutorial == 1)
-            {
-                if (ChangePOV.IsActiveCamera(_2MakeDollCutClothCam))
-                {
-                    TutorialTimeIncode = TutorialTime3;
-                    TutorialCam3.Play("sewingdollcloth");
-                    CamOnTutorial = 2;
-                    ChangePOV.SwitchCamera(_3SewingDollCam);
-                }
-            }
-            else if (CamOnTutorial == 2)
-            {
-                if (ChangePOV.IsActiveCamera(_3SewingDollCam))
-                {
-                    TutorialTimeIncode = TutorialTime4;
-                    TutorialCam4.Play("dollandcloth");
-                    CamOnTutorial = 3;
-                    ChangePOV.SwitchCamera(_4DollandClothCam);
-                }
-            }
-
-            else if (CamOnTutorial == 3)
-            {
-                if (ChangePOV.IsActiveCamera(_4DollandClothCam))
-                {
                     _InputManager.StopWalk();
                     Throwitem.CanAttack();
                     ItemOnPlayer.SetActive(true);
@@ -212,9 +172,10 @@ public class PlayerChangeCam : MonoBehaviour
                     ChangePOV.SwitchCamera(FirstpersonView);
                     CamOnPerson = true;
                     OnCutScene = false;
+                
                 }
             }
-            
+
             else if(CamOnTutorial == 4)
             {
                 if (ChangePOV.IsActiveCamera(DollHenshin))
@@ -257,6 +218,16 @@ public class PlayerChangeCam : MonoBehaviour
                 TimeBool = false;
                 camOnPerSon = true;
                 ChangePOV.SwitchCamera(FirstpersonView);
+            }
+            else if (ChangePOV.IsActiveCamera(_1GetScrissorCam))
+            {
+                _InputManager.StopWalk();
+                Throwitem.CanAttack();
+                ItemOnPlayer.SetActive(true);
+                TextOnPlayer.SetActive(true);
+                ChangePOV.SwitchCamera(FirstpersonView);
+                CamOnPerson = true;
+                OnCutScene = false;
             }
         }
 
