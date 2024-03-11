@@ -5,12 +5,12 @@ using UnityEngine;
 public class FlashLight : MonoBehaviour
 {
     private Vector3 vectOffset;
-    private GameObject goFollow;
+    [SerializeField] public GameObject goFollow;
     [SerializeField] public float speed = 3.0f;
 
     void Start()
     {
-        goFollow = Camera.main.gameObject;
+       // goFollow = Camera.main.gameObject;
         vectOffset = transform.position - goFollow.transform.position;
     }
 
