@@ -12,6 +12,7 @@ public PlayerPickUpItem playerPickUpItem;
     public PlayerAttack pAttack;
     public TabTutorial tabTutorial;
     public PlayerChangeCam ChangeCam;
+    public CrossAnim crossAnim;
     public Camera Cam;
 
     public InventorySlote[] inventoryslote;
@@ -72,9 +73,12 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[0].SetActive(true);
                 if (triggerCrossAnim)
                 {
-                    if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
+                   /* if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
                     if (playerPickUpItem.PAttack.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");
+                    if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");*/
+
+                    crossAnim.SetState(CrossState.Idle);
+
                     triggerCrossAnim = false;
                 }
                 if (drop)
@@ -89,7 +93,9 @@ public PlayerPickUpItem playerPickUpItem;
             else
             {
                 pAttack.Attack = false;
+                crossAnim.SetState(CrossState.Idle);
                 ItemOnHand[0].SetActive(false);
+                triggerCrossAnim = true;
             }
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))

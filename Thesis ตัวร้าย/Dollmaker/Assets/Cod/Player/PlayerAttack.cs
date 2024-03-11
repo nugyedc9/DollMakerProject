@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public FinishBasket finishBasket;
     public PlayerChangeCam PCam;
     public TabTutorial tabTutorial;
+    public CrossAnim crossAnim;
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
 
@@ -200,7 +201,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Ray r = new Ray(RH.position, RH.forward);
 
-        if (Physics.Raycast(r, out RaycastHit hitCross, Pickrange))
+      /*  if (Physics.Raycast(r, out RaycastHit hitCross, Pickrange))
         {
             if (hitCross.collider.gameObject.tag == "Cross")
             {
@@ -209,19 +210,26 @@ public class PlayerAttack : MonoBehaviour
                     CrossUse = hitCross.collider.gameObject.GetComponent<CrossCheck>();
                 }
             }
-        }
+        }*/
 
         #region Attack
         if (Attack)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
+        /*        if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
                 if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
-                if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");
+                if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");*/
+
+                        crossAnim.SetState(CrossState.HoldUp);
 
                 HitAudio.clip = HitWindSound;
                 HitAudio.Play();
+               
+            }
+
+            if (Input.GetMouseButton(0))
+            {
                 if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
@@ -231,18 +239,24 @@ public class PlayerAttack : MonoBehaviour
                             GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
                             GhostHit.Playerhit();
                             curHpCross--;
-                            if (curHpCross == 2) CorssAni.SetTrigger("HitGhost");
-                            if (curHpCross == 1) CorssAni.SetTrigger("HitGhost2");
+                            crossAnim.SetState(CrossState.HitGhost);
                             CrossTimer = 4.5f;
                             crossruin = true;
                             HitAudio.clip = HitGhostSound;
-                            HitAudio.Play();                           
+                            HitAudio.Play();
                         }
                         //StartCoroutine(AttackReset());
                     }
                     else HolyLight.SetActive(false);
                 }
             }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                crossAnim.SetState(CrossState.Idle);
+                inventoryManager.TriggerCrossAnim = true;
+            }    
+            
         }
 
 
@@ -1140,9 +1154,18 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (hitevent.collider.gameObject.tag == "EyeWash")
             {
-                ItemText.SetActive(true);
-                ItemName.text = "Eat Pill [E]";
-                InterectItem = true;
+                if (HpPlayer.curHp != HpPlayer.MaxHp)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Eat Pill [E]";
+                    InterectItem = true;
+                }
+                else
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "You full healthy [E]";
+                    InterectItem = true;
+                }
             }
             else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
             {
