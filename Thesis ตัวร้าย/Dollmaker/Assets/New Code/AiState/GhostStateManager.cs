@@ -33,11 +33,20 @@ public class GhostStateManager : MonoBehaviour
     public BoxCollider GhostBoxCol;
     public ParticleSystem particle;
     public GameObject GhostFrom, GhostLight;
-    public float DistanceAmount, HpGhost ,WalkSpeed, HuntSpeed;
+    public float DistanceAmount ,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
         GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
-        
 
+    [Header("GhostHP")]
+    public float HpGhost;
+    public float HpBeforeHit, HitDelay;
+    public bool PlayerHit;
+
+  [Header("Timer Thing")]
+    public float SpawnTimer;
+    public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
+        DelayHitPlayer, PlayerHitDelay, ChangePosDelay;
+    
     [Header("GhostAnimCheck")]
     public Animator GhostAni;
     public bool AnimWalk, AnimAlert, AnimHunt , AnimSpawn,AnimAttack
@@ -67,11 +76,7 @@ public class GhostStateManager : MonoBehaviour
     public Transform playerPos,CurrentDest;
     public int DestinationMin, DestinationMax;
 
-    [Header("Timer Thing")]
-    public float SpawnTimer;
-    public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
-        DelayHitPlayer, PlayerHitDelay, ChangePosDelay;
-    
+  
     [Header("---- Audio Sound ----")]
     public AudioSource GhostAudioSoure; 
     public AudioSource GhostAmbi, OnPlayerAudio;
@@ -89,6 +94,8 @@ public class GhostStateManager : MonoBehaviour
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
         particle.Stop();
+        HpBeforeHit = HpGhost;
+
         #region Vision Cone
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;
         MeshFilter_ = transform.AddComponent<MeshFilter>();
@@ -125,6 +132,14 @@ public class GhostStateManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState);
         }
+
+
+        if (GetAttack)
+        {
+            SwitchState(GetAtKState);
+            GetAttack = false;
+        }
+
     }
 
     public void SwitchState(GhostBaseState state)
@@ -136,30 +151,41 @@ public class GhostStateManager : MonoBehaviour
     public void Playerhit()
     {
 
-            /*PlayerHitDelay -= 8 * Time.deltaTime;
-            enemyGhost.speed = HuntSpeed - Time.deltaTime;
-            if (!GetAttack)
-            {
-                if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
-                    GhostAni.Play("Attack_ani", 0, 0);
-                HpGhost--;
-                ChangePos = true;
-                GetAttack = true;
-            }*/
-
+        /*PlayerHitDelay -= 8 * Time.deltaTime;
+        enemyGhost.speed = HuntSpeed - Time.deltaTime;
         if (!GetAttack)
         {
-            PAttack.CrossRuin();
-            GhostBoxCol.enabled = false;
+            if (!GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
+                GhostAni.Play("Attack_ani", 0, 0);
             HpGhost--;
-            SwitchState(GetAtKState);
             ChangePos = true;
             GetAttack = true;
+        }*/
+
+        if (HpBeforeHit == HpGhost)
+        {
+            GetAttack = true;
         }
+        HitDelay = 2;
+            HpGhost -= Time.deltaTime;
+        
+
+
+        /* if (!GetAttack)
+         {
+           //  PAttack.CrossRuin();
+             //GhostBoxCol.enabled = false;
+
+             ChangePos = true;
+             GetAttack = true;
+         }*/
     }
 
     float curplayerOutSight;
 
+   
+
+    #region Vision
     public void DrawVisionCone()
     {
         int[] triangles = new int[(VisionConeResolution - 1) * 3];
@@ -236,12 +262,16 @@ public class GhostStateManager : MonoBehaviour
                 RandomInIdle = true;
                 CanseePlayer = false;
                 // Debug.Log("IdleAfterPlayer");
-                SwitchState(SearchState);
+                SwitchState(IdleState);
                 PlayerInSight = false;
             }
 
         }
     }
+    #endregion
+
+
+
 
     public void DeleteGhost()
     {

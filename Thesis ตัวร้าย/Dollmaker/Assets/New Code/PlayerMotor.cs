@@ -19,6 +19,7 @@ public class PlayerMotor : MonoBehaviour
     public float Stamina;
     float MaxStamina;
     bool RunOutSt, Notrun, playRunSound, PLayWalkSound;
+    public PlayerAttack PAttack;
 
     [Header("Sound")]
     public AudioSource AudioOut;
@@ -59,6 +60,7 @@ public class PlayerMotor : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
+                PAttack.Run = true;
                 Notrun = false;
                 if (!RunOutSt)
                 {
@@ -84,7 +86,7 @@ public class PlayerMotor : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 speed = NomalSpeed;
-
+                PAttack.Run = false;
                 Notrun = true;
             }
         }

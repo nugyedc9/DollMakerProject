@@ -18,7 +18,7 @@ public class DesignSelect : MonoBehaviour
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
-    public GameObject CutLineTutorial;
+    public GameObject CutLineTutorial, CutLineNote;
     [SerializeField] bool _1ctline;
     public bool _1CutLine {  get { return _1ctline; } set {  _1ctline = value; } }
 
@@ -105,6 +105,7 @@ public class DesignSelect : MonoBehaviour
         if (!_1CutLine)
         {
             CutLineTutorial.SetActive(true);
+            CutLineNote.SetActive(true);
         }
         SelectButt.SetActive(false);
             /* ClothColor[PageNum].SetActive(false);

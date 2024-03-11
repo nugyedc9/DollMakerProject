@@ -2,41 +2,67 @@ using UnityEngine;
 
 public class GhostGetAttckState : GhostBaseState
 {
-    float CurDelay;
+
 
     public override void EnterState(GhostStateManager state)
     {
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.DiedS;
         state.GhostAudioSoure.Play();
-        state.GhostAmbi.Stop();
-        state.PAttack.Attack = false;
-        CurDelay = 2;
-      //  Debug.Log("GetAttack");
+       // state.GhostAmbi.Stop();
+       // state.PAttack.Attack = false;
+
+        state.enemyGhost.speed = state.HuntSpeed;
+       
+       
+        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
+            state.GhostAni.Play("Damage_ani", 0, 0);
+        state.particle.Play();
+
+
+          Debug.Log("GetAttack");
     }
 
     public override void UpdateState(GhostStateManager state)
     {
-        state.Cansee = false;
+       // state.Cansee = false;
 
-        if (state.ChangePos)
+        state.DrawVisionCone();
+        state.CurrentDest = state.playerPos.transform;
+        state.Dest = state.CurrentDest.position;
+          state.enemyGhost.destination = state.Dest;
+
+        /*        if (state.ChangePos)
+                {
+                    if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
+                        state.GhostAni.Play("Damage_ani", 0, 0);
+                    state.particle.Play();
+                    state.ChangePos = false;
+                }
+        */
+
+
+        if (state.enemyGhost.speed < 1)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
-                state.GhostAni.Play("Damage_ani", 0, 0);
-            state.particle.Play();
-            state.ChangePos = false;
+            state.enemyGhost.speed = 1;
+            Debug.Log(state.enemyGhost.speed);
+        }
+        else if (state.enemyGhost.speed > 1.5f)
+        {
+            state.enemyGhost.speed -= 1f * Time.deltaTime;
+            Debug.Log(state.enemyGhost.speed);
         }
 
-        if(CurDelay > 0)
+
+        if (state.HitDelay > 0)
         {
-            CurDelay -= Time.deltaTime;
-            state.enemyGhost.speed -= Time.deltaTime;
+            state.HitDelay -= Time.deltaTime;
         }
         
 
         if (state.HpGhost <= 0)
         {
-            if (CurDelay < 0)
+            if (state.HitDelay < 0)
             {
               //  Debug.Log("Died");
                 state.PAttack.Attack = true;
@@ -45,15 +71,22 @@ public class GhostGetAttckState : GhostBaseState
         }
        else if(state.HpGhost > 0) 
         {
-            if(CurDelay < 0)
+            if(state.HitDelay < 0)
             {
-             //   Debug.Log("AfterHit");
+                //   Debug.Log("AfterHit");
+                state.HpBeforeHit = state.HpGhost;
                 state.PAttack.Attack = true;
-                state.SwitchState(state.IdleState);
-                CurDelay = 0;
+                state.SwitchState(state.AlertState);
+                state.HitDelay = 0;
             }
         }
 
+        if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 2)
+        {
+            state.AnimAttack = true;
+            state.HitPlayer = true;
+            state.SwitchState(state.AttckState);
+        }
 
     }
 }

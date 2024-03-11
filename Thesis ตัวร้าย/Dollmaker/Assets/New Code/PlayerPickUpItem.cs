@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPickUpItem : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [Header("Cross Thing")]
     public PlayerAttack PAttack;
+    public Slider CrossBar;
     private CrossCheck crossUse;
     public CrossCheck CrossUse {get { return crossUse; } set { crossUse = value; } }
 
@@ -85,6 +87,7 @@ public class PlayerPickUpItem : MonoBehaviour
                         audioSource.Play();
                         CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                         PAttack.curHpCross = CrossUse.curHp;
+                        CrossBar.maxValue = crossUse.MaxHp;
                         inventoryManager.TriggerCrossAnim = true;
                         if (CrossUse.curHp == 3)
                             inventoryManager.AddItem(itemPickUp[0]);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrossCheck : MonoBehaviour
 {
@@ -9,8 +10,7 @@ public class CrossCheck : MonoBehaviour
 
     public float MaxHp;
     public float curHp;
-    public delegate void OnItemDamaged(int damage);
-    public static event OnItemDamaged ItemDamagedEvent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +23,17 @@ public class CrossCheck : MonoBehaviour
     {
         if (curHp < 0)
             curHp = 0;
+           
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        curHp -= damage;
-        if (curHp <= 0)
-        {
-            
-        }
+       curHp -= Time.deltaTime;
+        
+    }
 
-        if (ItemDamagedEvent != null)
-        {
-            ItemDamagedEvent.Invoke(damage);
-        }
+    public void ReCharge()
+    {
+        curHp += Time.deltaTime;
     }
 }

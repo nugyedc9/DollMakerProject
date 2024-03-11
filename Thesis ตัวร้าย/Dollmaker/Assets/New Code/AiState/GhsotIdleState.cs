@@ -22,11 +22,16 @@ public class GhsotIdleState : GhostBaseState
         state.HpCross = false;
         state.GetAttack = false;
         state.PlayerHitDelay = 2;
+        state.HpBeforeHit = state.HpGhost;
 
         state.HitPlayer = false;
         state.CanseePlayer = false;
         state.Cansee = true;
-        //Debug.Log("Idle");
+
+        IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
+        Dest = Random.Range(state.DestinationMin, state.DestinationMax);
+
+        Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -42,8 +47,6 @@ public class GhsotIdleState : GhostBaseState
 
         if (state.RandomInIdle)
         {
-            IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
-            Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
             if (state.CurSpawn == 1 || state.CurSpawn == 4)
                 state.CurrentDest = state.destination[Dest];

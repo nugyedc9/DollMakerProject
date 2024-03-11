@@ -4,7 +4,7 @@ public class GhostWalkState : GhostBaseState
 {
     public override void EnterState(GhostStateManager state)
     {
-       // Debug.Log("Walk");
+        Debug.Log("Walk");
        state.GhostFrom.SetActive(true);
        state.GhostAudioSoure.loop = true;
         state.GhostAudioSoure.clip = state.WalkS;

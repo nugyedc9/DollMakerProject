@@ -18,6 +18,11 @@ public class PlayerAttack : MonoBehaviour
     public CrossAnim crossAnim;
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
+    [SerializeField] bool run;
+    public bool Run { get { return run; } set { run = value; } }
+    [SerializeField] bool crossSlotOnHand;
+    public bool CrossSlotOnHane { get { return crossSlotOnHand; } set { crossSlotOnHand = value; } }    
+
 
     public float DropSpeed;
     public Camera FpsCam;
@@ -77,6 +82,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("CrossAction")]
     [SerializeField] private float CurHpCross;
+    public Slider CrossSliber;
+
+
     public float curHpCross { get { return CurHpCross; } set { CurHpCross = value; } }
     private float CrossTimer;
     private bool crossruin;
@@ -138,7 +146,8 @@ public class PlayerAttack : MonoBehaviour
     [Header("PauseGame")]
     public GameObject PauseMenu;
     public GameObject EndGame;
-    [SerializeField] private bool IsPause, Working;
+    [SerializeField] private bool IsPause, Working, died;
+    public bool Died { get { return died; } set { died = value; } }
     public bool isPause { get { return IsPause; }  set { IsPause = value; } }
 
     [Header("------ Audio ---------")]
@@ -195,26 +204,30 @@ public class PlayerAttack : MonoBehaviour
     {       
             Light.SetActive(false);
           pointLight.SetActive(false);
+
     }
 
     void Update()
     {
         Ray r = new Ray(RH.position, RH.forward);
 
-      /*  if (Physics.Raycast(r, out RaycastHit hitCross, Pickrange))
-        {
-            if (hitCross.collider.gameObject.tag == "Cross")
-            {
-                if (Crosshave != 1)
-                {
-                    CrossUse = hitCross.collider.gameObject.GetComponent<CrossCheck>();
-                }
-            }
-        }*/
+        /*  if (Physics.Raycast(r, out RaycastHit hitCross, Pickrange))
+          {
+              if (hitCross.collider.gameObject.tag == "Cross")
+              {
+                  if (Crosshave != 1)
+                  {
+                      CrossUse = hitCross.collider.gameObject.GetComponent<CrossCheck>();
+                  }
+              }
+          }*/
 
         #region Attack
-        if (Attack)
+
+        CrossSliber.value = curHpCross;
+        if (Attack && !Run)
         {
+
             if (Input.GetMouseButtonDown(0))
             {
         /*        if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
@@ -234,30 +247,55 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
-                        if (curHpCross != 1)
+
+                        GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
+                        if (CurHpCross > 0)
                         {
-                            GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
                             GhostHit.Playerhit();
-                            curHpCross--;
-                            crossAnim.SetState(CrossState.HitGhost);
-                            CrossTimer = 4.5f;
-                            crossruin = true;
-                            HitAudio.clip = HitGhostSound;
-                            HitAudio.Play();
+                            Crosstakedamge();
                         }
+                       
+                        
+                        //    crossAnim.SetState(CrossState.HitGhost);
+                        CrossTimer = 4.5f;
+                        HitAudio.clip = HitGhostSound;
+                        HitAudio.Play();
+
                         //StartCoroutine(AttackReset());
                     }
-                    else HolyLight.SetActive(false);
+                    else
+                    {
+                       // HolyLight.SetActive(false);
+                    }
                 }
             }
+            else CrossReCharge();
 
             if (Input.GetMouseButtonUp(0))
-            {
+            {              
                 crossAnim.SetState(CrossState.Idle);
                 inventoryManager.TriggerCrossAnim = true;
+                   if(playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
+                {
+                    playerPickUpItem.CrossUse.ReCharge();
+                }
             }    
             
         }
+        else if( Attack && Run)
+        {
+            if (crossSlotOnHand)
+            {
+                crossAnim.SetState(CrossState.Idle);
+                inventoryManager.TriggerCrossAnim = true;
+                if (playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
+                {
+                    playerPickUpItem.CrossUse.ReCharge();
+                }
+            }
+        }
+
+        
 
 
 
@@ -271,10 +309,6 @@ public class PlayerAttack : MonoBehaviour
             else if (CrossTimer < 0)
             {
                 HolyLight.SetActive(false);
-                if (curHpCross == 1)
-                {
-                    inventoryManager.GetSelectedItem(true);
-                }
             }
         }
 
@@ -355,14 +389,16 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Map pause tutorial
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!Died)
         {
-            if (  DelayEse <= 0 && !PCam.EndGame)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!isPause) PauseGame();
-                else ResumeGame();
-            }            
+                if (DelayEse <= 0 && !PCam.EndGame)
+                {
+                    if (!isPause) PauseGame();
+                    else ResumeGame();
+                }
+            }
         }
 
         if(tabTutorial.OpenTutor)
@@ -3009,7 +3045,7 @@ public class PlayerAttack : MonoBehaviour
         Attack = true;
     }
 
-    IEnumerator DelayHolyLight()
+ /*   IEnumerator DelayHolyLight()
     {
         yield return new WaitForSeconds(0.5f);
         HolyLight.SetActive(true);
@@ -3026,7 +3062,7 @@ public class PlayerAttack : MonoBehaviour
         {
             inventoryManager.GetSelectedItem(true);
         }
-    }
+    }*/
 
     #endregion
 
@@ -3142,6 +3178,26 @@ public class PlayerAttack : MonoBehaviour
             InvPoint3.SetActive(true);
         }
     }
+
+    public void Crosstakedamge()
+    {
+        if(curHpCross > 0) 
+        curHpCross -= Time.deltaTime;
+        if(curHpCross < 0)
+        {
+            curHpCross = 0;
+        }
+    }
+
+    public void CrossReCharge()
+    {
+        if (curHpCross < playerPickUpItem.CrossUse.MaxHp)
+        {
+            curHpCross += Time.deltaTime;
+        }
+        
+    }
+
 
     #region Player drag Item on Desk
     public void pushItemInbasket()

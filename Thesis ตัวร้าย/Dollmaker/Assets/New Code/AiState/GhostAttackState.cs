@@ -6,7 +6,7 @@ public class GhostAttackState : GhostBaseState
     bool hitplayer, PlayerInRange;
     public override void EnterState(GhostStateManager state)
     {
-      //  Debug.Log("Attack");
+        Debug.Log("Attack");
         TimeHit = Sec;
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.AttackS;
@@ -48,7 +48,7 @@ public class GhostAttackState : GhostBaseState
                     if (state.HitPlayer)
                     {
                         state.CanseePlayer = false;
-                        state.HpPlayer.Takedamage(1);
+                       // state.HpPlayer.Takedamage(1);
                         state.HitPlayer = false;
                         PlayerInRange = true;
                     }

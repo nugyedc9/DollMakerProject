@@ -38,6 +38,7 @@ public class PlayerHp : MonoBehaviour
             if(!Playdead)
             {
                 // DeadVideo.SetActive(true);
+                PAttack.Died = true;
                 Died.enabled = true;
                 StartCoroutine(DeadPlay());
                 Playdead = true;

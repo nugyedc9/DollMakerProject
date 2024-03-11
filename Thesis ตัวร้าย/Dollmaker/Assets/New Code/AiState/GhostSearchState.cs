@@ -7,6 +7,7 @@ public class GhostSearchState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
+        Debug.Log("changePOs");
         state.SpawnTimer = 4;
         state.playerOutOfSight = 1;
         TimeCount = 3;

@@ -26,6 +26,7 @@ public PlayerPickUpItem playerPickUpItem;
 
     [Header("CrossAction")]
     public Animator CorssAni;
+    public GameObject CrossBar;
     [SerializeField] bool triggerCrossAnim;
 
     public Animator InvOpenAnim;
@@ -69,7 +70,9 @@ public PlayerPickUpItem playerPickUpItem;
             inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
             {
+                CrossBar.SetActive(true);
                 pAttack.Attack = true;
+                pAttack.CrossSlotOnHane = true;
                 ItemOnHand[0].SetActive(true);
                 if (triggerCrossAnim)
                 {
@@ -83,16 +86,18 @@ public PlayerPickUpItem playerPickUpItem;
                 }
                 if (drop)
                 {
-                    if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
+                    /*if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
                     if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
-                    if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);
+                    if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);*/
                     GetSelectedItem(true);
                     drop = false;
                 }
             }
             else
             {
+                CrossBar.SetActive(false);
                 pAttack.Attack = false;
+                pAttack.CrossSlotOnHane = false;
                 crossAnim.SetState(CrossState.Idle);
                 ItemOnHand[0].SetActive(false);
                 triggerCrossAnim = true;
