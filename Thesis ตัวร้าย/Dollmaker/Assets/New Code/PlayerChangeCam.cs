@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,7 +65,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
-    public BoxCollider _1Story;
+    public BoxCollider _1Story, ClothBox, DollBox, BoxAfterTutorCam;
     public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
 
@@ -169,7 +170,9 @@ public class PlayerChangeCam : MonoBehaviour
                     Throwitem.CanAttack();
                     ItemOnPlayer.SetActive(true);
                     TextOnPlayer.SetActive(true);
+                    BoxAfterTutorCam.enabled = true;
                     ChangePOV.SwitchCamera(FirstpersonView);
+
                     CamOnPerson = true;
                     OnCutScene = false;
                 
@@ -272,6 +275,7 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
+                        ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         DesignSelect.SetActive(true);
@@ -299,6 +303,7 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {                   
+                        DollBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
@@ -418,6 +423,7 @@ public class PlayerChangeCam : MonoBehaviour
                     }
                     else if (ChangePOV.IsActiveCamera(DeskShopView))
                     {
+                        ClothBox.enabled    = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                         DesignSelect.SetActive(false);
@@ -452,6 +458,7 @@ public class PlayerChangeCam : MonoBehaviour
                     }
                     else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                     {
+                        DollBox.enabled = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                         DesignDollSelect.SetActive(false);

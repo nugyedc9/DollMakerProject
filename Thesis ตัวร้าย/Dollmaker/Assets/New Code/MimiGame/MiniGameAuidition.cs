@@ -46,8 +46,9 @@ public class MiniGameAuidition : MonoBehaviour
 
     [Header("---- Audio ----")]
     public AudioSource audioSource;
-    public AudioSource machineActive;
-    public AudioClip GhostNotice, RightClick, CutLineS;
+    public AudioSource machineActive, SoundW;
+    public AudioClip GhostNotice, RightClick, CutLineS, fail1EventS;
+    private float Fail1Delay;
 
     [Header("Animator")]
     public Animator Needle;
@@ -308,62 +309,6 @@ public class MiniGameAuidition : MonoBehaviour
 
             }
 
-            if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
-            {
-                if (!_1Fail)
-                {
-                     FailNote.SetActive(true);
-                    _1Fail = true;
-                }
-
-                GetHurt = true;
-                handMove.enabled = true;
-                handMove.Play("Handhurtsewing");
-                NeedToCutLine = true;
-                if (!Fail)
-                {
-                    curBar -= 20;
-                  //  GhostcomeTocheck.PlayerFailSkillCheck();
-                    audioSource.clip = GhostNotice;
-                    audioSource.Play();
-                    NeedToCutLine = false;
-                    NeedleWorking = false;
-                    Needle.enabled = false;
-                    ClothMove.enabled = false;
-
-                    failCount++;
-                    if (failCount == 1)
-                        Fail1.Invoke();
-                    if (failCount == 2)
-                        Fail2.Invoke();
-                    if (failCount == 3)
-                        Fail3.Invoke();
-
-                    Fail = true;
-                }
-                if (cutLine)
-                {
-                    audioSource.clip = CutLineS;
-                    audioSource.Play();
-                    CutHere.SetActive(false);
-                    AuditionPass.Clear();
-                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
-                    {
-                        Destroy(SpawnOnSceen);
-                    }
-                    FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
-                    foreach (GameObject FrameOnScene in FrameClear)
-                    {
-                        Destroy(FrameOnScene);
-                    }
-                    SlotAuditionPass = 0;
-                    CurrectPass = 0;
-                    GetHurt = false;
-                    _Currentstate = MiniGameAuditionState.Start;
-                }
-                //print("Fail");
-            }
 
             
 
@@ -434,6 +379,83 @@ public class MiniGameAuidition : MonoBehaviour
             }
             
         }
+
+
+        if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
+        {
+            if (!_1Fail)
+            {
+                FailNote.SetActive(true);
+                _1Fail = true;
+            }
+
+            GetHurt = true;
+            handMove.enabled = true;
+            handMove.Play("Handhurtsewing");
+            NeedToCutLine = true;
+            if (!Fail)
+            {
+                curBar -= 20;
+                //  GhostcomeTocheck.PlayerFailSkillCheck();
+                audioSource.clip = GhostNotice;
+                audioSource.Play();
+                NeedToCutLine = false;
+                NeedleWorking = false;
+                Needle.enabled = false;
+                ClothMove.enabled = false;
+
+                failCount++;
+                if (failCount == 1)
+                    Fail1.Invoke();
+                if (failCount == 2)
+                {
+                    //  Fail2.Invoke();
+                    SoundW.clip = fail1EventS;
+                    SoundW.volume = 0.3f;
+                    Fail1Delay = 3;
+                }
+                if (failCount == 3)
+                    Fail3.Invoke();
+
+                Fail = true;
+            }
+            if (cutLine)
+            {
+                audioSource.clip = CutLineS;
+                audioSource.Play();
+                CutHere.SetActive(false);
+                AuditionPass.Clear();
+                AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                {
+                    Destroy(SpawnOnSceen);
+                }
+                FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                foreach (GameObject FrameOnScene in FrameClear)
+                {
+                    Destroy(FrameOnScene);
+                }
+                SlotAuditionPass = 0;
+                CurrectPass = 0;
+                GetHurt = false;
+                _Currentstate = MiniGameAuditionState.Start;
+            }
+            //print("Fail");
+        }
+
+        #region protoGusTimer
+        if(Fail1Delay > 0)
+        {
+            Fail1Delay -= Time.deltaTime;
+        }
+        if (Fail1Delay < 0)
+        {
+            Fail2.Invoke();
+            Fail1Delay = 0;
+        }
+
+        #endregion
+
 
         if (curBar >= maxBar)
         {   
