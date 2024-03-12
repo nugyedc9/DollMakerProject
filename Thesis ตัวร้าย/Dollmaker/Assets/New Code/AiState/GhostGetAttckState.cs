@@ -13,14 +13,14 @@ public class GhostGetAttckState : GhostBaseState
        // state.PAttack.Attack = false;
 
         state.enemyGhost.speed = state.HuntSpeed;
-       
+       state.FireSound.Play();
        
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
             state.GhostAni.Play("Damage_ani", 0, 0);
         state.particle.Play();
 
 
-          Debug.Log("GetAttack");
+        //  Debug.Log("GetAttack");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -45,12 +45,10 @@ public class GhostGetAttckState : GhostBaseState
         if (state.enemyGhost.speed < 1)
         {
             state.enemyGhost.speed = 1;
-            Debug.Log(state.enemyGhost.speed);
         }
         else if (state.enemyGhost.speed > 1.5f)
         {
             state.enemyGhost.speed -= 1f * Time.deltaTime;
-            Debug.Log(state.enemyGhost.speed);
         }
 
 

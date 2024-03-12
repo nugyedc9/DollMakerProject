@@ -23,6 +23,10 @@ public class LightFlickerEffect : MonoBehaviour
     [Range(1, 50)]
     public int smoothing = 5;
 
+    public float MinIn { get { return minIntensity; } set {  minIntensity = value; } }
+    public float MaxIn { get { return maxIntensity; } set {  maxIntensity = value; } }
+    public int Smooth {  get { return smoothing; } set {  smoothing = value; } }
+
     // Continuous average calculation via FIFO queue
     // Saves us iterating every time we update, we just change by the delta
     Queue<float> smoothQueue;

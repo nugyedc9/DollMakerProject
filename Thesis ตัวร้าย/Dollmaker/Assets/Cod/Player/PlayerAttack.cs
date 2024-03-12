@@ -30,10 +30,13 @@ public class PlayerAttack : MonoBehaviour
     public Transform RH;
     public Transform pickUPPoint;
     public float InterectRange;
-    public bool  LightOn, CanDropItem, CrossOnHand, DollOnHand,
+    public bool   CanDropItem, CrossOnHand, DollOnHand,
         ClothOnHand, ScissorOnHand, LightOnHand,
         RedClothOnHand, BlueClothOnHand, GreenClothOnHand, YellowClothOnHand
         ;
+
+    [SerializeField] bool lightOn;
+    public bool LightOn { get { return lightOn; } set { lightOn = value; } }
 
     public float Pickrange;
     private Vector3 destination;

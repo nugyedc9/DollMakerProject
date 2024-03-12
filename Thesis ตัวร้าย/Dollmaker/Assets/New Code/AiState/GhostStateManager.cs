@@ -79,7 +79,7 @@ public class GhostStateManager : MonoBehaviour
   
     [Header("---- Audio Sound ----")]
     public AudioSource GhostAudioSoure; 
-    public AudioSource GhostAmbi, OnPlayerAudio;
+    public AudioSource GhostAmbi, OnPlayerAudio, FireSound;
     public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS ,
         GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi, PlayerHeartBeat;
 
@@ -95,6 +95,7 @@ public class GhostStateManager : MonoBehaviour
         curplayerOutSight = playerOutOfSight;
         particle.Stop();
         HpBeforeHit = HpGhost;
+        
 
         #region Vision Cone
         transform.AddComponent<MeshRenderer>().material = VisionConeMaterial;

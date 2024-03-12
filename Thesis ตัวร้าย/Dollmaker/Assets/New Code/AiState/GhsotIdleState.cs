@@ -19,6 +19,7 @@ public class GhsotIdleState : GhostBaseState
         state.GhostAmbi.Play();
         state.DelayHitPlayer = 0;
         state.particle.Stop();
+        state.FireSound.Stop();
         state.HpCross = false;
         state.GetAttack = false;
         state.PlayerHitDelay = 2;
@@ -31,7 +32,7 @@ public class GhsotIdleState : GhostBaseState
         IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
         Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
-        Debug.Log("Idle");
+      //  Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)
