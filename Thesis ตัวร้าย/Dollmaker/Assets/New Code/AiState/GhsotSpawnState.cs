@@ -20,8 +20,8 @@ public class GhsotSpawnState : GhostBaseState
         state.PlayerHitDelay = state.HuntSpeed;
         state.GhostLight.SetActive(true);
         state.GhostFrom.SetActive(true);
-        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Shake_ani"))
-            state.GhostAni.Play("Shake_ani", 0, 0);
+     /*   if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Shake_ani"))
+            state.GhostAni.Play("Shake_ani", 0, 0);*/
         ghostNum++;
     }
 
@@ -46,8 +46,8 @@ public class GhsotSpawnState : GhostBaseState
             {
                 state.GhostAudioSoure.clip = state.SpawnS;
                 state.GhostAudioSoure.Play();
-                if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Transform_ani"))
-                    state.GhostAni.Play("Transform_ani", 0, 0);
+                /*if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Transform_ani"))
+                    state.GhostAni.Play("Transform_ani", 0, 0);*/
                 AnimChange = false;
             }
         }

@@ -4,7 +4,7 @@ public class GhostWalkState : GhostBaseState
 {
     public override void EnterState(GhostStateManager state)
     {
-        Debug.Log("Walk");
+      //  Debug.Log("Walk");
        state.GhostFrom.SetActive(true);
        state.GhostAudioSoure.loop = true;
         state.GhostAudioSoure.clip = state.WalkS;
@@ -20,8 +20,8 @@ public class GhostWalkState : GhostBaseState
         state.enemyGhost.speed = state.WalkSpeed;
         if (state.AnimWalk)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Walk_ani"))
-                state.GhostAni.Play("Walk_ani", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("walkanimation"))
+                state.GhostAni.Play("walkanimation", 0, 0);
             state.AnimWalk = false;
         }
         if(Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 0)

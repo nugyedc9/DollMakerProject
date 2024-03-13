@@ -15,8 +15,8 @@ public class GhostGetAttckState : GhostBaseState
         state.enemyGhost.speed = state.HuntSpeed;
        state.FireSound.Play();
        
-        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Damage_ani"))
-            state.GhostAni.Play("Damage_ani", 0, 0);
+        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("foundplayeranimation"))
+            state.GhostAni.Play("foundplayeranimation", 0, 0);
         state.particle.Play();
 
 

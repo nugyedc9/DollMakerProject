@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DollDropDesignTrigger : MonoBehaviour
 {
@@ -18,11 +20,26 @@ public class DollDropDesignTrigger : MonoBehaviour
     public GameObject DollTutorial;
     public GameObject ClothTutorial;
 
+    public UnityEvent TakeDoll;
 
-    bool DollHave, NeedRed, NeedBlue, _1Doll;
+
+    bool  NeedRed, NeedBlue, _1Doll;
+    float dollCount;
 
     [SerializeField] bool closeboxDropDoll;
     public bool CloseboxDropDoll { get { return closeboxDropDoll; } set {  closeboxDropDoll = value; } }
+    [SerializeField] bool dollHave;
+    public bool DollHave { get { return dollHave; } set { dollHave = value;} }
+
+
+    public void Update()
+    {
+        if(dollCount == 3)
+        {
+            TakeDoll.Invoke();
+        }
+    }
+
 
     public void OnTriggerStay2D(Collider2D collision)
     {
@@ -33,6 +50,7 @@ public class DollDropDesignTrigger : MonoBehaviour
                 inventoryManager.GetSelectedItem(true);
                 Doll.gameObject.SetActive(true);
                 DollDesignVisual[0].SetActive(true);
+                dollCount++;
                 DollHave = true;
                 DollTutorial.SetActive(false);
 

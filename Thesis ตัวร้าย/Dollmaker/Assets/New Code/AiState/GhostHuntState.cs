@@ -27,8 +27,8 @@ public class GhostHuntState : GhostBaseState
 
         if (state.AnimHunt)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Walk_ani"))
-                state.GhostAni.Play("Walk_ani", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("walkanimation"))
+                state.GhostAni.Play("walkanimation", 0, 0);
             state.AnimHunt = false;
         }
 

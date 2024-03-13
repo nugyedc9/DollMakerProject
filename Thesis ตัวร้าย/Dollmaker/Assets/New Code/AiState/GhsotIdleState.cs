@@ -56,8 +56,8 @@ public class GhsotIdleState : GhostBaseState
             else if (state.CurSpawn == 2 || state.CurSpawn == 5)
                 state.CurrentDest = state.destination3[Dest];
 
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("demo_idleanima"))
-                state.GhostAni.Play("demo_idleanima", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Idleanimation"))
+                state.GhostAni.Play("Idleanimation", 0, 0);
             state.enemyGhost.speed = 0;
             state.RandomInIdle = false;
         }

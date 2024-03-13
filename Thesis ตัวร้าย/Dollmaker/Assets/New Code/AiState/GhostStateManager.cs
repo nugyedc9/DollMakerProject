@@ -93,7 +93,7 @@ public class GhostStateManager : MonoBehaviour
         CurrentState = DetectPlayerState;
         CurrentState.EnterState(this);
         curplayerOutSight = playerOutOfSight;
-        particle.Stop();
+            particle.Stop();
         HpBeforeHit = HpGhost;
         
 

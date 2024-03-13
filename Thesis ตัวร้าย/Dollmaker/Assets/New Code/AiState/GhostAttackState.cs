@@ -20,8 +20,8 @@ public class GhostAttackState : GhostBaseState
         TimeHit -= Time.deltaTime;
         if (state.AnimAttack)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Attack_ani"))
-                state.GhostAni.Play("Attack_ani", 0, 0);
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
+                state.GhostAni.Play("atkanimation", 0, 0);
             state.DelayHitPlayer = 2;
             state.enemyGhost.speed = 0f;
             state.AnimAttack = false;
