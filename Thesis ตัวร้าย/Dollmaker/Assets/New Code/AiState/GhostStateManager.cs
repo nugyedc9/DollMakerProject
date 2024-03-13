@@ -141,6 +141,14 @@ public class GhostStateManager : MonoBehaviour
             GetAttack = false;
         }
 
+
+        if (HpGhost <= 0)
+        {
+                //  Debug.Log("Died");
+                //PAttack.Attack = true;
+                SwitchState(DiedState);           
+        }
+
     }
 
     public void SwitchState(GhostBaseState state)
@@ -249,10 +257,10 @@ public class GhostStateManager : MonoBehaviour
                 triangles[i + 1] = j + 1;
                 triangles[i + 2] = j + 2;
             }
-            VisionConeMesh.Clear();
+        /*   VisionConeMesh.Clear();
             VisionConeMesh.vertices = Vertices;
             VisionConeMesh.triangles = triangles;
-            MeshFilter_.mesh = VisionConeMesh;
+            MeshFilter_.mesh = VisionConeMesh;*/
         }
 
         if (playerOutOfSight < 0)
@@ -262,6 +270,7 @@ public class GhostStateManager : MonoBehaviour
                 AlertSPlay = false;
                 RandomInIdle = true;
                 CanseePlayer = false;
+                OnPlayerAudio.Stop();
                 // Debug.Log("IdleAfterPlayer");
                 SwitchState(IdleState);
                 PlayerInSight = false;

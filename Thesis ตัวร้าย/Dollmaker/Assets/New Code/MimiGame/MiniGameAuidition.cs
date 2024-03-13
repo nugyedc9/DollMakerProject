@@ -335,10 +335,12 @@ public class MiniGameAuidition : MonoBehaviour
               //  print("finish");
             }
         }
+
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
         {         
             machineActive.enabled = false;
             ActiveMachine = false;
+            Debug.Log("Leave");
             if (HoldSpace)
             {
                 AuditionPass.Clear();
@@ -537,10 +539,18 @@ public class MiniGameAuidition : MonoBehaviour
        // else { CloseMouse(); }
     
     }
-/*    public void GetFinishDoll()
+
+    public void OnEnable()
     {
-        FinishDoll[FinishDollHave].SetActive(true);
-            FinishDollHave++;
-    }*/
+        if (!cutLine)
+        {
+            _Currentstate = MiniGameAuditionState.LeaveDesk;
+        }
+    }
+    /*    public void GetFinishDoll()
+        {
+            FinishDoll[FinishDollHave].SetActive(true);
+                FinishDollHave++;
+        }*/
 
 }

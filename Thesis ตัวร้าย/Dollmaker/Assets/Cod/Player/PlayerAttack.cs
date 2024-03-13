@@ -257,6 +257,10 @@ public class PlayerAttack : MonoBehaviour
                             GhostHit.Playerhit();
                             Crosstakedamge();
                         }
+                        else if(curHpCross < 0.1)
+                        {
+
+                        }
                        
                         
                         //    crossAnim.SetState(CrossState.HitGhost);
