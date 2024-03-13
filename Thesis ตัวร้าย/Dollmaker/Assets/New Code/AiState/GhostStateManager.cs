@@ -23,6 +23,9 @@ public class GhostStateManager : MonoBehaviour
 
     public bool ForTest;
 
+    
+
+
     [Header("Player")]
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
@@ -85,6 +88,9 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("Event")]
     public UnityEvent EventGhostAfterDied;
+    public UnityEvent GhostHuntLightOff, GhostOutSightLightOn;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -271,6 +277,7 @@ public class GhostStateManager : MonoBehaviour
                 RandomInIdle = true;
                 CanseePlayer = false;
                 OnPlayerAudio.Stop();
+                GhostOutSightLightOn.Invoke();
                 // Debug.Log("IdleAfterPlayer");
                 SwitchState(IdleState);
                 PlayerInSight = false;
