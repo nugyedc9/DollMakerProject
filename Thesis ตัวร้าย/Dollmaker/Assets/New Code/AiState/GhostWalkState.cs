@@ -7,8 +7,10 @@ public class GhostWalkState : GhostBaseState
       //  Debug.Log("Walk");
        state.GhostFrom.SetActive(true);
        state.GhostAudioSoure.loop = true;
-        state.GhostAudioSoure.clip = state.WalkS;
-        state.GhostAudioSoure.Play();
+        state.GhostAudioSoure.Stop();
+        state.MoveSound.loop = true;
+        state.MoveSound.clip = state.WalkS;
+        state.MoveSound.Play();
     }
 
     public override void UpdateState(GhostStateManager state)

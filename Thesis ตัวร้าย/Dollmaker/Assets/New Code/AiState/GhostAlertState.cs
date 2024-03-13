@@ -18,6 +18,8 @@ public class GhostAlertState : GhostBaseState
             state.GhostAmbi.Play();
             state.AlertSPlay = true;
         }
+
+        state.MoveSound.Stop();
         state.CurrentDest = state.playerPos.transform;
         state.Dest = state.CurrentDest.position;
     }

@@ -79,8 +79,8 @@ public class GhostStateManager : MonoBehaviour
   
     [Header("---- Audio Sound ----")]
     public AudioSource GhostAudioSoure; 
-    public AudioSource GhostAmbi, OnPlayerAudio, FireSound;
-    public AudioClip  DetectS, SpawnS, WalkS, HuntS, AttackS, DiedS ,
+    public AudioSource GhostAmbi, OnPlayerAudio, FireSound, MoveSound;
+    public AudioClip  DetectS, SpawnS, WalkS, RunS, HuntS, AttackS, DiedS ,
         GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi, PlayerHeartBeat;
 
     [Header("Event")]

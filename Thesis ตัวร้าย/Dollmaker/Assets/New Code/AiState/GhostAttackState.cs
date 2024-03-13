@@ -12,6 +12,8 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
+
+        state.MoveSound.Stop();
         PlayerInRange = false;
     }
 

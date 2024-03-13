@@ -144,7 +144,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Map")]
     public GameObject MapCanva;
-    private bool MapOn;
+    private bool MapOn, OpenWall1;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -152,6 +152,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private bool IsPause, Working, died;
     public bool Died { get { return died; } set { died = value; } }
     public bool isPause { get { return IsPause; }  set { IsPause = value; } }
+
+
+    [SerializeField] bool tvon;
+    public bool TVOn { get { return tvon; } set {  tvon = value; } }
 
     [Header("------ Audio ---------")]
     public AudioClip HitGhostSound;
@@ -185,9 +189,12 @@ public class PlayerAttack : MonoBehaviour
 
     float DelayEse, Delaydoor;
 
+    public GameObject BoxCloseTV;
+
+
     [Header("AllEvent")]
-    public UnityEvent CheckFrontDoor;
-    public UnityEvent CanExplore;
+    public UnityEvent CloseTv;
+    public UnityEvent OpenTv;
     public UnityEvent Doorclose;
     public UnityEvent LightOutEvent;
     public UnityEvent BreakerCheck;
@@ -2389,103 +2396,120 @@ public class PlayerAttack : MonoBehaviour
                  
                 }
 
-                #region Drop on desk
-          /*      if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
+                if (hitInfo.collider.gameObject.tag == "TV")
                 {
-                    if (Clothhave > 0 || Dollhave > 0)
+                    if (TVOn)
                     {
-                       
-                        if (Crosshave == 1)
+                        CloseTv.Invoke();
+                        if (!OpenWall1)
                         {
-                            Itemhave = 1;
-                            if (CrossInv1) box1 = true;
-                            if (CrossInv2) box2 = true;
-                            if (CrossInv3) box3 = true;
-                        }
-
-
-                        //Doll on hand
-                        Tutext1.SetActive(false);
-                        showDoll = false;
-                        DollR.SetActive(false);
-                        if (ItemSelect == 0)
-                        {
-                            if (DollInv1)
-                            {
-                                itemInventory1[1].SetActive(false);
-                                takeFinishDoll.AddDollOnDesk(1);
-                                Dollhave--;
-                                Itemhave--;
-                                box1 = false;
-                                DollInv1 = false;
-                            }
-                        }
-                        else if (ItemSelect == 1)
-                        {
-                            if (DollInv2)
-                            {
-                                itemInventory2[1].SetActive(false);
-                                takeFinishDoll.AddDollOnDesk(1);
-                                box2 = false;
-                                Dollhave--;
-                                Itemhave--;
-                                DollInv2 = false;
-                            }
-                        }
-                        else if (ItemSelect == 2)
-                        {
-                            if (DollInv3)
-                            {
-                                itemInventory3[1].SetActive(false);
-                                takeFinishDoll.AddDollOnDesk(1);
-                                box3 = false;
-                                Dollhave--;
-                                Itemhave--;
-                                DollInv3 = false;
-                            }
-                        }
-                        // Cloth on hand
-                        showCloth = false;
-                        ClothR.SetActive(false);
-                        if (ItemSelect == 0)
-                        {
-                            if (ClothInv1)
-                            {
-                                itemInventory1[2].SetActive(false);
-                                takeFinishDoll.AddClothOndesk(1);
-                                box1 = false;
-                                Clothhave--;
-                                Itemhave--;
-                                ClothInv1 = false;
-                            }
-                        }
-                        else if (ItemSelect == 1)
-                        {
-                            if (ClothInv2)
-                            {
-                                itemInventory2[2].SetActive(false);
-                                takeFinishDoll.AddClothOndesk(1);
-                                box2 = false;
-                                Clothhave--;
-                                Itemhave--;
-                                ClothInv2 = false;
-                            }
-                        }
-                        else if (ItemSelect == 2)
-                        {
-                            if (ClothInv3)
-                            {
-                                itemInventory3[2].SetActive(false);
-                                takeFinishDoll.AddClothOndesk(1);
-                                box3 = false;
-                                Clothhave--;
-                                Itemhave--;
-                                ClothInv3 = false;
-                            }
+                            BoxCloseTV.SetActive(true);
+                            OpenWall1 = true;
                         }
                     }
+                    else
+                    {
+                        OpenTv.Invoke();
+                    }
+                }
 
-                }*/
+                #region Drop on desk
+                /*      if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
+                      {
+                          if (Clothhave > 0 || Dollhave > 0)
+                          {
+
+                              if (Crosshave == 1)
+                              {
+                                  Itemhave = 1;
+                                  if (CrossInv1) box1 = true;
+                                  if (CrossInv2) box2 = true;
+                                  if (CrossInv3) box3 = true;
+                              }
+
+
+                              //Doll on hand
+                              Tutext1.SetActive(false);
+                              showDoll = false;
+                              DollR.SetActive(false);
+                              if (ItemSelect == 0)
+                              {
+                                  if (DollInv1)
+                                  {
+                                      itemInventory1[1].SetActive(false);
+                                      takeFinishDoll.AddDollOnDesk(1);
+                                      Dollhave--;
+                                      Itemhave--;
+                                      box1 = false;
+                                      DollInv1 = false;
+                                  }
+                              }
+                              else if (ItemSelect == 1)
+                              {
+                                  if (DollInv2)
+                                  {
+                                      itemInventory2[1].SetActive(false);
+                                      takeFinishDoll.AddDollOnDesk(1);
+                                      box2 = false;
+                                      Dollhave--;
+                                      Itemhave--;
+                                      DollInv2 = false;
+                                  }
+                              }
+                              else if (ItemSelect == 2)
+                              {
+                                  if (DollInv3)
+                                  {
+                                      itemInventory3[1].SetActive(false);
+                                      takeFinishDoll.AddDollOnDesk(1);
+                                      box3 = false;
+                                      Dollhave--;
+                                      Itemhave--;
+                                      DollInv3 = false;
+                                  }
+                              }
+                              // Cloth on hand
+                              showCloth = false;
+                              ClothR.SetActive(false);
+                              if (ItemSelect == 0)
+                              {
+                                  if (ClothInv1)
+                                  {
+                                      itemInventory1[2].SetActive(false);
+                                      takeFinishDoll.AddClothOndesk(1);
+                                      box1 = false;
+                                      Clothhave--;
+                                      Itemhave--;
+                                      ClothInv1 = false;
+                                  }
+                              }
+                              else if (ItemSelect == 1)
+                              {
+                                  if (ClothInv2)
+                                  {
+                                      itemInventory2[2].SetActive(false);
+                                      takeFinishDoll.AddClothOndesk(1);
+                                      box2 = false;
+                                      Clothhave--;
+                                      Itemhave--;
+                                      ClothInv2 = false;
+                                  }
+                              }
+                              else if (ItemSelect == 2)
+                              {
+                                  if (ClothInv3)
+                                  {
+                                      itemInventory3[2].SetActive(false);
+                                      takeFinishDoll.AddClothOndesk(1);
+                                      box3 = false;
+                                      Clothhave--;
+                                      Itemhave--;
+                                      ClothInv3 = false;
+                                  }
+                              }
+                          }
+
+                      }*/
                 #endregion
             }
         }
@@ -2561,7 +2585,7 @@ public class PlayerAttack : MonoBehaviour
         if (StoryNow == 2)
         {
             NeedToDo.text = "Go to check front door";
-            CheckFrontDoor.Invoke();
+          //  CheckFrontDoor.Invoke();
         }
         if (StoryNow == 3)
         {
@@ -2571,7 +2595,7 @@ public class PlayerAttack : MonoBehaviour
                 DialogueStory = false;
             }
             NeedToDo.text = "Go to sewing room or explore house";
-            CanExplore.Invoke();
+            //CanExplore.Invoke();
         }
         if (StoryNow == 4)
         {

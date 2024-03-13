@@ -12,6 +12,9 @@ public class GhostHuntState : GhostBaseState
         state.OnPlayerAudio.enabled = true;
         state.OnPlayerAudio.clip = state.PlayerHeartBeat;
         state.OnPlayerAudio.Play();
+        state.MoveSound.loop = true;
+        state.MoveSound.clip = state.RunS;
+        state.MoveSound.Play();
     }
 
     public override void UpdateState(GhostStateManager state)
