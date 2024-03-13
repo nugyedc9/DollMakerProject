@@ -24,11 +24,10 @@ public class GhostStateManager : MonoBehaviour
     public bool ForTest;
 
     
-
-
     [Header("Player")]
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
+    public GameObject GhostHuntEffect;
     public bool HpCross;
 
     [Header("Ghost")]
@@ -82,7 +81,7 @@ public class GhostStateManager : MonoBehaviour
   
     [Header("---- Audio Sound ----")]
     public AudioSource GhostAudioSoure; 
-    public AudioSource GhostAmbi, OnPlayerAudio, FireSound, MoveSound;
+    public AudioSource GhostAmbi, OnPlayerAudio, FireSound, MoveSound, EffectHunt;
     public AudioClip  DetectS, SpawnS, WalkS, RunS, HuntS, AttackS, DiedS ,
         GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi, PlayerHeartBeat;
 

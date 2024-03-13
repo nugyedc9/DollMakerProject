@@ -29,6 +29,9 @@ public class GhsotIdleState : GhostBaseState
         state.CanseePlayer = false;
         state.Cansee = true;
 
+        state.GhostHuntEffect.SetActive(false);
+        state.EffectHunt.Stop();
+
         IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
         Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 

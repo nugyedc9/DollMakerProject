@@ -36,7 +36,7 @@ public class GhostAttackState : GhostBaseState
             TimeHit = Sec;
             state.CanseePlayer = false;
             PlayerInRange = false;
-            state.SwitchState(state.IdleState);
+            state.SwitchState(state.AlertState);
             hitplayer = false;
         }
 

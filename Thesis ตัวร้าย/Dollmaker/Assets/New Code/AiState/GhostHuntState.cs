@@ -16,7 +16,8 @@ public class GhostHuntState : GhostBaseState
         state.MoveSound.clip = state.RunS;
         state.MoveSound.Play();
 
-
+        state.GhostHuntEffect.SetActive(true);
+        state.EffectHunt.Play();
        
     }
 
