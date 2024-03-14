@@ -30,12 +30,17 @@ public class GhsotIdleState : GhostBaseState
         state.Cansee = true;
 
         state.GhostHuntEffect.SetActive(false);
+
+        state.enemyGhost.speed = 0;
         state.EffectHunt.Stop();
+        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Idleanimation"))
+            state.GhostAni.Play("Idleanimation", 0, 0);
+
 
         IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
         Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
-      //  Debug.Log("Idle");
+        Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -45,25 +50,28 @@ public class GhsotIdleState : GhostBaseState
             state.DrawVisionCone();
             DelayFaterSpawn = true;
         }
-        
-        if(DelayFaterSpawn)
+
+        if (state.CurSpawn == 0 || state.CurSpawn == 3)
+            state.CurrentDest = state.destination[Dest];
+
+        if (DelayFaterSpawn)
             state.DrawVisionCone();
 
-        if (state.RandomInIdle)
+       /* if (state.RandomInIdle)
         {
 
-            if (state.CurSpawn == 1 || state.CurSpawn == 4)
+            if (state.CurSpawn == 0 || state.CurSpawn == 3)
                 state.CurrentDest = state.destination[Dest];
-            else if (state.CurSpawn == 0 || state.CurSpawn == 3)
+*//*            else if (state.CurSpawn == 0 || state.CurSpawn == 3)
                 state.CurrentDest = state.destination2[Dest];
             else if (state.CurSpawn == 2 || state.CurSpawn == 5)
-                state.CurrentDest = state.destination3[Dest];
+                state.CurrentDest = state.destination3[Dest];*//*
 
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Idleanimation"))
                 state.GhostAni.Play("Idleanimation", 0, 0);
             state.enemyGhost.speed = 0;
             state.RandomInIdle = false;
-        }
+        }*/
 
         if (IdleTime > 0)
         {

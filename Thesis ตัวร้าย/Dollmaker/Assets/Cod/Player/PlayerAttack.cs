@@ -2418,10 +2418,12 @@ public class PlayerAttack : MonoBehaviour
                             BoxCloseTV.SetActive(true);
                             OpenWall1 = true;
                         }
+                        TVOn = false;
                     }
                     else
                     {
                         OpenTv.Invoke();
+                        TVOn = true;
                     }
                 }
 

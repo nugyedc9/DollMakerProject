@@ -58,24 +58,30 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
          image.sprite = newItem.image;
      }
 
-
-/*    public void OnBeginDrag(PointerEventData eventData)
+    public void OnDisable()
     {
-        image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-        transform.SetAsLastSibling();
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = Input.mousePosition;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
+        transform.localPosition = orginalPosition;
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
-    }*/
+    }
+
+    /*    public void OnBeginDrag(PointerEventData eventData)
+        {
+            image.raycastTarget = false;
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+            transform.SetAsLastSibling();
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            transform.position = Input.mousePosition;
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            image.raycastTarget = true;
+            transform.SetParent(parentAfterDrag);
+        }*/
 
 }

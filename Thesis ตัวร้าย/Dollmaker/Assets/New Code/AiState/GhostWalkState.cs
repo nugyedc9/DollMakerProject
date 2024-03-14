@@ -26,7 +26,7 @@ public class GhostWalkState : GhostBaseState
                 state.GhostAni.Play("walkanimation", 0, 0);
             state.AnimWalk = false;
         }
-        if(Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 0)
+        if(Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 1)
         {
             state.RandomInIdle = true;
             //Debug.Log("IdleAfterWalk");

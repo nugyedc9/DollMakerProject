@@ -151,6 +151,7 @@ public class GhostStateManager : MonoBehaviour
         {
                 //  Debug.Log("Died");
                 //PAttack.Attack = true;
+                GhostHuntEffect .SetActive(false);  
                 SwitchState(DiedState);           
         }
 

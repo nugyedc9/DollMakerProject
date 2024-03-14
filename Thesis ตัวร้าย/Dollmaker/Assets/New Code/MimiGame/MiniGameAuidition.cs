@@ -70,7 +70,7 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject CutHere;
 
     public GameObject FailNote;
-    bool _1Fail, ActiveMachine;
+    bool _1Fail, ActiveMachine, Exittable;
     int FinishDoll;
 
     [Header("Event")]
@@ -459,6 +459,21 @@ public class MiniGameAuidition : MonoBehaviour
 
         #endregion
 
+        if (Exittable)
+        {
+            print("Exit");
+            if (cutLine)
+            {
+                _Currentstate = MiniGameAuditionState.LeaveDesk;
+            }
+            else
+            {
+                ScrissorCutClose.SetActive(true);
+                _Currentstate = MiniGameAuditionState.FailSkillCheck;
+            }
+            Exittable = false;
+        }
+
 
         if (curBar >= maxBar)
         {   
@@ -466,6 +481,8 @@ public class MiniGameAuidition : MonoBehaviour
         }
         
     }
+
+    #region SpawnThing
 
     public void SpawnAuditionPassPrefabs(int PrefabsSpawn)
     {
@@ -489,22 +506,7 @@ public class MiniGameAuidition : MonoBehaviour
         DelaySpawn = true;
     }
 
-   /* IEnumerator FailDelay()
-    {
-        yield return new WaitForSeconds(2f);       
-        AuditionPass.Clear();
-        AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
-        foreach (GameObject SpawnOnSceen in AuditionOnSceen)
-        {
-            Destroy(SpawnOnSceen);
-        }
-        CutHere.SetActive(false);
-        SlotAuditionPass = 0;
-        CurrectPass = 0;
-        Fail = false;
-        _Currentstate = MiniGameAuditionState.Start;
-    }*/
-
+    #endregion
 
     public void AddBoxNumber(float ThisBox)
     {        
@@ -514,7 +516,9 @@ public class MiniGameAuidition : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach(GameObject SpawnOnSceen in AuditionOnSceen)
+        HoldSpace = false;
+        Exittable = true;
+        foreach (GameObject SpawnOnSceen in AuditionOnSceen)
         {
             Destroy(SpawnOnSceen);
         }
@@ -541,13 +545,9 @@ public class MiniGameAuidition : MonoBehaviour
     
     }
 
-    public void OnEnable()
-    {
-        if (!cutLine)
-        {
-            _Currentstate = MiniGameAuditionState.LeaveDesk;
-        }
-    }
+
+
+
     /*    public void GetFinishDoll()
         {
             FinishDoll[FinishDollHave].SetActive(true);

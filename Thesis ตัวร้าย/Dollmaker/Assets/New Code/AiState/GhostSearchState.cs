@@ -28,7 +28,7 @@ public class GhostSearchState : GhostBaseState
         }
         if(TimeCount <= 0)
         {
-            state.enemyGhost.Warp(state.SpawnPoint[state.CurSpawn].position);
+            state.enemyGhost.Warp(state.SpawnPoint[state.CurSpawn   ].position);
             state.PlayerDetectSpawn = true;
             state.DrawVisionCone();
             // state.SwitchState(state.SpawnState);

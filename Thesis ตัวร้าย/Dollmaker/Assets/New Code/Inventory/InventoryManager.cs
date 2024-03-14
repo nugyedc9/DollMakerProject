@@ -86,6 +86,7 @@ public PlayerPickUpItem playerPickUpItem;
                 }
                 if (drop)
                 {
+                    DropitemPrefabs(DropPoint, 0);
                     /*if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
                     if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
                     if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);*/
