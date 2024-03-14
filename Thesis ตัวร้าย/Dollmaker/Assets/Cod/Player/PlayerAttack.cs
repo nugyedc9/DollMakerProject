@@ -405,7 +405,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Map pause tutorial
-        if (!Died && !playerPickUpItem.OnNote )
+        if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -427,7 +427,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if (tabTutorial.OpenTutor || playerPickUpItem.OnNote)
+        if (tabTutorial.OpenTutor || playerPickUpItem.OnNote || !PCam.camOnPerSon)
         {
             DelayEse = 0.2f;
         }

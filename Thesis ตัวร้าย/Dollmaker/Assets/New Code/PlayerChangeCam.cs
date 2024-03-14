@@ -394,7 +394,7 @@ public class PlayerChangeCam : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.Escape)))
         {
             if (!CamOnPerson)
             {
