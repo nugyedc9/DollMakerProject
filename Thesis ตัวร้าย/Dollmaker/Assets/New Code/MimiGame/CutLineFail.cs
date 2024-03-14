@@ -8,7 +8,7 @@ public class CutLineFail : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Scissors")
+        if(other.gameObject.tag == "ScrissorCutCloth")
         {
             miniAudition.cutLine = true;
         }

@@ -13,7 +13,7 @@ public class MiniGameAuidition : MonoBehaviour
 {
     private MiniGameAuditionState _Currentstate;
     private MiniGameAuidition Instance;
-    public GameObject MiniGameAuditionActive;
+    public GameObject MiniGameAuditionActive, ScrissorCutClose;
     public CanPlayMini1 canPlay;
     public ClothColorDrop clothColorDrop;
     public GhostStateManager GhostcomeTocheck;
@@ -390,7 +390,7 @@ public class MiniGameAuidition : MonoBehaviour
                 FailNote.SetActive(true);
                 _1Fail = true;
             }
-
+            ScrissorCutClose.SetActive(true);
             GetHurt = true;
             handMove.enabled = true;
             handMove.Play("Handhurtsewing");
@@ -423,6 +423,7 @@ public class MiniGameAuidition : MonoBehaviour
             }
             if (cutLine)
             {
+                ScrissorCutClose.SetActive(false);
                 audioSource.clip = CutLineS;
                 audioSource.Play();
                 CutHere.SetActive(false);
