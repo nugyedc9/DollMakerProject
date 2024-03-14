@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TutorialNote : MonoBehaviour
 {
+    public UnityEvent Getcom;
 
     [Header("---- Audio ----")]
     public AudioSource AudioSound;
@@ -13,5 +15,8 @@ public class TutorialNote : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    public void OnEnable()
+    {
+        Getcom.Invoke();
+    }
 }

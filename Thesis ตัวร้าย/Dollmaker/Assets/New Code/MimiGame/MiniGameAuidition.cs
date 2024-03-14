@@ -340,7 +340,7 @@ public class MiniGameAuidition : MonoBehaviour
         {         
             machineActive.enabled = false;
             ActiveMachine = false;
-            Debug.Log("Leave");
+          //  Debug.Log("Leave");
             if (HoldSpace)
             {
                 AuditionPass.Clear();

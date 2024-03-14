@@ -6,6 +6,7 @@ using UnityEngine;
 public class TabTutorial : MonoBehaviour
 {
     public PlayerAttack PAttack;
+    public PlayerPickUpItem playerpickup;
     public PlayerChangeCam Cam;
     public InputManager inputManager;
     public Animator InvShow;
@@ -43,7 +44,7 @@ public class TabTutorial : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (!OpenTutor && !PAttack.isPause)
+                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
                 {
                     OpenTutor = true;
                     InvShow.enabled = true;

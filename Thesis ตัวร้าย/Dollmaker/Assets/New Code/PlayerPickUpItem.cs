@@ -54,6 +54,9 @@ public class PlayerPickUpItem : MonoBehaviour
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
+    [SerializeField] bool onNote;
+    public bool OnNote { get { return onNote; } set { onNote = value; } }
+
     private RollClothColor pieceClothGet;
     private DocumentID documentID;
     private Door DoorId;
@@ -80,6 +83,7 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (!_1Cross)
                         {
                             ShowMouse();
+                            OnNote = true;
                             CrossNote.SetActive(true);
                             _1Cross = true;
                         }
@@ -115,6 +119,7 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (!_1Scissor)
                         {
                             ShowMouse();
+                            OnNote = true;
                             ScissorNote.SetActive(true);
                             _1Scissor = true;
                         }

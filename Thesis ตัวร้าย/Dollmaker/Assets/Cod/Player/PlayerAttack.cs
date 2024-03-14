@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
     public PlayerChangeCam PCam;
     public TabTutorial tabTutorial;
     public CrossAnim crossAnim;
+     TutorialNote Tunote;
+    public TutorialNote tunote { get { return Tunote; } set { Tunote = value; } }
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
     [SerializeField] bool run;
@@ -403,7 +405,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Map pause tutorial
-        if (!Died)
+        if (!Died && !playerPickUpItem.OnNote )
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -415,9 +417,19 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
-        if(tabTutorial.OpenTutor)
+        if ( playerPickUpItem.OnNote)
         {
-            DelayEse = 0.5f;
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                tunote.SelectThisDesign();
+                playerPickUpItem.CloseMouse();
+                playerPickUpItem.OnNote = false;
+            }
+        }
+
+        if (tabTutorial.OpenTutor || playerPickUpItem.OnNote)
+        {
+            DelayEse = 0.2f;
         }
         
         else if(!tabTutorial.OpenTutor && DelayEse > 0) 
