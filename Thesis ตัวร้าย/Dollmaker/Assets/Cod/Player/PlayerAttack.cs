@@ -146,7 +146,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Map")]
     public GameObject MapCanva;
-    private bool MapOn, OpenWall1;
+    private bool MapOn;
 
     [Header("PauseGame")]
     public GameObject PauseMenu;
@@ -157,7 +157,7 @@ public class PlayerAttack : MonoBehaviour
 
 
     [SerializeField] bool tvon;
-    public bool TVOn { get { return tvon; } set {  tvon = value; } }
+    public bool TVOn { get { return tvon; } set { tvon = value; } }
 
     [Header("------ Audio ---------")]
     public AudioClip HitGhostSound;
@@ -193,6 +193,8 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject BoxCloseTV;
 
+    [SerializeField] bool OpenWall1;
+    public bool EventTv1 { get { return OpenWall1; } set { OpenWall1 = value; } }
 
     [Header("AllEvent")]
     public UnityEvent CloseTv;
@@ -1241,6 +1243,21 @@ public class PlayerAttack : MonoBehaviour
                 {
                     ItemText.SetActive(true);
                     ItemName.text = " Enter Cloth Cutting Table [E]";
+                    InterectItem = true;
+                }
+            }
+            else if (hitevent.collider.gameObject.tag == "TV")
+            {
+                if (TVOn)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = " TRUN OFF ";
+                    InterectItem = true;
+                }
+                else
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = " TRUN ON ";
                     InterectItem = true;
                 }
             }
