@@ -19,6 +19,9 @@ public class GhostAlertState : GhostBaseState
             state.AlertSPlay = true;
         }
 
+        state.HpBeforeHit = state.HpGhost;
+        state.GetAttack = false;
+        state.particle.Stop();
         state.MoveSound.Stop();
         state.CurrentDest = state.playerPos.transform;
         state.Dest = state.CurrentDest.position;

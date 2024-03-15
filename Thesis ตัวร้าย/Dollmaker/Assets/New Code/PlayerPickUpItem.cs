@@ -80,7 +80,7 @@ public class PlayerPickUpItem : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Pickrange))
         {
             // Debug.Log(hitInfo.collider.gameObject.tag);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !BookGuide.OpenTutor)
             {
                 if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
@@ -239,7 +239,7 @@ public class PlayerPickUpItem : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !BookGuide.OpenTutor)
             {
                 if (ItemCount < inventoryManager.inventoryslote.Length)
                 {

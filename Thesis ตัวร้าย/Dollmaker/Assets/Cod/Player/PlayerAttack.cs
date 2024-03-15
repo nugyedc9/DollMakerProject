@@ -977,7 +977,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region Interect evnet
         Ray Interect = new Ray(pickUPPoint.position, pickUPPoint.forward);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !tabTutorial.OpenTutor)
         {
             if (Physics.Raycast(Interect, out RaycastHit hitInterect, Pickrange))
             {
@@ -1058,7 +1058,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Show what can interect
-        if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange))
+        if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange) && !tabTutorial.OpenTutor && PCam.camOnPerSon)
         {
             if (hitevent.collider.tag == "GhostEvent")
             {
@@ -2393,7 +2393,7 @@ public class PlayerAttack : MonoBehaviour
         #region Pick up only
 
         Ray LPick = new Ray(pickUPPoint.position, pickUPPoint.forward);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !tabTutorial.OpenTutor)
         {
             if (Physics.Raycast(LPick, out RaycastHit hitInfo, Pickrange))
             {

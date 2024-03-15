@@ -371,6 +371,12 @@ public PlayerPickUpItem playerPickUpItem;
             {
                
                 playerPickUpItem.HealOnhand = true;
+                if (drop)
+                {
+                    DropitemPrefabs(DropPoint, 18);
+                    GetSelectedItem(true);
+                    drop = false;
+                }
             }
             else
             {
