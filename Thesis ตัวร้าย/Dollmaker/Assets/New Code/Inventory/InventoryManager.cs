@@ -366,6 +366,17 @@ public PlayerPickUpItem playerPickUpItem;
                 playerPickUpItem.Key = false;
             }
 
+
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("EyeWash"))
+            {
+               
+                playerPickUpItem.HealOnhand = true;
+            }
+            else
+            {
+          
+                playerPickUpItem.HealOnhand = false;
+            }
             #endregion
 
             #region Drop Item

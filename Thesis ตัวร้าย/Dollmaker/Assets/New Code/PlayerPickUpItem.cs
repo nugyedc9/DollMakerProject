@@ -1,3 +1,4 @@
+using player;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,7 @@ public class PlayerPickUpItem : MonoBehaviour
 {
     public InventoryManager inventoryManager;
     public TabTutorial BookGuide;
+    public PlayerHp HpPlayer;
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
 
@@ -29,7 +31,8 @@ public class PlayerPickUpItem : MonoBehaviour
     [Header("---- Audio ----")]
     public AudioSource audioSource;
     public AudioClip CrossS, DollS, ScissorS, CutClothS,
-        KeyS, DocumentS, PushFiniDollS;
+        KeyS, DocumentS, PushFiniDollS, UnlockDoorS,
+        HealPickS, HealUseS;
 
     [Header("Tutorial Pick UP")]
     public GameObject CrossNote;
@@ -41,6 +44,9 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [SerializeField] bool key;
     public bool Key { get { return key; } set { key = value; } }
+
+    [SerializeField] bool healOnhand;
+    public bool HealOnhand { get { return healOnhand; } set { healOnhand = value; } }
 
     [SerializeField] bool finishDollOnHand;
     public bool FDOnhand { get { return finishDollOnHand; } set { finishDollOnHand = value; } }
@@ -73,7 +79,7 @@ public class PlayerPickUpItem : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Pickrange))
         {
-           // Debug.Log(hitInfo.collider.gameObject.tag);
+            // Debug.Log(hitInfo.collider.gameObject.tag);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (ItemCount < inventoryManager.inventoryslote.Length)
@@ -125,12 +131,12 @@ public class PlayerPickUpItem : MonoBehaviour
                         }
 
                     }
-                    if(hitInfo.collider.gameObject.tag == "Cloth")
+                    if (hitInfo.collider.gameObject.tag == "Cloth")
                     {
                         inventoryManager.AddItem(itemPickUp[3]);
                         Destroy(hitInfo.collider.gameObject);
                     }
-                    if(hitInfo.collider.gameObject.tag == "Key")
+                    if (hitInfo.collider.gameObject.tag == "Key")
                     {
                         audioSource.clip = KeyS;
                         audioSource.Play();
@@ -139,6 +145,14 @@ public class PlayerPickUpItem : MonoBehaviour
 
                         inventoryManager.AddItem(itemPickUp[10]);
                         Destroy(hitInfo.collider.gameObject);
+                    }
+
+                    if (hitInfo.collider.gameObject.tag == "EyeWash")
+                    {
+                        audioSource.clip = HealPickS; audioSource.Play();
+                        inventoryManager.AddItem(itemPickUp[19]);
+                        Destroy(hitInfo.collider.gameObject);
+
                     }
 
                     #region ClothColor
@@ -216,7 +230,7 @@ public class PlayerPickUpItem : MonoBehaviour
                     audioSource.clip = DocumentS;
                     audioSource.Play();
                     documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
-                    if(documentID.DocID == 0)
+                    if (documentID.DocID == 0)
                     {
                         _5Story.SetActive(true);
                         BookGuide.PageCount++;
@@ -225,7 +239,7 @@ public class PlayerPickUpItem : MonoBehaviour
                 }
             }
 
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (ItemCount < inventoryManager.inventoryslote.Length)
                 {
@@ -240,22 +254,22 @@ public class PlayerPickUpItem : MonoBehaviour
 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                             pieceClothGet.DropitemPrefabs();
-                         /*   if (pieceClothGet.pieceClothID == 0)
-                            {
-                                inventoryManager.AddItem(itemPickUp[6]);
-                            }
-                            else if (pieceClothGet.pieceClothID == 1)
-                            {
-                                inventoryManager.AddItem(itemPickUp[7]);
-                            }
-                            else if (pieceClothGet.pieceClothID == 2)
-                            {
-                                inventoryManager.AddItem(itemPickUp[8]);
-                            }
-                            else if (pieceClothGet.pieceClothID == 3)
-                            {
-                                inventoryManager.AddItem(itemPickUp[9]);
-                            }*/
+                            /*   if (pieceClothGet.pieceClothID == 0)
+                               {
+                                   inventoryManager.AddItem(itemPickUp[6]);
+                               }
+                               else if (pieceClothGet.pieceClothID == 1)
+                               {
+                                   inventoryManager.AddItem(itemPickUp[7]);
+                               }
+                               else if (pieceClothGet.pieceClothID == 2)
+                               {
+                                   inventoryManager.AddItem(itemPickUp[8]);
+                               }
+                               else if (pieceClothGet.pieceClothID == 3)
+                               {
+                                   inventoryManager.AddItem(itemPickUp[9]);
+                               }*/
                         }
                     }
 
@@ -264,15 +278,16 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (Key)
                         {
                             DoorId = hitInfo.collider.gameObject.GetComponent<Door>();
-                           if(KeyId == DoorId.DoorID)
+                            if (KeyId == DoorId.DoorID)
                             {
+                                audioSource.clip = UnlockDoorS; audioSource.Play();
                                 DoorId.Lock = false;
                                 inventoryManager.GetSelectedItem(true);
                             }
-                        }                     
+                        }
                     }
 
-                    if(hitInfo.collider.gameObject.tag == "Basket")
+                    if (hitInfo.collider.gameObject.tag == "Basket")
                     {
                         if (FDOnhand || FDOnhand1 || FDOnhand2)
                         {
@@ -283,17 +298,27 @@ public class PlayerPickUpItem : MonoBehaviour
                             dropFinish.Spawndoll();
                             inventoryManager.GetSelectedItem(true);
                         }
-                        
+
                     }
 
+
                 }
-                
             }
 
-            if(hitInfo.collider.gameObject.tag == "Event")
+            if (hitInfo.collider.gameObject.tag == "Event")
             {
                 storyActive = hitInfo.collider.gameObject.GetComponent<StoryActive>();
                 storyActive.LookActiveevent();
+            }
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if (HealOnhand && HpPlayer.curHp < HpPlayer.MaxHp)
+            {
+                audioSource.clip = HealUseS; audioSource.Play();
+                HpPlayer.Heal();
+                inventoryManager.GetSelectedItem(true);
             }
         }
 

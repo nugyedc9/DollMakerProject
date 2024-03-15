@@ -1218,18 +1218,11 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (hitevent.collider.gameObject.tag == "EyeWash")
             {
-                if (HpPlayer.curHp != HpPlayer.MaxHp)
-                {
+
                     ItemText.SetActive(true);
                     ItemName.text = "Eat Pill [E]";
                     InterectItem = true;
-                }
-                else
-                {
-                    ItemText.SetActive(true);
-                    ItemName.text = "You full healthy [E]";
-                    InterectItem = true;
-                }
+              
             }
             else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
             {
@@ -2414,7 +2407,7 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }*/
 
-                if (hitInfo.collider.gameObject.tag == "EyeWash")
+             /*   if (hitInfo.collider.gameObject.tag == "EyeWash")
                 {
                     if (HpPlayer.curHp < 4)
                     {
@@ -2423,7 +2416,7 @@ public class PlayerAttack : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
                     }
                  
-                }
+                }*/
 
                 if (hitInfo.collider.gameObject.tag == "TV")
                 {

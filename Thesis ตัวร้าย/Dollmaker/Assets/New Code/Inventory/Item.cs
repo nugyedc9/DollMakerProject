@@ -36,5 +36,6 @@ public enum ItemType
     FinishDollGreen,
     FinishDollYellow,
         Key,
-        ScrissorCutCloth
+        ScrissorCutCloth,
+    EyeWash
 }
