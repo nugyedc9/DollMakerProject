@@ -52,7 +52,7 @@ public class TabTutorial : MonoBehaviour
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;                    
                     inputManager.OnTab = true;
-                    InvShow.Play("OpenTabInv", 0, 0);
+                   // InvShow.Play("OpenTabInv", 0, 0);
                     
                     if(!Hit_2Story)
                         _2StoryCanWalk.SetActive(true);
@@ -111,8 +111,17 @@ public class TabTutorial : MonoBehaviour
             Tutorial[PageNum].SetActive(false);
         }
 
-        if (PageNum == 0) PrevButt.SetActive(false);
-        else if (PageNum != 0) PrevButt.SetActive(true);
+        if (PageNum == 0 && OpenTutor)
+        {
+            InvShow.Play("OpenTabInv", 0, 0);
+            PrevButt.SetActive(false);
+        }
+
+        else if (PageNum != 0 && OpenTutor)
+        {
+            InvShow.Play("NotInvPage", 0, 0);
+            PrevButt.SetActive(true);
+        }
         if (PageNum == PageCount - 1) NextButt.SetActive(false);
         if (PageNum < PageCount - 1) NextButt.SetActive(true);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GetDesignDoll : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GetDesignDoll : MonoBehaviour
     public PlayerPickUpItem playpickUp;
 
     public int PageNum;
-
+    int dollCount;
 
     [Header("---- Audio ----")]
     public AudioSource AudioSound;
@@ -22,6 +23,7 @@ public class GetDesignDoll : MonoBehaviour
     [SerializeField] int dollDesingID;
     public int DollColorID { get { return dollDesingID; } set { dollDesingID = value; } }
 
+    public UnityEvent FinishDoll1;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +68,8 @@ public class GetDesignDoll : MonoBehaviour
     {
         if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
         {
+            dollCount++;
+            if (dollCount == 1) FinishDoll1.Invoke();
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
             inventoryManager.AddItem(FinishDoll[DollColorID]);

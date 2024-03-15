@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public TabTutorial tabTutorial;
     public CrossAnim crossAnim;
      TutorialNote Tunote;
+    private RollClothColor pieceClothGet;
     public TutorialNote tunote { get { return Tunote; } set { Tunote = value; } }
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
@@ -1159,7 +1160,7 @@ public class PlayerAttack : MonoBehaviour
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "WorkShopDesk")
-            {
+            {              
                 ItemText.SetActive(true);
                 ItemName.text = "DeskWorkShop [E]";
                 InterectItem = true;
@@ -1267,6 +1268,9 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (playerPickUpItem.HaveScissor)
                 {
+                    pieceClothGet = hitevent.collider.gameObject.GetComponent<RollClothColor>();
+                    pieceClothGet.OpecCloth = true;
+                    pieceClothGet.DelayCloseCloth = 0.1f;
                     ItemText.SetActive(true);
                     ItemName.text = "Cut [Left Click]";
                     InterectItem = true;
@@ -1278,6 +1282,15 @@ public class PlayerAttack : MonoBehaviour
                     InterectItem = true;
                 }
             }
+            else if (hitevent.collider.gameObject.tag != "RollCloth")
+            {
+                if (pieceClothGet != null)
+                {
+                    pieceClothGet.OpecCloth = false ;
+                    pieceClothGet = null;
+                }
+            }
+
             else if (hitevent.collider.gameObject.tag == "PieceClothRed" || hitevent.collider.gameObject.tag == "PieceClothBlue"
                 || hitevent.collider.gameObject.tag == "PieceClothGreen" || hitevent.collider.gameObject.tag == "PieceClothYellow")
             {
@@ -1300,6 +1313,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 InterectItem = false;
                 ItemText.SetActive(false);
+                pieceClothGet = null;
             }
         }
         else
