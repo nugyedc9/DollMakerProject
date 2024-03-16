@@ -410,14 +410,14 @@ public class PlayerAttack : MonoBehaviour
         #region Map pause tutorial
         if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+           /* if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (DelayEse <= 0 && !PCam.EndGame)
                 {
                     if (!isPause) PauseGame();
                     else ResumeGame();
                 }
-            }
+            }*/
         }
 
         if ( playerPickUpItem.OnNote)

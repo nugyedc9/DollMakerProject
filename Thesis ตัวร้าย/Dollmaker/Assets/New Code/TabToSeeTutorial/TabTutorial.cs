@@ -13,6 +13,10 @@ public class TabTutorial : MonoBehaviour
     public GameObject[] Tutorial;
     public GameObject GuideBook ,FullInventory, PrevButt, NextButt;
 
+    [Header("Text Objective")]
+    public GameObject Sub;
+    public Animator Animtext;
+
     [Header("Story boxCol")]
     public GameObject _2StoryCanWalk;
     public GameObject ObjectivepostIt;
@@ -34,7 +38,7 @@ public class TabTutorial : MonoBehaviour
 
     private void Awake()
     {
-        PageCount = 8;
+        PageCount = Tutorial.Length;
     }
 
     // Update is called once per frame
@@ -46,6 +50,7 @@ public class TabTutorial : MonoBehaviour
             {
                 if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
                 {
+                    PageSelect(0);
                     OpenTutor = true;
                     InvShow.enabled = true;
                     PlayAnimInvTab = true;
@@ -53,6 +58,7 @@ public class TabTutorial : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;                    
                     inputManager.OnTab = true;
                    // InvShow.Play("OpenTabInv", 0, 0);
+
                     
                     if(!Hit_2Story)
                         _2StoryCanWalk.SetActive(true);
@@ -64,6 +70,47 @@ public class TabTutorial : MonoBehaviour
                     }
                 }
                 else if(OpenTutor)
+                {
+                  
+                    PlayAnimInvTab = true;
+                    OpenTutor = false;
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    inputManager.OnTab = false;
+                    InvShow.Play("CloseTableInv", 0, 0);
+
+                    Animtext.Play("MainToDo", 0, 0);
+                    Sub.SetActive(false);
+
+                    Hit_2Story = true;
+                    Hit_5Story = true;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
+                {
+                    PageSelect(9);
+                    OpenTutor = true;
+                    InvShow.enabled = true;
+                    PlayAnimInvTab = true;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    inputManager.OnTab = true;
+                    // InvShow.Play("OpenTabInv", 0, 0);
+
+
+                    if (!Hit_2Story)
+                        _2StoryCanWalk.SetActive(true);
+                    if (!Hit_5Story)
+                    {
+                        _6Story.SetActive(true);
+                        ObjectivepostIt.SetActive(true);
+                        OpenObjective = true;
+                    }
+                }
+                else if (OpenTutor)
                 {
                     PlayAnimInvTab = true;
                     OpenTutor = false;
@@ -79,7 +126,7 @@ public class TabTutorial : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(OpenTutor)
             {
@@ -94,7 +141,7 @@ public class TabTutorial : MonoBehaviour
                 Hit_2Story = true;
                 Hit_5Story = true;
             }
-        }
+        }*/
 
         if(OpenTutor)
         {
@@ -114,12 +161,16 @@ public class TabTutorial : MonoBehaviour
         if (PageNum == 0 && OpenTutor)
         {
             InvShow.Play("OpenTabInv", 0, 0);
+            Sub.SetActive(true);
+            Animtext.Play("Opentab", 0, 0);
             PrevButt.SetActive(false);
         }
 
         else if (PageNum != 0 && OpenTutor)
         {
             InvShow.Play("NotInvPage", 0, 0);
+            Sub.SetActive(false);
+            Animtext.Play("Idle", 0, 0);
             PrevButt.SetActive(true);
         }
         if (PageNum == PageCount - 1) NextButt.SetActive(false);

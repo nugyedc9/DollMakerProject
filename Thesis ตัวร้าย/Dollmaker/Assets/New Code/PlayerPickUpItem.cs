@@ -39,6 +39,9 @@ public class PlayerPickUpItem : MonoBehaviour
     public GameObject ScissorNote;
     bool _1Cross, _1Scissor;
 
+    [Header("Note PickUp")]
+    public GameObject Note;
+
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
@@ -232,8 +235,8 @@ public class PlayerPickUpItem : MonoBehaviour
                     documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
                     if (documentID.DocID == 0)
                     {
-                        _5Story.SetActive(true);
-                        BookGuide.PageCount++;
+                        _5Story.SetActive(true);    
+                        Note.SetActive(true);
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
