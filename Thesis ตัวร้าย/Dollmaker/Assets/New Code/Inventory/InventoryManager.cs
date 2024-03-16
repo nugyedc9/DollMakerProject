@@ -369,8 +369,9 @@ public PlayerPickUpItem playerPickUpItem;
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("EyeWash"))
             {
-               
+                ItemOnHand[5].SetActive(true);
                 playerPickUpItem.HealOnhand = true;
+
                 if (drop)
                 {
                     DropitemPrefabs(DropPoint, 18);
@@ -380,7 +381,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
             else
             {
-          
+                ItemOnHand[5].SetActive(false);
                 playerPickUpItem.HealOnhand = false;
             }
             #endregion

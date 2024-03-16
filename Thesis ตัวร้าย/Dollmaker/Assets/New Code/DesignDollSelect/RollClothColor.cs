@@ -14,6 +14,7 @@ public class RollClothColor : MonoBehaviour
     public bool OpecCloth { get { return opencloth; } set { opencloth = value; } }
     private float delayCloseCloth;
     public float DelayCloseCloth { get { return delayCloseCloth; } set {  delayCloseCloth = value; } }
+    public int ClothCount;
 
 
     public void DropitemPrefabs()
@@ -31,6 +32,11 @@ public class RollClothColor : MonoBehaviour
                 selectThis();
             }
             else noneSelect();
+
+            if (ClothCount == 0)
+            {
+                spriteRenderer.sprite = sprite[2];
+            }
         }
 
 
@@ -43,6 +49,8 @@ public class RollClothColor : MonoBehaviour
         {
             OpecCloth = false;
         }
+
+
     }
 
     public void selectThis()

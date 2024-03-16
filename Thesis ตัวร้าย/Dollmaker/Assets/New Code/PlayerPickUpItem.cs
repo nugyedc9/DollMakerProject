@@ -250,13 +250,19 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         if (HaveScissor && !BookGuide.OpenTutor)
                         {
-                            audioSource.clip = CutClothS;
-                            audioSource.Play();
-                            if (!ScrissorAnim.GetCurrentAnimatorStateInfo(0).IsName("cutanima"))
-                                ScrissorAnim.Play("cutanima", 0, 0);
+                           
 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
-                            pieceClothGet.DropitemPrefabs();
+                            if (pieceClothGet.ClothCount != 0)
+                            {
+                                pieceClothGet.DropitemPrefabs();
+                                audioSource.clip = CutClothS;
+                                audioSource.Play();
+                                if (!ScrissorAnim.GetCurrentAnimatorStateInfo(0).IsName("cutanima"))
+                                    ScrissorAnim.Play("cutanima", 0, 0);
+
+                                pieceClothGet.ClothCount--;
+                            }
                             /*   if (pieceClothGet.pieceClothID == 0)
                                {
                                    inventoryManager.AddItem(itemPickUp[6]);

@@ -19,7 +19,6 @@ public class TabTutorial : MonoBehaviour
 
     [Header("Story boxCol")]
     public GameObject _2StoryCanWalk;
-    public GameObject ObjectivepostIt;
     public GameObject _6Story;
 
     [Header("---- Audio ----")]
@@ -65,7 +64,6 @@ public class TabTutorial : MonoBehaviour
                     if (!Hit_5Story)
                     {
                         _6Story.SetActive(true);
-                        ObjectivepostIt.SetActive(true);
                         OpenObjective = true;
                     }
                 }
@@ -106,7 +104,6 @@ public class TabTutorial : MonoBehaviour
                     if (!Hit_5Story)
                     {
                         _6Story.SetActive(true);
-                        ObjectivepostIt.SetActive(true);
                         OpenObjective = true;
                     }
                 }
@@ -119,6 +116,8 @@ public class TabTutorial : MonoBehaviour
                     inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
 
+                    Animtext.Play("MainToDo", 0, 0);
+                    Sub.SetActive(false);
 
                     Hit_2Story = true;
                     Hit_5Story = true;
@@ -176,11 +175,6 @@ public class TabTutorial : MonoBehaviour
         if (PageNum == PageCount - 1) NextButt.SetActive(false);
         if (PageNum < PageCount - 1) NextButt.SetActive(true);
 
-        if (OpenObjective)
-        {
-            if (PageNum >= 8) ObjectivepostIt.SetActive(false);
-            else if (PageNum < 8) ObjectivepostIt.SetActive(true);
-        }
       
 
     }
