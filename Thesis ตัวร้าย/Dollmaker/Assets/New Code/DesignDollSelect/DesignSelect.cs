@@ -145,4 +145,10 @@ public class DesignSelect : MonoBehaviour
       //  Debug.Log("click");
     }
 
+
+    public void CloseClothSwing()
+    {
+        ClothOnSwing[clothColorID].SetActive(false);
+    }
+
 }

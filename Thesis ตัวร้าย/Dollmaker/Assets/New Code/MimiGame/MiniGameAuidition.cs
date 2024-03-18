@@ -17,6 +17,7 @@ public class MiniGameAuidition : MonoBehaviour
     public CanPlayMini1 canPlay;
     public ClothColorDrop clothColorDrop;
     public GhostStateManager GhostcomeTocheck;
+    public PlayerChangeCam Pcam;
 
     [Header("Bar")]
     public MiniG2Bar Bar;
@@ -71,7 +72,7 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject CutHere;
 
     public GameObject FailNote;
-    bool _1Fail, ActiveMachine, Exittable;
+    bool _1Fail, ActiveMachine, Exittable, FailClick;
     int FinishDoll;
 
     [Header("Event")]
@@ -372,7 +373,9 @@ public class MiniGameAuidition : MonoBehaviour
                     ClothMove.enabled = false;
                     // print("LostItem");            
                     //canPlay.FinishDoll();
+                    Pcam.HaveCloth = false;
                     canPlay.Cloth = false;
+                    designSelect.CloseClothSwing();
                     inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
                     FinishDoll++;
                     if(FinishDoll == 1) Finish1.Invoke();
@@ -386,6 +389,7 @@ public class MiniGameAuidition : MonoBehaviour
 
         if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
         {
+            FailClick = true;
             if (!_1Fail)
             {
                 FailNote.SetActive(true);
@@ -442,6 +446,7 @@ public class MiniGameAuidition : MonoBehaviour
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
                 GetHurt = false;
+                FailClick = false;
                 _Currentstate = MiniGameAuditionState.Start;
             }
             //print("Fail");
@@ -463,7 +468,7 @@ public class MiniGameAuidition : MonoBehaviour
         if (Exittable)
         {
             print("Exit");
-            if (cutLine)
+            if (!FailClick)
             {
                 _Currentstate = MiniGameAuditionState.LeaveDesk;
             }

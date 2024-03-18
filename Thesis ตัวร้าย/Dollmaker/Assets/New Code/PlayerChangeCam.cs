@@ -19,7 +19,7 @@ public class PlayerChangeCam : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera SleepCam;
 
     public PlayerAttack Pattack;
-    public Animator TutorialCam2, TutorialCam3, TutorialCam4;
+    public Animator DropDollTab;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -37,7 +37,7 @@ public class PlayerChangeCam : MonoBehaviour
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
     public GameObject HandSwing;
-    public GameObject miniGame, ItemOnPlayer, TextOnPlayer, pushHere, DropHere;
+    public GameObject miniGame, ItemOnPlayer, TextOnPlayer, DropDollArrow, DropHere;
 
     [Header("SelectDesign")]
     public Animator InvAnim;
@@ -66,9 +66,12 @@ public class PlayerChangeCam : MonoBehaviour
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
     public BoxCollider _1Story, ClothBox, DollBox, BoxAfterTutorCam;
+    public GameObject BoxRollCloth;
     public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
 
+    [SerializeField] bool haveCloth;
+    public bool HaveCloth { get { return haveCloth; } set { haveCloth = value; } }
     [SerializeField] bool canplayMinigame;
     public bool CanplayMinigame { get {  return canplayMinigame; } set { canplayMinigame = value; } }
 
@@ -275,6 +278,10 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
+                        if (!HaveCloth)
+                        {
+                            BoxRollCloth.SetActive(true);
+                        }
                         ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
@@ -319,7 +326,8 @@ public class PlayerChangeCam : MonoBehaviour
                         {
                             DollTutorial.SetActive(true);
                         }*/
-
+                        DropDollArrow.SetActive(true);
+                        DropDollTab.Play("IdleDropdoll");
                         WorkShopBoxCol.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
@@ -441,6 +449,8 @@ public class PlayerChangeCam : MonoBehaviour
                     }
                     else if (ChangePOV.IsActiveCamera(DeskShopView))
                     {
+
+                        BoxRollCloth.SetActive(false);
                         ClothBox.enabled    = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
@@ -484,7 +494,7 @@ public class PlayerChangeCam : MonoBehaviour
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
-
+                        DropDollArrow.SetActive(false);
                         if (!_1Doll)
                             DollTutorial.SetActive(false);
                         if(!_1clothDoll)
@@ -611,6 +621,9 @@ public class PlayerChangeCam : MonoBehaviour
     {
         if (ChangePOV.IsActiveCamera(DeskShopView))
         {
+            BoxRollCloth.SetActive(false);
+            DropDollArrow.SetActive(true);
+            DropDollTab.Play("IdleDropdoll");
             ClothBox.enabled = true;
             WorkShopBoxCol.enabled = false;
             //_InputManager.StopWalk();

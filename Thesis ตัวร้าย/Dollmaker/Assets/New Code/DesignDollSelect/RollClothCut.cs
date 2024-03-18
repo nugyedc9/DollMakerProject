@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class RollClothCut : MonoBehaviour, IDropHandler
 {
     public DesignSelect BookCheck;
+    public PlayerChangeCam PCam;
 
     public int ClothId;
     public GameObject pieceCloth, HitBoxDrop;
@@ -44,6 +45,7 @@ public class RollClothCut : MonoBehaviour, IDropHandler
             pieceCloth.SetActive(true);
             HitBoxDrop.SetActive(false);
             BookCheck.ClothColorID = ClothId;
+            PCam.HaveCloth = true;
             BookCheck.HaveCloth = true;
           //  print("Drop");
         }
