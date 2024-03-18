@@ -278,7 +278,7 @@ public class PlayerChangeCam : MonoBehaviour
                         ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
-                        DesignSelect.SetActive(true);
+                      /*  DesignSelect.SetActive(true);*/
                         Book.SetActive(true);
                         Allline.SetActive(true);
                         ItemOnPlayer.SetActive(false);
@@ -302,13 +302,13 @@ public class PlayerChangeCam : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
-                    {                   
-                        DollBox.enabled = false;
+                    {
+                        /*DollBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
-                        if (!DropDoll.CloseboxDropDoll)
-                            DesignDollSelect.SetActive(true);
+                      *//*  if (!DropDoll.CloseboxDropDoll)
+                            DesignDollSelect.SetActive(true);*//*
                         BookDoll.SetActive(true);
                       //  TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
@@ -318,6 +318,24 @@ public class PlayerChangeCam : MonoBehaviour
                         if (!_1Doll)
                         {
                             DollTutorial.SetActive(true);
+                        }*/
+
+                        WorkShopBoxCol.enabled = false;
+                        _InputManager.StopWalk();
+                        Throwitem.StopAttack();
+                        ItemOnPlayer.SetActive(false);
+                        //  TextOnPlayer.SetActive(false);
+                        CheckCanplayMiniG.OnDesk = true;
+                        CamOnDesk = true;
+                        LookOutGhost = false;
+                        TurnOut.SetActive(true);
+                        TurnIn.SetActive(false);
+                        ChangePOV.SwitchCamera(PushClothOnDollView);
+                        StartCoroutine(DelayCamera());
+
+                        if (!_1Sewing)
+                        {
+                            sewingTutorial.SetActive(true);
                         }
 
                     }
@@ -364,7 +382,7 @@ public class PlayerChangeCam : MonoBehaviour
             if (!OnCutScene)
             {
                 ShowMouse();
-                if (ChangePOV.IsActiveCamera(WorkShopView))
+                if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                 {
                     if (canplayMinigame)
                     {
@@ -426,7 +444,7 @@ public class PlayerChangeCam : MonoBehaviour
                         ClothBox.enabled    = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
-                        DesignSelect.SetActive(false);
+                       /* DesignSelect.SetActive(false);*/
                         Book.SetActive(false);
                         Allline.SetActive(false);
                         ItemOnPlayer.SetActive(true);
@@ -461,7 +479,7 @@ public class PlayerChangeCam : MonoBehaviour
                         DollBox.enabled = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
-                        DesignDollSelect.SetActive(false);
+                     /*   DesignDollSelect.SetActive(false);*/
                         BookDoll.SetActive(false);
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
@@ -588,5 +606,31 @@ public class PlayerChangeCam : MonoBehaviour
             TutorialTimeIncode = SleepTimer;
         }
     }
+
+    public void ChangeToSwing()
+    {
+        if (ChangePOV.IsActiveCamera(DeskShopView))
+        {
+            ClothBox.enabled = true;
+            WorkShopBoxCol.enabled = false;
+            //_InputManager.StopWalk();
+            Throwitem.StopAttack();
+            ItemOnPlayer.SetActive(false);
+            //  TextOnPlayer.SetActive(false);
+            CheckCanplayMiniG.OnDesk = true;
+            CamOnDesk = true;
+            LookOutGhost = false;
+            TurnOut.SetActive(true);
+            TurnIn.SetActive(false);
+            ChangePOV.SwitchCamera(PushClothOnDollView);
+            StartCoroutine(DelayCamera());
+
+            if (!_1Sewing)
+            {
+                sewingTutorial.SetActive(true);
+            }
+        }
+    }
+
 
 }

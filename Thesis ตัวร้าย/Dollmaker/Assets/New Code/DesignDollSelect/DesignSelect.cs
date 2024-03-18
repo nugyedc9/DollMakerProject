@@ -14,7 +14,13 @@ public class DesignSelect : MonoBehaviour
     public PlayerChangeCam PCam;
     public PlayerPickUpItem playPickup;
     public InventoryManager inventoryManager;
+    public CanPlayMini1 minigame;
+    public ClothColorDrop clothSwingID;
     public Item[] PieceCloth;
+
+
+    [Header("ClothOnSwing")]
+    public GameObject[] ClothOnSwing;
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
@@ -36,6 +42,7 @@ public class DesignSelect : MonoBehaviour
 
     [SerializeField] int clothColorID;
     public int ClothColorID {  get { return clothColorID; } set {  clothColorID = value; } }
+
 
 
     // Start is called before the first frame update
@@ -121,13 +128,17 @@ public class DesignSelect : MonoBehaviour
         {
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-            ClothColor[PageNum].SetActive(false);           
+            ClothColor[clothColorID].SetActive(false);           
             lineShow.CloseAllLine();
             ClothCutline[clothColorID].SetActive(false);
-            inventoryManager.AddItem(PieceCloth[PageNum]);
+            // inventoryManager.AddItem(PieceCloth[LockDesign]);
+
+            minigame.Cloth = true;
+            ClothOnSwing[clothColorID].SetActive(true);
             BoxColPushCloth.SetActive(true);
             FirstLineCut[clothColorID].SetActive(true);
             FinishButt.SetActive(false);
+            PCam.ChangeToSwing();
             ConfirmThis = false;
             HaveCloth = false;
         }

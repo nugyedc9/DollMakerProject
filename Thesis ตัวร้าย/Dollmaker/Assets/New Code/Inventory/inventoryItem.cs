@@ -11,6 +11,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("Image")]
     public Image image;
 
+    private RollClothColor RollCloth;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = 1;
@@ -39,9 +40,9 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     { 
         transform.position = Input.mousePosition;
-      /*  Vector2 curremtMousePosition = eventData.position;
-        Vector2 diff = curremtMousePosition - lastMousePosition;
-        lastMousePosition = curremtMousePosition;*/
+        /*  Vector2 curremtMousePosition = eventData.position;
+          Vector2 diff = curremtMousePosition - lastMousePosition;
+          lastMousePosition = curremtMousePosition;*/
 
     }
 
@@ -50,6 +51,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.localPosition = orginalPosition;
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+
     }
 
     public void InitialiseItem(Item newItem)

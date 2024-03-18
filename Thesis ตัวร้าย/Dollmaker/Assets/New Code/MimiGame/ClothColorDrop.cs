@@ -41,11 +41,11 @@ public class ClothColorDrop : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {/*
         if (!IsRed) { ClothColor[0].SetActive(false); }
         if (!IsBlue) { ClothColor[1].SetActive(false); }
         if (!IsGreen) { ClothColor[2].SetActive(false); }
-        if (!IsYellow) { ClothColor[3].SetActive(false); }
+        if (!IsYellow) { ClothColor[3].SetActive(false); }*/
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
