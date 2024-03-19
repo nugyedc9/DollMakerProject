@@ -13,7 +13,7 @@ public class CanPlayMini1 : MonoBehaviour
     int ReadNumSpawn;
     public int DestinationSpawnAmount;*/
 
-    public GameObject DropClothHere, minigame;
+    public GameObject  minigame;
     public bool  Doll;
     [SerializeField] bool cloth;
     public bool Cloth { get {  return cloth; }  set { cloth = value; } }
@@ -26,7 +26,7 @@ public class CanPlayMini1 : MonoBehaviour
     public int TotalDollHave { get { return totalDollHave; } set { totalDollHave = value; } }
     public PlayerChangeCam DeskView;
     public MiniGameAuidition minigamestate;
-    public ClothColorDrop clothColorDrop;
+   // public ClothColorDrop clothColorDrop;
     public TextMeshProUGUI DollTotel;
     public TextMeshProUGUI ClothTotel;
     public GameObject TotalDollCanva;
@@ -65,22 +65,17 @@ public class CanPlayMini1 : MonoBehaviour
             //  TotalDollCanva.SetActive(true);
             if(!DeskView.camOnPerSon)
             CloseMouse();
-            DropClothHere.SetActive(false);
             DeskView.CanplayMinigame = true;
             minigamestate.HaveItem = true;
         }
         else
         {
-            if (onDesk)
-            {
-                DropClothHere.SetActive(true);
-            }
-            else DropClothHere.SetActive(false);
+
 
             DeskView.CanplayMinigame = false;
             minigame.SetActive(false);
             minigamestate.LeaveMinigame();
-            clothColorDrop.Finishmakecloth();
+           // clothColorDrop.Finishmakecloth();
             minigamestate.HaveItem = false;
 
             // player.StopSoundWork();

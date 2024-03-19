@@ -42,7 +42,7 @@ public class PlayerChangeCam : MonoBehaviour
     [Header("SelectDesign")]
     public Animator InvAnim;
     public GameObject DesignSelect;
-    public GameObject Book , Allline;
+    public GameObject Book , Allline, Scissorcanva;
 
     [Header("SelectDollDesign")]
     public GameObject DesignDollSelect;
@@ -78,7 +78,7 @@ public class PlayerChangeCam : MonoBehaviour
     public float TutorialTime1, TutorialTime2, TutorialTime3, TutorialTime4, TimerWakeUP, ghosthenshinTime, SleepTimer;
 
     private bool  CamOnDesk, HaveItem
-        , WakeUp, TimeBool = true, Delay,
+        , WakeUp, TimeBool = true, 
         _1designCloth, _1sewing, _1doll, _1clothDoll,
         _1cutLine;
 
@@ -278,10 +278,12 @@ public class PlayerChangeCam : MonoBehaviour
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
-                        if (!HaveCloth)
+                       if (!HaveCloth)
                         {
                             BoxRollCloth.SetActive(true);
                         }
+
+                        Scissorcanva.SetActive(true);
                         ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
@@ -449,7 +451,7 @@ public class PlayerChangeCam : MonoBehaviour
                     }
                     else if (ChangePOV.IsActiveCamera(DeskShopView))
                     {
-
+                        Scissorcanva.SetActive(false);
                         BoxRollCloth.SetActive(false);
                         ClothBox.enabled    = true;
                         _InputManager.StopWalk();
@@ -621,6 +623,7 @@ public class PlayerChangeCam : MonoBehaviour
     {
         if (ChangePOV.IsActiveCamera(DeskShopView))
         {
+            Scissorcanva.SetActive(false);
             BoxRollCloth.SetActive(false);
             DropDollArrow.SetActive(true);
             DropDollTab.Play("IdleDropdoll");

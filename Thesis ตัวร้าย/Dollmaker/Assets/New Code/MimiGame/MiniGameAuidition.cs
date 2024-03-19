@@ -71,9 +71,10 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
 
-    public GameObject FailNote;
+    public GameObject FailNote, ArrowCufail;
     bool _1Fail, ActiveMachine, Exittable, FailClick;
     int FinishDoll;
+
 
     [Header("Event")]
     public UnityEvent Fail1;
@@ -358,6 +359,7 @@ public class MiniGameAuidition : MonoBehaviour
                 }
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
+                print("Exit");
                 _Currentstate = MiniGameAuditionState.Start;
             }
 
@@ -393,6 +395,7 @@ public class MiniGameAuidition : MonoBehaviour
             if (!_1Fail)
             {
                 FailNote.SetActive(true);
+                ArrowCufail.SetActive(true);
                 _1Fail = true;
             }
             ScrissorCutClose.SetActive(true);
@@ -428,6 +431,7 @@ public class MiniGameAuidition : MonoBehaviour
             }
             if (cutLine)
             {
+                ArrowCufail.SetActive(false);
                 ScrissorCutClose.SetActive(false);
                 audioSource.clip = CutLineS;
                 audioSource.Play();
@@ -467,10 +471,10 @@ public class MiniGameAuidition : MonoBehaviour
 
         if (Exittable)
         {
-            print("Exit");
+       
             if (!FailClick)
             {
-                _Currentstate = MiniGameAuditionState.LeaveDesk;
+                _Currentstate = MiniGameAuditionState.LeaveDesk;  
             }
             else
             {

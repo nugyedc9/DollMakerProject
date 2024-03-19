@@ -46,6 +46,7 @@ public class RollClothCut : MonoBehaviour, IDropHandler
             HitBoxDrop.SetActive(false);
             BookCheck.ClothColorID = ClothId;
             PCam.HaveCloth = true;
+            PCam._1DesignCloth = true;
             BookCheck.HaveCloth = true;
           //  print("Drop");
         }

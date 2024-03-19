@@ -8,7 +8,7 @@ public class DesignSelect : MonoBehaviour
     public GameObject[] BookPage;
     public GameObject[] ClothColor;
     public GameObject[] ClothCutline, FirstLineCut;
-    public GameObject BoxColPushCloth;
+  //  public GameObject BoxColPushCloth;
     public GameObject NextButt,PrevButt,SelectButt,FinishButt;
 
     public PlayerChangeCam PCam;
@@ -56,7 +56,7 @@ public class DesignSelect : MonoBehaviour
     {
         if (HaveCloth)
         {
-            BoxColPushCloth.SetActive(false);
+           // BoxColPushCloth.SetActive(false);
             ClothColor[ClothColorID].SetActive(true);
             lineShow = ClothCutline[clothColorID].GetComponent<LineShow>();
             BookPage[PageNum].SetActive(true);
@@ -135,7 +135,7 @@ public class DesignSelect : MonoBehaviour
 
             minigame.Cloth = true;
             ClothOnSwing[clothColorID].SetActive(true);
-            BoxColPushCloth.SetActive(true);
+          //  BoxColPushCloth.SetActive(true);
             FirstLineCut[clothColorID].SetActive(true);
             FinishButt.SetActive(false);
             PCam.ChangeToSwing();
