@@ -22,7 +22,11 @@ public class Door : MonoBehaviour
 
     public UnityEvent IffopenDoor;
     public UnityEvent IffcloseDoor;
+    public UnityEvent afterGetDoll;
 
+
+    bool _afterDoll;
+    public bool Aftergetdoll { get { return _afterDoll; } set { _afterDoll = value; } }
 
      [SerializeField] float delayDooropenEvent;
     public float DelayDoorOpenEvent { get { return delayDooropenEvent; } set { delayDooropenEvent = value; } }
@@ -59,6 +63,13 @@ public class Door : MonoBehaviour
                 DoorSound.Play();
                 doorAni.Play("Door_open", 0, 0);
                 D = true;
+
+                if (Aftergetdoll)
+                {
+                    afterGetDoll.Invoke();
+                    Aftergetdoll = false;
+                }
+
             }
             else
             {
