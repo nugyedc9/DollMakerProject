@@ -73,13 +73,14 @@ public class MiniGameAuidition : MonoBehaviour
 
     public GameObject FailNote, ArrowCufail;
     bool _1Fail, ActiveMachine, Exittable, FailClick;
-    int FinishDoll;
+    int FinishDoll, anomalyCount;
 
 
     [Header("Event")]
     public UnityEvent Fail1;
     public UnityEvent Fail2, Fail3;
     public UnityEvent Finish1;
+    public UnityEvent AnomalyEvent1, AnomalyEvent2;
 
     // Start is called before the first frame update
     void Start()
@@ -107,14 +108,14 @@ public class MiniGameAuidition : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            HoldSpace = false; 
+            HoldSpace = false;
             Needle.enabled = false;
             ClothMove.enabled = false;
             handMove.enabled = false;
-      
+
         }
 
-        if(!HoldSpace)
+        if (!HoldSpace)
         {
             if (ActiveMachine)
             {
@@ -133,7 +134,7 @@ public class MiniGameAuidition : MonoBehaviour
             }
 
             Bar.SetMinBar(curBar);
-            if(curBar <= 0) curBar = 0;
+            if (curBar <= 0) curBar = 0;
             if (!NeedleWorking)
             {
                 Needle.enabled = false;
@@ -168,7 +169,7 @@ public class MiniGameAuidition : MonoBehaviour
             {
                 Needle.enabled = true;
                 ClothMove.enabled = true;
-                handMove.enabled= true;
+                handMove.enabled = true;
                 handMove.Play("Handsewing");
 
                 if (CurrectPass == 5)
@@ -180,17 +181,17 @@ public class MiniGameAuidition : MonoBehaviour
                 if (!printPeek)
                 {
                     // print(AuditionPass.Peek());                  
-                    ClothPlayanim  -= Time.deltaTime;
-                    if(ClothPlayanim <= 0)
+                    ClothPlayanim -= Time.deltaTime;
+                    if (ClothPlayanim <= 0)
                     {
                         printPeek = true;
                     }
-                    
+
                 }
                 else
                 {
                     ClothMove.enabled = false;
-                    handMove.enabled = false;                  
+                    handMove.enabled = false;
                 }
                 if (AuditionPass.Peek() == 0)
                 {
@@ -215,7 +216,7 @@ public class MiniGameAuidition : MonoBehaviour
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
                         CutHere.SetActive(true);
-                        printPeek = false;cutLine = false;
+                        printPeek = false; cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(0);
                     }
@@ -313,7 +314,7 @@ public class MiniGameAuidition : MonoBehaviour
             }
 
 
-            
+
 
             if (_Currentstate == MiniGameAuditionState.FinishSkillCheck)
             {
@@ -335,15 +336,15 @@ public class MiniGameAuidition : MonoBehaviour
                 CurrectPass = 0;
                 Finish = true;
                 _Currentstate = MiniGameAuditionState.Start;
-              //  print("finish");
+                //  print("finish");
             }
         }
 
         if (_Currentstate == MiniGameAuditionState.LeaveDesk)
-        {         
+        {
             machineActive.enabled = false;
             ActiveMachine = false;
-          //  Debug.Log("Leave");
+            //  Debug.Log("Leave");
             if (HoldSpace)
             {
                 AuditionPass.Clear();
@@ -365,12 +366,13 @@ public class MiniGameAuidition : MonoBehaviour
 
         }
 
-        if(_Currentstate == MiniGameAuditionState.ItemLost)
+        if (_Currentstate == MiniGameAuditionState.ItemLost)
         {
             if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
             {
                 if (Finish)
                 {
+                    anomalyCount++;
                     Needle.enabled = false;
                     ClothMove.enabled = false;
                     // print("LostItem");            
@@ -380,12 +382,12 @@ public class MiniGameAuidition : MonoBehaviour
                     designSelect.CloseClothSwing();
                     inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
                     FinishDoll++;
-                    if(FinishDoll == 1) Finish1.Invoke();
+                    if (FinishDoll == 1) Finish1.Invoke();
                     Finish = false;
                 }
                 _Currentstate = MiniGameAuditionState.LeaveDesk;
             }
-            
+
         }
 
 
@@ -413,6 +415,7 @@ public class MiniGameAuidition : MonoBehaviour
                 Needle.enabled = false;
                 ClothMove.enabled = false;
 
+                anomalyCount++;
                 failCount++;
                 if (failCount == 1)
                     Fail1.Invoke();
@@ -456,7 +459,7 @@ public class MiniGameAuidition : MonoBehaviour
         }
 
         #region protoGusTimer
-        if(Fail1Delay > 0)
+        if (Fail1Delay > 0)
         {
             Fail1Delay -= Time.deltaTime;
         }
@@ -470,10 +473,10 @@ public class MiniGameAuidition : MonoBehaviour
 
         if (Exittable)
         {
-       
+
             if (!FailClick)
             {
-                _Currentstate = MiniGameAuditionState.LeaveDesk;  
+                _Currentstate = MiniGameAuditionState.LeaveDesk;
             }
             else
             {
@@ -485,10 +488,17 @@ public class MiniGameAuidition : MonoBehaviour
 
 
         if (curBar >= maxBar)
-        {   
-            _Currentstate = MiniGameAuditionState.ItemLost;      curBar = 0;   
+        {
+            _Currentstate = MiniGameAuditionState.ItemLost; curBar = 0;
         }
-        
+
+
+        #region anomalyEventPlay
+        if (anomalyCount == 2)
+            AnomalyEvent1.Invoke();
+        if (anomalyCount == 3) AnomalyEvent2.Invoke();
+        #endregion  
+
     }
 
     #region SpawnThing
