@@ -19,7 +19,7 @@ public class TabTutorial : MonoBehaviour
 
     [Header("Story boxCol")]
     public GameObject _2StoryCanWalk;
-    public GameObject _6Story;
+    public GameObject _6Story, Tutorialnote;
 
     [Header("---- Audio ----")]
     public AudioSource AudioSound;
@@ -175,7 +175,15 @@ public class TabTutorial : MonoBehaviour
         if (PageNum == PageCount - 1) NextButt.SetActive(false);
         if (PageNum < PageCount - 1) NextButt.SetActive(true);
 
-      
+       if(OpenObjective && PageNum != 8 && openTutor)
+        {
+            Tutorialnote.SetActive(true);
+        }
+       else if(PageNum == 8 && OpenTutor)
+        {
+            OpenObjective = false;
+            Tutorialnote.SetActive(false);
+        }
 
     }
 

@@ -395,7 +395,6 @@ public class MiniGameAuidition : MonoBehaviour
             if (!_1Fail)
             {
                 FailNote.SetActive(true);
-                ArrowCufail.SetActive(true);
                 _1Fail = true;
             }
             ScrissorCutClose.SetActive(true);
