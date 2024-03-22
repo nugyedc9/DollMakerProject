@@ -12,6 +12,8 @@ public class EventAnomaly : MonoBehaviour
 
     public UnityEvent GranmaSeeYou;
     public UnityEvent DoorInSwingRoom;
+    public UnityEvent LittleGirlOut;
+    public UnityEvent LittleGirlOutBehind;
 
     bool LookAtTarget;
 
@@ -19,14 +21,32 @@ public class EventAnomaly : MonoBehaviour
     {
         var planes = GeometryUtility.CalculateFrustumPlanes(c);
         var point = target.transform.position;
+        
+        Vector3 cameraPosition = c.transform.position;
+        Vector3 direction = point - cameraPosition;
+        float distance = direction.magnitude;
+
 
         foreach (var plane in planes)
         {
+
             if(plane.GetDistanceToPoint(point) < 0)
             {
                 return false;
             }
         }
+
+        
+        RaycastHit hit;
+        if (Physics.Raycast(cameraPosition, direction.normalized, out hit, distance))
+        {
+            if (hit.collider.gameObject != target)
+            {
+                return false;
+            }
+        }
+
+
         return true;
     }
 
@@ -38,11 +58,25 @@ public class EventAnomaly : MonoBehaviour
             if (IDEvent == 1)
             {
                 GranmaSeeYou.Invoke();
+                LookAtTarget = true;
+                DestroyOBJDelay = 3;
                 IDEvent = 0;
             }
             if(IDEvent == 2)
             {
                 LookAtTarget = true;
+            }
+            if(IDEvent == 3)
+            {
+                LittleGirlOut.Invoke();
+                LookAtTarget = true;
+                IDEvent = 0;
+            }
+            if(IDEvent == 4)
+            {
+                LookAtTarget = true;
+                LittleGirlOutBehind.Invoke();
+                IDEvent = 0;
             }
 
         }
@@ -53,11 +87,16 @@ public class EventAnomaly : MonoBehaviour
                 DoorInSwingRoom.Invoke();
                 IDEvent = 0;
             }
+            if(IDEvent == 3)
+            {
+                IDEvent = 4;
+            }
+          
 
         }
 
-          if(DestroyOBJDelay > 0) DestroyOBJDelay -= Time.deltaTime;
-          else if (DestroyOBJDelay < 0)
+          if(DestroyOBJDelay > 0&& LookAtTarget) DestroyOBJDelay -= Time.deltaTime;
+          else if (DestroyOBJDelay < 0 )
         {
             Destroy(target);
             DestroyOBJDelay = 0;
