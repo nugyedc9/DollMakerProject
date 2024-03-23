@@ -34,6 +34,10 @@ public class PlayerChangeCam : MonoBehaviour
     public InputManager _InputManager;
     public GameObject Objective;
 
+    [Header("UI Player")]
+    public GameObject PlayerMainOBJUI;
+    public GameObject PlayerHpUI, StaminaUI;
+
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
     public GameObject HandSwing;
@@ -238,6 +242,8 @@ public class PlayerChangeCam : MonoBehaviour
         }
 
 
+        UiOnPlayer();
+
         Ray ray = new Ray(InterectTransform.position, InterectTransform.forward);
         //Debug.DrawRay(InterectTransform.position, InterectTransform.forward);
         if(Physics.Raycast(ray, out RaycastHit hitInfo, InterectRange))
@@ -387,6 +393,8 @@ public class PlayerChangeCam : MonoBehaviour
             CloseInvBut.SetActive(false);
             HandSwing.SetActive(false);
             miniGame.SetActive(false);
+
+
         }
         else
         {
@@ -651,6 +659,21 @@ public class PlayerChangeCam : MonoBehaviour
             {
                 sewingTutorial.SetActive(true);
             }
+        }
+    }
+
+    public void UiOnPlayer()
+    {
+        if (camOnPerSon)
+        {
+            PlayerMainOBJUI.SetActive(true);
+            PlayerHpUI.SetActive(true);
+            StaminaUI.SetActive(true);
+        }
+        else
+        {
+            PlayerMainOBJUI.SetActive(false); PlayerHpUI.SetActive(false);  
+            StaminaUI  .SetActive(false);
         }
     }
 
