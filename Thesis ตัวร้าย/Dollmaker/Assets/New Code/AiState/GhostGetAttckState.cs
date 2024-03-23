@@ -46,11 +46,11 @@ public class GhostGetAttckState : GhostBaseState
 
         if (state.enemyGhost.speed < 1)
         {
-            state.enemyGhost.speed = 1;
+            state.enemyGhost.speed = state.GhostSpeedMin;
         }
-        else if (state.enemyGhost.speed > 1.5f)
+        else if (state.enemyGhost.speed > state.GhostSpeedMin)
         {
-            state.enemyGhost.speed -= 1f * Time.deltaTime;
+            state.enemyGhost.speed -= state.GhostSpeedDown * Time.deltaTime;
         }
 
 

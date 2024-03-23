@@ -41,7 +41,7 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("GhostHP")]
     public float HpGhost;
-    public float HpBeforeHit, HitDelay;
+    public float HpBeforeHit, HitDelay, GhostSpeedDown, GhostSpeedMin;
     public bool PlayerHit;
 
   [Header("Timer Thing")]
