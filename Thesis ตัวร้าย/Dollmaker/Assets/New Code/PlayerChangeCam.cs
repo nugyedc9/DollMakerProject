@@ -265,7 +265,7 @@ public class PlayerChangeCam : MonoBehaviour
                         CheckCanplayMiniG.OnDesk = true;                  
                         CamOnDesk = true;
                         LookOutGhost = false;
-                        TurnOut.SetActive(true);
+                       // TurnOut.SetActive(true);
                         TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(WorkShopView);
                         StartCoroutine(DelayCamera());
@@ -334,6 +334,10 @@ public class PlayerChangeCam : MonoBehaviour
                         {
                             DollTutorial.SetActive(true);
                         }*/
+
+                        if (!DropDoll.CloseboxDropDoll)
+                            DesignDollSelect.SetActive(true); 
+
                         InvOpen.Play("InvOpen");
                         DropDollArrow.SetActive(true);
                         DropDollTab.Play("IdleDropdoll");
@@ -345,7 +349,7 @@ public class PlayerChangeCam : MonoBehaviour
                         CheckCanplayMiniG.OnDesk = true;
                         CamOnDesk = true;
                         LookOutGhost = false;
-                        TurnOut.SetActive(true);
+                       // TurnOut.SetActive(true);
                         TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(PushClothOnDollView);
                         StartCoroutine(DelayCamera());
@@ -635,6 +639,10 @@ public class PlayerChangeCam : MonoBehaviour
     {
         if (ChangePOV.IsActiveCamera(DeskShopView))
         {
+
+            if (!DropDoll.CloseboxDropDoll)
+                DesignDollSelect.SetActive(true);
+
             InvOpen.Play("InvOpen");
             OpenInvBut.SetActive(false);
             Scissorcanva.SetActive(false);
@@ -650,7 +658,7 @@ public class PlayerChangeCam : MonoBehaviour
             CheckCanplayMiniG.OnDesk = true;
             CamOnDesk = true;
             LookOutGhost = false;
-            TurnOut.SetActive(true);
+         //   TurnOut.SetActive(true);
             TurnIn.SetActive(false);
             ChangePOV.SwitchCamera(PushClothOnDollView);
             StartCoroutine(DelayCamera());
