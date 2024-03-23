@@ -89,6 +89,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("CrossAction")]
     [SerializeField] private float CurHpCross;
     public Slider CrossSliber;
+    public float Attackrange;
 
 
     public float curHpCross { get { return CurHpCross; } set { CurHpCross = value; } }
@@ -258,7 +259,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                if (Physics.Raycast(r, out RaycastHit hitinfo, 5))
+                if (Physics.Raycast(r, out RaycastHit hitinfo, Attackrange))
                 {
                     if (hitinfo.collider.gameObject.tag == "Ghost")
                     {
