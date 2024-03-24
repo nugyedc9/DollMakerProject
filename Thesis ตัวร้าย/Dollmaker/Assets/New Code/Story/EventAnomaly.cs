@@ -10,13 +10,15 @@ public class EventAnomaly : MonoBehaviour
     public int IDEvent;
     public float DestroyOBJDelay;
 
+    public bool withoutBlock;
+ public bool LookAtTarget;
+
     public UnityEvent GranmaSeeYou;
     public UnityEvent DoorInSwingRoom;
     public UnityEvent LittleGirlOut;
     public UnityEvent LittleGirlOutBehind;
 
-    bool LookAtTarget;
-
+     
     private bool IsVisible(Camera c, GameObject target)
     {
         var planes = GeometryUtility.CalculateFrustumPlanes(c);
@@ -36,16 +38,17 @@ public class EventAnomaly : MonoBehaviour
             }
         }
 
-        
-        RaycastHit hit;
-        if (Physics.Raycast(cameraPosition, direction.normalized, out hit, distance))
+        if (!withoutBlock)
         {
-            if (hit.collider.gameObject != target)
+            RaycastHit hit;
+            if (Physics.Raycast(cameraPosition, direction.normalized, out hit, distance))
             {
-                return false;
+                if (hit.collider.gameObject != target)
+                {
+                    return false;
+                }
             }
         }
-
 
         return true;
     }

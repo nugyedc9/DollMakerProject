@@ -36,7 +36,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("UI Player")]
     public GameObject PlayerMainOBJUI;
-    public GameObject PlayerHpUI, StaminaUI;
+    public GameObject PlayerHpUI, StaminaUI, CrossBarUI;
 
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
@@ -167,7 +167,7 @@ public class PlayerChangeCam : MonoBehaviour
         {
             TutorialTimeIncode -= Time.deltaTime;
         }
-        if(TutorialTimeIncode<= 0)
+        if(TutorialTimeIncode< 0)
         {
             if (CamOnTutorial == 0)
             {
@@ -335,8 +335,8 @@ public class PlayerChangeCam : MonoBehaviour
                             DollTutorial.SetActive(true);
                         }*/
 
-                        if (!DropDoll.CloseboxDropDoll)
-                            DesignDollSelect.SetActive(true); 
+                      /*  if (!DropDoll.CloseboxDropDoll)
+                            DesignDollSelect.SetActive(true); */
 
                         InvOpen.Play("InvOpen");
                         DropDollArrow.SetActive(true);
@@ -349,7 +349,7 @@ public class PlayerChangeCam : MonoBehaviour
                         CheckCanplayMiniG.OnDesk = true;
                         CamOnDesk = true;
                         LookOutGhost = false;
-                       // TurnOut.SetActive(true);
+                        TurnOut.SetActive(true);
                         TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(PushClothOnDollView);
                         StartCoroutine(DelayCamera());
@@ -640,25 +640,31 @@ public class PlayerChangeCam : MonoBehaviour
         if (ChangePOV.IsActiveCamera(DeskShopView))
         {
 
-            if (!DropDoll.CloseboxDropDoll)
-                DesignDollSelect.SetActive(true);
+        /*    if (!DropDoll.CloseboxDropDoll)
+                DesignDollSelect.SetActive(true);*/
 
             InvOpen.Play("InvOpen");
+
             OpenInvBut.SetActive(false);
             Scissorcanva.SetActive(false);
             BoxRollCloth.SetActive(false);
             DropDollArrow.SetActive(true);
+
             DropDollTab.Play("IdleDropdoll");
+
             ClothBox.enabled = true;
             WorkShopBoxCol.enabled = false;
+
             //_InputManager.StopWalk();
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
+
             //  TextOnPlayer.SetActive(false);
             CheckCanplayMiniG.OnDesk = true;
+
             CamOnDesk = true;
             LookOutGhost = false;
-         //   TurnOut.SetActive(true);
+            TurnOut.SetActive(true);
             TurnIn.SetActive(false);
             ChangePOV.SwitchCamera(PushClothOnDollView);
             StartCoroutine(DelayCamera());
@@ -677,11 +683,14 @@ public class PlayerChangeCam : MonoBehaviour
             PlayerMainOBJUI.SetActive(true);
             PlayerHpUI.SetActive(true);
             StaminaUI.SetActive(true);
+
+            if(Pattack.Attack) CrossBarUI.SetActive(true);
+
         }
         else
         {
             PlayerMainOBJUI.SetActive(false); PlayerHpUI.SetActive(false);  
-            StaminaUI  .SetActive(false);
+            StaminaUI  .SetActive(false); CrossBarUI.SetActive(false);
         }
     }
 

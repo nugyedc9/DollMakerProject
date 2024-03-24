@@ -495,8 +495,11 @@ public class MiniGameAuidition : MonoBehaviour
 
         #region anomalyEventPlay
         if (anomalyCount == 2)
+        {
             AnomalyEvent1.Invoke();
-        if (anomalyCount == 3) AnomalyEvent2.Invoke();
+            anomalyCount =3 ;
+        }
+        if (anomalyCount == 4) AnomalyEvent2.Invoke();
         #endregion  
 
     }
@@ -537,6 +540,7 @@ public class MiniGameAuidition : MonoBehaviour
     {
         HoldSpace = false;
         Exittable = true;
+        NeedleWorking = false;
         foreach (GameObject SpawnOnSceen in AuditionOnSceen)
         {
             Destroy(SpawnOnSceen);
