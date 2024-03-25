@@ -1,82 +1,121 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
-public class DataGameManager : MonoBehaviour
+
+namespace System.Peristence.Editor
 {
+    [CustomEditor(typeof(SaveLoadSystem))]
 
-    [Header("File Strage Config")]
-    [SerializeField] private string fileName;
-
-    public GameObject PlayerPosition;
-
-    private GameData gameData;
-    private List<IDataGame> DataGameObjects;
-    private FileDataHanderler dataHandler;
-
-    public static DataGameManager Instance { get; private set; }
-
-    private void Awake()
+    public class DataGameManager : UnityEditor.Editor 
     {
-        if (Instance != null)
+
+        public override void OnInspectorGUI()
         {
+           SaveLoadSystem saveLoadSystem = (SaveLoadSystem)target;
+            string gameName = saveLoadSystem.gameData.Name;
 
-        }
-        Instance = this;
-    }
+            DrawDefaultInspector();
 
-    private void Start()
-    {
-        this.dataHandler = new FileDataHanderler(Application.dataPath, fileName);
-        this.DataGameObjects = FindAllDataGameObjects();
-        LoadGame();
-    }
-
-    public void NewGame()
-    {
-        this.gameData.PlayerPoS(PlayerPosition.transform.position);
-        this.gameData = new GameData();
-    }
-
-    public void LoadGame()
-    {
-
-        this.gameData = dataHandler.Load();
-
-        if (this.gameData == null)
-        {
-            NewGame();
+            if(GUILayout.Button("Save Game"))
+            {
+                saveLoadSystem.SaveGame();
+            }
+            if (GUILayout.Button("Load Game"))
+            {
+                saveLoadSystem.LoadGame(gameName);
+            }
+            if (GUILayout.Button("Delete Game"))
+            {
+                saveLoadSystem.DeleteGame(gameName);
+            }
         }
 
-        foreach (IDataGame dataGameObj in DataGameObjects)
+        #region Old SaveGAem
+        /*[Header("File Strage Config")]
+        [SerializeField] private string fileName;
+
+
+        private GameData gameData;
+        private List<IDataGame> DataGameObjects;
+        private FileDataHanderler dataHandler;
+
+        bool StartNewGame;
+
+        public static DataGameManager Instance { get; private set; }
+
+        private void Awake()
         {
-            dataGameObj.LoadData(gameData);
+            if (Instance != null)
+            {
+
+            }
+            Instance = this;
         }
 
-    }
-
-    public void SaveGame()
-    {
-        foreach (IDataGame dataGameObj in DataGameObjects)
+        private void Start()
         {
-            dataGameObj.SaveData(ref gameData);
+            this.dataHandler = new FileDataHanderler(Application.dataPath, fileName);
+            this.DataGameObjects = FindAllDataGameObjects();
+            if (!StartNewGame) 
+            LoadGame();
+
+
         }
 
-        dataHandler.Save(gameData);
-    }
-
-    /*    private void OnApplicationQuit()
+        public void NewGame()
         {
-            SaveGame();
+            this.gameData = new GameData();   
         }
-    */
 
-    private List<IDataGame> FindAllDataGameObjects()
-    {
-        IEnumerable<IDataGame> dataGameObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataGame>();
+        public void LoadGame()
+        {
 
-        return new List<IDataGame>(dataGameObjects);
+            this.gameData = dataHandler.Load();
+
+            if (this.gameData == null)
+            {
+                NewGame();
+            }
+
+            foreach (IDataGame dataGameObj in DataGameObjects)
+            {
+                dataGameObj.LoadData(gameData);
+            }
+
+        }
+
+        public void SaveGame()
+        {
+            foreach (IDataGame dataGameObj in DataGameObjects)
+            {
+                dataGameObj.SaveData(ref gameData);
+            }
+
+            dataHandler.Save(gameData);
+        }
+
+        *//*    private void OnApplicationQuit()
+            {
+                SaveGame();
+            }
+        *//*
+
+        private List<IDataGame> FindAllDataGameObjects()
+        {
+            IEnumerable<IDataGame> dataGameObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataGame>();
+
+            return new List<IDataGame>(dataGameObjects);
+        }
+
+
+        public void StartNewGameButton()
+        {
+            StartNewGame = true;
+        }*/
+        #endregion
+
+
     }
-
 }

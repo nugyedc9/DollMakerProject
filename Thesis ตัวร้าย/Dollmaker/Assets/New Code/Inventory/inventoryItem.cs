@@ -7,7 +7,13 @@ using Unity.VisualScripting;
 
 public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    
+    [SerializeField] private string id;
+
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     [Header("Image")]
     public Image image;
@@ -29,6 +35,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             Debug.LogError("Failed to find InventoryManager in the scene.");
         }
+        GenerateGuid();
 
     }
 
@@ -77,6 +84,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
+
+   
 
     /*    public void OnBeginDrag(PointerEventData eventData)
         {
