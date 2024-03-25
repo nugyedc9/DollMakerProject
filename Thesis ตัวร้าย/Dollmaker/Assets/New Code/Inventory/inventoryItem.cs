@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -12,6 +13,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
 
     private RollClothColor RollCloth;
+
+    public bool NotItemInInv;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = 1;
@@ -48,9 +51,17 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.localPosition = orginalPosition;
-        image.raycastTarget = true;
-        transform.SetParent(parentAfterDrag);
+        if (!NotItemInInv)
+        {
+            transform.localPosition = orginalPosition;
+            image.raycastTarget = true;
+            transform.SetParent(parentAfterDrag);
+        }
+        if (NotItemInInv)
+        {
+            transform.localPosition = orginalPosition;
+            image.raycastTarget = true;
+        }
 
     }
 

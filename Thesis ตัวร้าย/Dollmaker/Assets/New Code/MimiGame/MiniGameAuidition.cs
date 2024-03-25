@@ -45,6 +45,7 @@ public class MiniGameAuidition : MonoBehaviour
     public GameObject[] FrameBox;
     public GameObject AuditionShow;
     public GameObject ButtonCutLineOBJ;
+    public GameObject BackButt;
 
     [Header("---- Audio ----")]
     public AudioSource audioSource;
@@ -60,6 +61,8 @@ public class MiniGameAuidition : MonoBehaviour
     public bool HaveItem { get { return haveitem; } set { haveitem = value; } }
     [SerializeField] bool CutLine;
     public bool cutLine { get { return CutLine; } set {  CutLine = value; } }
+    [SerializeField] bool make2Cloth;
+    public bool Make2Cloth { get { return make2Cloth; } set {  make2Cloth = value; } }
 
     Queue<float> AuditionPass = new Queue<float>();
 
@@ -370,7 +373,7 @@ public class MiniGameAuidition : MonoBehaviour
         {
             if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
             {
-                if (Finish)
+                if (Finish && !Make2Cloth)
                 {
                     anomalyCount++;
                     Needle.enabled = false;
@@ -384,8 +387,46 @@ public class MiniGameAuidition : MonoBehaviour
                     FinishDoll++;
                     if (FinishDoll == 1) Finish1.Invoke();
                     Finish = false;
+                    BackButt.SetActive(true);
+                    _Currentstate = MiniGameAuditionState.LeaveDesk;
                 }
-                _Currentstate = MiniGameAuditionState.LeaveDesk;
+                
+                if (Finish && Make2Cloth)
+                {
+                    designSelect.CloseClothSwing();
+
+                    inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
+                    designSelect.BookPage[designSelect.ClothColorID].SetActive(false);
+
+                    designSelect.ClothOnSwing[designSelect.NextClothID].SetActive(true);
+                    designSelect.ClothColorID = designSelect.NextClothID;
+                    designSelect.PageNum = designSelect.NextClothID;
+                    designSelect.BookPage[designSelect.PageNum].SetActive(true);
+                    
+
+
+                    AuditionPass.Clear();
+                    AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                    foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                    {
+                        Destroy(SpawnOnSceen);
+
+                    }
+                    FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                    foreach (GameObject FrameOnScene in FrameClear)
+                    {
+                        Destroy(FrameOnScene);
+                    }
+                    CutHere.SetActive(false);
+                    curBar += 10;
+                    SlotAuditionPass = 0;
+                    CurrectPass = 0;
+
+                    _Currentstate = MiniGameAuditionState.Start;
+                    make2Cloth = false;
+                    Finish = false;
+                }
+
             }
 
         }

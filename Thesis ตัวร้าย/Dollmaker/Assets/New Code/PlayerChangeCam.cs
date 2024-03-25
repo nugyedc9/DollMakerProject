@@ -23,7 +23,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
-    public GameObject OpenInvBut, CloseInvBut;
+    public GameObject OpenInvBut, CloseInvBut, BackDesign;
     public Animator InvOpen;
     [SerializeField] bool openkeyItemInv;
     public bool OpenKeyItemInv {  get { return openkeyItemInv; } set { openkeyItemInv = value; } }
@@ -502,6 +502,7 @@ public class PlayerChangeCam : MonoBehaviour
                     else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                     {
                         DollBox.enabled = true;
+                        BackDesign.SetActive(false);
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                      /*   DesignDollSelect.SetActive(false);*/
@@ -515,6 +516,7 @@ public class PlayerChangeCam : MonoBehaviour
                         if(!_1clothDoll)
                             clothDoll.SetActive(false);
                         CloseMouse();
+
                         ChangePOV.SwitchCamera(FirstpersonView);
                         CamOnPerson = true;
                         CamOnDesk = false;
@@ -645,6 +647,7 @@ public class PlayerChangeCam : MonoBehaviour
 
             InvOpen.Play("InvOpen");
 
+            Book.SetActive(false);
             OpenInvBut.SetActive(false);
             Scissorcanva.SetActive(false);
             BoxRollCloth.SetActive(false);
@@ -691,6 +694,37 @@ public class PlayerChangeCam : MonoBehaviour
         {
             PlayerMainOBJUI.SetActive(false); PlayerHpUI.SetActive(false);  
             StaminaUI  .SetActive(false); CrossBarUI.SetActive(false);
+        }
+    }
+
+    public void BackToDesignCloth()
+    {
+        if (ChangePOV.IsActiveCamera(PushClothOnDollView))
+        {
+            DollBox.enabled = true;
+            _InputManager.StopWalk();
+            Throwitem.CanAttack();
+            /*   DesignDollSelect.SetActive(false);*/
+            BookDoll.SetActive(false);
+            ItemOnPlayer.SetActive(true);
+            TextOnPlayer.SetActive(true);
+            InvOpen.Play("InvClose");
+            DropDollArrow.SetActive(false);
+            CloseInvBut.SetActive(false);
+
+            Scissorcanva.SetActive(true);
+            ClothBox.enabled = false;
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+            /*  DesignSelect.SetActive(true);*/
+            Book.SetActive(true);
+            Allline.SetActive(true);
+            ItemOnPlayer.SetActive(false);
+            // TextOnPlayer.SetActive(false);
+            CamOnDesk = true;
+
+            ChangePOV.SwitchCamera(DeskShopView);
+            StartCoroutine(DelayCamera());
         }
     }
 
