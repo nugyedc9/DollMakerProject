@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 namespace System.Peristence
 {
-    [Serializable] public class GameData
+    #region Can't work now
+    /*[Serializable] public class GameData
     {
         public string Name;
         public string CurrentLevelName;
@@ -60,7 +61,7 @@ namespace System.Peristence
         public void DeleteGame(string gameName) =>    dataGame.Delete(gameName);
         
 
-    }
-
+    }*/
+    #endregion
 
 }

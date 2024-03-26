@@ -31,7 +31,7 @@ public class PersistentSingleton<T> : MonoBehaviour where T : Component
 
     protected virtual void Awake()
     {
-    //  InitializeSingleton();   
+      InitializeSingleton();   
     }
 
 
@@ -47,16 +47,16 @@ public class PersistentSingleton<T> : MonoBehaviour where T : Component
         if (Instance == null)
         {
             instance = this as T;
-            Debug.Log("Null");
+       
             DontDestroyOnLoad(transform.gameObject);
             enabled = true;
         }
         else
         {
-            if(instance != null)
+            if(this != instance)
             {
-                Debug.Log("!Null");
-                Destroy(gameObject);
+                
+                Destroy(this.gameObject);
             }
         }
 

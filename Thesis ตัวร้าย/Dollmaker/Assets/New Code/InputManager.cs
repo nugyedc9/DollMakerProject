@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerInput.OnFootActions onFoot;
     private PlayerInput.OnLookActions onLook;
-    private PlayerMotor motor;
+    private     PlayerMotor motor;
     private PlayerLook look;
     private bool CanWalk = true, Ondesk, HoldSpace;
 

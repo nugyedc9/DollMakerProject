@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IDataGame
 {
     public static InventoryManager Instance;
+
+    public InventoryData InvDataBase;
 
 public PlayerPickUpItem playerPickUpItem;
     public PlayerAttack pAttack;
@@ -16,6 +19,7 @@ public PlayerPickUpItem playerPickUpItem;
     public Camera Cam;
 
     public InventorySlote[] inventoryslote;
+    public List<Datainventoryslot> datainventorySlots = new List<Datainventoryslot>();
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
@@ -44,6 +48,7 @@ public PlayerPickUpItem playerPickUpItem;
     private void Awake()
     {
         Instance = this;
+
     }
 
     private void Start()
@@ -414,7 +419,7 @@ public PlayerPickUpItem playerPickUpItem;
 
     public bool AddItem(Item item)
     {
-        
+          datainventorySlots.Add(new Datainventoryslot(InvDataBase.GetId[item], item));
         for(int i = 0; i < inventoryslote.Length; i++)
         {
             InventorySlote slot = inventoryslote[i];
@@ -432,7 +437,7 @@ public PlayerPickUpItem playerPickUpItem;
 
 
     void SpawnnewItem(Item item, InventorySlote slot)
-    {
+    {     
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         inventoryItem InventoryItem = newItemGo.GetComponent<inventoryItem>();
         InventoryItem.InitialiseItem(item);
@@ -474,6 +479,49 @@ public PlayerPickUpItem playerPickUpItem;
 
         var DropObj = Instantiate(ItemPrefab[ItemId], DropPoint.position, Quaternion.identity) as GameObject;
         DropObj.GetComponent<Rigidbody>().velocity = (DesDrop - DropPoint.position).normalized * DropSpeed;
+    }
+
+
+    public void LoadData(GameData data)
+    {
+        data.inventoryData = InvDataBase;
+
+        datainventorySlots.Clear();
+
+        foreach (var savedItem in data.InventorySaveData)
+        {
+            Item item = savedItem.item;
+            int id = savedItem.ID;
+
+
+            datainventorySlots.Add(new Datainventoryslot(id, item));
+            AddItem(item);
+        }
+
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.inventoryData = InvDataBase;
+
+        for (int i = 0; i < datainventorySlots.Count; i++)
+        {
+            datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID];
+            data.InventorySaveData.Add(datainventorySlots[i]);
+        }
+
+    }
+
+    [System.Serializable]
+    public class Datainventoryslot
+    {
+        public int ID;
+        public Item item;
+        public Datainventoryslot(int iD, Item item)
+        {
+            ID = iD;
+            this.item = item;
+        }
     }
 
 
