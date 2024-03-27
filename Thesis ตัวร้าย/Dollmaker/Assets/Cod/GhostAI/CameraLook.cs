@@ -7,7 +7,7 @@ public class CameraLook : MonoBehaviour
 
     public bool NotLook, flashlight;
 
-    bool GetItem;
+
 
     void Update()
     {
@@ -22,5 +22,4 @@ public class CameraLook : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
     }
 
- 
 }

@@ -157,7 +157,7 @@ using UnityEngine.UI;
        this.transform.position = data.playerPoS;
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.playerPoS = this.transform.position;
     }

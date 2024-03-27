@@ -112,7 +112,7 @@ public class PlayerChangeCam : MonoBehaviour
         ChangePOV.Register(_1GetScrissorCam);
         ChangePOV.Register(DollHenshin);
         ChangePOV.Register(SleepCam);
-        ChangePOV.SwitchCamera(BedCam);
+       
     }
 
     private void OnDisable()
@@ -134,6 +134,7 @@ public class PlayerChangeCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         OnCutScene = true;
         _InputManager.StopWalk();
+        ChangePOV.SwitchCamera(BedCam);
     }
 
     private void Update()

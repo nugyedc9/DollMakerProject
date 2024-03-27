@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashLight : MonoBehaviour
+public class FlashLight : MonoBehaviour, IDataGame
 {
     private Vector3 vectOffset;
     [SerializeField] public GameObject goFollow;
@@ -19,5 +19,20 @@ public class FlashLight : MonoBehaviour
     {
         transform.position = goFollow.transform.position + vectOffset;
         transform.rotation = Quaternion.Slerp(transform.rotation, goFollow.transform.rotation, speed * Time.deltaTime);
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.flashLightPos;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.flashLightPos = this.transform.position;
+    }
+
+    public void deleteData(GameData data)
+    {
+        
     }
 }

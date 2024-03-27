@@ -488,21 +488,33 @@ public PlayerPickUpItem playerPickUpItem;
 
         datainventorySlots.Clear();
 
+        int slotIndex = 0;
+
         foreach (var savedItem in data.InventorySaveData)
         {
             Item item = savedItem.item;
             int id = savedItem.ID;
-
-
             datainventorySlots.Add(new Datainventoryslot(id, item));
-            AddItem(item);
+
+            if (slotIndex < inventoryslote.Length)
+            {
+                InventorySlote slot = inventoryslote[slotIndex];
+                SpawnnewItem(item, slot);
+                slotIndex++;
+            }
+            else break;
+
+
+            //   AddItem(item);
         }
 
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.inventoryData = InvDataBase;
+
+        data.InventorySaveData.Clear();
 
         for (int i = 0; i < datainventorySlots.Count; i++)
         {
@@ -516,6 +528,7 @@ public PlayerPickUpItem playerPickUpItem;
     {
        
     }
+
 
     [System.Serializable]
     public class Datainventoryslot

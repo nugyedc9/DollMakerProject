@@ -67,7 +67,7 @@ using System.Linq;
     {
         foreach (IDataGame dataGameObj in DataGameObjects)
         {
-            dataGameObj.SaveData(ref gameData);
+            dataGameObj.SaveData(gameData);
         }
 
         dataHandler.Save(gameData);

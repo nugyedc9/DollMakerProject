@@ -5,7 +5,7 @@ using System.Collections;
     {
         void LoadData(GameData data);
 
-        void SaveData(ref GameData data);
+        void SaveData(GameData data);
 
         void deleteData(GameData data);
 

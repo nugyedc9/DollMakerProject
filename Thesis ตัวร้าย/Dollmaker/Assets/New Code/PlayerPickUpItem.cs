@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static InventoryManager;
+using static UnityEditor.Progress;
 
 public class PlayerPickUpItem : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class PlayerPickUpItem : MonoBehaviour
     public float Pickrange;
     public Camera FpsCam;
     public Transform pickUPPoint;
+    public List<DataItemOnSceenGet> GetItemInScene = new List<DataItemOnSceenGet>();
 
     [Header("---- Audio ----")]
     public AudioSource audioSource;
@@ -71,6 +74,7 @@ public class PlayerPickUpItem : MonoBehaviour
     private Door DoorId;
     private FinishBasket dropFinish;
     private StoryActive storyActive;
+    private CameraLook ItemIdGet;
 
     private bool GhostComeOut;
     private int keyId;
@@ -240,6 +244,14 @@ public class PlayerPickUpItem : MonoBehaviour
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
+
+                if(hitInfo.collider.gameObject.GetComponents<CameraLook>() != null)
+                {
+                    ItemIdGet = hitInfo.collider.gameObject.GetComponent<CameraLook>();
+
+
+                    //datainventorySlots.Add(new Datainventoryslot(InvDataBase.GetId[item], item));
+                }
             }
 
             if (Input.GetMouseButtonDown(0) && !BookGuide.OpenTutor)
@@ -348,5 +360,15 @@ public class PlayerPickUpItem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-
+    [System.Serializable]
+    public class DataItemOnSceenGet
+    {
+        public string ID;
+        public bool GetItem;
+        public DataItemOnSceenGet(string id, bool item)
+        {
+            ID = id;
+            this.GetItem = item;
+        }
+    }
 }
