@@ -162,6 +162,11 @@ using UnityEngine.UI;
         data.playerPoS = this.transform.position;
     }
 
+    public void deleteData(GameData data)
+    {
+        
+    }
+
     /*   public void bilnd(playerData data)
        {
            this.data = data;

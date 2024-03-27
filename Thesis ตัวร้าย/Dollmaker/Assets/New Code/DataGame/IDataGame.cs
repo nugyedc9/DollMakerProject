@@ -7,6 +7,7 @@ using System.Collections;
 
         void SaveData(ref GameData data);
 
+        void deleteData(GameData data);
 
       
     }

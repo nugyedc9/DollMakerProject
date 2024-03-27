@@ -22,7 +22,6 @@ using System.Linq;
     private List<IDataGame> DataGameObjects;
     private FileDataHanderler dataHandler;
 
-    bool StartNewGame;
 
     public static DataGameManager Instance { get; private set; }
 
@@ -39,7 +38,6 @@ using System.Linq;
     {
         this.dataHandler = new FileDataHanderler(Application.dataPath, fileName);
         this.DataGameObjects = FindAllDataGameObjects();
-        if (!StartNewGame)
             LoadGame();
     }
 
@@ -75,6 +73,17 @@ using System.Linq;
         dataHandler.Save(gameData);
     }
 
+
+    public void DeleteGame()
+    {
+        foreach (IDataGame dataGameObj in DataGameObjects)
+        {
+            dataGameObj.deleteData(gameData);
+        }
+
+        dataHandler._Delete(gameData);
+    }
+
  /*   private void OnApplicationQuit()
     {
         SaveGame();
@@ -89,10 +98,6 @@ using System.Linq;
     }
 
 
-    public void StartNewGameButton()
-    {
-        StartNewGame = true;
-    }
     #endregion
 
 

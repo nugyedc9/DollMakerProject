@@ -512,6 +512,11 @@ public PlayerPickUpItem playerPickUpItem;
 
     }
 
+    public void deleteData(GameData data)
+    {
+       
+    }
+
     [System.Serializable]
     public class Datainventoryslot
     {

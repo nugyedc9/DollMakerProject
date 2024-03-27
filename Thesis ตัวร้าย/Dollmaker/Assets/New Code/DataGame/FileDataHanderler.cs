@@ -71,6 +71,16 @@ using System.IO;
     }
 
 
+    public void _Delete(GameData data)
+    {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        if(File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+        }
+
+    }
+
     #endregion
 
     #region not work now
