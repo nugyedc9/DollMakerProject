@@ -7,11 +7,13 @@ using UnityEngine.UI;
 using static InventoryManager;
 using static UnityEditor.Progress;
 
-public class PlayerPickUpItem : MonoBehaviour
+public class PlayerPickUpItem : MonoBehaviour, IDataGame
 {
     public InventoryManager inventoryManager;
     public TabTutorial BookGuide;
     public PlayerHp HpPlayer;
+
+
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
 
@@ -29,7 +31,7 @@ public class PlayerPickUpItem : MonoBehaviour
     public float Pickrange;
     public Camera FpsCam;
     public Transform pickUPPoint;
-    public List<DataItemOnSceenGet> GetItemInScene = new List<DataItemOnSceenGet>();
+
 
     [Header("---- Audio ----")]
     public AudioSource audioSource;
@@ -45,6 +47,8 @@ public class PlayerPickUpItem : MonoBehaviour
     [Header("Note PickUp")]
     public GameObject Note;
 
+
+    #region GetSEt
     [SerializeField] bool haveScissor;
     public bool HaveScissor { get {  return haveScissor; } set { haveScissor = value; } }
 
@@ -68,17 +72,21 @@ public class PlayerPickUpItem : MonoBehaviour
 
     [SerializeField] bool onNote;
     public bool OnNote { get { return onNote; } set { onNote = value; } }
+    #endregion
 
     private RollClothColor pieceClothGet;
     private DocumentID documentID;
     private Door DoorId;
     private FinishBasket dropFinish;
     private StoryActive storyActive;
-    private CameraLook ItemIdGet;
+    private ItemIdGenerate ItemIdGet;
 
     private bool GhostComeOut;
     private int keyId;
     public int KeyId { get { return keyId;} set { keyId = value; } }
+
+    [Header("DestroyItemOnLoad")]
+    public List<string> GetPickUp = new List<string>();
 
     public void Update()
     {
@@ -113,6 +121,8 @@ public class PlayerPickUpItem : MonoBehaviour
                         if (CrossUse.curHp == 1)
                             inventoryManager.AddItem(itemPickUp[5]);
 
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -121,6 +131,10 @@ public class PlayerPickUpItem : MonoBehaviour
                         audioSource.clip = DollS;
                         audioSource.Play();
                         inventoryManager.AddItem(itemPickUp[1]);
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
                         Destroy(hitInfo.collider.gameObject);
                     }
                     if (hitInfo.collider.gameObject.tag == "Scissors")
@@ -151,6 +165,10 @@ public class PlayerPickUpItem : MonoBehaviour
                         KeyId = pieceClothGet.pieceClothID;
 
                         inventoryManager.AddItem(itemPickUp[10]);
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
                         Destroy(hitInfo.collider.gameObject);
                     }
 
@@ -158,6 +176,10 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         audioSource.clip = HealPickS; audioSource.Play();
                         inventoryManager.AddItem(itemPickUp[19]);
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
                         Destroy(hitInfo.collider.gameObject);
 
                     }
@@ -241,17 +263,14 @@ public class PlayerPickUpItem : MonoBehaviour
                     {
                         _5Story.SetActive(true);    
                         Note.SetActive(true);
+
+                       /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);*/
+
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
 
-                if(hitInfo.collider.gameObject.GetComponents<CameraLook>() != null)
-                {
-                    ItemIdGet = hitInfo.collider.gameObject.GetComponent<CameraLook>();
-
-
-                    //datainventorySlots.Add(new Datainventoryslot(InvDataBase.GetId[item], item));
-                }
             }
 
             if (Input.GetMouseButtonDown(0) && !BookGuide.OpenTutor)
@@ -346,6 +365,23 @@ public class PlayerPickUpItem : MonoBehaviour
     }
 
 
+    public void ItemDestroy(string id)
+    {
+        GetPickUp.Add(id);
+
+        ItemIdGenerate[ ] items = GameObject.FindObjectsOfType<ItemIdGenerate>();
+
+        foreach (ItemIdGenerate item in items)
+        {
+            if(item.id == id)
+            {
+                Destroy(item.gameObject);
+                break;
+            }
+        }
+
+    }
+
     public void ShowMouse()
     {
         Time.timeScale = 0;
@@ -360,15 +396,28 @@ public class PlayerPickUpItem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    [System.Serializable]
-    public class DataItemOnSceenGet
+    public void LoadData(GameData data)
     {
-        public string ID;
-        public bool GetItem;
-        public DataItemOnSceenGet(string id, bool item)
+      GetPickUp.Clear();
+
+        foreach (var item in  data.pickedUpItemIds)
         {
-            ID = id;
-            this.GetItem = item;
+            ItemDestroy(item);
         }
+    }
+
+    public void SaveData(GameData data)
+    {
+       data.pickedUpItemIds.Clear();
+
+        for(int i = 0; i < GetPickUp.Count; i++)
+        {
+            data.pickedUpItemIds.Add(GetPickUp[i]);
+        }
+    }
+
+    public void deleteData(GameData data)
+    {
+      
     }
 }
