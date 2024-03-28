@@ -13,14 +13,20 @@ public class GameData
 
     public Vector3 playerPoS, flashLightPos;
     public quaternion PlayerRota, flashLightRota;
+    public int storyCountSave, FinishDollInInv, KeyID;
+    public float CurCrossHP;
 
     // public SerializableDictionary<Item, int> Getitem;
     public List<Datainventoryslot> InventorySaveData;
     public Dictionary<string, bool> ItemOnScene;
-    public InventoryData inventoryData;
+   
     public List<string> pickedUpItemIds;
     public List<string> EventStroyPass;
     public List<GameObject> FinishdollSave;
+    public bool flashLighGet, Note1Get, OpenWall1;
+    
+    public InventoryData inventoryData;
+    public CrossCheck crossCheck;
 
     public GameData()
     {
@@ -32,6 +38,14 @@ public class GameData
         pickedUpItemIds = new List<string>();
         ItemOnScene = new Dictionary<string, bool>();
         EventStroyPass = new List<string>();  
+        storyCountSave = 0;
+        flashLighGet = false;
+        Note1Get = false;
+        OpenWall1 = false;
+        FinishDollInInv = 0;
+        KeyID = 0;
+        CurCrossHP = 0;
+        crossCheck = new CrossCheck();
     }
 
 

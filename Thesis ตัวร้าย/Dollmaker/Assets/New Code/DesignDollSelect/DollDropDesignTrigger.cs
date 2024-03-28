@@ -20,7 +20,7 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
     public GameObject DollTutorial;
     public GameObject ClothTutorial;
 
-    public UnityEvent TakeDoll;
+    public UnityEvent TakeDoll, GetDollSave;
 
 
     bool  NeedRed, NeedBlue, _1Doll;
@@ -145,6 +145,8 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
         DollDesignVisual[4].SetActive(false);
         DollDesignVisual[5].SetActive(false);
         Box.enabled = true;
+
+        GetDollSave.Invoke();
     }
 
     public void LoadData(GameData data)

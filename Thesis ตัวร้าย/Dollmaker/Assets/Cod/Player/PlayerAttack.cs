@@ -7,8 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using System.Threading;
+using System.Data;
 
-public class PlayerAttack : MonoBehaviour 
+public class PlayerAttack : MonoBehaviour , IDataGame
 {
     public InventoryManager inventoryManager;
     public PlayerPickUpItem playerPickUpItem;
@@ -193,7 +194,7 @@ public class PlayerAttack : MonoBehaviour
 
     float DelayEse, Delaydoor;
 
-    public GameObject BoxCloseTV;
+    public BoxCollider BoxCloseTV;
 
     [SerializeField] bool OpenWall1;
     public bool EventTv1 { get { return OpenWall1; } set { OpenWall1 = value; } }
@@ -409,17 +410,17 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         #region Map pause tutorial
-        if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
+ /*       if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
         {
-           /* if (Input.GetKeyDown(KeyCode.Escape))
+           *//* if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (DelayEse <= 0 && !PCam.EndGame)
                 {
                     if (!isPause) PauseGame();
                     else ResumeGame();
                 }
-            }*/
-        }
+            }*//*
+        }*/
 
         if ( playerPickUpItem.OnNote)
         {
@@ -2440,7 +2441,7 @@ public class PlayerAttack : MonoBehaviour
                         CloseTv.Invoke();
                         if (!OpenWall1)
                         {
-                            BoxCloseTV.SetActive(true);
+                            BoxCloseTV.enabled = true;
                             OpenWall1 = true;
                         }
                         TVOn = false;
@@ -3789,6 +3790,28 @@ public class PlayerAttack : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         if (CrossOnHand) Attack = true;
+    }
+
+    public void LoadData(GameData data)
+    {
+        FlashLightGet = data.flashLighGet;
+        OpenWall1 = data.OpenWall1;
+        curHpCross = data.CurCrossHP;     
+        playerPickUpItem.CrossUse = data.crossCheck;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.flashLighGet = FlashLightGet;
+        data.OpenWall1 = OpenWall1;
+        data.CurCrossHP = curHpCross;
+        data.crossCheck = playerPickUpItem.CrossUse;
+
+    }
+
+    public void deleteData(GameData data)
+    {
+        
     }
     #endregion
 }

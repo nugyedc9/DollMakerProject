@@ -11,7 +11,7 @@ public class StoryActive : MonoBehaviour
     public bool LookActiveEvent;
     public UnityEvent EventActive;
     private BoxCollider Box;
-
+    private PlayerChangeCam Pcam;
 
     [SerializeField] public string id;
     [ContextMenu("Generate grid for id")]
@@ -23,6 +23,7 @@ public class StoryActive : MonoBehaviour
     public void Awake()
     {
         Box = GetComponent<BoxCollider>();
+        Pcam = GameObject.FindObjectOfType<PlayerChangeCam>();
     }
 
     public void OnTriggerEnter(Collider other)

@@ -18,6 +18,7 @@ public class MiniGameAuidition : MonoBehaviour
     public ClothColorDrop clothColorDrop;
     public GhostStateManager GhostcomeTocheck;
     public PlayerChangeCam Pcam;
+    public PlayerPickUpItem PickupItem;
 
     [Header("Bar")]
     public MiniG2Bar Bar;
@@ -382,12 +383,17 @@ public class MiniGameAuidition : MonoBehaviour
                     //canPlay.FinishDoll();
                     Pcam.HaveCloth = false;
                     canPlay.Cloth = false;
+
+
                     designSelect.CloseClothSwing();
                     inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
+
+
                     FinishDoll++;
                     if (FinishDoll == 1) Finish1.Invoke();
                     Finish = false;
                     BackButt.SetActive(true);
+                    
                     _Currentstate = MiniGameAuditionState.LeaveDesk;
                 }
                 
@@ -608,6 +614,8 @@ public class MiniGameAuidition : MonoBehaviour
        // else { CloseMouse(); }
     
     }
+
+
 
 
 

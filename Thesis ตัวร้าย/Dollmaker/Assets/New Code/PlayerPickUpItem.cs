@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using static InventoryManager;
 using static UnityEditor.Progress;
@@ -12,7 +13,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public InventoryManager inventoryManager;
     public TabTutorial BookGuide;
     public PlayerHp HpPlayer;
-
+    public MiniGameAuidition miniG;
 
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
@@ -46,6 +47,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     [Header("Note PickUp")]
     public GameObject Note;
+    [SerializeField] int finishDollGEt;
+    public int FinishDollGet { get { return finishDollGEt; } set { finishDollGEt = value; } }
 
 
     #region GetSEt
@@ -81,12 +84,14 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GhostComeOut;
+    private bool GetNoteSave;
     private int keyId;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
     [Header("DestroyItemOnLoad")]
     public List<string> GetPickUp = new List<string>();
+
+    public UnityEvent EventFinishDoll1;
 
     public void Update()
     {
@@ -194,76 +199,84 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                     }
 
+                    if (hitInfo.collider.gameObject.tag == "Lantern")
+                    {
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
+                    }
+
                     #region Not PickAnymore
-/*
-                    #region ClothColor
-                    if (hitInfo.collider.gameObject.tag == "RedCloth")
-                    {
-                        inventoryManager.AddItem(itemPickUp[6]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "BlueCloth")
-                    {
-                        inventoryManager.AddItem(itemPickUp[7]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "GreenCloth")
-                    {
-                        inventoryManager.AddItem(itemPickUp[8]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "YellowCloth")
-                    {
-                        inventoryManager.AddItem(itemPickUp[9]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    #endregion
+                    /*
+                                        #region ClothColor
+                                        if (hitInfo.collider.gameObject.tag == "RedCloth")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[6]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "BlueCloth")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[7]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "GreenCloth")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[8]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "YellowCloth")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[9]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        #endregion
 
-                    #region PieceClothColor
-                    if (hitInfo.collider.gameObject.tag == "PieceClothRed")
-                    {
-                        inventoryManager.AddItem(itemPickUp[11]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "PieceClothBlue")
-                    {
-                        inventoryManager.AddItem(itemPickUp[12]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "PieceClothGreen")
-                    {
-                        inventoryManager.AddItem(itemPickUp[13]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "PieceClothYellow")
-                    {
-                        inventoryManager.AddItem(itemPickUp[14]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    #endregion
+                                        #region PieceClothColor
+                                        if (hitInfo.collider.gameObject.tag == "PieceClothRed")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[11]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "PieceClothBlue")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[12]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "PieceClothGreen")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[13]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "PieceClothYellow")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[14]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        #endregion
 
-                    #region FinishClothColor
-                    if (hitInfo.collider.gameObject.tag == "FinishClothRed")
-                    {
-                        inventoryManager.AddItem(itemPickUp[15]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "FinishClothBlue")
-                    {
-                        inventoryManager.AddItem(itemPickUp[16]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "FinishClothGreen")
-                    {
-                        inventoryManager.AddItem(itemPickUp[17]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    if (hitInfo.collider.gameObject.tag == "FinishClothYellow")
-                    {
-                        inventoryManager.AddItem(itemPickUp[18]);
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-                    #endregion*/
+                                        #region FinishClothColor
+                                        if (hitInfo.collider.gameObject.tag == "FinishClothRed")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[15]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "FinishClothBlue")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[16]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "FinishClothGreen")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[17]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        if (hitInfo.collider.gameObject.tag == "FinishClothYellow")
+                                        {
+                                            inventoryManager.AddItem(itemPickUp[18]);
+                                            Destroy(hitInfo.collider.gameObject);
+                                        }
+                                        #endregion*/
 
                     #endregion
                 }
@@ -277,7 +290,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     {
                         _5Story.enabled = true;    
                         Note.SetActive(true);
-
+                        GetNoteSave = true;
                        /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);*/
 
@@ -286,6 +299,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                 }
 
             }
+
 
             if (Input.GetMouseButtonDown(0) && !BookGuide.OpenTutor)
             {
@@ -379,6 +393,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             }
         }
 
+        if (GetNoteSave)
+        {
+            Note.SetActive(true);
+        }
+
     }
 
 
@@ -417,6 +436,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     {
       GetPickUp.Clear();
 
+        GetNoteSave = data.Note1Get;
+        FinishDollGet = data.FinishDollInInv;
+        keyId = data.KeyID;
+        crossUse = data.crossCheck;
+
+        if(finishDollGEt == 1)
+        {
+            EventFinishDoll1.Invoke();
+        }
+
         foreach (var item in  data.pickedUpItemIds)
         {
             ItemDestroy(item);
@@ -426,6 +455,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public void SaveData(GameData data)
     {
        data.pickedUpItemIds.Clear();
+
+        data.Note1Get = GetNoteSave;
+        data.FinishDollInInv = FinishDollGet;
+        data.KeyID = keyId;
+        data.crossCheck = crossUse;
 
         for(int i = 0; i < GetPickUp.Count; i++)
         {

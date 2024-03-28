@@ -71,6 +71,7 @@ public class GetDesignDoll : MonoBehaviour,IDataGame
         if (playpickUp.ItemCount < inventoryManager.inventoryslote.Length)
         {
             dollCount++;
+            playpickUp.FinishDollGet++;
             if (dollCount == 1) FinishDoll1.Invoke();
             AudioSound.clip = ConfirmS;
             AudioSound.Play();

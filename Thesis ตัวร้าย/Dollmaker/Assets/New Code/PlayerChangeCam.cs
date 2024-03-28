@@ -1,9 +1,9 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerChangeCam : MonoBehaviour, IDataGame
 {
@@ -19,8 +19,12 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [SerializeField] CinemachineVirtualCamera SleepCam;
 
     public PlayerAttack Pattack;
+    public PlayerPickUpItem PPick;
     public Animator DropDollTab;
-  
+
+    [Header("Text Main and sub")]
+    public TextMeshProUGUI MainObjtive;
+    public TextMeshProUGUI SubObjtive;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -77,8 +81,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("DestroyOnLoad")]
     public List<string> EventInGame = new List<string>();
-    public GameObject Story1;
+    public GameObject Story1 ;
     private StoryActive storyActive;
+    private int StoryCount;
+    public int storyCount { get { return StoryCount; } set {  StoryCount = value; } }
 
     [SerializeField] bool haveCloth;
     public bool HaveCloth { get { return haveCloth; } set { haveCloth = value; } }
@@ -106,6 +112,16 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [SerializeField] bool closeInterectShow;
     public bool CloseInterectShow { get { return closeInterectShow; } set { closeInterectShow = value; } }
+
+    [Header("Item Event Load")]
+    public GameObject BasketLoad;
+    public Door DoorSwingRoom;
+
+    [Header("Event Load")]
+    public UnityEvent Event3Load;
+    public UnityEvent Event4Load, Event8Load, Event10Load, OpenWall,
+        GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data;
+
 
     private void OnEnable()
     {
@@ -773,6 +789,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     {
         if(other.gameObject.tag == "Event")
         {
+            storyCount++;
             storyActive = other.gameObject.GetComponent<StoryActive>();
             EventInGame.Add(storyActive.id);
         }
@@ -782,15 +799,87 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     {
         EventInGame.Clear();
 
+        storyCount = data.storyCountSave;
         foreach (var item in data.EventStroyPass)
         {
             ItemDestroy(item);
         }
+
+        if (storyCount == 1)
+        {
+            MainObjtive.text = "[ ESC ] To open Grandma book";
+        }
+
+        if (storyCount == 2)
+        {
+            MainObjtive.text = "Looking for a sewing room";
+            SubObjtive.text = "Explore the house";
+        }
+
+        if (storyCount == 3)
+        {
+            MainObjtive.text = "Go to the front door";
+            SubObjtive.text = "follow the bell";
+            Event3Load.Invoke();
+        }
+        if(storyCount >= 3) BasketLoad.SetActive(true);
+
+        if (storyCount == 4)
+        {
+            MainObjtive.text = "Pick up a letter";
+            Event4Load.Invoke();
+        }
+
+        if (storyCount >= 6 && storyCount < 9)
+        {
+            MainObjtive.text = "Go to Sewing room";
+            SubObjtive.text = "On the 2nd floor";
+            Event8Load.Invoke();
+        }
+
+        if(storyCount >= 6)
+        {
+            DoorSwingRoom.Lock = false;
+        }
+
+
+        if (storyCount >= 9)
+        {
+            MainObjtive.text = "Make Three dolls and place them in the basket";
+            SubObjtive.text = "Looking for the storage room key";    
+        }
+
+        if (storyCount >= 10 )
+        {
+            Event10Load.Invoke();
+
+        }
+
+        if(storyCount >= 12)
+        {
+            OpenWall.Invoke();  
+
+            if (storyCount >= 12 && storyCount <= 13)
+            {
+                GrandMaWalk1.Invoke();
+            }
+        }
+
+        if(storyCount >= 14)
+        {
+            DoorStoreRoom.Invoke();
+
+            if(storyCount == 14 ) Ghostspawn1Data.Invoke();
+        }
+
+
     }
 
     public void SaveData(GameData data)
     {
        data.EventStroyPass.Clear();
+
+        data.storyCountSave = storyCount;
 
         for (int i = 0; i < EventInGame.Count; i++)
         {

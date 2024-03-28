@@ -34,6 +34,7 @@ public class CrossCheck : MonoBehaviour
 
     public void ReCharge()
     {
+        if(curHp < MaxHp)
         curHp += Time.deltaTime;
     }
 }

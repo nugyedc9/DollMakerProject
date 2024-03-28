@@ -100,9 +100,9 @@ public class TabTutorial : MonoBehaviour
                     // InvShow.Play("OpenTabInv", 0, 0);
 
 
-                    if (!Hit_2Story)
+                    if (!Hit_2Story && _2StoryCanWalk != null)
                         _2StoryCanWalk.enabled = true;
-                    if (!Hit_5Story)
+                    if (!Hit_5Story && _6Story != null)
                     {
                         _6Story.enabled = true;
                         OpenObjective = true;

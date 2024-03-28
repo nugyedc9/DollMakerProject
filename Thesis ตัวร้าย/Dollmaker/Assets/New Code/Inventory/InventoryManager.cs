@@ -463,6 +463,7 @@ public PlayerPickUpItem playerPickUpItem;
                         if (dataSlot.item == item)
                         {
                             datainventorySlots.Remove(dataSlot);
+                            Debug.Log("Remove");
                             break;
                         }
                     }
