@@ -8,10 +8,17 @@ public class StoryActive : MonoBehaviour
 {
 
     public float DelayBoxShow;
-
+    public bool LookActiveEvent;
     public UnityEvent EventActive;
     private BoxCollider Box;
 
+
+    [SerializeField] public string id;
+    [ContextMenu("Generate grid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     public void Awake()
     {
@@ -48,8 +55,11 @@ public class StoryActive : MonoBehaviour
 
     public void LookActiveevent()
     {
-        EventActive.Invoke();
-        Destroy(gameObject);    
+        if (LookActiveEvent)
+        {
+            EventActive.Invoke();
+            Destroy(gameObject);
+        }
     }
 
 }

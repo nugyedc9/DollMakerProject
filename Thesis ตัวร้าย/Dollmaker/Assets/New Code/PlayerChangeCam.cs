@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerChangeCam : MonoBehaviour
+public class PlayerChangeCam : MonoBehaviour, IDataGame
 {
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera FirstpersonView;
@@ -20,6 +20,7 @@ public class PlayerChangeCam : MonoBehaviour
 
     public PlayerAttack Pattack;
     public Animator DropDollTab;
+  
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -73,6 +74,11 @@ public class PlayerChangeCam : MonoBehaviour
     public GameObject BoxRollCloth;
     public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
+
+    [Header("DestroyOnLoad")]
+    public List<string> EventInGame = new List<string>();
+    public GameObject Story1;
+    private StoryActive storyActive;
 
     [SerializeField] bool haveCloth;
     public bool HaveCloth { get { return haveCloth; } set { haveCloth = value; } }
@@ -135,6 +141,8 @@ public class PlayerChangeCam : MonoBehaviour
         OnCutScene = true;
         _InputManager.StopWalk();
         ChangePOV.SwitchCamera(BedCam);
+     
+        
     }
 
     private void Update()
@@ -145,6 +153,20 @@ public class PlayerChangeCam : MonoBehaviour
             TimerWakeUP -= Time.deltaTime;
             camOnPerSon = false;
         }
+
+        if (Story1 == null)
+        {
+            if (ChangePOV.IsActiveCamera(BedCam))
+            {
+                TimeBool = false;
+                camOnPerSon = true;
+                OnCutScene = false;
+                _InputManager.StopWalk();
+                ChangePOV.SwitchCamera(FirstpersonView);
+            }
+        }
+     
+
 
         if (TimerWakeUP <= 0)
         {
@@ -729,5 +751,55 @@ public class PlayerChangeCam : MonoBehaviour
         }
     }
 
+    public void ItemDestroy(string id)
+    {
+        EventInGame.Add(id);
 
+        StoryActive[] items = GameObject.FindObjectsOfType<StoryActive>();
+
+        foreach (StoryActive item in items)
+        {
+            if (item.id == id)
+            {             
+
+                Destroy(item.gameObject);
+              break;
+            }
+        }
+
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Event")
+        {
+            storyActive = other.gameObject.GetComponent<StoryActive>();
+            EventInGame.Add(storyActive.id);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        EventInGame.Clear();
+
+        foreach (var item in data.EventStroyPass)
+        {
+            ItemDestroy(item);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+       data.EventStroyPass.Clear();
+
+        for (int i = 0; i < EventInGame.Count; i++)
+        {
+            data.EventStroyPass.Add(EventInGame[i]);
+        }
+    }
+
+    public void deleteData(GameData data)
+    {
+       
+    }
 }

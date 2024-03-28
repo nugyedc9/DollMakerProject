@@ -434,13 +434,14 @@ public PlayerPickUpItem playerPickUpItem;
         return false;
     }
 
-
-
     void SpawnnewItem(Item item, InventorySlote slot)
     {     
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         inventoryItem InventoryItem = newItemGo.GetComponent<inventoryItem>();
         InventoryItem.InitialiseItem(item);
+
+
+
         newItemGo.tag = item.type.ToString();
     }
 
@@ -457,6 +458,15 @@ public PlayerPickUpItem playerPickUpItem;
                 itemSlot.Count--;
                 if(itemSlot.Count <= 0)
                 {
+                    foreach (Datainventoryslot dataSlot in datainventorySlots)
+                    {
+                        if (dataSlot.item == item)
+                        {
+                            datainventorySlots.Remove(dataSlot);
+                            break;
+                        }
+                    }
+
                     playerPickUpItem.ItemCount--;
                     Destroy(itemSlot.gameObject);
                 }
@@ -518,7 +528,7 @@ public PlayerPickUpItem playerPickUpItem;
 
         for (int i = 0; i < datainventorySlots.Count; i++)
         {
-            datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID];
+            datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID]; 
             data.InventorySaveData.Add(datainventorySlots[i]);
         }
 

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static InventoryManager;
 
-public class GetDesignDoll : MonoBehaviour
+public class GetDesignDoll : MonoBehaviour,IDataGame
 {
     public GameObject[] BookPage;
     public GameObject NextButt, PrevButt;
@@ -12,6 +13,7 @@ public class GetDesignDoll : MonoBehaviour
     public InventoryManager inventoryManager;
     public DollDropDesignTrigger DollDrop;
     public PlayerPickUpItem playpickUp;
+
 
     public int PageNum;
     int dollCount;
@@ -77,4 +79,18 @@ public class GetDesignDoll : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+        
+    }
+
+    public void deleteData(GameData data)
+    {
+        
+    }
 }

@@ -24,11 +24,13 @@ public class FlashLight : MonoBehaviour, IDataGame
     public void LoadData(GameData data)
     {
         this.transform.position = data.flashLightPos;
+        this.transform.rotation = data.flashLightRota;
     }
 
     public void SaveData(GameData data)
     {
         data.flashLightPos = this.transform.position;
+        data.flashLightRota = this.transform.rotation;
     }
 
     public void deleteData(GameData data)

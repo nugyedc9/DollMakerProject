@@ -25,7 +25,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     [Header("Scrissor Thing")]
     public Animator ScrissorAnim;
-    public GameObject _5Story;
+    public BoxCollider _5Story;
 
     [Header("Pick Up")]
     public float Pickrange;
@@ -114,15 +114,19 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         PAttack.curHpCross = CrossUse.curHp;
                         CrossBar.maxValue = crossUse.MaxHp;
                         inventoryManager.TriggerCrossAnim = true;
-                        if (CrossUse.curHp == 3)
-                            inventoryManager.AddItem(itemPickUp[0]);
-                        if (CrossUse.curHp == 2)
-                            inventoryManager.AddItem(itemPickUp[4]);
-                        if (CrossUse.curHp == 1)
-                            inventoryManager.AddItem(itemPickUp[5]);
+
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
+
+                        if (CrossUse.curHp == 3)
+                            inventoryManager.AddItem(itemPickUp[0]);
+                      /*  if (CrossUse.curHp == 2)
+                            inventoryManager.AddItem(itemPickUp[4]);
+                        if (CrossUse.curHp == 1)
+                            inventoryManager.AddItem(itemPickUp[5]);*/
+
+                      
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -130,10 +134,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     {
                         audioSource.clip = DollS;
                         audioSource.Play();
-                        inventoryManager.AddItem(itemPickUp[1]);
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[1]);
+
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -164,10 +170,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                         KeyId = pieceClothGet.pieceClothID;
 
-                        inventoryManager.AddItem(itemPickUp[10]);
-
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[10]);
+
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -175,15 +182,20 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     if (hitInfo.collider.gameObject.tag == "EyeWash")
                     {
                         audioSource.clip = HealPickS; audioSource.Play();
-                        inventoryManager.AddItem(itemPickUp[19]);
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[19]);
+
+                        
 
                         Destroy(hitInfo.collider.gameObject);
 
                     }
 
+                    #region Not PickAnymore
+/*
                     #region ClothColor
                     if (hitInfo.collider.gameObject.tag == "RedCloth")
                     {
@@ -251,6 +263,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         inventoryManager.AddItem(itemPickUp[18]);
                         Destroy(hitInfo.collider.gameObject);
                     }
+                    #endregion*/
+
                     #endregion
                 }
 
@@ -261,7 +275,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
                     if (documentID.DocID == 0)
                     {
-                        _5Story.SetActive(true);    
+                        _5Story.enabled = true;    
                         Note.SetActive(true);
 
                        /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
@@ -294,6 +308,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                                 pieceClothGet.ClothCount--;
                             }
+
+                            #region close
                             /*   if (pieceClothGet.pieceClothID == 0)
                                {
                                    inventoryManager.AddItem(itemPickUp[6]);
@@ -310,6 +326,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                {
                                    inventoryManager.AddItem(itemPickUp[9]);
                                }*/
+                            #endregion
                         }
                     }
 

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DollDropDesignTrigger : MonoBehaviour
+public class DollDropDesignTrigger : MonoBehaviour, IDataGame
 {
     public BoxCollider2D Box;
     public GetDesignDoll designSelect;
@@ -145,5 +145,20 @@ public class DollDropDesignTrigger : MonoBehaviour
         DollDesignVisual[4].SetActive(false);
         DollDesignVisual[5].SetActive(false);
         Box.enabled = true;
+    }
+
+    public void LoadData(GameData data)
+    {
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+        
+    }
+
+    public void deleteData(GameData data)
+    {
+       
     }
 }

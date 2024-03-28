@@ -18,8 +18,9 @@ public class TabTutorial : MonoBehaviour
     public Animator Animtext;
 
     [Header("Story boxCol")]
-    public GameObject _2StoryCanWalk;
-    public GameObject _6Story, Tutorialnote;
+    public BoxCollider _2StoryCanWalk;
+    public BoxCollider _6Story ;
+    public GameObject Tutorialnote;
 
     [Header("---- Audio ----")]
     public AudioSource AudioSound;
@@ -59,11 +60,11 @@ public class TabTutorial : MonoBehaviour
                    // InvShow.Play("OpenTabInv", 0, 0);
 
                     
-                    if(!Hit_2Story)
-                        _2StoryCanWalk.SetActive(true);
-                    if (!Hit_5Story)
+                    if(!Hit_2Story && _2StoryCanWalk != null)
+                        _2StoryCanWalk.enabled = true;
+                    if (!Hit_5Story && _6Story != null)
                     {
-                        _6Story.SetActive(true);
+                        _6Story.enabled = true;
                         OpenObjective = true;
                     }
                 }
@@ -100,10 +101,10 @@ public class TabTutorial : MonoBehaviour
 
 
                     if (!Hit_2Story)
-                        _2StoryCanWalk.SetActive(true);
+                        _2StoryCanWalk.enabled = true;
                     if (!Hit_5Story)
                     {
-                        _6Story.SetActive(true);
+                        _6Story.enabled = true;
                         OpenObjective = true;
                     }
                 }
@@ -177,7 +178,7 @@ public class TabTutorial : MonoBehaviour
 
        if(OpenObjective && PageNum != 8 && openTutor)
         {
-            Tutorialnote.SetActive(true);
+            Tutorialnote.SetActive(true) ;
         }
        else if(PageNum == 8 && OpenTutor)
         {

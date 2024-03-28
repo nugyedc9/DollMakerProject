@@ -155,11 +155,13 @@ using UnityEngine.UI;
     public void LoadData(GameData data)
     {
        this.transform.position = data.playerPoS;
+        this.transform.rotation = data.PlayerRota;
     }
 
     public void SaveData(GameData data)
     {
         data.playerPoS = this.transform.position;
+       data.PlayerRota = this.transform.rotation;
     }
 
     public void deleteData(GameData data)
