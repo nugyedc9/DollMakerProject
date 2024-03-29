@@ -5,9 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static InventoryManager;
+/*using static InventoryManager;
 using static UnityEditor.Progress;
-
+*/
 public class PlayerPickUpItem : MonoBehaviour, IDataGame
 {
     public InventoryManager inventoryManager;

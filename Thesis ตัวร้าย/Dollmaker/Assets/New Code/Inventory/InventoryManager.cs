@@ -4,9 +4,9 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.UIElements;
+/*using UnityEngine.UIElements;
 using static InventoryManager;
-using static UnityEditor.Progress;
+using static UnityEditor.Progress;*/
 
 public class InventoryManager : MonoBehaviour, IDataGame
 {

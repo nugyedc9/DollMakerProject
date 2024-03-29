@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using static InventoryManager;
-using static PlayerPickUpItem;
-using static UnityEditor.Progress;
+/*using static PlayerPickUpItem;
+using static UnityEditor.Progress;*/
 
 [System.Serializable]
 
