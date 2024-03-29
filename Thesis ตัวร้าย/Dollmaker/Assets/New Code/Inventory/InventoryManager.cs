@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static InventoryManager;
 using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour, IDataGame
@@ -23,6 +25,7 @@ public PlayerPickUpItem playerPickUpItem;
     public InventorySlote[] inventoryslote;
     public List<Datainventoryslot> datainventorySlots = new List<Datainventoryslot>();
     public List<ItemDropData> itemDropDatas = new List<ItemDropData>();
+    public List<GameObject> ItemDropOBj = new List<GameObject>();
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
@@ -406,6 +409,9 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
         #endregion
+
+        itemDropDatas.RemoveAll(data => data.droppedObject == null);
+        ItemDropOBj.RemoveAll(item => item == null);
     }
 
     public void ChangeSelectedSlot(int newValue)
@@ -427,17 +433,37 @@ public PlayerPickUpItem playerPickUpItem;
     public bool AddItem(Item item)
     {
           datainventorySlots.Add(new Datainventoryslot(InvDataBase.GetId[item], item));
-        for(int i = 0; i < inventoryslote.Length; i++)
+        for (int i = 0; i < inventoryslote.Length; i++)
         {
             InventorySlote slot = inventoryslote[i];
             inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
-            if(itemSlot == null)
+            if (itemSlot == null)
             {
                 playerPickUpItem.ItemCount++;
                 SpawnnewItem(item, slot);
+
+
+
+
                 return true;
-            }       
+            }
+
         }
+
+     /*   for (int i = 0;i < ItemDropOBj.Count; i++)
+        {
+
+            if (ItemDropOBj[i] == null)
+            {
+                if (i < itemDropDatas.Count)
+                {
+                    itemDropDatas.RemoveAt(i);
+                    Debug.Log("RemoveDrop");
+                }
+            }
+        }*/
+
+
         return false;
     }
 
@@ -465,6 +491,7 @@ public PlayerPickUpItem playerPickUpItem;
                 itemSlot.Count--;
                 if(itemSlot.Count <= 0)
                 {
+
                     foreach (Datainventoryslot dataSlot in datainventorySlots)
                     {
                         if (dataSlot.item == item)
@@ -477,6 +504,8 @@ public PlayerPickUpItem playerPickUpItem;
 
                     playerPickUpItem.ItemCount--;
                     Destroy(itemSlot.gameObject);
+
+           
                 }
             }
             return item;
@@ -488,20 +517,13 @@ public PlayerPickUpItem playerPickUpItem;
 
     public void DropitemPrefabs(Vector3 droppoint , int ItemId)
     {
-
+        itemDropDatas.Clear();
 
         Ray R = Cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(R, out hit)) DesDrop = hit.point;
         else DesDrop = R.GetPoint(1000);
-
-
-       /* Datainventoryslot newSlot = new Datainventoryslot(ItemId, null);
-        newSlot.position = DropPoint.position;
-        newSlot.rotation = quaternion.identity  ;
-
-        datainventorySlots.Add(newSlot);*/
 
 
 
@@ -522,6 +544,7 @@ public PlayerPickUpItem playerPickUpItem;
 
 
         itemDropDatas.Add(new ItemDropData(itemdropCollect.GetId[ItemPrefab[ItemId]], DropObj, droppoint));
+        ItemDropOBj.Add(DropObj);
 
 
     }
@@ -533,6 +556,7 @@ public PlayerPickUpItem playerPickUpItem;
 
         datainventorySlots.Clear();
         itemDropDatas.Clear();
+        ItemDropOBj.Clear();
 
         int slotIndex = 0;
 
@@ -561,7 +585,15 @@ public PlayerPickUpItem playerPickUpItem;
             Vector3 pos = savedItem.posirion;
             itemDropDatas.Add(new ItemDropData(id, item, pos));
 
+
             DropitemPrefabs(pos, id);
+
+            break;
+        }
+
+        foreach (var savedItem in data.ItemDropObj)
+        {
+            ItemDropOBj.Add(savedItem);
 
             break;
         }
@@ -574,19 +606,19 @@ public PlayerPickUpItem playerPickUpItem;
 
         data.InventorySaveData.Clear();
         data.itemDropDatas.Clear();
+        data.ItemDropObj.Clear();
 
         for (int i = 0; i < datainventorySlots.Count; i++)
         {
             Datainventoryslot slot = datainventorySlots[i];
 
             slot.item = InvDataBase.GetItem[slot.ID];
-         //   datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID]; 
 
-            /*slot.position = ItemPrefab[slot.ID].transform.position;
-            slot.rotation = ItemPrefab[slot.ID].transform .rotation;*/
 
             data.InventorySaveData.Add(slot);
         }
+
+
 
         for (int i = 0;i < itemDropDatas.Count; i++)
         {
@@ -596,6 +628,19 @@ public PlayerPickUpItem playerPickUpItem;
 
             data.itemDropDatas.Add(newdrop);
         }
+
+
+
+        for (int i = 0; i < ItemDropOBj.Count; i++)
+        {
+
+            GameObject item = ItemDropOBj[i];
+
+
+            data.ItemDropObj.Add(item);
+        }
+
+
 
     }
 

@@ -19,6 +19,7 @@ public class GameData
     // public SerializableDictionary<Item, int> Getitem;
     public List<Datainventoryslot> InventorySaveData;
     public List<ItemDropData> itemDropDatas;
+    public List<GameObject> ItemDropObj;
 
     public Dictionary<string, bool> ItemOnScene;
    
@@ -36,11 +37,16 @@ public class GameData
         PlayerRota = new quaternion(0, 180, 0, 0);
         flashLightPos = new Vector3 (-126.743f, 7.862f, -39.57f);
         flashLightRota = new quaternion(0, 180, 0, 0);
+
+
         InventorySaveData = new List<Datainventoryslot>();
         itemDropDatas = new List<ItemDropData>();
+        ItemDropObj = new List<GameObject>();
         pickedUpItemIds = new List<string>();
         ItemOnScene = new Dictionary<string, bool>();
         EventStroyPass = new List<string>();  
+
+
         storyCountSave = 0;
         flashLighGet = false;
         Note1Get = false;
