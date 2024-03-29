@@ -50,6 +50,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [SerializeField] int finishDollGEt;
     public int FinishDollGet { get { return finishDollGEt; } set { finishDollGEt = value; } }
 
+    public List<int> dollGet = new List<int>();
 
     #region GetSEt
     [SerializeField] bool haveScissor;
@@ -80,7 +81,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private RollClothColor pieceClothGet;
     private DocumentID documentID;
     private Door DoorId;
-    private FinishBasket dropFinish;
+    public FinishBasket dropFinish;
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
@@ -366,6 +367,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                             audioSource.Play();
                             dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
                             dropFinish.DollID = inventoryManager.FinishDollID;
+                            dollGet.Add(dropFinish.DollID);
                             dropFinish.Spawndoll();
                             inventoryManager.GetSelectedItem(true);
                         }
@@ -435,6 +437,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public void LoadData(GameData data)
     {
       GetPickUp.Clear();
+        dollGet.Clear();
+
 
         GetNoteSave = data.Note1Get;
         FinishDollGet = data.FinishDollInInv;
@@ -450,11 +454,21 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         {
             ItemDestroy(item);
         }
+
+        foreach (int dollid in data.FinishDollOnBasket)
+        {
+            dollGet.Add(dollid);
+            dropFinish.DollID = dollid;
+            dropFinish.Spawndoll();
+
+        }
     }
 
     public void SaveData(GameData data)
     {
        data.pickedUpItemIds.Clear();
+        data.FinishDollOnBasket.Clear();
+
 
         data.Note1Get = GetNoteSave;
         data.FinishDollInInv = FinishDollGet;
@@ -464,6 +478,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         for(int i = 0; i < GetPickUp.Count; i++)
         {
             data.pickedUpItemIds.Add(GetPickUp[i]);
+        }
+
+        for(int i = 0; i < dollGet.Count; i++)
+        {
+            data.FinishDollOnBasket.Add(dollGet[i]);
         }
     }
 

@@ -6,6 +6,8 @@ public class ItemIdGenerate : MonoBehaviour
 {
     [SerializeField] public string id;
     public bool GenerateAwake;
+
+
     [ContextMenu("Generate grid for id")]
     private void GenerateGuid()
     {

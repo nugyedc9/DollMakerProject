@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +26,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [Header("Text Main and sub")]
     public TextMeshProUGUI MainObjtive;
     public TextMeshProUGUI SubObjtive;
+
+    [Header("Ghostthisg")]
+    public GhostStateManager ThisGhost;
+    public GameObject GhostOBJ;
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
@@ -122,6 +127,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public UnityEvent Event4Load, Event8Load, Event10Load, OpenWall,
         GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data;
 
+
+    bool ghostDied1data;
+    public bool GhostDied1data { get { return ghostDied1data; } set { ghostDied1data = value; } }
 
     private void OnEnable()
     {
@@ -800,6 +808,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         EventInGame.Clear();
 
         storyCount = data.storyCountSave;
+        GhostDied1data = data.GhostDied1;
+
         foreach (var item in data.EventStroyPass)
         {
             ItemDestroy(item);
@@ -859,7 +869,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         {
             OpenWall.Invoke();  
 
-            if (storyCount >= 12 && storyCount <= 13)
+            if (storyCount >=12 && storyCount <= 13)
             {
                 GrandMaWalk1.Invoke();
             }
@@ -872,14 +882,24 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             if(storyCount == 14 ) Ghostspawn1Data.Invoke();
         }
 
+        if(storyCount >= 15)
+        {
+            if (!GhostDied1data)
+            {
+                GhostOBJ.SetActive(true);
+                StartCoroutine(DelayGhostSpawn());
+            }
+        }
 
     }
+
 
     public void SaveData(GameData data)
     {
        data.EventStroyPass.Clear();
 
         data.storyCountSave = storyCount;
+        data.GhostDied1 = GhostDied1data;
 
         for (int i = 0; i < EventInGame.Count; i++)
         {
@@ -890,5 +910,13 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public void deleteData(GameData data)
     {
        
+    }
+
+
+    IEnumerator DelayGhostSpawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ThisGhost.Spawn1ghost();
+        yield break;
     }
 }

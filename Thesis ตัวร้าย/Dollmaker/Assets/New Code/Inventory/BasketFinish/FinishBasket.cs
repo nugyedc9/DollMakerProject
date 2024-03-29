@@ -18,10 +18,18 @@ public class FinishBasket : MonoBehaviour
 
      public int SlotNum;
 
+
+
     public void Spawndoll()
     {
-        GameObject newDoll = Instantiate(dollShow[DollID], Slot[SlotNum].transform);
-        SlotNum++;
+
+        if (DollID >= 0 && DollID < dollShow.Length) 
+        {
+            GameObject newDoll = Instantiate(dollShow[DollID], Slot[SlotNum].transform);
+
+            SlotNum++;
+        }
     }
+
 
 }

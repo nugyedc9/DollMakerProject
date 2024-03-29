@@ -25,11 +25,12 @@ public class GameData
    
     public List<string> pickedUpItemIds;
     public List<string> EventStroyPass;
-    public List<GameObject> FinishdollSave;
-    public bool flashLighGet, Note1Get, OpenWall1;
+    public List<int> FinishDollOnBasket;
+    public bool flashLighGet, Note1Get, OpenWall1, GhostDied1;
     
     public InventoryData inventoryData;
     public CrossCheck crossCheck;
+
 
     public GameData()
     {
@@ -45,16 +46,20 @@ public class GameData
         pickedUpItemIds = new List<string>();
         ItemOnScene = new Dictionary<string, bool>();
         EventStroyPass = new List<string>();  
+        FinishDollOnBasket = new List<int>();   
+
 
 
         storyCountSave = 0;
         flashLighGet = false;
         Note1Get = false;
         OpenWall1 = false;
+        GhostDied1 = false;
         FinishDollInInv = 0;
         KeyID = 0;
         CurCrossHP = 0;
         crossCheck = new CrossCheck();
+
     }
 
 

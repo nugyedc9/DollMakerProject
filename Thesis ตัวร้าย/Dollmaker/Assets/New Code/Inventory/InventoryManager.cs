@@ -91,9 +91,6 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[0].SetActive(true);
                 if (triggerCrossAnim)
                 {
-                   /* if (playerPickUpItem.PAttack.curHpCross == 3) CorssAni.SetTrigger("OnHand");
-                    if (playerPickUpItem.PAttack.curHpCross == 2) CorssAni.SetTrigger("OnHand2");
-                    if (playerPickUpItem.PAttack.curHpCross == 1) CorssAni.SetTrigger("OnHand3");*/
 
                     crossAnim.SetState(CrossState.Idle);
 
@@ -102,9 +99,6 @@ public PlayerPickUpItem playerPickUpItem;
                 if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 0);
-                    /*if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
-                    if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
-                    if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);*/
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -497,7 +491,7 @@ public PlayerPickUpItem playerPickUpItem;
                         if (dataSlot.item == item)
                         {
                             datainventorySlots.Remove(dataSlot);
-                            Debug.Log("Remove");
+                          //  Debug.Log("Remove");
                             break;
                         }
                     }

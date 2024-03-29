@@ -27,6 +27,7 @@ public class GhostStateManager : MonoBehaviour
     [Header("Player")]
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
+    public PlayerChangeCam PCam;
     public GameObject GhostHuntEffect;
     public bool HpCross;
 
@@ -90,6 +91,8 @@ public class GhostStateManager : MonoBehaviour
     public UnityEvent GhostHuntLightOff, GhostOutSightLightOn;
 
 
+    bool dieddata;
+
 
     // Start is called before the first frame update
     void Start()
@@ -151,6 +154,7 @@ public class GhostStateManager : MonoBehaviour
         {
                 //  Debug.Log("Died");
                 //PAttack.Attack = true;
+                PCam.GhostDied1data = true;
                 GhostHuntEffect .SetActive(false);  
                 SwitchState(DiedState);           
         }
