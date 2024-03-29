@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
@@ -10,6 +11,7 @@ public class InventoryManager : MonoBehaviour, IDataGame
     public static InventoryManager Instance;
 
     public InventoryData InvDataBase;
+    public ItemDropDataCollect itemdropCollect;
 
 public PlayerPickUpItem playerPickUpItem;
     public PlayerAttack pAttack;
@@ -20,10 +22,12 @@ public PlayerPickUpItem playerPickUpItem;
 
     public InventorySlote[] inventoryslote;
     public List<Datainventoryslot> datainventorySlots = new List<Datainventoryslot>();
+    public List<ItemDropData> itemDropDatas = new List<ItemDropData>();
     public GameObject[] ItemOnHand;
     public GameObject[] ItemPrefab;
     public float DropSpeed;
     public Transform DropPoint;
+    public Vector3 DropPointPos;
     public GameObject inventoryItemPrefab;
 
 
@@ -58,6 +62,9 @@ public PlayerPickUpItem playerPickUpItem;
     }
     private void Update()
     {
+
+        DropPointPos = DropPoint.position;
+
         if(Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
@@ -91,7 +98,7 @@ public PlayerPickUpItem playerPickUpItem;
                 }
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 0);
+                    DropitemPrefabs(DropPointPos, 0);
                     /*if (playerPickUpItem.PAttack.curHpCross == 3) DropitemPrefabs(DropPoint, 0);
                     if (playerPickUpItem.PAttack.curHpCross == 2) DropitemPrefabs(DropPoint, 4);
                     if (playerPickUpItem.PAttack.curHpCross == 1) DropitemPrefabs(DropPoint, 5);*/
@@ -114,7 +121,7 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[1].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 1);
+                    DropitemPrefabs(DropPointPos, 1);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -130,7 +137,7 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[2].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 2);
+                    DropitemPrefabs(DropPointPos, 2);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -146,7 +153,7 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[3].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 3);
+                    DropitemPrefabs(DropPointPos, 3);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -163,7 +170,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 6);
+                    DropitemPrefabs(DropPointPos, 6);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -178,7 +185,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 7);
+                    DropitemPrefabs(DropPointPos, 7);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -192,7 +199,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 8);
+                    DropitemPrefabs(DropPointPos, 8);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -206,7 +213,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 9);
+                    DropitemPrefabs(DropPointPos, 9);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -226,7 +233,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 10);
+                    DropitemPrefabs(DropPointPos, 10);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -241,7 +248,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 11);
+                    DropitemPrefabs(DropPointPos, 11);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -255,7 +262,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 12);
+                    DropitemPrefabs(DropPointPos, 12);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -269,7 +276,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 13);
+                    DropitemPrefabs(DropPointPos, 13);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -288,7 +295,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 14);
+                    DropitemPrefabs(DropPointPos, 2);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -303,7 +310,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 15);
+                    DropitemPrefabs(DropPointPos, 3);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -317,7 +324,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 16);
+                    DropitemPrefabs(DropPointPos, 4);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -331,7 +338,7 @@ public PlayerPickUpItem playerPickUpItem;
                 //ItemOnHand[6].SetActive(true);
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 17);
+                    DropitemPrefabs(DropPointPos, 5);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -379,7 +386,7 @@ public PlayerPickUpItem playerPickUpItem;
 
                 if (drop)
                 {
-                    DropitemPrefabs(DropPoint, 18);
+                    DropitemPrefabs(DropPointPos, 6);
                     GetSelectedItem(true);
                     drop = false;
                 }
@@ -479,8 +486,10 @@ public PlayerPickUpItem playerPickUpItem;
     }
 
 
-    public void DropitemPrefabs(Transform Droppoint , int ItemId)
+    public void DropitemPrefabs(Vector3 droppoint , int ItemId)
     {
+
+
         Ray R = Cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
@@ -488,8 +497,33 @@ public PlayerPickUpItem playerPickUpItem;
         else DesDrop = R.GetPoint(1000);
 
 
-        var DropObj = Instantiate(ItemPrefab[ItemId], DropPoint.position, Quaternion.identity) as GameObject;
-        DropObj.GetComponent<Rigidbody>().velocity = (DesDrop - DropPoint.position).normalized * DropSpeed;
+       /* Datainventoryslot newSlot = new Datainventoryslot(ItemId, null);
+        newSlot.position = DropPoint.position;
+        newSlot.rotation = quaternion.identity  ;
+
+        datainventorySlots.Add(newSlot);*/
+
+
+
+
+        var DropObj = Instantiate(ItemPrefab[ItemId], droppoint, Quaternion.identity) as GameObject;
+        DropObj.GetComponent<Rigidbody>().velocity = (DesDrop - droppoint).normalized * DropSpeed;
+
+        if (itemdropCollect.itemPositions.ContainsKey(ItemId))
+        {
+
+            itemdropCollect.itemPositions[ItemId] = droppoint;
+        }
+        else
+        {
+
+            itemdropCollect.itemPositions.Add(ItemId, droppoint);
+        }
+
+
+        itemDropDatas.Add(new ItemDropData(itemdropCollect.GetId[ItemPrefab[ItemId]], DropObj, droppoint));
+
+
     }
 
 
@@ -498,6 +532,7 @@ public PlayerPickUpItem playerPickUpItem;
         data.inventoryData = InvDataBase;
 
         datainventorySlots.Clear();
+        itemDropDatas.Clear();
 
         int slotIndex = 0;
 
@@ -519,6 +554,18 @@ public PlayerPickUpItem playerPickUpItem;
             //   AddItem(item);
         }
 
+        foreach(var savedItem in data.itemDropDatas)
+        {
+            GameObject item = savedItem.droppedObject;
+            int id = savedItem.itemID;
+            Vector3 pos = savedItem.posirion;
+            itemDropDatas.Add(new ItemDropData(id, item, pos));
+
+            DropitemPrefabs(pos, id);
+
+            break;
+        }
+
     }
 
     public void SaveData(GameData data)
@@ -526,11 +573,28 @@ public PlayerPickUpItem playerPickUpItem;
         data.inventoryData = InvDataBase;
 
         data.InventorySaveData.Clear();
+        data.itemDropDatas.Clear();
 
         for (int i = 0; i < datainventorySlots.Count; i++)
         {
-            datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID]; 
-            data.InventorySaveData.Add(datainventorySlots[i]);
+            Datainventoryslot slot = datainventorySlots[i];
+
+            slot.item = InvDataBase.GetItem[slot.ID];
+         //   datainventorySlots[i].item = InvDataBase.GetItem[datainventorySlots[i].ID]; 
+
+            /*slot.position = ItemPrefab[slot.ID].transform.position;
+            slot.rotation = ItemPrefab[slot.ID].transform .rotation;*/
+
+            data.InventorySaveData.Add(slot);
+        }
+
+        for (int i = 0;i < itemDropDatas.Count; i++)
+        {
+            ItemDropData newdrop = itemDropDatas[i];
+
+            newdrop.droppedObject = itemdropCollect.GetItem[newdrop.itemID];
+
+            data.itemDropDatas.Add(newdrop);
         }
 
     }
@@ -546,10 +610,29 @@ public PlayerPickUpItem playerPickUpItem;
     {
         public int ID;
         public Item item;
+        
+
         public Datainventoryslot(int iD, Item item)
         {
             ID = iD;
             this.item = item;
+        }
+    }
+
+
+    [System.Serializable]
+
+    public class ItemDropData 
+    {
+        public int itemID;
+        public GameObject droppedObject;
+        public Vector3 posirion;
+
+        public ItemDropData(int id, GameObject obj, Vector3 pos)
+        {
+            itemID = id;
+            droppedObject = obj;
+            posirion = pos;
         }
     }
 

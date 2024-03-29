@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InvDataBase: {fileID: 11400000, guid: 0a94fe14327d92d43913943a3f0a417f, type: 2}
+  itemdropCollect: {fileID: 11400000, guid: 105ec09690c8b8e46ad6e9b1ae6e0c51, type: 2}
   playerPickUpItem: {fileID: 1865421570}
   pAttack: {fileID: 1865421554}
   tabTutorial: {fileID: 1379570841}
@@ -2872,6 +2873,7 @@ MonoBehaviour:
   - {fileID: 1900214682}
   - {fileID: 2087399289}
   datainventorySlots: []
+  itemDropDatas: []
   ItemOnHand:
   - {fileID: 1800587175}
   - {fileID: 978130109}
@@ -2882,6 +2884,11 @@ MonoBehaviour:
   ItemPrefab:
   - {fileID: 1765590911036182225, guid: f922b9ff7ea18aa499ed69f53607c455, type: 3}
   - {fileID: 5009292507613138829, guid: 1c87a8c625414dd46951d20958e86752, type: 3}
+  - {fileID: 1504215592287229049, guid: 3ad04bd4bc433874ea79e4fe5bd3594c, type: 3}
+  - {fileID: 7197269514689703530, guid: 2ad62c75c25e96644865ae082cba6b4f, type: 3}
+  - {fileID: 7995936013866001670, guid: 48c5da57dc7f5814e8c52dd7d165c610, type: 3}
+  - {fileID: 6808260868958838592, guid: 7b11d69fba6d84e46871952afbcc3d98, type: 3}
+  - {fileID: 1909163195303711469, guid: 2448e9df2a31cff4b8a9cffbb172d497, type: 3}
   - {fileID: 8521354865205159788, guid: 2820d4e40f0f7244cb785973aa797a35, type: 3}
   - {fileID: 6726076863665141871, guid: 94158f682c565634c951017d5a9b09eb, type: 3}
   - {fileID: 243524754942148530, guid: 70984edd1e09b7343ac5e2d710453f98, type: 3}
@@ -2894,13 +2901,9 @@ MonoBehaviour:
   - {fileID: 5400656842876642006, guid: 22f32809e74231e4c81ce7c78f6c2b2b, type: 3}
   - {fileID: 6784357208897065038, guid: 61f5b1bbbcf58604c9e9b43fa1a87d2f, type: 3}
   - {fileID: 4874819335015194354, guid: 019305f55abe9f545ae1e7c02986893e, type: 3}
-  - {fileID: 1504215592287229049, guid: 3ad04bd4bc433874ea79e4fe5bd3594c, type: 3}
-  - {fileID: 7197269514689703530, guid: 2ad62c75c25e96644865ae082cba6b4f, type: 3}
-  - {fileID: 7995936013866001670, guid: 48c5da57dc7f5814e8c52dd7d165c610, type: 3}
-  - {fileID: 6808260868958838592, guid: 7b11d69fba6d84e46871952afbcc3d98, type: 3}
-  - {fileID: 1909163195303711469, guid: 2448e9df2a31cff4b8a9cffbb172d497, type: 3}
   DropSpeed: 0.7
   DropPoint: {fileID: 518573672}
+  DropPointPos: {x: 0, y: 0, z: 0}
   inventoryItemPrefab: {fileID: 2213335492139187271, guid: 15a23639257c7d74c9aab6cec5c818f8, type: 3}
   CorssAni: {fileID: 1800587177}
   CrossBar: {fileID: 126122968}
@@ -8169,6 +8172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: d0b36da0-24cc-47b5-8ea1-fb53d13aee8c
+  GenerateAwake: 0
 --- !u!1 &70804657
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,6 +8417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: f351686d-fb2e-447c-875d-541176625cf0
+  GenerateAwake: 0
 --- !u!1 &74551090
 GameObject:
   m_ObjectHideFlags: 0
@@ -81027,6 +81032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 70112687-39c0-4ed9-b70f-b9fa11c032fa
+  GenerateAwake: 0
 --- !u!1 &728508435
 GameObject:
   m_ObjectHideFlags: 0
@@ -101284,6 +101290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 985ec6ea-b671-47ce-9184-680377bbc49f
+  GenerateAwake: 0
 --- !u!1 &916695479
 GameObject:
   m_ObjectHideFlags: 0
@@ -135507,6 +135514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: fad40118-e86a-4010-935c-6f00d4fdcab6
+  GenerateAwake: 0
 --- !u!1 &1241429460
 GameObject:
   m_ObjectHideFlags: 0
@@ -143183,6 +143191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5c32defc-3198-4ad7-b044-1f59a15962cc
+  GenerateAwake: 0
 --- !u!1 &1295736052
 GameObject:
   m_ObjectHideFlags: 0
@@ -189280,6 +189289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 16d9867a-d1a3-401e-8c86-46edf889a681
+  GenerateAwake: 0
 --- !u!1 &1726380993
 GameObject:
   m_ObjectHideFlags: 0
@@ -202237,6 +202247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2ae72c2a-36cb-4060-81d2-d0d5fc4c71b5
+  GenerateAwake: 0
 --- !u!1 &1843592658
 GameObject:
   m_ObjectHideFlags: 0
@@ -204073,6 +204084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 31228631-01f9-425c-854f-c363502e886f
+  GenerateAwake: 0
 --- !u!1 &1860714251
 GameObject:
   m_ObjectHideFlags: 0
@@ -210743,6 +210755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ece2f7bd-6f38-4897-a97d-8f983270a9d0
+  GenerateAwake: 0
 --- !u!1 &1914680620
 GameObject:
   m_ObjectHideFlags: 0
@@ -215253,6 +215266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 25220993-a2a7-42f5-930b-ba21c9f48fbe
+  GenerateAwake: 0
 --- !u!1 &1965185711
 GameObject:
   m_ObjectHideFlags: 0
