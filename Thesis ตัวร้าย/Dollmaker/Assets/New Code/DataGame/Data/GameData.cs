@@ -14,7 +14,7 @@ public class GameData
     public Vector3 playerPoS, flashLightPos;
     public quaternion PlayerRota, flashLightRota;
     public int storyCountSave, FinishDollInInv, KeyID;
-    public float CurCrossHP;
+    public float CurCrossHP, DollCountData;
 
     // public SerializableDictionary<Item, int> Getitem;
     public List<Datainventoryslot> InventorySaveData;
@@ -58,6 +58,7 @@ public class GameData
         FinishDollInInv = 0;
         KeyID = 0;
         CurCrossHP = 0;
+        DollCountData = 0;
         crossCheck = new CrossCheck();
 
     }

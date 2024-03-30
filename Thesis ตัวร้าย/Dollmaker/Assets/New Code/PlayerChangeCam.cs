@@ -21,6 +21,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     public PlayerAttack Pattack;
     public PlayerPickUpItem PPick;
+    public InventoryManager invmanager;
     public Animator DropDollTab;
 
     [Header("Text Main and sub")]
@@ -125,7 +126,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [Header("Event Load")]
     public UnityEvent Event3Load;
     public UnityEvent Event4Load, Event8Load, Event10Load, OpenWall,
-        GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data;
+        GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data, Ghost1DiedEventCheck;
 
 
     bool ghostDied1data;
@@ -573,6 +574,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             }
 
         }
+
 
     }
 

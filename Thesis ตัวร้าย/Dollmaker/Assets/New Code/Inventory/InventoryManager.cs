@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 /*using UnityEngine.UIElements;
 using static InventoryManager;
 using static UnityEditor.Progress;*/
@@ -49,8 +51,14 @@ public PlayerPickUpItem playerPickUpItem;
     [SerializeField] int finishDollID;
     public int FinishDollID { get { return finishDollID; } set { finishDollID = value; } }
 
+    [SerializeField] float dollCountFinish;
+    public float DollCountFinish { get { return dollCountFinish; } set { dollCountFinish = value; } }
+
+
+    public UnityEvent TakeDoll3, Ghost2Spawn;
+
     private Vector3 DesDrop;
-    bool drop;
+    bool drop, take3data;
 
     private void Awake()
     {
@@ -406,6 +414,31 @@ public PlayerPickUpItem playerPickUpItem;
 
         itemDropDatas.RemoveAll(data => data.droppedObject == null);
         ItemDropOBj.RemoveAll(item => item == null);
+
+        #region MakeDollEvent
+
+        if (DollCountFinish == 3)
+        {
+            if (!take3data)
+            {
+                TakeDoll3.Invoke();
+                DollCountFinish--;
+                take3data = true;
+            }
+        }
+
+        if (ChangeCam.GhostDied1data)
+        {
+            if (take3data)
+            {
+                Ghost2Spawn.Invoke();
+            }
+
+        }
+
+        #endregion
+
+
     }
 
     public void ChangeSelectedSlot(int newValue)
@@ -592,6 +625,8 @@ public PlayerPickUpItem playerPickUpItem;
             break;
         }
 
+        DollCountFinish = data.DollCountData;
+
     }
 
     public void SaveData(GameData data)
@@ -621,6 +656,7 @@ public PlayerPickUpItem playerPickUpItem;
             newdrop.droppedObject = itemdropCollect.GetItem[newdrop.itemID];
 
             data.itemDropDatas.Add(newdrop);
+         
         }
 
 
@@ -634,7 +670,7 @@ public PlayerPickUpItem playerPickUpItem;
             data.ItemDropObj.Add(item);
         }
 
-
+        data.DollCountData = DollCountFinish;
 
     }
 

@@ -33,6 +33,7 @@ public class GhostStateManager : MonoBehaviour
 
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
+    public int GhostID;
     public BoxCollider GhostBoxCol;
     public ParticleSystem particle;
     public GameObject GhostFrom, GhostLight;
@@ -89,9 +90,6 @@ public class GhostStateManager : MonoBehaviour
     [Header("Event")]
     public UnityEvent EventGhostAfterDied;
     public UnityEvent GhostHuntLightOff, GhostOutSightLightOn;
-
-
-    bool dieddata;
 
 
     // Start is called before the first frame update
@@ -152,11 +150,14 @@ public class GhostStateManager : MonoBehaviour
 
         if (HpGhost <= 0)
         {
-                //  Debug.Log("Died");
-                //PAttack.Attack = true;
+            //  Debug.Log("Died");
+            //PAttack.Attack = true;
+
+            if (GhostID == 1)
                 PCam.GhostDied1data = true;
-                GhostHuntEffect .SetActive(false);  
-                SwitchState(DiedState);           
+
+            GhostHuntEffect.SetActive(false);
+            SwitchState(DiedState);
         }
 
     }

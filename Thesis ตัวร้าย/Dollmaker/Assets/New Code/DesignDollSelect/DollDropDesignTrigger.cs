@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DollDropDesignTrigger : MonoBehaviour, IDataGame
+public class DollDropDesignTrigger : MonoBehaviour
 {
     public BoxCollider2D Box;
     public GetDesignDoll designSelect;
@@ -23,7 +23,7 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
     public UnityEvent TakeDoll, GetDollSave;
 
 
-    bool  NeedRed, NeedBlue, _1Doll;
+    bool  NeedRed, NeedBlue, _1Doll, take3;
     float dollCount;
 
     [SerializeField] bool closeboxDropDoll;
@@ -34,10 +34,6 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
 
     public void Update()
     {
-        if(dollCount == 3)
-        {
-            TakeDoll.Invoke();
-        }
     }
 
 
@@ -51,6 +47,7 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
                 Doll.gameObject.SetActive(true);
                 DollDesignVisual[0].SetActive(true);
                 dollCount++;
+                inventoryManager.DollCountFinish++;
                 DollHave = true;
                 DollTutorial.SetActive(false);
 
@@ -149,18 +146,5 @@ public class DollDropDesignTrigger : MonoBehaviour, IDataGame
         GetDollSave.Invoke();
     }
 
-    public void LoadData(GameData data)
-    {
-        
-    }
 
-    public void SaveData(GameData data)
-    {
-        
-    }
-
-    public void deleteData(GameData data)
-    {
-       
-    }
 }

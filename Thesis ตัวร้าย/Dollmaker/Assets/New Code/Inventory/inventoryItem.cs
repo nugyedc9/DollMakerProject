@@ -19,8 +19,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
 
     private RollClothColor RollCloth;
-
-    public bool NotItemInInv;
+    public Animator anim;
+    public bool NotItemInInv, Scissor;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = 1;
@@ -45,6 +45,11 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         parentAfterDrag = transform.parent;
         ChangePos = transform.parent;
         image.raycastTarget = false;
+
+        if(Scissor)
+        {
+            anim.Play("AnimCut");
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -68,6 +73,11 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.localPosition = orginalPosition;
             image.raycastTarget = true;
+        }
+
+        if (Scissor)
+        {
+            anim.Play("ScissorAnim");
         }
 
     }
