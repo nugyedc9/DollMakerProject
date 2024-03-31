@@ -129,7 +129,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data, Ghost1DiedEventCheck;
 
 
-    bool ghostDied1data;
+    [SerializeField] bool ghostDied1data;
     public bool GhostDied1data { get { return ghostDied1data; } set { ghostDied1data = value; } }
 
     private void OnEnable()

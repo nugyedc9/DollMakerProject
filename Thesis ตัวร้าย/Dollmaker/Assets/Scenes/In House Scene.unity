@@ -3120,6 +3120,18 @@ MonoBehaviour:
           m_StringArgument: take3
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2114780937}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: set_Lock
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: take3
+          m_BoolArgument: 0
+        m_CallState: 2
   Ghost2Spawn:
     m_PersistentCalls:
       m_Calls:
@@ -3146,6 +3158,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2114780937}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: set_Lock
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &31809714
 Transform:
@@ -14711,30 +14735,6 @@ MonoBehaviour:
       - m_Target: {fileID: 738803416}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 52052858}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1865421554}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: set_LightOn
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -164794,30 +164794,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 52052858}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1865421554}
-        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   id: 8971cf4a-6b54-480a-9555-b43af3d1b394
 --- !u!65 &1458012826
 BoxCollider:
@@ -272816,6 +272792,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800423992683587805, guid: f6f5b1a79c7846b41b02c66825e8e17f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800423992683587805, guid: f6f5b1a79c7846b41b02c66825e8e17f, type: 3}
       propertyPath: canInterect
       value: 
       objectReference: {fileID: 0}
@@ -294116,7 +294096,7 @@ MonoBehaviour:
   GhostHuntEffect: {fileID: 1065573916}
   HpCross: 0
   enemyGhost: {fileID: 7296634050043623186}
-  GhostID: 0
+  GhostID: 1
   GhostBoxCol: {fileID: 1533373881061803581}
   particle: {fileID: 1674779730}
   GhostFrom: {fileID: 2221295875573840224}
