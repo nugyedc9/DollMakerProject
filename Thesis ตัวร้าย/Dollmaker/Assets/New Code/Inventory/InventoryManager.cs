@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -58,7 +59,7 @@ public PlayerPickUpItem playerPickUpItem;
     public UnityEvent TakeDoll3, Ghost2Spawn;
 
     private Vector3 DesDrop;
-    bool drop, take3data;
+    bool drop, take3data, Ghost2spawn;
 
     private void Awake()
     {
@@ -431,7 +432,11 @@ public PlayerPickUpItem playerPickUpItem;
         {
             if (take3data)
             {
-                Ghost2Spawn.Invoke();
+                if (!Ghost2spawn)
+                {
+                    Ghost2Spawn.Invoke();
+                    Ghost2spawn = true;
+                }
             }
 
         }
@@ -626,6 +631,8 @@ public PlayerPickUpItem playerPickUpItem;
         }
 
         DollCountFinish = data.DollCountData;
+        take3data = data.GhostTakeDoll3;
+        Ghost2spawn = data.Ghost2Spawn;
 
     }
 
@@ -671,6 +678,8 @@ public PlayerPickUpItem playerPickUpItem;
         }
 
         data.DollCountData = DollCountFinish;
+        data.GhostTakeDoll3 = take3data;
+        data.Ghost2Spawn = Ghost2spawn;
 
     }
 

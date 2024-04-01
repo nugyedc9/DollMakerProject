@@ -81,6 +81,11 @@ public class EventAnomaly : MonoBehaviour
                 LittleGirlOutBehind.Invoke();
                 IDEvent = 0;
             }
+            if(IDEvent == 5)
+            {
+                GranmaSeeYou.Invoke();
+                IDEvent=0;
+            }
 
         }
         else

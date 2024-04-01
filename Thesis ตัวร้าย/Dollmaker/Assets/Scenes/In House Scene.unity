@@ -3132,6 +3132,18 @@ MonoBehaviour:
           m_StringArgument: take3
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 969247915}
+        m_TargetAssemblyTypeName: DollDropDesignTrigger, Assembly-CSharp
+        m_MethodName: set_DollHave
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: take3
+          m_BoolArgument: 0
+        m_CallState: 2
   Ghost2Spawn:
     m_PersistentCalls:
       m_Calls:
@@ -36698,7 +36710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 82982119938401807, guid: 07816ae49badac541bc8cbcae8327ef0, type: 3}
       propertyPath: OpenWall.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 82982119938401807, guid: 07816ae49badac541bc8cbcae8327ef0, type: 3}
       propertyPath: OpenWall.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
@@ -93278,6 +93290,7 @@ GameObject:
   - component: {fileID: 824155793}
   - component: {fileID: 824155792}
   - component: {fileID: 824155791}
+  - component: {fileID: 824155794}
   m_Layer: 0
   m_Name: 9_Grandmadelete
   m_TagString: Untagged
@@ -93340,6 +93353,108 @@ Transform:
   - {fileID: 1675249897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824155794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824155790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8278ead7cd0e984fbac8b05b2149f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2122967404}
+  cam: {fileID: 818998393}
+  IDEvent: 5
+  DestroyOBJDelay: 0
+  withoutBlock: 0
+  LookAtTarget: 0
+  GranmaSeeYou:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2122967404}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2122967405}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: walkside
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 751442268}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: walkside
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 891589022}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: walkside
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 783682253}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: walkside
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 963034204}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: walkside
+          m_BoolArgument: 1
+        m_CallState: 2
+  DoorInSwingRoom:
+    m_PersistentCalls:
+      m_Calls: []
+  LittleGirlOut:
+    m_PersistentCalls:
+      m_Calls: []
+  LittleGirlOutBehind:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &824583698
 GameObject:
   m_ObjectHideFlags: 0
@@ -179941,7 +180056,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1865421554}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
