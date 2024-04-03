@@ -57,6 +57,8 @@ public class MiniGameAuidition : MonoBehaviour
     [Header("Animator")]
     public Animator Needle;
     public Animator ClothMove, handMove;
+    public GameObject GranmaHand;
+
 
     [SerializeField] bool haveitem;
     public bool HaveItem { get { return haveitem; } set { haveitem = value; } }
@@ -107,7 +109,11 @@ public class MiniGameAuidition : MonoBehaviour
             }
             if (!GetHurt)
             {
-                handMove.Play("Handsewing");
+                    handMove.Play("Handsewing");
+                if(PickupItem.FinishDollGet == 1)
+                    GranmaHand.SetActive(true);
+                else GranmaHand.SetActive(false);
+
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
@@ -174,7 +180,9 @@ public class MiniGameAuidition : MonoBehaviour
                 Needle.enabled = true;
                 ClothMove.enabled = true;
                 handMove.enabled = true;
-                handMove.Play("Handsewing");
+
+                    handMove.Play("Handsewing");
+
 
                 if (CurrectPass == 5)
                 {
