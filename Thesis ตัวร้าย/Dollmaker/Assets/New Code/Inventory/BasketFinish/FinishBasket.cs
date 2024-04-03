@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FinishBasket : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class FinishBasket : MonoBehaviour
     public GameObject[] dollShow;
     public GameObject[] Slot;
 
+
     [SerializeField] int finishDollneed;
     public int NeedFinishDoll {  get { return finishDollneed; } set { finishDollneed = value; } }
 
@@ -18,8 +20,8 @@ public class FinishBasket : MonoBehaviour
 
      public int SlotNum;
 
-
-
+    public UnityEvent NeedDollSucc;
+    bool SuccDoll;
     public void Spawndoll()
     {
 
@@ -28,6 +30,18 @@ public class FinishBasket : MonoBehaviour
             GameObject newDoll = Instantiate(dollShow[DollID], Slot[SlotNum].transform);
 
             SlotNum++;
+        }
+    }
+
+    public void Update()
+    {
+        if(finishDollneed <= SlotNum)
+        {
+            if(!SuccDoll)
+            {
+                NeedDollSucc.Invoke();
+                SuccDoll = true;
+            }
         }
     }
 

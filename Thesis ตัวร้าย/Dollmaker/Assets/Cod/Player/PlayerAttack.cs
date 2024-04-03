@@ -971,7 +971,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         {
             if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
             {
-                _11Story.SetActive(true);
+              //  _11Story.SetActive(true);
                 endGame = true;
             }
             

@@ -596,6 +596,7 @@ public class MiniGameAuidition : MonoBehaviour
         HoldSpace = false;
         Exittable = true;
         NeedleWorking = false;
+        GranmaHand.SetActive(false);
         foreach (GameObject SpawnOnSceen in AuditionOnSceen)
         {
             Destroy(SpawnOnSceen);

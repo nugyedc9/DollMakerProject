@@ -84,7 +84,8 @@ public class EventAnomaly : MonoBehaviour
             if(IDEvent == 5)
             {
                 GranmaSeeYou.Invoke();
-                IDEvent=0;
+                LookAtTarget = true;
+                IDEvent =0;
             }
 
         }
