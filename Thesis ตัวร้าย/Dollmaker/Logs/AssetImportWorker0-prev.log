@@ -15,7 +15,7 @@ C:/GitHub/DollMakerProject/Thesis ตัวร้าย/Dollmaker
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53852
+54649
 Successfully changed project path to: C:/GitHub/DollMakerProject/Thesis ตัวร้าย/Dollmaker
 C:/GitHub/DollMakerProject/Thesis ตัวร้าย/Dollmaker
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/GitHub/DollMakerProject/Thesis ตัวร้าย/Dollmaker
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [16124] Host "[IP] 192.168.1.8 [Port] 0 [Flags] 2 [Guid] 3713200100 [EditorId] 3713200100 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FD4U91Q6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [15836] Host "[IP] 192.168.1.8 [Port] 0 [Flags] 2 [Guid] 666811920 [EditorId] 666811920 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FD4U91Q6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [16124] Host "[IP] 192.168.1.8 [Port] 0 [Flags] 2 [Guid] 3713200100 [EditorId] 3713200100 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FD4U91Q6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [15836] Host "[IP] 192.168.1.8 [Port] 0 [Flags] 2 [Guid] 666811920 [EditorId] 666811920 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FD4U91Q6) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
-Refreshing native plugins compatible for Editor in 14.12 ms, found 5 plugins.
+Refreshing native plugins compatible for Editor in 16.00 ms, found 5 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.16f1 (d2c21f0ef2f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/Resources/UnitySubsystems
@@ -70,44 +70,44 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56552
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56444
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009313 seconds.
-- Loaded All Assemblies, in  0.409 seconds
+Registered in 0.006855 seconds.
+- Loaded All Assemblies, in  0.545 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.300 seconds
-Domain Reload Profiling: 707ms
-	BeginReloadAssembly (125ms)
+- Finished resetting the current domain, in  0.380 seconds
+Domain Reload Profiling: 923ms
+	BeginReloadAssembly (192ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (39ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (69ms)
-	LoadAllAssembliesAndSetupDomain (164ms)
-		LoadAssemblies (122ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (75ms)
+	LoadAllAssembliesAndSetupDomain (213ms)
+		LoadAssemblies (191ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (162ms)
-			TypeCache.Refresh (160ms)
-				TypeCache.ScanAssembly (146ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (300ms)
+		AnalyzeDomain (210ms)
+			TypeCache.Refresh (208ms)
+				TypeCache.ScanAssembly (187ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (380ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (227ms)
+		SetupLoadedEditorAssemblies (311ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
+			InitializePlatformSupportModulesInManaged (13ms)
 			SetLoadedEditorAssemblies (10ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (156ms)
-			ProcessInitializeOnLoadMethodAttributes (48ms)
+			ProcessInitializeOnLoadAttributes (212ms)
+			ProcessInitializeOnLoadMethodAttributes (74ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -115,55 +115,55 @@ Domain Reload Profiling: 707ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.007 seconds
-Refreshing native plugins compatible for Editor in 6.95 ms, found 5 plugins.
+- Loaded All Assemblies, in  1.120 seconds
+Refreshing native plugins compatible for Editor in 6.70 ms, found 5 plugins.
 Native extension for WindowsStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.058 seconds
-Domain Reload Profiling: 2062ms
-	BeginReloadAssembly (166ms)
+- Finished resetting the current domain, in  1.137 seconds
+Domain Reload Profiling: 2252ms
+	BeginReloadAssembly (180ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (22ms)
-	RebuildCommonClasses (58ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (45ms)
-	LoadAllAssembliesAndSetupDomain (721ms)
-		LoadAssemblies (437ms)
+		CreateAndSetChildDomain (25ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (818ms)
+		LoadAssemblies (544ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (387ms)
+		AnalyzeDomain (378ms)
 			TypeCache.Refresh (314ms)
-				TypeCache.ScanAssembly (293ms)
-			ScanForSourceGeneratedMonoScriptInfo (54ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (1058ms)
+				TypeCache.ScanAssembly (290ms)
+			ScanForSourceGeneratedMonoScriptInfo (50ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1137ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (798ms)
+		SetupLoadedEditorAssemblies (879ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (5ms)
-			SetLoadedEditorAssemblies (7ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (103ms)
-			ProcessInitializeOnLoadAttributes (603ms)
-			ProcessInitializeOnLoadMethodAttributes (73ms)
-			AfterProcessingInitializeOnLoad (6ms)
+			BeforeProcessingInitializeOnLoad (124ms)
+			ProcessInitializeOnLoadAttributes (622ms)
+			ProcessInitializeOnLoadMethodAttributes (103ms)
+			AfterProcessingInitializeOnLoad (11ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 7.11 ms, found 5 plugins.
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 7.00 ms, found 5 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 7123 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 121 unused Assets / (1.7 MB). Loaded Objects now: 7579.
-Memory consumption went from 375.2 MB to 373.5 MB.
-Total: 4.133100 ms (FindLiveObjects: 0.489700 ms CreateObjectMapping: 0.295500 ms MarkObjects: 2.976500 ms  DeleteObjects: 0.369800 ms)
+Memory consumption went from 375.4 MB to 373.7 MB.
+Total: 4.893200 ms (FindLiveObjects: 0.568300 ms CreateObjectMapping: 0.575700 ms MarkObjects: 3.293300 ms  DeleteObjects: 0.454400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -180,307 +180,41 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 94877.882042 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWall.png
-  artifactKey: Guid(3eba3aafce76387499ed9d2fa2880e28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWall.png using Guid(3eba3aafce76387499ed9d2fa2880e28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afa4d2c9206557e97c7b7265a101fefc') in 0.077087 seconds
+  Time since last request: 154309.084656 seconds.
+  path: Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01/WallPaperPole.prefab
+  artifactKey: Guid(77291bad4ec11774ca6fd82e965990e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01/WallPaperPole.prefab using Guid(77291bad4ec11774ca6fd82e965990e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab8af58e20fbd88a292d7cb6c3623d21') in 0.375198 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.597 seconds
-Refreshing native plugins compatible for Editor in 6.09 ms, found 5 plugins.
-Native extension for WindowsStandalone target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.484 seconds
-Domain Reload Profiling: 4077ms
-	BeginReloadAssembly (188ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (10ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (48ms)
-	RebuildCommonClasses (35ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (35ms)
-	LoadAllAssembliesAndSetupDomain (322ms)
-		LoadAssemblies (385ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (25ms)
-			TypeCache.Refresh (8ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (15ms)
-	FinalizeReload (3485ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (997ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (9ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (179ms)
-			ProcessInitializeOnLoadAttributes (678ms)
-			ProcessInitializeOnLoadMethodAttributes (108ms)
-			AfterProcessingInitializeOnLoad (12ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (27ms)
-Refreshing native plugins compatible for Editor in 17.52 ms, found 5 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6742 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 68 unused Assets / (1.7 MB). Loaded Objects now: 7604.
-Memory consumption went from 307.8 MB to 306.1 MB.
-Total: 7.537300 ms (FindLiveObjects: 0.645400 ms CreateObjectMapping: 0.570800 ms MarkObjects: 5.674200 ms  DeleteObjects: 0.644800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:CustomObjectIndexerAttribute: 39606d92bcf39ac9cd6fca1116091104 -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+Number of asset objects unloaded after import = 12
 ========================================================================
 Received Import Request.
-  Time since last request: 700.084259 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoop.png
-  artifactKey: Guid(5991342823994794a84a9901241ac7e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoop.png using Guid(5991342823994794a84a9901241ac7e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd917bc255454046c37e3876572e29132') in 0.077949 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 252.599259 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD1.png
-  artifactKey: Guid(f4b2750ffaf2349488f3e6b80d81bd62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD1.png using Guid(f4b2750ffaf2349488f3e6b80d81bd62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a3dfe47558449cf9843c26a8be73fcf') in 0.026021 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 2.126724 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD2.png
-  artifactKey: Guid(db965d2c357350f4ea6fe43baeea8294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD2.png using Guid(db965d2c357350f4ea6fe43baeea8294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dfeed86e831e36edfc22e936dd43116') in 0.019294 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1.380666 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD3.png
-  artifactKey: Guid(f4198cddd3544ef4088cb6f3b849146c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD3.png using Guid(f4198cddd3544ef4088cb6f3b849146c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd78b9592137bfd2740e82c6693a32281') in 0.018205 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 222.797551 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD1.png
-  artifactKey: Guid(f4b2750ffaf2349488f3e6b80d81bd62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color2/RoseWoodWallPoopD1.png using Guid(f4b2750ffaf2349488f3e6b80d81bd62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a339b7130489f3a8196882848425f9ca') in 0.025152 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 22.836875 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/SkibidiToiletFloor
-  artifactKey: Guid(4c10d63f7394e9f4188a8800545650cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/SkibidiToiletFloor using Guid(4c10d63f7394e9f4188a8800545650cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99189d73e47bb03111f346e4dfc197b7') in 0.001060 seconds
+  Time since last request: 18.538390 seconds.
+  path: Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01
+  artifactKey: Guid(7d827773a0f788d4a815b20ad67b2ff7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01 using Guid(7d827773a0f788d4a815b20ad67b2ff7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f291c83d32eab4bd0ce10c7a17d7629') in 0.001044 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 114.939263 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD1.png
-  artifactKey: Guid(5ac3a5d9454d88c4587bec52cc1aabb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD1.png using Guid(5ac3a5d9454d88c4587bec52cc1aabb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4a7df26323c4cded82d9d428fbeb426') in 0.023157 seconds
+  Time since last request: 17.267411 seconds.
+  path: Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01/WallPaperPole (23).prefab
+  artifactKey: Guid(cbb164685a0247946913c42516064a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/Floor01/WallPaperPole (23).prefab using Guid(cbb164685a0247946913c42516064a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e830e57387483cf3e506ea69164f558b') in 0.029714 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 11
 ========================================================================
 Received Import Request.
-  Time since last request: 12.886812 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD2.png
-  artifactKey: Guid(53f6d490c685b9544ae85db7d7dda17c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD2.png using Guid(53f6d490c685b9544ae85db7d7dda17c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '819069180e6c8059610e4db7c341b243') in 0.019339 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1.325945 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD3.png
-  artifactKey: Guid(c327b3d0553410541ae4fbbe3d4947ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD3.png using Guid(c327b3d0553410541ae4fbbe3d4947ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c07c6be7df74827531a296f630544b44') in 0.020968 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 152.694358 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWall.png
-  artifactKey: Guid(3eba3aafce76387499ed9d2fa2880e28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWall.png using Guid(3eba3aafce76387499ed9d2fa2880e28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dee3aa709b1dd6a473defd657510313') in 0.025522 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 49.738272 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD3.png
-  artifactKey: Guid(c327b3d0553410541ae4fbbe3d4947ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallD3.png using Guid(c327b3d0553410541ae4fbbe3d4947ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3220172d6a5027b117d403a403d0a36a') in 0.021876 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 22.545219 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/Old/DHFlooพ
-  artifactKey: Guid(4b7db63462c74e745b916786c8d14151) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/Old/DHFlooพ using Guid(4b7db63462c74e745b916786c8d14151) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5dbe20abb70aa05cb42fd4a5ca7d81a8') in 0.001505 seconds
+  Time since last request: 433.183391 seconds.
+  path: Assets/All Assest/Assest 2D/Texture/WallPaper/Floor02
+  artifactKey: Guid(ee108f339955c5743a283af74a84f573) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/Floor02 using Guid(ee108f339955c5743a283af74a84f573) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69d985731b27a65a5ae609e4043f74b3') in 0.001163 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 28.853331 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD3.png
-  artifactKey: Guid(e8e253c50715d77419bbbf1411304d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD3.png using Guid(e8e253c50715d77419bbbf1411304d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d8a8ca80826b5779c9464b1cc2ace58') in 0.023130 seconds
+  Time since last request: 16.945089 seconds.
+  path: Assets/All Assest/Assest 2D/Texture/WallPaper/Floor02/WallPaperPole.prefab
+  artifactKey: Guid(2c0b32c5a8ea0ec4089d16e7201c7fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/Floor02/WallPaperPole.prefab using Guid(2c0b32c5a8ea0ec4089d16e7201c7fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '163035c46a20b4fa08c8a9834a350d75') in 0.022684 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 49.570622 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClay.png
-  artifactKey: Guid(51dfd676a982caa46bf081196abf24a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClay.png using Guid(51dfd676a982caa46bf081196abf24a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b12c4897b55b15e4b19715f27bcb82a9') in 0.023119 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1316.837208 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD1.png
-  artifactKey: Guid(84f8404d951c2be41a4d34199dbbdf91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD1.png using Guid(84f8404d951c2be41a4d34199dbbdf91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5553672bbff245103b33460f5135e96') in 0.025873 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 16.249816 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD2.png
-  artifactKey: Guid(a278b4272f5be6d4b8ac5bc9d154a237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color3/RoseWoodWallClayD2.png using Guid(a278b4272f5be6d4b8ac5bc9d154a237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '470db37ccd795842f03bf2f95263e4e3') in 0.021201 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.853 seconds
-Refreshing native plugins compatible for Editor in 7.55 ms, found 5 plugins.
-Native extension for WindowsStandalone target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  4.665 seconds
-Domain Reload Profiling: 5510ms
-	BeginReloadAssembly (263ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (18ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (70ms)
-	RebuildCommonClasses (69ms)
-	RebuildNativeTypeToScriptingClass (24ms)
-	initialDomainReloadingComplete (53ms)
-	LoadAllAssembliesAndSetupDomain (434ms)
-		LoadAssemblies (520ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (39ms)
-			TypeCache.Refresh (10ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (27ms)
-	FinalizeReload (4666ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1571ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (16ms)
-			SetLoadedEditorAssemblies (12ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (280ms)
-			ProcessInitializeOnLoadAttributes (1078ms)
-			ProcessInitializeOnLoadMethodAttributes (168ms)
-			AfterProcessingInitializeOnLoad (15ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (55ms)
-Refreshing native plugins compatible for Editor in 12.94 ms, found 5 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6742 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 68 unused Assets / (1.7 MB). Loaded Objects now: 7626.
-Memory consumption went from 309.8 MB to 308.1 MB.
-Total: 11.127400 ms (FindLiveObjects: 0.966000 ms CreateObjectMapping: 0.840800 ms MarkObjects: 8.579400 ms  DeleteObjects: 0.737900 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:CustomObjectIndexerAttribute: 39606d92bcf39ac9cd6fca1116091104 -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 382.969001 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/TuDorWood04/TuDorWood04_basecolor.png
-  artifactKey: Guid(c4fec853bdf15824e81a3b14bb3ee87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/TuDorWood04/TuDorWood04_basecolor.png using Guid(c4fec853bdf15824e81a3b14bb3ee87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14a3144f4aa8a912d0f702b2bb91e355') in 0.076515 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.300379 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/New Texture/TuDorWood04/TuDorWood04_roughness.png
-  artifactKey: Guid(20d371a5e7920f84690b30705dd11c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/New Texture/TuDorWood04/TuDorWood04_roughness.png using Guid(20d371a5e7920f84690b30705dd11c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec87da0dac15ebc1dca5a415ccdcfa61') in 0.021501 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.418119 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/TuDorWood04/TuDorWood04_roughness.png
-  artifactKey: Guid(78e9d9f07b859e547bf477d2b6662e6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/TuDorWood04/TuDorWood04_roughness.png using Guid(78e9d9f07b859e547bf477d2b6662e6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2cbe92a20864e3d6d6697bf672568fb') in 0.020083 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 211.733679 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallOldUv.png
-  artifactKey: Guid(7c0668b67be3e614cbbed166bcc59ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/color1/RoseWoodWallOldUv.png using Guid(7c0668b67be3e614cbbed166bcc59ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3eb0213971dee5db72bb3ca9615ac72') in 0.022245 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 647.740530 seconds.
-  path: Assets/All Assest/Assest 2D/Texture/WallPaper/WallPaper04
-  artifactKey: Guid(8f1053fcad9848044a62c6b4b6de29ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/All Assest/Assest 2D/Texture/WallPaper/WallPaper04 using Guid(8f1053fcad9848044a62c6b4b6de29ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '370ee7505631164132c4d1c040698af4') in 0.001139 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Number of asset objects unloaded after import = 15
