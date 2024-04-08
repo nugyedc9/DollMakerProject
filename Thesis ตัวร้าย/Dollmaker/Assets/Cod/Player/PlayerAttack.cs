@@ -247,15 +247,15 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
             if (Input.GetMouseButtonDown(0))
             {
-        /*        if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
-                if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
-                if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");*/
+                /*        if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
+                        if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
+                        if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");*/
 
-                        crossAnim.SetState(CrossState.HoldUp);
+                crossAnim.SetState(CrossState.HoldUp);
 
                 HitAudio.clip = HitWindSound;
                 HitAudio.Play();
-               
+
             }
 
             if (Input.GetMouseButton(0))
@@ -271,12 +271,12 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                             GhostHit.Playerhit();
                             Crosstakedamge();
                         }
-                        else if(curHpCross < 0.1)
+                        else if (curHpCross < 0.1)
                         {
 
                         }
-                       
-                        
+
+
                         //    crossAnim.SetState(CrossState.HitGhost);
                         CrossTimer = 4.5f;
                         HitAudio.clip = HitGhostSound;
@@ -286,24 +286,24 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                     }
                     else
                     {
-                       // HolyLight.SetActive(false);
+                        // HolyLight.SetActive(false);
                     }
                 }
             }
             else CrossReCharge();
 
             if (Input.GetMouseButtonUp(0))
-            {              
+            {
                 crossAnim.SetState(CrossState.Idle);
                 inventoryManager.TriggerCrossAnim = true;
-                   if(playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
+                if (playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
                 {
                     playerPickUpItem.CrossUse.ReCharge();
                 }
-            }    
-            
+            }
+
         }
-        else if( Attack && Run)
+        else if (Attack && Run)
         {
             if (crossSlotOnHand)
             {
@@ -316,7 +316,6 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
         }
 
-        
 
 
 

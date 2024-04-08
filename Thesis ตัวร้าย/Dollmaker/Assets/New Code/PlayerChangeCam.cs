@@ -22,7 +22,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public PlayerAttack Pattack;
     public PlayerPickUpItem PPick;
     public InventoryManager invmanager;
-    public Animator DropDollTab;
+    public Animator DropDollTab, SleepDream;
 
     [Header("Text Main and sub")]
     public TextMeshProUGUI MainObjtive;
@@ -250,10 +250,19 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
             else if (CamOnTutorial == 5)
             {
-                OnCutScene = true;
-                camOnPerSon = false;
-                endgameCanva.SetActive(true);
-                EndGame = true;
+                if (ChangePOV.IsActiveCamera(SleepCam))
+                {
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    OnCutScene = false;
+                }
+
+                //endgameCanva.SetActive(true);
+                // EndGame = true;
             }
         }
         #endregion
@@ -476,7 +485,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             }
             else
             {
-                if (endGame) ShowMouse();
+               if (endGame) ShowMouse();
                 OpenInvBut.SetActive(false);
                 CloseInvBut.SetActive(false);
             }
@@ -681,7 +690,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             _InputManager.StopWalk();
             Throwitem.StopAttack();
             ItemOnPlayer.SetActive(false);
+            OnCutScene = true;
+            camOnPerSon = false;
             ChangePOV.SwitchCamera(SleepCam);
+            SleepDream.Play("Sleep with Dream");
             TutorialTimeIncode = SleepTimer;
         }
     }

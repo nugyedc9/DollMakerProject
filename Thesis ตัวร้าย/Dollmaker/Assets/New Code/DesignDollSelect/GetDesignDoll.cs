@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using static InventoryManager;
 
-public class GetDesignDoll : MonoBehaviour,IDataGame
+public class GetDesignDoll : MonoBehaviour
 {
     public GameObject[] BookPage;
     public GameObject NextButt, PrevButt;
@@ -80,18 +80,5 @@ public class GetDesignDoll : MonoBehaviour,IDataGame
         }
     }
 
-    public void LoadData(GameData data)
-    {
-        
-    }
 
-    public void SaveData(GameData data)
-    {
-        
-    }
-
-    public void deleteData(GameData data)
-    {
-        
-    }
 }

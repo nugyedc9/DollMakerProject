@@ -92,7 +92,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [Header("DestroyItemOnLoad")]
     public List<string> GetPickUp = new List<string>();
 
-    public UnityEvent EventFinishDoll1;
+    public UnityEvent EventFinishDoll1, Have2FinishDoll;
 
     public void Update()
     {
@@ -462,6 +462,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             dropFinish.Spawndoll();
 
         }
+
+        if(finishDollGEt == 2)
+        {
+            Have2FinishDoll.Invoke();
+        }
+
     }
 
     public void SaveData(GameData data)
