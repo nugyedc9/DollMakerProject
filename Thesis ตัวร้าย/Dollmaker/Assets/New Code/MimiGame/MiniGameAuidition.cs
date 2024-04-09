@@ -85,7 +85,7 @@ public class MiniGameAuidition : MonoBehaviour
     [Header("Event")]
     public UnityEvent Fail1;
     public UnityEvent Fail2, Fail3;
-    public UnityEvent Finish1;
+    public UnityEvent Finish1, Finish5;
     public UnityEvent AnomalyEvent1, AnomalyEvent2;
 
     // Start is called before the first frame update
@@ -401,6 +401,7 @@ public class MiniGameAuidition : MonoBehaviour
                     playpickUp.FinishCloth++;
                     FinishDoll = playpickUp.FinishCloth;
                     if (FinishDoll == 1) Finish1.Invoke();
+                    if(FinishDoll == 5) Finish5.Invoke();
                     Finish = false;
                     BackButt.SetActive(true);
                     
