@@ -13,7 +13,7 @@ public class GameData
 
     public Vector3 playerPoS, flashLightPos;
     public quaternion PlayerRota, flashLightRota;
-    public int storyCountSave, FinishDollInInv, KeyID;
+    public int storyCountSave, FinishDollInInv, FinishCloth, failCloth, KeyID;
     public float CurCrossHP, DollCountData;
 
     // public SerializableDictionary<Item, int> Getitem;
@@ -26,7 +26,8 @@ public class GameData
     public List<string> pickedUpItemIds;
     public List<string> EventStroyPass;
     public List<int> FinishDollOnBasket;
-    public bool flashLighGet, Note1Get, OpenWall1, GhostDied1, GhostTakeDoll3, Ghost2Spawn;
+    public bool flashLighGet, Note1Get, Note2Get, OpenWall1, GhostDied1, GhostTakeDoll3, Ghost2Spawn,
+        _1Sleep;
     
     public InventoryData inventoryData;
     public CrossCheck crossCheck;
@@ -51,10 +52,12 @@ public class GameData
 
  flashLighGet = false;
         Note1Get = false;
+        Note2Get = false;
         OpenWall1 = false;
         GhostDied1 = false;
         GhostTakeDoll3 = false;
         Ghost2Spawn= false;
+        _1Sleep = false;
 
 
          storyCountSave = 0;
@@ -62,6 +65,8 @@ public class GameData
         KeyID = 0;
         CurCrossHP = 0;
         DollCountData = 0;
+        FinishCloth = 0;
+        failCloth = 0;
 
 
     }

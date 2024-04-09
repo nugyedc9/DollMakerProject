@@ -89,7 +89,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public List<string> EventInGame = new List<string>();
     public GameObject Story1 ;
     private StoryActive storyActive;
-    private int StoryCount;
+    
+    [SerializeField] private int StoryCount;
     public int storyCount { get { return StoryCount; } set {  StoryCount = value; } }
 
     [SerializeField] bool haveCloth;
@@ -126,7 +127,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [Header("Event Load")]
     public UnityEvent Event3Load;
     public UnityEvent Event4Load, Event8Load, Event10Load, OpenWall,
-        GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data, Ghost1DiedEventCheck;
+        GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data, Ghost1DiedEventCheck,
+        EventTvOn;
 
 
     [SerializeField] bool ghostDied1data;
@@ -811,8 +813,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     {
         if(other.gameObject.tag == "Event")
         {
-            storyCount++;
+            
             storyActive = other.gameObject.GetComponent<StoryActive>();
+            storyCount = storyActive.ID;
             EventInGame.Add(storyActive.id);
         }
     }
@@ -854,7 +857,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             Event4Load.Invoke();
         }
 
-        if (storyCount >= 6 && storyCount < 9)
+        if (storyCount >= 6 && storyCount < 7)
         {
             MainObjtive.text = "Go to Sewing room";
             SubObjtive.text = "On the 2nd floor";
@@ -867,36 +870,41 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         }
 
 
-        if (storyCount >= 9)
+        if (storyCount >= 7)
         {
             MainObjtive.text = "Make Three dolls and place them in the basket";
             SubObjtive.text = "Looking for the storage room key";    
         }
 
-        if (storyCount >= 10 )
+        if (storyCount >= 9 )
         {
             Event10Load.Invoke();
 
         }
 
-        if(storyCount >= 12)
+        if(storyCount == 10)
+        {
+            EventTvOn.Invoke();
+        }
+
+        if(storyCount >= 11)
         {
             OpenWall.Invoke();  
 
-            if (storyCount >=12 && storyCount <= 13)
+            if (storyCount == 11 )
             {
                 GrandMaWalk1.Invoke();
             }
         }
 
-        if(storyCount >= 14)
+        if(storyCount >= 12)
         {
             DoorStoreRoom.Invoke();
 
-            if(storyCount == 14 ) Ghostspawn1Data.Invoke();
+            if(storyCount == 12 ) Ghostspawn1Data.Invoke();
         }
 
-        if(storyCount >= 15)
+        if(storyCount >= 13)
         {
             if (!GhostDied1data)
             {

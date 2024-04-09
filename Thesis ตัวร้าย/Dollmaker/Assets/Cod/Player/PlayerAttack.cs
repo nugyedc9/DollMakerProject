@@ -114,10 +114,10 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     [Header("ObjSleep")]
     public GameObject DoorEnd;
-    public GameObject Granma, AudioGranma, normalDoor, _11Story;
+    public GameObject Granma, AudioGranma, normalDoor, _11Story, GoFrontDoor;
     public BoxCollider Bedbox;
     public Animator EndGameAnim;
-    bool endGame;
+    bool endGame, _1Sleep;
 
     [Header("CanvaDialogue")]
     public GameObject CanvaDialog;
@@ -1016,13 +1016,20 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 {
                     if (finishBasket.SlotNum >= finishBasket.NeedFinishDoll)
                     {
-                        Bedbox.enabled = false;
-                      /*  normalDoor.SetActive(false);
-                        DoorEnd.SetActive(true);
-                        Granma.SetActive(true);
-                        AudioGranma.SetActive(true) ;
-                        EndGameAnim.Play("Gosleep");*/
-                        PCam.ChangeCamToSleep();
+                        /*  normalDoor.SetActive(false);
+                          DoorEnd.SetActive(true);
+                          Granma.SetActive(true);
+                          AudioGranma.SetActive(true) ;
+                          EndGameAnim.Play("Gosleep");*/
+                        if (!_1Sleep)
+                        {
+                                 Bedbox.enabled = false;  
+                            GoFrontDoor.SetActive(true);      
+                            playerPickUpItem.dollGet.Clear();
+                            PCam.ChangeCamToSleep();
+                            _1Sleep = true; 
+                          
+                        }
                     }
                 }
 
@@ -3797,6 +3804,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         OpenWall1 = data.OpenWall1;
         curHpCross = data.CurCrossHP;     
         playerPickUpItem.CrossUse = data.crossCheck;
+        _1Sleep = data._1Sleep;
     }
 
     public void SaveData(GameData data)
@@ -3805,7 +3813,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         data.OpenWall1 = OpenWall1;
         data.CurCrossHP = curHpCross;
         data.crossCheck = playerPickUpItem.CrossUse;
-
+        data._1Sleep = _1Sleep;
     }
 
     public void deleteData(GameData data)

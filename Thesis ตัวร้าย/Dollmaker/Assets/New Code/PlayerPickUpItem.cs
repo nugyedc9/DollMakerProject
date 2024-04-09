@@ -34,6 +34,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public Transform pickUPPoint;
 
 
+
     [Header("---- Audio ----")]
     public AudioSource audioSource;
     public AudioClip CrossS, DollS, ScissorS, CutClothS,
@@ -47,8 +48,13 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     [Header("Note PickUp")]
     public GameObject Note;
+    public GameObject Note2;
     [SerializeField] int finishDollGEt;
     public int FinishDollGet { get { return finishDollGEt; } set { finishDollGEt = value; } }
+    [SerializeField] int finishCloth;
+    public int FinishCloth { get { return finishCloth;  } set { finishCloth = value; } }
+    [SerializeField] int failSwing;
+    public int Failswing { get { return failSwing; } set { failSwing = value; } }
 
     public List<int> dollGet = new List<int>();
 
@@ -85,14 +91,14 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GetNoteSave;
+    private bool GetNoteSave, GetNote2, _1Sleep;
     private int keyId;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
     [Header("DestroyItemOnLoad")]
     public List<string> GetPickUp = new List<string>();
 
-    public UnityEvent EventFinishDoll1, Have2FinishDoll;
+    public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll;
 
     public void Update()
     {
@@ -297,6 +303,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         Destroy(hitInfo.collider.gameObject);
                     }
+                    if (documentID.DocID == 1)
+                    {
+                        Note2.SetActive(true);
+                        GetNote2 = true;
+                        /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                         GetPickUp.Add(ItemIdGet.id);*/
+                        MakeNewDoll.Invoke();
+
+                        Destroy(hitInfo.collider.gameObject);
+                    }
                 }
 
             }
@@ -399,6 +415,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         {
             Note.SetActive(true);
         }
+        if (GetNote2)
+        {
+            Note2.SetActive(true);
+        }
+
+
 
     }
 
@@ -444,6 +466,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         FinishDollGet = data.FinishDollInInv;
         keyId = data.KeyID;
         crossUse = data.crossCheck;
+        finishCloth = data.FinishCloth;
+        Failswing = data.failCloth;
+        GetNote2 = data.Note2Get;
 
         if(finishDollGEt == 1)
         {
@@ -455,13 +480,14 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             ItemDestroy(item);
         }
 
-        foreach (int dollid in data.FinishDollOnBasket)
-        {
-            dollGet.Add(dollid);
-            dropFinish.DollID = dollid;
-            dropFinish.Spawndoll();
+            foreach (int dollid in data.FinishDollOnBasket)
+            {
+                dollGet.Add(dollid);
+                dropFinish.DollID = dollid;
+                dropFinish.Spawndoll();
 
-        }
+            }
+        
 
         if(finishDollGEt == 2)
         {
@@ -480,6 +506,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         data.FinishDollInInv = FinishDollGet;
         data.KeyID = keyId;
         data.crossCheck = crossUse;
+        data.FinishCloth = FinishCloth;
+        data.failCloth = Failswing;
+        data.Note2Get = GetNote2;
 
         for(int i = 0; i < GetPickUp.Count; i++)
         {

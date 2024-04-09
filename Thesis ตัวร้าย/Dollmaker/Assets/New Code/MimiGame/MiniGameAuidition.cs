@@ -98,6 +98,8 @@ public class MiniGameAuidition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FinishDoll = playpickUp.FinishCloth;
+        failCount = playpickUp.Failswing;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -396,8 +398,8 @@ public class MiniGameAuidition : MonoBehaviour
                     designSelect.CloseClothSwing();
                     inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
 
-
-                    FinishDoll++;
+                    playpickUp.FinishCloth++;
+                    FinishDoll = playpickUp.FinishCloth;
                     if (FinishDoll == 1) Finish1.Invoke();
                     Finish = false;
                     BackButt.SetActive(true);
@@ -471,7 +473,10 @@ public class MiniGameAuidition : MonoBehaviour
                 ClothMove.enabled = false;
 
                 anomalyCount++;
-                failCount++;
+         
+                playpickUp.Failswing++;
+                failCount = playpickUp.Failswing;
+
                 if (failCount == 1)
                     Fail1.Invoke();
                 if (failCount == 2)

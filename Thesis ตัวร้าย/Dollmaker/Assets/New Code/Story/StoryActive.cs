@@ -9,6 +9,8 @@ public class StoryActive : MonoBehaviour
 
     public float DelayBoxShow;
     public bool LookActiveEvent;
+    [SerializeField] int Id;
+    public int ID { get { return Id; }  }
     public UnityEvent EventActive;
     private BoxCollider Box;
     private PlayerChangeCam Pcam;

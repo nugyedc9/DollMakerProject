@@ -34,6 +34,7 @@ public class DollDropDesignTrigger : MonoBehaviour
 
     public void Update()
     {
+        
     }
 
 

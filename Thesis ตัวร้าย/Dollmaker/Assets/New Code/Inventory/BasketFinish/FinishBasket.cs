@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,6 +32,20 @@ public class FinishBasket : MonoBehaviour
 
             SlotNum++;
         }
+    }
+
+    public void DestoryDoll()
+    {
+        foreach (GameObject slot in Slot)
+        {
+            if (slot.transform.childCount > 0)
+            {
+                Destroy(slot.transform.GetChild(0).gameObject);
+            }
+        }
+
+        
+        SlotNum = 0;
     }
 
     public void Update()
