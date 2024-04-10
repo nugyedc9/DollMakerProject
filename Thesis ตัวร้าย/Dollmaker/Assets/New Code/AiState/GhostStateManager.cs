@@ -36,7 +36,7 @@ public class GhostStateManager : MonoBehaviour
     public int GhostID;
     public BoxCollider GhostBoxCol;
     public ParticleSystem particle;
-    public GameObject GhostFrom, GhostLight;
+    public GameObject GhostFrom, GhostLight, Dollprefab;
     public float DistanceAmount ,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
         GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
@@ -90,6 +90,7 @@ public class GhostStateManager : MonoBehaviour
     [Header("Event")]
     public UnityEvent EventGhostAfterDied;
     public UnityEvent GhostHuntLightOff, GhostOutSightLightOn;
+
 
 
     // Start is called before the first frame update
@@ -157,6 +158,7 @@ public class GhostStateManager : MonoBehaviour
                 PCam.GhostDied1data = true;
 
             GhostHuntEffect.SetActive(false);
+
             SwitchState(DiedState);
         }
 
@@ -293,7 +295,11 @@ public class GhostStateManager : MonoBehaviour
     #endregion
 
 
-
+    public void DropDoll(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(Dollprefab, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (this.transform.position - FirePoint.position).normalized * 1;
+    }
 
     public void DeleteGhost()
     {

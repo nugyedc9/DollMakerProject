@@ -22,6 +22,7 @@ public class GameData
     public List<GameObject> ItemDropObj;
 
     public Dictionary<string, bool> ItemOnScene;
+    public SerializableLightOn<string, bool> LightOn;
    
     public List<string> pickedUpItemIds;
     public List<string> EventStroyPass;
@@ -49,6 +50,7 @@ public class GameData
         EventStroyPass = new List<string>();  
         FinishDollOnBasket = new List<int>();   
         crossCheck = new CrossCheck();
+        LightOn = new SerializableLightOn<string, bool>();
 
  flashLighGet = false;
         Note1Get = false;

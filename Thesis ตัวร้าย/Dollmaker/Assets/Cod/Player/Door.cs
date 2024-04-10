@@ -32,6 +32,8 @@ public class Door : MonoBehaviour
     public float DelayDoorOpenEvent { get { return delayDooropenEvent; } set { delayDooropenEvent = value; } }
 
 
+    float DelayCloseDoor;
+
 
     private void Awake()
     {
@@ -50,6 +52,16 @@ public class Door : MonoBehaviour
             DelayDoorOpenEvent = 0;
         }
 
+        if(DelayCloseDoor > 0) DelayCloseDoor -= Time.deltaTime;
+        else if(DelayCloseDoor < 0)
+        {
+            DoorSound.clip = close;
+            DoorSound.Play();
+            doorAni.Play("Door_close", 0, 0);
+            D = false;
+            DelayCloseDoor = 0;
+        }
+
 
     }
 
@@ -63,7 +75,7 @@ public class Door : MonoBehaviour
                 DoorSound.Play();
                 doorAni.Play("Door_open", 0, 0);
                 D = true;
-
+                DelayCloseDoor = 5;
                 if (Aftergetdoll)
                 {
                     afterGetDoll.Invoke();

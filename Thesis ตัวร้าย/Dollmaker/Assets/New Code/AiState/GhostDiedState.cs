@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GhostDiedState : GhostBaseState
 {
     float Timer = 1.5f;
+    bool dropDoll;
 
     public override void EnterState(GhostStateManager state)
     {
@@ -31,6 +33,11 @@ public class GhostDiedState : GhostBaseState
             state.GhostFrom.SetActive(false);
             state.GhostBoxCol.enabled = false;
             state.GhostAmbi.Stop();
+            if (!dropDoll)
+            {
+               state.DropDoll(state.GhostBoxCol.transform);
+                dropDoll = true;
+            }
             state.DeleteGhost();
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-public class Event : MonoBehaviour
+public class Event : MonoBehaviour, IDataGame
 {
 /*    [Header("GhostThing")]
     public Animator Ghost1;
@@ -20,6 +20,14 @@ public class Event : MonoBehaviour
     public AudioSource LightSound;
     public bool TurnLight;
 
+    [SerializeField] public string id;
+
+
+    [ContextMenu("Generate grid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
 
     private void Awake()
@@ -88,28 +96,55 @@ public class Event : MonoBehaviour
         }
     }
 
-  /*  public void GhostLightOut()
+    public void LoadData(GameData data)
     {
-        LightOff.SetActive(true);
-        if (!TurnLight)
+       data.LightOn.TryGetValue(id, out TurnLight);
+        if(TurnLight)
         {
-            LightSwitchOn.SetActive(true);
-            LightSwitchOff.SetActive(false);
-        }
-        else
-        {
-            LightSwitchOn.SetActive(false);
-            LightSwitchOff.SetActive(true);
+            LightOn.SetActive(true);
+            LightOff.SetActive(false);
+
         }
     }
-*/
 
- /*   IEnumerator waitdelay()
+    public void SaveData(GameData data)
     {
-        yield return new WaitForSeconds(9);
-        Ghost1.gameObject.SetActive(false);
-    }*/
+        if (data.LightOn.ContainsKey(id))
+        {
+            data.LightOn.Remove(id);
+        }
+        data.LightOn.Add(id, TurnLight);
+    }
+
+    public void deleteData(GameData data)
+    {
+
+    }
+
+    /*  public void GhostLightOut()
+      {
+          LightOff.SetActive(true);
+          if (!TurnLight)
+          {
+              LightSwitchOn.SetActive(true);
+              LightSwitchOff.SetActive(false);
+          }
+          else
+          {
+              LightSwitchOn.SetActive(false);
+              LightSwitchOff.SetActive(true);
+          }
+      }
+  */
+
+    /*   IEnumerator waitdelay()
+       {
+           yield return new WaitForSeconds(9);
+           Ghost1.gameObject.SetActive(false);
+       }*/
 
 
 }
-    
+
+
+
