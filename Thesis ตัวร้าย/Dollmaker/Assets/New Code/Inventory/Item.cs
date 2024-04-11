@@ -37,5 +37,8 @@ public enum ItemType
     FinishDollYellow,
         Key,
         ScrissorCutCloth,
-    EyeWash
+    EyeWash,
+    BloodyDollRed,
+    BloodyDollGreen,
+    BloodyDollYellow
 }

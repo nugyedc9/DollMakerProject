@@ -61,7 +61,6 @@ public class GameData
         Ghost2Spawn= false;
         _1Sleep = false;
 
-
          storyCountSave = 0;
         FinishDollInInv = 0;
         KeyID = 0;

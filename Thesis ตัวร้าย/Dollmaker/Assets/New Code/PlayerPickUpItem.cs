@@ -77,6 +77,17 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [SerializeField] bool finishDollOnHand2;
     public bool FDOnhand2 { get { return finishDollOnHand2; } set { finishDollOnHand2 = value; } }
 
+    [SerializeField] bool finishDollOnHand3;
+    public bool FDOnhand3 { get { return finishDollOnHand3; } set { finishDollOnHand3 = value; } }
+
+    [SerializeField] bool finishDollOnHand4;
+    public bool FDOnhand4 { get { return finishDollOnHand4; } set { finishDollOnHand4 = value; } }
+
+    [SerializeField] bool finishDollOnHand5;
+    public bool FDOnhand5 { get { return finishDollOnHand5; } set { finishDollOnHand5 = value; } }
+
+
+
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
@@ -88,6 +99,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private DocumentID documentID;
     private Door DoorId;
     public FinishBasket dropFinish;
+    private CoverDollWithBlood Coverdoll;
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
@@ -98,7 +110,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [Header("DestroyItemOnLoad")]
     public List<string> GetPickUp = new List<string>();
 
-    public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll;
+    public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll,
+        OpenAllWall;
 
     public void Update()
     {
@@ -213,6 +226,54 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         GetPickUp.Add(ItemIdGet.id);
 
                     }
+
+                    if (hitInfo.collider.gameObject.tag == "BloodyDollRed")
+                    {
+
+                        audioSource.clip = DollS;
+                        audioSource.Play();
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[20]);
+
+
+                        Destroy(hitInfo.collider.gameObject);
+
+                    }
+                    if (hitInfo.collider.gameObject.tag == "BloodyDollGreen")
+                    {
+
+                        audioSource.clip = DollS;
+                        audioSource.Play();
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[21]);
+
+
+                        Destroy(hitInfo.collider.gameObject);
+
+                    }
+
+                    if (hitInfo.collider.gameObject.tag == "BloodyDollYellow")
+                    {
+
+                        audioSource.clip = DollS;
+                        audioSource.Play();
+
+                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);
+
+                        inventoryManager.AddItem(itemPickUp[22]);
+
+
+                        Destroy(hitInfo.collider.gameObject);
+
+                    }
+
 
                     #region Not PickAnymore
                     /*
@@ -377,19 +438,52 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                     if (hitInfo.collider.gameObject.tag == "Basket")
                     {
-                        if (FDOnhand || FDOnhand1 || FDOnhand2)
+
+                        if (!_1Sleep)
                         {
-                            audioSource.clip = PushFiniDollS;
-                            audioSource.Play();
-                            dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
-                            dropFinish.DollID = inventoryManager.FinishDollID;
-                            dollGet.Add(dropFinish.DollID);
-                            dropFinish.Spawndoll();
-                            inventoryManager.GetSelectedItem(true);
+                            if (FDOnhand || FDOnhand1 || FDOnhand2)
+                            {
+                                audioSource.clip = PushFiniDollS;
+                                audioSource.Play();
+                                dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
+                                dropFinish.DollID = inventoryManager.FinishDollID;
+                                dollGet.Add(dropFinish.DollID);
+                                dropFinish.Spawndoll();
+                                inventoryManager.GetSelectedItem(true);
+                            }
+                        }
+                        else
+                        {
+                            if (FDOnhand3 || FDOnhand4 || FDOnhand5)
+                            {
+                                audioSource.clip = PushFiniDollS;
+                                audioSource.Play();
+                                dropFinish = hitInfo.collider.gameObject.GetComponent<FinishBasket>();
+                                dropFinish.DollID = inventoryManager.FinishDollID;
+                                dollGet.Add(dropFinish.DollID);
+                                dropFinish.Spawndoll();
+                                inventoryManager.GetSelectedItem(true);
+                            }
                         }
 
                     }
 
+                    if(hitInfo.collider.gameObject.tag == "coverBlood")
+                    {
+                        if (FDOnhand || FDOnhand1 || FDOnhand2)
+                        {
+                            audioSource.clip = PushFiniDollS;
+                            audioSource.Play();
+                            Coverdoll = hitInfo.collider.gameObject.GetComponent<CoverDollWithBlood>();
+                            Coverdoll.Spawndoll(inventoryManager.FinishDollID);
+
+                           /* dropFinish.DollID = inventoryManager.FinishDollID;
+                            dollGet.Add(dropFinish.DollID);
+                            dropFinish.Spawndoll();*/
+
+                            inventoryManager.GetSelectedItem(true);
+                        }
+                    }
 
                 }
             }
@@ -401,7 +495,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             }
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (HealOnhand && HpPlayer.curHp < HpPlayer.MaxHp)
             {
@@ -429,11 +523,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     {
         GetPickUp.Add(id);
 
-        ItemIdGenerate[ ] items = GameObject.FindObjectsOfType<ItemIdGenerate>();
+        ItemIdGenerate[] items = GameObject.FindObjectsOfType<ItemIdGenerate>();
 
         foreach (ItemIdGenerate item in items)
         {
-            if(item.id == id)
+            if (item.id == id)
             {
                 Destroy(item.gameObject);
                 break;
@@ -458,7 +552,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     public void LoadData(GameData data)
     {
-      GetPickUp.Clear();
+        GetPickUp.Clear();
         dollGet.Clear();
 
 
@@ -469,37 +563,43 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         finishCloth = data.FinishCloth;
         Failswing = data.failCloth;
         GetNote2 = data.Note2Get;
+        _1Sleep = data._1Sleep;
 
-
-        if(finishDollGEt == 1)
+        if (finishDollGEt == 1)
         {
             EventFinishDoll1.Invoke();
         }
 
-        foreach (var item in  data.pickedUpItemIds)
+        foreach (var item in data.pickedUpItemIds)
         {
             ItemDestroy(item);
         }
 
-            foreach (int dollid in data.FinishDollOnBasket)
-            {
-                dollGet.Add(dollid);
-                dropFinish.DollID = dollid;
-                dropFinish.Spawndoll();
+        foreach (int dollid in data.FinishDollOnBasket)
+        {
+            dollGet.Add(dollid);
+            dropFinish.DollID = dollid;
+            dropFinish.Spawndoll();
 
-            }
-        
+        }
 
-        if(finishDollGEt == 2)
+
+        if (finishDollGEt == 2)
         {
             Have2FinishDoll.Invoke();
         }
+
+        if (FinishDollGet >= 5)
+        {
+            OpenAllWall.Invoke();
+        }
+
 
     }
 
     public void SaveData(GameData data)
     {
-       data.pickedUpItemIds.Clear();
+        data.pickedUpItemIds.Clear();
         data.FinishDollOnBasket.Clear();
 
 
@@ -511,12 +611,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         data.failCloth = Failswing;
         data.Note2Get = GetNote2;
 
-        for(int i = 0; i < GetPickUp.Count; i++)
+        for (int i = 0; i < GetPickUp.Count; i++)
         {
             data.pickedUpItemIds.Add(GetPickUp[i]);
         }
 
-        for(int i = 0; i < dollGet.Count; i++)
+        for (int i = 0; i < dollGet.Count; i++)
         {
             data.FinishDollOnBasket.Add(dollGet[i]);
         }
@@ -524,6 +624,6 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     public void deleteData(GameData data)
     {
-      
+
     }
 }

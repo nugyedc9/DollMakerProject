@@ -372,6 +372,23 @@ public PlayerPickUpItem playerPickUpItem;
             else playerPickUpItem.FDOnhand2 = false;
 
 
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollRed"))
+            {
+                FinishDollID = 3; playerPickUpItem.FDOnhand3 = true;
+            }
+            else playerPickUpItem.FDOnhand3 = false;
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollGreen"))
+            {
+                FinishDollID = 4; playerPickUpItem.FDOnhand4 = true;
+            }
+            else playerPickUpItem.FDOnhand4 = false;
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollYellow"))
+            {
+                FinishDollID = 5; playerPickUpItem.FDOnhand5 = true;
+            }
+            else playerPickUpItem.FDOnhand5 = false;
+
+
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Key"))
             {
