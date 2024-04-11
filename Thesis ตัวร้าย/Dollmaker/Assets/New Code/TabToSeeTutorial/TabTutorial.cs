@@ -55,7 +55,8 @@ public class TabTutorial : MonoBehaviour
                     InvShow.enabled = true;
                     PlayAnimInvTab = true;
                     Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;                    
+                    Cursor.lockState = CursorLockMode.None;
+                    Time.timeScale = 0;
                     inputManager.OnTab = true;
                    // InvShow.Play("OpenTabInv", 0, 0);
 
@@ -75,6 +76,7 @@ public class TabTutorial : MonoBehaviour
                     OpenTutor = false;
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
+                    Time.timeScale = 1;
                     inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
 
@@ -96,6 +98,7 @@ public class TabTutorial : MonoBehaviour
                     PlayAnimInvTab = true;
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
+                    Time.timeScale = 0;
                     inputManager.OnTab = true;
                     // InvShow.Play("OpenTabInv", 0, 0);
 
@@ -114,6 +117,7 @@ public class TabTutorial : MonoBehaviour
                     OpenTutor = false;
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
+                    Time.timeScale = 1;
                     inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
 

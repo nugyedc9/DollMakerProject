@@ -122,16 +122,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         }
                         audioSource.clip = CrossS;
                         audioSource.Play();
-                        CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                        PAttack.curHpCross = CrossUse.curHp;
-                        CrossBar.maxValue = crossUse.MaxHp;
+                    //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                        PAttack.curHpCross = 3;
+                        CrossBar.maxValue = 3;
                         inventoryManager.TriggerCrossAnim = true;
 
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
 
-                        if (CrossUse.curHp == 3)
+                       // if (CrossUse.curHp == 3)
                             inventoryManager.AddItem(itemPickUp[0]);
                       /*  if (CrossUse.curHp == 2)
                             inventoryManager.AddItem(itemPickUp[4]);
@@ -469,6 +469,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         finishCloth = data.FinishCloth;
         Failswing = data.failCloth;
         GetNote2 = data.Note2Get;
+
 
         if(finishDollGEt == 1)
         {

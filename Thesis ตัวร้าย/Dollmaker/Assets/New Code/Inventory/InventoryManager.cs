@@ -89,7 +89,7 @@ public PlayerPickUpItem playerPickUpItem;
 
 
         #region Item Show
-        if (selectedSlot >= 0 && selectedSlot <= 2 && tabTutorial.OpenTutor == false && ChangeCam.camOnPerSon == true)
+        if (selectedSlot >= 0 && selectedSlot <= 5 && tabTutorial.OpenTutor == false && ChangeCam.camOnPerSon == true)
         {
             inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))

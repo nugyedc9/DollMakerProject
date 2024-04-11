@@ -296,9 +296,9 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 crossAnim.SetState(CrossState.Idle);
                 inventoryManager.TriggerCrossAnim = true;
-                if (playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
+                if (curHpCross < 3)
                 {
-                    playerPickUpItem.CrossUse.ReCharge();
+                    curHpCross += Time.deltaTime;
                 }
             }
 
@@ -309,9 +309,9 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 crossAnim.SetState(CrossState.Idle);
                 inventoryManager.TriggerCrossAnim = true;
-                if (playerPickUpItem.CrossUse.curHp < playerPickUpItem.CrossUse.MaxHp)
+                if (curHpCross < 3)
                 {
-                    playerPickUpItem.CrossUse.ReCharge();
+                    curHpCross += Time.deltaTime;
                 }
             }
         }
@@ -3268,7 +3268,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     public void CrossReCharge()
     {
-        if (curHpCross < playerPickUpItem.CrossUse.MaxHp)
+        if (curHpCross < 3)
         {
             curHpCross += Time.deltaTime;
         }
@@ -3803,7 +3803,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         FlashLightGet = data.flashLighGet;
         OpenWall1 = data.OpenWall1;
         curHpCross = data.CurCrossHP;     
-        playerPickUpItem.CrossUse = data.crossCheck;
+       // playerPickUpItem.CrossUse = data.crossCheck;
         _1Sleep = data._1Sleep;
     }
 
@@ -3812,7 +3812,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         data.flashLighGet = FlashLightGet;
         data.OpenWall1 = OpenWall1;
         data.CurCrossHP = curHpCross;
-        data.crossCheck = playerPickUpItem.CrossUse;
+       // data.crossCheck = playerPickUpItem.CrossUse;
         data._1Sleep = _1Sleep;
     }
 
