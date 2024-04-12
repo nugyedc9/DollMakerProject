@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using static InventoryManager;
 
-public class CoverDollWithBlood : MonoBehaviour
+public class CoverDollWithBlood : MonoBehaviour,IDataGame
 {
     public GameObject[] dollShow;
   //  public GameObject[] Slot;
@@ -23,13 +23,19 @@ public class CoverDollWithBlood : MonoBehaviour
     public List<float> dollTimers = new List<float>();
     public List<int > DollId = new List<int>();
 
-    bool SuccDoll;
+    bool SuccDoll, Covered2, Covered3;
+    int dollCovered;
+
+    public UnityEvent Covered2Event, Covered3Event;
+
     public void Spawndoll(int iddoll)
     {
 
         dollTimers.Add(5);
 
         DollId.Add(iddoll);
+
+        dollCovered++;
     }
 
 
@@ -50,8 +56,36 @@ public class CoverDollWithBlood : MonoBehaviour
                 dollTimers[i] = 0; 
             }
         }
+
+        if(!Covered2 && dollCovered >= 2)
+        {
+            Covered2Event.Invoke();
+            Covered2 = true;
+        }
+        if (!Covered3 && dollCovered >= 3)
+        {
+            Covered3Event.Invoke();
+            Covered3 = true;
+        }
+
     }
 
+    public void LoadData(GameData data)
+    {
+        dollCovered = data.DollsCoveredCount;
+        Covered2 = data.GhostSpawnAfterCovered2;
+        Covered3 = data.GhostSpawnAfterCovered3;
+    }
 
+    public void SaveData(GameData data)
+    {
+        data.GhostSpawnAfterCovered2 = Covered2;
+        data.GhostSpawnAfterCovered3 = Covered3;
+        data.DollsCoveredCount = dollCovered;
+    }
 
+    public void deleteData(GameData data)
+    {
+       
+    }
 }
