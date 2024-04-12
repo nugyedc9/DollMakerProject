@@ -57,17 +57,17 @@ public class CoverDollWithBlood : MonoBehaviour,IDataGame
             }
         }
 
-        if(!Covered2 && dollCovered >= 2)
+        if(!Covered2 && dollCovered >= 4)
         {
             Covered2Event.Invoke();
             Covered2 = true;
         }
-        if (!Covered3 && dollCovered >= 3)
+      /*  if (!Covered3 && dollCovered >= 3)
         {
             Covered3Event.Invoke();
             Covered3 = true;
         }
-
+*/
     }
 
     public void LoadData(GameData data)
