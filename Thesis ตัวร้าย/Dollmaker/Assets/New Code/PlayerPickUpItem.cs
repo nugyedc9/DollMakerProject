@@ -34,7 +34,6 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public Transform pickUPPoint;
 
 
-
     [Header("---- Audio ----")]
     public AudioSource audioSource;
     public AudioClip CrossS, DollS, ScissorS, CutClothS,
@@ -375,7 +374,6 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
-
             }
 
 

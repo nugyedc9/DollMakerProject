@@ -278,8 +278,8 @@ public class GhostStateManager : MonoBehaviour
 
         if (playerOutOfSight < 0)
         {
-            if (PlayerInSight)
-            {
+           // if (PlayerInSight)
+           // {
                 AlertSPlay = false;
                 RandomInIdle = true;
                 CanseePlayer = false;
@@ -288,7 +288,8 @@ public class GhostStateManager : MonoBehaviour
                 // Debug.Log("IdleAfterPlayer");
                 SwitchState(IdleState);
                 PlayerInSight = false;
-            }
+            playerOutOfSight = 0;
+          //  }
 
         }
     }

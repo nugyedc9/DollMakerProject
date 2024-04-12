@@ -60,14 +60,17 @@ public class GhostAttackState : GhostBaseState
                 }
                 else
                 {
-                    hitplayer = true;
-                    PlayerInRange  = true;
+                    if (!state.PCam.hiding)
+                        hitplayer = true;
+                   
+                        PlayerInRange = true;
                 }
             }
         }
 
         if (TimeHit < 0)
         {
+            if (!state.PCam.hiding) 
             hitplayer = true;
             state.CanseePlayer = false;
         }

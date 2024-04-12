@@ -18,15 +18,25 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [SerializeField] CinemachineVirtualCamera _1GetScrissorCam;
     [SerializeField] CinemachineVirtualCamera DollHenshin;
     [SerializeField] CinemachineVirtualCamera SleepCam;
+    [SerializeField] CinemachineVirtualCamera HideSpot1;
+    [SerializeField] CinemachineVirtualCamera HideSpot2;
+    [SerializeField] CinemachineVirtualCamera HideSpot3;
+    [SerializeField] CinemachineVirtualCamera HideSpot4;
+
 
     public PlayerAttack Pattack;
     public PlayerPickUpItem PPick;
+    public GameObject PlayerPOS;
     public InventoryManager invmanager;
     public Animator DropDollTab, SleepDream;
 
     [Header("Text Main and sub")]
     public TextMeshProUGUI MainObjtive;
     public TextMeshProUGUI SubObjtive;
+
+    //[Header("HideSpot")]
+    private IDInt IDInterect;
+    private BoxCollider HideSpotBox;
 
     [Header("Ghostthisg")]
     public GhostStateManager ThisGhost;
@@ -103,13 +113,14 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, 
         _1designCloth, _1sewing, _1doll, _1clothDoll,
-        _1cutLine;
+        _1cutLine, Hiding;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
     public bool _1Doll { get { return _1doll; } set { _1doll = value; } }
     public bool _1ClothDoll { get { return _1clothDoll; } set { _1clothDoll = value; } }
     public bool T1CutLine { get { return _1cutLine; } set { _1cutLine = value; } }
+    public bool hiding { get { return Hiding; } set { Hiding = value; } }
 
     float Closecanva, TutorialTimeIncode, CamOnTutorial;
 
@@ -145,6 +156,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.Register(_1GetScrissorCam);
         ChangePOV.Register(DollHenshin);
         ChangePOV.Register(SleepCam);
+        ChangePOV.Register(HideSpot1);
+        ChangePOV.Register(HideSpot2);
+        ChangePOV.Register(HideSpot3);
+        ChangePOV.Register(HideSpot4);
        
     }
 
@@ -159,6 +174,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.UnRegister(DollHenshin);
         ChangePOV.UnRegister(SleepCam);
         ChangePOV.UnRegister(BedCam);
+        ChangePOV.UnRegister(BedCam);
+        ChangePOV.UnRegister(HideSpot1);
+        ChangePOV.UnRegister(HideSpot2);
+        ChangePOV.UnRegister(HideSpot3);
+        ChangePOV.UnRegister(HideSpot4);
     }
 
     private void Start()
@@ -305,10 +325,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
         Ray ray = new Ray(InterectTransform.position, InterectTransform.forward);
         //Debug.DrawRay(InterectTransform.position, InterectTransform.forward);
-        if(Physics.Raycast(ray, out RaycastHit hitInfo, InterectRange))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, InterectRange))
         {
-           // Debug.Log(hitInfo.collider.gameObject.tag);
-            if(hitInfo.collider.gameObject.tag == "WorkShopDesk")
+            // Debug.Log(hitInfo.collider.gameObject.tag);
+            if (hitInfo.collider.gameObject.tag == "WorkShopDesk")
             {
                 // if (!HaveItem)
                 if (Input.GetKeyDown(KeyCode.E))
@@ -316,15 +336,15 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
                         WorkShopBoxCol.enabled = false;
-          
+
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         ItemOnPlayer.SetActive(false);
-                      //  TextOnPlayer.SetActive(false);
-                        CheckCanplayMiniG.OnDesk = true;                  
+                        //  TextOnPlayer.SetActive(false);
+                        CheckCanplayMiniG.OnDesk = true;
                         CamOnDesk = true;
                         LookOutGhost = false;
-                       // TurnOut.SetActive(true);
+                        // TurnOut.SetActive(true);
                         TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(WorkShopView);
                         StartCoroutine(DelayCamera());
@@ -335,7 +355,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         }
                     }
                 }
-                
+
             }
             if (hitInfo.collider.gameObject.tag == "DeskWorkShop")
             {
@@ -344,7 +364,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
-                       if (!HaveCloth)
+                        if (!HaveCloth)
                         {
                             BoxRollCloth.SetActive(true);
                         }
@@ -352,11 +372,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
-                      /*  DesignSelect.SetActive(true);*/
+                        /*  DesignSelect.SetActive(true);*/
                         Book.SetActive(true);
                         Allline.SetActive(true);
                         ItemOnPlayer.SetActive(false);
-                       // TextOnPlayer.SetActive(false);
+                        // TextOnPlayer.SetActive(false);
                         CamOnDesk = true;
                         ChangePOV.SwitchCamera(DeskShopView);
                         StartCoroutine(DelayCamera());
@@ -394,8 +414,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             DollTutorial.SetActive(true);
                         }*/
 
-                      /*  if (!DropDoll.CloseboxDropDoll)
-                            DesignDollSelect.SetActive(true); */
+                        /*  if (!DropDoll.CloseboxDropDoll)
+                              DesignDollSelect.SetActive(true); */
 
                         InvOpen.Play("InvOpen");
                         DropDollArrow.SetActive(true);
@@ -418,6 +438,91 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             sewingTutorial.SetActive(true);
                         }
 
+                    }
+                }
+
+
+
+            }
+            if (hitInfo.collider.gameObject.tag == "HideSpot")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+
+                    IDInterect = hitInfo.collider.gameObject.GetComponent<IDInt>();
+                    HideSpotBox = hitInfo.collider.gameObject.GetComponent<BoxCollider>();
+
+                    if (IDInterect.id == 0)
+                    {
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            Hiding = true;
+                            HideSpotBox.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+
+                            PlayerPOS.SetActive(false);
+                            ItemOnPlayer.SetActive(false);
+
+                            ChangePOV.SwitchCamera(HideSpot1);
+                            StartCoroutine(DelayCamera());
+
+
+                        }
+                    }
+                    if (IDInterect.id == 1)
+                    {
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            Hiding = true;
+                            HideSpotBox.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+
+                            PlayerPOS.SetActive(false);
+                            ItemOnPlayer.SetActive(false);
+
+                            ChangePOV.SwitchCamera(HideSpot2);
+                            StartCoroutine(DelayCamera());
+
+
+                        }
+                    }
+                    if (IDInterect.id == 2)
+                    {
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            Hiding = true;
+                            HideSpotBox.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+
+                            PlayerPOS.SetActive(false);
+                            ItemOnPlayer.SetActive(false);
+
+                            ChangePOV.SwitchCamera(HideSpot3);
+                            StartCoroutine(DelayCamera());
+
+
+                        }
+                    }
+                    if (IDInterect.id == 3)
+                    {
+                        if (ChangePOV.IsActiveCamera(FirstpersonView))
+                        {
+                            Hiding = true;
+                            HideSpotBox.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+
+                            PlayerPOS.SetActive(false);
+                            ItemOnPlayer.SetActive(false);
+
+                            ChangePOV.SwitchCamera(HideSpot4);
+                            StartCoroutine(DelayCamera());
+
+
+                        }
                     }
                 }
 
@@ -461,7 +566,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         }
         else
         {
-            if (!OnCutScene)
+            if (!OnCutScene && !Hiding)
             {
                 ShowMouse();
                 if (ChangePOV.IsActiveCamera(PushClothOnDollView))
@@ -582,6 +687,58 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     }
                 }
 
+                if (ChangePOV.IsActiveCamera(HideSpot1))
+                {
+                    PlayerPOS.SetActive(true);
+                    HideSpotBox.enabled = true;
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    Hiding = false;
+
+                }
+
+               else if (ChangePOV.IsActiveCamera(HideSpot2))
+                {
+                    PlayerPOS.SetActive(true);
+                    HideSpotBox.enabled = true;
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    Hiding = false;
+
+                }
+                else if (ChangePOV.IsActiveCamera(HideSpot3))
+                {
+                    PlayerPOS.SetActive(true);
+                    HideSpotBox.enabled = true;
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    Hiding = false;
+
+                }
+                else if (ChangePOV.IsActiveCamera(HideSpot4))
+                {
+                    PlayerPOS.SetActive(true);
+                    HideSpotBox.enabled = true;
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    Hiding = false;
+                }
             }
 
         }
