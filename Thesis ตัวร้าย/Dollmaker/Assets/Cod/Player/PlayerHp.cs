@@ -7,6 +7,7 @@ public class PlayerHp : MonoBehaviour
 {
     public PlayerAttack PAttack;
     public Animator PlayerGetHit;
+    private PlayerChangeCam PCam;
 
     [Header("Hp Thing")]
 
@@ -21,12 +22,13 @@ public class PlayerHp : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource HpLow, Died;
 
-
+    
 
     public void Start()
     {
         curHp = MaxHp;
         normaleye = true;
+        PCam = GetComponent<PlayerChangeCam>();
     }
 
     public void Update()
@@ -118,6 +120,7 @@ public class PlayerHp : MonoBehaviour
         Delayvideo = 3;
         HpPic[i].SetActive(false);
         DMGPic[i].SetActive(true);
+        if(PCam.hiding) PCam.GetHitAndoutOfhiding();
         curHp -= damage;     
     }
 

@@ -28,7 +28,7 @@ public class GhostStateManager : MonoBehaviour
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
     public PlayerChangeCam PCam;
-    public GameObject GhostHuntEffect;
+    public GameObject GhostHuntEffect, PlayerPOS;
     public bool HpCross;
 
     [Header("Ghost")]
@@ -123,6 +123,7 @@ public class GhostStateManager : MonoBehaviour
             playerOutOfSight -= Time.deltaTime; 
             DelayHitPlayer -= Time.deltaTime;
 
+           
         }
 
         /*        if(PlayerHitDelay <= 0)
@@ -161,6 +162,16 @@ public class GhostStateManager : MonoBehaviour
 
             SwitchState(DiedState);
         }
+
+        if(playerOutOfSight < 3f && PCam.hiding)
+        {
+            PlayerPOS.SetActive(false);
+        }
+        else if(playerOutOfSight > 3f && PCam.hiding)
+        {
+            PlayerPOS.SetActive(true);
+        }
+        else if(!PCam.hiding) PlayerPOS.SetActive(true);
 
     }
 

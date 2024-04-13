@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private     PlayerMotor motor;
     private PlayerLook look;
     private bool CanWalk = true, Ondesk, HoldSpace;
+    private PlayerChangeCam PCam;
 
     [SerializeField] bool onTab;
     public bool OnTab { get { return onTab; } set {  onTab = value; } }
@@ -22,6 +23,7 @@ public class InputManager : MonoBehaviour
         onLook = playerInput.OnLook;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        PCam = FindAnyObjectByType<PlayerChangeCam>();
        // onFoot.Jump.performed += ctx => motor.Jump();
     }
     // Update is called once per frame
@@ -43,6 +45,11 @@ public class InputManager : MonoBehaviour
     {
         if (!Ondesk && !OnTab)
             look.ProcessLook(onLook.Look.ReadValue<Vector2>());
+
+        if (PCam.hiding)
+        {
+            look.ProcesslookOnDesk(onLook.Look.ReadValue<Vector2>());
+        }
 /*        else
         {
             if(!HoldSpace)

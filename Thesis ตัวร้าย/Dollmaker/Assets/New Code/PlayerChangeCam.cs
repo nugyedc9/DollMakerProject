@@ -18,10 +18,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [SerializeField] CinemachineVirtualCamera _1GetScrissorCam;
     [SerializeField] CinemachineVirtualCamera DollHenshin;
     [SerializeField] CinemachineVirtualCamera SleepCam;
-    [SerializeField] CinemachineVirtualCamera HideSpot1;
-    [SerializeField] CinemachineVirtualCamera HideSpot2;
-    [SerializeField] CinemachineVirtualCamera HideSpot3;
-    [SerializeField] CinemachineVirtualCamera HideSpot4;
+    [SerializeField] List<CinemachineVirtualCamera> hidespot;
+    public List<CinemachineVirtualCamera> HideSpot { get { return hidespot; } }
+
 
 
     public PlayerAttack Pattack;
@@ -35,7 +34,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public TextMeshProUGUI SubObjtive;
 
     //[Header("HideSpot")]
-    private IDInt IDInterect;
+    private IDInt idInterect;
+    public IDInt IDInterect {  get { return idInterect; } set { idInterect = value; } }
     private BoxCollider HideSpotBox;
 
     [Header("Ghostthisg")]
@@ -156,10 +156,14 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.Register(_1GetScrissorCam);
         ChangePOV.Register(DollHenshin);
         ChangePOV.Register(SleepCam);
-        ChangePOV.Register(HideSpot1);
-        ChangePOV.Register(HideSpot2);
-        ChangePOV.Register(HideSpot3);
-        ChangePOV.Register(HideSpot4);
+
+        for (int i = 0; i < HideSpot.Count; i++)
+        {
+             ChangePOV.Register(HideSpot[i]);
+        }
+
+            
+        
        
     }
 
@@ -175,10 +179,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.UnRegister(SleepCam);
         ChangePOV.UnRegister(BedCam);
         ChangePOV.UnRegister(BedCam);
-        ChangePOV.UnRegister(HideSpot1);
-        ChangePOV.UnRegister(HideSpot2);
-        ChangePOV.UnRegister(HideSpot3);
-        ChangePOV.UnRegister(HideSpot4);
+
+        for (int i = 0; i < HideSpot.Count; i++)
+        {
+            ChangePOV.UnRegister(HideSpot[i]);
+        }
     }
 
     private void Start()
@@ -452,78 +457,26 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     IDInterect = hitInfo.collider.gameObject.GetComponent<IDInt>();
                     HideSpotBox = hitInfo.collider.gameObject.GetComponent<BoxCollider>();
 
-                    if (IDInterect.id == 0)
+                    if (IDInterect != null && IDInterect.id >= 0 && IDInterect.id < HideSpot.Count)
                     {
                         if (ChangePOV.IsActiveCamera(FirstpersonView))
                         {
                             Hiding = true;
+
                             HideSpotBox.enabled = false;
                             _InputManager.StopWalk();
                             Throwitem.StopAttack();
 
-                            PlayerPOS.SetActive(false);
+                           // PlayerPOS.SetActive(false);
                             ItemOnPlayer.SetActive(false);
 
-                            ChangePOV.SwitchCamera(HideSpot1);
+                            ChangePOV.SwitchCamera(HideSpot [IDInterect.id]);
                             StartCoroutine(DelayCamera());
 
 
                         }
                     }
-                    if (IDInterect.id == 1)
-                    {
-                        if (ChangePOV.IsActiveCamera(FirstpersonView))
-                        {
-                            Hiding = true;
-                            HideSpotBox.enabled = false;
-                            _InputManager.StopWalk();
-                            Throwitem.StopAttack();
-
-                            PlayerPOS.SetActive(false);
-                            ItemOnPlayer.SetActive(false);
-
-                            ChangePOV.SwitchCamera(HideSpot2);
-                            StartCoroutine(DelayCamera());
-
-
-                        }
-                    }
-                    if (IDInterect.id == 2)
-                    {
-                        if (ChangePOV.IsActiveCamera(FirstpersonView))
-                        {
-                            Hiding = true;
-                            HideSpotBox.enabled = false;
-                            _InputManager.StopWalk();
-                            Throwitem.StopAttack();
-
-                            PlayerPOS.SetActive(false);
-                            ItemOnPlayer.SetActive(false);
-
-                            ChangePOV.SwitchCamera(HideSpot3);
-                            StartCoroutine(DelayCamera());
-
-
-                        }
-                    }
-                    if (IDInterect.id == 3)
-                    {
-                        if (ChangePOV.IsActiveCamera(FirstpersonView))
-                        {
-                            Hiding = true;
-                            HideSpotBox.enabled = false;
-                            _InputManager.StopWalk();
-                            Throwitem.StopAttack();
-
-                            PlayerPOS.SetActive(false);
-                            ItemOnPlayer.SetActive(false);
-
-                            ChangePOV.SwitchCamera(HideSpot4);
-                            StartCoroutine(DelayCamera());
-
-
-                        }
-                    }
+                  
                 }
 
             }
@@ -687,58 +640,25 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     }
                 }
 
-                if (ChangePOV.IsActiveCamera(HideSpot1))
+                if (IDInterect != null && IDInterect.id >= 0 && IDInterect.id < HideSpot.Count)
                 {
-                    PlayerPOS.SetActive(true);
-                    HideSpotBox.enabled = true;
-                    _InputManager.StopWalk();
-                    Throwitem.CanAttack();
-                    ItemOnPlayer.SetActive(true);
-                    TextOnPlayer.SetActive(true);
-                    ChangePOV.SwitchCamera(FirstpersonView);
-                    CamOnPerson = true;
-                    Hiding = false;
 
+                    if (ChangePOV.IsActiveCamera(HideSpot[IDInterect.id]))
+                    {
+                        //PlayerPOS.SetActive(true);
+                        HideSpotBox.enabled = true;
+                        _InputManager.StopWalk();
+                        Throwitem.CanAttack();
+                        ItemOnPlayer.SetActive(true);
+                        TextOnPlayer.SetActive(true);
+                        ChangePOV.SwitchCamera(FirstpersonView);
+                        CamOnPerson = true;
+                        Hiding = false;
+
+                    }
                 }
 
-               else if (ChangePOV.IsActiveCamera(HideSpot2))
-                {
-                    PlayerPOS.SetActive(true);
-                    HideSpotBox.enabled = true;
-                    _InputManager.StopWalk();
-                    Throwitem.CanAttack();
-                    ItemOnPlayer.SetActive(true);
-                    TextOnPlayer.SetActive(true);
-                    ChangePOV.SwitchCamera(FirstpersonView);
-                    CamOnPerson = true;
-                    Hiding = false;
-
-                }
-                else if (ChangePOV.IsActiveCamera(HideSpot3))
-                {
-                    PlayerPOS.SetActive(true);
-                    HideSpotBox.enabled = true;
-                    _InputManager.StopWalk();
-                    Throwitem.CanAttack();
-                    ItemOnPlayer.SetActive(true);
-                    TextOnPlayer.SetActive(true);
-                    ChangePOV.SwitchCamera(FirstpersonView);
-                    CamOnPerson = true;
-                    Hiding = false;
-
-                }
-                else if (ChangePOV.IsActiveCamera(HideSpot4))
-                {
-                    PlayerPOS.SetActive(true);
-                    HideSpotBox.enabled = true;
-                    _InputManager.StopWalk();
-                    Throwitem.CanAttack();
-                    ItemOnPlayer.SetActive(true);
-                    TextOnPlayer.SetActive(true);
-                    ChangePOV.SwitchCamera(FirstpersonView);
-                    CamOnPerson = true;
-                    Hiding = false;
-                }
+            
             }
 
         }
@@ -1099,4 +1019,26 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ThisGhost.Spawn1ghost();
         yield break;
     }
+
+    public void GetHitAndoutOfhiding()
+    {
+        if (IDInterect != null && IDInterect.id >= 0 && IDInterect.id < HideSpot.Count)
+        {
+
+            if (ChangePOV.IsActiveCamera(HideSpot[IDInterect.id]))
+            {
+                //PlayerPOS.SetActive(true);
+                HideSpotBox.enabled = true;
+                _InputManager.StopWalk();
+                Throwitem.CanAttack();
+                ItemOnPlayer.SetActive(true);
+                TextOnPlayer.SetActive(true);
+                ChangePOV.SwitchCamera(FirstpersonView);
+                CamOnPerson = true;
+                Hiding = false;
+
+            }
+        }
+    }
+
 }
