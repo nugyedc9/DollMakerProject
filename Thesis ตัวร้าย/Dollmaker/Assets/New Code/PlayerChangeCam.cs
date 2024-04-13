@@ -144,6 +144,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [SerializeField] bool ghostDied1data;
     public bool GhostDied1data { get { return ghostDied1data; } set { ghostDied1data = value; } }
+    [SerializeField] bool ghostDied2data;
+    public bool GhostDied2data { get { return ghostDied2data; } set { ghostDied2data = value; } }
 
     private void OnEnable()
     {
@@ -903,6 +905,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
         storyCount = data.storyCountSave;
         GhostDied1data = data.GhostDied1;
+        GhostDied2data = data.GhostDied2;
 
         foreach (var item in data.EventStroyPass)
         {
@@ -1000,6 +1003,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
         data.storyCountSave = storyCount;
         data.GhostDied1 = GhostDied1data;
+        data.GhostDied2 = GhostDied2data;
 
         for (int i = 0; i < EventInGame.Count; i++)
         {

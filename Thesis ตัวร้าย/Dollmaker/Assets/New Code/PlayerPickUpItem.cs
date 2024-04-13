@@ -102,7 +102,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GetNoteSave, GetNote2, _1Sleep;
+    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost;
     private int keyId;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
@@ -110,7 +110,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public List<string> GetPickUp = new List<string>();
 
     public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll,
-        OpenAllWall;
+        OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn;
 
     public void Update()
     {
@@ -374,6 +374,15 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         Destroy(hitInfo.collider.gameObject);
                     }
                 }
+
+                if (hitInfo.collider.gameObject.tag == "Phone")
+                {
+                    audioSource.clip = DocumentS;
+                    audioSource.Play();
+                        
+                    Phonepickup.Invoke();
+                  
+                }
             }
 
 
@@ -430,6 +439,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 audioSource.clip = UnlockDoorS; audioSource.Play();
                                 DoorId.Lock = false;
                                 inventoryManager.GetSelectedItem(true);
+
+                                if (DoorId.DoorID == 2) _Ghost2BigSpawn.Invoke();
                             }
                         }
                     }
@@ -512,7 +523,19 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             Note2.SetActive(true);
         }
 
+        if(FinishDollGet == 4)
+        {
+            if(!SpawnWoodGhost)
+            {
+                WoodGhost2Spawn.Invoke();
+                SpawnWoodGhost = true;
+            }
+        }
 
+        if (PAttack._1slttp)
+        {
+            _1Sleep = true;
+        }
 
     }
 

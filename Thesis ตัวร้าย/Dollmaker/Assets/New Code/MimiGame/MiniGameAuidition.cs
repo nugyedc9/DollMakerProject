@@ -78,7 +78,7 @@ public class MiniGameAuidition : MonoBehaviour
     [SerializeField] GameObject CutHere;
 
     public GameObject FailNote, ArrowCufail;
-    bool _1Fail, ActiveMachine, Exittable, FailClick;
+    bool _1Fail, ActiveMachine, Exittable, FailClick, AnomoPlay1;
     int FinishDoll, anomalyCount;
 
 
@@ -112,7 +112,7 @@ public class MiniGameAuidition : MonoBehaviour
             if (!GetHurt)
             {
                     handMove.Play("Handsewing");
-                if(PickupItem.FinishDollGet == 1)
+                if(PickupItem.FinishDollGet == 3)
                     GranmaHand.SetActive(true);
                 else GranmaHand.SetActive(false);
 
@@ -552,15 +552,23 @@ public class MiniGameAuidition : MonoBehaviour
         {
             _Currentstate = MiniGameAuditionState.ItemLost; curBar = 0;
         }
+        if(curBar >= maxBar / 3 && inventoryManager.DollCountFinish == 0)
+        {
+            if (!AnomoPlay1)
+            {
+                AnomalyEvent1.Invoke();
+                AnomoPlay1 = true;
+            }
+        } 
 
 
         #region anomalyEventPlay
-        if (anomalyCount == 2)
+        /*if (anomalyCount == 2)
         {
             AnomalyEvent1.Invoke();
             anomalyCount =3 ;
         }
-        if (anomalyCount == 4) AnomalyEvent2.Invoke();
+        if (anomalyCount == 4) AnomalyEvent2.Invoke();*/
         #endregion  
 
     }

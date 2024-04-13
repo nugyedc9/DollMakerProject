@@ -157,6 +157,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     [SerializeField] private bool IsPause, Working, died;
     public bool Died { get { return died; } set { died = value; } }
     public bool isPause { get { return IsPause; }  set { IsPause = value; } }
+    public bool _1slttp { get { return _1Sleep; } set { _1Sleep = value; } }
 
 
     [SerializeField] bool tvon;

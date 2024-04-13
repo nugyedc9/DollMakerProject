@@ -157,6 +157,7 @@ public class GhostStateManager : MonoBehaviour
 
             if (GhostID == 1)
                 PCam.GhostDied1data = true;
+            if(GhostID == 2) PCam.GhostDied2data = true;
 
             GhostHuntEffect.SetActive(false);
 

@@ -56,10 +56,10 @@ public PlayerPickUpItem playerPickUpItem;
     public float DollCountFinish { get { return dollCountFinish; } set { dollCountFinish = value; } }
 
 
-    public UnityEvent TakeDoll3, Ghost2Spawn;
+    public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet;
 
     private Vector3 DesDrop;
-    bool drop, take3data, Ghost2spawn;
+    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn;
 
     private void Awake()
     {
@@ -435,7 +435,17 @@ public PlayerPickUpItem playerPickUpItem;
 
         #region MakeDollEvent
 
-        if (DollCountFinish == 3)
+        if(dollCountFinish == 2)
+        {
+            if (!MakeDoll2)
+            {
+                Doll2CutScene.Invoke();
+                dollCountFinish--;
+                MakeDoll2 = true;
+            }
+        }
+
+        if (DollCountFinish == 4)
         {
             if (!take3data)
             {
@@ -447,7 +457,7 @@ public PlayerPickUpItem playerPickUpItem;
 
         if (ChangeCam.GhostDied1data)
         {
-            if (take3data)
+            if (MakeDoll2)
             {
                 if (!Ghost2spawn)
                 {
@@ -456,6 +466,15 @@ public PlayerPickUpItem playerPickUpItem;
                 }
             }
 
+        }
+
+        if (ChangeCam.GhostDied2data)
+        {
+            if (!Ghost4Spawn)
+            {
+                Ghost4Evnet.Invoke();
+                Ghost4Spawn = true;
+            }
         }
 
         #endregion
@@ -650,6 +669,8 @@ public PlayerPickUpItem playerPickUpItem;
         DollCountFinish = data.DollCountData;
         take3data = data.GhostTakeDoll3;
         Ghost2spawn = data.Ghost2Spawn;
+        MakeDoll2 = data.MakeDoll2;
+        Ghost4Spawn = data.Ghost4DiedEvent; 
 
     }
 
@@ -697,6 +718,8 @@ public PlayerPickUpItem playerPickUpItem;
         data.DollCountData = DollCountFinish;
         data.GhostTakeDoll3 = take3data;
         data.Ghost2Spawn = Ghost2spawn;
+        data.MakeDoll2 = MakeDoll2;
+        data.Ghost4DiedEvent = Ghost4Spawn;
 
     }
 

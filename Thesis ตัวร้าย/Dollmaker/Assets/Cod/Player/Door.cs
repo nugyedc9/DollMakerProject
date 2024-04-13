@@ -25,9 +25,9 @@ public class Door : MonoBehaviour
     public UnityEvent afterGetDoll;
 
 
-    bool _afterDoll;
+    bool _afterDoll, openRitualRoom;
     public bool Aftergetdoll { get { return _afterDoll; } set { _afterDoll = value; } }
-
+    public bool OpenritualRoom { get { return openRitualRoom; } set { openRitualRoom = value; } }
      [SerializeField] float delayDooropenEvent;
     public float DelayDoorOpenEvent { get { return delayDooropenEvent; } set { delayDooropenEvent = value; } }
 

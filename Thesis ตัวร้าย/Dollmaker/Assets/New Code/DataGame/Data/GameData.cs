@@ -29,7 +29,7 @@ public class GameData
     public List<string> EventStroyPass;
     public List<int> FinishDollOnBasket;
     public bool flashLighGet, Note1Get, Note2Get, OpenWall1, GhostDied1, GhostTakeDoll3, Ghost2Spawn,
-        _1Sleep, GhostSpawnAfterCovered2, GhostSpawnAfterCovered3;
+        _1Sleep, GhostSpawnAfterCovered2, GhostSpawnAfterCovered3, MakeDoll2, GhostDied2, Ghost4DiedEvent;
     
     public InventoryData inventoryData;
     public CrossCheck crossCheck;
@@ -63,6 +63,8 @@ public class GameData
         _1Sleep = false;
         GhostSpawnAfterCovered2 = false;
         GhostSpawnAfterCovered3 = false;
+        MakeDoll2 = false;
+        Ghost4DiedEvent = false;
 
          storyCountSave = 0;
         FinishDollInInv = 0;
