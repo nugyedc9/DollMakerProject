@@ -21,8 +21,10 @@ public class FinishBasket : MonoBehaviour
 
      public int SlotNum;
 
-    public UnityEvent NeedDollSucc;
-    bool SuccDoll;
+    public UnityEvent NeedDollSucc, DeedDollSucc2;
+    bool SuccDoll, succDoll2;
+
+    public bool SuccDoll2 { get { return succDoll2; } set {  succDoll2 = value; } }
     public void Spawndoll()
     {
 
@@ -57,6 +59,13 @@ public class FinishBasket : MonoBehaviour
                 NeedDollSucc.Invoke();
                 SuccDoll = true;
             }
+
+            if(SuccDoll2)
+            {
+                DeedDollSucc2.Invoke();
+                SuccDoll2 = false;
+            }
+
         }
     }
 

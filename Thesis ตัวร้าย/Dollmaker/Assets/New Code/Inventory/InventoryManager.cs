@@ -56,10 +56,10 @@ public PlayerPickUpItem playerPickUpItem;
     public float DollCountFinish { get { return dollCountFinish; } set { dollCountFinish = value; } }
 
 
-    public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet;
+    public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet, finishDoll6Event;
 
     private Vector3 DesDrop;
-    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn;
+    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck;
 
     private void Awake()
     {
@@ -455,6 +455,15 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
+        if(DollCountFinish == 6)
+        {
+            if (!Finish6DollCheck)
+            {
+                finishDoll6Event.Invoke();
+                Finish6DollCheck = true;
+            }
+        }
+
         if (ChangeCam.GhostDied1data)
         {
             if (MakeDoll2)
@@ -670,7 +679,8 @@ public PlayerPickUpItem playerPickUpItem;
         take3data = data.GhostTakeDoll3;
         Ghost2spawn = data.Ghost2Spawn;
         MakeDoll2 = data.MakeDoll2;
-        Ghost4Spawn = data.Ghost4DiedEvent; 
+        Ghost4Spawn = data.Ghost4DiedEvent;
+        Finish6DollCheck = data.FinishDoll6;
 
     }
 
@@ -720,6 +730,7 @@ public PlayerPickUpItem playerPickUpItem;
         data.Ghost2Spawn = Ghost2spawn;
         data.MakeDoll2 = MakeDoll2;
         data.Ghost4DiedEvent = Ghost4Spawn;
+        data.FinishDoll6 = Finish6DollCheck;
 
     }
 
@@ -760,6 +771,18 @@ public PlayerPickUpItem playerPickUpItem;
         }
     }
 
+    public void LostCross()
+    {
+        for (int i = 0; i < inventoryslote.Length; i++)
+        {
+            inventoryItem itemSlot = inventoryslote[i].GetComponentInChildren<inventoryItem>();
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
+            {
+                selectedSlot = i;
+                GetSelectedItem(true);
+            }
 
+        }
+    }
 
 }
