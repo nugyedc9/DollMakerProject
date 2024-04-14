@@ -110,7 +110,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public List<string> GetPickUp = new List<string>();
 
     public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll,
-        OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn;
+        OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn, unlockChain;
 
     public void Update()
     {
@@ -441,6 +441,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 inventoryManager.GetSelectedItem(true);
 
                                 if (DoorId.DoorID == 2) _Ghost2BigSpawn.Invoke();
+                                if(DoorId.DoorID == 3) unlockChain.Invoke();
                             }
                         }
                     }
@@ -501,6 +502,22 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             {
                 storyActive = hitInfo.collider.gameObject.GetComponent<StoryActive>();
                 storyActive.LookActiveevent();
+            }
+
+            if (hitInfo.collider.gameObject.tag == "Axe")
+            {
+                audioSource.clip = KeyS;
+                audioSource.Play();
+                pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
+                KeyId = pieceClothGet.pieceClothID;
+
+                ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                GetPickUp.Add(ItemIdGet.id);
+
+                inventoryManager.AddItem(itemPickUp[23]);
+
+
+                Destroy(hitInfo.collider.gameObject);
             }
         }
 

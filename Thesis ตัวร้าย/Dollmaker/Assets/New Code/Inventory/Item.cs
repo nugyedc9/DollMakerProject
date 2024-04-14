@@ -40,5 +40,6 @@ public enum ItemType
     EyeWash,
     BloodyDollRed,
     BloodyDollGreen,
-    BloodyDollYellow
+    BloodyDollYellow,
+    Axe
 }

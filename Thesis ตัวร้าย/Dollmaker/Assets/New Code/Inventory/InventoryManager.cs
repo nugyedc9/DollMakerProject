@@ -390,8 +390,9 @@ public PlayerPickUpItem playerPickUpItem;
 
 
 
-            if (itemSlot != null && itemSlot.gameObject.CompareTag("Key"))
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Key") || itemSlot != null && itemSlot.gameObject.CompareTag("Axe"))
             {
+                if( !itemSlot.gameObject.CompareTag("Axe"))
                 ItemOnHand[4].SetActive(true);
                 playerPickUpItem.Key = true;
             }
@@ -419,6 +420,7 @@ public PlayerPickUpItem playerPickUpItem;
                 ItemOnHand[5].SetActive(false);
                 playerPickUpItem.HealOnhand = false;
             }
+
             #endregion
 
             #region Drop Item
@@ -485,6 +487,15 @@ public PlayerPickUpItem playerPickUpItem;
                 Ghost4Spawn = true;
             }
         }
+        else if(!ChangeCam.GhostDied2data && playerPickUpItem.FinishCloth == 3)
+        {
+            if (!Ghost4Spawn)
+            {
+                Ghost4Evnet.Invoke();
+                Ghost4Spawn = true;
+            }
+        }
+
 
         #endregion
 
