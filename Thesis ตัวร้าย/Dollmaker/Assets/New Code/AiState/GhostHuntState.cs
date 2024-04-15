@@ -39,11 +39,24 @@ public class GhostHuntState : GhostBaseState
             state.AnimHunt = false;
         }
 
-        if(Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 2)
-        {        
-            state.AnimAttack = true;
-            state.HitPlayer = true;
-            state.SwitchState(state.AttckState);
+        if (state.GhostID != 10)
+        {
+            if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 2)
+            {
+                state.AnimAttack = true;
+                state.HitPlayer = true;
+                state.SwitchState(state.AttckState);
+            }
+        }
+
+        else if(state.GhostID == 10)
+        {
+            if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 10)
+            {
+                state.AnimAttack = true;
+                state.HitPlayer = true;
+                state.SwitchState(state.AttckState);
+            }
         }
     }
 }

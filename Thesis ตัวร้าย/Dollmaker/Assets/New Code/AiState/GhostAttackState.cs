@@ -22,14 +22,28 @@ public class GhostAttackState : GhostBaseState
         TimeHit -= Time.deltaTime;
         if (state.AnimAttack)
         {
-            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
-                state.GhostAni.Play("atkanimation", 0, 0);
             state.DelayHitPlayer = 2;
-            state.enemyGhost.speed = 0f;
+
+            if (state.GhostID != 10)
+            {
+                if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
+                    state.GhostAni.Play("atkanimation", 0, 0);
+                state.enemyGhost.speed = 0f;
+
+            }
+
+            else if( state.GhostID == 10)
+            {
+                if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
+                    state.GhostAni.Play("atkanimation", 0, 0);
+                state.enemyGhost.speed = 20f;
+
+            }
+
             state.AnimAttack = false;
         }
 
-        state.DrawVisionCone();
+            state.DrawVisionCone();
 
         if (hitplayer)
         {
@@ -44,26 +58,47 @@ public class GhostAttackState : GhostBaseState
         {
             if (TimeHit < 0.5f)
             {
-                if (state.enemyGhost.remainingDistance < 2.5f)
+                if (state.GhostID != 10)
                 {
-
-                    if (state.HitPlayer)
+                    if (state.enemyGhost.remainingDistance < 2.5f)
                     {
-                        state.CanseePlayer = false;
-                       // state.HpPlayer.Takedamage(1);
-                        state.HitPlayer = false;
+
+                        if (state.HitPlayer)
+                        {
+                            state.CanseePlayer = false;
+                            // state.HpPlayer.Takedamage(1);
+                            state.HitPlayer = false;
+                            PlayerInRange = true;
+                        }
+
+                        state.AnimAlert = true;
+
+                    }
+                    else
+                    {
+                        if (!state.PCam.hiding)
+                            hitplayer = true;
+
                         PlayerInRange = true;
                     }
-
-                    state.AnimAlert = true;
-
                 }
-                else
+
+                if(state.GhostID == 10)
                 {
-                    if (!state.PCam.hiding)
-                        hitplayer = true;
-                   
-                        PlayerInRange = true;
+                    if (Vector3.Distance(state.enemyGhost.transform.position, state.playerPos.position) < 2.5f)
+                    {
+
+                        if (state.HitPlayer)
+                        {
+                            state.CanseePlayer = false;
+                             state.HpPlayer.Takedamage(4);
+                            state.HitPlayer = false;
+                            PlayerInRange = true;
+                        }
+
+                        state.AnimAlert = true;
+
+                    }
                 }
             }
         }

@@ -28,6 +28,7 @@ public class GhostStateManager : MonoBehaviour
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
     public PlayerChangeCam PCam;
+    public int DmgBullet;
     public GameObject GhostHuntEffect, PlayerPOS;
     public bool HpCross;
 
@@ -46,7 +47,7 @@ public class GhostStateManager : MonoBehaviour
     public float HpBeforeHit, HitDelay, GhostSpeedDown, GhostSpeedMin;
     public bool PlayerHit;
 
-  [Header("Timer Thing")]
+    [Header("Timer Thing")]
     public float SpawnTimer;
     public float RandomMinIdle, RandomMaxIdle, playerOutOfSight,
         DelayHitPlayer, PlayerHitDelay, ChangePosDelay;
@@ -97,8 +98,16 @@ public class GhostStateManager : MonoBehaviour
     void Start()
     {
         enemyGhost = GetComponent<NavMeshAgent>();
-        CurrentState = DetectPlayerState;
-        CurrentState.EnterState(this);
+        if (GhostID != 10)
+        {
+            CurrentState = DetectPlayerState;  
+            CurrentState.EnterState(this);
+        }
+        if (GhostID == 10)
+        {
+            Spawn1ghost();
+        }
+
         curplayerOutSight = playerOutOfSight;
             particle.Stop();
         HpBeforeHit = HpGhost;
@@ -126,7 +135,7 @@ public class GhostStateManager : MonoBehaviour
            
         }
 
-        /*        if(PlayerHitDelay <= 0)
+        /*    if(PlayerHitDelay <= 0)
                 {
                     if (!HpCross)
                     {
@@ -204,7 +213,6 @@ public class GhostStateManager : MonoBehaviour
             HpGhost -= Time.deltaTime;
         
 
-
         /* if (!GetAttack)
          {
            //  PAttack.CrossRuin();
@@ -215,14 +223,18 @@ public class GhostStateManager : MonoBehaviour
          }*/
     }
 
-    public void BulletHit(int dmg)
+
+    public void OnTriggerEnter(Collider other)
     {
-        HpGhost -= dmg; 
+        if(other.gameObject.tag == "Bullet")
+        {
+            HpGhost -= DmgBullet;
+        }
     }
+
 
     float curplayerOutSight;
 
-   
 
     #region Vision
     public void DrawVisionCone()
@@ -245,26 +257,26 @@ public class GhostStateManager : MonoBehaviour
                 Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
                 if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
                 {
-                    Vertices[i + 1] = VertForward * hit.distance;          
+                    Vertices[i + 1] = VertForward * hit.distance;
                 }
-                else if(!Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, VisionObstructingLayer))
+                else if (!Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, VisionObstructingLayer))
                 {
 
-                   Vertices[i + 1] = VertForward * VisionRange; 
+                    Vertices[i + 1] = VertForward * VisionRange;
                     if (Physics.Raycast(transform.position, RaycastDirection, out hit, VisionRange, PlayerLayer))
                     {
                         Vertices[i + 1] = VertForward * hit.distance;
-                      if (PlayerDetectSpawn)
-                        {                        
-                            SwitchState(SpawnState);                           
+                        if (PlayerDetectSpawn)
+                        {
+                            SwitchState(SpawnState);
                         }
-                        if (DelayHitPlayer <= 0 && !PlayerDetectSpawn) 
+                        if (DelayHitPlayer <= 0 && !PlayerDetectSpawn)
                         {
                             playerOutOfSight = curplayerOutSight;
                             PlayerInSight = true;
                             if (!CanseePlayer)
-                            {              
-                                SwitchState(AlertState);   
+                            {
+                                SwitchState(AlertState);
                                 CanseePlayer = true;
                             }
 
@@ -275,7 +287,7 @@ public class GhostStateManager : MonoBehaviour
                     {
                         Vertices[i + 1] = VertForward * VisionRange;
                     }
-                   
+
                 }
 
                 Currentangle += angleIcrement;
@@ -287,26 +299,26 @@ public class GhostStateManager : MonoBehaviour
                 triangles[i + 1] = j + 1;
                 triangles[i + 2] = j + 2;
             }
-        /*   VisionConeMesh.Clear();
+         /*   VisionConeMesh.Clear();
             VisionConeMesh.vertices = Vertices;
             VisionConeMesh.triangles = triangles;
             MeshFilter_.mesh = VisionConeMesh;*/
         }
 
-        if (playerOutOfSight < 0)
+        if (playerOutOfSight < 0 && GhostID != 10)
         {
-           // if (PlayerInSight)
-           // {
-                AlertSPlay = false;
-                RandomInIdle = true;
-                CanseePlayer = false;
-                OnPlayerAudio.Stop();
-                GhostOutSightLightOn.Invoke();
-                // Debug.Log("IdleAfterPlayer");
-                SwitchState(IdleState);
-                PlayerInSight = false;
+            // if (PlayerInSight)
+            // {
+            AlertSPlay = false;
+            RandomInIdle = true;
+            CanseePlayer = false;
+            OnPlayerAudio.Stop();
+            GhostOutSightLightOn.Invoke();
+            // Debug.Log("IdleAfterPlayer");
+            SwitchState(IdleState);
+            PlayerInSight = false;
             playerOutOfSight = 0;
-          //  }
+            //  }
 
         }
     }

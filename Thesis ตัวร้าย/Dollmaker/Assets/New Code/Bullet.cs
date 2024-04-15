@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
 
 
-    public void OnTriggerEnter(Collider other)
+ /*   public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Ghost")
         {
@@ -21,5 +21,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
+    }*/
 }
