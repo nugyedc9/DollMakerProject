@@ -122,6 +122,19 @@ public PlayerPickUpItem playerPickUpItem;
                 triggerCrossAnim = true;
             }
 
+            if (itemSlot != null && itemSlot.gameObject.CompareTag("Shotgun"))
+            {            
+                pAttack.ShotgunOnhand = true;
+                ItemOnHand[6].SetActive(true);
+
+            }
+            else
+            {
+                pAttack.ShotgunOnhand = false;
+                ItemOnHand[6].SetActive(false);
+            }
+
+
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
             {
                 ItemOnHand[1].SetActive(true);

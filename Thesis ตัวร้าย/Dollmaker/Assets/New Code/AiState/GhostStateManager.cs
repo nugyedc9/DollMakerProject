@@ -215,6 +215,11 @@ public class GhostStateManager : MonoBehaviour
          }*/
     }
 
+    public void BulletHit(int dmg)
+    {
+        HpGhost -= dmg; 
+    }
+
     float curplayerOutSight;
 
    
@@ -313,6 +318,7 @@ public class GhostStateManager : MonoBehaviour
         var projectileOBj = Instantiate(Dollprefab, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (this.transform.position - FirePoint.position).normalized * 1;
     }
+
 
     public void DeleteGhost()
     {

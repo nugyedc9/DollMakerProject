@@ -25,13 +25,15 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     [SerializeField] bool run;
     public bool Run { get { return run; } set { run = value; } }
     [SerializeField] bool crossSlotOnHand;
-    public bool CrossSlotOnHane { get { return crossSlotOnHand; } set { crossSlotOnHand = value; } }    
+    public bool CrossSlotOnHane { get { return crossSlotOnHand; } set { crossSlotOnHand = value; } }
+    [SerializeField] bool shotgunOnHand;
+    public bool ShotgunOnhand { get { return shotgunOnHand; } set { shotgunOnHand = value; } }
 
 
-    public float DropSpeed;
+    public float DropSpeed, ShootSpeed;
     public Camera FpsCam;
     public GameObject projectile;
-    public Transform RH;
+    public Transform RH, ShootPoint;
     public Transform pickUPPoint;
     public float InterectRange;
     public bool   CanDropItem, CrossOnHand, DollOnHand,
@@ -75,8 +77,8 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public GameObject CrossD1;
     public GameObject DollD;
     public GameObject ClothD, ScissorD,
-        RedClothD, BlueClothD, GreenClothD, YellowClothD
-        ;
+        RedClothD, BlueClothD, GreenClothD, YellowClothD,
+        BulletPref;
     private bool CrossInv1, CrossInv2, CrossInv3,
         DollInv1, DollInv2, DollInv3,
         ClothInv1, ClothInv2, ClothInv3
@@ -314,6 +316,14 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 {
                     curHpCross += Time.deltaTime;
                 }
+            }
+        }
+
+        if (shotgunOnHand)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                shooting();
             }
         }
 
@@ -2846,6 +2856,21 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         DropingYellowcloth(RH);
 
     }
+    public void shooting()
+    {
+        Ray ray = FpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        Shoot(ShootPoint);
+
+    }
 
     #region Throw item prefabs
 
@@ -2901,11 +2926,16 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         var projectileOBj = Instantiate(YellowClothD, FirePoint.position, Quaternion.identity) as GameObject;
         projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * DropSpeed;
     }
+    void Shoot(Transform FirePoint)
+    {
+        var projectileOBj = Instantiate(BulletPref, FirePoint.position, Quaternion.identity) as GameObject;
+        projectileOBj.GetComponent<Rigidbody>().velocity = (destination - FirePoint.position).normalized * ShootSpeed;
+    }
     #endregion
 
 
 
-#endregion
+    #endregion
 
     public void StopAttack()
     {

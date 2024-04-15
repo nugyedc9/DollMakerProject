@@ -40,7 +40,7 @@ public class GhsotIdleState : GhostBaseState
         IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
         Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
-        Debug.Log("Idle");
+       // Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)

@@ -36,7 +36,10 @@ public class GhostDiedState : GhostBaseState
             state.GhostAmbi.Stop();
             if (!dropDoll)
             {
+                if(state.GhostID != 3)
                state.DropDoll(state.Droppoint.transform);
+                else
+                    state.
                 dropDoll = true;
             }
             state.DeleteGhost();

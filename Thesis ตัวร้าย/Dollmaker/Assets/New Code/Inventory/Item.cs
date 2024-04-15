@@ -41,5 +41,6 @@ public enum ItemType
     BloodyDollRed,
     BloodyDollGreen,
     BloodyDollYellow,
-    Axe
+    Axe,
+    Shotgun
 }

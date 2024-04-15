@@ -155,6 +155,7 @@ public class MiniGameAuidition : MonoBehaviour
 
             if (_Currentstate == MiniGameAuditionState.Start)
             {
+               // print("Start");
                 NeedleWorking = true;
                 Needle.enabled = true;
                 ClothMove.enabled = true;
@@ -162,10 +163,10 @@ public class MiniGameAuidition : MonoBehaviour
                 if (SlotAuditionPass <= 4)
                 {
                     if (DelaySpawn)
-                    {
-                        DelaySpawn = false;
+                    {                    
                         Randomspawn = Random.Range(0, AuditionPrefabs.Length);
                         StartCoroutine(SpawnRandomAudition());
+                        DelaySpawn = false;
                     }
 
                 }
@@ -358,7 +359,8 @@ public class MiniGameAuidition : MonoBehaviour
         {
             machineActive.enabled = false;
             ActiveMachine = false;
-            //  Debug.Log("Leave");
+            DelaySpawn = true;
+
             if (HoldSpace)
             {
                 AuditionPass.Clear();
@@ -374,8 +376,8 @@ public class MiniGameAuidition : MonoBehaviour
                 }
                 SlotAuditionPass = 0;
                 CurrectPass = 0;
-                print("Exit");
-                _Currentstate = MiniGameAuditionState.Start;
+               // print("Exit");
+               _Currentstate = MiniGameAuditionState.Start;
             }
 
         }
