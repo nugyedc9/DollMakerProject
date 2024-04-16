@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GhostHuntState : GhostBaseState
 {
+    float delayAttack;
 
     public override void EnterState(GhostStateManager state)
     {
@@ -51,12 +52,28 @@ public class GhostHuntState : GhostBaseState
 
         else if(state.GhostID == 10)
         {
-            if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 10)
+            if (state.BossAttacked)
             {
-                state.AnimAttack = true;
-                state.HitPlayer = true;
-                state.SwitchState(state.AttckState);
+                if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 10)
+                {
+                    state.AnimAttack = true;
+                    state.HitPlayer = true;
+                    delayAttack = 3f;
+                    state.BossAttacked = false;                 
+                }
             }
         }
+
+        if(delayAttack > 0)
+        {
+            delayAttack -= Time.deltaTime;
+        }
+
+        else if (delayAttack < 0)
+        {
+             state.SwitchState(state.AttckState);
+            delayAttack = 0;
+        }
+
     }
 }

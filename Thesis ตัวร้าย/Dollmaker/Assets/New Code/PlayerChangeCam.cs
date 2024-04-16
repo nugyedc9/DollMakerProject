@@ -18,6 +18,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [SerializeField] CinemachineVirtualCamera _1GetScrissorCam;
     [SerializeField] CinemachineVirtualCamera DollHenshin;
     [SerializeField] CinemachineVirtualCamera SleepCam;
+    [SerializeField] CinemachineVirtualCamera Ghosthit;
     [SerializeField] List<CinemachineVirtualCamera> hidespot;
     public List<CinemachineVirtualCamera> HideSpot { get { return hidespot; } }
 
@@ -139,7 +140,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public UnityEvent Event3Load;
     public UnityEvent Event4Load, Event8Load, Event10Load, OpenWall,
         GrandMaWalk1, DoorStoreRoom, Ghostspawn1Data, Ghost1DiedEventCheck,
-        EventTvOn;
+        EventTvOn, wakeUP, OpenWallAfterSleep, AfterPhone, UnlockRitualRoom, GhostAfterUnlock,
+        TakeDollHunted, LostCross, bossfight;
 
 
     [SerializeField] bool ghostDied1data;
@@ -158,6 +160,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.Register(_1GetScrissorCam);
         ChangePOV.Register(DollHenshin);
         ChangePOV.Register(SleepCam);
+        ChangePOV.Register(Ghosthit);
 
         for (int i = 0; i < HideSpot.Count; i++)
         {
@@ -180,7 +183,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.UnRegister(DollHenshin);
         ChangePOV.UnRegister(SleepCam);
         ChangePOV.UnRegister(BedCam);
-        ChangePOV.UnRegister(BedCam);
+        ChangePOV.UnRegister(Ghosthit);
 
         for (int i = 0; i < HideSpot.Count; i++)
         {
@@ -993,6 +996,43 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             }
         }
 
+        if(storyCount >= 15)
+        {
+            OpenWallAfterSleep.Invoke();
+            if(StoryCount == 15 )
+            {
+                wakeUP.Invoke();
+            }
+        }
+
+        if(StoryCount == 16)
+        {
+            AfterPhone.Invoke();
+        }
+
+        if(storyCount >= 17)
+        {
+            UnlockRitualRoom.Invoke();
+            if(storyCount == 17)
+            {
+                GhostAfterUnlock.Invoke();
+            }
+        }
+
+        if(storyCount == 18)
+        {
+            TakeDollHunted.Invoke();
+        }
+
+        if(storyCount == 21)
+        {
+            LostCross.Invoke();
+        }
+
+        if(storyCount == 22)
+        {
+            bossfight.Invoke();
+        }
         
     }
 
@@ -1043,6 +1083,45 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
             }
         }
+    }
+
+    public void GhostHitanim()
+    {
+        if (ChangePOV.IsActiveCamera(FirstpersonView))
+        {
+            OnCutScene = true;
+
+         
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+
+
+            ItemOnPlayer.SetActive(false);
+
+            ChangePOV.SwitchCamera(Ghosthit);
+            StartCoroutine(DelayCamera());
+
+
+        }
+    }
+
+    public void Afterhit()
+    {
+        if (ChangePOV.IsActiveCamera(Ghosthit))
+        {
+            OnCutScene = false;
+
+            _InputManager.StopWalk();
+            ItemOnPlayer.SetActive(true);
+            TextOnPlayer.SetActive(true);
+
+            camOnPerSon = true;
+
+
+            ChangePOV.SwitchCamera(FirstpersonView); 
+
+        }
+
     }
 
 }

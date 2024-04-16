@@ -35,12 +35,12 @@ public class GhostStateManager : MonoBehaviour
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
     public int GhostID;
-    public BoxCollider GhostBoxCol;
+    public BoxCollider GhostBoxCol, AttackBox;
     public ParticleSystem particle;
     public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint;
-    public float DistanceAmount ,WalkSpeed, HuntSpeed;
+    public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        GetHit, GetAttack, ChangePos, PlayerDetectSpawn;
+        GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked;
 
     [Header("GhostHP")]
     public float HpGhost;
@@ -80,6 +80,8 @@ public class GhostStateManager : MonoBehaviour
     public Vector3 Dest;
     public Transform playerPos,CurrentDest;
     public int DestinationMin, DestinationMax;
+    float DelaySpawn;
+    public bool _1Spawn;
 
   
     [Header("---- Audio Sound ----")]
@@ -125,7 +127,8 @@ public class GhostStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DistanceAmount = enemyGhost.remainingDistance;
+        DistanceAmount = Vector3.Distance(enemyGhost.transform.position, Dest);
+        GhostDis = Vector3.Distance(enemyGhost.destination, Dest);
         CurrentState.UpdateState(this);
         if (PlayerInSight)
         {
@@ -173,15 +176,16 @@ public class GhostStateManager : MonoBehaviour
             SwitchState(DiedState);
         }
 
-        if(playerOutOfSight < 3f && PCam.hiding)
+        if(playerOutOfSight < 4f && PCam.hiding)
         {
             PlayerPOS.SetActive(false);
         }
-        else if(playerOutOfSight > 3f && PCam.hiding)
+        else if(playerOutOfSight > 4f && PCam.hiding)
         {
             PlayerPOS.SetActive(true);
         }
         else if(!PCam.hiding) PlayerPOS.SetActive(true);
+   
 
     }
 
@@ -228,6 +232,7 @@ public class GhostStateManager : MonoBehaviour
     {
         if(other.gameObject.tag == "Bullet")
         {
+           // print("Hit");
             HpGhost -= DmgBullet;
         }
     }
@@ -339,6 +344,7 @@ public class GhostStateManager : MonoBehaviour
 
     public void Spawn1ghost()
     {
+        //Debug.Log("spawn");
         HpCross = false;
         GetAttack = false;
         PlayerHitDelay = 2;

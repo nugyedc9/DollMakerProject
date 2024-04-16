@@ -5,12 +5,19 @@ using UnityEngine;
 public class HitBoxAttackPlayer : MonoBehaviour
 {
     public PlayerHp playerHp;
+    BoxCollider attackbox;
+
+    private void Start()
+    {
+        attackbox = GetComponent<BoxCollider>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
             playerHp.Takedamage(1);
+            attackbox.enabled = false;
         }
     }
 

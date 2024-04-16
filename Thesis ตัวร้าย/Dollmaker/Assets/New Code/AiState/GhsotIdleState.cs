@@ -37,11 +37,13 @@ public class GhsotIdleState : GhostBaseState
             state.GhostAni.Play("Idleanimation", 0, 0);
 
 
-        IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
-        Dest = Random.Range(state.DestinationMin, state.DestinationMax);
+            IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
+            Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
 
-           // Debug.Log("Idle");
+
+
+            Debug.Log("Idle");
     }
 
     public override void UpdateState(GhostStateManager state)

@@ -12,7 +12,8 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
-
+        if(state.GhostID != 5 || state.GhostID != 10)
+        state.AttackBox.enabled = true;
         state.MoveSound.Stop();
         PlayerInRange = false;
     }
@@ -50,6 +51,9 @@ public class GhostAttackState : GhostBaseState
             TimeHit = Sec;
             state.CanseePlayer = false;
             PlayerInRange = false;
+            if(state.GhostID != 5 && state.GhostID != 10) 
+            state.AttackBox.enabled = false;
+            state.BossAttacked = true;
             state.SwitchState(state.AlertState);
             hitplayer = false;
         }

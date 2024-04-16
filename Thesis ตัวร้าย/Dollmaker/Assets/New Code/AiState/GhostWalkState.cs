@@ -4,20 +4,21 @@ public class GhostWalkState : GhostBaseState
 {
     public override void EnterState(GhostStateManager state)
     {
-       //Debug.Log("Walk");
+       Debug.Log("Walk");
        state.GhostFrom.SetActive(true);
        state.GhostAudioSoure.loop = true;
         state.GhostAudioSoure.Stop();
         state.MoveSound.loop = true;
         state.MoveSound.clip = state.WalkS;
-        state.MoveSound.Play();
+        state.MoveSound.Play(); 
+        state.Dest = state.CurrentDest.position;
     }
 
     public override void UpdateState(GhostStateManager state)
     {
         state.DrawVisionCone();
 
-        state.Dest = state.CurrentDest.position;
+       
         state.enemyGhost.destination = state.Dest;
         state.enemyGhost.speed = state.WalkSpeed;
         if (state.AnimWalk)
@@ -27,7 +28,7 @@ public class GhostWalkState : GhostBaseState
             state.AnimWalk = false;
         }
 
-        if(state.DistanceAmount <= 1)
+        if(Vector3.Distance(state.enemyGhost.transform.position, state.Dest) < 1f)
         {
             state.RandomInIdle = true;
             //Debug.Log("IdleAfterWalk");

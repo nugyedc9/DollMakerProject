@@ -35,9 +35,7 @@ public class GhostAlertState : GhostBaseState
         {
             if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("foundplayeranimation"))
                 state.GhostAni.Play("foundplayeranimation", 0, 0);
-            if(state.GhostID != 10)
             DelayTime = 1;
-            else DelayTime = 5;
             state.enemyGhost.speed = 0;
             state.AnimAlert = false;
         }
