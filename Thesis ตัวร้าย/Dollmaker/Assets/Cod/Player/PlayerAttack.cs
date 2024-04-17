@@ -91,6 +91,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     [Header("CrossAction")]
     [SerializeField] private float CurHpCross;
+    public float CrossLost, CrossRegen;
     public Slider CrossSliber;
     public float Attackrange;
 
@@ -188,6 +189,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public AudioClip LightClickSound;
     public AudioClip BreakerClickSound;
 
+    BreakerManager breker;
 
     private Door DoorInterect;
     private GhostStateManager GhostHit;
@@ -1063,13 +1065,9 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 }
                 if (hitInterect.collider.gameObject.tag == "Breaker")
                 {
-                    if (StoryNow == 5)
-                    {
-                        LightOut = false;
-                        BreakerCheck.Invoke();
-                        InterectSound.clip = BreakerClickSound;
-                        InterectSound.Play();
-                    }
+                    breker = hitInterect.collider.gameObject.GetComponent<BreakerManager>();
+
+                    breker.LightOn();
                 }
 
             }
@@ -3290,7 +3288,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public void Crosstakedamge()
     {
         if(curHpCross > 0) 
-        curHpCross -= Time.deltaTime;
+        curHpCross -= CrossLost * Time.deltaTime;
         if(curHpCross < 0)
         {
             curHpCross = 0;
@@ -3301,7 +3299,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     {
         if (curHpCross < 3)
         {
-            curHpCross += Time.deltaTime;
+            curHpCross += CrossRegen * Time.deltaTime;
         }
         
     }

@@ -15,7 +15,7 @@ using UnityEngine.UI;
         private Vector3 playerVelocity;
         private bool isGrounded;
         public float speed = 5f;
-        public float SpeedForRun = 5f;
+        public float SpeedForRun = 5f, Staminaregen;
         public float gravity = -9.8f;
         public float jumpHeight = 3f;
         private float NomalSpeed;
@@ -82,7 +82,7 @@ using UnityEngine.UI;
                     {
                         speed = NomalSpeed;
                         RunOutSt = true;
-                        Stamina += 0.5f * Time.deltaTime;
+                        Stamina += Staminaregen * Time.deltaTime;
                     }
                     else if (Stamina >= Stamina / 3)
                     {
