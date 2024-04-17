@@ -14,6 +14,9 @@ public class Event : MonoBehaviour, IDataGame
     public AudioSource LightSound;
     public bool TurnLight;
 
+    private BoxCollider collider;
+
+    bool _1Game;
     [SerializeField] public string id;
 
 
@@ -23,6 +26,10 @@ public class Event : MonoBehaviour, IDataGame
         id = System.Guid.NewGuid().ToString();
     }
 
+    private void Start()
+    {
+        collider = GetComponent<BoxCollider>();
+    }
 
     public void TurnOnLight()
     {
@@ -58,7 +65,14 @@ public class Event : MonoBehaviour, IDataGame
 
     public void LoadData(GameData data)
     {
-       data.LightOn.TryGetValue(id, out TurnLight);
+        _1Game = data.Savelight1;
+
+        if (_1Game)
+        {
+            data.LightOn.TryGetValue(id, out TurnLight);
+        }
+
+
         if(TurnLight)
         {
             LightOn.SetActive(true);
@@ -74,6 +88,11 @@ public class Event : MonoBehaviour, IDataGame
             data.LightOn.Remove(id);
         }
         data.LightOn.Add(id, TurnLight);
+        if (!_1Game)
+        {
+            _1Game = true;
+        }
+        data.Savelight1 = _1Game;
     }
 
     public void deleteData(GameData data)
@@ -81,7 +100,16 @@ public class Event : MonoBehaviour, IDataGame
 
     }
 
- 
+    public void ToggleCollider(bool state)
+    {
+        if (collider != null)
+        {
+            collider.enabled = state;
+        }
+
+    }
+
+
 
 }
 

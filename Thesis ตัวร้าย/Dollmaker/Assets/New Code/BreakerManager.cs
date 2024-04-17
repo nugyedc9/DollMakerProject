@@ -10,8 +10,12 @@ public class BreakerManager : MonoBehaviour
 
     public UnityEvent  cansee;
 
+    SpriteRenderer sp;
+    public Sprite[] spc;
+
     void Start()
     {
+        sp = GetComponent<SpriteRenderer>();
         Event[] events = FindObjectsOfType<Event>();
         allEvents.AddRange(events);
     }
@@ -25,15 +29,20 @@ public class BreakerManager : MonoBehaviour
 
     public void LightOut()
     {
-        foreach (Event ev in allEvents)
-        {
+       
 
+        foreach (Event ev in allEvents)
+        { 
+            Debug.Log("Event: " + ev.ToString() + ", TurnLight: " + ev.TurnLight);
             if (ev.TurnLight)
             {
-
                 ev.TurnOnLight();
+                
             }
+            ev.ToggleCollider(false);
         }
+
+        sp.sprite = spc[1];
     }
 
     public void LightOn()
@@ -43,9 +52,11 @@ public class BreakerManager : MonoBehaviour
             if (!ev.TurnLight)
             {
                 ev.TurnOnLight();
+                ev.ToggleCollider(true);
             }
         }
 
+        sp.sprite = spc[0];
         cansee.Invoke();
     }
 }

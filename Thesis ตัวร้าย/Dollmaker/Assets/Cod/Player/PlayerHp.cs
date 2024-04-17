@@ -14,8 +14,8 @@ public class PlayerHp : MonoBehaviour
     public int MaxHp;
     public int curHp;
     public float Delayvideo,DeadDelayvideo, DelayCloseHp, DelayHeartbeat;
-    public GameObject[] HpPic, DMGPic;
-    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye, DeadVideo,THowToHeal;
+    public GameObject[] HpPic, DMGPic, DeadVideo;
+    public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye,THowToHeal;
     private bool PlayGetHit, normaleye, Playdead, tuHeal,CloseHp;
 
     [Header("---- Audio ----")]
@@ -42,6 +42,10 @@ public class PlayerHp : MonoBehaviour
                 // DeadVideo.SetActive(true);
                 PAttack.Died = true;
                 Died.enabled = true;
+                if(PCam.storyCount >= 12 && PCam.storyCount <= 14 || PCam.storyCount == 20 ) DeadVideo[0].SetActive(true);
+                else if(PCam.storyCount == 17  ) DeadVideo[1].SetActive(true);
+                else if(PCam.storyCount == 21  ) DeadVideo[2].SetActive(true);
+                else if(PCam.storyCount == 22  ) DeadVideo[3].SetActive(true);
                 StartCoroutine(DeadPlay());
                 Playdead = true;
             }
@@ -167,7 +171,7 @@ public class PlayerHp : MonoBehaviour
 
     IEnumerator DeadPlay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2);
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
