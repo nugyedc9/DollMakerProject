@@ -102,7 +102,7 @@ using UnityEngine.UI;
                 Notrun = true;
             }
 
-            if (Stamina == MaxStamina)
+            if (Stamina >= MaxStamina)
             {
                 if (!closeStamina)
                 {

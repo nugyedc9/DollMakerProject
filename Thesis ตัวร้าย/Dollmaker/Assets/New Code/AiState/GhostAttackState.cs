@@ -37,7 +37,7 @@ public class GhostAttackState : GhostBaseState
             {
                 if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
                     state.GhostAni.Play("atkanimation", 0, 0);
-                state.enemyGhost.speed = 20f;
+                state.enemyGhost.speed = state.GranmaAttactSpeed;
 
             }
 

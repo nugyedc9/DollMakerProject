@@ -40,7 +40,7 @@ public class GameData
     {
         playerPoS = new Vector3 (-126.833f, 7.244f, -39.285f);
         PlayerRota = new quaternion(0, 180, 0, 0);
-        flashLightPos = new Vector3(-126.613998f, 8.09500027f, -39.5699997f);
+        flashLightPos = new Vector3(-126.57f, 8f, -39.5699997f);
         flashLightRota = new quaternion(0, 180, 0, 0);
 
 
