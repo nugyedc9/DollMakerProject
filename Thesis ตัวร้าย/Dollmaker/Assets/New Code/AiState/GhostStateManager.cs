@@ -86,7 +86,7 @@ public class GhostStateManager : MonoBehaviour
   
     [Header("---- Audio Sound ----")]
     public AudioSource GhostAudioSoure; 
-    public AudioSource GhostAmbi, OnPlayerAudio, FireSound, MoveSound, EffectHunt;
+    public AudioSource GhostAmbi, OnPlayerAudio, FireSound, MoveSound, EffectHunt, granmaHt;
     public AudioClip  DetectS, SpawnS, WalkS, RunS, HuntS, AttackS, DiedS ,
         GetAttackS, FoundS, GhostIdleAmbiS, GhostHuntAmbi, PlayerHeartBeat;
 
@@ -233,6 +233,8 @@ public class GhostStateManager : MonoBehaviour
         if(other.gameObject.tag == "Bullet")
         {
            // print("Hit");
+           if(GhostID == 10) granmaHt.Play();
+
             HpGhost -= DmgBullet;
         }
     }

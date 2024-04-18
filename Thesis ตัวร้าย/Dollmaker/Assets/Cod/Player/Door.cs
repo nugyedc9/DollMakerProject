@@ -85,6 +85,7 @@ public class Door : MonoBehaviour
             }
             else
             {
+                DelayCloseDoor = 0;
                 DoorSound.clip = close;
                 DoorSound.Play();
                 doorAni.Play("Door_close", 0, 0);

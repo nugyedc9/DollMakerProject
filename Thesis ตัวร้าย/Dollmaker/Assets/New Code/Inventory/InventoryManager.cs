@@ -372,14 +372,14 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollRedBlue"))
             {
                 FinishDollID = 0; playerPickUpItem.FDOnhand = true;
-                ItemOnHand[7].SetActive(false);
+                ItemOnHand[7].SetActive(true);
 
-                if (drop)
+               /* if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 19);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {
@@ -389,14 +389,16 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollGreen"))
             {
                 FinishDollID = 1; playerPickUpItem.FDOnhand1 = true;
-                ItemOnHand[8].SetActive(false);
+                ItemOnHand[8].SetActive(true);
 
-                if (drop)
+                /*if (drop)
                 {
+
+                   // print("Drop");
                     DropitemPrefabs(DropPointPos, 20);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {
@@ -407,14 +409,14 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollYellow"))
             {
                 FinishDollID = 2; playerPickUpItem.FDOnhand2 = true;
-                ItemOnHand[9].SetActive(false);
+                ItemOnHand[9].SetActive(true);
 
-                if (drop)
+               /* if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 21);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {
@@ -425,14 +427,14 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollRed"))
             {
                 FinishDollID = 3; playerPickUpItem.FDOnhand3 = true;
-                ItemOnHand[10].SetActive(false);
+                ItemOnHand[10].SetActive(true);
 
-                if (drop)
+               /* if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 22);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {
@@ -442,14 +444,14 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollGreen"))
             {
                 FinishDollID = 4; playerPickUpItem.FDOnhand4 = true;
-                ItemOnHand[11].SetActive(false);
+                ItemOnHand[11].SetActive(true);
 
-                if (drop)
+                /*if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 23);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {
@@ -459,14 +461,14 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("BloodyDollYellow"))
             {
                 FinishDollID = 5; playerPickUpItem.FDOnhand5 = true;
-                ItemOnHand[12].SetActive(false);
+                ItemOnHand[12].SetActive(true);
 
-                if (drop)
+               /* if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 24);
                     GetSelectedItem(true);
                     drop = false;
-                }
+                }*/
             }
             else
             {

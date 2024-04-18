@@ -21,6 +21,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [SerializeField] CinemachineVirtualCamera Ghosthit;
     [SerializeField] CinemachineVirtualCamera PreFinalBoss;
     [SerializeField] CinemachineVirtualCamera PosFinalBoss;
+    [SerializeField] CinemachineVirtualCamera GranmaTell;
     [SerializeField] List<CinemachineVirtualCamera> hidespot;
     public List<CinemachineVirtualCamera> HideSpot { get { return hidespot; } }
 
@@ -166,6 +167,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.Register(Ghosthit);
         ChangePOV.Register(PreFinalBoss);
         ChangePOV.Register(PosFinalBoss);
+        ChangePOV.Register(GranmaTell);
 
         for (int i = 0; i < HideSpot.Count; i++)
         {
@@ -191,6 +193,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         ChangePOV.UnRegister(Ghosthit);
         ChangePOV.UnRegister(PreFinalBoss);
         ChangePOV.UnRegister(PosFinalBoss);
+        ChangePOV.UnRegister(GranmaTell);
 
         for (int i = 0; i < HideSpot.Count; i++)
         {
@@ -1245,6 +1248,42 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         }
     }
 
+    public void granmatell()
+    {
+        if (ChangePOV.IsActiveCamera(FirstpersonView))
+        {
+            OnCutScene = true;
 
+
+            _InputManager.StopWalk();
+            Throwitem.StopAttack();
+
+
+            ItemOnPlayer.SetActive(false);
+
+            ChangePOV.SwitchCamera(GranmaTell);
+            TimerDelay = 0.1f;
+
+
+        }
+    }
+
+    public void GranmaTellEnd()
+    {
+        if (ChangePOV.IsActiveCamera(GranmaTell))
+        {
+            OnCutScene = false;
+
+            _InputManager.StopWalk();
+            ItemOnPlayer.SetActive(true);
+            TextOnPlayer.SetActive(true);
+
+            camOnPerSon = true;
+
+            TimerDelay = 0;
+            ChangePOV.SwitchCamera(FirstpersonView);
+
+        }
+    }
 
 }

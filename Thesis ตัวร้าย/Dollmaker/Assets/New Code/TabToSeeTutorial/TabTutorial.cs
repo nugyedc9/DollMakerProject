@@ -68,6 +68,9 @@ public class TabTutorial : MonoBehaviour
                         _6Story.enabled = true;
                         OpenObjective = true;
                     }
+
+                    PAttack.isPause = true;
+
                 }
                 else if(OpenTutor)
                 {
@@ -85,6 +88,9 @@ public class TabTutorial : MonoBehaviour
 
                     Hit_2Story = true;
                     Hit_5Story = true;
+
+                    PAttack.isPause = false;
+
                 }
             }
 
@@ -110,6 +116,8 @@ public class TabTutorial : MonoBehaviour
                         _6Story.enabled = true;
                         OpenObjective = true;
                     }
+
+                    PAttack.isPause = true;
                 }
                 else if (OpenTutor)
                 {
@@ -126,6 +134,7 @@ public class TabTutorial : MonoBehaviour
 
                     Hit_2Story = true;
                     Hit_5Story = true;
+                    PAttack.isPause = false;
                 }
             }
         }

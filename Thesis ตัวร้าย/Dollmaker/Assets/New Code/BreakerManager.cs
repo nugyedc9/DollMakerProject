@@ -13,20 +13,15 @@ public class BreakerManager : MonoBehaviour
     SpriteRenderer sp;
     public Sprite[] spc;
 
-    void Start()
+    private void Awake()
     {
-        sp = GetComponent<SpriteRenderer>();
+         sp = GetComponent<SpriteRenderer>();
         Event[] events = FindObjectsOfType<Event>();
         allEvents.AddRange(events);
     }
 
-    void Update()
-    {
 
-
-  
-    }
-
+   
     public void LightOut()
     {
        

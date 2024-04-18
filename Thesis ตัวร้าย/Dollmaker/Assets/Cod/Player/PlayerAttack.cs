@@ -176,7 +176,9 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public AudioSource Ambience;
     public AudioClip AfterJumpGhost;
     public AudioSource InterectSound;
-    public AudioSource GetHeal;
+    public AudioSource GetHeal, SHotGun;
+
+    public Animator ShotGunAnim;
 
     [Header("PickItemSound")]
     public AudioClip LanternPickSound;
@@ -343,11 +345,14 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
         }
 
-        if (shotgunOnHand)
+        if (shotgunOnHand && !isPause)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && DelayAttack == 0)
             {
+                SHotGun.Play();
+                ShotGunAnim.Play("Shotgun Anima");
                 shooting();
+                DelayAttack = 1f;
             }
         }
 
