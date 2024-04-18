@@ -24,6 +24,7 @@ using UnityEngine.UI;
         public Slider StaminaBar;
         public float Stamina;
         float MaxStamina;
+    public GameObject StaminaVisual;
         bool RunOutSt, Notrun, playRunSound, PLayWalkSound;
         public PlayerAttack PAttack;
 
@@ -31,6 +32,8 @@ using UnityEngine.UI;
         public AudioSource AudioOut;
         public AudioClip WalkSound, RunSound;
 
+    bool closeStamina;
+    float delayClose;
 
 
         // Start is called before the first frame update
@@ -63,40 +66,59 @@ using UnityEngine.UI;
                 }
             }
 
-            if (speedForTest)
+        if (speedForTest)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                PAttack.Run = true;
+                Notrun = false;
+                StaminaVisual.SetActive(true);
+                closeStamina = false;
+                if (!RunOutSt)
                 {
-                    PAttack.Run = true;
-                    Notrun = false;
-                    if (!RunOutSt)
+                    if (Stamina > 0)
                     {
-                        if (Stamina > 0)
-                        {
-                            speed = SpeedForRun;
-                            Stamina -= Time.deltaTime;
-                        }
+                        speed = SpeedForRun;
+                        Stamina -= Time.deltaTime;
                     }
-
-                    if (Stamina <= 0)
-                    {
-                        speed = NomalSpeed;
-                        RunOutSt = true;
-                        Stamina += Staminaregen * Time.deltaTime;
-                    }
-                    else if (Stamina >= Stamina / 3)
-                    {
-                        RunOutSt = false;
-                    }
-
                 }
-                else if (Input.GetKeyUp(KeyCode.LeftShift))
+
+                if (Stamina <= 0)
                 {
                     speed = NomalSpeed;
-                    PAttack.Run = false;
-                    Notrun = true;
+                    RunOutSt = true;
+                    Stamina += Staminaregen * Time.deltaTime;
+                }
+                else if (Stamina >= Stamina / 3)
+                {
+                    RunOutSt = false;
+                }
+
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                speed = NomalSpeed;
+                PAttack.Run = false;
+                Notrun = true;
+            }
+
+            if (Stamina == MaxStamina)
+            {
+                if (!closeStamina)
+                {
+                    delayClose = 2f;
+                    closeStamina = true;
                 }
             }
+
+            if(delayClose > 0f) delayClose -= Time.deltaTime;
+            else if (delayClose < 0f)
+            {
+                StaminaVisual.SetActive(false);
+                delayClose = 0;
+            }
+        }
+
 
             #region SoundWalk
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))

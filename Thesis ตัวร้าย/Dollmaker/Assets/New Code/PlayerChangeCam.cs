@@ -871,7 +871,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         {
             PlayerMainOBJUI.SetActive(true);
            // PlayerHpUI.SetActive(true);
-            StaminaUI.SetActive(true);
+           // StaminaUI.SetActive(true);
 
             if(Pattack.Attack) CrossBarUI.SetActive(true);
 
@@ -879,7 +879,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         else
         {
             PlayerMainOBJUI.SetActive(false); //PlayerHpUI.SetActive(false);  
-            StaminaUI  .SetActive(false); CrossBarUI.SetActive(false);
+           // StaminaUI  .SetActive(false); 
+            CrossBarUI.SetActive(false);
         }
     }
 

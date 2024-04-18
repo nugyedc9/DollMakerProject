@@ -89,6 +89,8 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         YellowCloInv1, YellowCloInv2, YellowCloInv3
         ;
 
+    RollClothColor KeysID;
+
     [Header("CrossAction")]
     [SerializeField] private float CurHpCross;
     public float CrossLost, CrossRegen;
@@ -197,7 +199,8 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     private CrossCheck CrossUse;
     private bool Holddown,LightOut,DialogueStory,EndD1,CloseTurial, firstPickCross, GhostEx, FlashLightGet;
 
-    float DelayEse, Delaydoor;
+    float DelayEse, Delaydoor, DelayAttack;
+    bool canattack;
 
     public BoxCollider BoxCloseTV;
 
@@ -250,61 +253,80 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         if (Attack && !Run)
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && DelayAttack == 0)
             {
                 /*        if (curHpCross == 3) CorssAni.SetTrigger("AttackCorss");
                         if (curHpCross == 2) CorssAni.SetTrigger("AttackCorss2");
                         if (curHpCross == 1) CorssAni.SetTrigger("AttackCorss3");*/
 
-                crossAnim.SetState(CrossState.HoldUp);
+              /*  crossAnim.SetState(CrossState.HoldUp);
 
                 HitAudio.clip = HitWindSound;
                 HitAudio.Play();
-
+                canattack = true;*/
+              
             }
 
             if (Input.GetMouseButton(0))
             {
-                if (Physics.Raycast(r, out RaycastHit hitinfo, Attackrange))
+                if (DelayAttack == 0)
                 {
-                    if (hitinfo.collider.gameObject.tag == "Ghost")
+                    crossAnim.SetState(CrossState.HoldUp);
+
+                    HitAudio.clip = HitWindSound;
+                    HitAudio.Play();
+                    DelayAttack = 10f;
+                    canattack = true;
+                }
+
+                
+
+                if (canattack)
+                {
+                    if (Physics.Raycast(r, out RaycastHit hitinfo, Attackrange))
                     {
-
-                        GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
-                        if (CurHpCross > 0)
-                        {
-                            GhostHit.Playerhit();
-                            Crosstakedamge();
-                        }
-                        else if (curHpCross < 0.1)
+                        if (hitinfo.collider.gameObject.tag == "Ghost")
                         {
 
+                            GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
+                            if (CurHpCross > 0)
+                            {
+                                GhostHit.Playerhit();
+                                Crosstakedamge();
+                            }
+                            else if (curHpCross < 0.1)
+                            {
+
+                            }
+
+
+                            //    crossAnim.SetState(CrossState.HitGhost);
+                            CrossTimer = 4.5f;
+                            HitAudio.clip = HitGhostSound;
+                            HitAudio.Play();
+
+                            //StartCoroutine(AttackReset());
                         }
-
-
-                        //    crossAnim.SetState(CrossState.HitGhost);
-                        CrossTimer = 4.5f;
-                        HitAudio.clip = HitGhostSound;
-                        HitAudio.Play();
-
-                        //StartCoroutine(AttackReset());
-                    }
-                    else
-                    {
-                        // HolyLight.SetActive(false);
+                        else
+                        {
+                            // HolyLight.SetActive(false);
+                        }
                     }
                 }
             }
-            else CrossReCharge();
+            else CrossReCharge(); 
 
             if (Input.GetMouseButtonUp(0))
             {
                 crossAnim.SetState(CrossState.Idle);
+                canattack = false;
+                DelayAttack = 1f;
                 inventoryManager.TriggerCrossAnim = true;
                 if (curHpCross < 3)
                 {
                     curHpCross += Time.deltaTime;
-                }
+                } 
+               
             }
 
         }
@@ -329,7 +351,11 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
         }
 
-
+        if(DelayAttack > 0) DelayAttack -= Time.deltaTime;
+        else if (DelayAttack < 0)
+        {        
+            DelayAttack = 0;
+        }
 
 
         if(CrossTimer > 0)
@@ -1074,6 +1100,8 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         }
         #endregion
 
+       
+
         #region Show what can interect
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange) && !tabTutorial.OpenTutor && PCam.camOnPerSon)
         {
@@ -1105,8 +1133,12 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
             if (hitevent.collider.gameObject.tag == "Key")
             {
+                KeysID = hitevent.collider.gameObject.GetComponent<RollClothColor>();
+
                 ItemText.SetActive(true);
-                ItemName.text = "StorageRoom Key [E]";
+                if (KeysID.pieceClothID == 1)
+                    ItemName.text = "StorageRoom Key [E]";
+                else if (KeysID.pieceClothID == 2) ItemName.text = "Ritual room key [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")
@@ -1238,9 +1270,21 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
 
                     ItemText.SetActive(true);
-                    ItemName.text = "Eat Pill [E]";
+                    ItemName.text = "Bandage [E]";
                     InterectItem = true;
               
+            }
+            else if (hitevent.collider.gameObject.tag == "Phone")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Phone [E]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "HideSpot")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Hide [E]";
+                InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "MachineMiniGame")
             {

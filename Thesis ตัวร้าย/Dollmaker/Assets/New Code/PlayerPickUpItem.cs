@@ -26,7 +26,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     [Header("Scrissor Thing")]
     public Animator ScrissorAnim;
-    public BoxCollider _5Story;
+    public BoxCollider _5Story, JumpGranMaKey;
 
     [Header("Pick Up")]
     public float Pickrange;
@@ -215,6 +215,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         audioSource.Play();
                         pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                         KeyId = pieceClothGet.pieceClothID;
+
+                        if(keyId == 1) JumpGranMaKey.enabled = true;
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
