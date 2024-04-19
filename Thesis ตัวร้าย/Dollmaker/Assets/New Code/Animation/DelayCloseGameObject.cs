@@ -17,6 +17,7 @@ public class DelayCloseGameObject : MonoBehaviour
         else if(DelayTimer < 0)
         {
             eventTimer.Invoke();
+            DelayTimer = 0;
         }
     }
 }

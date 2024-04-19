@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour
 {
+
+
     public void playGame()
     {
         SceneManager.LoadSceneAsync("In House Scene");
@@ -19,6 +21,13 @@ public class changeScene : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync("Cutscene Prolouge");
     }
+
+    public void LoadScenename(string sceneName)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+
     public void Quitgame()
     {
         Application.Quit();

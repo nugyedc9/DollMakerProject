@@ -39,6 +39,7 @@ public class PlayerHp : MonoBehaviour
         {
             if(!Playdead)
             {
+                PAttack.isPause = true;
                 // DeadVideo.SetActive(true);
                 PAttack.Died = true;
                 Died.enabled = true;

@@ -1294,13 +1294,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
             else if (hitevent.collider.gameObject.tag == "Shotgun")
             {
-                if (PCam.storyCount < 22)
+                if (PCam.storyCount < 21)
                 {
                     ItemText.SetActive(true);
                     ItemName.text = "ShotGun";
                     InterectItem = true;
                 }
-                if (PCam.storyCount >= 22)
+                if (PCam.storyCount >= 21)
                 {
                     ItemText.SetActive(true);
                     ItemName.text = "Pick up [E]";

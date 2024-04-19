@@ -157,7 +157,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     }
                     if (hitInfo.collider.gameObject.tag == "Shotgun")
                     {
-                        if (PCam.storyCount >= 22)
+                        if (PCam.storyCount >= 21)
                         {
                             audioSource.clip = CrossS;
                             audioSource.Play();

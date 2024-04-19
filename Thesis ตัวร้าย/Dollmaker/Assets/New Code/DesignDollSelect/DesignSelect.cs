@@ -124,11 +124,12 @@ public class DesignSelect : MonoBehaviour
             AudioSound.Play();
             ClothCutline[PageNum].SetActive(true);
             ConfirmThis = true;
-        if (!_1CutLine)
+
+        /*if (!_1CutLine)
         {
             CutLineTutorial.SetActive(true);
             CutLineNote.SetActive(true);
-        }
+        }*/
 
         SelectButt.SetActive(false);
             /* ClothColor[PageNum].SetActive(false);
