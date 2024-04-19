@@ -554,7 +554,7 @@ public class MiniGameAuidition : MonoBehaviour
         {
             _Currentstate = MiniGameAuditionState.ItemLost; curBar = 0;
         }
-        if(curBar >= maxBar / 3 && inventoryManager.DollCountFinish == 0)
+        if(curBar >= maxBar / 3 && inventoryManager.DollCountFinish == 1)
         {
             if (!AnomoPlay1)
             {

@@ -14,6 +14,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public TabTutorial BookGuide;
     public PlayerHp HpPlayer;
     public MiniGameAuidition miniG;
+    public PlayerChangeCam PCam;
 
     [SerializeField] Item[] ItemPickUp;
     public Item[] itemPickUp { get { return ItemPickUp; } set { ItemPickUp = value; } }
@@ -156,25 +157,27 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     }
                     if (hitInfo.collider.gameObject.tag == "Shotgun")
                     {
-                     
-                        audioSource.clip = CrossS;
-                        audioSource.Play();
-                        //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                        if (PCam.storyCount >= 22)
+                        {
+                            audioSource.clip = CrossS;
+                            audioSource.Play();
+                            //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
 
 
-                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
-                        GetPickUp.Add(ItemIdGet.id);
+                            ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                            GetPickUp.Add(ItemIdGet.id);
 
-                        // if (CrossUse.curHp == 3)
-                        inventoryManager.AddItem(itemPickUp[24]);
-                        /*  if (CrossUse.curHp == 2)
-                              inventoryManager.AddItem(itemPickUp[4]);
-                          if (CrossUse.curHp == 1)
-                              inventoryManager.AddItem(itemPickUp[5]);*/
+                            // if (CrossUse.curHp == 3)
+                            inventoryManager.AddItem(itemPickUp[24]);
+                            /*  if (CrossUse.curHp == 2)
+                                  inventoryManager.AddItem(itemPickUp[4]);
+                              if (CrossUse.curHp == 1)
+                                  inventoryManager.AddItem(itemPickUp[5]);*/
 
 
 
-                        Destroy(hitInfo.collider.gameObject);
+                            Destroy(hitInfo.collider.gameObject);
+                        }
                     }
                     if (hitInfo.collider.gameObject.tag == "Doll")
                     {

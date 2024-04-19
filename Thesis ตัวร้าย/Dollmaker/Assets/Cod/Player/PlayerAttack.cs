@@ -1162,13 +1162,14 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         ItemText.SetActive(true);
                         ItemName.text = "Door Lock";
                         InterectItem = true;
-                    }                 
-                    else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID) 
+                    }
+                    else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID)
                     {
                         ItemText.SetActive(true);
                         ItemName.text = "Use key to Unlock [Left Click]";
                         InterectItem = true;
-                    }else if (playerPickUpItem.Key)
+                    }
+                    else if (playerPickUpItem.Key)
                     {
                         ItemText.SetActive(true);
                         ItemName.text = "Door Lock";
@@ -1214,7 +1215,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "WorkShopDesk")
-            {              
+            {
                 ItemText.SetActive(true);
                 ItemName.text = "DeskWorkShop [E]";
                 InterectItem = true;
@@ -1274,16 +1275,38 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             else if (hitevent.collider.gameObject.tag == "EyeWash")
             {
 
-                    ItemText.SetActive(true);
-                    ItemName.text = "Bandage [E]";
-                    InterectItem = true;
-              
+                ItemText.SetActive(true);
+                ItemName.text = "Bandage [E]";
+                InterectItem = true;
+
             }
             else if (hitevent.collider.gameObject.tag == "Phone")
             {
                 ItemText.SetActive(true);
                 ItemName.text = "Phone [E]";
                 InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "coverBlood")
+            {
+                ItemText.SetActive(true);
+                ItemName.text = "Ritual blood [Left click]";
+                InterectItem = true;
+            }
+            else if (hitevent.collider.gameObject.tag == "Shotgun")
+            {
+                if (PCam.storyCount < 22)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "ShotGun";
+                    InterectItem = true;
+                }
+                if (PCam.storyCount >= 22)
+                {
+                    ItemText.SetActive(true);
+                    ItemName.text = "Pick up [E]";
+                    InterectItem = true;
+                }
+
             }
             else if (hitevent.collider.gameObject.tag == "HideSpot")
             {
@@ -1352,7 +1375,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 if (pieceClothGet != null)
                 {
-                    pieceClothGet.OpecCloth = false ;
+                    pieceClothGet.OpecCloth = false;
                     pieceClothGet = null;
                 }
             }
