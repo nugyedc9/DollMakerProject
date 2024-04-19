@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour
 {
-
+    public int sceneNum;
 
     public void playGame()
     {
@@ -16,10 +16,16 @@ public class changeScene : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync("In House Scene");
     }
-    public void NextScene()
+    public void CutScene()
     {
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync("Cutscene Prolouge");
+    }
+
+    public void NextScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(sceneNum);
     }
 
     public void LoadScenename(string sceneName)
