@@ -19,7 +19,7 @@ public class GhostHuntState : GhostBaseState
 
         state.GhostHuntEffect.SetActive(true);
         state.EffectHunt.Play();
-       
+          state.enemyGhost.speed = state.HuntSpeed;
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -27,7 +27,7 @@ public class GhostHuntState : GhostBaseState
         state.DrawVisionCone();
 
 
-        state.enemyGhost.speed = state.HuntSpeed;
+     
         state.CurrentDest = state.playerPos.transform;
         state.Dest = state.CurrentDest.position;
             state.enemyGhost.destination = state.Dest;

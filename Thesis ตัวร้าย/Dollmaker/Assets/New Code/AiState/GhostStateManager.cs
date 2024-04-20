@@ -38,9 +38,14 @@ public class GhostStateManager : MonoBehaviour
     public BoxCollider GhostBoxCol, AttackBox;
     public ParticleSystem particle;
     public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint;
-    public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed, GranmaAttactSpeed;
+    public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed ;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
         GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked;
+
+    [Header("Granma")]
+    public float GranmaAttactSpeed;
+    public float GranmahitBox;
+
 
     [Header("GhostHP")]
     public float HpGhost;

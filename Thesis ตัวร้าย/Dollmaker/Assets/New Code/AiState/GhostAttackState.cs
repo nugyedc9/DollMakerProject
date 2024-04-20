@@ -14,7 +14,10 @@ public class GhostAttackState : GhostBaseState
         state.GhostBoxCol.enabled = false;
         if (state.GhostID != 5 || state.GhostID != 10)
             state.AttackBox.enabled = true;
-        else 
+        else if(state.GhostID == 10 )
+        {
+            state.AttackBox.enabled = false;
+        }
         state.MoveSound.Stop();
         PlayerInRange = false;
 
@@ -25,6 +28,7 @@ public class GhostAttackState : GhostBaseState
             state.enemyGhost.speed = 0f;
 
         }
+
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -96,9 +100,11 @@ public class GhostAttackState : GhostBaseState
                     }
                 }
 
-                if(state.GhostID == 10)
+            
+            } 
+            if(state.GhostID == 10)
                 {
-                    if (Vector3.Distance(state.enemyGhost.transform.position, state.playerPos.position) < 2.5f)
+                    if (Vector3.Distance(state.enemyGhost.transform.position, state.playerPos.position) < state.GranmahitBox)
                     {
 
                         if (state.HitPlayer)
@@ -113,7 +119,6 @@ public class GhostAttackState : GhostBaseState
 
                     }
                 }
-            }
         }
 
         if (TimeHit < 0)
