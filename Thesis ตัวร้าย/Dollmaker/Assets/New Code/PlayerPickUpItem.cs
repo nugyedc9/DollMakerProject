@@ -396,7 +396,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         GetNote2 = true;
                         /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                          GetPickUp.Add(ItemIdGet.id);*/
-                        MakeNewDoll.Invoke();
+                        //MakeNewDoll.Invoke();
 
                         Destroy(hitInfo.collider.gameObject);
                     }

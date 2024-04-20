@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public CrossAnim crossAnim;
      TutorialNote Tunote;
     private RollClothColor pieceClothGet;
+    private DocumentID Docid;
     public TutorialNote tunote { get { return Tunote; } set { Tunote = value; } }
     [SerializeField] bool attack;
     public bool Attack { get { return attack; } set { attack = value; } }
@@ -1233,8 +1234,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
             else if (hitevent.collider.gameObject.tag == "Document")
             {
+                Docid = hitevent.collider.gameObject.GetComponent<DocumentID>();
+
                 ItemText.SetActive(true);
+                if(Docid.DocID == 0)
                 ItemName.text = "Letter [E]";
+                else if (Docid.DocID == 1)
+                    ItemName.text = "Map [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "ForntDoor")
