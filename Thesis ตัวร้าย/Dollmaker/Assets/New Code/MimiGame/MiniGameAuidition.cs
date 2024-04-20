@@ -454,8 +454,9 @@ public class MiniGameAuidition : MonoBehaviour
         if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
         {
             FailClick = true;
-            if (!_1Fail)
+            if (!_1Fail &&Pcam.TutorialFail)
             {
+                Pcam.TutorialFail = true;
                 FailNote.SetActive(true);
                 _1Fail = true;
             }

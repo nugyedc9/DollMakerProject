@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     public bool ShotgunOnhand { get { return shotgunOnHand; } set { shotgunOnHand = value; } }
 
 
-    public float DropSpeed, ShootSpeed;
+    public float DropSpeed, ShootSpeed, ShootDelay;
     public Camera FpsCam;
     public GameObject projectile;
     public Transform RH, ShootPoint;
@@ -353,7 +353,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 SHotGun.Play();
                 ShotGunAnim.Play("Shotgun Anima");
                 shooting();
-                DelayAttack = 1f;
+                DelayAttack = ShootDelay;
             }
         }
 

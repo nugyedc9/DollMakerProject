@@ -119,7 +119,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, 
         _1designCloth, _1sewing, _1doll, _1clothDoll,
-        _1cutLine, Hiding;
+        _1cutLine, Hiding , tutorialCloth, tutorialSwing, tutorialFail, tutorialBasket;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
@@ -133,6 +133,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     private bool CamOnPerson = true, onCutScene;
     public bool camOnPerSon { get { return CamOnPerson; } set { CamOnPerson = value; } }
     public bool OnCutScene { get { return onCutScene; } set { onCutScene = value; } }
+    public bool TutorialCloth { get { return tutorialCloth; } set { tutorialCloth = value; } }
+    public bool TutorialSwing { get { return tutorialSwing; } set { tutorialSwing = value; } }
+    public bool TutorialFail { get { return tutorialFail; } set { tutorialFail = value; } }
+    public bool TutorialBasket { get { return tutorialBasket; } set { tutorialBasket = value; } }
 
     [SerializeField] bool closeInterectShow;
     public bool CloseInterectShow { get { return closeInterectShow; } set { closeInterectShow = value; } }
@@ -377,9 +381,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TimerDelay = 0.1f;
                       //  StartCoroutine(DelayCamera());
 
-                        if (!_1Sewing)
+                        if (!_1Sewing && !TutorialSwing)
                         {
                             sewingTutorial.SetActive(true);
+                            TutorialSwing = true;
                         }
                     }
                 }
@@ -392,10 +397,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                 {
                     if (ChangePOV.IsActiveCamera(FirstpersonView))
                     {
-                        if (!HaveCloth)
+                        /*if (!HaveCloth)
                         {
                             BoxRollCloth.SetActive(true);
-                        }
+                        }*/
                         Scissorcanva.SetActive(true);
                         ClothBox.enabled = false;
                         _InputManager.StopWalk();
@@ -410,9 +415,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TimerDelay = 0.1f;
                      //   StartCoroutine(DelayCamera());
 
-                        if (!_1DesignCloth)
+                        if (!_1DesignCloth && !TutorialCloth)
                         {
                             clothTutorial.SetActive(true);
+                            TutorialCloth = true;
                         }
                     }
                 }
@@ -463,9 +469,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TimerDelay = 0.1f;
                        // StartCoroutine(DelayCamera());
 
-                        if (!_1Sewing)
+                        if (!_1Sewing && !TutorialSwing)
                         {
                             sewingTutorial.SetActive(true);
+                            TutorialSwing = true;
                         }
 
                     }
@@ -598,9 +605,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TurnIn.SetActive(false);
                         CheckCanplayMiniG.OnDesk = false;
                         InvOpen.Play("InvClose");
-                      
-                        if (!_1Sewing)
+
+                        if (!_1Sewing && !TutorialSwing || TutorialSwing)
+                        {
                             sewingTutorial.SetActive(false);
+                        }
                         CloseMouse();
                         TimerDelay = 0;
                         ChangePOV.SwitchCamera(FirstpersonView);
@@ -622,7 +631,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
 
-                        if (!_1DesignCloth)
+                        if (!_1DesignCloth && !TutorialCloth || TutorialCloth)
                             clothTutorial.SetActive(false);
                         else if(!T1CutLine && _1DesignCloth)
                             CutLine.SetActive(false);
@@ -862,9 +871,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             TimerDelay = 0.1f;
            // StartCoroutine(DelayCamera());
 
-            if (!_1Sewing)
+            if (!_1Sewing && !TutorialSwing)
             {
                 sewingTutorial.SetActive(true);
+                TutorialSwing = true;
             }
         }
     }
@@ -956,6 +966,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         storyCount = data.storyCountSave;
         GhostDied1data = data.GhostDied1;
         GhostDied2data = data.GhostDied2;
+        TutorialCloth = data.TutorialCloth;
+        TutorialSwing = data.TutorialSwing;
+        TutorialFail = data.TutorialFail;
+        TutorialBasket = data.TutorialBasket;
 
         foreach (var item in data.EventStroyPass)
         {
@@ -1118,6 +1132,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         data.storyCountSave = storyCount;
         data.GhostDied1 = GhostDied1data;
         data.GhostDied2 = GhostDied2data;
+        data.TutorialCloth = TutorialCloth;
+        data.TutorialSwing = TutorialSwing;
+        data.TutorialFail = TutorialFail;
+        data.TutorialBasket = TutorialBasket;
+
 
         for (int i = 0; i < EventInGame.Count; i++)
         {
