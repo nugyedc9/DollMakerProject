@@ -12,10 +12,19 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
-        if(state.GhostID != 5 || state.GhostID != 10)
-        state.AttackBox.enabled = true;
+        if (state.GhostID != 5 || state.GhostID != 10)
+            state.AttackBox.enabled = true;
+        else 
         state.MoveSound.Stop();
         PlayerInRange = false;
+
+        if (state.GhostID != 10)
+        {
+            if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
+                state.GhostAni.Play("atkanimation", 0, 0);
+            state.enemyGhost.speed = 0f;
+
+        }
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -25,15 +34,15 @@ public class GhostAttackState : GhostBaseState
         {
             state.DelayHitPlayer = 2;
 
-            if (state.GhostID != 10)
+          /*  if (state.GhostID != 10)
             {
                 if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
                     state.GhostAni.Play("atkanimation", 0, 0);
                 state.enemyGhost.speed = 0f;
 
-            }
+            }*/
 
-            else if( state.GhostID == 10)
+             if( state.GhostID == 10)
             {
                 if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("atkanimation"))
                     state.GhostAni.Play("atkanimation", 0, 0);

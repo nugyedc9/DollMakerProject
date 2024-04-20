@@ -1105,11 +1105,14 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         }
         #endregion
 
-       
+         //Debug.DrawRay(pickUPPoint.transform.position ,pickUPPoint.forward , Color.green, Pickrange);
 
         #region Show what can interect
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange) && !tabTutorial.OpenTutor && PCam.camOnPerSon)
         {
+
+         
+
             if (hitevent.collider.tag == "GhostEvent")
             {
                 GhostEvent1.Invoke();
@@ -1398,6 +1401,12 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
 
 
+            else if(hitevent.collider.gameObject.tag == "Untagged")
+            {
+                InterectItem = false;
+                ItemText.SetActive(false);
+                pieceClothGet = null;
+            }
             else
             {
                 InterectItem = false;
