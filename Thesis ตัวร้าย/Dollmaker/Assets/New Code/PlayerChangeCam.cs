@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ProBuilder.Shapes;
 
 public class PlayerChangeCam : MonoBehaviour, IDataGame
 {
@@ -1042,22 +1043,36 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             }
         }
 
-        if(storyCount >= 15)
+
+        if (storyCount == 14)
+        {
+            MainObjtive.text = "Go through the other door in the sewing room";
+            SubObjtive.text = "Go back to doll workshop";
+        }
+
+        if (storyCount >= 15)
         {
             OpenWallAfterSleep.Invoke();
             if(StoryCount == 15 )
             {
+
+                MainObjtive.text = "Follow the phone sound";
+                SubObjtive.text = "Follow the phone sound";
                 wakeUP.Invoke();
             }
         }
 
         if(StoryCount == 16)
         {
+            MainObjtive.text = "Get Ritual Room key";
+            SubObjtive.text = "Go to check Master Bedroom";
             AfterPhone.Invoke();
         }
 
         if(storyCount >= 17)
         {
+            MainObjtive.text = "Make Four Dolls with Ritual Blood";
+            SubObjtive.text = "";
             UnlockRitualRoom.Invoke();
             if(storyCount == 17)
             {
@@ -1067,16 +1082,29 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
         if(storyCount == 18)
         {
+            MainObjtive.text = "Find Missing Doll From The storage room";
+            SubObjtive.text = "";
             TakeDollHunted.Invoke();
         }
 
-        if(storyCount == 21)
+        if (storyCount == 20)
         {
+            MainObjtive.text = "Make Four Dolls with Ritual Blood";
+            SubObjtive.text = "";
+            TakeDollHunted.Invoke();
+        }
+
+        if (storyCount == 21)
+        {
+            MainObjtive.text = "Push All Ritual Blood Dolls in basket";
+            SubObjtive.text = "";
             LostCross.Invoke();
         }
 
         if(storyCount == 22)
         {
+            MainObjtive.text = "";
+            SubObjtive.text = "";
             bossfight.Invoke();
         }
         
