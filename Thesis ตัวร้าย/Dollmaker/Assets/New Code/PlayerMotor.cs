@@ -58,7 +58,7 @@ using UnityEngine.UI;
             {
                 if (Stamina < MaxStamina)
                 {
-                    Stamina += 0.5f * Time.deltaTime;
+                    Stamina += Staminaregen * Time.deltaTime;
                 }
                 else if (Stamina >= Stamina / 3)
                 {
@@ -82,12 +82,17 @@ using UnityEngine.UI;
                         Stamina -= Time.deltaTime;
                     }
                 }
+                else
+                {
+                    speed = NomalSpeed;
+                    //Stamina += Staminaregen * Time.deltaTime;
+                }
 
                 if (Stamina <= 0)
                 {
                     speed = NomalSpeed;
                     RunOutSt = true;
-                    Stamina += Staminaregen * Time.deltaTime;
+                   // Stamina += Staminaregen * Time.deltaTime;
                 }
                 else if (Stamina >= Stamina / 3)
                 {
