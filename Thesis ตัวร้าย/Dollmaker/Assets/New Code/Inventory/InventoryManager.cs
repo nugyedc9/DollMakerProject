@@ -56,10 +56,10 @@ public PlayerPickUpItem playerPickUpItem;
     public float DollCountFinish { get { return dollCountFinish; } set { dollCountFinish = value; } }
 
 
-    public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet, finishDoll6Event;
+    public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet, finishDoll6Event, Doll1Finish;
 
     private Vector3 DesDrop;
-    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck;
+    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck,finishdoll1;
 
     private void Awake()
     {
@@ -525,6 +525,15 @@ public PlayerPickUpItem playerPickUpItem;
 
         #region MakeDollEvent
 
+        if(dollCountFinish == 1)
+        {
+            if (!finishdoll1)
+            {
+                Doll1Finish.Invoke();
+                finishdoll1 = true;
+            }
+        }
+
         if(dollCountFinish == 2)
         {
             if (!MakeDoll2)
@@ -780,6 +789,7 @@ public PlayerPickUpItem playerPickUpItem;
         MakeDoll2 = data.MakeDoll2;
         Ghost4Spawn = data.Ghost4DiedEvent;
         Finish6DollCheck = data.FinishDoll6;
+        finishdoll1 = data.Doll1finish;
 
     }
 
@@ -830,6 +840,7 @@ public PlayerPickUpItem playerPickUpItem;
         data.MakeDoll2 = MakeDoll2;
         data.Ghost4DiedEvent = Ghost4Spawn;
         data.FinishDoll6 = Finish6DollCheck;
+        data.Doll1finish = finishdoll1;
 
     }
 
