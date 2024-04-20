@@ -1165,13 +1165,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         if (!playerPickUpItem.Key)
                         {
                             ItemText.SetActive(true);
-                            ItemName.text = "Need Key";
+                            ItemName.text = "Use the key to unlock";
                             InterectItem = true;
                         }
                         else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID)
                         {
                             ItemText.SetActive(true);
-                            ItemName.text = "Use key to Unlock [Left Click]";
+                            ItemName.text = "Unlock the door [Left Click]";
                             InterectItem = true;
                         }
                     }
@@ -1330,7 +1330,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 if (!changeCam.CloseInterectShow)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = " Enter Cloth Cutting Table [E]";
+                    ItemName.text = "Start making dolls [E]";
                     InterectItem = true;
                 }
             }
@@ -1354,7 +1354,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 if (!changeCam.CloseInterectShow)
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Enter Doll Table [E]";
+                    ItemName.text = "Start making dolls [E]";
                     InterectItem = true;
                 }
             }
