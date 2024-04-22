@@ -1112,7 +1112,8 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         if (Physics.Raycast(Interect, out RaycastHit hitevent, Pickrange) && !tabTutorial.OpenTutor && PCam.camOnPerSon)
         {
 
-         
+            // Debug.DrawRay(pickUPPoint.position, pickUPPoint.forward,  Color.red, Pickrange);
+            //Debug.Log(hitevent.collider.tag);
 
             if (hitevent.collider.tag == "GhostEvent")
             {
@@ -1409,13 +1410,15 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
 
 
-            else if(hitevent.collider.gameObject.tag == "Untagged")
+           
+            else
             {
                 InterectItem = false;
                 ItemText.SetActive(false);
                 pieceClothGet = null;
-            }
-            else
+            } 
+            
+            if(hitevent.collider.gameObject.tag == "Untagged")
             {
                 InterectItem = false;
                 ItemText.SetActive(false);
