@@ -12,7 +12,7 @@ public class GhostGetAttckState : GhostBaseState
        // state.GhostAmbi.Stop();
        // state.PAttack.Attack = false;
 
-        state.enemyGhost.speed = state.HuntSpeed;
+        state.enemyGhost.speed = 0;
        state.FireSound.Play();
        
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("damageanimation"))
@@ -22,6 +22,8 @@ public class GhostGetAttckState : GhostBaseState
         state.MoveSound.loop = true;
         state.MoveSound.clip = state.WalkS;
         state.MoveSound.Play();
+        state.GhostBoxCol.enabled = false;
+        state.HitDelay = 10;
         //  Debug.Log("GetAttack");
     }
 
@@ -43,7 +45,7 @@ public class GhostGetAttckState : GhostBaseState
                 }
         */
 
-
+/*
         if (state.enemyGhost.speed < 1)
         {
             state.enemyGhost.speed = state.GhostSpeedMin;
@@ -52,7 +54,7 @@ public class GhostGetAttckState : GhostBaseState
         {
             state.enemyGhost.speed -= state.GhostSpeedDown * Time.deltaTime;
         }
-
+*/
 
         if (state.HitDelay > 0)
         {
@@ -75,18 +77,18 @@ public class GhostGetAttckState : GhostBaseState
             {
                 //   Debug.Log("AfterHit");
                 state.HpBeforeHit = state.HpGhost;
-                state.PAttack.Attack = true;
+                //state.PAttack.Attack = true;
                 state.SwitchState(state.AlertState);
                 state.HitDelay = 0;
             }
         }
 
-        if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 2)
+        /*if (Vector3.Distance(state.Dest, state.enemyGhost.gameObject.transform.position) <= 2)
         {
             state.AnimAttack = true;
             state.HitPlayer = true;
             state.SwitchState(state.AttckState);
-        }
+        }*/
 
     }
 }

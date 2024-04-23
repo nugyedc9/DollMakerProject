@@ -136,8 +136,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         audioSource.clip = CrossS;
                         audioSource.Play();
                     //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
-                        PAttack.curHpCross = 3;
-                        CrossBar.maxValue = 3;
+                        PAttack.curHpCross = 120;
+                       // CrossBar.maxValue = 3;
                         inventoryManager.TriggerCrossAnim = true;
 
 

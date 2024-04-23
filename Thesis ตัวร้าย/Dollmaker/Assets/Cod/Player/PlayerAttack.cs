@@ -272,7 +272,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
             if (Input.GetMouseButton(0))
             {
-                if (DelayAttack == 0)
+                if (DelayAttack == 0 && curHpCross >= 120)
                 {
                     crossAnim.SetState(CrossState.HoldUp);
 
@@ -280,27 +280,23 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                     HitAudio.Play();
                     DelayAttack = 10f;
                     canattack = true;
-                }
 
-                
 
-                if (canattack)
-                {
                     if (Physics.Raycast(r, out RaycastHit hitinfo, Attackrange))
                     {
                         if (hitinfo.collider.gameObject.tag == "Ghost")
                         {
 
                             GhostHit = hitinfo.collider.gameObject.GetComponent<GhostStateManager>();
-                            if (CurHpCross > 0)
-                            {
-                                GhostHit.Playerhit();
-                                Crosstakedamge();
-                            }
-                            else if (curHpCross < 0.1)
-                            {
 
-                            }
+
+
+
+             
+                                GhostHit.Playerhit();
+                                curHpCross = 0;
+                               // Crosstakedamge();
+                            
 
 
                             //    crossAnim.SetState(CrossState.HitGhost);
@@ -315,7 +311,11 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                             // HolyLight.SetActive(false);
                         }
                     }
+                
                 }
+
+                
+
             }
             else CrossReCharge(); 
 
@@ -325,10 +325,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 canattack = false;
                 DelayAttack = 1f;
                 inventoryManager.TriggerCrossAnim = true;
-                if (curHpCross < 3)
-                {
-                    curHpCross += Time.deltaTime;
-                } 
+               
                
             }
 
@@ -339,10 +336,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 crossAnim.SetState(CrossState.Idle);
                 inventoryManager.TriggerCrossAnim = true;
-                if (curHpCross < 3)
-                {
-                    curHpCross += Time.deltaTime;
-                }
+
             }
         }
 
@@ -3385,13 +3379,17 @@ public class PlayerAttack : MonoBehaviour , IDataGame
         {
             curHpCross = 0;
         }
+
+
+
+
     }
 
     public void CrossReCharge()
     {
-        if (curHpCross < 3)
+        if (curHpCross < 120)
         {
-            curHpCross += CrossRegen * Time.deltaTime;
+            curHpCross += Time.deltaTime;
         }
         
     }

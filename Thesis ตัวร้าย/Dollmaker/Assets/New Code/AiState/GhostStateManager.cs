@@ -218,8 +218,12 @@ public class GhostStateManager : MonoBehaviour
         {
             GetAttack = true;
         }
-        HitDelay = 0.5f;
+
+
+       /* HitDelay = 0.5f;
             HpGhost -= Time.deltaTime;
+*/
+
         
 
         /* if (!GetAttack)
