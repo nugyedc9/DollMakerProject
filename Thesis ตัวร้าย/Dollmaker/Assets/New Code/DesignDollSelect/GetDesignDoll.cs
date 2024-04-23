@@ -75,7 +75,7 @@ public class GetDesignDoll : MonoBehaviour
             if (dollCount == 1) FinishDoll1.Invoke();
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-            inventoryManager.AddItem(FinishDoll[DollColorID]);
+            inventoryManager.AddItem(FinishDoll[0]);
             DollDrop.GetFinishDoll();
         }
     }

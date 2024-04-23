@@ -72,7 +72,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("SelectDesign")]
     public Animator InvAnim;
-    public GameObject DesignSelect;
+    public DesignSelect designSelect ;
     public GameObject Book , Allline, Scissorcanva;
 
     [Header("SelectDollDesign")]
@@ -96,7 +96,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("CloseBoxCol")]
     public BoxCollider WorkShopBoxCol;
-    public BoxCollider _1Story, ClothBox, DollBox, BoxAfterTutorCam;
+    public BoxCollider _1Story, /*ClothBox,*/ DollBox, BoxAfterTutorCam;
     public GameObject BoxRollCloth;
     public CanPlayMini1 CheckCanplayMiniG;
     public PlayerAttack Throwitem;
@@ -119,7 +119,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     private bool  CamOnDesk, HaveItem
         , WakeUp, TimeBool = true, 
         _1designCloth, _1sewing, _1doll, _1clothDoll,
-        _1cutLine, Hiding , tutorialCloth, tutorialSwing, tutorialFail, tutorialBasket;
+        _1cutLine, Hiding , tutorialCloth, tutorialSwing, tutorialFail, tutorialBasket,
+        lightEvent;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
@@ -137,6 +138,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public bool TutorialSwing { get { return tutorialSwing; } set { tutorialSwing = value; } }
     public bool TutorialFail { get { return tutorialFail; } set { tutorialFail = value; } }
     public bool TutorialBasket { get { return tutorialBasket; } set { tutorialBasket = value; } }
+    public bool LightEvent { get { return lightEvent; } set { lightEvent = value; } }
 
     [SerializeField] bool closeInterectShow;
     public bool CloseInterectShow { get { return closeInterectShow; } set { closeInterectShow = value; } }
@@ -402,7 +404,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             BoxRollCloth.SetActive(true);
                         }*/
                         Scissorcanva.SetActive(true);
-                        ClothBox.enabled = false;
+                       // ClothBox.enabled = false;
                         _InputManager.StopWalk();
                         Throwitem.StopAttack();
                         /*  DesignSelect.SetActive(true);*/
@@ -451,29 +453,50 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
                         /*  if (!DropDoll.CloseboxDropDoll)
                               DesignDollSelect.SetActive(true); */
-
-                        InvOpen.Play("InvOpen");
-                        DropDollArrow.SetActive(true);
-                        DropDollTab.Play("IdleDropdoll");
-                        WorkShopBoxCol.enabled = false;
-                        _InputManager.StopWalk();
-                        Throwitem.StopAttack();
-                        ItemOnPlayer.SetActive(false);
-                        //  TextOnPlayer.SetActive(false);
-                        CheckCanplayMiniG.OnDesk = true;
-                        CamOnDesk = true;
-                        LookOutGhost = false;
-                        TurnOut.SetActive(true);
-                        TurnIn.SetActive(false);
-                        ChangePOV.SwitchCamera(PushClothOnDollView);
-                        TimerDelay = 0.1f;
-                       // StartCoroutine(DelayCamera());
-
-                        if (!_1Sewing && !TutorialSwing)
+                        if (designSelect.HaveCloth)
                         {
-                            sewingTutorial.SetActive(true);
-                            TutorialSwing = true;
+                            //  InvOpen.Play("InvOpen");
+                            DropDollArrow.SetActive(true);
+                            DropDollTab.Play("IdleDropdoll");
+                            //  WorkShopBoxCol.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+                            ItemOnPlayer.SetActive(false);
+                            //  TextOnPlayer.SetActive(false);
+                            CheckCanplayMiniG.OnDesk = true;
+                            CamOnDesk = true;
+                            LookOutGhost = false;
+                            TurnOut.SetActive(true);
+                            TurnIn.SetActive(false);
+                            ChangePOV.SwitchCamera(PushClothOnDollView);
                         }
+                        else
+                        {
+                            Scissorcanva.SetActive(true);
+                            // ClothBox.enabled = false;
+                            _InputManager.StopWalk();
+                            Throwitem.StopAttack();
+                            /*  DesignSelect.SetActive(true);*/
+                            Book.SetActive(true);
+                            Allline.SetActive(true);
+                            ItemOnPlayer.SetActive(false);
+                            // TextOnPlayer.SetActive(false);
+                            CamOnDesk = true;
+                            ChangePOV.SwitchCamera(DeskShopView);
+                            TimerDelay = 0.1f;
+                            //   StartCoroutine(DelayCamera());
+
+                            if (!_1DesignCloth && !TutorialCloth)
+                            {
+                                clothTutorial.SetActive(true);
+                                TutorialCloth = true;
+                            }
+                        }
+                        TimerDelay = 0.1f;
+
+                        // StartCoroutine(DelayCamera());
+
+                        
 
                     }
                 }
@@ -621,7 +644,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     {
                         Scissorcanva.SetActive(false);
                         BoxRollCloth.SetActive(false);
-                        ClothBox.enabled    = true;
+                       // ClothBox.enabled    = true;
                         _InputManager.StopWalk();
                         Throwitem.CanAttack();
                        /* DesignSelect.SetActive(false);*/
@@ -658,6 +681,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     }
                     else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                     {
+                        if(!LightEvent)
                         DollBox.enabled = true;
                         BackDesign.SetActive(false);
                         _InputManager.StopWalk();
@@ -853,7 +877,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
             DropDollTab.Play("IdleDropdoll");
 
-            ClothBox.enabled = true;
+            //ClothBox.enabled = true;
             WorkShopBoxCol.enabled = false;
 
             //_InputManager.StopWalk();
@@ -902,7 +926,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     {
         if (ChangePOV.IsActiveCamera(PushClothOnDollView))
         {
-            DollBox.enabled = true;
+
+           // DollBox.enabled = true;
             _InputManager.StopWalk();
             Throwitem.CanAttack();
             /*   DesignDollSelect.SetActive(false);*/
@@ -914,7 +939,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             CloseInvBut.SetActive(false);
 
             Scissorcanva.SetActive(true);
-            ClothBox.enabled = false;
+           // ClothBox.enabled = false;
             _InputManager.StopWalk();
             Throwitem.StopAttack();
             /*  DesignSelect.SetActive(true);*/
@@ -926,6 +951,12 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
             ChangePOV.SwitchCamera(DeskShopView);
             TimerDelay = 0.1f;
+
+            if (!_1Sewing && !TutorialSwing)
+            {
+                sewingTutorial.SetActive(true);
+                TutorialSwing = true;
+            }
             //StartCoroutine(DelayCamera());
         }
     }

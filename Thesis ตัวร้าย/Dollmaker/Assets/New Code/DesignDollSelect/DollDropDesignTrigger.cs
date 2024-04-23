@@ -11,8 +11,9 @@ public class DollDropDesignTrigger : MonoBehaviour
     public InventoryManager inventoryManager;
     public PlayerPickUpItem playpickUp;
     public GameObject SelectButton;
-    public GameObject Doll;
-    public GameObject[] DollDesignVisual;
+    public GameObject Doll, Makeup, Paint;
+    public GameObject[] DollDesignVisual, CutLine, FirstCutLine;
+    LineShow lineshow;
     public PlayerChangeCam PCam;
 
 
@@ -23,8 +24,9 @@ public class DollDropDesignTrigger : MonoBehaviour
     public UnityEvent TakeDoll, GetDollSave;
 
 
-    bool  NeedRed, NeedBlue, _1Doll, take3;
+    bool  NeedRed, NeedBlue, _1Doll, take3, randomPaint;
     float dollCount;
+    int randomClothcutline;
 
     [SerializeField] bool closeboxDropDoll;
     public bool CloseboxDropDoll { get { return closeboxDropDoll; } set {  closeboxDropDoll = value; } }
@@ -34,10 +36,26 @@ public class DollDropDesignTrigger : MonoBehaviour
 
     public void Update()
     {
-        
+        if (DollHave)
+        {
+            if (randomPaint)
+            {         
+                CutLine[randomClothcutline].SetActive(true);
+                lineshow = CutLine[randomClothcutline].GetComponent<LineShow>();
+                randomPaint = false;
+            }
+            Paint.SetActive(true);
+        }
+        else
+        {
+            FirstCutLine[randomClothcutline].SetActive(true);
+            CutLine[randomClothcutline].SetActive(false);
+            DollDesignVisual[1].SetActive(true);
+            Paint.SetActive(false);
+
+        }
+
     }
-
-
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Doll")
@@ -47,10 +65,13 @@ public class DollDropDesignTrigger : MonoBehaviour
                 inventoryManager.GetSelectedItem(true);
                 Doll.gameObject.SetActive(true);
                 DollDesignVisual[0].SetActive(true);
+                DollDesignVisual[1].SetActive(false);
                 dollCount++;
                 inventoryManager.DollCountFinish++;
                 DollHave = true;
                 DollTutorial.SetActive(false);
+                randomPaint = true;
+                randomClothcutline = Random.Range(0, 3);
 
                 if (!_1Doll)
                 {
@@ -62,8 +83,10 @@ public class DollDropDesignTrigger : MonoBehaviour
         }
         if (DollHave)
         {
+           
 
-            if (collision.gameObject.tag == "FinishClothRed")
+
+           /* if (collision.gameObject.tag == "FinishClothRed")
             {
                 ClothTutorial.SetActive(false);
                 inventoryManager.GetSelectedItem(true);
@@ -126,7 +149,7 @@ public class DollDropDesignTrigger : MonoBehaviour
                     CloseboxDropDoll = true;
                     Box.enabled = false;
                 }
-            }
+            }*/
         }
     }
 
@@ -136,6 +159,8 @@ public class DollDropDesignTrigger : MonoBehaviour
         NeedRed = false;    
         DollHave = false;
         CloseboxDropDoll = false; SelectButton.SetActive(false);
+        lineshow.CloseAllLine();
+
         DollDesignVisual[0].SetActive(false);
         DollDesignVisual[1].SetActive(false);
         DollDesignVisual[2].SetActive(false);
@@ -143,6 +168,7 @@ public class DollDropDesignTrigger : MonoBehaviour
         DollDesignVisual[4].SetActive(false);
         DollDesignVisual[5].SetActive(false);
         Box.enabled = true;
+        this.gameObject.SetActive(false);
 
         GetDollSave.Invoke();
     }

@@ -62,9 +62,10 @@ public class DesignSelect : MonoBehaviour
         if (HaveCloth)
         {
             // BoxColPushCloth.SetActive(false);
-            ClothColor[PageNum].SetActive(true);
-            lineShow = ClothCutline[PageNum].GetComponent<LineShow>();
-            BookPage[PageNum].SetActive(true);
+            
+           //8 ClothColor[0].SetActive(true);
+            lineShow = ClothCutline[0].GetComponent<LineShow>();
+            BookPage[0].SetActive(true);
             NextButt.SetActive(true);
             PrevButt.SetActive(true);
 
@@ -98,7 +99,7 @@ public class DesignSelect : MonoBehaviour
     {
         AudioSound.clip = NextS;
         AudioSound.Play();
-        PageNum++;
+      //  PageNum++;
         BookPage[PageNum].SetActive(true);
         BookPage[PageNum - 1].SetActive(false);
         if (PageNum >= BookPage.Length - 1) PageNum = BookPage.Length - 1;
@@ -108,7 +109,7 @@ public class DesignSelect : MonoBehaviour
     {
         AudioSound.clip = PrevS;
         AudioSound.Play();
-        PageNum--;
+      //  PageNum--;
         BookPage[PageNum + 1].SetActive(false);
         BookPage[PageNum].SetActive(true);
         if (PageNum <= 0) PageNum = 0;
@@ -117,13 +118,14 @@ public class DesignSelect : MonoBehaviour
     public void SelectThisDesign()
     {
 
-        if (PageNum == 0) SelecRed = true;
-        if (PageNum == 1) SelecBlue = true;
+       /* if (PageNum == 0) SelecRed = true;
+        if (PageNum == 1) SelecBlue = true;*/
         HaveCloth = true;
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-            ClothCutline[PageNum].SetActive(true);
-            ConfirmThis = true;
+            ClothCutline[0].SetActive(true);
+        ClothColor[0].SetActive(true);
+        ConfirmThis = true;
 
         /*if (!_1CutLine)
         {
@@ -187,25 +189,25 @@ public class DesignSelect : MonoBehaviour
         {
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
-                ClothColor[PageNum].SetActive(false);
-                lineShow.CloseAllLine();
-                ClothCutline[PageNum].SetActive(false);
+            ClothColor[0].SetActive(false);
+            lineShow.CloseAllLine();
+            ClothCutline[0].SetActive(false);
 
-                // inventoryManager.AddItem(PieceCloth[LockDesign]);
+            // inventoryManager.AddItem(PieceCloth[LockDesign]);
 
 
 
-                //  BoxColPushCloth.SetActive(true);
-                FirstLineCut[PageNum].SetActive(true);          
+            //  BoxColPushCloth.SetActive(true);
+            FirstLineCut[0].SetActive(true);
 
             FinishButt.SetActive(false);
             PCam.ChangeToSwing();
             ConfirmThis = false;
-            HaveCloth = false;
+            // HaveCloth = false;
             SelectButt.SetActive(true);
 
-            ClothOnSwing[PageNum].SetActive(true);
-            clothColorID = PageNum;
+            ClothOnSwing[0].SetActive(true);
+            clothColorID = 0;
             CanPlayminigame.Cloth = true;
 
         }
@@ -216,7 +218,7 @@ public class DesignSelect : MonoBehaviour
     public void CloseClothSwing()
     {
         
-        ClothOnSwing[clothColorID].SetActive(false);
+        ClothOnSwing[0].SetActive(false);
     }
 
     IEnumerator Delayseletfalse()
@@ -226,4 +228,6 @@ public class DesignSelect : MonoBehaviour
         SelecRed = false;
         yield break;
     }
+
+    
 }

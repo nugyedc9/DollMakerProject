@@ -30,6 +30,9 @@ public class MiniGameAuidition : MonoBehaviour
     public int SlotAuditionPass, Randomspawn;
     [SerializeField] private TMP_Text BoxNum;
 
+    [Header("paintDoll")]
+    public GameObject makeUP;
+
     [Header("Inventory")]
     public InventoryManager inventoryManager;
     public ClothColorDrop GetfinishDoll;
@@ -398,7 +401,7 @@ public class MiniGameAuidition : MonoBehaviour
 
 
                     designSelect.CloseClothSwing();
-                    inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
+                   // inventoryManager.AddItem(FinishClothID[designSelect.ClothColorID]);
 
                     playpickUp.FinishCloth++;
                     FinishDoll = playpickUp.FinishCloth;
@@ -408,6 +411,8 @@ public class MiniGameAuidition : MonoBehaviour
                     BackButt.SetActive(true);
                     
                     _Currentstate = MiniGameAuditionState.LeaveDesk;
+
+                    makeUP.SetActive(true);
                 }
                 
                 if (Finish && Make2Cloth)
@@ -445,6 +450,7 @@ public class MiniGameAuidition : MonoBehaviour
                     make2Cloth = false;
                     Finish = false;
                 }
+
 
             }
 
