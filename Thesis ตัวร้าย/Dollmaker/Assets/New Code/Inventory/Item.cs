@@ -11,6 +11,7 @@ public class Item : ScriptableObject
 {
     public Sprite image;
     public ItemType type;
+    public bool stackable, runOut;
 
     
 }

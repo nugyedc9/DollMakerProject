@@ -24,6 +24,7 @@ public PlayerPickUpItem playerPickUpItem;
     public PlayerChangeCam ChangeCam;
     public CrossAnim crossAnim;
     public Camera Cam;
+    public int maxstaxkitem;
 
     public InventorySlote[] inventoryslote;
     public List<Datainventoryslot> datainventorySlots = new List<Datainventoryslot>();
@@ -512,11 +513,11 @@ public PlayerPickUpItem playerPickUpItem;
             #endregion
 
             #region Drop Item
-            if (Input.GetKeyDown(KeyCode.G))
+          /*  if (Input.GetKeyDown(KeyCode.G))
             {
                 if (itemSlot != null)
                     drop = true;
-            }
+            }*/
         }
         #endregion
 
@@ -618,17 +619,35 @@ public PlayerPickUpItem playerPickUpItem;
     public bool AddItem(Item item)
     {
           datainventorySlots.Add(new Datainventoryslot(InvDataBase.GetId[item], item));
+
+
+        for (int i = 0; i < inventoryslote.Length; i++)
+        {
+            InventorySlote slot = inventoryslote[i];
+            inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
+            if (itemSlot != null && itemSlot.item == item && itemSlot.Count < maxstaxkitem &&
+                itemSlot.item.stackable )
+            {
+        
+               itemSlot.Count++;
+                itemSlot.RefreshCount();
+
+                item.runOut = false;
+
+
+                return true;
+            }
+
+        }
+
         for (int i = 0; i < inventoryslote.Length; i++)
         {
             InventorySlote slot = inventoryslote[i];
             inventoryItem itemSlot = slot.GetComponentInChildren<inventoryItem>();
             if (itemSlot == null)
             {
-                playerPickUpItem.ItemCount++;
+               // playerPickUpItem.ItemCount++;
                 SpawnnewItem(item, slot);
-
-
-
 
                 return true;
             }
@@ -656,7 +675,10 @@ public PlayerPickUpItem playerPickUpItem;
     {     
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         inventoryItem InventoryItem = newItemGo.GetComponent<inventoryItem>();
+        InventoryItem.Count = 0;
         InventoryItem.InitialiseItem(item);
+        Debug.Log(InventoryItem.Count);
+
 
 
 
@@ -671,10 +693,21 @@ public PlayerPickUpItem playerPickUpItem;
         if (itemSlot != null)
         {
             Item item = itemSlot.item;
-            if (use)
+            if (use )
             {
-                itemSlot.Count--;
-                if(itemSlot.Count <= 0)
+               
+                if (itemSlot.Count > 0)
+                {
+                    itemSlot.Count--;
+                    itemSlot.RefreshCount();
+                }
+                if (itemSlot.Count == 0)
+                {
+                    item.runOut = true;
+                }
+
+
+                /*if (itemSlot.Count <= 0)
                 {
 
                     foreach (Datainventoryslot dataSlot in datainventorySlots)
@@ -682,7 +715,7 @@ public PlayerPickUpItem playerPickUpItem;
                         if (dataSlot.item == item)
                         {
                             datainventorySlots.Remove(dataSlot);
-                          //  Debug.Log("Remove");
+                            //  Debug.Log("Remove");W
                             break;
                         }
                     }
@@ -690,8 +723,8 @@ public PlayerPickUpItem playerPickUpItem;
                     playerPickUpItem.ItemCount--;
                     Destroy(itemSlot.gameObject);
 
-           
-                }
+
+                }*/
             }
             return item;
         }

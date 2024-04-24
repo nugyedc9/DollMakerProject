@@ -103,7 +103,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost;
+    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost, firstSpawnItem;
     private int keyId;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
@@ -112,6 +112,17 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll,
         OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn, unlockChain;
+
+    private void Start()
+    {
+        if (!firstSpawnItem)
+        {
+            inventoryManager.AddItem(itemPickUp[19]);
+            inventoryManager.AddItem(itemPickUp[0]); 
+            inventoryManager.AddItem(itemPickUp[1]);
+            firstSpawnItem = true;
+        }
+    }
 
     public void Update()
     {
