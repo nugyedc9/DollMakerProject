@@ -30,7 +30,8 @@ public class GameData
     public List<int> FinishDollOnBasket;
     public bool flashLighGet, Note1Get, Note2Get, OpenWall1, GhostDied1, GhostTakeDoll3, Ghost2Spawn,
         _1Sleep, GhostSpawnAfterCovered2, GhostSpawnAfterCovered3, MakeDoll2, GhostDied2, Ghost4DiedEvent,
-        FinishDoll6, Savelight1, Doll1finish, TutorialCloth, TutorialSwing, TutorialFail, TutorialBasket;
+        FinishDoll6, Savelight1, Doll1finish, TutorialCloth, TutorialSwing, TutorialFail, TutorialBasket,
+        FirstItemSpawn;
     
     public InventoryData inventoryData;
     public CrossCheck crossCheck;
@@ -73,6 +74,8 @@ public class GameData
         TutorialSwing = false;
         TutorialFail = false;
         TutorialBasket = false;
+        FirstItemSpawn = false;
+
 
          storyCountSave = 0;
         FinishDollInInv = 0;

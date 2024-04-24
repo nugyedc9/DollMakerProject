@@ -50,7 +50,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("Key Item Inventory")]
     public TabTutorial TabOn;
-    public GameObject OpenInvBut, CloseInvBut, BackDesign;
+    public GameObject /*OpenInvBut, CloseInvBut,*/ BackDesign;
     public Animator InvOpen;
     [SerializeField] bool openkeyItemInv;
     public bool OpenKeyItemInv {  get { return openkeyItemInv; } set { openkeyItemInv = value; } }
@@ -85,9 +85,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     public GameObject clothTutorial;
     public GameObject sewingTutorial, DollTutorial, clothDoll, CutLine;
 
-    [Header("TurnCam")]
+  /*  [Header("TurnCam")]
     public GameObject TurnOut;
-    public GameObject TurnIn;
+    public GameObject TurnIn;*/
 
     public GameObject endgameCanva;
     [SerializeField] bool endGame;
@@ -378,7 +378,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         CamOnDesk = true;
                         LookOutGhost = false;
                         // TurnOut.SetActive(true);
-                        TurnIn.SetActive(false);
+                       // TurnIn.SetActive(false);
                         ChangePOV.SwitchCamera(WorkShopView);
                         TimerDelay = 0.1f;
                       //  StartCoroutine(DelayCamera());
@@ -458,6 +458,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             //  InvOpen.Play("InvOpen");
                             DropDollArrow.SetActive(true);
                             DropDollTab.Play("IdleDropdoll");
+                            InvOpen.Play("InvOpen");
                             //  WorkShopBoxCol.enabled = false;
                             _InputManager.StopWalk();
                             Throwitem.StopAttack();
@@ -466,12 +467,13 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             CheckCanplayMiniG.OnDesk = true;
                             CamOnDesk = true;
                             LookOutGhost = false;
-                            TurnOut.SetActive(true);
-                            TurnIn.SetActive(false);
+                           /* TurnOut.SetActive(true);
+                            TurnIn.SetActive(false);*/
                             ChangePOV.SwitchCamera(PushClothOnDollView);
                         }
                         else
                         {
+
                             Scissorcanva.SetActive(true);
                             // ClothBox.enabled = false;
                             _InputManager.StopWalk();
@@ -566,8 +568,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     CloseMouse();
     
             OpenKeyItemInv = false;
-            OpenInvBut.SetActive(false);
-            CloseInvBut.SetActive(false);
+         /*   OpenInvBut.SetActive(false);
+            CloseInvBut.SetActive(false);*/
             HandSwing.SetActive(false);
             miniGame.SetActive(false);
 
@@ -603,9 +605,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             {
                 if (endGame)
                     ShowMouse();
-
+/*
                 OpenInvBut.SetActive(false);
-                CloseInvBut.SetActive(false);
+                CloseInvBut.SetActive(false);*/
             }
         }
 
@@ -624,8 +626,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         DropHere.SetActive(false);
-                        TurnOut.SetActive(false);
-                        TurnIn.SetActive(false);
+                       /* TurnOut.SetActive(false);
+                        TurnIn.SetActive(false);*/
                         CheckCanplayMiniG.OnDesk = false;
                         InvOpen.Play("InvClose");
 
@@ -738,10 +740,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             InvAnim.enabled = true;
             CloseInterectShow = true;
             Throwitem.Attack = false;
-            if (ChangePOV.IsActiveCamera(DeskShopView))
+            /*if (ChangePOV.IsActiveCamera(DeskShopView))
                 OpenInvBut.SetActive(true);
             else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
-                CloseInvBut.SetActive(true);
+                CloseInvBut.SetActive(true);*/
             TimerDelay = 0;
         }
 
@@ -757,10 +759,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         InvAnim.enabled = true;
         CloseInterectShow = true;
         Throwitem.Attack = false;
-        if(ChangePOV.IsActiveCamera(DeskShopView))
+      /*  if(ChangePOV.IsActiveCamera(DeskShopView))
         OpenInvBut.SetActive(true);
         else if(ChangePOV.IsActiveCamera(PushClothOnDollView))
-            CloseInvBut.SetActive(true);
+            CloseInvBut.SetActive(true);*/
     }
     
     public void ItemOnHand()
@@ -870,7 +872,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             InvOpen.Play("InvOpen");
 
             Book.SetActive(false);
-            OpenInvBut.SetActive(false);
+            //OpenInvBut.SetActive(false);
             Scissorcanva.SetActive(false);
             BoxRollCloth.SetActive(false);
             DropDollArrow.SetActive(true);
@@ -889,8 +891,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
             CamOnDesk = true;
             LookOutGhost = false;
-            TurnOut.SetActive(true);
-            TurnIn.SetActive(false);
+          /*  TurnOut.SetActive(true);
+            TurnIn.SetActive(false);*/
             ChangePOV.SwitchCamera(PushClothOnDollView);
             TimerDelay = 0.1f;
            // StartCoroutine(DelayCamera());
@@ -928,25 +930,35 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         {
 
            // DollBox.enabled = true;
+
             _InputManager.StopWalk();
             Throwitem.CanAttack();
+
             /*   DesignDollSelect.SetActive(false);*/
+
             BookDoll.SetActive(false);
             ItemOnPlayer.SetActive(true);
             TextOnPlayer.SetActive(true);
             InvOpen.Play("InvClose");
             DropDollArrow.SetActive(false);
-            CloseInvBut.SetActive(false);
+
+            //CloseInvBut.SetActive(false);
 
             Scissorcanva.SetActive(true);
+
            // ClothBox.enabled = false;
+
             _InputManager.StopWalk();
             Throwitem.StopAttack();
+
             /*  DesignSelect.SetActive(true);*/
+
             Book.SetActive(true);
             Allline.SetActive(true);
             ItemOnPlayer.SetActive(false);
+
             // TextOnPlayer.SetActive(false);
+
             CamOnDesk = true;
 
             ChangePOV.SwitchCamera(DeskShopView);

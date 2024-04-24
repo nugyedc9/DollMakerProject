@@ -33,6 +33,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public float Pickrange;
     public Camera FpsCam;
     public Transform pickUPPoint;
+    public GameObject[] ItemGet;
+    public Animator ItemGetAnim;
+    float DelayCloseItemGet;
 
 
     [Header("---- Audio ----")]
@@ -117,8 +120,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     {
         if (!firstSpawnItem)
         {
-            inventoryManager.AddItem(itemPickUp[19]);
+            inventoryManager.AddItem(itemPickUp[19]);   
             inventoryManager.AddItem(itemPickUp[0]); 
+            inventoryManager.AddItem(itemPickUp[25]);
             inventoryManager.AddItem(itemPickUp[1]);
             firstSpawnItem = true;
         }
@@ -195,6 +199,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         audioSource.clip = DollS;
                         audioSource.Play();
 
+                        ItemGet[0].SetActive(true);
+                        DelayCloseItemGet = 1f;
+                        ItemGetAnim.Play("GetItem");
+
+
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
 
@@ -247,6 +256,10 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
+
+                        ItemGet[2].SetActive(true);
+                        DelayCloseItemGet = 1f;
+                        ItemGetAnim.Play("GetItem");
 
                         inventoryManager.AddItem(itemPickUp[19]);
 
@@ -592,6 +605,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             _1Sleep = true;
         }
 
+        if(DelayCloseItemGet > 0) DelayCloseItemGet -= Time.deltaTime;
+        else if(DelayCloseItemGet < 0)
+        {
+            for (int i = 0; i < ItemGet.Length; i++)
+            {
+                ItemGet[i].SetActive(false);
+            }
+            DelayCloseItemGet = 0;
+        }
+
     }
 
 
@@ -610,6 +633,13 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             }
         }
 
+    }
+    
+    public void GetFinishDoll()
+    {
+        ItemGet[1].SetActive(true);
+        DelayCloseItemGet = 1f;
+        ItemGetAnim.Play("GetItem");
     }
 
     public void ShowMouse()
@@ -640,6 +670,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         Failswing = data.failCloth;
         GetNote2 = data.Note2Get;
         _1Sleep = data._1Sleep;
+        firstSpawnItem = data.FirstItemSpawn;
 
         if (finishDollGEt == 1)
         {
@@ -686,6 +717,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         data.FinishCloth = FinishCloth;
         data.failCloth = Failswing;
         data.Note2Get = GetNote2;
+        data.FirstItemSpawn = firstSpawnItem;
 
         for (int i = 0; i < GetPickUp.Count; i++)
         {

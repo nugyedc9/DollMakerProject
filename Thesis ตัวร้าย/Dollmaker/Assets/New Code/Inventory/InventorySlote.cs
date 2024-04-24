@@ -10,6 +10,7 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
     public Color selectedColor, unSelectedColor;
     public int slotNumber;
     [HideInInspector] public InventoryManager inventoryManager;
+    inventoryItem iteminslot;
     bool MouseDown;
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
         {
             MouseDown = true;
         }
+
+
+
     }
 
     public void Select()
@@ -66,6 +70,7 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
         {
             inventoryManager.ChangeSelectedSlot(slotNumber);
         }
+
 
     }
 

@@ -31,6 +31,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Vector3 orginalPosition;
     private Vector2 lastMousePosition;
 
+
+
     private void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
@@ -40,7 +42,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         GenerateGuid();
 
-       
+     
 
     }
 
@@ -54,7 +56,6 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             ChangePos = transform.parent;
             image.raycastTarget = false;
         }
-
         if(Scissor)
         {
             anim.Play("AnimCut");
@@ -64,17 +65,16 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     {
         if (Count > 0)
-        
             transform.position = Input.mousePosition;
         /*  Vector2 curremtMousePosition = eventData.position;
           Vector2 diff = curremtMousePosition - lastMousePosition;
           lastMousePosition = curremtMousePosition;*/
-
+   
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-     
+        
             if (!NotItemInInv)
             {
                 transform.localPosition = orginalPosition;

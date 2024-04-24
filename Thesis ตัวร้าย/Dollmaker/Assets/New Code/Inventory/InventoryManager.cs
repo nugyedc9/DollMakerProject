@@ -677,7 +677,7 @@ public PlayerPickUpItem playerPickUpItem;
         inventoryItem InventoryItem = newItemGo.GetComponent<inventoryItem>();
         InventoryItem.Count = 0;
         InventoryItem.InitialiseItem(item);
-        Debug.Log(InventoryItem.Count);
+        //Debug.Log(InventoryItem.Count);
 
 
 
