@@ -467,13 +467,13 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             CheckCanplayMiniG.OnDesk = true;
                             CamOnDesk = true;
                             LookOutGhost = false;
-                           /* TurnOut.SetActive(true);
-                            TurnIn.SetActive(false);*/
+                            /* TurnOut.SetActive(true);
+                             TurnIn.SetActive(false);*/
                             ChangePOV.SwitchCamera(PushClothOnDollView);
                         }
                         else
                         {
-
+                            InvOpen.Play("NotInvPage");
                             Scissorcanva.SetActive(true);
                             // ClothBox.enabled = false;
                             _InputManager.StopWalk();
@@ -939,7 +939,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             BookDoll.SetActive(false);
             ItemOnPlayer.SetActive(true);
             TextOnPlayer.SetActive(true);
-            InvOpen.Play("InvClose");
+            InvOpen.Play("NotInvPage");
             DropDollArrow.SetActive(false);
 
             //CloseInvBut.SetActive(false);

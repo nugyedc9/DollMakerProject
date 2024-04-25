@@ -7,6 +7,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 /*using UnityEngine.UIElements;
 using static InventoryManager;
 using static UnityEditor.Progress;*/
@@ -36,6 +37,7 @@ public PlayerPickUpItem playerPickUpItem;
     public Transform DropPoint;
     public Vector3 DropPointPos;
     public GameObject inventoryItemPrefab;
+    public TextMeshProUGUI CountText;
 
 
 
@@ -138,7 +140,7 @@ public PlayerPickUpItem playerPickUpItem;
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Doll"))
             {
-                ItemOnHand[1].SetActive(true);
+                //ItemOnHand[1].SetActive(true);
                 if (drop)
                 {
                     DropitemPrefabs(DropPointPos, 1);
@@ -389,8 +391,12 @@ public PlayerPickUpItem playerPickUpItem;
             }
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollGreen"))
             {
-                FinishDollID = 1; playerPickUpItem.FDOnhand1 = true;
-                ItemOnHand[8].SetActive(true);
+                FinishDollID = 1;
+                if (itemSlot.Count > 0)
+                {
+                    playerPickUpItem.FDOnhand1 = true;
+                    ItemOnHand[8].SetActive(true);
+                }
 
                 /*if (drop)
                 {
@@ -494,8 +500,11 @@ public PlayerPickUpItem playerPickUpItem;
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("EyeWash"))
             {
-                ItemOnHand[5].SetActive(true);
-                playerPickUpItem.HealOnhand = true;
+                if (itemSlot.Count > 0)
+                {
+                    ItemOnHand[5].SetActive(true);
+                    playerPickUpItem.HealOnhand = true;
+                }
 
                 if (drop)
                 {
@@ -630,6 +639,7 @@ public PlayerPickUpItem playerPickUpItem;
             {
         
                itemSlot.Count++;
+                CountText.text = itemSlot.Count.ToString();
                 itemSlot.RefreshCount();
 
                 item.runOut = false;
@@ -700,6 +710,7 @@ public PlayerPickUpItem playerPickUpItem;
                 {
                     itemSlot.Count--;
                     itemSlot.RefreshCount();
+                   // Debug.Log(itemSlot.Count);
                 }
                 if (itemSlot.Count == 0)
                 {
@@ -787,7 +798,8 @@ public PlayerPickUpItem playerPickUpItem;
             if (slotIndex < inventoryslote.Length)
             {
                 InventorySlote slot = inventoryslote[slotIndex];
-                SpawnnewItem(item, slot);
+                //SpawnnewItem(item, slot);
+                AddItem(item);
                 slotIndex++;
             }
             else break;

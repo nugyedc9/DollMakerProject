@@ -45,7 +45,7 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0)
+        /*if (transform.childCount == 0)
         {
             inventoryItem IventoryItem = eventData.pointerDrag.GetComponent<inventoryItem>();
             IventoryItem.parentAfterDrag = transform;
@@ -60,7 +60,7 @@ public class InventorySlote : MonoBehaviour, IDropHandler, IPointerEnterHandler
             IventoryItem1.parentAfterDrag = IventoryItem2.ChangePos;
             IventoryItem1.transform.SetParent(IventoryItem1.parentAfterDrag);
             IventoryItem2.parentAfterDrag = transform;
-        }
+        }*/
     }
 
 

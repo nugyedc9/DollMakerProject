@@ -200,7 +200,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         audioSource.Play();
 
                         ItemGet[0].SetActive(true);
-                        DelayCloseItemGet = 1f;
+                        DelayCloseItemGet = 2f;
                         ItemGetAnim.Play("GetItem");
 
 
@@ -258,7 +258,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         GetPickUp.Add(ItemIdGet.id);
 
                         ItemGet[2].SetActive(true);
-                        DelayCloseItemGet = 1f;
+                        DelayCloseItemGet = 2f;
                         ItemGetAnim.Play("GetItem");
 
                         inventoryManager.AddItem(itemPickUp[19]);
@@ -638,7 +638,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public void GetFinishDoll()
     {
         ItemGet[1].SetActive(true);
-        DelayCloseItemGet = 1f;
+        DelayCloseItemGet = 2f;
         ItemGetAnim.Play("GetItem");
     }
 

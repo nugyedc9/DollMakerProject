@@ -93,7 +93,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     RollClothColor KeysID;
 
     [Header("CrossAction")]
-    [SerializeField] private float CurHpCross;
+    [SerializeField] private float CurHpCross = 120;
     public float CrossLost, CrossRegen;
     public Slider CrossSliber;
     public float Attackrange;
@@ -232,6 +232,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     {       
             Light.SetActive(false);
           pointLight.SetActive(false);
+        curHpCross = 120;
 
     }
 
