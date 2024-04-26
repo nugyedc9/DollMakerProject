@@ -7,17 +7,18 @@ public class GhostSearchState : GhostBaseState
 
     public override void EnterState(GhostStateManager state)
     {
-        Debug.Log("changePOs");
-        state.SpawnTimer = 4;
+       // Debug.Log("changePOs");
+        state.SpawnTimer = 120;
         state.playerOutOfSight = 1;
         TimeCount = 3;
         ranmaxspawn = state.SpawnPoint.Length - 1;
         state.CurSpawn = Random.Range(0, ranmaxspawn);
-        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("BackFrom"))
-            state.GhostAni.Play("BackFrom", 0, 0);
+        if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Idleanimation"))
+            state.GhostAni.Play("Idleanimation", 0, 0);
         state.GhostAudioSoure.Stop();
         state.GhostAmbi.Stop();
         state.OnPlayerAudio.enabled = false;
+        state.GhostHuntEffect.SetActive(false);
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -29,9 +30,9 @@ public class GhostSearchState : GhostBaseState
         if(TimeCount <= 0)
         {
             state.enemyGhost.Warp(state.SpawnPoint[state.CurSpawn   ].position);
-            state.PlayerDetectSpawn = true;
-            state.DrawVisionCone();
-            // state.SwitchState(state.SpawnState);
+           // state.PlayerDetectSpawn = true;
+           // state.DrawVisionCone();
+             state.SwitchState(state.SpawnState);
         }
     }
 }

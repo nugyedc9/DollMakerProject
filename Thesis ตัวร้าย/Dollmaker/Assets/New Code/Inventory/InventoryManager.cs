@@ -24,6 +24,7 @@ public PlayerPickUpItem playerPickUpItem;
     public TabTutorial tabTutorial;
     public PlayerChangeCam ChangeCam;
     public CrossAnim crossAnim;
+    public GhostStateManager ghostStateManager;
     public Camera Cam;
     public int maxstaxkitem;
 
@@ -38,6 +39,7 @@ public PlayerPickUpItem playerPickUpItem;
     public Vector3 DropPointPos;
     public GameObject inventoryItemPrefab;
     public TextMeshProUGUI CountText;
+
 
 
 
@@ -80,7 +82,9 @@ public PlayerPickUpItem playerPickUpItem;
 
         DropPointPos = DropPoint.position;
 
-        if(Input.inputString != null)
+        
+
+        if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
             if(isNumber && number > 0 && number < 4)
@@ -392,9 +396,12 @@ public PlayerPickUpItem playerPickUpItem;
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollGreen"))
             {
                 FinishDollID = 1;
+
+
                 if (itemSlot.Count > 0)
                 {
                     playerPickUpItem.FDOnhand1 = true;
+                        ghostStateManager.DollOnHand = true;
                     ItemOnHand[8].SetActive(true);
                 }
 
@@ -411,6 +418,8 @@ public PlayerPickUpItem playerPickUpItem;
             {
                 playerPickUpItem.FDOnhand1 = false;
                 ItemOnHand[8].SetActive(false);
+                    ghostStateManager.DollOnHand = false;
+                
             }
 
             if (itemSlot != null && itemSlot.gameObject.CompareTag("FinishDollYellow"))
@@ -602,7 +611,6 @@ public PlayerPickUpItem playerPickUpItem;
                 Ghost4Spawn = true;
             }
         }
-
 
         #endregion
 

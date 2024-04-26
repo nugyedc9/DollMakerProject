@@ -28,9 +28,12 @@ public class GhostStateManager : MonoBehaviour
     public PlayerHp HpPlayer;
     public PlayerAttack PAttack;
     public PlayerChangeCam PCam;
+    public InventoryManager invManager;
+    public FollowPlayerMap WherePlayer;
     public int DmgBullet;
     public GameObject GhostHuntEffect, PlayerPOS;
     public bool HpCross;
+    public bool DollOnHand { get {  return dollOnHand; } set {  dollOnHand = value; } }
 
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
@@ -40,7 +43,7 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint;
     public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed ;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked;
+        GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked, dollOnHand;
 
     [Header("Granma")]
     public float GranmaAttactSpeed;
@@ -156,7 +159,7 @@ public class GhostStateManager : MonoBehaviour
 
         if (ForTest)
         {
-            if (Input.GetKeyDown(KeyCode.L)) SwitchState(SpawnState);
+            if (Input.GetKeyDown(KeyCode.L)) Spawn1ghost();
         }
 
 

@@ -81,9 +81,9 @@ public class TabTutorial : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     Time.timeScale = 1;
                     inputManager.OnTab = false;
-                    InvShow.Play("CloseTableInv", 0, 0);
+                    InvShow.Play("NotInvPage", 0, 0);
 
-                    Animtext.Play("MainToDo", 0, 0);
+                    //Animtext.Play("MainToDo", 0, 0);
                     Sub.SetActive(false);
 
                     Hit_2Story = true;
@@ -98,7 +98,7 @@ public class TabTutorial : MonoBehaviour
             {
                 if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
                 {
-                    PageSelect(9);
+                    PageSelect(3);
                     OpenTutor = true;
                     InvShow.enabled = true;
                     PlayAnimInvTab = true;
@@ -129,7 +129,7 @@ public class TabTutorial : MonoBehaviour
                     inputManager.OnTab = false;
                     InvShow.Play("CloseTableInv", 0, 0);
 
-                    Animtext.Play("MainToDo", 0, 0);
+                  //  Animtext.Play("MainToDo", 0, 0);
                     Sub.SetActive(false);
 
                     Hit_2Story = true;
@@ -173,9 +173,9 @@ public class TabTutorial : MonoBehaviour
 
         if (PageNum == 0 && OpenTutor)
         {
-            InvShow.Play("OpenTabInv", 0, 0);
-            Sub.SetActive(true);
-            Animtext.Play("Opentab", 0, 0);
+            InvShow.Play("NotInvPage", 0, 0);
+           // Sub.SetActive(true);
+           // Animtext.Play("Opentab", 0, 0);
             PrevButt.SetActive(false);
         }
 

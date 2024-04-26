@@ -12,7 +12,7 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
-        if (state.GhostID != 5 || state.GhostID != 10)
+        if (state.GhostID != 5 || state.GhostID != 10 && !state.DollOnHand)
             state.AttackBox.enabled = true;
         else if(state.GhostID == 10 )
         {
@@ -29,6 +29,7 @@ public class GhostAttackState : GhostBaseState
 
         }
 
+        if (state.DollOnHand) Debug.Log("DollonHand");
     }
 
     public override void UpdateState(GhostStateManager state)
@@ -75,7 +76,7 @@ public class GhostAttackState : GhostBaseState
         {
             if (TimeHit < 0.5f)
             {
-                if (state.GhostID != 10)
+                if (state.GhostID != 10 && state.DollOnHand)
                 {
                     if (state.enemyGhost.remainingDistance < 2.5f)
                     {
@@ -84,7 +85,9 @@ public class GhostAttackState : GhostBaseState
                         {
                             state.CanseePlayer = false;
                             // state.HpPlayer.Takedamage(1);
+                            state.invManager.GetSelectedItem(true);
                             state.HitPlayer = false;
+                            state.SwitchState(state.SearchState);
                             PlayerInRange = true;
                         }
 
@@ -102,7 +105,8 @@ public class GhostAttackState : GhostBaseState
 
             
             } 
-            if(state.GhostID == 10)
+
+            if (state.GhostID == 10)
                 {
                     if (Vector3.Distance(state.enemyGhost.transform.position, state.playerPos.position) < state.GranmahitBox)
                     {
