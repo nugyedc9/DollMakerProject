@@ -241,6 +241,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         if(keyId == 1) JumpGranMaKey.enabled = true;
 
+                        Key = true;
+
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
 
@@ -490,6 +492,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 audioSource.clip = UnlockDoorS; audioSource.Play();
                                 DoorId.Lock = false;
                                 inventoryManager.GetSelectedItem(true);
+                                Key = false;
 
                                 if (DoorId.DoorID == 2) _Ghost2BigSpawn.Invoke();
                                 if(DoorId.DoorID == 3) unlockChain.Invoke();

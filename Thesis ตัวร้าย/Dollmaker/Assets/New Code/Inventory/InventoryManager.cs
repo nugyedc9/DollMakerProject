@@ -498,12 +498,12 @@ public PlayerPickUpItem playerPickUpItem;
             {
                 if( !itemSlot.gameObject.CompareTag("Axe"))
                 ItemOnHand[4].SetActive(true);
-                playerPickUpItem.Key = true;
+              //  playerPickUpItem.Key = true;
             }
             else
             {
                 ItemOnHand[4].SetActive(false);
-                playerPickUpItem.Key = false;
+               // playerPickUpItem.Key = false;
             }
 
 

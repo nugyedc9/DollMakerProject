@@ -55,7 +55,7 @@ public class GameData
         crossCheck = new CrossCheck();
         LightOn = new SerializableLightOn<string, bool>();
 
- flashLighGet = false;
+ flashLighGet = true;
         Note1Get = false;
         Note2Get = false;
         OpenWall1 = false;
