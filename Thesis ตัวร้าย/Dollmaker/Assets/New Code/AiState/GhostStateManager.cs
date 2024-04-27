@@ -110,7 +110,7 @@ public class GhostStateManager : MonoBehaviour
         enemyGhost = GetComponent<NavMeshAgent>();
         if (GhostID != 10)
         {
-            CurrentState = DetectPlayerState;  
+            CurrentState = IdleState;  
             CurrentState.EnterState(this);
         }
         if (GhostID == 10)
@@ -140,9 +140,8 @@ public class GhostStateManager : MonoBehaviour
         CurrentState.UpdateState(this);
         if (PlayerInSight)
         {
-            playerOutOfSight -= Time.deltaTime; 
+            playerOutOfSight -= Time.deltaTime;
             DelayHitPlayer -= Time.deltaTime;
-
            
         }
 
@@ -217,12 +216,12 @@ public class GhostStateManager : MonoBehaviour
             GetAttack = true;
         }*/
 
-        if (HpBeforeHit == HpGhost)
+       /* if (HpBeforeHit == HpGhost)
         {
-            GetAttack = true;
-        }
+         
+        }*/
 
-
+   GetAttack = true;
        /* HitDelay = 0.5f;
             HpGhost -= Time.deltaTime;
 */
@@ -368,6 +367,11 @@ public class GhostStateManager : MonoBehaviour
         PlayerDetectSpawn = false;
         CurrentDest = destination[0];
         SwitchState(WalkState);
+    }
+
+    public void PlayerFailEvery2()
+    {
+        SwitchState(DetectPlayerState);
     }
 
 }

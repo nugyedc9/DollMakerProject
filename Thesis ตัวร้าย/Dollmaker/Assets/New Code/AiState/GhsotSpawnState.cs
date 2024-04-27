@@ -14,7 +14,7 @@ public class GhsotSpawnState : GhostBaseState
         /* if (ghostNum == 0) Timer = state.SpawnTimer;
          else if(ghostNum >= 1) Timer = state.SpawnTimer;*/
 
-        state.PlayerDetectSpawn = true;
+       // state.PlayerDetectSpawn = true;
         //state.GhostBoxCol.enabled = true;
         state.Cansee = false;
         state.HpCross = false;

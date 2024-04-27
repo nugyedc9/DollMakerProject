@@ -40,10 +40,11 @@ public PlayerPickUpItem playerPickUpItem;
     public GameObject inventoryItemPrefab;
     public TextMeshProUGUI CountText;
 
+    inventoryItem DollCheckItem;
 
 
 
-    [Header("CrossAction")]
+     [Header("CrossAction")]
     public Animator CorssAni;
     public GameObject CrossBar;
     [SerializeField] bool triggerCrossAnim;
@@ -151,6 +152,7 @@ public PlayerPickUpItem playerPickUpItem;
                     GetSelectedItem(true);
                     drop = false;
                 }
+               
             }
             else
             {
@@ -405,6 +407,7 @@ public PlayerPickUpItem playerPickUpItem;
                     ItemOnHand[8].SetActive(true);
                 }
 
+                DollCheckItem = itemSlot;
                 /*if (drop)
                 {
 
@@ -531,11 +534,16 @@ public PlayerPickUpItem playerPickUpItem;
             #endregion
 
             #region Drop Item
-          /*  if (Input.GetKeyDown(KeyCode.G))
+            /*  if (Input.GetKeyDown(KeyCode.G))
+              {
+                  if (itemSlot != null)
+                      drop = true;
+              }*/
+            if (DollCheckItem != null)
             {
-                if (itemSlot != null)
-                    drop = true;
-            }*/
+                if (DollCheckItem.Count == 0) ItemOnHand[8].SetActive(false);
+            }
+
         }
         #endregion
 

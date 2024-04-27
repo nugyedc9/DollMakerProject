@@ -213,9 +213,18 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         OnCutScene = true;
-        _InputManager.StopWalk();
-        ChangePOV.SwitchCamera(BedCam);
-        
+       //_InputManager.StopWalk();
+        ChangePOV.SwitchCamera(FirstpersonView);
+        if (_1Story != null)
+        {
+            _1Story.enabled = true; 
+            //_InputManager.StopWalk();
+        }
+        TimeBool = false;
+        camOnPerSon = true;
+        OnCutScene = false;
+       
+        TimerDelay = 0;
     }
 
     private void Update()
@@ -238,6 +247,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                 TimerDelay = 0;
                 ChangePOV.SwitchCamera(FirstpersonView);
             }
+        }
+        else
+        {
+
         }
      
 

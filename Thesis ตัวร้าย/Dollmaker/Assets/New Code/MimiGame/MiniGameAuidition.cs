@@ -75,7 +75,7 @@ public class MiniGameAuidition : MonoBehaviour
     private bool DelaySpawn = true, HoldSpace, printPeek, Fail, NeedToCutLine , NeedleWorking, GetHurt;
     public bool Finish;
     private int CurrectPass, failCount;
-    private float  ClothPlayanim;
+    private float  ClothPlayanim, DelayFail;
     [SerializeField] GameObject[] AuditionOnSceen;
     [SerializeField] GameObject[] FrameClear;
     [SerializeField] GameObject CutHere;
@@ -233,7 +233,7 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
-                        CutHere.SetActive(true);
+                        //CutHere.SetActive(true);
                         printPeek = false; cutLine = false;
                         CurrectFrame(1);
                         SpawnAuditionPassPrefabs(0);
@@ -261,7 +261,7 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.A))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
-                        CutHere.SetActive(true);
+                       //CutHere.SetActive(true);
                         printPeek = false;
                         cutLine = false;
                         CurrectFrame(1);
@@ -290,7 +290,7 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.S))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
-                        CutHere.SetActive(true);
+                       // CutHere.SetActive(true);
                         printPeek = false;
                         cutLine = false;
                         CurrectFrame(1);
@@ -319,7 +319,7 @@ public class MiniGameAuidition : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.D))
                     {
                         _Currentstate = MiniGameAuditionState.FailSkillCheck;
-                        CutHere.SetActive(true);
+                      //  CutHere.SetActive(true);
                         printPeek = false;
                         cutLine = false;
                         CurrectFrame(1);
@@ -459,21 +459,47 @@ public class MiniGameAuidition : MonoBehaviour
 
         if (_Currentstate == MiniGameAuditionState.FailSkillCheck)
         {
-            FailClick = true;
+           /* FailClick = true;
             if (!_1Fail &&Pcam.TutorialFail)
             {
                 Pcam.TutorialFail = true;
                 FailNote.SetActive(true);
                 _1Fail = true;
             }
-            ScrissorCutClose.SetActive(true);
+            ScrissorCutClose.SetActive(true);*/
             GetHurt = true;
             handMove.enabled = true;
             handMove.Play("Handhurtsewing");
-            NeedToCutLine = true;
+
+
+            if(DelayFail > 0 ) DelayFail -= Time.deltaTime;
+
+            if (DelayFail < 0)
+            {
+                AuditionPass.Clear();
+                AuditionOnSceen = GameObject.FindGameObjectsWithTag("AuditionPrefabs");
+                foreach (GameObject SpawnOnSceen in AuditionOnSceen)
+                {
+                    Destroy(SpawnOnSceen);
+                }
+                FrameClear = GameObject.FindGameObjectsWithTag("MiniGameFrame");
+                foreach (GameObject FrameOnScene in FrameClear)
+                {
+                    Destroy(FrameOnScene);
+                }
+                SlotAuditionPass = 0;
+                CurrectPass = 0;
+                GetHurt = false;
+                FailClick = false;
+                _Currentstate = MiniGameAuditionState.Start;
+                DelayFail = 0;
+            }
+
+          //  NeedToCutLine = true;
             if (!Fail)
             {
                 curBar -= 20;
+                DelayFail = 2;
                 //  GhostcomeTocheck.PlayerFailSkillCheck();
                 audioSource.clip = GhostNotice;
                 audioSource.Play();
@@ -499,9 +525,12 @@ public class MiniGameAuidition : MonoBehaviour
                 if (failCount == 3)
                     Fail3.Invoke();
 
+
+              
+
                 Fail = true;
             }
-            if (cutLine)
+            /*if (cutLine)
             {
                 ArrowCufail.SetActive(false);
                 ScrissorCutClose.SetActive(false);
@@ -524,7 +553,7 @@ public class MiniGameAuidition : MonoBehaviour
                 GetHurt = false;
                 FailClick = false;
                 _Currentstate = MiniGameAuditionState.Start;
-            }
+            }*/
             //print("Fail");
         }
 

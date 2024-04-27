@@ -12,7 +12,7 @@ public class GhostAttackState : GhostBaseState
         state.GhostAudioSoure.clip = state.AttackS;
         state.GhostAudioSoure.Play();
         state.GhostBoxCol.enabled = false;
-        if (state.GhostID != 5 || state.GhostID != 10 && !state.DollOnHand)
+        if ( !state.DollOnHand)
             state.AttackBox.enabled = true;
         else if(state.GhostID == 10 )
         {
@@ -29,7 +29,6 @@ public class GhostAttackState : GhostBaseState
 
         }
 
-        if (state.DollOnHand) Debug.Log("DollonHand");
     }
 
     public override void UpdateState(GhostStateManager state)

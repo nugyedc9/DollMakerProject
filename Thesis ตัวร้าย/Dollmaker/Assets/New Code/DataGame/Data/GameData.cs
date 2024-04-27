@@ -29,7 +29,7 @@ public class GameData
     public List<string> EventStroyPass;
     public List<int> FinishDollOnBasket;
     public bool flashLighGet, Note1Get, Note2Get, OpenWall1, GhostDied1, GhostTakeDoll3, Ghost2Spawn,
-        _1Sleep, GhostSpawnAfterCovered2, GhostSpawnAfterCovered3, MakeDoll2, GhostDied2, Ghost4DiedEvent,
+        _1Sleep, GhostSpawnAfterCovered2, GhostSpawnAfterCovered3, MakeDoll2, MakeDoll1,  GhostDied2, Ghost4DiedEvent,
         FinishDoll6, Savelight1, Doll1finish, TutorialCloth, TutorialSwing, TutorialFail, TutorialBasket,
         FirstItemSpawn;
     
@@ -41,8 +41,8 @@ public class GameData
     {
         playerPoS = new Vector3 (-126.833f, 7.244f, -39.285f);
         PlayerRota = new quaternion(0, 180, 0, 0);
-        flashLightPos = new Vector3(-126.57f, 8f, -39.5699997f);
-        flashLightRota = new quaternion(0, 180, 0, 0);
+  /*      flashLightPos = new Vector3(-126.57f, 8f, -39.5699997f);
+        flashLightRota = new quaternion(0, 180, 0, 0);*/
 
 
         InventorySaveData = new List<Datainventoryslot>();
@@ -75,6 +75,7 @@ public class GameData
         TutorialFail = false;
         TutorialBasket = false;
         FirstItemSpawn = false;
+        MakeDoll1 = false;
 
 
          storyCountSave = 0;

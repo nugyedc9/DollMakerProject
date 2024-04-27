@@ -22,7 +22,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private RollClothColor RollCloth;
     public Animator anim;
-    public bool NotItemInInv, Scissor;
+    public bool NotItemInInv, Scissor, HaveStack;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int Count = -1;
@@ -46,6 +46,14 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     }
 
+    private void Update()
+    {
+        if (Count == 0)
+        {
+            transform.localPosition = orginalPosition;
+            image.raycastTarget = true;
+        }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -55,8 +63,9 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             parentAfterDrag = transform.parent;
             ChangePos = transform.parent;
             image.raycastTarget = false;
+            HaveStack = true;
         }
-        if(Scissor)
+        if (Scissor)
         {
             anim.Play("AnimCut");
         }
@@ -74,7 +83,8 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        if (Count > 0 && HaveStack)
+        {
             if (!NotItemInInv)
             {
                 transform.localPosition = orginalPosition;
@@ -86,7 +96,7 @@ public class inventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 transform.localPosition = orginalPosition;
                 image.raycastTarget = true;
             }
-        
+        }
 
         if (Scissor)
         {

@@ -106,15 +106,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost, firstSpawnItem;
-    private int keyId;
+    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost, firstSpawnItem, PlayEvent1;
+    private int keyId, GhostComeCount = 2;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
     [Header("DestroyItemOnLoad")]
     public List<string> GetPickUp = new List<string>();
 
     public UnityEvent EventFinishDoll1, Have2FinishDoll, MakeNewDoll,
-        OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn, unlockChain;
+        OpenAllWall, Phonepickup, _Ghost2BigSpawn, WoodGhost2Spawn, unlockChain,
+        Failevery2;
 
     private void Start()
     {
@@ -618,6 +619,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             DelayCloseItemGet = 0;
         }
 
+        if(Failswing == GhostComeCount)
+        {
+            Failevery2.Invoke();
+            GhostComeCount += 2;
+        }
+
     }
 
 
@@ -674,10 +681,12 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         GetNote2 = data.Note2Get;
         _1Sleep = data._1Sleep;
         firstSpawnItem = data.FirstItemSpawn;
+        PlayEvent1 = data.MakeDoll1;
 
-        if (finishDollGEt == 1)
+        if (finishDollGEt == 1 && !PlayEvent1)
         {
             EventFinishDoll1.Invoke();
+            PlayEvent1 = true;
         }
 
         foreach (var item in data.pickedUpItemIds)
@@ -721,6 +730,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         data.failCloth = Failswing;
         data.Note2Get = GetNote2;
         data.FirstItemSpawn = firstSpawnItem;
+        data.MakeDoll1 = PlayEvent1;
 
         for (int i = 0; i < GetPickUp.Count; i++)
         {

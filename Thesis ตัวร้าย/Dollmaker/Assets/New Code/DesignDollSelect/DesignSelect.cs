@@ -66,8 +66,9 @@ public class DesignSelect : MonoBehaviour
            //8 ClothColor[0].SetActive(true);
             lineShow = ClothCutline[0].GetComponent<LineShow>();
             BookPage[0].SetActive(true);
-            NextButt.SetActive(true);
-            PrevButt.SetActive(true);
+
+           /* NextButt.SetActive(true);
+            PrevButt.SetActive(true);*/
 
 
             /* if (!ConfirmThis)
@@ -84,13 +85,13 @@ public class DesignSelect : MonoBehaviour
             SelectButt.SetActive(true);
         }
 
-        
+
 
         #region Button Show up
-        if (PageNum == 0) PrevButt.SetActive(false);
+       /* if (PageNum == 0) PrevButt.SetActive(false);
         else if (PageNum != 0) PrevButt.SetActive(true);
-        if(PageNum == BookPage.Length - 1) NextButt.SetActive(false);
-        if (PageNum < BookPage.Length - 1) NextButt.SetActive(true);
+        if (PageNum == BookPage.Length - 1) NextButt.SetActive(false);
+        if (PageNum < BookPage.Length - 1) NextButt.SetActive(true);*/
         #endregion
 
     }
