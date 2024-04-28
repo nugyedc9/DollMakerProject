@@ -106,7 +106,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     private StoryActive storyActive;
     private ItemIdGenerate ItemIdGet;
 
-    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost, firstSpawnItem, PlayEvent1;
+    private bool GetNoteSave, GetNote2, _1Sleep, SpawnWoodGhost, firstSpawnItem, PlayEvent1,
+        UnLockGranmadoor;
     private int keyId, GhostComeCount = 2;
     public int KeyId { get { return keyId;} set { keyId = value; } }
 
@@ -495,8 +496,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 inventoryManager.GetSelectedItem(true);
                                 Key = false;
 
-                                if (DoorId.DoorID == 2) _Ghost2BigSpawn.Invoke();
-                                if(DoorId.DoorID == 3) unlockChain.Invoke();
+                                if (DoorId.DoorID == 2) { } //_Ghost2BigSpawn.Invoke();
+                                if(DoorId.DoorID == 4) unlockChain.Invoke();
                             }
                         }
                     }
@@ -594,7 +595,15 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         {
             Note2.SetActive(true);
         }
-
+        if (FinishDollGet == 2)
+        {
+            if (!UnLockGranmadoor)
+            {
+                Have2FinishDoll.Invoke();
+                UnLockGranmadoor = true;
+            }
+         
+        }
         if(FinishDollGet == 4)
         {
             if(!SpawnWoodGhost)
@@ -624,7 +633,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             Failevery2.Invoke();
             GhostComeCount += 2;
         }
-
+        
     }
 
 
@@ -706,6 +715,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
         if (finishDollGEt == 2)
         {
             Have2FinishDoll.Invoke();
+            Debug.Log("doorUnlock");
         }
 
         if (FinishDollGet >= 5)

@@ -81,7 +81,7 @@ public class TabTutorial : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
                     Time.timeScale = 1;
                     inputManager.OnTab = false;
-                    InvShow.Play("NotInvPage", 0, 0);
+                    InvShow.Play("CloseTableInv", 0, 0);
 
                     //Animtext.Play("MainToDo", 0, 0);
                     Sub.SetActive(false);

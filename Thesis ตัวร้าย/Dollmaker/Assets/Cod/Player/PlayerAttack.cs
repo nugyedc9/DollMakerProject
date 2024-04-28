@@ -273,7 +273,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
             if (Input.GetMouseButton(0))
             {
-                if (DelayAttack == 0 && curHpCross >= 60)
+                if (  curHpCross >= 60)
                 {
                     crossAnim.SetState(CrossState.HoldUp);
 
@@ -1142,10 +1142,12 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 KeysID = hitevent.collider.gameObject.GetComponent<RollClothColor>();
 
-                ItemText.SetActive(true);
+                ItemText.SetActive(true);   
                 if (KeysID.pieceClothID == 1)
+                    ItemName.text = "Doll workshop Key [E]";
+               else if (KeysID.pieceClothID == 2)
                     ItemName.text = "StorageRoom Key [E]";
-                else if (KeysID.pieceClothID == 2) ItemName.text = "Ritual room key [E]";
+                else if (KeysID.pieceClothID == 3) ItemName.text = "Ritual room key [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")

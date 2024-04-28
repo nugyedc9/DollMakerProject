@@ -11,7 +11,7 @@ public class FinishBasket : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] dollShow;
     public GameObject[] Slot;
-    public GameObject ItemDrop;
+    public GameObject[] ItemDrop;
     public Transform SpawnPoint;
 
 
@@ -33,8 +33,11 @@ public class FinishBasket : MonoBehaviour
         if (DollID >= 0 && DollID < dollShow.Length) 
         {
             GameObject newDoll = Instantiate(dollShow[DollID], Slot[SlotNum].transform);
-
-            SlotNum++;
+            if (ItemDrop[SlotNum] != null)
+            {
+                var DropObj = Instantiate(ItemDrop[SlotNum], SpawnPoint.position, Quaternion.identity) as GameObject;
+            }
+            SlotNum++;            
         }
     }
 
@@ -73,6 +76,6 @@ public class FinishBasket : MonoBehaviour
 
     public void FiinishThisBasket()
     {
-        var DropObj = Instantiate(ItemDrop, SpawnPoint.position, Quaternion.identity) as GameObject;
+        var DropObj = Instantiate(ItemDrop[SlotNum], SpawnPoint.position, Quaternion.identity) as GameObject;
     }
 }

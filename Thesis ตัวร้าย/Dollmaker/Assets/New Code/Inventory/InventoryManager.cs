@@ -571,7 +571,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
-        if (DollCountFinish == 4)
+        if (DollCountFinish == 3)
         {
             if (!take3data)
             {

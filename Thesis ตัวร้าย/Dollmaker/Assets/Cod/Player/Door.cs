@@ -42,7 +42,7 @@ public class Door : MonoBehaviour
 
     public void Update()
     {
-        if (DelayDoorOpenEvent > 0) DelayDoorOpenEvent -= Time.deltaTime;
+        /*if (DelayDoorOpenEvent > 0) DelayDoorOpenEvent -= Time.deltaTime;
         else if (DelayDoorOpenEvent < 0)
         {
             DoorSound.clip = open;
@@ -61,7 +61,7 @@ public class Door : MonoBehaviour
             D = false;
             DelayCloseDoor = 0;
         }
-
+*/
 
     }
 

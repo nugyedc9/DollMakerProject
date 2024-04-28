@@ -83,7 +83,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("Tutorial Arrow")]
     public GameObject clothTutorial;
-    public GameObject sewingTutorial, DollTutorial, clothDoll, CutLine;
+    public GameObject sewingTutorial, DollTutorial, clothDoll, CutLine,
+        UsedollTutorial;
 
   /*  [Header("TurnCam")]
     public GameObject TurnOut;
@@ -120,7 +121,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
         , WakeUp, TimeBool = true, 
         _1designCloth, _1sewing, _1doll, _1clothDoll,
         _1cutLine, Hiding , tutorialCloth, tutorialSwing, tutorialFail, tutorialBasket,
-        lightEvent;
+        lightEvent, tutorialUseDoll;
 
     public bool _1DesignCloth { get { return _1designCloth; } set { _1designCloth = value; } }
     public bool _1Sewing { get { return _1sewing; } set { _1sewing = value; } }
@@ -505,6 +506,13 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             {
                                 clothTutorial.SetActive(true);
                                 TutorialCloth = true;
+                            }
+
+                            if(invmanager.DollCountFinish == 1 && !tutorialUseDoll)
+                            {
+                                UsedollTutorial.SetActive(true);
+                                //Debug.Log("doll1tutorial"); 
+                                tutorialUseDoll = true;
                             }
                         }
                         TimerDelay = 0.1f;
