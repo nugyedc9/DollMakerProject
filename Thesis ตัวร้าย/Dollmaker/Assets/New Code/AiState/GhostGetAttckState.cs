@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class GhostGetAttckState : GhostBaseState
 {
-
+    float HitDelaySave;
+    bool HitdelayCur;
 
     public override void EnterState(GhostStateManager state)
     {
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.DiedS;
         state.GhostAudioSoure.Play();
-       // state.GhostAmbi.Stop();
-       // state.PAttack.Attack = false;
+        // state.GhostAmbi.Stop();
+        // state.PAttack.Attack = false;
 
         state.enemyGhost.speed = 0;
-       state.FireSound.Play();
-       
+        state.FireSound.Play();
+
         if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("damageanimation"))
             state.GhostAni.Play("damageanimation", 0, 0);
         state.particle.Play();
@@ -23,7 +24,13 @@ public class GhostGetAttckState : GhostBaseState
         state.MoveSound.clip = state.WalkS;
         state.MoveSound.Play();
         state.GhostBoxCol.enabled = false;
-        state.HitDelay = 10;
+
+        if (!HitdelayCur)
+        {
+            HitDelaySave = state.HitDelay;
+            HitdelayCur = true;
+        }
+        else state.HitDelay = HitDelaySave;
         //  Debug.Log("GetAttack");
     }
 

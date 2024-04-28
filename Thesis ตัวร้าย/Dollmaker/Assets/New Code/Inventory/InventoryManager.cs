@@ -563,12 +563,12 @@ public PlayerPickUpItem playerPickUpItem;
 
         if(dollCountFinish == 2)
         {
-           /* if (!MakeDoll2)
+            if (!MakeDoll2)
             {
                 Doll2CutScene.Invoke();
-                dollCountFinish--;
+                //*dollCountFinish--;
                 MakeDoll2 = true;
-            }*/
+            }
         }
 
         if (DollCountFinish == 4)

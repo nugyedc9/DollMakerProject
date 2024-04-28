@@ -232,7 +232,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     {       
             Light.SetActive(false);
           pointLight.SetActive(false);
-        curHpCross = 120;
+        curHpCross = 60;
 
     }
 
@@ -273,7 +273,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
             if (Input.GetMouseButton(0))
             {
-                if (DelayAttack == 0 && curHpCross >= 120)
+                if (DelayAttack == 0 && curHpCross >= 60)
                 {
                     crossAnim.SetState(CrossState.HoldUp);
 
@@ -372,94 +372,96 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
         }
 
+        if (curHpCross < 60) CrossReCharge();
+
 
         #endregion
 
-        #region Close Cut roll Cloth
-        /*#region CutRollCloth
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
+            #region Close Cut roll Cloth
+            /*#region CutRollCloth
+            if (Input.GetMouseButtonDown(0))
             {
-                if(hitinfo.collider.gameObject.tag == "RollCloth")
+                if (Physics.Raycast(r, out RaycastHit hitinfo, 2))
                 {
-                    if (ScissorOnHand)
+                    if(hitinfo.collider.gameObject.tag == "RollCloth")
                     {
-                        if (Itemhave != 3)
+                        if (ScissorOnHand)
                         {
-                            if (Clothhave != 3)
+                            if (Itemhave != 3)
                             {
-                                ClothOnHand = true;
-                                DollOnHand = false;
-                                CrossOnHand = false;
-                                ScissorOnHand = false;
-                                showCloth = true;
-
-                                InterectSound.clip = ClothPickSound;
-                                InterectSound.Play();
-
-                                ClothR.SetActive(true);
-                                Tutext1.SetActive(true);
-                                tutorialText1.text = "Drop [G]";
-                                tutorialText2.text = "";
-                                DollR.SetActive(false);
-                                CorssR.SetActive(false);
-                                ScissorR.SetActive(false);
-                                Itemhave++;
-                                Clothhave++;
-                                Inventory.SetActive(true);
-                                if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                if (Clothhave != 3)
                                 {
-                                    itemInventory1[2].SetActive(true);
-                                    ClothInv1 = true;
-                                    ItemSelect = 0;
-                                    box1 = true;
-                                    InvPoint1.SetActive(true);
-                                    InvPoint2.SetActive(false);
-                                    InvPoint3.SetActive(false);
-                                }
-                                else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
-                                {
-                                    itemInventory2[2].SetActive(true);
-                                    ClothInv2 = true;
-                                    ItemSelect = 1;
-                                    box2 = true;
-                                    InvPoint1.SetActive(false);
-                                    InvPoint2.SetActive(true);
-                                    InvPoint3.SetActive(false);
-                                }
-                                else if (Itemhave == 3 && !box3)
-                                {
-                                    itemInventory3[2].SetActive(true);
-                                    ClothInv3 = true;
-                                    ItemSelect = 2;
-                                    box3 = true;
-                                    InvPoint1.SetActive(false);
-                                    InvPoint2.SetActive(false);
-                                    InvPoint3.SetActive(true);
-                                }
+                                    ClothOnHand = true;
+                                    DollOnHand = false;
+                                    CrossOnHand = false;
+                                    ScissorOnHand = false;
+                                    showCloth = true;
 
+                                    InterectSound.clip = ClothPickSound;
+                                    InterectSound.Play();
+
+                                    ClothR.SetActive(true);
+                                    Tutext1.SetActive(true);
+                                    tutorialText1.text = "Drop [G]";
+                                    tutorialText2.text = "";
+                                    DollR.SetActive(false);
+                                    CorssR.SetActive(false);
+                                    ScissorR.SetActive(false);
+                                    Itemhave++;
+                                    Clothhave++;
+                                    Inventory.SetActive(true);
+                                    if (Itemhave == 1 && !box1 || Itemhave == 2 && !box1 || Itemhave == 3 && !box1)
+                                    {
+                                        itemInventory1[2].SetActive(true);
+                                        ClothInv1 = true;
+                                        ItemSelect = 0;
+                                        box1 = true;
+                                        InvPoint1.SetActive(true);
+                                        InvPoint2.SetActive(false);
+                                        InvPoint3.SetActive(false);
+                                    }
+                                    else if (Itemhave == 2 && !box2 || Itemhave == 3 && !box2)
+                                    {
+                                        itemInventory2[2].SetActive(true);
+                                        ClothInv2 = true;
+                                        ItemSelect = 1;
+                                        box2 = true;
+                                        InvPoint1.SetActive(false);
+                                        InvPoint2.SetActive(true);
+                                        InvPoint3.SetActive(false);
+                                    }
+                                    else if (Itemhave == 3 && !box3)
+                                    {
+                                        itemInventory3[2].SetActive(true);
+                                        ClothInv3 = true;
+                                        ItemSelect = 2;
+                                        box3 = true;
+                                        InvPoint1.SetActive(false);
+                                        InvPoint2.SetActive(false);
+                                        InvPoint3.SetActive(true);
+                                    }
+
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        #endregion*/
-        #endregion
+            #endregion*/
+            #endregion
 
-        #region Map pause tutorial
- /*       if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
-        {
-           *//* if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (DelayEse <= 0 && !PCam.EndGame)
-                {
-                    if (!isPause) PauseGame();
-                    else ResumeGame();
-                }
-            }*//*
-        }*/
+            #region Map pause tutorial
+            /*       if (!Died && !playerPickUpItem.OnNote && PCam.camOnPerSon)
+                   {
+                      *//* if (Input.GetKeyDown(KeyCode.Escape))
+                       {
+                           if (DelayEse <= 0 && !PCam.EndGame)
+                           {
+                               if (!isPause) PauseGame();
+                               else ResumeGame();
+                           }
+                       }*//*
+                   }*/
 
         if ( playerPickUpItem.OnNote)
         {
@@ -3388,7 +3390,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     public void CrossReCharge()
     {
-        if (curHpCross < 120)
+        if (curHpCross < 60)
         {
             curHpCross += Time.deltaTime;
         }
