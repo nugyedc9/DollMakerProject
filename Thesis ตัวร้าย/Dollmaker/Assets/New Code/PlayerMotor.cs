@@ -54,6 +54,8 @@ using UnityEngine.UI;
 
             StaminaBar.value = Stamina;
 
+        if(Input.GetKeyDown(KeyCode.LeftControl)) { speed = 11f; }
+
             if (Notrun)
             {
                 if (Stamina < MaxStamina)

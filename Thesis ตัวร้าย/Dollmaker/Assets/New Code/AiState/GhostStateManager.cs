@@ -365,7 +365,7 @@ public class GhostStateManager : MonoBehaviour
        AnimAlert = true;
        AnimWalk = true;
         PlayerDetectSpawn = false;
-        CurrentDest = destination[0];
+        CurrentDest = destination[6];
         SwitchState(WalkState);
     }
 

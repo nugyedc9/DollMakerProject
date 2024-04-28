@@ -152,5 +152,9 @@ public class Door : MonoBehaviour
             D = false;
         }
     }
+ public void DOpen()
+    {
+        D = true;
+    }
     
 }
