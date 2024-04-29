@@ -63,7 +63,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
     [Header("UI Player")]
     public GameObject PlayerMainOBJUI;
-    public GameObject PlayerHpUI, StaminaUI, CrossBarUI;
+    public GameObject PlayerHpUI, StaminaUI, CrossBarUI,
+        DollCountUi, DollinBasketUI;
 
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
@@ -483,6 +484,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             LookOutGhost = false;
                             /* TurnOut.SetActive(true);
                              TurnIn.SetActive(false);*/
+
+                            DollCountUi.SetActive(false);
+                            DollinBasketUI.SetActive(false);
                             ChangePOV.SwitchCamera(PushClothOnDollView);
                         }
                         else
@@ -514,6 +518,10 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                                 //Debug.Log("doll1tutorial"); 
                                 tutorialUseDoll = true;
                             }
+
+                            DollinBasketUI.SetActive(false);
+                            DollCountUi.SetActive(false);
+
                         }
                         TimerDelay = 0.1f;
 
@@ -677,6 +685,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
 
+                        DollinBasketUI.SetActive(true);
+                        if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
+
                         if (!_1DesignCloth && !TutorialCloth || TutorialCloth)
                             clothTutorial.SetActive(false);
                         else if(!T1CutLine && _1DesignCloth)
@@ -720,6 +731,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         if(!_1clothDoll)
                             clothDoll.SetActive(false);
                         CloseMouse();
+
+                        if(PPick.DollCountint != 0) DollCountUi.SetActive(true);
+                        DollinBasketUI.SetActive(true);
 
                         TimerDelay = 0;
                         ChangePOV.SwitchCamera(FirstpersonView);

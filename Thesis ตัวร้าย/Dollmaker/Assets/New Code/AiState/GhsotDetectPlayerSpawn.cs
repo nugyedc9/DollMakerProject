@@ -17,9 +17,12 @@ public class GhsotDetectPlayerSpawn : GhostBaseState
         /*  state.GhostAudioSoure.clip = state.DetectS;
           state.GhostAudioSoure.loop = false;
           state.GhostAudioSoure.Play();*/
+        state.AnimWalk = true;
         state.enemyGhost.Warp(state.destination[8].position);
         state.CurrentDest = state.destination[6];
         state.SwitchState(state.WalkState);
+
+        Debug.Log("Detect");
     }
 
     public override void UpdateState(GhostStateManager state)

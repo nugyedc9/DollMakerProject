@@ -53,7 +53,8 @@ public class DesignSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SelectButt.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -64,8 +65,9 @@ public class DesignSelect : MonoBehaviour
             // BoxColPushCloth.SetActive(false);
             
            //8 ClothColor[0].SetActive(true);
-            lineShow = ClothCutline[0].GetComponent<LineShow>();
-            BookPage[0].SetActive(true);
+
+           /* lineShow = ClothCutline[0].GetComponent<LineShow>();
+            BookPage[0].SetActive(true);*/
 
            /* NextButt.SetActive(true);
             PrevButt.SetActive(true);*/
@@ -82,7 +84,7 @@ public class DesignSelect : MonoBehaviour
         }
         else
         {
-            SelectButt.SetActive(true);
+            //SelectButt.SetActive(true);
         }
 
 
@@ -121,7 +123,7 @@ public class DesignSelect : MonoBehaviour
 
        /* if (PageNum == 0) SelecRed = true;
         if (PageNum == 1) SelecBlue = true;*/
-        HaveCloth = true;
+       // HaveCloth = true;
             AudioSound.clip = ConfirmS;
             AudioSound.Play();
             ClothCutline[0].SetActive(true);
@@ -133,6 +135,9 @@ public class DesignSelect : MonoBehaviour
             CutLineTutorial.SetActive(true);
             CutLineNote.SetActive(true);
         }*/
+
+        lineShow = ClothCutline[0].GetComponent<LineShow>();
+        BookPage[0].SetActive(true);
 
         SelectButt.SetActive(false);
             /* ClothColor[PageNum].SetActive(false);
@@ -197,14 +202,13 @@ public class DesignSelect : MonoBehaviour
             // inventoryManager.AddItem(PieceCloth[LockDesign]);
 
 
-
             //  BoxColPushCloth.SetActive(true);
             FirstLineCut[0].SetActive(true);
 
             FinishButt.SetActive(false);
             PCam.ChangeToSwing();
             ConfirmThis = false;
-            // HaveCloth = false;
+             HaveCloth = true;
             SelectButt.SetActive(true);
 
             ClothOnSwing[0].SetActive(true);

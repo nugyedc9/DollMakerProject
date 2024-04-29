@@ -26,6 +26,7 @@ public PlayerPickUpItem playerPickUpItem;
     public CrossAnim crossAnim;
     public GhostStateManager ghostStateManager;
     public Camera Cam;
+    public FinishBasket Basket;
     public int maxstaxkitem;
 
     public InventorySlote[] inventoryslote;
@@ -61,11 +62,15 @@ public PlayerPickUpItem playerPickUpItem;
     [SerializeField] float dollCountFinish;
     public float DollCountFinish { get { return dollCountFinish; } set { dollCountFinish = value; } }
 
+    float dollpushCount;
+    public float DollpushCount { get { return dollpushCount; } set { dollpushCount = value; } }
+
 
     public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet, finishDoll6Event, Doll1Finish;
 
     private Vector3 DesDrop;
-    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck,finishdoll1;
+    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck,finishdoll1,haveDoll,DelayStart;
+    float DelayGameOver;
 
     private void Awake()
     {
@@ -403,8 +408,14 @@ public PlayerPickUpItem playerPickUpItem;
                 if (itemSlot.Count > 0)
                 {
                     playerPickUpItem.FDOnhand1 = true;
-                        ghostStateManager.DollOnHand = true;
+                    ghostStateManager.DollOnHand = true;
+                    haveDoll = true;
                     ItemOnHand[8].SetActive(true);
+                }
+                else
+                {
+                    ghostStateManager.DollOnHand = false;
+                    haveDoll = false;
                 }
 
                 DollCheckItem = itemSlot;
@@ -517,6 +528,11 @@ public PlayerPickUpItem playerPickUpItem;
                     ItemOnHand[5].SetActive(true);
                     playerPickUpItem.HealOnhand = true;
                 }
+                else if (itemSlot.Count == 0)
+                {
+                    ItemOnHand[5].SetActive(false);
+                    playerPickUpItem.HealOnhand = false;
+                }
 
                 if (drop)
                 {
@@ -571,7 +587,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
-        if (DollCountFinish == 3)
+        if (DollpushCount == 3)
         {
             if (!take3data)
             {
@@ -581,12 +597,27 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
-        if(DollCountFinish == 6)
+        if(DollCountFinish == 6 && !haveDoll && Basket.NeedFinishDoll >= Basket.SlotCount && DelayGameOver == 0)
         {
             if (!Finish6DollCheck)
             {
                 finishDoll6Event.Invoke();
                 Finish6DollCheck = true;
+            }
+        }
+
+        if(DollpushCount == 6)
+        {
+            if (!DelayStart)
+            {
+                DelayGameOver = 120f;
+                DelayStart = true;
+            }
+
+            if(DelayGameOver > 0) DelayGameOver -= Time.deltaTime;
+            else if(DelayGameOver < 0)
+            {
+                DelayGameOver = 0;
             }
         }
 

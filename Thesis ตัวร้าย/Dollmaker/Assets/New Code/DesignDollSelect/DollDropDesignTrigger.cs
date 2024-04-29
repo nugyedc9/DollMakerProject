@@ -67,7 +67,8 @@ public class DollDropDesignTrigger : MonoBehaviour
                 DollDesignVisual[0].SetActive(true);
                 DollDesignVisual[1].SetActive(false);
                 dollCount++;
-                inventoryManager.DollCountFinish++;
+                inventoryManager.DollpushCount++;
+                playpickUp.DollCountint--;
                 DollHave = true;
                 DollTutorial.SetActive(false);
                 randomPaint = true;
@@ -160,6 +161,7 @@ public class DollDropDesignTrigger : MonoBehaviour
         DollHave = false;
         CloseboxDropDoll = false; SelectButton.SetActive(false);
         lineshow.CloseAllLine();
+        inventoryManager.DollCountFinish++;
 
         DollDesignVisual[0].SetActive(false);
         DollDesignVisual[1].SetActive(false);

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 /*using static InventoryManager;
 using static UnityEditor.Progress;
 */
@@ -35,6 +36,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public Transform pickUPPoint;
     public GameObject[] ItemGet;
     public Animator ItemGetAnim;
+    public TextMeshProUGUI DollCount;
+    public GameObject DollCountUi, KeyUi;
     float DelayCloseItemGet;
 
 
@@ -94,6 +97,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [SerializeField] int itemCount;
     public int ItemCount { get { return itemCount; } set {  itemCount = value; } }
 
+    int dollCountint;
+    public int DollCountint { get {  return dollCountint; } set {  dollCountint = value; } }
+
     [SerializeField] bool onNote;
     public bool OnNote { get { return onNote; } set { onNote = value; } }
     #endregion
@@ -152,23 +158,23 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         }
                         audioSource.clip = CrossS;
                         audioSource.Play();
-                    //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
+                        //    CrossUse = hitInfo.collider.gameObject.GetComponent<CrossCheck>();
                         PAttack.curHpCross = 60;
-                       // CrossBar.maxValue = 3;
+                        // CrossBar.maxValue = 3;
                         inventoryManager.TriggerCrossAnim = true;
 
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
                         GetPickUp.Add(ItemIdGet.id);
 
-                       // if (CrossUse.curHp == 3)
-                            inventoryManager.AddItem(itemPickUp[0]);
-                      /*  if (CrossUse.curHp == 2)
-                            inventoryManager.AddItem(itemPickUp[4]);
-                        if (CrossUse.curHp == 1)
-                            inventoryManager.AddItem(itemPickUp[5]);*/
+                        // if (CrossUse.curHp == 3)
+                        inventoryManager.AddItem(itemPickUp[0]);
+                        /*  if (CrossUse.curHp == 2)
+                              inventoryManager.AddItem(itemPickUp[4]);
+                          if (CrossUse.curHp == 1)
+                              inventoryManager.AddItem(itemPickUp[5]);*/
 
-                      
+
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -204,6 +210,10 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         ItemGet[0].SetActive(true);
                         DelayCloseItemGet = 2f;
                         ItemGetAnim.Play("GetItem");
+
+                        DollCountUi.SetActive(true);
+                        DollCountint++;
+                        DollCount.text = dollCountint.ToString();
 
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
@@ -241,7 +251,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                         KeyId = pieceClothGet.pieceClothID;
 
-                        if(keyId == 1) JumpGranMaKey.enabled = true;
+                        KeyUi.SetActive(true);
+
+                        if (keyId == 1) JumpGranMaKey.enabled = true;
 
                         Key = true;
 
@@ -267,7 +279,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         inventoryManager.AddItem(itemPickUp[19]);
 
-                        
+
 
                         Destroy(hitInfo.collider.gameObject);
 
@@ -410,11 +422,11 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     documentID = hitInfo.collider.gameObject.GetComponent<DocumentID>();
                     if (documentID.DocID == 0)
                     {
-                        _5Story.enabled = true;    
+                        _5Story.enabled = true;
                         Note.SetActive(true);
                         GetNoteSave = true;
-                       /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
-                        GetPickUp.Add(ItemIdGet.id);*/
+                        /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                         GetPickUp.Add(ItemIdGet.id);*/
 
                         Destroy(hitInfo.collider.gameObject);
                     }
@@ -430,13 +442,29 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     }
                 }
 
+                if (hitInfo.collider.gameObject.tag == "Axe")
+                {
+                    audioSource.clip = KeyS;
+                    audioSource.Play();
+                    pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
+                    KeyId = pieceClothGet.pieceClothID;
+
+                    ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                    GetPickUp.Add(ItemIdGet.id);
+
+                    inventoryManager.AddItem(itemPickUp[23]);
+                    Key = true;
+
+                    Destroy(hitInfo.collider.gameObject);
+                }
+
                 if (hitInfo.collider.gameObject.tag == "Phone")
                 {
                     audioSource.clip = DocumentS;
                     audioSource.Play();
-                        
+
                     Phonepickup.Invoke();
-                  
+
                 }
             }
 
@@ -449,7 +477,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     {
                         if (HaveScissor && !BookGuide.OpenTutor)
                         {
-                           
+
 
                             pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                             if (pieceClothGet.ClothCount != 0)
@@ -495,10 +523,13 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 DoorId.Lock = false;
                                 inventoryManager.GetSelectedItem(true);
                                 Key = false;
+                                DoorId.DoorID = 0;
 
                                 if (DoorId.DoorID == 2) { } //_Ghost2BigSpawn.Invoke();
-                                if(DoorId.DoorID == 4) unlockChain.Invoke();
+                                if (DoorId.DoorID == 4) unlockChain.Invoke();
                             }
+
+                            KeyUi.SetActive(false);
                         }
                     }
 
@@ -534,7 +565,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                     }
 
-                    if(hitInfo.collider.gameObject.tag == "coverBlood")
+                    if (hitInfo.collider.gameObject.tag == "coverBlood")
                     {
                         if (FDOnhand || FDOnhand1 || FDOnhand2)
                         {
@@ -543,15 +574,16 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                             Coverdoll = hitInfo.collider.gameObject.GetComponent<CoverDollWithBlood>();
                             Coverdoll.Spawndoll(inventoryManager.FinishDollID);
 
-                           /* dropFinish.DollID = inventoryManager.FinishDollID;
-                            dollGet.Add(dropFinish.DollID);
-                            dropFinish.Spawndoll();*/
+                            /* dropFinish.DollID = inventoryManager.FinishDollID;
+                             dollGet.Add(dropFinish.DollID);
+                             dropFinish.Spawndoll();*/
 
                             inventoryManager.GetSelectedItem(true);
                         }
                     }
 
                 }
+
             }
 
             if (hitInfo.collider.gameObject.tag == "Event")
@@ -560,21 +592,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                 storyActive.LookActiveevent();
             }
 
-            if (hitInfo.collider.gameObject.tag == "Axe")
-            {
-                audioSource.clip = KeyS;
-                audioSource.Play();
-                pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
-                KeyId = pieceClothGet.pieceClothID;
 
-                ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
-                GetPickUp.Add(ItemIdGet.id);
-
-                inventoryManager.AddItem(itemPickUp[23]);
-
-
-                Destroy(hitInfo.collider.gameObject);
-            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -633,6 +651,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
             Failevery2.Invoke();
             GhostComeCount += 2;
         }
+
+        if(DollCountint == 0) DollCountUi.SetActive(false);
         
     }
 

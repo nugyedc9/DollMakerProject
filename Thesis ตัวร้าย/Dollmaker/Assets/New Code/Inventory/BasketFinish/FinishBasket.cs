@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class FinishBasket : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class FinishBasket : MonoBehaviour
     public GameObject[] Slot;
     public GameObject[] ItemDrop;
     public Transform SpawnPoint;
+    public TextMeshProUGUI FinishDollCountUI;
 
 
     [SerializeField] int finishDollneed;
@@ -22,6 +24,8 @@ public class FinishBasket : MonoBehaviour
     public int DollID { get { return dollId; } set { dollId = value; } }
 
      public int SlotNum;
+
+    public int SlotCount { get { return SlotNum; } }
 
     public UnityEvent NeedDollSucc, DeedDollSucc2;
     bool SuccDoll, succDoll2;
@@ -72,6 +76,8 @@ public class FinishBasket : MonoBehaviour
             }
 
         }
+
+        FinishDollCountUI.text = "Doll in Basket" + SlotNum + " / 3";
     }
 
     public void FiinishThisBasket()

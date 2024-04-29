@@ -28,6 +28,7 @@ public class GhsotSpawnState : GhostBaseState
 
     public override void UpdateState(GhostStateManager state)
     {
+        if(!state.StopDelaySpawn)
         state.SpawnTimer = state.SpawnTimer - (1 * Time.deltaTime);
 
         state.AnimSpawn = false;

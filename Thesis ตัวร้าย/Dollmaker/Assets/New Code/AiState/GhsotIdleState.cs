@@ -44,6 +44,7 @@ public class GhsotIdleState : GhostBaseState
 
 
           //  Debug.Log("Idle");
+          //Debug.Log(Dest);
     }
 
     public override void UpdateState(GhostStateManager state)

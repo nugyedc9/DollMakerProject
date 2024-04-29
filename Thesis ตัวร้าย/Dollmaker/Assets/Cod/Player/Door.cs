@@ -152,7 +152,18 @@ public class Door : MonoBehaviour
             D = false;
         }
     }
- public void DOpen()
+
+    public void CloseDoorEventWhitLock()
+    {
+
+            DoorSound.clip = close;
+            DoorSound.Play();
+            doorAni.Play("Door_close", 0, 0);
+            D = false;
+        
+    }
+
+    public void DOpen()
     {
         D = true;
     }

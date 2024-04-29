@@ -1159,14 +1159,14 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             else if (hitevent.collider.gameObject.tag == "Door")
             {
                 DoorInterect = hitevent.collider.gameObject.GetComponent<Door>();
-                if (PCam.storyCount >= 4)
+                if (PCam.storyCount >= 3)
                 {
-                    if (DoorInterect.Lock)
+                    if (DoorInterect.Lock && DoorInterect.DoorID != 0)
                     {
                         if (!playerPickUpItem.Key)
                         {
                             ItemText.SetActive(true);
-                            ItemName.text = "Use the key to unlock";
+                            ItemName.text = "Need the key to unlock";
                             InterectItem = true;
                         }
                         else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID)
@@ -1176,18 +1176,32 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                             InterectItem = true;
                         }
                     }
-                    else
+                    else if(!DoorInterect.Lock)
                     {
                         ItemText.SetActive(true);
                         ItemName.text = "Open the Door [E]";
                         InterectItem = true;
                     }
+                    else if(DoorInterect.DoorID == 0 && DoorInterect.Lock)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Door Lock";
+                        InterectItem = true;
+                    }
+                     if (DoorInterect.DoorID == 10 && DoorInterect.Lock)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Not now";
+                        InterectItem = true;
+                    }
+
                 }
                 else
                 {
                     ItemText.SetActive(true);
                     ItemName.text = "Not now";
                     InterectItem = true;
+                  
                 }
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")

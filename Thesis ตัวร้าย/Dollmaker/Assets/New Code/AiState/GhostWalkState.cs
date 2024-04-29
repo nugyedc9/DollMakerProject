@@ -28,7 +28,7 @@ public class GhostWalkState : GhostBaseState
             state.AnimWalk = false;
         }
 
-        if(Vector3.Distance(state.enemyGhost.transform.position, state.Dest) < 1f)
+        if(Vector3.Distance(state.enemyGhost.transform.position, state.Dest) < 1.3f)
         {
             state.RandomInIdle = true;
             //Debug.Log("IdleAfterWalk");

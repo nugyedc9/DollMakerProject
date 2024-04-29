@@ -34,6 +34,7 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostHuntEffect, PlayerPOS;
     public bool HpCross;
     public bool DollOnHand { get {  return dollOnHand; } set {  dollOnHand = value; } }
+    public bool StopDelaySpawn { get {  return stopDelaySpawn; } set { stopDelaySpawn = value; } }
 
     [Header("Ghost")]
     public NavMeshAgent enemyGhost;
@@ -43,7 +44,8 @@ public class GhostStateManager : MonoBehaviour
     public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint;
     public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed ;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
-        GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked, dollOnHand;
+        GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked, dollOnHand,
+        stopDelaySpawn;
 
     [Header("Granma")]
     public float GranmaAttactSpeed;
@@ -371,6 +373,7 @@ public class GhostStateManager : MonoBehaviour
 
     public void PlayerFailEvery2()
     {
+       
         SwitchState(DetectPlayerState);
     }
 
