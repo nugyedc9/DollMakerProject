@@ -25,7 +25,7 @@ public class FinishBasket : MonoBehaviour
 
      public int SlotNum;
 
-    public int SlotCount { get { return SlotNum; } }
+    public int SlotCount { get { return SlotNum; }  }
 
     public UnityEvent Doll1Event, Doll2Event, Doll3Event;
     bool SuccDoll, succDoll2;
@@ -84,7 +84,7 @@ public class FinishBasket : MonoBehaviour
 
         }*/
 
-        FinishDollCountUI.text = "Doll in Basket" + SlotNum + " / 3";
+        FinishDollCountUI.text = "Doll in Basket " + SlotNum + " / 3";
     }
 
     public void FiinishThisBasket()

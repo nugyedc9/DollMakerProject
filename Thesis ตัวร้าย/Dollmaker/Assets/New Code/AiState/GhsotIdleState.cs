@@ -14,9 +14,7 @@ public class GhsotIdleState : GhostBaseState
         state.GhostFrom.SetActive(true);
         state.AnimAlert = true;
         state.AnimWalk = true;
-        state.GhostAmbi.clip = state.GhostIdleAmbiS;
         state.GhostAudioSoure.Stop();
-        state.GhostAmbi.Play();
         state.DelayHitPlayer = 0;
         state.particle.Stop();
         state.FireSound.Stop();
@@ -40,7 +38,11 @@ public class GhsotIdleState : GhostBaseState
             IdleTime = Random.Range(state.RandomMinIdle, state.RandomMaxIdle);
             Dest = Random.Range(state.DestinationMin, state.DestinationMax);
 
-
+        if(state.GhostAmbi.clip != state.GhostIdleAmbiS)
+        {
+            state.GhostAmbi.clip = state.GhostIdleAmbiS;
+            state.GhostAmbi.Play();
+        } 
 
 
           //  Debug.Log("Idle");

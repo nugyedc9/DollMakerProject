@@ -10,6 +10,8 @@ public class BreakerManager : MonoBehaviour
 
     public UnityEvent  cansee;
 
+    public Event[] events;
+
     SpriteRenderer sp;
     public GameObject[] LightBreaker;
     public Sprite[] spc;
@@ -17,7 +19,8 @@ public class BreakerManager : MonoBehaviour
     private void Awake()
     {
          sp = GetComponent<SpriteRenderer>();
-        Event[] events = FindObjectsOfType<Event>();
+      //  Event[] events = FindObjectsOfType<Event>();
+
         allEvents.AddRange(events);
     }
 

@@ -80,6 +80,8 @@ public class DollDropDesignTrigger : MonoBehaviour
                     PCam._1Doll = true;
                     _1Doll = true;
                 }
+
+                Debug.Log("dollTake");
             }
         }
         if (DollHave)

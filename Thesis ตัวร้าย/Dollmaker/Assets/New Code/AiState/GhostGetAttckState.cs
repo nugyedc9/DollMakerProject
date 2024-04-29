@@ -10,6 +10,7 @@ public class GhostGetAttckState : GhostBaseState
         state.GhostAudioSoure.loop = false;
         state.GhostAudioSoure.clip = state.DiedS;
         state.GhostAudioSoure.Play();
+
         // state.GhostAmbi.Stop();
         // state.PAttack.Attack = false;
 
@@ -21,8 +22,9 @@ public class GhostGetAttckState : GhostBaseState
         state.particle.Play();
 
         state.MoveSound.loop = true;
-        state.MoveSound.clip = state.WalkS;
-        state.MoveSound.Play();
+        /* state.MoveSound.clip = state.WalkS;
+         state.MoveSound.Play();*/
+        state.OnPlayerAudio.enabled = false;
         state.GhostBoxCol.enabled = false;
 
         if (!HitdelayCur)
@@ -38,12 +40,14 @@ public class GhostGetAttckState : GhostBaseState
 
     public override void UpdateState(GhostStateManager state)
     {
-       // state.Cansee = false;
+        state.enemyGhost.speed = 0;
 
-     //   state.DrawVisionCone();
-       /* state.CurrentDest = state.playerPos.transform;
-        state.Dest = state.CurrentDest.position;
-          state.enemyGhost.destination = state.Dest;*/
+        // state.Cansee = false;
+
+        //   state.DrawVisionCone();
+        /* state.CurrentDest = state.playerPos.transform;
+         state.Dest = state.CurrentDest.position;
+           state.enemyGhost.destination = state.Dest;*/
 
         /*        if (state.ChangePos)
                 {
@@ -54,16 +58,16 @@ public class GhostGetAttckState : GhostBaseState
                 }
         */
 
-/*
-        if (state.enemyGhost.speed < 1)
-        {
-            state.enemyGhost.speed = state.GhostSpeedMin;
-        }
-        else if (state.enemyGhost.speed > state.GhostSpeedMin)
-        {
-            state.enemyGhost.speed -= state.GhostSpeedDown * Time.deltaTime;
-        }
-*/
+        /*
+                if (state.enemyGhost.speed < 1)
+                {
+                    state.enemyGhost.speed = state.GhostSpeedMin;
+                }
+                else if (state.enemyGhost.speed > state.GhostSpeedMin)
+                {
+                    state.enemyGhost.speed -= state.GhostSpeedDown * Time.deltaTime;
+                }
+        */
 
         if (state.HitDelay > 0)
         {

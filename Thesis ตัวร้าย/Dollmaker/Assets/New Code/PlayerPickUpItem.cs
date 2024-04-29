@@ -143,6 +143,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     {
         Ray ray = new Ray(pickUPPoint.position, pickUPPoint.forward);
 
+        DollCount.text = dollCountint.ToString();
+
         if (Physics.Raycast(ray, out RaycastHit hitInfo, Pickrange))
         {
             // Debug.Log(hitInfo.collider.gameObject.tag);
@@ -216,7 +218,6 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         DollCountUi.SetActive(true);
                         DollCountint++;
-                        DollCount.text = dollCountint.ToString();
 
 
                         ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();

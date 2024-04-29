@@ -33,7 +33,6 @@ public class GhostDiedState : GhostBaseState
             state.GhostLight.SetActive(false);
             state.GhostFrom.SetActive(false);
             state.GhostBoxCol.enabled = false;
-            state.GhostAmbi.Stop();
             if (!dropDoll)
             {
                 if(state.GhostID != 3)

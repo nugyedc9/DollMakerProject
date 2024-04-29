@@ -599,7 +599,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
         }
 
-        if(DollCountFinish == 6 && !haveDoll && Basket.NeedFinishDoll >= Basket.SlotCount && DelayGameOver == 0)
+        if(DollCountFinish == 6 && !haveDoll && Basket.NeedFinishDoll > Basket.SlotCount && DelayGameOver == 0)
         {
             if (!Finish6DollCheck)
             {
@@ -609,19 +609,20 @@ public PlayerPickUpItem playerPickUpItem;
             Debug.Log("EndGameStart");
         }
 
-        if(DollpushCount == 6)
+        if(DollpushCount == 6 && haveDoll)
         {
             if (!DelayStart)
             {
-                DelayGameOver = 30f;
+                DelayGameOver = 39f; //Debug.Log("StartCountDown");
                 DelayStart = true;
             }
 
-            if(DelayGameOver > 0) DelayGameOver -= Time.deltaTime;
-            else if(DelayGameOver < 0)
-            {
-                DelayGameOver = 0;
-            }
+        }
+        else if (DollCountFinish == 6 && !haveDoll && DelayGameOver > 0) DelayGameOver -= Time.deltaTime;
+
+        if (DelayGameOver < 0)
+        {
+            DelayGameOver = 0;
         }
 
         if (ChangeCam.GhostDied1data)

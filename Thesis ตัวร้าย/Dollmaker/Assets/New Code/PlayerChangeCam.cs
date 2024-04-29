@@ -64,7 +64,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [Header("UI Player")]
     public GameObject PlayerMainOBJUI;
     public GameObject PlayerHpUI, StaminaUI, CrossBarUI,
-        DollCountUi, DollinBasketUI;
+        DollCountUi, DollinBasketUI, TakeGhost3;
 
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
@@ -684,7 +684,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         ItemOnPlayer.SetActive(true);
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
-
+                        TakeGhost3.SetActive(false);
                         DollinBasketUI.SetActive(true);
                         if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
 
@@ -734,8 +734,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         if(!_1clothDoll)
                             clothDoll.SetActive(false);
                         CloseMouse();
-
-                        if(PPick.DollCountint != 0) DollCountUi.SetActive(true);
+                        TakeGhost3.SetActive(false);
+                        if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
                         DollinBasketUI.SetActive(true);
 
                         TimerDelay = 0;
@@ -1447,6 +1447,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     ChangePOV.SwitchCamera(FirstpersonView);
                     CamOnPerson = true;
                     CamOnDesk = false;
+                    TakeGhost3.SetActive(false);
+
                 }
                 else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
                 {
@@ -1474,6 +1476,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                     ChangePOV.SwitchCamera(FirstpersonView);
                     CamOnPerson = true;
                     CamOnDesk = false;
+                    TakeGhost3.SetActive(false);
                 }
             }
         }
