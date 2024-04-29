@@ -84,7 +84,7 @@ public class FinishBasket : MonoBehaviour
 
         }*/
 
-        FinishDollCountUI.text = "Doll in Basket " + SlotNum + " / 3";
+        FinishDollCountUI.text = "FinishedDolls in basket " + SlotNum + " / 3";
     }
 
     public void FiinishThisBasket()
