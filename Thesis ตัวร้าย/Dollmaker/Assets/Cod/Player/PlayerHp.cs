@@ -49,7 +49,11 @@ public class PlayerHp : MonoBehaviour
                 else if(PCam.storyCount == 17  ) DeadVideo[1].SetActive(true);
                 else if(PCam.storyCount == 21  ) DeadVideo[2].SetActive(true);
                 else if(PCam.storyCount == 22  ) DeadVideo[3].SetActive(true);
-                StartCoroutine(DeadPlay());
+                Time.timeScale = 0f;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                DeadCanva.SetActive(true);
+                //StartCoroutine(DeadPlay());
                 Playdead = true;
             }
         }

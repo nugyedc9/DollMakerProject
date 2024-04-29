@@ -4,6 +4,8 @@ public class GhostSearchState : GhostBaseState
 {
     int ranmaxspawn;
     float TimeCount;
+    DelayCloseGameObject TakeDoll;
+
 
     public override void EnterState(GhostStateManager state)
     {
@@ -19,6 +21,8 @@ public class GhostSearchState : GhostBaseState
         state.GhostAmbi.Stop();
         state.OnPlayerAudio.enabled = false;
         state.GhostHuntEffect.SetActive(false);
+        TakeDoll = state.GhosttakeDollVideo.GetComponent<DelayCloseGameObject>();
+        TakeDoll.DelayTimer = 2;
         state.GhosttakeDollVideo.SetActive(true);
     }
 

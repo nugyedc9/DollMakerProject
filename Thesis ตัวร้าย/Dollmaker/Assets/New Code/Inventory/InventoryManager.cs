@@ -27,6 +27,7 @@ public PlayerPickUpItem playerPickUpItem;
     public GhostStateManager ghostStateManager;
     public Camera Cam;
     public FinishBasket Basket;
+    public AudioSource EndGameCountdown;
     public int maxstaxkitem;
 
     public InventorySlote[] inventoryslote;
@@ -609,15 +610,16 @@ public PlayerPickUpItem playerPickUpItem;
             Debug.Log("EndGameStart");
         }
 
-        if(DollpushCount == 6 && haveDoll)
+        if(DollCountFinish == 6 && haveDoll)
         {
-            if (!DelayStart)
-            {
+ /*           if (!DelayStart)
+            {*/
                 DelayGameOver = 40f; //Debug.Log("StartCountDown");
-                Debug.Log(Basket.NeedFinishDoll);
+               // Debug.Log(Basket.NeedFinishDoll);
                 Debug.Log(Basket.SlotCount);
-                DelayStart = true;
-            }
+                EndGameCountdown.Play();
+/*                DelayStart = true;
+            }*/
 
         }
         else if (DollCountFinish == 6 && !haveDoll && DelayGameOver > 0) DelayGameOver -= Time.deltaTime;
