@@ -37,7 +37,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     public GameObject[] ItemGet;
     public Animator ItemGetAnim;
     public TextMeshProUGUI DollCount;
-    public GameObject DollCountUi, KeyUi;
+    public GameObject DollCountUi, KeyUi, AxeUI;
     float DelayCloseItemGet;
 
 
@@ -454,10 +454,8 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                     pieceClothGet = hitInfo.collider.gameObject.GetComponent<RollClothColor>();
                     KeyId = pieceClothGet.pieceClothID;
 
-                    ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
-                    GetPickUp.Add(ItemIdGet.id);
-
-                    inventoryManager.AddItem(itemPickUp[23]);
+                    AxeUI.SetActive(true);
+         
                     Key = true;
 
                     Destroy(hitInfo.collider.gameObject);
@@ -534,6 +532,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 if (DoorId.DoorID == 5) unlockChain.Invoke();
 
 
+                                AxeUI.SetActive(false);
                                 KeyUi.SetActive(false);
                             }
 
