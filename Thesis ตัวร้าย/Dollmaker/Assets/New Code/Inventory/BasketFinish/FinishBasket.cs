@@ -52,7 +52,7 @@ public class FinishBasket : MonoBehaviour
 
     }
 
-    public void DestoryDoll()
+  /*  public void DestoryDoll()
     {
         foreach (GameObject slot in Slot)
         {
@@ -64,7 +64,7 @@ public class FinishBasket : MonoBehaviour
         
         
         SlotNum = 0;
-    }
+    }*/
 
     public void Update()
     {

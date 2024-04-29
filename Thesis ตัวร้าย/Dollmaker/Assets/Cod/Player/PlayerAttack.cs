@@ -1194,16 +1194,16 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         ItemName.text = "Not now";
                         InterectItem = true;
                     }
-                    if (playerPickUpItem.Have2Key)
+                    if (playerPickUpItem.Have2Key && DoorInterect.DoorID == 4)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Need the key to unlock";
+                        ItemName.text = "Unlock the door [Left Click]";
                         InterectItem = true;
                     }
-                    if (playerPickUpItem.Have3Key)
+                    if (playerPickUpItem.Have3Key && DoorInterect.DoorID == 4)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Need the key to unlock";
+                        ItemName.text = "Unlock the door [Left Click]";
                         InterectItem = true;
                     }
 
