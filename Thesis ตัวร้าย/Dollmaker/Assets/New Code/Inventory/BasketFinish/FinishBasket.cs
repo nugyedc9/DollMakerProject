@@ -61,7 +61,7 @@ public class FinishBasket : MonoBehaviour
                 Destroy(slot.transform.GetChild(0).gameObject);
             }
         }
-        f
+        
         
         SlotNum = 0;
     }
