@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitBoxAttackPlayer : MonoBehaviour
 {
     public PlayerHp playerHp;
+    public PlayerChangeCam PCam;
     BoxCollider attackbox;
 
     private void Start()
@@ -17,6 +18,7 @@ public class HitBoxAttackPlayer : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             playerHp.Takedamage(1);
+            PCam.outDeskViewAfterHit();
             attackbox.enabled = false;
         }
     }

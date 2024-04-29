@@ -50,7 +50,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
     [Header("Tutorial Pick UP")]
     public GameObject CrossNote;
     public GameObject ScissorNote;
-    bool _1Cross, _1Scissor;
+    bool _1Cross, _1Scissor, have3Key, have2Key;
 
     [Header("Note PickUp")]
     public GameObject Note;
@@ -91,6 +91,9 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
     [SerializeField] bool finishDollOnHand5;
     public bool FDOnhand5 { get { return finishDollOnHand5; } set { finishDollOnHand5 = value; } }
+
+    public bool Have2Key { get { return have2Key; } set { have2Key = value; } }
+    public bool Have3Key { get { return have3Key; } set { have3Key = value;} }
 
 
 
@@ -254,6 +257,22 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         KeyUi.SetActive(true);
 
                         if (keyId == 1) JumpGranMaKey.enabled = true;
+                        if (!Have2Key)
+                        {
+                            if (keyId == 4)
+                            {
+                                Have3Key = true;
+                                Debug.Log("Mater");
+                            }
+                        }
+                        if (!Have3Key)
+                        {
+                            if (keyId == 3)
+                            {
+                                Have2Key = true;
+                                Debug.Log("Ritual");
+                            }
+                        }
 
                         Key = true;
 
@@ -526,11 +545,42 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 DoorId.DoorID = 0;
 
                                 if (DoorId.DoorID == 2) { } //_Ghost2BigSpawn.Invoke();
-                                if (DoorId.DoorID == 4) unlockChain.Invoke();
+                                if (DoorId.DoorID == 5) unlockChain.Invoke();
+
+
+                                KeyUi.SetActive(false);
                             }
 
-                            KeyUi.SetActive(false);
+                            if (Have3Key)
+                            {
+                                KeyUi.SetActive(true);
+                                Key = true;
+                                keyId = 4;
+                                audioSource.clip = UnlockDoorS; audioSource.Play();
+                                DoorId.Lock = false;
+
+                                Debug.Log("Used Master");
+
+                                inventoryManager.AddItem(itemPickUp[10]);
+                                Have3Key = false;
+                            }
+
+                            if (Have2Key)
+                            {
+                                KeyUi.SetActive(true);
+                                Key = true;
+                                keyId = 4;
+                                audioSource.clip = UnlockDoorS; audioSource.Play();
+                                DoorId.Lock = false;
+
+                                Debug.Log("Used Ritual");
+
+                                inventoryManager.AddItem(itemPickUp[10]);
+                                Have2Key = false;
+                            }
+
                         }
+
                     }
 
                     if (hitInfo.collider.gameObject.tag == "Basket")

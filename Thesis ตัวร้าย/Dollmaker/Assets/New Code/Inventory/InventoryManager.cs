@@ -107,7 +107,7 @@ public PlayerPickUpItem playerPickUpItem;
             inventoryItem itemSlot = inventoryslote[selectedSlot].GetComponentInChildren<inventoryItem>();
             if (itemSlot != null && itemSlot.gameObject.CompareTag("Cross"))
             {
-                CrossBar.SetActive(true);
+               // CrossBar.SetActive(true);
                 pAttack.Attack = true;
                 pAttack.CrossSlotOnHane = true;
                 ItemOnHand[0].SetActive(true);
@@ -127,7 +127,7 @@ public PlayerPickUpItem playerPickUpItem;
             }
             else
             {
-                CrossBar.SetActive(false);
+               // CrossBar.SetActive(false);
                 pAttack.Attack = false;
                 pAttack.CrossSlotOnHane = false;
                 crossAnim.SetState(CrossState.Idle);
@@ -415,6 +415,7 @@ public PlayerPickUpItem playerPickUpItem;
                 else
                 {
                     ghostStateManager.DollOnHand = false;
+                    playerPickUpItem.FDOnhand1 = false;
                     haveDoll = false;
                 }
 

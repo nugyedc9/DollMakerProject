@@ -27,7 +27,7 @@ public class FinishBasket : MonoBehaviour
 
     public int SlotCount { get { return SlotNum; } }
 
-    public UnityEvent NeedDollSucc, DeedDollSucc2;
+    public UnityEvent Doll1Event, Doll2Event, Doll3Event;
     bool SuccDoll, succDoll2;
 
     public bool SuccDoll2 { get { return succDoll2; } set {  succDoll2 = value; } }
@@ -41,8 +41,15 @@ public class FinishBasket : MonoBehaviour
             {
                 var DropObj = Instantiate(ItemDrop[SlotNum], SpawnPoint.position, Quaternion.identity) as GameObject;
             }
-            SlotNum++;            
+            SlotNum++;
+
+            if (SlotNum == 1) Doll1Event.Invoke();
+            if (SlotNum == 2) Doll2Event.Invoke();
+            if (SlotNum == 3) Doll3Event.Invoke();
         }
+
+
+
     }
 
     public void DestoryDoll()
@@ -54,14 +61,14 @@ public class FinishBasket : MonoBehaviour
                 Destroy(slot.transform.GetChild(0).gameObject);
             }
         }
-
+        f
         
         SlotNum = 0;
     }
 
     public void Update()
     {
-        if(finishDollneed <= SlotNum)
+       /* if(finishDollneed <= SlotNum)
         {
             if(!SuccDoll)
             {
@@ -75,7 +82,7 @@ public class FinishBasket : MonoBehaviour
                 SuccDoll2 = false;
             }
 
-        }
+        }*/
 
         FinishDollCountUI.text = "Doll in Basket" + SlotNum + " / 3";
     }

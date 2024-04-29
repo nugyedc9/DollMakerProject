@@ -1194,6 +1194,18 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         ItemName.text = "Not now";
                         InterectItem = true;
                     }
+                    if (playerPickUpItem.Have2Key)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Need the key to unlock";
+                        InterectItem = true;
+                    }
+                    if (playerPickUpItem.Have3Key)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Need the key to unlock";
+                        InterectItem = true;
+                    }
 
                 }
                 else

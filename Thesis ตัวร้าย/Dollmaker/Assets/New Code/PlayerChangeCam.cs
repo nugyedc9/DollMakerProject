@@ -692,6 +692,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             clothTutorial.SetActive(false);
                         else if(!T1CutLine && _1DesignCloth)
                             CutLine.SetActive(false);
+
+                        if(tutorialUseDoll) UsedollTutorial.SetActive(false);
+
                         CloseMouse();
                         TimerDelay = 0;
                         ChangePOV.SwitchCamera(FirstpersonView);
@@ -726,7 +729,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TextOnPlayer.SetActive(true);
                         InvOpen.Play("InvClose");
                         DropDollArrow.SetActive(false);
-                        if (!_1Doll)
+                        if (_1Doll)
                             DollTutorial.SetActive(false);
                         if(!_1clothDoll)
                             clothDoll.SetActive(false);
@@ -1408,6 +1411,71 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             TimerDelay = 0;
             ChangePOV.SwitchCamera(FirstpersonView);
 
+        }
+    }
+
+    public void outDeskViewAfterHit()
+    {
+        if (!CamOnPerson)
+        {
+            if (CamOnDesk)
+            {
+                if (ChangePOV.IsActiveCamera(DeskShopView))
+                {
+                    Scissorcanva.SetActive(false);
+                    BoxRollCloth.SetActive(false);
+                    // ClothBox.enabled    = true;
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    /* DesignSelect.SetActive(false);*/
+                    Book.SetActive(false);
+                    Allline.SetActive(false);
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    InvOpen.Play("InvClose");
+
+                    DollinBasketUI.SetActive(true);
+                    if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
+
+                    if (!_1DesignCloth && !TutorialCloth || TutorialCloth)
+                        clothTutorial.SetActive(false);
+                    else if (!T1CutLine && _1DesignCloth)
+                        CutLine.SetActive(false);
+
+                    CloseMouse();
+                    TimerDelay = 0;
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    CamOnDesk = false;
+                }
+                else if (ChangePOV.IsActiveCamera(PushClothOnDollView))
+                {
+                    if (!LightEvent)
+                        DollBox.enabled = true;
+                    BackDesign.SetActive(false);
+                    _InputManager.StopWalk();
+                    Throwitem.CanAttack();
+                    /*   DesignDollSelect.SetActive(false);*/
+                    BookDoll.SetActive(false);
+                    ItemOnPlayer.SetActive(true);
+                    TextOnPlayer.SetActive(true);
+                    InvOpen.Play("InvClose");
+                    DropDollArrow.SetActive(false);
+                    if (_1Doll)
+                        DollTutorial.SetActive(false);
+                    if (!_1clothDoll)
+                        clothDoll.SetActive(false);
+                    CloseMouse();
+
+                    if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
+                    DollinBasketUI.SetActive(true);
+
+                    TimerDelay = 0;
+                    ChangePOV.SwitchCamera(FirstpersonView);
+                    CamOnPerson = true;
+                    CamOnDesk = false;
+                }
+            }
         }
     }
 
