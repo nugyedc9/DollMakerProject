@@ -64,13 +64,13 @@ public PlayerPickUpItem playerPickUpItem;
 
     float dollpushCount;
     public float DollpushCount { get { return dollpushCount; } set { dollpushCount = value; } }
-
+    public float DelayGameOver;
+    public bool haveDoll;
 
     public UnityEvent Doll2CutScene,TakeDoll3, Ghost2Spawn, Ghost4Evnet, finishDoll6Event, Doll1Finish;
 
     private Vector3 DesDrop;
-    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck,finishdoll1,haveDoll,DelayStart;
-    float DelayGameOver;
+    bool drop,MakeDoll2 , take3data, Ghost2spawn, Ghost4Spawn, Finish6DollCheck,finishdoll1,DelayStart;
 
     private void Awake()
     {
@@ -614,6 +614,8 @@ public PlayerPickUpItem playerPickUpItem;
             if (!DelayStart)
             {
                 DelayGameOver = 39f; //Debug.Log("StartCountDown");
+                Debug.Log(Basket.NeedFinishDoll);
+                Debug.Log(Basket.SlotCount);
                 DelayStart = true;
             }
 

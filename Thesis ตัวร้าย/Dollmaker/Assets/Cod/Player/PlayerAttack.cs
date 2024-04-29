@@ -1203,6 +1203,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                     ItemName.text = "Not now";
                     InterectItem = true;
                   
+                    if(DoorInterect.DoorID == 20)
+                    {
+                        ItemText.SetActive(true);
+                        ItemName.text = "Open the Door [E]";
+                        InterectItem = true;
+                    }
+
                 }
             }
             else if (hitevent.collider.gameObject.tag == "Lantern")

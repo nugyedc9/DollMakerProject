@@ -174,7 +174,7 @@ public class PlayerHp : MonoBehaviour
 
     IEnumerator DeadPlay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.1f);
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
