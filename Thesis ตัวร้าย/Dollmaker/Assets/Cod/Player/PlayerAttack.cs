@@ -1191,7 +1191,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                      if (DoorInterect.DoorID == 10 && DoorInterect.Lock)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Not now";
+                        ItemName.text = "Door Lock";
                         InterectItem = true;
                     }
                     
@@ -1200,7 +1200,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 else
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Not now";
+                    ItemName.text = "Door Lock";
                     InterectItem = true;
                   
                     if(DoorInterect.DoorID == 20)

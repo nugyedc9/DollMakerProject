@@ -21,9 +21,10 @@ public class GhsotSpawnState : GhostBaseState
         state.PlayerHitDelay = state.HuntSpeed;
         state.GhostLight.SetActive(true);
         state.GhostFrom.SetActive(false);
-     /*   if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Shake_ani"))
-            state.GhostAni.Play("Shake_ani", 0, 0);*/
-      //  ghostNum++;
+        state.GhostHuntEffect.SetActive(false);
+        /*   if (!state.GhostAni.GetCurrentAnimatorStateInfo(0).IsName("Shake_ani"))
+               state.GhostAni.Play("Shake_ani", 0, 0);*/
+        //  ghostNum++;
     }
 
     public override void UpdateState(GhostStateManager state)

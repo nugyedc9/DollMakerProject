@@ -64,7 +64,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
     [Header("UI Player")]
     public GameObject PlayerMainOBJUI;
     public GameObject PlayerHpUI, StaminaUI, CrossBarUI,
-        DollCountUi, DollinBasketUI, TakeGhost3;
+        DollCountUi, DollinBasketUI, TakeGhost3,
+        KeyUI;
 
     [Header("Mini Game")]
     public MiniGameAuidition minigamestate;
@@ -487,6 +488,9 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
                             DollCountUi.SetActive(false);
                             DollinBasketUI.SetActive(false);
+
+                            KeyUI.SetActive(false);
+
                             ChangePOV.SwitchCamera(PushClothOnDollView);
                         }
                         else
@@ -518,6 +522,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                                 //Debug.Log("doll1tutorial"); 
                                 tutorialUseDoll = true;
                             }
+
+                            KeyUI.SetActive(false);
 
                             DollinBasketUI.SetActive(false);
                             DollCountUi.SetActive(false);
@@ -694,6 +700,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                             CutLine.SetActive(false);
 
                         if(tutorialUseDoll) UsedollTutorial.SetActive(false);
+                        if(PPick.Key) KeyUI.SetActive(true);
+
 
                         CloseMouse();
                         TimerDelay = 0;
@@ -737,6 +745,8 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         TakeGhost3.SetActive(false);
                         if (PPick.DollCountint != 0) DollCountUi.SetActive(true);
                         DollinBasketUI.SetActive(true);
+
+                        if (PPick.Key) KeyUI.SetActive(true);
 
                         TimerDelay = 0;
                         ChangePOV.SwitchCamera(FirstpersonView);

@@ -262,10 +262,10 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
 
                         Key = true;
 
-                        ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
-                        GetPickUp.Add(ItemIdGet.id);
+                       /* ItemIdGet = hitInfo.collider.gameObject.GetComponent<ItemIdGenerate>();
+                        GetPickUp.Add(ItemIdGet.id);*/
 
-                        inventoryManager.AddItem(itemPickUp[10]);
+                       // inventoryManager.AddItem(itemPickUp[10]);
 
 
                         Destroy(hitInfo.collider.gameObject);
@@ -526,7 +526,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                             {
                                 audioSource.clip = UnlockDoorS; audioSource.Play();
                                 DoorId.Lock = false;
-                                inventoryManager.GetSelectedItem(true);
+                                //inventoryManager.GetSelectedItem(true);
                                 Key = false;
                                 DoorId.DoorID = 0;
 

@@ -19,6 +19,7 @@ public class GhostSearchState : GhostBaseState
         state.GhostAmbi.Stop();
         state.OnPlayerAudio.enabled = false;
         state.GhostHuntEffect.SetActive(false);
+        state.GhosttakeDollVideo.SetActive(true);
     }
 
     public override void UpdateState(GhostStateManager state)

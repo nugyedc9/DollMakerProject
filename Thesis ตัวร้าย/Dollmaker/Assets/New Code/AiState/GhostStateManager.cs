@@ -41,7 +41,7 @@ public class GhostStateManager : MonoBehaviour
     public int GhostID;
     public BoxCollider GhostBoxCol, AttackBox;
     public ParticleSystem particle;
-    public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint;
+    public GameObject GhostFrom, GhostLight, Dollprefab, Droppoint, GhosttakeDollVideo;
     public float DistanceAmount,GhostDis ,WalkSpeed, HuntSpeed ;
     public bool RandomInIdle, PlayerInSight, CanseePlayer, HitPlayer,
         GetHit, GetAttack, ChangePos, PlayerDetectSpawn, BossAttacked, dollOnHand,
