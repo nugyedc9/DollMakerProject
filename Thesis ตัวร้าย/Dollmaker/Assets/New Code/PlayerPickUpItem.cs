@@ -257,22 +257,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                         KeyUi.SetActive(true);
 
                         if (keyId == 1) JumpGranMaKey.enabled = true;
-                        if (!Have2Key)
-                        {
-                            if (keyId == 4)
-                            {
-                                Have3Key = true;
-                                Debug.Log("Mater");
-                            }
-                        }
-                        if (!Have3Key)
-                        {
-                            if (keyId == 3)
-                            {
-                                Have2Key = true;
-                                Debug.Log("Ritual");
-                            }
-                        }
+                      
 
                         Key = true;
 
@@ -551,33 +536,7 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 KeyUi.SetActive(false);
                             }
 
-                            if (Have3Key)
-                            {
-                                KeyUi.SetActive(true);
-                                Key = true;
-                                keyId = 4;
-                                audioSource.clip = UnlockDoorS; audioSource.Play();
-                                DoorId.Lock = false;
-
-                                Debug.Log("Used Master");
-
-                                inventoryManager.AddItem(itemPickUp[10]);
-                                Have3Key = false;
-                            }
-
-                            if (Have2Key)
-                            {
-                                KeyUi.SetActive(true);
-                                Key = true;
-                                keyId = 4;
-                                audioSource.clip = UnlockDoorS; audioSource.Play();
-                                DoorId.Lock = false;
-
-                                Debug.Log("Used Ritual");
-
-                                inventoryManager.AddItem(itemPickUp[10]);
-                                Have2Key = false;
-                            }
+                          
 
                         }
 

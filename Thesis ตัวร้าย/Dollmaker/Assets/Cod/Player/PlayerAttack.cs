@@ -93,7 +93,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     RollClothColor KeysID;
 
     [Header("CrossAction")]
-    [SerializeField] private float CurHpCross = 120;
+    [SerializeField] private float CurHpCross = 60;
     public float CrossLost, CrossRegen;
     public Slider CrossSliber;
     public float Attackrange;
@@ -232,7 +232,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
     {       
             Light.SetActive(false);
           pointLight.SetActive(false);
-        curHpCross = 60;
+        curHpCross = 0;
 
     }
 
@@ -273,7 +273,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
             if (Input.GetMouseButton(0))
             {
-                if (  curHpCross >= 60)
+                if (  curHpCross == 0)
                 {
                     crossAnim.SetState(CrossState.HoldUp);
 
@@ -295,7 +295,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
              
                                 GhostHit.Playerhit();
-                                curHpCross = 0;
+                                curHpCross = 60;
                                // Crosstakedamge();
                             
 
@@ -372,7 +372,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             }
         }
 
-        if (curHpCross < 60) CrossReCharge();
+        if (curHpCross > 0) CrossReCharge();
 
 
         #endregion
@@ -1194,18 +1194,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         ItemName.text = "Not now";
                         InterectItem = true;
                     }
-                    if (playerPickUpItem.Have2Key && DoorInterect.DoorID == 4)
-                    {
-                        ItemText.SetActive(true);
-                        ItemName.text = "Unlock the door [Left Click]";
-                        InterectItem = true;
-                    }
-                    if (playerPickUpItem.Have3Key && DoorInterect.DoorID == 4)
-                    {
-                        ItemText.SetActive(true);
-                        ItemName.text = "Unlock the door [Left Click]";
-                        InterectItem = true;
-                    }
+                    
 
                 }
                 else
@@ -3404,7 +3393,7 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     public void Crosstakedamge()
     {
-        if(curHpCross > 0) 
+        if(curHpCross < 0) 
         curHpCross -= CrossLost * Time.deltaTime;
         if(curHpCross < 0)
         {
@@ -3418,10 +3407,11 @@ public class PlayerAttack : MonoBehaviour , IDataGame
 
     public void CrossReCharge()
     {
-        if (curHpCross < 60)
+        if (curHpCross > 0 )
         {
-            curHpCross += Time.deltaTime;
+            curHpCross -= Time.deltaTime;
         }
+        else if(curHpCross < 0) { curHpCross = 0; }
         
     }
 

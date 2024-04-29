@@ -18,6 +18,8 @@ public class PlayerHp : MonoBehaviour
     public GameObject Hp1, Hp2, DeadCanva, Takeingeyes,CutLine, blurEye,THowToHeal;
     private bool PlayGetHit, normaleye, Playdead, tuHeal,CloseHp;
 
+    public int CurHp { get { return curHp; } set { curHp = value; } }
+
     [Header("---- Audio ----")]
     public AudioSource audioSource;
     public AudioSource HpLow, Died;
@@ -72,7 +74,7 @@ public class PlayerHp : MonoBehaviour
             HpLow.enabled = false;
             blurEye.SetActive(false);
         }
-        if (curHp == 4)
+        if (curHp == MaxHp)
         {
             if (!CloseHp)
             {
@@ -80,7 +82,7 @@ public class PlayerHp : MonoBehaviour
                 CloseHp = true;
             }
         }
-        else if (curHp < 4)
+        else if (curHp < MaxHp)
         {
             if (CloseHp)
             {

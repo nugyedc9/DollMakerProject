@@ -31,6 +31,8 @@ public class GhostGetAttckState : GhostBaseState
             HitdelayCur = true;
         }
         else state.HitDelay = HitDelaySave;
+        state.GhostHuntEffect.SetActive(false);
+
         //  Debug.Log("GetAttack");
     }
 
@@ -38,10 +40,10 @@ public class GhostGetAttckState : GhostBaseState
     {
        // state.Cansee = false;
 
-        state.DrawVisionCone();
-        state.CurrentDest = state.playerPos.transform;
+     //   state.DrawVisionCone();
+       /* state.CurrentDest = state.playerPos.transform;
         state.Dest = state.CurrentDest.position;
-          state.enemyGhost.destination = state.Dest;
+          state.enemyGhost.destination = state.Dest;*/
 
         /*        if (state.ChangePos)
                 {

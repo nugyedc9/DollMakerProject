@@ -593,7 +593,8 @@ public PlayerPickUpItem playerPickUpItem;
             if (!take3data)
             {
                 TakeDoll3.Invoke();
-                DollCountFinish--;
+                //DollCountFinish--;
+                Debug.Log("Lost");
                 take3data = true;
             }
         }
@@ -605,13 +606,14 @@ public PlayerPickUpItem playerPickUpItem;
                 finishDoll6Event.Invoke();
                 Finish6DollCheck = true;
             }
+            Debug.Log("EndGameStart");
         }
 
         if(DollpushCount == 6)
         {
             if (!DelayStart)
             {
-                DelayGameOver = 120f;
+                DelayGameOver = 30f;
                 DelayStart = true;
             }
 
