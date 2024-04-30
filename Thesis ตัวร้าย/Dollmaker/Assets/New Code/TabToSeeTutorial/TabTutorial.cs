@@ -8,6 +8,7 @@ public class TabTutorial : MonoBehaviour
     public PlayerAttack PAttack;
     public PlayerPickUpItem playerpickup;
     public PlayerChangeCam Cam;
+    public PlayerHp PHP;
     public InputManager inputManager;
     public Animator InvShow;
     public GameObject[] Tutorial;
@@ -48,7 +49,7 @@ public class TabTutorial : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
+                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote && !PHP.playDied && !Cam.EndGame)
                 {
                     PageSelect(0);
                     OpenTutor = true;
@@ -96,7 +97,7 @@ public class TabTutorial : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote)
+                if (!OpenTutor && !PAttack.isPause && !playerpickup.OnNote && !PHP.playDied && !Cam.EndGame)
                 {
                     PageSelect(3);
                     OpenTutor = true;
