@@ -19,7 +19,7 @@ public class PlayerHp : MonoBehaviour
     private bool PlayGetHit, normaleye, Playdead, tuHeal,CloseHp;
 
     public int CurHp { get { return curHp; } set { curHp = value; } }
-    public bool playDied { get { return playDied; } set { playDied = value; } }
+    public bool playDied { get { return Playdead; } set { Playdead = value; } }
 
 
     [Header("---- Audio ----")]
