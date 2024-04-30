@@ -528,8 +528,13 @@ public class PlayerPickUpItem : MonoBehaviour, IDataGame
                                 Key = false;
                                 DoorId.DoorID = 0;
 
-                                if (DoorId.DoorID == 2) { } //_Ghost2BigSpawn.Invoke();
-                                if (DoorId.DoorID == 5) unlockChain.Invoke();
+                                // if (DoorId.DoorID == 2) { } //_Ghost2BigSpawn.Invoke();
+
+                                if (KeyId == 5)
+                                {
+                                    unlockChain.Invoke();
+                                    Debug.Log("PLay");
+                                }
 
 
                                 AxeUI.SetActive(false);

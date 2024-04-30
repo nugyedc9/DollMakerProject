@@ -398,12 +398,12 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         ChangePOV.SwitchCamera(WorkShopView);
                         TimerDelay = 0.1f;
                       //  StartCoroutine(DelayCamera());
-
+/*
                         if (!_1Sewing && !TutorialSwing)
                         {
                             sewingTutorial.SetActive(true);
                             TutorialSwing = true;
-                        }
+                        }*/
                     }
                 }
 
@@ -518,7 +518,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
 
                             if(invmanager.DollCountFinish == 1 && !tutorialUseDoll)
                             {
-                                UsedollTutorial.SetActive(true);
+                               // UsedollTutorial.SetActive(true);
                                 //Debug.Log("doll1tutorial"); 
                                 tutorialUseDoll = true;
                             }
@@ -699,7 +699,7 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
                         else if(!T1CutLine && _1DesignCloth)
                             CutLine.SetActive(false);
 
-                        if(tutorialUseDoll) UsedollTutorial.SetActive(false);
+                     //   if(tutorialUseDoll) UsedollTutorial.SetActive(false);
                         if(PPick.Key) KeyUI.SetActive(true);
 
 
@@ -944,12 +944,12 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             ChangePOV.SwitchCamera(PushClothOnDollView);
             TimerDelay = 0.1f;
            // StartCoroutine(DelayCamera());
-
+/*
             if (!_1Sewing && !TutorialSwing)
             {
                 sewingTutorial.SetActive(true);
                 TutorialSwing = true;
-            }
+            }*/
         }
     }
 
@@ -1012,11 +1012,11 @@ public class PlayerChangeCam : MonoBehaviour, IDataGame
             ChangePOV.SwitchCamera(DeskShopView);
             TimerDelay = 0.1f;
 
-            if (!_1Sewing && !TutorialSwing)
+           /* if (!_1Sewing && !TutorialSwing)
             {
                 sewingTutorial.SetActive(true);
                 TutorialSwing = true;
-            }
+            }*/
             //StartCoroutine(DelayCamera());
         }
     }

@@ -377,4 +377,12 @@ public class GhostStateManager : MonoBehaviour
         SwitchState(DetectPlayerState);
     }
 
+    public void CloseEffect()
+    {
+        GhostHuntEffect.SetActive(false);
+        EffectHunt.Stop();
+        GhostAmbi.enabled = false;
+        OnPlayerAudio.enabled = false;
+    }
+
 }

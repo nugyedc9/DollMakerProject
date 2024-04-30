@@ -39,6 +39,7 @@ public class MiniGameAuidition : MonoBehaviour
     public PlayerPickUpItem playpickUp;
     public DesignSelect designSelect;
     public Item[] FinishClothID;
+    public GameObject Tutorial;
 
     [Header("Prefabs Audition")]
     public GameObject[] AuditionPrefabs;
@@ -409,7 +410,13 @@ public class MiniGameAuidition : MonoBehaviour
                     if(FinishDoll == 5) Finish5.Invoke();
                     Finish = false;
                     BackButt.SetActive(true);
-                    
+
+                    if (!_1Fail)
+                    {
+                        Tutorial.SetActive(true);
+                        _1Fail = true;
+                    }
+
                     _Currentstate = MiniGameAuditionState.LeaveDesk;
 
                     makeUP.SetActive(true);
@@ -467,6 +474,8 @@ public class MiniGameAuidition : MonoBehaviour
                 _1Fail = true;
             }
             ScrissorCutClose.SetActive(true);*/
+
+
             GetHurt = true;
             handMove.enabled = true;
             handMove.Play("Handhurtsewing");

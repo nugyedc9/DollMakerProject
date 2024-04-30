@@ -19,7 +19,7 @@ using UnityEngine.UI;
         public float gravity = -9.8f;
         public float jumpHeight = 3f;
         private float NomalSpeed;
-        public bool speedForTest;
+        public bool speedForTest, cheat;
 
         public Slider StaminaBar;
         public float Stamina;
@@ -54,7 +54,8 @@ using UnityEngine.UI;
 
             StaminaBar.value = Stamina;
 
-        //if(Input.GetKeyDown(KeyCode.LeftControl)) { speed = 11f; }
+        if(cheat) 
+        if(Input.GetKeyDown(KeyCode.LeftControl)) { speed = 11f; }
 
             if (Notrun)
             {
