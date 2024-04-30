@@ -1142,12 +1142,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
             {
                 KeysID = hitevent.collider.gameObject.GetComponent<RollClothColor>();
 
-                ItemText.SetActive(true);   
+                ItemText.SetActive(true);
                 if (KeysID.pieceClothID == 1)
                     ItemName.text = "Doll workshop Key [E]";
-               else if (KeysID.pieceClothID == 2)
-                    ItemName.text = "StorageRoom Key [E]";
+                else if (KeysID.pieceClothID == 2)
+                    ItemName.text = "Storage room Key [E]";
                 else if (KeysID.pieceClothID == 3) ItemName.text = "Ritual room key [E]";
+                else if (KeysID.pieceClothID == 4) ItemName.text = "Master bedroom Key [E]";
                 InterectItem = true;
             }
             else if (hitevent.collider.gameObject.tag == "Radio")
@@ -1172,26 +1173,26 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                         else if (playerPickUpItem.Key && playerPickUpItem.KeyId == DoorInterect.DoorID)
                         {
                             ItemText.SetActive(true);
-                            ItemName.text = "Unlock the door [Left Click]";
+                            ItemName.text = "Unlock [Left Click]";
                             InterectItem = true;
                         }
                     }
                     else if(!DoorInterect.Lock)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Open the Door [E]";
+                        ItemName.text = "Open [E]";
                         InterectItem = true;
                     }
                     else if(DoorInterect.DoorID == 0 && DoorInterect.Lock)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Door Lock";
+                        ItemName.text = "Locked";
                         InterectItem = true;
                     }
                      if (DoorInterect.DoorID == 10 && DoorInterect.Lock)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Door Lock";
+                        ItemName.text = "Locked";
                         InterectItem = true;
                     }
                     
@@ -1200,13 +1201,13 @@ public class PlayerAttack : MonoBehaviour , IDataGame
                 else
                 {
                     ItemText.SetActive(true);
-                    ItemName.text = "Door Lock";
+                    ItemName.text = "Locked";
                     InterectItem = true;
                   
                     if(DoorInterect.DoorID == 20)
                     {
                         ItemText.SetActive(true);
-                        ItemName.text = "Open the Door [E]";
+                        ItemName.text = "Open [E]";
                         InterectItem = true;
                     }
 
