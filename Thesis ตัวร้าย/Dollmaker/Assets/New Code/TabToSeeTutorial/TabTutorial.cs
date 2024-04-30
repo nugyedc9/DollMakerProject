@@ -184,7 +184,7 @@ public class TabTutorial : MonoBehaviour
         {
             InvShow.Play("NotInvPage", 0, 0);
             Sub.SetActive(false);
-            Animtext.Play("Idle", 0, 0);
+           // Animtext.Play("Idle", 0, 0);
             PrevButt.SetActive(true);
         }
         if (PageNum == PageCount - 1) NextButt.SetActive(false);
